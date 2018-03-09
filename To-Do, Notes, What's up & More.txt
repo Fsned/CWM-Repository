@@ -1,0 +1,66 @@
+// Programmerings To-Do
+
+/******************************************
+ *				    Embedded			  *
+ ******************************************/
+
+/*
+ * "Hello World" program
+ * Lær config af PINS (in-/output, pull  -up/-down, optiswitch)
+ * Lær output med LED'er
+ *----------------------------------------------------------
+ * Lav Ordentligt API til opsætning af input / output pins
+ *----------------------------------------------------------
+ * Opsæt UART kontrol
+ * Opsæt log struktur i UART
+ * Opsæt UART protokol
+ *----------------------------------------------------------
+ *
+ * Lær config af ADC
+ * Lær config af PWM
+ * 
+ * Lær korrekt opsætning og afvikling af tasks m. mutex, sleeping task mm.
+ * Tilføj FreeRTOS
+ * Find programstruktur
+ * Find struktur af programblock
+ * Find ud af hvordan queues skal sættes op
+ * Find ud af hvordan interrupts skal sættes op 
+ * Opsæt UART kontrol
+ * Lær config / brug af skærm
+ * Opstil screen API
+ * Lær netopkobling at kende
+ * Opstil NET communication API
+ *
+*/
+
+
+// ****************************************
+//					  C++
+// ****************************************
+
+/*
+ * Find passende IDE
+ * Få hul igennem C++ og UART
+ * Design UI
+ * Hjemmelavet grafik?
+ * 
+ * API-udvikling
+ *
+ *
+*/
+
+// ****************************************
+//				Tidsplan
+// ****************************************
+
+/*
+ * 5/3-18: 	Modtagelse af Dev. board, scope, forsøgsudstyr mm.
+ *			Begyndelse af gpio config.
+ *
+ * 8/3-18:	Aflevering af kravspec. til Micro-Technic
+ *
+ * 9/3-18:	Revision af kravspec.
+ *
+*/
+
+

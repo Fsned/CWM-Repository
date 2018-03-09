@@ -1842,7 +1842,7 @@
       </Doc>
       <Doc>
         <Name>.\UART_control.c</Name>
-        <ColumnNumber>67</ColumnNumber>
+        <ColumnNumber>31</ColumnNumber>
         <TopLine>121</TopLine>
         <CurrentLine>144</CurrentLine>
         <Folding>1</Folding>

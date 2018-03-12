@@ -356,13 +356,13 @@ void UART_chk_for_match(char input_array[]) {
 	else if (checkstring(input_array , HELP))
 		terminal_help();
 	
-	else if (checkstring(input_array , LED_1_ON))
+	else if (! strcmp(input_array , LED_1_ON))
 		terminal_LED_1_ON();
-	else if (checkstring(input_array , LED_2_ON))
+	else if (! strcmp(input_array , LED_2_ON))
 		terminal_LED_2_ON();
-	else if (checkstring(input_array , LED_3_ON))
+	else if (! strcmp(input_array , LED_3_ON))
 		terminal_LED_3_ON();
-	else if (checkstring(input_array , LED_4_ON))
+	else if (! strcmp(input_array , LED_4_ON))
 		terminal_LED_4_ON();
 	else if (checkstring(input_array , LED_OFF))
 		terminal_LED_OFF();
@@ -425,6 +425,15 @@ void UART_LOGIN(char input_array[]) {
 }
 
 
+void read_username() {
+	
+}
+
+void read_password() {
+	
+}
+
+
 
 
 
@@ -434,14 +443,21 @@ void uart_task() {
 	static char input_buffer[128];
 	static unsigned int i = 0;
 	char temp_str[5];
-	last_char = uart_RxChar();	
 	
-	if (last_char == '\r'){
+	
+	last_char = uart_RxChar();
+	input_buffer[i] = last_char;
+	i++;
+	uart_TxChar(last_char);
+	
+	if (input_buffer[i] == 'r') {
 		
-		uart_TxChar('\r');
-		uart_TxChar('\n');
-		
-		
+	if (! LOGGED_IN && ! USERNAME_MATCHED)
+		read_username();
+	else if (! LOGGED_IN && USERNAME_MATCHED)
+		read_password();
+	
+	}
 		
 		if (! LOGGED_IN) {
 			for (int n = 0; input_buffer[n] != '\0' && input_buffer[n] != '\r'; n++)

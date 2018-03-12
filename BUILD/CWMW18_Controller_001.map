@@ -405,6 +405,7 @@ Section Cross References
     .\build\uart_control.o(i.UART_chk_for_match) refers to .\build\uart_control.o(i.checkstring) for checkstring
     .\build\uart_control.o(i.UART_chk_for_match) refers to .\build\uart_control.o(i.terminal_LED_1_ON) for terminal_LED_1_ON
     .\build\uart_control.o(i.UART_chk_for_match) refers to .\build\uart_control.o(i.terminal_help) for terminal_help
+    .\build\uart_control.o(i.UART_chk_for_match) refers to C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(strcmpv7m.o)(.text) for strcmp
     .\build\uart_control.o(i.UART_chk_for_match) refers to .\build\uart_control.o(i.terminal_LED_2_ON) for terminal_LED_2_ON
     .\build\uart_control.o(i.UART_chk_for_match) refers to .\build\uart_control.o(i.terminal_LED_3_ON) for terminal_LED_3_ON
     .\build\uart_control.o(i.UART_chk_for_match) refers to .\build\uart_control.o(i.terminal_LED_4_ON) for terminal_LED_4_ON

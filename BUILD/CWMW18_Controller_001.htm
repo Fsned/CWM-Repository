@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\BUILD\CWMW18_Controller_001.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\BUILD\CWMW18_Controller_001.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Fri Mar 09 12:04:51 2018
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Mon Mar 12 08:38:01 2018
 <BR><P>
 <H3>Maximum Stack Usage =        664 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -656,14 +656,14 @@ Global Symbols
 <LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fclose_internal
 <LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fseek
 </UL>
-<BR>[Called By]<UL><LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fopen
-<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_initio
+<BR>[Called By]<UL><LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_initio
+<LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fopen
 </UL>
 
 <P><STRONG><a name="[99]"></a>fopen</STRONG> (Thumb, 74 bytes, Stack size 24 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(fopen.o)(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;freopen
-<LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;malloc
+<BR><BR>[Calls]<UL><LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;malloc
 <LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
+<LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;freopen
 </UL>
 
 <P><STRONG><a name="[e5]"></a>strlen</STRONG> (Thumb, 62 bytes, Stack size 8 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(strlen.o)(.text))
@@ -945,9 +945,9 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_writebuf
 </UL>
-<BR>[Called By]<UL><LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_do_fflush
-<LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fclose_internal
+<BR>[Called By]<UL><LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fclose_internal
 <LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_deferredlazyseek
+<LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_do_fflush
 </UL>
 
 <P><STRONG><a name="[b6]"></a>_deferredlazyseek</STRONG> (Thumb, 60 bytes, Stack size 8 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(stdio.o)(.text), UNUSED)
@@ -958,9 +958,9 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 664 + Unknown Stack Size
 <LI>Call Chain = _initio &rArr; freopen &rArr; _sys_open &rArr; mbed::FilePath::FilePath(const char*) &rArr; mbed::FileBase::lookup(const char*, unsigned) &rArr; SingletonPtr&lang;PlatformMutex&rang;::operator -&rang;() &rArr; mbed_assert_internal &rArr; mbed_error_printf &rArr;  core_util_critical_section_exit (Cycle)
 </UL>
-<BR>[Calls]<UL><LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;freopen
-<LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
+<BR>[Calls]<UL><LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
 <LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setvbuf
+<LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;freopen
 <LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_SIGRTRED
 </UL>
 <BR>[Called By]<UL><LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_lib_init_stdio_2
@@ -979,8 +979,8 @@ Global Symbols
 <LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
 <LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fflush
 </UL>
-<BR>[Called By]<UL><LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;freopen
-<LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_terminateio
+<BR>[Called By]<UL><LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_terminateio
+<LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;freopen
 </UL>
 
 <P><STRONG><a name="[142]"></a>fclose</STRONG> (Thumb, 0 bytes, Stack size 32 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(fclose.o)(.text), UNUSED)
@@ -988,9 +988,9 @@ Global Symbols
 <P><STRONG><a name="[9a]"></a>__aeabi_memclr4</STRONG> (Thumb, 0 bytes, Stack size 4 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(rt_memclr_w.o)(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = __aeabi_memclr4
 </UL>
-<BR>[Called By]<UL><LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fopen
-<LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fclose_internal
+<BR>[Called By]<UL><LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fclose_internal
 <LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_initio
+<LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fopen
 </UL>
 
 <P><STRONG><a name="[143]"></a>__aeabi_memclr8</STRONG> (Thumb, 0 bytes, Stack size 4 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(rt_memclr_w.o)(.text), UNUSED)
@@ -1335,7 +1335,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_LPC17xx.o(.text)
 </UL>
-<P><STRONG><a name="[d9]"></a>UART0_init</STRONG> (Thumb, 158 bytes, Stack size 20 bytes, .\build\uart_control.o(i.UART0_init))
+<P><STRONG><a name="[d9]"></a>UART0_init</STRONG> (Thumb, 170 bytes, Stack size 20 bytes, .\build\uart_control.o(i.UART0_init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = UART0_init &rArr; terminal_clear &rArr; uart_string
 </UL>
 <BR>[Calls]<UL><LI><a href="#[da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_string
@@ -1660,7 +1660,7 @@ Global Symbols
 <LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_init_out
 </UL>
 
-<P><STRONG><a name="[d4]"></a>$Super$$main</STRONG> (Thumb, 90 bytes, Stack size 0 bytes, .\build\main.o(i.main))
+<P><STRONG><a name="[d4]"></a>$Super$$main</STRONG> (Thumb, 92 bytes, Stack size 0 bytes, .\build\main.o(i.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = $Super$$main &rArr; UART_chk_for_match &rArr; terminal_LED_4_ON &rArr; LED_flip &rArr; LED_SET
 </UL>
 <BR>[Calls]<UL><LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemInit

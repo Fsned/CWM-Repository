@@ -14,6 +14,7 @@
 
 #define NO_OF_KEYWORDS 			20
 
+char branch_string[20] = {"Submaster"};
 char keyword_strings[NO_OF_KEYWORDS][10] = {{"help"},			// F1
 																						{"Help"},			// F2
 																						{"HELP"},			// F3

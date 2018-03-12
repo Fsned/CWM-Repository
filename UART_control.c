@@ -14,6 +14,26 @@
 
 #define NO_OF_KEYWORDS 			20
 
+#define USERS								5
+
+
+int LOGGED_IN = 0;
+int USERNAME_MATCHED = 0;
+int PASSWORD_MATCHED = 0;
+int USER_ID_MATCHED;
+
+char USER_IDS[USERS][5] = {{" frs"},
+													 {"map"},
+													 {"123"},
+													 {"321"},
+													 {"asd"}};
+
+char USER_PASS[USERS][5] = {{"9944"},
+														{"0000"},
+														{"0000"},
+														{"0000"},
+														{"0000"}};
+
 char branch_string[20] = {"Submaster"};
 char keyword_strings[NO_OF_KEYWORDS][10] = {{"help"},			// F1
 																						{"Help"},			// F2
@@ -145,7 +165,8 @@ void UART0_init( unsigned int baudrate) {
 	uart_string("|");
 	uart_string(branch_string);
 	uart_string(" branch__________________________| \r\n");
-	uart_string("Indtast Brugernavn :");
+	uart_string("Indtast brugernavn :");
+	
 }	
 
 
@@ -242,8 +263,11 @@ void terminal_undefined() {
 		uart_TxChar('\r');
 		uart_TxChar('\n');
 		uart_string("Undefined function.");
-	
 }
+
+void terminal_no_function_found() {
+	uart_string("No match for input. try 'help'\r\n");
+}	
 
 
 
@@ -268,51 +292,65 @@ void UART_chk_for_match(char input_array[]) {
 		}
 	}
 		*/
-			if (checkstring(input_array , LED))
-				terminal_LED_1_ON();
-			else if (checkstring(input_array , help))
-				terminal_help();
-			else if (checkstring(input_array , Help))
-				terminal_help();
-			else if (checkstring(input_array , HELP))
-				terminal_help();
-			
-			else if (checkstring(input_array , LED_1_ON))
-				terminal_LED_1_ON();
-			else if (checkstring(input_array , LED_2_ON))
-				terminal_LED_2_ON();
-			else if (checkstring(input_array , LED_3_ON))
-				terminal_LED_3_ON();
-			else if (checkstring(input_array , LED_4_ON))
-				terminal_LED_4_ON();
-			else if (checkstring(input_array , LED_OFF))
-				terminal_LED_OFF();
-			else if (checkstring(input_array , status))
-				terminal_status();
-			else if (checkstring(input_array , clear))
-				terminal_clear();
-			else if (checkstring(input_array , LEDSTATE1))
-				terminal_LED_STATE_1();
-			else if (checkstring(input_array , LEDSTATE2))
-				terminal_LED_STATE_2();
-			else if (checkstring(input_array , LEDSTATE3))
-				terminal_LED_STATE_3();
-			else if (checkstring(input_array , LEDSTATE4))
-				terminal_LED_STATE_4();
-			else if (checkstring(input_array , disco_str))
-				disco_func();
-			else if (checkstring(input_array , LED_ALL_ON))
-				terminal_LED_ALL_ON();
+	
+	if (! LOGGED_IN) {
+		
+		if (! USERNAME_MATCHED) {
+			//uart_string("Indtast brugernavn: ");
+			for (int i = 0; i < 5; i++) {
+				if (checkstring(input_array, USER_IDS[i])) {
+					uart_string("\r\nUser found.\r\n");
+					USER_ID_MATCHED = i;
+					USERNAME_MATCHED = 1;
+				}
+			}	
+		}
+		else if (!PASSWORD_MATCHED && USERNAME_MATCHED) {
+			uart_string("Indtast password: ");
+			if (checkstring(input_array, USER_PASS[USER_ID_MATCHED])) {
+				LOGGED_IN = 1;
+				uart_string("logged in to user: ");
+				uart_string(USER_IDS[USER_ID_MATCHED]);
+			}
+		}
+	}
+	
+	else if (checkstring(input_array , LED))
+		terminal_LED_1_ON();
+	else if (checkstring(input_array , help))
+		terminal_help();
+	else if (checkstring(input_array , Help))
+		terminal_help();
+	else if (checkstring(input_array , HELP))
+		terminal_help();
+
+	else if (checkstring(input_array , LED_1_ON))
+		terminal_LED_1_ON();
+	else if (checkstring(input_array , LED_2_ON))
+		terminal_LED_2_ON();
+	else if (checkstring(input_array , LED_3_ON))
+		terminal_LED_3_ON();
+	else if (checkstring(input_array , LED_4_ON))
+		terminal_LED_4_ON();
+	else if (checkstring(input_array , LED_OFF))
+		terminal_LED_OFF();
+	else if (checkstring(input_array , status))
+		terminal_status();
+	else if (checkstring(input_array , clear))
+		terminal_clear();
+	else if (checkstring(input_array , LEDSTATE1))
+		terminal_LED_STATE_1();
+	else if (checkstring(input_array , LEDSTATE2))
+		terminal_LED_STATE_2();
+	else if (checkstring(input_array , LEDSTATE3))
+		terminal_LED_STATE_3();
+	else if (checkstring(input_array , LEDSTATE4))
+		terminal_LED_STATE_4();
+	else if (checkstring(input_array , disco_str))
+		disco_func();
+	else if (checkstring(input_array , LED_ALL_ON))
+		terminal_LED_ALL_ON();
+	else
+		terminal_no_function_found();			
 }
-
-
-
-
-
-
-
-
-
-
-
 

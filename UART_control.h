@@ -47,6 +47,7 @@ extern void terminal_clear(void);
 
 extern void terminal_undefined(void); 
 
+extern void terminal_no_function_found(void);
 extern int checkstring(char string_1[] , char string_2[]);
 
 extern void UART_chk_for_match(char input_array[]);

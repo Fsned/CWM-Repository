@@ -21,6 +21,7 @@ int main()
 		
 		
 		last_char = uart_RxChar();	
+		
 		if (last_char == '\r'){
 			uart_TxChar('\r');
 			uart_TxChar('\n');

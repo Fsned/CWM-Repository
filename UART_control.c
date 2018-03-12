@@ -15,6 +15,7 @@
 #define NO_OF_KEYWORDS 			20
 
 char branch_string[20] = {"Sandbox"};
+
 char keyword_strings[NO_OF_KEYWORDS][10] = {{"help"},			// F1
 																						{"Help"},			// F2
 																						{"HELP"},			// F3
@@ -61,7 +62,7 @@ void (*keyword_functions[NO_OF_KEYWORDS])()={{terminal_help}, 		 //
 																					 {terminal_undefined}, //
 																					 {terminal_undefined}};//
 																					 */
-																
+
 char help[]				= "help";
 char Help[]				= "Help";
 char HELP[]				= "HELP";
@@ -83,9 +84,6 @@ char disco_str[]	= "DiScO";
 
 
 void UART0_init( unsigned int baudrate) {
-	
-	
-	
 	
 	unsigned int var_UartPclk_u32 , var_Pclk_u32 , var_RegValue_u32;
 	

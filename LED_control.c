@@ -68,7 +68,3 @@ void delay_LED() {
 	for (int i = 0; i < 1500000; i++);
 }
 
-void my_task(void * pvparameters) {
-	LED_SET(1,0,1,0);
-}
-

@@ -22,63 +22,19 @@ Dialog DLL:      TCM.DLL V1.32.0.0
  
 <h2>Project:</h2>
 C:\Users\frs\Documents\GitHubR\CWM-Repository\mbed_blinky.uvprojx
-Project File Date:  03/12/2018
+Project File Date:  03/09/2018
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 5 (build 528)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Rebuild target 'CWM18_Controller'
 compiling utilities.c...
-compiling main.cpp...
-.\FreeRTOS\portable\GCC\ARM_CM3\portmacro.h(108): error:  #18: expected a ")"
-  	#if( 
-onfigMAX_PRIORITIES > 32 )
-.\FreeRTOS\portable\GCC\ARM_CM3\portmacro.h(108): error:  #18: expected a ")"
-  	#if( 
-onfigMAX_PRIORITIES > 32 )
-.\FreeRTOS\include\list.h(100): error:  #20: identifier "portTickType" is undefined
-  	portTickType xItemValue;				/*< The value being listed.  In most cases this is used to sort the list in descending order. */
-.\FreeRTOS\include\list.h(110): error:  #20: identifier "portTickType" is undefined
-  	portTickType xItemValue;
-.\FreeRTOS\include\task.h(95): error:  #20: identifier "portTickType" is undefined
-  	portTickType  xTimeOnEntering;
-.\FreeRTOS\include\task.h(485): error:  #20: identifier "portTickType" is undefined
-  void vTaskDelay( portTickType xTicksToDelay ) PRIVILEGED_FUNCTION;
-.\FreeRTOS\include\task.h(544): error:  #20: identifier "portTickType" is undefined
-  void vTaskDelayUntil( portTickType * const pxPreviousWakeTime, portTickType xTimeIncrement ) PRIVILEGED_FUNCTION;
-.\FreeRTOS\include\task.h(544): error:  #20: identifier "portTickType" is undefined
-  void vTaskDelayUntil( portTickType * const pxPreviousWakeTime, portTickType xTimeIncrement ) PRIVILEGED_FUNCTION;
-.\FreeRTOS\include\task.h(973): error:  #20: identifier "portTickType" is undefined
-  portTickType xTaskGetTickCount( void ) PRIVILEGED_FUNCTION;
-.\FreeRTOS\include\task.h(1169): error:  #20: identifier "portTickType" is undefined
-  void vTaskPlaceOnEventList( const xList * const pxEventList, portTickType xTicksToWait ) PRIVILEGED_FUNCTION;
-.\FreeRTOS\include\task.h(1225): error:  #20: identifier "portTickType" is undefined
-  
-ortBASE_TYPE xTaskCheckForTimeOut( xTimeOutType * const pxTimeOut, portTickType * const pxTicksToWait ) PRIVILEGED_FUNCTION;
-.\FreeRTOS\include\queue.h(472): error:  #20: identifier "portTickType" is undefined
-  signed 
-ortBASE_TYPE xQueueGenericSend( xQueueHandle xQueue, const void * const pvItemToQueue, portTickType xTicksToWait, portBASE_TYPE xCopyPosition );
-.\FreeRTOS\include\queue.h(758): error:  #20: identifier "portTickType" is undefined
-  signed 
-ortBASE_TYPE xQueueGenericReceive( xQueueHandle xQueue, void * const pvBuffer, portTickType xTicksToWait, portBASE_TYPE xJustPeek );
-.\FreeRTOS\include\queue.h(1194): error:  #20: identifier "portTickType" is undefined
-  signed 
-ortBASE_TYPE xQueueAltGenericSend( xQueueHandle pxQueue, const void * const pvItemToQueue, portTickType xTicksToWait, portBASE_TYPE xCopyPosition );
-.\FreeRTOS\include\queue.h(1195): error:  #20: identifier "portTickType" is undefined
-  signed 
-ortBASE_TYPE xQueueAltGenericReceive( xQueueHandle pxQueue, void * const pvBuffer, portTickType xTicksToWait, portBASE_TYPE xJustPeeking );
-.\FreeRTOS\include\queue.h(1212): error:  #20: identifier "portTickType" is undefined
-  signed 
-ortBASE_TYPE xQueueCRSend( xQueueHandle pxQueue, const void *pvItemToQueue, portTickType xTicksToWait );
-.\FreeRTOS\include\queue.h(1213): error:  #20: identifier "portTickType" is undefined
-  signed 
-ortBASE_TYPE xQueueCRReceive( xQueueHandle pxQueue, void *pvBuffer, portTickType xTicksToWait );
-.\FreeRTOS\include\queue.h(1226): error:  #20: identifier "portTickType" is undefined
-  
-ortBASE_TYPE xQueueTakeMutexRecursive( xQueueHandle xMutex, portTickType xBlockTime );
-main.cpp: 0 warnings, 18 errors
 compiling LED_control.c...
+compiling main.cpp...
 compiling UART_control.c...
-".\BUILD\CWMW18_Controller_001.axf" - 18 Error(s), 0 Warning(s).
+linking...
+Program Size: Code=17248 RO-data=1932 RW-data=820 ZI-data=1036  
+After Build - User command #1: fromelf --bin -o CWMW18_Controller_001.bin .\BUILD\CWMW18_Controller_001.axf
+".\BUILD\CWMW18_Controller_001.axf" - 0 Error(s), 0 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -92,7 +48,6 @@ Package Vendor: Keil
   C:\Keil_v5\ARM\PACK\Keil\LPC1700_DFP\2.4.0\Device\Include
 
 <h2>Collection of Component Files used:</h2>
-Target not created.
 Build Time Elapsed:  00:00:00
 </pre>
 </body>

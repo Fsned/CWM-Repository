@@ -2128,7 +2128,7 @@
       <GroupNumber>2</GroupNumber>
       <FileNumber>162</FileNumber>
       <FileType>1</FileType>
-      <tvExp>1</tvExp>
+      <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
       <PathWithFileName>main.cpp</PathWithFileName>
@@ -2140,7 +2140,7 @@
       <GroupNumber>2</GroupNumber>
       <FileNumber>163</FileNumber>
       <FileType>1</FileType>
-      <tvExp>1</tvExp>
+      <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
       <PathWithFileName>.\LED_control.c</PathWithFileName>
@@ -2181,18 +2181,6 @@
       <bDave2>0</bDave2>
       <PathWithFileName>.\UART_control.c</PathWithFileName>
       <FilenameWithoutPath>UART_control.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>2</GroupNumber>
-      <FileNumber>167</FileNumber>
-      <FileType>5</FileType>
-      <tvExp>0</tvExp>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
-      <PathWithFileName>.\FreeRTOS\Source\include\FreeRTOSConfig.h</PathWithFileName>
-      <FilenameWithoutPath>FreeRTOSConfig.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>

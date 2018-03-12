@@ -12,4 +12,3 @@ extern void disco_func(void );
 
 extern void LED_flip(unsigned int led_flip[]);
 
-extern void my_task(void * pvparameters);

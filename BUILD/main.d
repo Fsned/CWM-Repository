@@ -11,12 +11,3 @@
 .\build\main.o: LED_control.h
 .\build\main.o: utilities.h
 .\build\main.o: UART_control.h
-.\build\main.o: .\FreeRTOS\include\FreeRTOS.h
-.\build\main.o: .\FreeRTOS\include\projdefs.h
-.\build\main.o: .\FreeRTOS\FreeRTOSConfig.h
-.\build\main.o: .\FreeRTOS\include\portable.h
-.\build\main.o: .\FreeRTOS\portable\GCC\ARM_CM3\portmacro.h
-.\build\main.o: .\FreeRTOS\include\mpu_wrappers.h
-.\build\main.o: .\FreeRTOS\include\task.h
-.\build\main.o: .\FreeRTOS\include\list.h
-.\build\main.o: .\FreeRTOS\include\queue.h

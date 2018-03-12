@@ -3,7 +3,6 @@
 #include "stdutils.h"
 #include "LED_control.h"
 
-
 #define SBIT_WordLenght    0x00u
 #define SBIT_DLAB          0x07u
 #define SBIT_FIFO          0x00u
@@ -145,9 +144,9 @@ void UART0_init( unsigned int baudrate) {
 	uart_string("|           Jeros Control Panel            | \r\n");
 	uart_string("|");
 	uart_string(branch_string);
-	uart_string(" branch__________________________| \r\n");
+	uart_string("branch____________________________| \r\n");
 	uart_string("Indtast Brugernavn :");
-}
+}	
 
 
 

@@ -14,6 +14,24 @@
 
 #define NO_OF_KEYWORDS 			20
 
+#define USERS								5
+
+int LOGGED_IN = 0;
+int USERNAME_MATCHED = 0;
+int PASSWORD_MATCHED = 0;
+int USER_ID_MATCHED;
+
+char USER_IDS[USERS][5] = {{"frs"},
+													 {"map"},
+													 {"123"},
+													 {"321"},
+													 {"asd"}};
+
+char USER_PASS[USERS][5] = {{"9944"},
+														{"0000"},
+														{"0000"},
+														{"0000"},
+														{"0000"}};
 char branch_string[20] = {"Sandbox"};
 
 char keyword_strings[NO_OF_KEYWORDS][10] = {{"help"},			// F1
@@ -82,7 +100,7 @@ char LED[]				= "LED";
 char disco_str[]	= "DiScO";
 
 
-
+/* Function to initialize UART0 */
 void UART0_init( unsigned int baudrate) {
 	
 	unsigned int var_UartPclk_u32 , var_Pclk_u32 , var_RegValue_u32;
@@ -142,31 +160,34 @@ void UART0_init( unsigned int baudrate) {
 	uart_string("|           Jeros Control Panel            | \r\n");
 	uart_string("|");
 	uart_string(branch_string);
-	uart_string(" branch____________________________| \r\n");
-	uart_string("Indtast Brugernavn :");
-}	
+	uart_string(" branch____________________________| \r\n\n");
+}
+
+
+
+
 
 
 
 /* Function to transmit a char */
-void uart_TxChar(char ch)
-{
+void uart_TxChar(char ch) {
     while(util_IsBitCleared(LPC_UART0->LSR,SBIT_THRE)); // Wait for Previous transmission
     LPC_UART0->THR=ch;                                  // Load the data to be transmitted
 }
 
 
+
 /* Function to Receive a char */
-char uart_RxChar()
-{
+char uart_RxChar() {
     char ch; 
     while(util_IsBitCleared(LPC_UART0->LSR,SBIT_RDR));  // Wait till the data is received
     ch = LPC_UART0->RBR;                                // Read received data    
     return ch;
 }
 
-void uart_string(char ch_s[])
-{
+
+/* Function to transmit a string to UART */
+void uart_string(char ch_s[]) {
 	int i = 0;
 	while(ch_s[i] != '\0') {
 		uart_TxChar(ch_s[i]);
@@ -174,6 +195,8 @@ void uart_string(char ch_s[])
 	}
 }
 
+
+/* Keyword function for "help" */
 void terminal_help() {
 	uart_string("The following commands are available\n\r");
 	uart_string("The following commands are available\n\r");
@@ -182,60 +205,88 @@ void terminal_help() {
 	uart_string("The following commands are available\n\r");
 }
 
+
+/* Keyword funtion for "LED1" */ 
 void terminal_LED_1_ON() {
 	unsigned int arr[4] = {1,0,0,0};
 	LED_flip(arr);
 }
+
+
+/* Keyword funtion for "LED2" */ 
 void terminal_LED_2_ON() {
 	unsigned int arr[4] = {0,1,0,0};
 	LED_flip(arr);
 }
+
+
+/* Keyword funtion for "LED3" */ 
 void terminal_LED_3_ON() {
 	unsigned int arr[4] = {0,0,1,0};
 	LED_flip(arr);
 }
 
+
+/* Keyword funtion for "LED4" */ 
 void terminal_LED_4_ON() {
 	unsigned int arr[4] = {0,0,0,1};
 	LED_flip(arr);
 }
 
+
+/* Keyword funtion for "LEDOFF" */ 
 void terminal_LED_OFF() {
 	LED_SET(0,0,0,0);
 }
 
+
+/* Keyword funtion for "LEDALL" */ 
 void terminal_LED_ALL_ON() {
 	LED_SET(1,1,1,1);
 }
 
+
+/* Keyword funtion for "status" */ 
 void terminal_status() {
 	uart_string("\r\nCurrent state       : snoo\n\r");
 	uart_string("Current Temperature : \n\r");
 	uart_string("Current Program     : \n\r");
 }
 	
+
+/* Keyword funtion for "LED1" */ 
 void terminal_LED_STATE_1() {
 	LED_SET(1,0,0,0);
 	
 }
 
+
+/* Keyword funtion for "LED2" */ 
 void terminal_LED_STATE_2() {
 	LED_SET(0,1,0,0);
 }
 
+
+/* Keyword funtion for "LED3" */ 
 void terminal_LED_STATE_3() {
 	LED_SET(0,0,1,0);
 }
 
+
+/* Keyword funtion for "LED4" */ 
 void terminal_LED_STATE_4() {
 	LED_SET(0,0,0,1);
 }
 	
+
+/* Keyword funtion for "clear" */ 
 void terminal_clear() {
 	for(int i = 0; i < 25; i++)
 		uart_string("\r\n");
 }
 
+
+/* Keyword funtion for undefined inputs */ 
 void terminal_undefined() {
 		uart_TxChar('\r');
 		uart_TxChar('\n');
@@ -244,45 +295,39 @@ void terminal_undefined() {
 }
 
 
+/* Keyword funtion for undefined inputs */ 
+void terminal_no_function_found() {
+	uart_string("No matching function found. try 'help' for more info. \r\n");
+}
 
+
+
+ 
+
+
+/* Function to check UART input with keywords */
 int checkstring(char string_1[] , char string_2[]) {
 	int re_val = 1;
 	int length;
-	for (int length = 0; string_2[length] != '\0'; length++);
 	
-	for(int i = length; i > 0; i--) {
-		if (string_1[length-i+1] != string_2[length-i])
+	for (int length = 0; string_2[length] != '\0'; length++);
+
+//	for(int i = 1; i < length; i++) {
+//		if (string_1[i] != string_2[i-1])
+//			re_val = 0;
+//	}
+	for (int i = 1; i < length; i++) {
+		if (string_1[i] != string_2[i-1])
 			re_val = 0;
 	}
+	
 	return re_val;
 }
 
+
 void UART_chk_for_match(char input_array[]) {
 	
-	
-	if (! LOGGED_IN) {
-		
-		if (! USERNAME_MATCHED) {
-			//uart_string("Indtast brugernavn: ");
-			for (int i = 0; i < 5; i++) {
-				if (checkstring(input_array, USER_IDS[i])) {
-					uart_string("\r\nUser found.\r\n");
-					USER_ID_MATCHED = i;
-					USERNAME_MATCHED = 1;
-				}
-			}	
-		}
-		else if (!PASSWORD_MATCHED && USERNAME_MATCHED) {
-			uart_string("Indtast password: ");
-			if (checkstring(input_array, USER_PASS[USER_ID_MATCHED])) {
-				LOGGED_IN = 1;
-				uart_string("logged in to user: ");
-				uart_string(USER_IDS[USER_ID_MATCHED]);
-			}
-		}
-	}
-	
-	else if (checkstring(input_array , LED))
+	if (checkstring(input_array , LED))
 		terminal_LED_1_ON();
 	else if (checkstring(input_array , help))
 		terminal_help();
@@ -317,9 +362,63 @@ void UART_chk_for_match(char input_array[]) {
 		disco_func();
 	else if (checkstring(input_array , LED_ALL_ON))
 		terminal_LED_ALL_ON();
+	else {
+		uart_string(input_array);
+		terminal_no_function_found();
+	}
+}
+
+/************************************************
+ *	UART Login Function
+ *	//@Description: Used to identify who's logged in to the system
+ *		as well as pass correct permissions to the user, to allow
+ * 		for several users
+ *
+*************************************************/
+
+
+void UART_LOGIN(char input_array[]) {
+	if (! USERNAME_MATCHED)
+		uart_string("Indtast brugernavn :");
+	
+	
+	if (USERNAME_MATCHED && ! PASSWORD_MATCHED)
+		uart_string("Indtast password :");
+	
+	if (USERNAME_MATCHED && PASSWORD_MATCHED)
+		LOGGED_IN = 1;
+	
+	
 }
 
 
+
+
+
+void uart_task() {
+	
+	static char last_char;
+	static char input_buffer[128];
+	static unsigned int i = 0;
+	
+	last_char = uart_RxChar();	
+	
+	if (last_char == '\r'){
+		
+		uart_TxChar('\r');
+		uart_TxChar('\n');
+		
+		if ( LOGGED_IN)
+			UART_LOGIN(input_buffer);
+		else if ( !LOGGED_IN)
+			UART_chk_for_match(input_buffer);
+		
+		i = 0;
+	}
+	input_buffer[i] = last_char;
+	uart_TxChar(input_buffer[i]);
+	i++;
+}
 
 
 

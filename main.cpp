@@ -5,12 +5,6 @@
 #include "UART_control.h"
 #include "stdio.h"
 
-
-
-char last_char;
-char input_buffer[128];
-unsigned int i = 0;
-
 int main() 
 {
 	SystemInit();                    //Clock and PLL configuration
@@ -19,17 +13,8 @@ int main()
 	
   while(1) {
 		
+		uart_task();
 		
-		last_char = uart_RxChar();	
-		if (last_char == '\r'){
-			uart_TxChar('\r');
-			uart_TxChar('\n');
-			UART_chk_for_match(input_buffer);
-			i = 0;
-		}
-		input_buffer[i] = last_char;
-		uart_TxChar(input_buffer[i]);
-		i++;
 	}
 }
 

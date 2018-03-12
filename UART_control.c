@@ -14,6 +14,7 @@
 
 #define NO_OF_KEYWORDS 			20
 
+char branch_string[20] = {"Sandbox"};
 char keyword_strings[NO_OF_KEYWORDS][10] = {{"help"},			// F1
 																						{"Help"},			// F2
 																						{"HELP"},			// F3
@@ -141,7 +142,9 @@ void UART0_init( unsigned int baudrate) {
 	uart_string("____________________________________________ \r\n");
 	uart_string("|                                          | \r\n");
 	uart_string("|           Jeros Control Panel            | \r\n");
-	uart_string("|Sandbox branch____________________________| \r\n");
+	uart_string("|");
+	uart_string(branch_string);
+	uart_string("branch____________________________| \r\n");
 	uart_string("Indtast Brugernavn :");
 }	
 

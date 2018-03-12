@@ -35,10 +35,13 @@ void LED_setup(void) {
 void LED_SET(unsigned int led_0 , unsigned int led_1, unsigned int led_2, unsigned int led_3) {
 	LPC_GPIO1->FIOCLR = 0x00B40000;
 	
-	LPC_GPIO1->FIOSET |= (led_0 << 18);
-	LPC_GPIO1->FIOSET |= (led_1 << 20);
-	LPC_GPIO1->FIOSET |= (led_2 << 21);
-	LPC_GPIO1->FIOSET |= (led_3 << 23);
+	LED_status[0] = led_0;
+	LED_status[1] = led_1;
+	LED_status[2] = led_2;
+	LED_status[3] = led_3;
+	
+	for (int i = 0; i < 4; i++)
+		LPC_GPIO1->FIOSET |= (LED_status[i] << LED_pins[i]);
 }
 
 void LED_flip(unsigned int led_flip[]) {

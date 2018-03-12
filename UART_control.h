@@ -57,6 +57,8 @@ extern void UART_LOGIN(char input_array[]);
 
 extern void uart_task(void);
 
+extern void read_username(void);
+extern void read_password(void);
 
 
 

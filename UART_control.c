@@ -450,31 +450,33 @@ void uart_task() {
 	i++;
 	uart_TxChar(last_char);
 	
-	if (input_buffer[i] == 'r') {
-		
-	if (! LOGGED_IN && ! USERNAME_MATCHED)
-		read_username();
-	else if (! LOGGED_IN && USERNAME_MATCHED)
-		read_password();
-	
-	}
-		
-		if (! LOGGED_IN) {
-			for (int n = 0; input_buffer[n] != '\0' && input_buffer[n] != '\r'; n++)
-				temp_str[n] = input_buffer[i-(3-n)];
-			UART_LOGIN(temp_str);
-		}
-			
-		else if ( LOGGED_IN) {
-			LED_SET(1,1,0,0);
-			UART_chk_for_match(input_buffer);
-		}
-		last_char = ' ';
-		i = 0;
-	}
-	input_buffer[i] = last_char;
-	uart_TxChar(input_buffer[i]);
-	i++;
+//	if (input_buffer[i] == 'r') {
+//		
+//	if (! LOGGED_IN && ! USERNAME_MATCHED)
+//		read_username();
+//	else if (! LOGGED_IN && USERNAME_MATCHED)
+//		read_password();
+//	
+//	}
+//		
+//		if (! LOGGED_IN) {
+//			for (int n = 0; input_buffer[n] != '\0' && input_buffer[n] != '\r'; n++)
+//				temp_str[n] = input_buffer[i-(3-n)];
+//			UART_LOGIN(temp_str);
+//		}
+//			
+//		else if ( LOGGED_IN) {
+//			LED_SET(1,1,0,0);
+//			UART_chk_for_match(input_buffer);
+//		}
+//		
+//		last_char = ' ';
+//		i = 0;
+//	}
+
+//	input_buffer[i] = last_char;
+//	uart_TxChar(input_buffer[i]);
+//	i++;
 }
 
 

@@ -2,6 +2,8 @@
 #include "lpc17xx.h"
 #include "stdutils.h"
 #include "LED_control.h"
+#include "string.h"
+
 
 #define SBIT_WordLenght    0x00u
 #define SBIT_DLAB          0x07u
@@ -19,19 +21,26 @@
 int LOGGED_IN = 0;
 int USERNAME_MATCHED = 0;
 int PASSWORD_MATCHED = 0;
-int USER_ID_MATCHED;
+//int USER_ID_MATCHED;
 
-char USER_IDS[USERS][5] = {{"frs"},
+char USER_IDS[USERS][5] = {{"oHo"},
+													 {"frs"},
 													 {"map"},
-													 {"123"},
-													 {"321"},
+													 {"abh"},
 													 {"asd"}};
 
-char USER_PASS[USERS][5] = {{"9944"},
-														{"0000"},
-														{"0000"},
-														{"0000"},
-														{"0000"}};
+char USER_PASS[USERS][5] = {{"aa4"},
+														{"880"},
+														{"123"},
+														{"123"},
+														{"123"}};
+
+														
+char USER_LIBRARY[3][USERS][5] ={{"oHo" , "frs" , "map" , "abh" , "asd"},
+																	{"aa4" , "880" , "123" , "123" , "123"},
+																	{'1' , '1' , '1' , '1' , '1'}};
+
+													
 char branch_string[20] = {"Sandbox"};
 
 char keyword_strings[NO_OF_KEYWORDS][10] = {{"help"},			// F1
@@ -161,6 +170,7 @@ void UART0_init( unsigned int baudrate) {
 	uart_string("|");
 	uart_string(branch_string);
 	uart_string(" branch____________________________| \r\n\n");
+	uart_string("Press 'Enter' to continue\r\n");
 }
 
 
@@ -306,21 +316,31 @@ void terminal_no_function_found() {
 
 
 /* Function to check UART input with keywords */
+/*
 int checkstring(char string_1[] , char string_2[]) {
 	int re_val = 1;
 	int length;
 	
 	for (int length = 0; string_2[length] != '\0'; length++);
 
-//	for(int i = 1; i < length; i++) {
-//		if (string_1[i] != string_2[i-1])
-//			re_val = 0;
-//	}
 	for (int i = 1; i < length; i++) {
 		if (string_1[i] != string_2[i-1])
 			re_val = 0;
 	}
 	
+	return re_val;
+}*/
+
+
+int checkstring(char string_1[] , char string_2[]) {
+	int re_val = 1;
+	int length;
+	for (int length = 0; string_2[length] != '\0'; length++);
+	
+	for(int i = length; i > 0; i--) {
+		if (string_1[length-i+1] != string_2[length-i])
+			re_val = 0;
+	}
 	return re_val;
 }
 
@@ -370,25 +390,38 @@ void UART_chk_for_match(char input_array[]) {
 
 /************************************************
  *	UART Login Function
- *	//@Description: Used to identify who's logged in to the system
+
+ *	@Description: Used to identify who's logged in to the system
  *		as well as pass correct permissions to the user, to allow
- * 		for several users
+ * 		for several users with different privileges
  *
 *************************************************/
 
 
 void UART_LOGIN(char input_array[]) {
-	if (! USERNAME_MATCHED)
+	
+	if (! USERNAME_MATCHED) {
 		uart_string("Indtast brugernavn :");
+		for (int i = 0; i < USERS; i++) {
+			if (! strcmp(input_array , USER_IDS[i]))
+				USERNAME_MATCHED = i;
+		}
+	}
 	
+	if (USERNAME_MATCHED && ! PASSWORD_MATCHED) {
+		uart_string("Indtast password:");
+		if (! strcmp(input_array , USER_PASS[USERNAME_MATCHED]))
+			PASSWORD_MATCHED = 1;
+	}
 	
-	if (USERNAME_MATCHED && ! PASSWORD_MATCHED)
-		uart_string("Indtast password :");
-	
-	if (USERNAME_MATCHED && PASSWORD_MATCHED)
+	if (USERNAME_MATCHED && PASSWORD_MATCHED) {
 		LOGGED_IN = 1;
-	
-	
+		uart_string("\r\nLogged into user: ");
+		uart_string(USER_IDS[USERNAME_MATCHED]);
+		uart_string("\r\nYour priority level is : ");
+		uart_string(USER_LIBRARY[USERNAME_MATCHED][USERNAME_MATCHED]);
+		
+	}
 }
 
 
@@ -400,7 +433,7 @@ void uart_task() {
 	static char last_char;
 	static char input_buffer[128];
 	static unsigned int i = 0;
-	
+	char temp_str[5];
 	last_char = uart_RxChar();	
 	
 	if (last_char == '\r'){
@@ -408,11 +441,19 @@ void uart_task() {
 		uart_TxChar('\r');
 		uart_TxChar('\n');
 		
-		if ( LOGGED_IN)
-			UART_LOGIN(input_buffer);
-		else if ( !LOGGED_IN)
-			UART_chk_for_match(input_buffer);
 		
+		
+		if (! LOGGED_IN) {
+			for (int n = 0; input_buffer[n] != '\0' && input_buffer[n] != '\r'; n++)
+				temp_str[n] = input_buffer[i-(3-n)];
+			UART_LOGIN(temp_str);
+		}
+			
+		else if ( LOGGED_IN) {
+			LED_SET(1,1,0,0);
+			UART_chk_for_match(input_buffer);
+		}
+		last_char = ' ';
 		i = 0;
 	}
 	input_buffer[i] = last_char;

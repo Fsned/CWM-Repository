@@ -142,7 +142,9 @@ void UART0_init( unsigned int baudrate) {
 	uart_string("____________________________________________ \r\n");
 	uart_string("|                                          | \r\n");
 	uart_string("|           Jeros Control Panel            | \r\n");
-	uart_string("|_Submaster branch_________________________| \r\n");
+	uart_string("|");
+	uart_string(branch_string);
+	uart_string("branch____________________________| \r\n");
 	uart_string("Indtast Brugernavn :");
 }	
 

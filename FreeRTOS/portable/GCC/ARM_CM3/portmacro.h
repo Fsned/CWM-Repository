@@ -109,6 +109,7 @@ extern void vPortYieldFromISR( void );
  * Set basepri to portMAX_SYSCALL_INTERRUPT_PRIORITY without effecting other
  * registers.  r0 is clobbered.
  */ 
+
 #define portSET_INTERRUPT_MASK()						\
 	__asm volatile										\
 	(													\

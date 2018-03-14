@@ -1,0 +1,17 @@
+.\build\port.o: FreeRTOS\portable\GCC\ARM_CM3\port.c
+.\build\port.o: mbed_config.h
+.\build\port.o: .\FreeRTOS\include\FreeRTOS.h
+.\build\port.o: .\FreeRTOS\include\projdefs.h
+.\build\port.o: .\FreeRTOS\include\FreeRTOSConfig.h
+.\build\port.o: mbed/TARGET_LPC1768/TARGET_NXP/TARGET_LPC176X/device/LPC17xx.h
+.\build\port.o: mbed/TARGET_LPC1768/core_cm3.h
+.\build\port.o: mbed/TARGET_LPC1768/cmsis_version.h
+.\build\port.o: mbed/TARGET_LPC1768/cmsis_compiler.h
+.\build\port.o: mbed/TARGET_LPC1768/cmsis_armcc.h
+.\build\port.o: mbed/TARGET_LPC1768/mpu_armv7.h
+.\build\port.o: mbed/TARGET_LPC1768/TARGET_NXP/TARGET_LPC176X/device/system_LPC17xx.h
+.\build\port.o: .\FreeRTOS\include\portable.h
+.\build\port.o: .\FreeRTOS\portable\GCC\ARM_CM3\portmacro.h
+.\build\port.o: .\FreeRTOS\include\mpu_wrappers.h
+.\build\port.o: .\FreeRTOS\include\task.h
+.\build\port.o: .\FreeRTOS\include\list.h

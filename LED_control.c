@@ -1,5 +1,6 @@
 #include "LED_control.h"
 #include "lpc17xx.h"
+#include "stdutils.h"
 
 int disco_arr[20][4] = {{0,0,0,0},{0,1,1,0},{1,0,0,1},{0,1,1,0},{1,1,1,1},
 												{1,0,0,0},{1,1,0,0},{0,1,0,0},{0,1,1,0},{0,0,1,0},
@@ -32,7 +33,7 @@ void LED_setup(void) {
 	LED_SET(0,0,0,0);
 }
 
-void LED_SET(unsigned int led_0 , unsigned int led_1, unsigned int led_2, unsigned int led_3) {
+void LED_SET(uint8_t led_0 , uint8_t led_1, uint8_t led_2, uint8_t led_3) {
 	LPC_GPIO1->FIOCLR = 0x00B40000;
 	
 	LPC_GPIO1->FIOSET |= (led_0 << 18);

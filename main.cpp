@@ -4,17 +4,48 @@
 #include "utilities.h"
 #include "UART_control.h"
 #include "stdio.h"
+#include "systick.h"
+#include "pwm_setup.h"
+#include "GPIO_setup.h"
+
+uint8_t led_flipper = 0;
+uint8_t wave_status;
+
 
 int main() 
 {
 	SystemInit();                    //Clock and PLL configuration
-	LED_setup();
-	UART0_init(9600);
 	
-  while(1) {
-		
-		uart_task();
-		
+	nGPIOSetup();
+	systick_setup(1000000);					// Should be setup last, to avoid interrupts generated during setup phase
+	
+	//UART0_init(9600);
+	
+	
+	
+	while(1) {
+		wave_status = vReadDigitalInput( PORT_0 , PIN_1 );
+		LED_SET(wave_status,0,0,0);
 	}
 }
+
+
+void SysTick_Handler(void) {
+	
+	static int led_timer = 1;
+	
+	if (!(--led_timer)) {
+		led_timer = 1000000;
+		
+		if (led_flipper)
+			led_flipper = !led_flipper;
+		else if (led_flipper == 0)
+			led_flipper = 1;
+		
+
+		LPC_GPIO0->FIOPIN |= (1 << 25);
+		LPC_GPIO0->FIOPIN ^= (1 << 26);
+	}
+}
+
 

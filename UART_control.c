@@ -439,16 +439,16 @@ void read_password() {
 
 void uart_task() {
 	
-	static char last_char;
-	static char input_buffer[128];
-	static unsigned int i = 0;
-	char temp_str[5];
-	
-	
-	last_char = uart_RxChar();
-	input_buffer[i] = last_char;
-	i++;
-	uart_TxChar(last_char);
+//	static char last_char;
+//	static char input_buffer[128];
+//	static unsigned int i = 0;
+//	char temp_str[5];
+//	
+//	
+//	last_char = uart_RxChar();
+//	input_buffer[i] = last_char;
+//	i++;
+//	uart_TxChar(last_char);
 	
 //	if (input_buffer[i] == 'r') {
 //		

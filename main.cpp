@@ -17,12 +17,10 @@ int main()
 	SystemInit();                    //Clock and PLL configuration
 	
 	nGPIOSetup();
-	systick_setup(1000000);					// Should be setup last, to avoid interrupts generated during setup phase
+	SystickSetup(1000000);					// Should be setup last, to avoid interrupts generated during setup phase
 	
 	//UART0_init(9600);
-	
-	
-	
+
 	while(1) {
 		wave_status = vReadDigitalInput( PORT_0 , PIN_1 );
 		LED_SET(wave_status,0,0,0);

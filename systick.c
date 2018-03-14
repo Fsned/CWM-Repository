@@ -16,7 +16,7 @@
 #define RELOAD_VALUE  99999
 
 
-void systick_setup(int frequency) {
+void SystickSetup(int frequency) {
 	STRELOAD = ( 100000000 / ((frequency*2)*1.0425) );
 	
 	STCTRL = (1 << SBIT_ENABLE) | (1 << SBIT_TICKINT) | (1 << SBIT_CLKSOURCE);

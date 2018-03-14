@@ -1,3 +1,3 @@
-void systick_setup(int frequency);
+void SystickSetup(int frequency);
 
 

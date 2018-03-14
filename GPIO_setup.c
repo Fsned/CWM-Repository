@@ -32,7 +32,7 @@ uint8_t PinLibrary_Initialized = 0;
 
 
 // ********************************************
-//		Function's not necessary. can be used
+//		Function nGPIOSetup() is not necessary. can be used
 //		to quickly set up several GPIO ports
 // 			
 //

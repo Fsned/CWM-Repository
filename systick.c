@@ -1,28 +1,28 @@
 /**********************************************************************************************
- * Source file : systick.c
- * Author : Frederik Snedevind
- *		    Frs@Jeros.com
- *
- * Company: Jeros A/S
- *		   HTTP://www.Jeros.com/
- *
- * Date created : D/M - YYYY 
- * Version			 : X.Y.Z
- * Revised			 : D/M - YYYY 
- **********************************************************************************************
- * Description: File is used to setup the systick timer, and manage it as well.
- * 
- *  
- *	
- *
- **********************************************************************************************
- * Dependencies:
- *	This library uses the following files:
- *	"systick.h"				-				Own header file, used to present functions to other sources.
- *	"lpc17xx.h"				-				Processor header file, used to access various pins, register, etc.
- *	
- * 
- **********************************************************************************************/
+* Source file : systick.c
+* Author : Frederik Snedevind
+*		    Frs@Jeros.com
+*
+* Company: Jeros A/S
+*		   HTTP://www.Jeros.com/
+*
+* Date created : 14/3 - 2018 
+* Version			 : 0.1.0
+* Revised			 : 15/3 - 2018
+**********************************************************************************************
+* Description: 
+* 	File is used to setup the systick timer, and manage it as well.
+*  
+*	
+*
+**********************************************************************************************
+* Dependencies:
+*	This library uses the following files:
+*	"systick.h"				-				Own header file, used to present functions to other sources.
+*	"lpc17xx.h"				-				Processor header file, used to access various pins, register, etc.
+*	
+* 
+**********************************************************************************************/
 
 
 // ****************************************************************************************

@@ -35,17 +35,6 @@ void SysTick_Handler(void) {
 	if (!(--led_timer)) {
 		led_timer = 1000000;
 		
-		
-//		if (led_flipper) {
-//			led_flipper = !led_flipper;
-//			yDigitalWrite(PORT_1 , LED_1 , 0);
-//			yDigitalWrite(PORT_1 , LED_2 , 1);
-//		}
-//		else if (led_flipper == 0) {
-//			led_flipper = 1;
-//			yDigitalWrite(PORT_1 , LED_1 , 1);
-//			yDigitalWrite(PORT_1 , LED_2 , 0);
-//		}
 
 	}
 }

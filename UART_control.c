@@ -65,7 +65,7 @@ char keyword_strings[NO_OF_KEYWORDS][10] = {{"help"},			// F1
 																						{"undef"}};		// F20
 
 void (*keyword_functions[20]) = {terminal_help , terminal_help , terminal_help , LED_1_ON, LED_2_ON, LED_3_ON, LED_4_ON, LED_OFF, terminal_LED_ALL_ON, terminal_status,
-												terminal_clear, terminal_clear, terminal_LED_1_ON, terminal_LED_2_ON, terminal_LED_3_ON, terminal_LED_4_ON, terminal_LED_1_ON, disco_func,
+												terminal_clear, terminal_clear, terminal_LED_1_ON, terminal_LED_2_ON, terminal_LED_3_ON, terminal_LED_4_ON, terminal_LED_1_ON, nDiscoFunc,
 												terminal_undefined, terminal_undefined};
 /*
 void (*keyword_functions[NO_OF_KEYWORDS])()={{terminal_help}, 		 // 
@@ -219,40 +219,40 @@ void terminal_help() {
 /* Keyword funtion for "LED1" */ 
 void terminal_LED_1_ON() {
 	unsigned int arr[4] = {1,0,0,0};
-	LED_flip(arr);
+	nLEDFlip(arr);
 }
 
 
 /* Keyword funtion for "LED2" */ 
 void terminal_LED_2_ON() {
 	unsigned int arr[4] = {0,1,0,0};
-	LED_flip(arr);
+	nLEDFlip(arr);
 }
 
 
 /* Keyword funtion for "LED3" */ 
 void terminal_LED_3_ON() {
 	unsigned int arr[4] = {0,0,1,0};
-	LED_flip(arr);
+	nLEDFlip(arr);
 }
 
 
 /* Keyword funtion for "LED4" */ 
 void terminal_LED_4_ON() {
 	unsigned int arr[4] = {0,0,0,1};
-	LED_flip(arr);
+	nLEDFlip(arr);
 }
 
 
 /* Keyword funtion for "LEDOFF" */ 
 void terminal_LED_OFF() {
-	LED_SET(0,0,0,0);
+	nLED_SET(0,0,0,0);
 }
 
 
 /* Keyword funtion for "LEDALL" */ 
 void terminal_LED_ALL_ON() {
-	LED_SET(1,1,1,1);
+	nLED_SET(1,1,1,1);
 }
 
 
@@ -266,26 +266,26 @@ void terminal_status() {
 
 /* Keyword funtion for "LED1" */ 
 void terminal_LED_STATE_1() {
-	LED_SET(1,0,0,0);
+	nLED_SET(1,0,0,0);
 	
 }
 
 
 /* Keyword funtion for "LED2" */ 
 void terminal_LED_STATE_2() {
-	LED_SET(0,1,0,0);
+	nLED_SET(0,1,0,0);
 }
 
 
 /* Keyword funtion for "LED3" */ 
 void terminal_LED_STATE_3() {
-	LED_SET(0,0,1,0);
+	nLED_SET(0,0,1,0);
 }
 
 
 /* Keyword funtion for "LED4" */ 
 void terminal_LED_STATE_4() {
-	LED_SET(0,0,0,1);
+	nLED_SET(0,0,0,1);
 }
 	
 
@@ -379,7 +379,7 @@ void UART_chk_for_match(char input_array[]) {
 	else if (checkstring(input_array , LEDSTATE4))
 		terminal_LED_STATE_4();
 	else if (checkstring(input_array , disco_str))
-		disco_func();
+		nDiscoFunc();
 	else if (checkstring(input_array , LED_ALL_ON))
 		terminal_LED_ALL_ON();
 	else {

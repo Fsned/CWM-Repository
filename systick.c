@@ -1,22 +1,68 @@
+/**********************************************************************************************
+ * Source file : systick.c
+ * Author : Frederik Snedevind
+ *		    Frs@Jeros.com
+ *
+ * Company: Jeros A/S
+ *		   HTTP://www.Jeros.com/
+ *
+ * Date created : D/M - YYYY 
+ * Version			 : X.Y.Z
+ * Revised			 : D/M - YYYY 
+ **********************************************************************************************
+ * Description: File is used to setup the systick timer, and manage it as well.
+ * 
+ *  
+ *	
+ *
+ **********************************************************************************************
+ * Dependencies:
+ *	This library uses the following files:
+ *	"systick.h"				-				Own header file, used to present functions to other sources.
+ *	"lpc17xx.h"				-				Processor header file, used to access various pins, register, etc.
+ *	
+ * 
+ **********************************************************************************************/
+
+
+// ****************************************************************************************
+//
+//					Libraries
+//
+// ****************************************************************************************
 #include "systick.h"
 #include "lpc17xx.h"
 
 
-#define STCTRL      (*( ( volatile unsigned long *) 0xE000E010 ))
-#define STRELOAD    (*( ( volatile unsigned long *) 0xE000E014 ))
-#define STCURR      (*( ( volatile unsigned long *) 0xE000E018 ))  
-
-/*******STCTRL bits*******/
-#define SBIT_ENABLE     0
-#define SBIT_TICKINT    1
-#define SBIT_CLKSOURCE  2
+// ****************************************************************************************
+//
+//					Variables
+//
+// ****************************************************************************************
 
 
-/* 100000000Mhz * 1ms = 100000 - 1 */
-#define RELOAD_VALUE  99999
+// ****************************************************************************************
+//	Type		: 	YES_RETURN Functions
+//	Example		:	yXxXxX();
+//	Description	:	Returns true (1) or false (0) depending on the success of the function
+// ****************************************************************************************
 
 
-void SystickSetup(int frequency) {
+// ****************************************************************************************
+//	Type		: 	NO_RETURN Functions
+//	Example		:	nXxXxX();
+//	Description	:	Does not return anything.
+// ****************************************************************************************
+
+void nSystickSetup(int frequency) {
+/* ******************************************************************
+//	Function name : nSystickSetup
+//	Functionality :	Setup systick timer to a chosen frequency (inprecise below 1kHz, & above 5MHz)
+// 	Returns				:	nothing. Calls function "SysTick_Handler()" with chosen frequency
+//  Input range		: 0 - SystemCoreClock
+//		
+// *****************************************************************/	
+	
 	STRELOAD = ( 100000000 / ((frequency*2)*1.0425) );
 	
 	STCTRL = (1 << SBIT_ENABLE) | (1 << SBIT_TICKINT) | (1 << SBIT_CLKSOURCE);
@@ -25,5 +71,19 @@ void SystickSetup(int frequency) {
 	LPC_GPIO0->FIODIR |= (0x06000000);
 	LPC_GPIO0->FIOPIN = (1 << 25);
 }
+
+
+// ****************************************************************************************
+//	Type		: 	VALUE_RETURN Functions
+//	Example		:	vXxXxX();
+//	Description	:	Returns a value, either 1 or 0. no confirmation if successful or not.
+// ****************************************************************************************
+
+
+
+
+
+
+
 
 

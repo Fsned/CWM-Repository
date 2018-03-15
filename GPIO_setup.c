@@ -1,41 +1,45 @@
 /**********************************************************************************************
-* Author : Frederik Snedevind
+ * Author : Frederik Snedevind
  *		   Frs@Jeros.com
  *
-* Company: Jeros A/S
+ * Company: Jeros A/S
  *		   HTTP://www.Jeros.com/
  *
-* Date   : 14/3 - 2018 
- * 
+ * Date created : 14/3 - 2018 
+ * Version			 : 0.0.1
+ * Revised			 : 15/3 - 2018 
  **********************************************************************************************
-* Description:
+ * Description:
  * GPIO_setup.c is used with NXP LPC1768 Processor, to setup
  *  pins to GPIO function, as well as read/write from/to
  *	them.
  *
  **********************************************************************************************
-* Dependencies:
-*	This library uses the following files:
+ * Dependencies:
+ *	This library uses the following files:
  *	"lpc17xx-h"			-		Contains information for Pin manipulation
  *	"GPIO_setup.h"	-		Associated header file
  *	"stdutils.h"		-		Contains typedef for among many, 'uint8_t' to limit memory usage
  * 
  **********************************************************************************************/
 
-//	Function help:
-//	yXxXxXxXxX();			==	YES_return, returns true (1) or false (0) depending on successful function call or no.
-//	nXxXxXxXxX();			==	NO_return, returns nothing.
-//	vXxXxXxXxX();			== VALUE_return, returns a value, no matter what value it is. used to read e.g. digital inputs
-
-
-
-
+// ****************************************************************************************
+//
+//					Libraries
+//
+// ****************************************************************************************
 #include "lpc17xx.h"
 #include "GPIO_setup.h"
 
+
+// ****************************************************************************************
+//
+//					Variables
+//
+// ****************************************************************************************
+
 // Array to contain the setup status for 32 pins on each port, (Port 0 - Port 4). 
 // Will be initialized to "GPIO_FREE" = 0, once first function in file is called
-//
 uint8_t PinLibrary[5][32];
 
 // Variable to keep track of whether PinLibrary has been initialized or no. will
@@ -43,38 +47,21 @@ uint8_t PinLibrary[5][32];
 uint8_t PinLibrary_Initialized = 0;
 
 
-// *************************************************************************
-//		Function nGPIOSetup() is not necessary. can be used
-//		to quickly set up several GPIO ports
-// 			
-// *************************************************************************
-void nGPIOSetup() {
-	
-	if (!PinLibrary_Initialized)
-		nInitializePinLibrary();
-	
-	// Setup Pins for LEDS 1:4
-	ySetupDigitalO( PORT_1 , LED_1 );
-	ySetupDigitalO( PORT_1 , LED_2 );
-	ySetupDigitalO( PORT_1 , LED_3 );
-	ySetupDigitalO( PORT_1 , LED_4 );
+// ****************************************************************************************
+//	Type		: 	YES_RETURN Functions
+//	Example		:	yXxXxX();
+//	Description	:	Returns true (1) or false (0) depending on the success of the function
+// ****************************************************************************************
 
-	// Setup GPIO_OUTPUT pins for measuring purposes
-	ySetupDigitalO( PORT_0 , PIN_25 );
-	ySetupDigitalO( PORT_0 , PIN_26 );
 
-	// Setup 1 GPIO_INPUT pin, to receive signal from wavegen
-	ySetupDigitalI( PORT_0 , PIN_1 );
-}
-
-// *************************************************************************
-//		Set pin to digital [O]utput
-//		Return: True (1) or False (0),
-// 			depending on successful setup or no
-//
-//		GPIO_INPUT: Port_0 : Port_4, Pin_0 : Pin_31
-// *************************************************************************
 uint8_t ySetupDigitalO ( uint8_t Port, int Pin ) {
+/* ******************************************************************
+//	Function name : ySetupDigitalO
+//	Functionality :	Setup a GPIO pin to digital output
+// 	Returns				:	True (1) or false (0)
+//  Input range		: PORT_0 : PORT_4  ,  PIN_0 : PIN_31
+//		
+// *****************************************************************/
 	
 	if (!PinLibrary_Initialized)
 		nInitializePinLibrary();
@@ -165,19 +152,16 @@ uint8_t ySetupDigitalO ( uint8_t Port, int Pin ) {
 	
 	return SetupDigitalO_ret;
 }
-// ***********************************************************************************************************************************************************
+// ***** End of Function ********************************************
 
-
-
-
-// *************************************************************************
-//		Set pin to digital [I]nput
-//		Return: True (1) or False (0),
-// 			depending on successful setup or no
-//
-//		GPIO_INPUT: Port_0 : Port_4, Pin_0 : Pin_31
-// *************************************************************************
 uint8_t ySetupDigitalI ( uint8_t Port, int Pin) {
+/* ******************************************************************
+//	Function name : ySetupDigitalI
+//	Functionality :	Setup a GPIO pin to digital Input
+// 	Returns				:	True (1) or false (0)
+//  Input range		: PORT_0 : PORT_4  ,  PIN_0 : PIN_31
+//		
+// *****************************************************************/
 	
 	if (!PinLibrary_Initialized)
 		nInitializePinLibrary();
@@ -268,156 +252,192 @@ uint8_t ySetupDigitalI ( uint8_t Port, int Pin) {
 	
 	return SetupDigitalI_ret;
 }
-// ***********************************************************************************************************************************************************
+// ***** End of Function ********************************************
 
-
-
-// *************************************************************************
-//		Set digital GPIO_OUTPUT High
-//		Return: True (1) or False (0),
-// 			depending on successful operation or no
-//
-//		GPIO_INPUT: Port_0 : Port_4 , Pin_0 : Pin_31
-// *************************************************************************
-uint8_t ySetDigitalHigh(uint8_t Port , int Pin) {
-	
-	if (!PinLibrary_Initialized)
+uint8_t yDigitalWrite( uint8_t Port , int Pin , uint8_t State ) {
+/* ******************************************************************
+//	Function name : yDigitalWrite
+//	Functionality :	Write a value to a digital output
+// 	Returns				:	True (1) or false (0), depending on successful operation or no
+//  Input range		: PORT_0 : PORT_4  ,  PIN_0 : PIN_31  ,  0 : 1
+//		
+// *****************************************************************/
+	if (! PinLibrary_Initialized)
 		nInitializePinLibrary();
 	
-	uint8_t SetDigitalHigh_ret = 0;
+	uint8_t yDigitalWrite_ret = 0;
 	
 	if (PinLibrary[Port][Pin] == GPIO_OUTPUT) {
-		switch (Port) {
-			case PORT_0:
-				LPC_GPIO0->FIOPIN |= (1 << Pin);
-				SetDigitalHigh_ret = 1;
-				break;
+		switch(State) {
+			case GPIO_HIGH:
+				switch(Port) {
+					case PORT_0:
+						LPC_GPIO0->FIOPIN |= (State << Pin);
+						yDigitalWrite_ret = 1;
+					break;
 			
-			case PORT_1:
-				LPC_GPIO1->FIOPIN |= (1 << Pin);
-				SetDigitalHigh_ret = 1;
-				break;
+					case PORT_1:
+						LPC_GPIO1->FIOPIN |= (State << Pin);
+						yDigitalWrite_ret = 1;
+					break;
 			
-			case PORT_2:
-				LPC_GPIO2->FIOPIN |= (1 << Pin);
-				SetDigitalHigh_ret = 1;
-				break;
+					case PORT_2:
+						LPC_GPIO2->FIOPIN |= (State << Pin);
+						yDigitalWrite_ret = 1;
+					break;
 			
-			case PORT_3:
-				LPC_GPIO3->FIOPIN |= (1 << Pin);
-				SetDigitalHigh_ret = 1;
-				break;
+					case PORT_3:
+						LPC_GPIO3->FIOPIN |= (State << Pin);
+						yDigitalWrite_ret = 1;
+					break;
 			
-			case PORT_4:
-				LPC_GPIO4->FIOPIN |= (1 << Pin);
-				SetDigitalHigh_ret = 1;
+					case PORT_4:
+						LPC_GPIO4->FIOPIN |= (State << Pin);
+						yDigitalWrite_ret = 1;
+					break;
+			
+					default: 
+						yDigitalWrite_ret = 0;
+					break;
+				}
+				break;
+				
+			case GPIO_LOW:
+				switch(Port) {
+					case PORT_0:
+						LPC_GPIO0->FIOPIN &= ~(1 << Pin);
+						yDigitalWrite_ret = 1;
+					break;
+			
+					case PORT_1:
+						LPC_GPIO1->FIOPIN &= ~(1 << Pin);
+						yDigitalWrite_ret = 1;
+					break;
+			
+					case PORT_2:
+						LPC_GPIO2->FIOPIN &= ~(1 << Pin);
+						yDigitalWrite_ret = 1;
+					break;
+			
+					case PORT_3:
+						LPC_GPIO3->FIOPIN &= ~(1 << Pin);
+						yDigitalWrite_ret = 1;
+					break;
+			
+					case PORT_4:
+						LPC_GPIO4->FIOPIN &= ~(1 << Pin);
+						yDigitalWrite_ret = 1;
+					break;
+			
+					default:
+						yDigitalWrite_ret = 0;
+					break;
+				}
 				break;
 			
 			default:
-				SetDigitalHigh_ret = 0;
+				yDigitalWrite_ret = 0;
 				break;
 		}
 	}
 	else
-		SetDigitalHigh_ret = 0;
+		yDigitalWrite_ret = 0;
 	
-	return SetDigitalHigh_ret;
+	return yDigitalWrite_ret;
 }
-// ***********************************************************************************************************************************************************
+// ***** End of Function ********************************************
 
 
-// *************************************************************************
-//		Set digital GPIO_OUTPUT High
-//		Return: True (1) or False (0),
-// 			depending on successful operation or no
-//
-//		GPIO_INPUT: Port_0 : Port_4 , Pin_0 : Pin_31
-// *************************************************************************
-uint8_t ySetDigitalLow(uint8_t Port , int Pin) {
-	
+
+// ****************************************************************************************
+//	Type		: 	NO_RETURN Functions
+//	Example		:	nXxXxX();
+//	Description	:	Does not return anything.
+// ****************************************************************************************
+
+
+void nGPIOSetup() {
+/* ******************************************************************
+//	Function name : nGPIOSetup
+//	Functionality :	Used to quickly setup several pins, can be used at startup
+// 	Returns				:	Nothing
+//  Input range		: None, Static coding
+//		
+// *****************************************************************/	
 	if (!PinLibrary_Initialized)
 		nInitializePinLibrary();
 	
-	uint8_t SetDigitalLow_ret = 0;
+	// Setup Pins for LEDS 1:4
+	ySetupDigitalO( PORT_1 , LED_1 );
+	ySetupDigitalO( PORT_1 , LED_2 );
+	ySetupDigitalO( PORT_1 , LED_3 );
+	ySetupDigitalO( PORT_1 , LED_4 );
+
+	ySetupDigitalO( PORT_0 , PIN_0 );
 	
-	if (PinLibrary[Port][Pin] == GPIO_OUTPUT) {
-		switch (Port) {
-			case PORT_0:
-				LPC_GPIO0->FIOCLR |= (1 << Pin);
-				SetDigitalLow_ret = 1;
-				break;
-			
-			case PORT_1:
-				LPC_GPIO1->FIOCLR |= (1 << Pin);
-				SetDigitalLow_ret = 1;
-				break;
-			
-			case PORT_2:
-				LPC_GPIO2->FIOCLR |= (1 << Pin);
-				SetDigitalLow_ret = 1;
-				break;
-			
-			case PORT_3:
-				LPC_GPIO3->FIOCLR |= (1 << Pin);
-				SetDigitalLow_ret = 1;
-				break;
-			
-			case PORT_4:
-				LPC_GPIO4->FIOCLR |= (1 << Pin);
-				SetDigitalLow_ret = 1;
-				break;
-			
-			default:
-				SetDigitalLow_ret = 0;
-				break;
-		}
+	// Setup 1 GPIO_INPUT pin, to receive signal from wavegen
+	ySetupDigitalI( PORT_0 , PIN_26 );
+}
+// ***** End of Function ********************************************
+
+void nInitializePinLibrary() {
+/* ******************************************************************
+//	Function name : nInitializePinLibrary
+//	Functionality :	Used to set all pins to GPIO_FREE, to allow setups to reserve pins, and prevent overlapping on pins
+// 	Returns				:	Nothing
+//  Input range		: None
+//		
+// *****************************************************************/		
+	for (int column = 0; column < 5; column++) {
+		for (int row = 0; row < 32; row++)
+			PinLibrary[column][row] = GPIO_FREE;
 	}
-	else
-		SetDigitalLow_ret = 0;
-	return SetDigitalLow_ret;
+	PinLibrary_Initialized = 1;
 }
-// ***********************************************************************************************************************************************************
+// ***** End of Function ********************************************
 
 
 
-// *************************************************************************
-//		Read GPIO_INPUT on a pin. returns value pin value (Digital)
-//		Return: True (1) or False (0),
-//
-//
-//		GPIO_INPUT: Port_0 : Port_4 , Pin_0 : Pin_31
-// *************************************************************************
-uint8_t vReadDigitalInput(uint8_t Port , int Pin) {
-	
-	// Check for initialized PinLibrary, initialize if necessary
-	if (!PinLibrary_Initialized)
+// ****************************************************************************************
+//	Type		: 	VALUE_RETURN Functions
+//	Example		:	vXxXxX();
+//	Description	:	Returns a value, either 1 or 0. no confirmation if successful or not.
+// ****************************************************************************************
+
+
+uint8_t vDigitalRead( uint8_t Port , int Pin ) {
+/* ******************************************************************
+//	Function name : vReadDigitalInput
+//	Functionality :	Read a digital input from a pin, and return it
+// 	Returns				:	A value 0 or 1, depending on status of pin
+//  Input range		: PORT_0 : PORT_4  ,  PIN_0 : PIN_31
+//		
+// *****************************************************************/
+	if (! PinLibrary_Initialized)
 		nInitializePinLibrary();
 	
-	// Set up return variable for function. will return the value of input port,
-	//  no matter the value. Un/successful return is not for this function.
-	uint8_t ReadDigitalGPIO_INPUT_ret;
+	uint8_t vDigitalRead_ret;
 	
-	// Check that the requested Pin is set to Input. If not, return false
 	if (PinLibrary[Port][Pin] == GPIO_INPUT) {
 		switch(Port) {
 			case PORT_0:
-				ReadDigitalGPIO_INPUT_ret = (LPC_GPIO0->FIOPIN>>Pin) & 0x01;
+				vDigitalRead_ret = (LPC_GPIO0->FIOPIN>>Pin) & 0x01;
 				break;
 			
 			case PORT_1:
-				ReadDigitalGPIO_INPUT_ret = (LPC_GPIO1->FIOPIN>>Pin) & 0x01;
+				vDigitalRead_ret = (LPC_GPIO1->FIOPIN>>Pin) & 0x01;
 				break;
 			
 			case PORT_2:
-				ReadDigitalGPIO_INPUT_ret = (LPC_GPIO2->FIOPIN>>Pin) & 0x01;
+				vDigitalRead_ret = (LPC_GPIO2->FIOPIN>>Pin) & 0x01;
 				break;
 			
 			case PORT_3:
-				ReadDigitalGPIO_INPUT_ret = (LPC_GPIO3->FIOPIN>>Pin) & 0x01;
+				vDigitalRead_ret = (LPC_GPIO3->FIOPIN>>Pin) & 0x01;
 				break;
 			
 			case PORT_4:
-				ReadDigitalGPIO_INPUT_ret = (LPC_GPIO4->FIOPIN>>Pin) & 0x01;
+				vDigitalRead_ret = (LPC_GPIO4->FIOPIN>>Pin) & 0x01;
 				break;
 			
 			default: 
@@ -425,24 +445,8 @@ uint8_t vReadDigitalInput(uint8_t Port , int Pin) {
 		}
 	}
 	else
-		ReadDigitalGPIO_INPUT_ret = 0xFF;
+		vDigitalRead_ret = 0xFF;
 	
-	return ReadDigitalGPIO_INPUT_ret;
+	return vDigitalRead_ret;
 }
-
-
-// *************************************************************************
-//		Initialize Pin Library first time GPIO
-//			functions are used
-// 		Return: none.
-//
-//		GPIO_INPUT: Called hands-off
-// *************************************************************************
-void nInitializePinLibrary() {
-	for (int i = 0; i < 5; i++) {
-		for (int n = 0; n < 32; n++)
-			PinLibrary[i][n] = GPIO_FREE;
-	}
-	PinLibrary_Initialized = 1;
-}
-// ***********************************************************************************************************************************************************
+// ***** End of Function ********************************************

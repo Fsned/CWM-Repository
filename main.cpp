@@ -11,21 +11,21 @@
 uint8_t led_flipper = 0;
 uint8_t wave_status;
 
-
 int main() 
 {
 	SystemInit();                    //Clock and PLL configuration
-	
 	nGPIOSetup();
-	SystickSetup(1000000);					// Should be setup last, to avoid interrupts generated during setup phase
-	
 	//UART0_init(9600);
-
+	
+	nSystickSetup(1000000);					// Should be setup last, to avoid interrupts generated during setup phase
+	
 	while(1) {
-//		wave_status = vReadDigitalInput( PORT_0 , PIN_1 );
-//		LED_SET(wave_status,0,0,0);
+		wave_status = vDigitalRead( PORT_0 , PIN_26 );
+		yDigitalWrite(PORT_1 , LED_1 , wave_status);
 	}
 }
+
+
 
 
 void SysTick_Handler(void) {
@@ -35,22 +35,18 @@ void SysTick_Handler(void) {
 	if (!(--led_timer)) {
 		led_timer = 1000000;
 		
-		if (led_flipper) {
-			led_flipper = !led_flipper;
-//			LED_SET(0,0,0,0);
-			if (! ySetDigitalHigh( PORT_1 , LED_1 ))
-				LED_SET(0,0,0,1);
-		}
-		else if (led_flipper == 0) {
-			led_flipper = 1;
-//			LED_SET(1,0,0,0);
-			if (! ySetDigitalLow( PORT_1 , LED_1 ))
-				LED_SET(0,0,1,0);
-		}
 		
+//		if (led_flipper) {
+//			led_flipper = !led_flipper;
+//			yDigitalWrite(PORT_1 , LED_1 , 0);
+//			yDigitalWrite(PORT_1 , LED_2 , 1);
+//		}
+//		else if (led_flipper == 0) {
+//			led_flipper = 1;
+//			yDigitalWrite(PORT_1 , LED_1 , 1);
+//			yDigitalWrite(PORT_1 , LED_2 , 0);
+//		}
 
-		LPC_GPIO0->FIOPIN |= (1 << 25);
-		LPC_GPIO0->FIOPIN ^= (1 << 26);
 	}
 }
 

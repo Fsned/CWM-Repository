@@ -1245,6 +1245,11 @@
               <FileType>5</FileType>
               <FilePath>.\GPIO_setup.h</FilePath>
             </File>
+            <File>
+              <FileName>Templates.txt</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Templates.txt</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>

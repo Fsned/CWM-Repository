@@ -60,6 +60,10 @@ extern void uart_task(void);
 extern void read_username(void);
 extern void read_password(void);
 
+extern uint8_t yEnterHit( char input_char); 
+
+
+extern uint8_t vFindStringMatch(char InputString[] , uint8_t length);
 
 
 

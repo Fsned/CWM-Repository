@@ -1,5 +1,6 @@
 .\build\uart_control.o: UART_control.c
 .\build\uart_control.o: mbed_config.h
+.\build\uart_control.o: stdutils.h
 .\build\uart_control.o: UART_control.h
 .\build\uart_control.o: mbed/TARGET_LPC1768/TARGET_NXP/TARGET_LPC176X/device/lpc17xx.h
 .\build\uart_control.o: mbed/TARGET_LPC1768/core_cm3.h
@@ -8,5 +9,4 @@
 .\build\uart_control.o: mbed/TARGET_LPC1768/cmsis_armcc.h
 .\build\uart_control.o: mbed/TARGET_LPC1768/mpu_armv7.h
 .\build\uart_control.o: mbed/TARGET_LPC1768/TARGET_NXP/TARGET_LPC176X/device/system_LPC17xx.h
-.\build\uart_control.o: stdutils.h
 .\build\uart_control.o: LED_control.h

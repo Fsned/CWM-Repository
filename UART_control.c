@@ -1,6 +1,7 @@
+#include "stdutils.h"
 #include "UART_control.h"
 #include "lpc17xx.h"
-#include "stdutils.h"
+
 #include "LED_control.h"
 #include "string.h"
 
@@ -105,7 +106,7 @@ char LEDSTATE1[]	= "LEDSTATE1";
 char LEDSTATE2[]	= "LEDSTATE2";
 char LEDSTATE3[]	= "LEDSTATE3";
 char LEDSTATE4[]	= "LEDSTATE4";
-char LED[]				= "LED";
+char LED[4]				= "LED";
 char disco_str[]	= "DiScO";
 
 
@@ -435,56 +436,76 @@ void read_password() {
 
 
 
-
+char input_buffer[128];
 
 void uart_task() {
-	
-//	static char last_char;
-//	static char input_buffer[128];
-//	static unsigned int i = 0;
-//	char temp_str[5];
-//	
-//	
-//	last_char = uart_RxChar();
-//	input_buffer[i] = last_char;
-//	i++;
-//	uart_TxChar(last_char);
-	
-//	if (input_buffer[i] == 'r') {
-//		
-//	if (! LOGGED_IN && ! USERNAME_MATCHED)
-//		read_username();
-//	else if (! LOGGED_IN && USERNAME_MATCHED)
-//		read_password();
-//	
-//	}
-//		
-//		if (! LOGGED_IN) {
-//			for (int n = 0; input_buffer[n] != '\0' && input_buffer[n] != '\r'; n++)
-//				temp_str[n] = input_buffer[i-(3-n)];
-//			UART_LOGIN(temp_str);
-//		}
-//			
-//		else if ( LOGGED_IN) {
-//			LED_SET(1,1,0,0);
-//			UART_chk_for_match(input_buffer);
-//		}
-//		
-//		last_char = ' ';
-//		i = 0;
-//	}
 
-//	input_buffer[i] = last_char;
-//	uart_TxChar(input_buffer[i]);
-//	i++;
+//	int check = 1;
+	char last_char;
+	
+	static char inputs = 0;
+	
+	uint8_t ChosenFunction;
+	last_char = uart_RxChar();
+	
+	if ( yEnterHit( last_char ) ) {
+		ChosenFunction = vFindStringMatch( input_buffer , inputs );
+		
+		if (ChosenFunction == 15)
+			nLED_SET(0,0,0,1);
+		else if (ChosenFunction == 16)
+			nLED_SET(0,0,1,0);
+		else if (ChosenFunction == 17)
+			nLED_SET(0,0,1,1);
+		else if (ChosenFunction == 18)
+			nLED_SET(0,1,0,0);
+		else if (ChosenFunction == 19)
+			nLED_SET(0,1,0,1);
+		else if (ChosenFunction == 20)
+			nLED_SET(0,1,1,0);
+		else
+			nLED_SET(0,0,0,0);
+		
+		uart_string("\r\n");
+		inputs = 0;
+	}
+		
+	else {
+		input_buffer[inputs] = last_char;
+		uart_TxChar(input_buffer[inputs]);
+		inputs++;
+	}
+
+
 }
 
 
 
+uint8_t yEnterHit( char input_char) {
+	uint8_t yEnterHit_ret;
+	
+	if (input_char == '\r')
+		yEnterHit_ret = 1;
+	else
+		yEnterHit_ret = 0;
+	
+	return yEnterHit_ret;
+}
 
-
-
-
-
-
+uint8_t vFindStringMatch(char InputString[] , uint8_t length) {
+	
+	uint8_t MatchFound = 0;
+	uint8_t KeywordMatched;
+	
+	for (int i = 0; i < NO_OF_KEYWORDS; i++) {
+		MatchFound = 1;
+		for (int n = 0; n < length; n++) {
+			if (InputString[n] != keyword_strings[i][n])
+				MatchFound = 0;
+		}
+		if (MatchFound)
+			KeywordMatched = i;
+	}
+	return KeywordMatched;
+}
 

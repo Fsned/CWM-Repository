@@ -43,7 +43,7 @@
 #define LED_3		21
 #define LED_4		23
 
-#define GPIO_FREE		0
+#define GPIO_FREE			0
 #define GPIO_INPUT		1
 #define GPIO_OUTPUT		2
 
@@ -54,5 +54,9 @@ uint8_t ySetupDigitalO ( uint8_t Port, int Pin);
 uint8_t ySetupDigitalI ( uint8_t Port, int Pin);
 
 uint8_t vReadDigitalInput(uint8_t Port , int Pin);
+
+uint8_t ySetDigitalLow(uint8_t Port , int Pin);
+	
+uint8_t ySetDigitalHigh(uint8_t Port , int Pin);
 
 void nInitializePinLibrary( void );

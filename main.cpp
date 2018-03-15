@@ -22,8 +22,8 @@ int main()
 	//UART0_init(9600);
 
 	while(1) {
-		wave_status = vReadDigitalInput( PORT_0 , PIN_1 );
-		LED_SET(wave_status,0,0,0);
+//		wave_status = vReadDigitalInput( PORT_0 , PIN_1 );
+//		LED_SET(wave_status,0,0,0);
 	}
 }
 
@@ -35,10 +35,18 @@ void SysTick_Handler(void) {
 	if (!(--led_timer)) {
 		led_timer = 1000000;
 		
-		if (led_flipper)
+		if (led_flipper) {
 			led_flipper = !led_flipper;
-		else if (led_flipper == 0)
+//			LED_SET(0,0,0,0);
+			if (! ySetDigitalHigh( PORT_1 , LED_1 ))
+				LED_SET(0,0,0,1);
+		}
+		else if (led_flipper == 0) {
 			led_flipper = 1;
+//			LED_SET(1,0,0,0);
+			if (! ySetDigitalLow( PORT_1 , LED_1 ))
+				LED_SET(0,0,1,0);
+		}
 		
 
 		LPC_GPIO0->FIOPIN |= (1 << 25);

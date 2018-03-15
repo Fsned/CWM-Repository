@@ -34,8 +34,6 @@ void SysTick_Handler(void) {
 	
 	if (!(--led_timer)) {
 		led_timer = 1000000;
-		
-
 	}
 }
 

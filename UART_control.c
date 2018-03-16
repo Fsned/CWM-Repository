@@ -421,7 +421,6 @@ void UART_LOGIN(char input_array[]) {
 		uart_string(USER_IDS[USERNAME_MATCHED]);
 		uart_string("\r\nYour priority level is : ");
 		uart_string(USER_LIBRARY[USERNAME_MATCHED][USERNAME_MATCHED]);
-		
 	}
 }
 
@@ -442,10 +441,9 @@ void uart_task() {
 
 //	int check = 1;
 	char last_char;
-	
 	static char inputs = 0;
-	
 	uint8_t ChosenFunction;
+	
 	last_char = uart_RxChar();
 	
 	if ( yEnterHit( last_char ) ) {
@@ -475,8 +473,6 @@ void uart_task() {
 		uart_TxChar(input_buffer[inputs]);
 		inputs++;
 	}
-
-
 }
 
 

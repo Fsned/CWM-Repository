@@ -10,3 +10,4 @@
 .\build\uart_control.o: mbed/TARGET_LPC1768/mpu_armv7.h
 .\build\uart_control.o: mbed/TARGET_LPC1768/TARGET_NXP/TARGET_LPC176X/device/system_LPC17xx.h
 .\build\uart_control.o: LED_control.h
+.\build\uart_control.o: GPIO_setup.h

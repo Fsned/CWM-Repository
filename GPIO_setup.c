@@ -49,7 +49,7 @@ uint8_t PinLibrary_Initialized = 0;
 
 // ****************************************************************************************
 //	Type		: 	YES_RETURN Functions
-//	Example		:	yXxXxX();
+//	Example		:	yX();
 //	Description	:	Returns true (1) or false (0) depending on the success of the function
 // ****************************************************************************************
 
@@ -351,7 +351,7 @@ uint8_t yDigitalWrite( uint8_t Port , int Pin , uint8_t State ) {
 
 // ****************************************************************************************
 //	Type		: 	NO_RETURN Functions
-//	Example		:	nXxXxX();
+//	Example		:	nX();
 //	Description	:	Does not return anything.
 // ****************************************************************************************
 
@@ -378,6 +378,9 @@ void nGPIOSetup() {
 	// Setup 1 GPIO_INPUT pin, to receive signal from wavegen
 	ySetupDigitalI( PORT_0 , PIN_26 );
 }
+
+
+
 // ***** End of Function ********************************************
 
 void nInitializePinLibrary() {
@@ -400,7 +403,7 @@ void nInitializePinLibrary() {
 
 // ****************************************************************************************
 //	Type		: 	VALUE_RETURN Functions
-//	Example		:	vXxXxX();
+//	Example		:	vX();
 //	Description	:	Returns a value, either 1 or 0. no confirmation if successful or not.
 // ****************************************************************************************
 

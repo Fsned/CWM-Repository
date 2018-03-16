@@ -16,14 +16,12 @@ int main()
 	SystemInit();                    //Clock and PLL configuration
 	nGPIOSetup();
 	
-	UART0_init(9600);
+	nUART0_init(9600);
 	
 	nSystickSetup(1000000);					// Should be setup last, to avoid interrupts generated during setup phase
 	
 	while(1) {
-		//wave_status = vDigitalRead( PORT_0 , PIN_26 );
-		//yDigitalWrite(PORT_1 , LED_1 , wave_status);
-		uart_task();
+		tUART_Task();
 	}
 }
 

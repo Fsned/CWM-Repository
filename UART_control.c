@@ -1,30 +1,47 @@
+/**********************************************************************************************
+ * Source file : UART_control.c
+ * Author : Frederik Snedevind
+ *		    Frs@Jeros.com
+ *
+ * Company: Jeros A/S
+ *		   HTTP://www.Jeros.com/
+ *
+ * Date created : 9/3 - 2018
+ * Version			 : 0.1.0
+ * Revised			 : 16/3 - 2018
+ **********************************************************************************************
+ * Description:
+ * 	Source file providing functionality to the UART API.
+ *  
+ *	
+ *
+ **********************************************************************************************
+ * Dependencies:
+ *	This library uses the following files:
+ *	"stdutils.h"		-		library containg typedef for various datatypes used
+ *	"UART_control.h"-		own header file, providing API to other files
+ *	"lpc17xx.h"			-		Processor header, used to setup and access various registers
+ * 	"LED_control.h"	-		Handles LED functions on the DEV. board, used for debugging and development purposes
+ **********************************************************************************************/
+
+// ****************************************************************************************
+//
+//					Libraries
+//
+// ****************************************************************************************
 #include "stdutils.h"
 #include "UART_control.h"
 #include "lpc17xx.h"
-
 #include "LED_control.h"
-#include "string.h"
+#include "GPIO_setup.h"
 
-
-#define SBIT_WordLenght    0x00u
-#define SBIT_DLAB          0x07u
-#define SBIT_FIFO          0x00u
-#define SBIT_RxFIFO        0x01u
-#define SBIT_TxFIFO        0x02u
-
-#define SBIT_RDR           0x00u
-#define SBIT_THRE          0x05u
-
-#define NO_OF_KEYWORDS 			20
-
-#define USERS								5
-
-int LOGGED_IN = 0;
-int USERNAME_MATCHED = 0;
-int PASSWORD_MATCHED = 0;
-//int USER_ID_MATCHED;
-
-char USER_IDS[USERS][5] = {{"oHo"},
+// ****************************************************************************************
+//
+//					Variables
+//
+// ****************************************************************************************
+char input_buffer[128];
+char USER_IDS[USERS][5] = {{"BM"},
 													 {"frs"},
 													 {"map"},
 													 {"abh"},
@@ -35,91 +52,96 @@ char USER_PASS[USERS][5] = {{"aa4"},
 														{"123"},
 														{"123"},
 														{"123"}};
-
-														
+								
 char USER_LIBRARY[3][USERS][5] ={{"oHo" , "frs" , "map" , "abh" , "asd"},
 																	{"aa4" , "880" , "123" , "123" , "123"},
 																	{'1' , '1' , '1' , '1' , '1'}};
 
-													
 char branch_string[20] = {"Sandbox"};
 
-char keyword_strings[NO_OF_KEYWORDS][10] = {{"help"},			// F1
-																						{"Help"},			// F2
-																						{"HELP"},			// F3
-																						{"LED1"},			// F4
-																						{"LED2"},			// F5
-																						{"LED3"},			// F6
-																						{"LED4"},			// F7
-																						{"LEDOFF"},		// F8
-																						{"LEDALL"},		// F9
-																						{"status"},		// F10
-																						{"clear"},		// F11
-																						{"Clear"},		// F12
-																						{"LEDSTATE1"},// F13
-																						{"LEDSTATE2"},// F14
-																						{"LEDSTATE3"},// F15
-																						{"LEDSTATE4"},// F16
-																						{"LED"},			// F17
-																						{"DiScO"},		// F18
-																						{"undef"},		// F19
-																						{"undef"}};		// F20
+char keyword_strings[NO_OF_KEYWORDS][10] 	 = {{"help"},								// F0
+																							{"Help"},								// F1
+																							{"HELP"},								// F2
+																							{"LED1"},								// F3
+																							{"LED2"},								// F4
+																							{"LED3"},								// F5
+																							{"LED4"},								// F6
+																							{"LEDOFF"},							// F7
+																							{"LEDALL"},							// F8
+																							{"status"},							// F9
+																							{"clear"},							// F10
+																							{"Clear"},							// F11
+																							{"LEDSTATE1\0"},					// F12
+																							{"LEDSTATE2"},					// F13
+																							{"LEDSTATE3"},					// F14
+																							{"LEDSTATE4"},					// F15
+																							{"LED"},								// F16
+																							{"DiScO"},							// F17
+																							{"undef"},							// F18
+																							{"undef"}};							// F19
 
-void (*keyword_functions[20]) = {terminal_help , terminal_help , terminal_help , LED_1_ON, LED_2_ON, LED_3_ON, LED_4_ON, LED_OFF, terminal_LED_ALL_ON, terminal_status,
-												terminal_clear, terminal_clear, terminal_LED_1_ON, terminal_LED_2_ON, terminal_LED_3_ON, terminal_LED_4_ON, terminal_LED_1_ON, nDiscoFunc,
-												terminal_undefined, terminal_undefined};
-/*
-void (*keyword_functions[NO_OF_KEYWORDS])()={{terminal_help}, 		 // 
-																					 {terminal_help}, 		 //
-																					 {terminal_help},			 //
-																					 {terminal_LED_1_ON},	 //
-																					 {terminal_LED_2_ON},	 //
-																					 {terminal_LED_3_ON},	 //
-																					 {terminal_LED_4_ON},	 //
-																					 {terminal_LED_OFF},	 //
-																					 {terminal_LED_ALL_ON},//
-																					 {terminal_status},		 //
-																					 {terminal_clear},		 //
-																					 {terminal_clear},		 //
-																					 {terminal_LED_1_ON},	 //
-																					 {terminal_LED_2_ON},	 //
-																					 {terminal_LED_3_ON},	 //
-																					 {terminal_LED_4_ON},	 //
-																					 {terminal_LED_1_ON},	 //
-																					 {disco_func},				 //
-																					 {terminal_undefined}, //
-																					 {terminal_undefined}};//
-																					 */
+void (*keyword_functions[NO_OF_KEYWORDS])() = {nTerminalHelp 		 	, // F0
+																							 nTerminalHelp  	 	, // F1
+																							 nTerminalHelp 		 	, // F2
+																							 nTerminal_LED_1_ON 	, // F3
+																							 nTerminal_LED_2_ON 	, // F4
+																							 nTerminal_LED_3_ON 	, // F5
+																							 nTerminal_LED_4_ON  , // F6
+																							 nTerminal_LED_OFF		, // F7
+																							 nTerminal_LED_ALL_ON, // F8
+																							 nTerminalStatus		, // F9
+																							 nTerminalClear		 	, // F10
+																							 nTerminalClear 	  , // F11
+																							 nTerminal_LED_1_ON 	, // F12
+																							 nTerminal_LED_2_ON	, // F13
+																							 nTerminal_LED_3_ON	, // F14
+																							 nTerminal_LED_4_ON 	, // F15
+																							 nTerminal_LED_1_ON	, // F16
+																							 nDiscoFunc					, // F17
+																							 nTerminalUndefined	, // F18
+																							 nTerminalUndefined };// F19
 
-char help[]				= "help";
-char Help[]				= "Help";
-char HELP[]				= "HELP";
-char LED_1_ON[]		= "LED1";
-char LED_2_ON[]		= "LED2";
-char LED_3_ON[]		= "LED3";
-char LED_4_ON[]		= "LED4";
-char LED_OFF[]		= "LEDOFF";
-char LED_ALL_ON[] = "LEDALL";
-char status[]			= "status";
-char clear[]			= "clear";
-char LEDSTATE1[]	= "LEDSTATE1";
-char LEDSTATE2[]	= "LEDSTATE2";
-char LEDSTATE3[]	= "LEDSTATE3";
-char LEDSTATE4[]	= "LEDSTATE4";
-char LED[4]				= "LED";
-char disco_str[]	= "DiScO";
+																							 
+// ****************************************************************************************
+//	Type		: 	YES_RETURN Functions
+//	Example		:	yXxXxX();
+//	Description	:	Returns true (1) or false (0) depending on the success of the function
+// ****************************************************************************************
+uint8_t yKeyHit( uint8_t KEY_CHECK , uint8_t KEY_HIT ) {
+	uint8_t yKeyHit_ret;
+	
+	if (KEY_HIT == KEY_CHECK)
+		yKeyHit_ret = 1;
+	else
+		yKeyHit_ret = 0;
+	
+	return yKeyHit_ret;
+}
+
+// ****************************************************************************************
+//	Type		: 	NO_RETURN Functions
+//	Example		:	nXxXxX();
+//	Description	:	Does not return anything.
+// ****************************************************************************************
+void nNewLine() {
+	nUART_TxString("\r\n");
+}
+
 
 
 /* Function to initialize UART0 */
-void UART0_init( unsigned int baudrate) {
+void nUART0_init( unsigned int baudrate) {
 	
 	unsigned int var_UartPclk_u32 , var_Pclk_u32 , var_RegValue_u32;
 	
 	LPC_PINCON->PINSEL0 &= ~0x000000F0;
 	LPC_PINCON->PINSEL0 |= 0x00000050;            // Enable TxD0 P0.2 and p0.3 
 	
-	LPC_UART0->FCR = (1<<SBIT_FIFO) | (1<<SBIT_RxFIFO) | (1<<SBIT_TxFIFO); // Enable FIFO and reset Rx/Tx FIFO buffers    
-	LPC_UART0->LCR = (0x03<<SBIT_WordLenght) | (1<<SBIT_DLAB); // 8bit data, 1Stop bit, No parity
+	// Enable FIFO and reset Rx/Tx FIFO buffers    
+	LPC_UART0->FCR = (1<<SBIT_FIFO) | (1<<SBIT_RxFIFO) | (1<<SBIT_TxFIFO); 
+	
+	// 8bit data, 1Stop bit, No parity
+	LPC_UART0->LCR = (0x03<<SBIT_WordLenght) | (1<<SBIT_DLAB); 
 	
 	/** Baud Rate Calculation :
        PCLKSELx registers contains the PCLK info for all the clock dependent peripherals.
@@ -136,6 +158,7 @@ void UART0_init( unsigned int baudrate) {
          0x02       SystemFreq/2
          0x03       SystemFreq/8   
 	 **/
+	
 	
 	var_UartPclk_u32 = (LPC_SC->PCLKSEL0 >> 6) & 0x03;
 
@@ -163,33 +186,30 @@ void UART0_init( unsigned int baudrate) {
 	LPC_UART0->DLM = (var_RegValue_u32 >> 0x08) & 0xFF;
 
 	util_BitClear(LPC_UART0->LCR,(SBIT_DLAB));  // Clear DLAB after setting DLL,DLM
-	terminal_clear();
-	uart_string("\r\n");
-	uart_string("____________________________________________ \r\n");
-	uart_string("|                                          | \r\n");
-	uart_string("|           Jeros Control Panel            | \r\n");
-	uart_string("|");
-	uart_string(branch_string);
-	uart_string(" branch____________________________| \r\n\n");
-	uart_string("Press 'Enter' to continue\r\n");
+	nTerminalClear();
+	
+	nUART_TxString("\r\n");
+	nUART_TxString("____________________________________________ \r\n");
+	nUART_TxString("|                                          | \r\n");
+	nUART_TxString("|           Jeros Control Panel            | \r\n");
+	nUART_TxString("|");
+	nUART_TxString(branch_string);
+	nUART_TxString(" branch____________________________| \r\n\n");
+	nUART_TxString("Press 'Enter' to continue\r\n");
 }
 
 
-
-
-
-
-
 /* Function to transmit a char */
-void uart_TxChar(char ch) {
+void nUART_TxChar(char ch) {
     while(util_IsBitCleared(LPC_UART0->LSR,SBIT_THRE)); // Wait for Previous transmission
     LPC_UART0->THR=ch;                                  // Load the data to be transmitted
 }
 
 
 
+
 /* Function to Receive a char */
-char uart_RxChar() {
+char nUART_RxChar() {
     char ch; 
     while(util_IsBitCleared(LPC_UART0->LSR,SBIT_RDR));  // Wait till the data is received
     ch = LPC_UART0->RBR;                                // Read received data    
@@ -197,306 +217,163 @@ char uart_RxChar() {
 }
 
 
+
 /* Function to transmit a string to UART */
-void uart_string(char ch_s[]) {
+void nUART_TxString(char ch_s[]) {
 	int i = 0;
 	while(ch_s[i] != '\0') {
-		uart_TxChar(ch_s[i]);
+		nUART_TxChar(ch_s[i]);
 		i++;
 	}
 }
 
-
 /* Keyword function for "help" */
-void terminal_help() {
-	uart_string("The following commands are available\n\r");
-	uart_string("The following commands are available\n\r");
-	uart_string("The following commands are available\n\r");
-	uart_string("The following commands are available\n\r");
-	uart_string("The following commands are available\n\r");
+void nTerminalHelp() {
+	nUART_TxString("The following commands are available\n\r");
+	nUART_TxString("The following commands are available\n\r");
+	nUART_TxString("The following commands are available\n\r");
+	nUART_TxString("The following commands are available\n\r");
+	nUART_TxString("The following commands are available\n\r");
 }
+
 
 
 /* Keyword funtion for "LED1" */ 
-void terminal_LED_1_ON() {
+void nTerminal_LED_1_ON() {
 	unsigned int arr[4] = {1,0,0,0};
-	nLEDFlip(arr);
+	nLEDFlip(arr);	
 }
 
 
+
 /* Keyword funtion for "LED2" */ 
-void terminal_LED_2_ON() {
+void nTerminal_LED_2_ON() {
 	unsigned int arr[4] = {0,1,0,0};
 	nLEDFlip(arr);
 }
 
 
+
 /* Keyword funtion for "LED3" */ 
-void terminal_LED_3_ON() {
+void nTerminal_LED_3_ON() {
 	unsigned int arr[4] = {0,0,1,0};
 	nLEDFlip(arr);
 }
 
 
+
 /* Keyword funtion for "LED4" */ 
-void terminal_LED_4_ON() {
+void nTerminal_LED_4_ON() {
 	unsigned int arr[4] = {0,0,0,1};
 	nLEDFlip(arr);
 }
 
 
+
 /* Keyword funtion for "LEDOFF" */ 
-void terminal_LED_OFF() {
+void nTerminal_LED_OFF() {
 	nLED_SET(0,0,0,0);
 }
 
 
+
 /* Keyword funtion for "LEDALL" */ 
-void terminal_LED_ALL_ON() {
+void nTerminal_LED_ALL_ON() {
 	nLED_SET(1,1,1,1);
 }
 
 
+
 /* Keyword funtion for "status" */ 
-void terminal_status() {
-	uart_string("\r\nCurrent state       : snoo\n\r");
-	uart_string("Current Temperature : \n\r");
-	uart_string("Current Program     : \n\r");
-}
-	
-
-/* Keyword funtion for "LED1" */ 
-void terminal_LED_STATE_1() {
-	nLED_SET(1,0,0,0);
-	
+void nTerminalStatus() {
+	nUART_TxString("\r\nCurrent state       : snoo\n\r");
+	nUART_TxString("Current Temperature : \n\r");
+	nUART_TxString("Current Program     : \n\r");
 }
 
 
-/* Keyword funtion for "LED2" */ 
-void terminal_LED_STATE_2() {
-	nLED_SET(0,1,0,0);
-}
-
-
-/* Keyword funtion for "LED3" */ 
-void terminal_LED_STATE_3() {
-	nLED_SET(0,0,1,0);
-}
-
-
-/* Keyword funtion for "LED4" */ 
-void terminal_LED_STATE_4() {
-	nLED_SET(0,0,0,1);
-}
-	
 
 /* Keyword funtion for "clear" */ 
-void terminal_clear() {
+void nTerminalClear() {
 	for(int i = 0; i < 25; i++)
-		uart_string("\r\n");
+		nUART_TxString("\r\n");
 }
+
+
 
 
 /* Keyword funtion for undefined inputs */ 
-void terminal_undefined() {
-		uart_TxChar('\r');
-		uart_TxChar('\n');
-		uart_string("Undefined function.");
-	
+void nTerminalUndefined() {
+		nUART_TxChar('\r');
+		nUART_TxChar('\n');
+		nUART_TxString("Undefined function.");
 }
-
 
 /* Keyword funtion for undefined inputs */ 
-void terminal_no_function_found() {
-	uart_string("No matching function found. try 'help' for more info. \r\n");
+void nTerminalNoFunctionFound() {
+	nUART_TxString("No matching function found. try 'help' for more info. \r\n");
 }
 
 
 
- 
 
-
-/* Function to check UART input with keywords */
-/*
-int checkstring(char string_1[] , char string_2[]) {
-	int re_val = 1;
-	int length;
-	
-	for (int length = 0; string_2[length] != '\0'; length++);
-
-	for (int i = 1; i < length; i++) {
-		if (string_1[i] != string_2[i-1])
-			re_val = 0;
-	}
-	
-	return re_val;
-}*/
-
-
-int checkstring(char string_1[] , char string_2[]) {
-	int re_val = 1;
-	int length;
-	for (int length = 0; string_2[length] != '\0'; length++);
-	
-	for(int i = length; i > 0; i--) {
-		if (string_1[length-i+1] != string_2[length-i])
-			re_val = 0;
-	}
-	return re_val;
-}
-
-
-void UART_chk_for_match(char input_array[]) {
-	
-	if (checkstring(input_array , LED))
-		terminal_LED_1_ON();
-	else if (checkstring(input_array , help))
-		terminal_help();
-	else if (checkstring(input_array , Help))
-		terminal_help();
-	else if (checkstring(input_array , HELP))
-		terminal_help();
-	
-	else if (! strcmp(input_array , LED_1_ON))
-		terminal_LED_1_ON();
-	else if (! strcmp(input_array , LED_2_ON))
-		terminal_LED_2_ON();
-	else if (! strcmp(input_array , LED_3_ON))
-		terminal_LED_3_ON();
-	else if (! strcmp(input_array , LED_4_ON))
-		terminal_LED_4_ON();
-	else if (checkstring(input_array , LED_OFF))
-		terminal_LED_OFF();
-	else if (checkstring(input_array , status))
-		terminal_status();
-	else if (checkstring(input_array , clear))
-		terminal_clear();
-	else if (checkstring(input_array , LEDSTATE1))
-		terminal_LED_STATE_1();
-	else if (checkstring(input_array , LEDSTATE2))
-		terminal_LED_STATE_2();
-	else if (checkstring(input_array , LEDSTATE3))
-		terminal_LED_STATE_3();
-	else if (checkstring(input_array , LEDSTATE4))
-		terminal_LED_STATE_4();
-	else if (checkstring(input_array , disco_str))
-		nDiscoFunc();
-	else if (checkstring(input_array , LED_ALL_ON))
-		terminal_LED_ALL_ON();
-	else {
-		uart_string(input_array);
-		terminal_no_function_found();
-	}
-}
-
-/************************************************
- *	UART Login Function
-
- *	@Description: Used to identify who's logged in to the system
- *		as well as pass correct permissions to the user, to allow
- * 		for several users with different privileges
- *
-*************************************************/
-
-
-void UART_LOGIN(char input_array[]) {
-	
-	if (! USERNAME_MATCHED) {
-		uart_string("Indtast brugernavn :");
-		for (int i = 0; i < USERS; i++) {
-			if (! strcmp(input_array , USER_IDS[i]))
-				USERNAME_MATCHED = i;
-		}
-	}
-	
-	if (USERNAME_MATCHED && ! PASSWORD_MATCHED) {
-		uart_string("Indtast password:");
-		if (! strcmp(input_array , USER_PASS[USERNAME_MATCHED]))
-			PASSWORD_MATCHED = 1;
-	}
-	
-	if (USERNAME_MATCHED && PASSWORD_MATCHED) {
-		LOGGED_IN = 1;
-		uart_string("\r\nLogged into user: ");
-		uart_string(USER_IDS[USERNAME_MATCHED]);
-		uart_string("\r\nYour priority level is : ");
-		uart_string(USER_LIBRARY[USERNAME_MATCHED][USERNAME_MATCHED]);
-	}
-}
-
-
-void read_username() {
-	
-}
-
-void read_password() {
-	
-}
-
-
-
-char input_buffer[128];
-
-void uart_task() {
-
-//	int check = 1;
+void tUART_Task() {
 	char last_char;
 	static char inputs = 0;
-	uint8_t ChosenFunction;
+	int ChosenFunction;
 	
-	last_char = uart_RxChar();
+	last_char = nUART_RxChar();
 	
-	if ( yEnterHit( last_char ) ) {
+	if ( yKeyHit(CHAR_ENTER , last_char) && inputs == 0)
+			nNewLine();
+	
+	else if ( yKeyHit(CHAR_G , last_char) )
+		nTerminal_LED_ALL_ON(); 
+	
+	
+	else if ( yKeyHit( CHAR_ENTER , last_char ) ) {
+		input_buffer[inputs] = '\0';
+		inputs++;
+		
 		ChosenFunction = vFindStringMatch( input_buffer , inputs );
+		keyword_functions[ChosenFunction](); 
 		
-		if (ChosenFunction == 15)
-			nLED_SET(0,0,0,1);
-		else if (ChosenFunction == 16)
-			nLED_SET(0,0,1,0);
-		else if (ChosenFunction == 17)
-			nLED_SET(0,0,1,1);
-		else if (ChosenFunction == 18)
-			nLED_SET(0,1,0,0);
-		else if (ChosenFunction == 19)
-			nLED_SET(0,1,0,1);
-		else if (ChosenFunction == 20)
-			nLED_SET(0,1,1,0);
-		else
-			nLED_SET(0,0,0,0);
-		
-		uart_string("\r\n");
+		nUART_TxString("\r\n");
 		inputs = 0;
 	}
 		
 	else {
 		input_buffer[inputs] = last_char;
-		uart_TxChar(input_buffer[inputs]);
+		nUART_TxChar(input_buffer[inputs]);
 		inputs++;
 	}
 }
 
 
 
-uint8_t yEnterHit( char input_char) {
-	uint8_t yEnterHit_ret;
-	
-	if (input_char == '\r')
-		yEnterHit_ret = 1;
-	else
-		yEnterHit_ret = 0;
-	
-	return yEnterHit_ret;
-}
-
+// ****************************************************************************************
+//	Type		: 	VALUE_RETURN Functions
+//	Example		:	vXxXxX();
+//	Description	:	Returns a value, either 1 or 0. no confirmation if successful or not.
+// ****************************************************************************************
 uint8_t vFindStringMatch(char InputString[] , uint8_t length) {
 	
 	uint8_t MatchFound = 0;
-	uint8_t KeywordMatched;
+	uint8_t KeywordMatched = 19;
 	
 	for (int i = 0; i < NO_OF_KEYWORDS; i++) {
 		MatchFound = 1;
+		
+		int Str1Length , Str2Length;
+		
+		for ( Str1Length = 0; InputString[Str1Length] 			 != '\0'; Str1Length++);
+		for ( Str2Length = 0; keyword_strings[i][Str2Length] != '\0'; Str2Length++); 
+		
+		if (Str1Length != Str2Length)
+			continue;
+		
 		for (int n = 0; n < length; n++) {
-			if (InputString[n] != keyword_strings[i][n])
+			if ( (InputString[n] != keyword_strings[i][n]) )
 				MatchFound = 0;
 		}
 		if (MatchFound)
@@ -504,4 +381,11 @@ uint8_t vFindStringMatch(char InputString[] , uint8_t length) {
 	}
 	return KeywordMatched;
 }
+	
+
+
+
+
+
+
 

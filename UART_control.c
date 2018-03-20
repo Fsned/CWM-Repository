@@ -81,26 +81,26 @@ char keyword_strings[NO_OF_KEYWORDS][10] 	 = {{"help"},								// F0
 																							{"logout"},							// F18
 																							{"undef"}};							// F19
 
-void (*keyword_functions[NO_OF_KEYWORDS])() = {nTerminalHelp 		 	, // F0
-																							 nTerminalHelp  	 	, // F1
-																							 nTerminalHelp 		 	, // F2
-																							 nTerminal_LED_1_ON 	, // F3
-																							 nTerminal_LED_2_ON 	, // F4
-																							 nTerminal_LED_3_ON 	, // F5
-																							 nTerminal_LED_4_ON  , // F6
-																							 nTerminal_LED_OFF		, // F7
-																							 nTerminal_LED_ALL_ON, // F8
-																							 nTerminalStatus		, // F9
-																							 nTerminalClear		 	, // F10
-																							 nTerminalClear 	  , // F11
-																							 nTerminal_LED_1_ON 	, // F12
-																							 nTerminal_LED_2_ON	, // F13
-																							 nTerminal_LED_3_ON	, // F14
-																							 nTerminal_LED_4_ON 	, // F15
-																							 nTerminal_LED_1_ON	, // F16
-																							 nDiscoFunc					, // F17
-																							 nTerminalLogout	, // F18
-																							 nTerminalUndefined };// F19
+void (*keyword_functions[NO_OF_KEYWORDS])() = {nTerminalHelp 		 	, 			// F0
+																							 nTerminalHelp  	 	, 			// F1
+																							 nTerminalHelp 		 	, 			// F2
+																							 nTerminal_LED_1_ON 	, 		// F3
+																							 nTerminal_LED_2_ON 	, 		// F4
+																							 nTerminal_LED_3_ON 	, 		// F5
+																							 nTerminal_LED_4_ON  , 			// F6
+																							 nTerminal_LED_OFF		, 		// F7
+																							 nTerminal_LED_ALL_ON, 			// F8
+																							 nTerminalStatus		, 			// F9
+																							 nTerminalClear		 	, 			// F10
+																							 nTerminalClear 	  , 			// F11
+																							 nTerminal_LED_1_ON 	, 		// F12
+																							 nTerminal_LED_2_ON	, 			// F13
+																							 nTerminal_LED_3_ON	, 			// F14
+																							 nTerminal_LED_4_ON 	, 		// F15
+																							 nTerminal_LED_1_ON	, 			// F16
+																							 nDiscoFunc					, 			// F17
+																							 nTerminalLogout	, 				// F18
+																							 nTerminalUndefined };			// F19
 
 																							 
 // ****************************************************************************************
@@ -449,7 +449,6 @@ uint8_t vCheckUsernames(char InputString[] , uint8_t length) {
 	}
 	return UserMatched;
 }
-
 
 uint8_t vCheckPasscode(char InputString[] , uint8_t length) {
 	

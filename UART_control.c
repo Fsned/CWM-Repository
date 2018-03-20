@@ -326,13 +326,6 @@ void nTerminalNoFunctionFound() {
 }
 
 
-
-
-
-
-
-
-
 /* Task function for UART */
 void tUART_Task() {
 	
@@ -342,12 +335,12 @@ void tUART_Task() {
 	
 	last_char = nUART_RxChar();
 	
-	if (!USERNAME_MATCHED)
-		nUART_TxString("Enter User: ");
-	else if(USERNAME_MATCHED && !LOGGED_IN)
-		nUART_TxString("Enter Password: ");
-	else if(LOGGED_IN)
-		nUART_TxString("Enter command: ");
+//	if (!USERNAME_MATCHED)
+//		nUART_TxString("Enter User: ");
+//	else if(USERNAME_MATCHED && !LOGGED_IN)
+//		nUART_TxString("Enter Password: ");
+//	else if(LOGGED_IN)
+//		nUART_TxString("Enter command: ");
 	
 	if ( yKeyHit(CHAR_ENTER , last_char) && inputs == 0)					// Check if enter is hit, without anything has been entered
 			nNewLine();																										// Just start a new line
@@ -387,7 +380,6 @@ void tUART_Task() {
 		
 		inputs = 0;
 	}
-	
 	
 	else if ( yKeyHit( CHAR_ENTER , last_char ) && LOGGED_IN) {								// Check if enter has been hit, after inputs have been made
 		input_buffer[inputs] = '\0';																		// End the line input with a string terminatio character, to allow for comparison with keyword library

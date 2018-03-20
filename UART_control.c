@@ -303,14 +303,11 @@ void nTerminalStatus() {
 }
 
 
-
 /* Keyword funtion for "clear" */ 
 void nTerminalClear() {
 	for(int i = 0; i < 25; i++)
 		nUART_TxString("\r\n");
 }
-
-
 
 
 /* Keyword funtion for undefined inputs */ 
@@ -334,13 +331,6 @@ void tUART_Task() {
 	int ChosenFunction;
 	
 	last_char = nUART_RxChar();
-	
-//	if (!USERNAME_MATCHED)
-//		nUART_TxString("Enter User: ");
-//	else if(USERNAME_MATCHED && !LOGGED_IN)
-//		nUART_TxString("Enter Password: ");
-//	else if(LOGGED_IN)
-//		nUART_TxString("Enter command: ");
 	
 	if ( yKeyHit(CHAR_ENTER , last_char) && inputs == 0)					// Check if enter is hit, without anything has been entered
 			nNewLine();																										// Just start a new line
@@ -464,9 +454,6 @@ uint8_t vCheckUsernames(char InputString[] , uint8_t length) {
 uint8_t vCheckPasscode(char InputString[] , uint8_t length) {
 	
 	uint8_t MatchFound = 0;
-//	uint8_t UserMatched = 0;
-	
-	//for (int i = 1; i < USERS; i++) {
 	MatchFound = 1;
 	
 	int Str1Length , Str2Length;
@@ -481,9 +468,6 @@ uint8_t vCheckPasscode(char InputString[] , uint8_t length) {
 		if ( (InputString[n] != PASS_LIBRARY[USERNAME_MATCHED][n]) )
 			MatchFound = 0;
 	}
-//		if (MatchFound)
-//			UserMatched = i;
-	//}
 	return MatchFound;
 }
 

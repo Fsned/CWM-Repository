@@ -1,2 +1,17 @@
 
 *.TMP
+GPIO_setup.h
+*.d
+*.o
+*.d
+*.axf
+*.htm
+*.o
+*.d
+*.o
+*.dep
+*.d
+*.o
+*.h
+*.uvprojx
+*.uvoptx

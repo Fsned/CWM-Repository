@@ -10,4 +10,3 @@
 .\build\main.o: setup_file.h
 .\build\main.o: LED_control.h
 .\build\main.o: utilities.h
-.\build\main.o: UART_control.h

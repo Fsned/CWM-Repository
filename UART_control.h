@@ -146,3 +146,7 @@ extern void tUART_Task						( void );
 //	Description	:	Returns a value, either 1 or 0. no confirmation if successful or not.
 // ****************************************************************************************
 extern uint8_t vFindStringMatch(char InputString[] , uint8_t length);
+
+extern uint8_t vCheckUsernames(char InputString[] , uint8_t length);
+
+extern uint8_t vCheckPasscode(char InputString[] , uint8_t length);

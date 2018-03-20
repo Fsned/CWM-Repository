@@ -41,21 +41,17 @@
 //
 // ****************************************************************************************
 char input_buffer[128];
-char USER_IDS[USERS][5] = {{"BM"},
-													 {"frs"},
-													 {"map"},
-													 {"abh"},
-													 {"asd"}};
+char USER_LIBRARY[USERS][5] =  {{"NON"},	// 0
+																{"map"},	// 1
+																{"abh"},	// 2	
+																{"frs"},	// 3
+																{"nig"}};	// 4
 
-char USER_PASS[USERS][5] = {{"aa4"},
-														{"880"},
-														{"123"},
-														{"123"},
-														{"123"}};
-								
-char USER_LIBRARY[3][USERS][5] ={{"oHo" , "frs" , "map" , "abh" , "asd"},
-																	{"aa4" , "880" , "123" , "123" , "123"},
-																	{'1' , '1' , '1' , '1' , '1'}};
+char PASS_LIBRARY[USERS][5] =  {{"213"},	// 0
+																{"123"},	// 1
+																{"123"},	// 2
+																{"123"},	// 3
+																{"123"}};	// 4
 
 char branch_string[20] = {"Sandbox"};
 
@@ -195,7 +191,7 @@ void nUART0_init( unsigned int baudrate) {
 	nUART_TxString("|");
 	nUART_TxString(branch_string);
 	nUART_TxString(" branch____________________________| \r\n\n");
-	nUART_TxString("Press 'Enter' to continue\r\n");
+	nUART_TxString("Enter User: ");
 }
 
 
@@ -317,37 +313,79 @@ void nTerminalNoFunctionFound() {
 
 
 
+
+
+
+uint8_t LOGGED_IN = 0;
+uint8_t USERNAME_MATCHED = 0;
+uint8_t PASSWORD_MATCHED = 0;
+
+/* Task function for UART */
 void tUART_Task() {
+	
 	char last_char;
 	static char inputs = 0;
 	int ChosenFunction;
 	
 	last_char = nUART_RxChar();
 	
-	if ( yKeyHit(CHAR_ENTER , last_char) && inputs == 0)
-			nNewLine();
+	if ( yKeyHit(CHAR_ENTER , last_char) && inputs == 0)					// Check if enter is hit, without anything has been entered
+			nNewLine();																										// Just start a new line
 	
-	else if ( yKeyHit(CHAR_G , last_char) )
-		nTerminal_LED_ALL_ON(); 
-	
-	
-	else if ( yKeyHit( CHAR_ENTER , last_char ) ) {
+	else if ( yKeyHit(CHAR_ENTER , last_char) && inputs > 0 && !USERNAME_MATCHED) {
 		input_buffer[inputs] = '\0';
 		inputs++;
 		
-		ChosenFunction = vFindStringMatch( input_buffer , inputs );
-		keyword_functions[ChosenFunction](); 
+		USERNAME_MATCHED = vCheckUsernames( input_buffer , inputs );
+		nNewLine();
 		
-		nUART_TxString("\r\n");
+		if (USERNAME_MATCHED)
+			nUART_TxString("Enter Password: ");
+		else
+			nUART_TxString("Couldn't Recognize User. Try again\r\n");
+		
 		inputs = 0;
 	}
-		
-	else {
-		input_buffer[inputs] = last_char;
-		nUART_TxChar(input_buffer[inputs]);
+	
+	else if ( yKeyHit(CHAR_ENTER , last_char) && inputs > 0 && USERNAME_MATCHED && !LOGGED_IN) {
+		input_buffer[inputs] = '\0';
 		inputs++;
+		
+		if ( vCheckPasscode( input_buffer , inputs ) ) {
+			PASSWORD_MATCHED = 1;
+			LOGGED_IN = 1;
+			nNewLine();
+			nUART_TxString("User found. Welcome!\r\n");
+		}
+		else {
+			nNewLine();
+			nUART_TxString("Incorrect credentials.\r\n");
+			USERNAME_MATCHED = 0;
+			PASSWORD_MATCHED = 0;
+			LOGGED_IN 			 = 0;
+		}
+		
+		inputs = 0;
 	}
-}
+	
+	
+	else if ( yKeyHit( CHAR_ENTER , last_char ) && LOGGED_IN) {								// Check if enter has been hit, after inputs have been made
+		input_buffer[inputs] = '\0';																		// End the line input with a string terminatio character, to allow for comparison with keyword library
+		inputs++;																												// Increment inputs counter, to accomodate for '\0' character
+		
+		ChosenFunction = vFindStringMatch( input_buffer , inputs );			// return an index number from 0 to amount of keywords. if no match is found, 19 or so is returned, which matches 'undefined function'
+		keyword_functions[ChosenFunction](); 														// Call corresponding function from function library
+		
+		nNewLine();																											// Start a new line		
+		inputs = 0;																											// reset input counter
+	}																															// end else if
+	
+	else {																												// If anything else than enter has been hit, save the input in array, increment inputs counter and transmit it to screen
+		input_buffer[inputs] = last_char;																// Save input in array
+		nUART_TxChar(input_buffer[inputs]);															// Transmit it to screen
+		inputs++;																												// Increment input counter
+	}																															// End else if
+}																														// End task		
 
 
 
@@ -381,7 +419,61 @@ uint8_t vFindStringMatch(char InputString[] , uint8_t length) {
 	}
 	return KeywordMatched;
 }
+
+
+
+uint8_t vCheckUsernames(char InputString[] , uint8_t length) {
 	
+	uint8_t MatchFound = 0;
+	uint8_t UserMatched = 0;
+	
+	for (int i = 1; i < USERS; i++) {
+		MatchFound = 1;
+		
+		int Str1Length , Str2Length;
+		
+		for ( Str1Length = 0; InputString[Str1Length] 		!= '\0'; Str1Length++);
+		for ( Str2Length = 0; USER_LIBRARY[i][Str2Length]	!= '\0'; Str2Length++); 
+		
+		if (Str1Length != Str2Length)
+			continue;
+		
+		for (int n = 0; n < length; n++) {
+			if ( (InputString[n] != USER_LIBRARY[i][n]) )
+				MatchFound = 0;
+		}
+			if (MatchFound)
+				UserMatched = i;
+	}
+	return UserMatched;
+}
+
+
+uint8_t vCheckPasscode(char InputString[] , uint8_t length) {
+	
+	uint8_t MatchFound = 0;
+//	uint8_t UserMatched = 0;
+	
+	//for (int i = 1; i < USERS; i++) {
+	MatchFound = 1;
+	
+	int Str1Length , Str2Length;
+	
+	for ( Str1Length = 0; InputString[Str1Length] 		!= '\0'; Str1Length++);
+	for ( Str2Length = 0; PASS_LIBRARY[USERNAME_MATCHED][Str2Length]	!= '\0'; Str2Length++); 
+	
+	if (Str1Length != Str2Length)
+		MatchFound = 0;
+	
+	for (int n = 0; n < length; n++) {
+		if ( (InputString[n] != PASS_LIBRARY[USERNAME_MATCHED][n]) )
+			MatchFound = 0;
+	}
+//		if (MatchFound)
+//			UserMatched = i;
+	//}
+	return MatchFound;
+}
 
 
 

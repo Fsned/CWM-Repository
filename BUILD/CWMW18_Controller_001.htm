@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\BUILD\CWMW18_Controller_001.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\BUILD\CWMW18_Controller_001.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Fri Mar 16 11:45:38 2018
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Tue Mar 20 10:08:26 2018
 <BR><P>
 <H3>Maximum Stack Usage =        664 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -20,7 +20,7 @@ Mutually Recursive functions
  <LI><a href="#[1f]">DebugMon_Handler</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[1f]">DebugMon_Handler</a><BR>
  <LI><a href="#[20]">PendSV_Handler</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[20]">PendSV_Handler</a><BR>
  <LI><a href="#[38]">ADC_IRQHandler</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[38]">ADC_IRQHandler</a><BR>
- <LI><a href="#[11a]">ticker_read</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[ea]">core_util_critical_section_exit</a><BR>
+ <LI><a href="#[11c]">ticker_read</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[ea]">core_util_critical_section_exit</a><BR>
  <LI><a href="#[e9]">core_util_critical_section_enter</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[da]">mbed_assert_internal</a><BR>
  <LI><a href="#[f8]">initialize</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[da]">mbed_assert_internal</a><BR>
  <LI><a href="#[f7]">pin_mode</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[da]">mbed_assert_internal</a><BR>
@@ -130,15 +130,15 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry
 </UL>
 
-<P><STRONG><a name="[122]"></a>__scatterload_rt2_thumb_only</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__scatter.o)(!!!scatter), UNUSED)
+<P><STRONG><a name="[124]"></a>__scatterload_rt2_thumb_only</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__scatter.o)(!!!scatter), UNUSED)
 
-<P><STRONG><a name="[123]"></a>__scatterload_null</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__scatter.o)(!!!scatter), UNUSED)
+<P><STRONG><a name="[125]"></a>__scatterload_null</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__scatter.o)(!!!scatter), UNUSED)
 
-<P><STRONG><a name="[124]"></a>__decompress</STRONG> (Thumb, 90 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__dczerorl2.o)(!!dczerorl2), UNUSED)
+<P><STRONG><a name="[126]"></a>__decompress</STRONG> (Thumb, 90 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__dczerorl2.o)(!!dczerorl2), UNUSED)
 
-<P><STRONG><a name="[125]"></a>__decompress1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__dczerorl2.o)(!!dczerorl2), UNUSED)
+<P><STRONG><a name="[127]"></a>__decompress1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__dczerorl2.o)(!!dczerorl2), UNUSED)
 
-<P><STRONG><a name="[126]"></a>__scatterload_zeroinit</STRONG> (Thumb, 28 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__scatter_zi.o)(!!handler_zi), UNUSED)
+<P><STRONG><a name="[128]"></a>__scatterload_zeroinit</STRONG> (Thumb, 28 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__scatter_zi.o)(!!handler_zi), UNUSED)
 
 <P><STRONG><a name="[58]"></a>_printf_n</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_n.o)(.ARM.Collect$$_printf_percent$$00000001))
 <BR><BR>[Calls]<UL><LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_charcount
@@ -183,7 +183,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_fp_hex
 </UL>
 
-<P><STRONG><a name="[127]"></a>_printf_ll</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_ll.o)(.ARM.Collect$$_printf_percent$$00000007))
+<P><STRONG><a name="[129]"></a>_printf_ll</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_ll.o)(.ARM.Collect$$_printf_percent$$00000007))
 
 <P><STRONG><a name="[62]"></a>_printf_i</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_i.o)(.ARM.Collect$$_printf_percent$$00000008))
 <BR><BR>[Stack]<UL><LI>Max Depth = 72 + Unknown Stack Size
@@ -255,7 +255,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_ll_hex
 </UL>
 
-<P><STRONG><a name="[128]"></a>_printf_l</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_l.o)(.ARM.Collect$$_printf_percent$$00000012))
+<P><STRONG><a name="[12a]"></a>_printf_l</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_l.o)(.ARM.Collect$$_printf_percent$$00000012))
 
 <P><STRONG><a name="[72]"></a>_printf_c</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_c.o)(.ARM.Collect$$_printf_percent$$00000013))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40 + Unknown Stack Size
@@ -285,13 +285,13 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_wstring
 </UL>
 
-<P><STRONG><a name="[129]"></a>_printf_percent_end</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_percent_end.o)(.ARM.Collect$$_printf_percent$$00000017))
+<P><STRONG><a name="[12b]"></a>_printf_percent_end</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_percent_end.o)(.ARM.Collect$$_printf_percent$$00000017))
 
 <P><STRONG><a name="[88]"></a>__rt_lib_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit.o)(.ARM.Collect$$libinit$$00000000))
 <BR><BR>[Called By]<UL><LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_li
 </UL>
 
-<P><STRONG><a name="[12a]"></a>__rt_lib_init_fp_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)(.ARM.Collect$$libinit$$00000002))
+<P><STRONG><a name="[12c]"></a>__rt_lib_init_fp_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)(.ARM.Collect$$libinit$$00000002))
 
 <P><STRONG><a name="[7a]"></a>__rt_lib_init_heap_2</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)(.ARM.Collect$$libinit$$00000005))
 <BR><BR>[Stack]<UL><LI>Max Depth = 64 + Unknown Stack Size
@@ -300,19 +300,19 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_init_alloc
 </UL>
 
-<P><STRONG><a name="[12b]"></a>__rt_lib_init_preinit_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)(.ARM.Collect$$libinit$$00000004))
+<P><STRONG><a name="[12d]"></a>__rt_lib_init_preinit_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)(.ARM.Collect$$libinit$$00000004))
 
-<P><STRONG><a name="[12c]"></a>__rt_lib_init_heap_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)(.ARM.Collect$$libinit$$0000000A))
+<P><STRONG><a name="[12e]"></a>__rt_lib_init_heap_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)(.ARM.Collect$$libinit$$0000000A))
 
 <P><STRONG><a name="[7c]"></a>__rt_lib_init_lc_common</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)(.ARM.Collect$$libinit$$0000000F))
 <BR><BR>[Calls]<UL><LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_locale
 </UL>
 
-<P><STRONG><a name="[12d]"></a>__rt_lib_init_rand_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)(.ARM.Collect$$libinit$$0000000E))
+<P><STRONG><a name="[12f]"></a>__rt_lib_init_rand_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)(.ARM.Collect$$libinit$$0000000E))
 
-<P><STRONG><a name="[12e]"></a>__rt_lib_init_user_alloc_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)(.ARM.Collect$$libinit$$0000000C))
+<P><STRONG><a name="[130]"></a>__rt_lib_init_user_alloc_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)(.ARM.Collect$$libinit$$0000000C))
 
-<P><STRONG><a name="[12f]"></a>__rt_lib_init_lc_collate_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)(.ARM.Collect$$libinit$$00000011))
+<P><STRONG><a name="[131]"></a>__rt_lib_init_lc_collate_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)(.ARM.Collect$$libinit$$00000011))
 
 <P><STRONG><a name="[7e]"></a>__rt_lib_init_lc_ctype_2</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)(.ARM.Collect$$libinit$$00000012))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8 + Unknown Stack Size
@@ -321,9 +321,9 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_get_lc_ctype
 </UL>
 
-<P><STRONG><a name="[130]"></a>__rt_lib_init_lc_ctype_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)(.ARM.Collect$$libinit$$00000013))
+<P><STRONG><a name="[132]"></a>__rt_lib_init_lc_ctype_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)(.ARM.Collect$$libinit$$00000013))
 
-<P><STRONG><a name="[131]"></a>__rt_lib_init_lc_monetary_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)(.ARM.Collect$$libinit$$00000015))
+<P><STRONG><a name="[133]"></a>__rt_lib_init_lc_monetary_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)(.ARM.Collect$$libinit$$00000015))
 
 <P><STRONG><a name="[7f]"></a>__rt_lib_init_lc_numeric_2</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)(.ARM.Collect$$libinit$$00000016))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8 + Unknown Stack Size
@@ -332,19 +332,19 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_get_lc_numeric
 </UL>
 
-<P><STRONG><a name="[132]"></a>__rt_lib_init_atexit_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)(.ARM.Collect$$libinit$$0000001B))
+<P><STRONG><a name="[134]"></a>__rt_lib_init_atexit_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)(.ARM.Collect$$libinit$$0000001B))
 
-<P><STRONG><a name="[133]"></a>__rt_lib_init_clock_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)(.ARM.Collect$$libinit$$00000021))
+<P><STRONG><a name="[135]"></a>__rt_lib_init_clock_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)(.ARM.Collect$$libinit$$00000021))
 
-<P><STRONG><a name="[134]"></a>__rt_lib_init_fp_trap_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)(.ARM.Collect$$libinit$$0000001F))
+<P><STRONG><a name="[136]"></a>__rt_lib_init_fp_trap_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)(.ARM.Collect$$libinit$$0000001F))
 
-<P><STRONG><a name="[135]"></a>__rt_lib_init_getenv_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)(.ARM.Collect$$libinit$$00000023))
+<P><STRONG><a name="[137]"></a>__rt_lib_init_getenv_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)(.ARM.Collect$$libinit$$00000023))
 
-<P><STRONG><a name="[136]"></a>__rt_lib_init_lc_numeric_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)(.ARM.Collect$$libinit$$00000017))
+<P><STRONG><a name="[138]"></a>__rt_lib_init_lc_numeric_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)(.ARM.Collect$$libinit$$00000017))
 
-<P><STRONG><a name="[137]"></a>__rt_lib_init_lc_time_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)(.ARM.Collect$$libinit$$00000019))
+<P><STRONG><a name="[139]"></a>__rt_lib_init_lc_time_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)(.ARM.Collect$$libinit$$00000019))
 
-<P><STRONG><a name="[138]"></a>__rt_lib_init_signal_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)(.ARM.Collect$$libinit$$0000001D))
+<P><STRONG><a name="[13a]"></a>__rt_lib_init_signal_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)(.ARM.Collect$$libinit$$0000001D))
 
 <P><STRONG><a name="[81]"></a>__rt_lib_init_stdio_2</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)(.ARM.Collect$$libinit$$00000024))
 <BR><BR>[Stack]<UL><LI>Max Depth = 664 + Unknown Stack Size
@@ -353,24 +353,24 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_initio
 </UL>
 
-<P><STRONG><a name="[139]"></a>__rt_lib_init_alloca_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)(.ARM.Collect$$libinit$$0000002E))
+<P><STRONG><a name="[13b]"></a>__rt_lib_init_alloca_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)(.ARM.Collect$$libinit$$0000002E))
 
-<P><STRONG><a name="[13a]"></a>__rt_lib_init_argv_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)(.ARM.Collect$$libinit$$0000002C))
+<P><STRONG><a name="[13c]"></a>__rt_lib_init_argv_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)(.ARM.Collect$$libinit$$0000002C))
 
-<P><STRONG><a name="[13b]"></a>__rt_lib_init_cpp_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)(.ARM.Collect$$libinit$$00000032))
+<P><STRONG><a name="[13d]"></a>__rt_lib_init_cpp_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)(.ARM.Collect$$libinit$$00000032))
 
-<P><STRONG><a name="[13c]"></a>__rt_lib_init_exceptions_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)(.ARM.Collect$$libinit$$00000030))
+<P><STRONG><a name="[13e]"></a>__rt_lib_init_exceptions_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)(.ARM.Collect$$libinit$$00000030))
 
-<P><STRONG><a name="[13d]"></a>__rt_lib_init_return</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)(.ARM.Collect$$libinit$$00000033))
+<P><STRONG><a name="[13f]"></a>__rt_lib_init_return</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)(.ARM.Collect$$libinit$$00000033))
 
-<P><STRONG><a name="[13e]"></a>__rt_lib_init_stdio_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)(.ARM.Collect$$libinit$$00000025))
+<P><STRONG><a name="[140]"></a>__rt_lib_init_stdio_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)(.ARM.Collect$$libinit$$00000025))
 
 <P><STRONG><a name="[56]"></a>__rt_entry</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__rtentry.o)(.ARM.Collect$$rtentry$$00000000))
 <BR><BR>[Called By]<UL><LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__main
 <LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload_rt2
 </UL>
 
-<P><STRONG><a name="[13f]"></a>__rt_entry_presh_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__rtentry2.o)(.ARM.Collect$$rtentry$$00000002))
+<P><STRONG><a name="[141]"></a>__rt_entry_presh_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__rtentry2.o)(.ARM.Collect$$rtentry$$00000002))
 
 <P><STRONG><a name="[83]"></a>__rt_entry_sh</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__rtentry4.o)(.ARM.Collect$$rtentry$$00000004))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8 + Unknown Stack Size
@@ -379,7 +379,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_setup_stackheap
 </UL>
 
-<P><STRONG><a name="[140]"></a>__rt_lib_shutdown_stdio_2</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libshutdown2.o)(.ARM.Collect$$libshutdown$$00000004))
+<P><STRONG><a name="[142]"></a>__rt_lib_shutdown_stdio_2</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libshutdown2.o)(.ARM.Collect$$libshutdown$$00000004))
 
 <P><STRONG><a name="[85]"></a>__rt_entry_postsh_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__rtentry2.o)(.ARM.Collect$$rtentry$$00000008))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16 + Unknown Stack Size
@@ -400,12 +400,12 @@ Global Symbols
 <LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exit
 </UL>
 
-<P><STRONG><a name="[141]"></a>__rt_entry_postli_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__rtentry2.o)(.ARM.Collect$$rtentry$$0000000C))
+<P><STRONG><a name="[143]"></a>__rt_entry_postli_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__rtentry2.o)(.ARM.Collect$$rtentry$$0000000C))
 
 <P><STRONG><a name="[18]"></a>Reset_Handler</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/startup_LPC17xx.o(.text))
 <BR>[Address Reference Count : 1]<UL><LI> startup_LPC17xx.o(RESET)
 </UL>
-<P><STRONG><a name="[142]"></a>_maybe_terminate_alloc</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(maybetermalloc1.o)(.emb_text), UNUSED)
+<P><STRONG><a name="[144]"></a>_maybe_terminate_alloc</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(maybetermalloc1.o)(.emb_text), UNUSED)
 
 <P><STRONG><a name="[19]"></a>NMI_Handler</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/startup_LPC17xx.o(.text))
 <BR><BR>[Calls]<UL><LI><a href="#[19]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NMI_Handler
@@ -576,9 +576,9 @@ Global Symbols
 <LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_ftell_internal
 </UL>
 
-<P><STRONG><a name="[143]"></a>__errno</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(rt_errno_addr.o)(.text), UNUSED)
+<P><STRONG><a name="[145]"></a>__errno</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(rt_errno_addr.o)(.text), UNUSED)
 
-<P><STRONG><a name="[144]"></a>__rt_errno_addr</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(rt_errno_addr.o)(.text), UNUSED)
+<P><STRONG><a name="[146]"></a>__rt_errno_addr</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(rt_errno_addr.o)(.text), UNUSED)
 
 <P><STRONG><a name="[8c]"></a>malloc</STRONG> (Thumb, 94 bytes, Stack size 16 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(h1_alloc.o)(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__Heap_Full
@@ -605,13 +605,13 @@ Global Symbols
 <LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initialize
 </UL>
 
-<P><STRONG><a name="[145]"></a>_ll_udiv</STRONG> (Thumb, 238 bytes, Stack size 48 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lludivv7m.o)(.text), UNUSED)
+<P><STRONG><a name="[147]"></a>_ll_udiv</STRONG> (Thumb, 238 bytes, Stack size 48 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lludivv7m.o)(.text), UNUSED)
 
 <P><STRONG><a name="[fa]"></a>__aeabi_llsl</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(llshl.o)(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initialize
 </UL>
 
-<P><STRONG><a name="[146]"></a>_ll_shift_l</STRONG> (Thumb, 38 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(llshl.o)(.text), UNUSED)
+<P><STRONG><a name="[148]"></a>_ll_shift_l</STRONG> (Thumb, 38 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(llshl.o)(.text), UNUSED)
 
 <P><STRONG><a name="[90]"></a>vsnprintf</STRONG> (Thumb, 48 bytes, Stack size 24 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(vsnprintf.o)(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 128 + Unknown Stack Size
@@ -677,11 +677,11 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_platform_post_stackheap_init
 </UL>
 
-<P><STRONG><a name="[147]"></a>__aeabi_memcpy8</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(rt_memcpy_w.o)(.text), UNUSED)
+<P><STRONG><a name="[149]"></a>__aeabi_memcpy8</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(rt_memcpy_w.o)(.text), UNUSED)
 
-<P><STRONG><a name="[148]"></a>__rt_memcpy_w</STRONG> (Thumb, 100 bytes, Stack size 8 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(rt_memcpy_w.o)(.text), UNUSED)
+<P><STRONG><a name="[14a]"></a>__rt_memcpy_w</STRONG> (Thumb, 100 bytes, Stack size 8 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(rt_memcpy_w.o)(.text), UNUSED)
 
-<P><STRONG><a name="[149]"></a>_memcpy_lastbytes_aligned</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(rt_memcpy_w.o)(.text), UNUSED)
+<P><STRONG><a name="[14b]"></a>_memcpy_lastbytes_aligned</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(rt_memcpy_w.o)(.text), UNUSED)
 
 <P><STRONG><a name="[e3]"></a>strcmp</STRONG> (Thumb, 128 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(strcmpv7m.o)(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sys_open
@@ -695,9 +695,9 @@ Global Symbols
 <LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_init_alloc
 </UL>
 
-<P><STRONG><a name="[14a]"></a>__use_no_heap</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(hguard.o)(.text), UNUSED)
+<P><STRONG><a name="[14c]"></a>__use_no_heap</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(hguard.o)(.text), UNUSED)
 
-<P><STRONG><a name="[14b]"></a>__heap$guard</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(hguard.o)(.text), UNUSED)
+<P><STRONG><a name="[14d]"></a>__heap$guard</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(hguard.o)(.text), UNUSED)
 
 <P><STRONG><a name="[b]"></a>_terminate_user_alloc</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(init_alloc.o)(.text), UNUSED)
 
@@ -910,7 +910,7 @@ Global Symbols
 <LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_do_fflush
 </UL>
 
-<P><STRONG><a name="[14c]"></a>fseek</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(fseek.o)(.text), UNUSED)
+<P><STRONG><a name="[14e]"></a>fseek</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(fseek.o)(.text), UNUSED)
 
 <P><STRONG><a name="[b9]"></a>setvbuf</STRONG> (Thumb, 70 bytes, Stack size 16 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(setvbuf.o)(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = setvbuf
@@ -976,7 +976,7 @@ Global Symbols
 <LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;freopen
 </UL>
 
-<P><STRONG><a name="[14d]"></a>fclose</STRONG> (Thumb, 0 bytes, Stack size 32 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(fclose.o)(.text), UNUSED)
+<P><STRONG><a name="[14f]"></a>fclose</STRONG> (Thumb, 0 bytes, Stack size 32 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(fclose.o)(.text), UNUSED)
 
 <P><STRONG><a name="[9b]"></a>__aeabi_memclr4</STRONG> (Thumb, 0 bytes, Stack size 4 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(rt_memclr_w.o)(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = __aeabi_memclr4
@@ -986,11 +986,11 @@ Global Symbols
 <LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fopen
 </UL>
 
-<P><STRONG><a name="[14e]"></a>__aeabi_memclr8</STRONG> (Thumb, 0 bytes, Stack size 4 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(rt_memclr_w.o)(.text), UNUSED)
+<P><STRONG><a name="[150]"></a>__aeabi_memclr8</STRONG> (Thumb, 0 bytes, Stack size 4 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(rt_memclr_w.o)(.text), UNUSED)
 
-<P><STRONG><a name="[14f]"></a>__rt_memclr_w</STRONG> (Thumb, 78 bytes, Stack size 4 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(rt_memclr_w.o)(.text), UNUSED)
+<P><STRONG><a name="[151]"></a>__rt_memclr_w</STRONG> (Thumb, 78 bytes, Stack size 4 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(rt_memclr_w.o)(.text), UNUSED)
 
-<P><STRONG><a name="[150]"></a>_memset_w</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(rt_memclr_w.o)(.text), UNUSED)
+<P><STRONG><a name="[152]"></a>_memset_w</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(rt_memclr_w.o)(.text), UNUSED)
 
 <P><STRONG><a name="[9d]"></a>__Heap_ProvideMemory</STRONG> (Thumb, 52 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(h1_extend.o)(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = __Heap_ProvideMemory &rArr; free
@@ -1020,7 +1020,7 @@ Global Symbols
 <LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_int_dec
 </UL>
 
-<P><STRONG><a name="[151]"></a>__lib_sel_fp_printf</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_fp_dec.o)(.text), UNUSED)
+<P><STRONG><a name="[153]"></a>__lib_sel_fp_printf</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_fp_dec.o)(.text), UNUSED)
 
 <P><STRONG><a name="[c1]"></a>_printf_fp_dec_real</STRONG> (Thumb, 620 bytes, Stack size 104 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_fp_dec.o)(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 324<LI>Call Chain = _printf_fp_dec_real &rArr; _fp_digits &rArr; _btod_etento &rArr; _btod_emul &rArr; _e2e
@@ -1104,7 +1104,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fseek
 </UL>
 
-<P><STRONG><a name="[152]"></a>ftell</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(ftell.o)(.text), UNUSED)
+<P><STRONG><a name="[154]"></a>ftell</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(ftell.o)(.text), UNUSED)
 
 <P><STRONG><a name="[aa]"></a>_wcrtomb</STRONG> (Thumb, 64 bytes, Stack size 16 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_wcrtomb.o)(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = _wcrtomb &rArr; __rt_ctype_table
@@ -1219,11 +1219,11 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__default_signal_display
 </UL>
 
-<P><STRONG><a name="[153]"></a>__I$use$semihosting</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(use_no_semi.o)(.text), UNUSED)
+<P><STRONG><a name="[155]"></a>__I$use$semihosting</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(use_no_semi.o)(.text), UNUSED)
 
-<P><STRONG><a name="[154]"></a>__use_no_semihosting_swi</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(use_no_semi.o)(.text), UNUSED)
+<P><STRONG><a name="[156]"></a>__use_no_semihosting_swi</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(use_no_semi.o)(.text), UNUSED)
 
-<P><STRONG><a name="[155]"></a>__semihosting_library_function</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(indicate_semi.o)(.text), UNUSED)
+<P><STRONG><a name="[157]"></a>__semihosting_library_function</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(indicate_semi.o)(.text), UNUSED)
 
 <P><STRONG><a name="[be]"></a>_btod_d2e</STRONG> (Thumb, 62 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(btod.o)(CL$$btod_d2e))
 <BR><BR>[Calls]<UL><LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_d2e_norm_op1
@@ -1356,7 +1356,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sys_open
 </UL>
 
-<P><STRONG><a name="[156]"></a>mbed::FilePath::FilePath__sub_object(const char*)</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(FilePath.o)(i._ZN4mbed8FilePathC1EPKc), UNUSED)
+<P><STRONG><a name="[158]"></a>mbed::FilePath::FilePath__sub_object(const char*)</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(FilePath.o)(i._ZN4mbed8FilePathC1EPKc), UNUSED)
 
 <P><STRONG><a name="[c2]"></a>__ARM_fpclassify</STRONG> (Thumb, 40 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\m_ws.l(fpclassify.o)(i.__ARM_fpclassify))
 <BR><BR>[Called By]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_fp_hex_real
@@ -1457,7 +1457,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_assert_internal
 </UL>
-<BR>[Called By]<UL><LI><a href="#[11a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ticker_read
+<BR>[Called By]<UL><LI><a href="#[11c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ticker_read
 <LI><a href="#[ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_die
 <LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_error_vfprintf
 <LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_error_printf
@@ -1471,7 +1471,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_assert_internal
 </UL>
-<BR>[Called By]<UL><LI><a href="#[11a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ticker_read
+<BR>[Called By]<UL><LI><a href="#[11c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ticker_read
 <LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_error_vfprintf
 <LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_error_printf
 <LI><a href="#[17]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ticker_irq_handler
@@ -1501,7 +1501,7 @@ Global Symbols
 <LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_main
 </UL>
 
-<P><STRONG><a name="[11c]"></a>get_us_ticker_data</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_us_ticker_api.o)(i.get_us_ticker_data))
+<P><STRONG><a name="[11e]"></a>get_us_ticker_data</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_us_ticker_api.o)(i.get_us_ticker_data))
 <BR><BR>[Called By]<UL><LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wait_ms
 </UL>
 
@@ -1792,8 +1792,6 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nLED_SET
 </UL>
-<BR>[Called By]<UL><LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tUART_Task
-</UL>
 <BR>[Address Reference Count : 1]<UL><LI> uart_control.o(.data)
 </UL>
 <P><STRONG><a name="[11]"></a>nTerminal_LED_OFF</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, .\build\uart_control.o(i.nTerminal_LED_OFF))
@@ -1952,15 +1950,16 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;serial_init
 </UL>
 
-<P><STRONG><a name="[100]"></a>tUART_Task</STRONG> (Thumb, 142 bytes, Stack size 16 bytes, .\build\uart_control.o(i.tUART_Task))
+<P><STRONG><a name="[100]"></a>tUART_Task</STRONG> (Thumb, 342 bytes, Stack size 16 bytes, .\build\uart_control.o(i.tUART_Task))
 <BR><BR>[Stack]<UL><LI>Max Depth = 44<LI>Call Chain = tUART_Task &rArr; vFindStringMatch
 </UL>
 <BR>[Calls]<UL><LI><a href="#[118]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;yKeyHit
-<LI><a href="#[119]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vFindStringMatch
+<LI><a href="#[11b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vFindStringMatch
+<LI><a href="#[119]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vCheckUsernames
+<LI><a href="#[11a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vCheckPasscode
 <LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nUART_TxString
 <LI><a href="#[110]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nUART_TxChar
 <LI><a href="#[117]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nUART_RxChar
-<LI><a href="#[12]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nTerminal_LED_ALL_ON
 <LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nNewLine
 </UL>
 <BR>[Called By]<UL><LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
@@ -1977,7 +1976,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> mbed_us_ticker_api.o(.data)
 </UL>
-<P><STRONG><a name="[11a]"></a>ticker_read</STRONG> (Thumb, 28 bytes, Stack size 8 bytes, mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)(i.ticker_read))
+<P><STRONG><a name="[11c]"></a>ticker_read</STRONG> (Thumb, 28 bytes, Stack size 8 bytes, mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)(i.ticker_read))
 <BR><BR>[Stack]<UL><LI>Max Depth = 152 + In Cycle
 <LI>Call Chain = ticker_read &rArr;  core_util_critical_section_exit (Cycle)
 </UL>
@@ -1992,28 +1991,28 @@ Global Symbols
 <P><STRONG><a name="[48]"></a>uart0_irq</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(i.uart0_irq))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = uart0_irq &rArr; uart_irq
 </UL>
-<BR>[Calls]<UL><LI><a href="#[11b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_irq
+<BR>[Calls]<UL><LI><a href="#[11d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_irq
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> serial_api.o(i.serial_irq_set_internal)
 </UL>
 <P><STRONG><a name="[49]"></a>uart1_irq</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(i.uart1_irq))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = uart1_irq &rArr; uart_irq
 </UL>
-<BR>[Calls]<UL><LI><a href="#[11b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_irq
+<BR>[Calls]<UL><LI><a href="#[11d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_irq
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> serial_api.o(i.serial_irq_set_internal)
 </UL>
 <P><STRONG><a name="[4a]"></a>uart2_irq</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(i.uart2_irq))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = uart2_irq &rArr; uart_irq
 </UL>
-<BR>[Calls]<UL><LI><a href="#[11b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_irq
+<BR>[Calls]<UL><LI><a href="#[11d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_irq
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> serial_api.o(i.serial_irq_set_internal)
 </UL>
 <P><STRONG><a name="[4b]"></a>uart3_irq</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(i.uart3_irq))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = uart3_irq &rArr; uart_irq
 </UL>
-<BR>[Calls]<UL><LI><a href="#[11b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_irq
+<BR>[Calls]<UL><LI><a href="#[11d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_irq
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> serial_api.o(i.serial_irq_set_internal)
 </UL>
@@ -2042,7 +2041,19 @@ Global Symbols
 <P><STRONG><a name="[51]"></a>us_ticker_set_interrupt</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o(i.us_ticker_set_interrupt))
 <BR>[Address Reference Count : 1]<UL><LI> mbed_us_ticker_api.o(.constdata)
 </UL>
-<P><STRONG><a name="[119]"></a>vFindStringMatch</STRONG> (Thumb, 114 bytes, Stack size 28 bytes, .\build\uart_control.o(i.vFindStringMatch))
+<P><STRONG><a name="[11a]"></a>vCheckPasscode</STRONG> (Thumb, 90 bytes, Stack size 20 bytes, .\build\uart_control.o(i.vCheckPasscode))
+<BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = vCheckPasscode
+</UL>
+<BR>[Called By]<UL><LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tUART_Task
+</UL>
+
+<P><STRONG><a name="[119]"></a>vCheckUsernames</STRONG> (Thumb, 110 bytes, Stack size 28 bytes, .\build\uart_control.o(i.vCheckUsernames))
+<BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = vCheckUsernames
+</UL>
+<BR>[Called By]<UL><LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tUART_Task
+</UL>
+
+<P><STRONG><a name="[11b]"></a>vFindStringMatch</STRONG> (Thumb, 114 bytes, Stack size 28 bytes, .\build\uart_control.o(i.vFindStringMatch))
 <BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = vFindStringMatch
 </UL>
 <BR>[Called By]<UL><LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tUART_Task
@@ -2051,8 +2062,8 @@ Global Symbols
 <P><STRONG><a name="[102]"></a>wait_ms</STRONG> (Thumb, 36 bytes, Stack size 16 bytes, mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_wait_api_no_rtos.o)(i.wait_ms))
 <BR><BR>[Stack]<UL><LI>Max Depth = 168<LI>Call Chain = wait_ms &rArr; ticker_read &rArr;  core_util_critical_section_exit (Cycle)
 </UL>
-<BR>[Calls]<UL><LI><a href="#[11a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ticker_read
-<LI><a href="#[11c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_us_ticker_data
+<BR>[Calls]<UL><LI><a href="#[11c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ticker_read
+<LI><a href="#[11e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_us_ticker_data
 </UL>
 <BR>[Called By]<UL><LI><a href="#[ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_die
 </UL>
@@ -2109,9 +2120,9 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nSystickSetup
 </UL>
 
-<P><STRONG><a name="[11d]"></a>_ddiv</STRONG> (Thumb, 552 bytes, Stack size 32 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(ddiv.o)(x$fpl$ddiv), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[11e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__fpl_dretinf
-<LI><a href="#[11f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__fpl_dnaninf
+<P><STRONG><a name="[11f]"></a>_ddiv</STRONG> (Thumb, 552 bytes, Stack size 32 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(ddiv.o)(x$fpl$ddiv), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[120]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__fpl_dretinf
+<LI><a href="#[121]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__fpl_dnaninf
 </UL>
 
 <P><STRONG><a name="[10f]"></a>__aeabi_d2uiz</STRONG> (Thumb, 0 bytes, Stack size 32 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(dfixu.o)(x$fpl$dfixu))
@@ -2120,15 +2131,15 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nSystickSetup
 </UL>
 
-<P><STRONG><a name="[120]"></a>_dfixu</STRONG> (Thumb, 90 bytes, Stack size 32 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(dfixu.o)(x$fpl$dfixu), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[11f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__fpl_dnaninf
+<P><STRONG><a name="[122]"></a>_dfixu</STRONG> (Thumb, 90 bytes, Stack size 32 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(dfixu.o)(x$fpl$dfixu), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[121]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__fpl_dnaninf
 </UL>
 
 <P><STRONG><a name="[10c]"></a>__aeabi_i2d</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(dflt_clz.o)(x$fpl$dflt))
 <BR><BR>[Called By]<UL><LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nSystickSetup
 </UL>
 
-<P><STRONG><a name="[157]"></a>_dflt</STRONG> (Thumb, 46 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(dflt_clz.o)(x$fpl$dflt), UNUSED)
+<P><STRONG><a name="[159]"></a>_dflt</STRONG> (Thumb, 46 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(dflt_clz.o)(x$fpl$dflt), UNUSED)
 
 <P><STRONG><a name="[10d]"></a>__aeabi_dmul</STRONG> (Thumb, 0 bytes, Stack size 32 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(dmul.o)(x$fpl$dmul))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = __aeabi_dmul
@@ -2136,20 +2147,20 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nSystickSetup
 </UL>
 
-<P><STRONG><a name="[121]"></a>_dmul</STRONG> (Thumb, 332 bytes, Stack size 32 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(dmul.o)(x$fpl$dmul), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[11e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__fpl_dretinf
-<LI><a href="#[11f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__fpl_dnaninf
+<P><STRONG><a name="[123]"></a>_dmul</STRONG> (Thumb, 332 bytes, Stack size 32 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(dmul.o)(x$fpl$dmul), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[120]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__fpl_dretinf
+<LI><a href="#[121]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__fpl_dnaninf
 </UL>
 
-<P><STRONG><a name="[11f]"></a>__fpl_dnaninf</STRONG> (Thumb, 156 bytes, Stack size 16 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(dnaninf.o)(x$fpl$dnaninf), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[121]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dmul
-<LI><a href="#[120]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dfixu
-<LI><a href="#[11d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_ddiv
+<P><STRONG><a name="[121]"></a>__fpl_dnaninf</STRONG> (Thumb, 156 bytes, Stack size 16 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(dnaninf.o)(x$fpl$dnaninf), UNUSED)
+<BR><BR>[Called By]<UL><LI><a href="#[123]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dmul
+<LI><a href="#[122]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dfixu
+<LI><a href="#[11f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_ddiv
 </UL>
 
-<P><STRONG><a name="[11e]"></a>__fpl_dretinf</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(dretinf.o)(x$fpl$dretinf), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[121]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dmul
-<LI><a href="#[11d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_ddiv
+<P><STRONG><a name="[120]"></a>__fpl_dretinf</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(dretinf.o)(x$fpl$dretinf), UNUSED)
+<BR><BR>[Called By]<UL><LI><a href="#[123]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dmul
+<LI><a href="#[11f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_ddiv
 </UL>
 
 <P><STRONG><a name="[5d]"></a>_printf_fp_dec</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(printf1.o)(x$fpl$printf1))
@@ -2179,7 +2190,7 @@ Local Symbols
 <BR>[Called By]<UL><LI><a href="#[114]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;serial_set_flow_control
 </UL>
 
-<P><STRONG><a name="[11b]"></a>uart_irq</STRONG> (Thumb, 94 bytes, Stack size 8 bytes, mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(i.uart_irq))
+<P><STRONG><a name="[11d]"></a>uart_irq</STRONG> (Thumb, 94 bytes, Stack size 8 bytes, mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(i.uart_irq))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = uart_irq
 </UL>
 <BR>[Called By]<UL><LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart3_irq
@@ -2198,7 +2209,7 @@ Local Symbols
 <LI><a href="#[fa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_llsl
 <LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uldivmod
 </UL>
-<BR>[Called By]<UL><LI><a href="#[11a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ticker_read
+<BR>[Called By]<UL><LI><a href="#[11c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ticker_read
 </UL>
 
 <P><STRONG><a name="[fc]"></a>schedule_interrupt</STRONG> (Thumb, 224 bytes, Stack size 32 bytes, mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)(i.schedule_interrupt))
@@ -2216,7 +2227,7 @@ Local Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uldivmod
 </UL>
-<BR>[Called By]<UL><LI><a href="#[11a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ticker_read
+<BR>[Called By]<UL><LI><a href="#[11c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ticker_read
 <LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;schedule_interrupt
 <LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initialize
 <LI><a href="#[17]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ticker_irq_handler

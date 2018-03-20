@@ -40,6 +40,11 @@
 //					Variables
 //
 // ****************************************************************************************
+uint8_t LOGGED_IN = 0;
+uint8_t USERNAME_MATCHED = 0;
+uint8_t PASSWORD_MATCHED = 0;
+
+
 char input_buffer[128];
 char USER_LIBRARY[USERS][5] =  {{"NON"},	// 0
 																{"map"},	// 1
@@ -73,7 +78,7 @@ char keyword_strings[NO_OF_KEYWORDS][10] 	 = {{"help"},								// F0
 																							{"LEDSTATE4"},					// F15
 																							{"LED"},								// F16
 																							{"DiScO"},							// F17
-																							{"undef"},							// F18
+																							{"logout"},							// F18
 																							{"undef"}};							// F19
 
 void (*keyword_functions[NO_OF_KEYWORDS])() = {nTerminalHelp 		 	, // F0
@@ -94,7 +99,7 @@ void (*keyword_functions[NO_OF_KEYWORDS])() = {nTerminalHelp 		 	, // F0
 																							 nTerminal_LED_4_ON 	, // F15
 																							 nTerminal_LED_1_ON	, // F16
 																							 nDiscoFunc					, // F17
-																							 nTerminalUndefined	, // F18
+																							 nTerminalLogout	, // F18
 																							 nTerminalUndefined };// F19
 
 																							 
@@ -123,7 +128,17 @@ void nNewLine() {
 	nUART_TxString("\r\n");
 }
 
-
+void nTerminalLogout() {
+	USERNAME_MATCHED = 0;
+	PASSWORD_MATCHED = 0;
+	LOGGED_IN 			 = 0;
+	
+	nNewLine();
+	
+	nUART_TxString("Logged out.\r\n");
+	nUART_TxString("Enter User: ");
+	
+}
 
 /* Function to initialize UART0 */
 void nUART0_init( unsigned int baudrate) {
@@ -316,9 +331,7 @@ void nTerminalNoFunctionFound() {
 
 
 
-uint8_t LOGGED_IN = 0;
-uint8_t USERNAME_MATCHED = 0;
-uint8_t PASSWORD_MATCHED = 0;
+
 
 /* Task function for UART */
 void tUART_Task() {
@@ -328,6 +341,13 @@ void tUART_Task() {
 	int ChosenFunction;
 	
 	last_char = nUART_RxChar();
+	
+	if (!USERNAME_MATCHED)
+		nUART_TxString("Enter User: ");
+	else if(USERNAME_MATCHED && !LOGGED_IN)
+		nUART_TxString("Enter Password: ");
+	else if(LOGGED_IN)
+		nUART_TxString("Enter command: ");
 	
 	if ( yKeyHit(CHAR_ENTER , last_char) && inputs == 0)					// Check if enter is hit, without anything has been entered
 			nNewLine();																										// Just start a new line

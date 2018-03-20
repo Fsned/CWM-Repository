@@ -138,6 +138,8 @@ extern void nTerminalUndefined		( void );
 
 extern void nTerminalNoFunctionFound( void );
 
+extern void nTerminalLogout				( void );
+
 extern void tUART_Task						( void );
 
 // ****************************************************************************************

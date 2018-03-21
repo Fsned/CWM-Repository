@@ -57,7 +57,7 @@ Source file template:
 // ****************************************************************************************
 //	Type		: 	VALUE_RETURN Functions
 //	Example		:	vXxXxX();
-//	Description	:	Returns a value, either 1 or 0. no confirmation if successful or not.
+//	Description	:	Returns a value, no confirmation if successful or not. can be a handle for e.g. ADC pin
 // ****************************************************************************************
 
 
@@ -108,7 +108,7 @@ Header file template:
 // ****************************************************************************************
 //	Type		: 	VALUE_RETURN Functions
 //	Example		:	vXxXxX();
-//	Description	:	Returns a value, either 1 or 0. no confirmation if successful or not.
+//	Description	:	Returns a value, no confirmation if successful or not. can be a handle for e.g. ADC pin
 // ****************************************************************************************
 
 

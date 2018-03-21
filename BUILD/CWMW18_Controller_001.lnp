@@ -29,6 +29,7 @@
 ".\build\systick.o"
 ".\build\pwm_setup.o"
 ".\build\gpio_setup.o"
+".\build\adc_control.o"
 --scatter ".\mbed\TARGET_LPC1768\TOOLCHAIN_ARM_STD\LPC1768.sct"
 --show_full_path --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

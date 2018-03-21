@@ -1246,9 +1246,19 @@
               <FilePath>.\GPIO_setup.h</FilePath>
             </File>
             <File>
+              <FileName>ADC_control.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\ADC_control.c</FilePath>
+            </File>
+            <File>
               <FileName>Templates.txt</FileName>
               <FileType>5</FileType>
               <FilePath>.\Templates.txt</FilePath>
+            </File>
+            <File>
+              <FileName>ADC_control.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\ADC_control.h</FilePath>
             </File>
           </Files>
         </Group>

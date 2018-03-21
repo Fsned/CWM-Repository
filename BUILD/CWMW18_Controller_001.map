@@ -470,6 +470,7 @@ Section Cross References
     .\build\gpio_setup.o(i.ySetupDigitalO) refers to .\build\gpio_setup.o(i.nInitializePinLibrary) for nInitializePinLibrary
     .\build\gpio_setup.o(i.ySetupDigitalO) refers to .\build\gpio_setup.o(.data) for PinLibrary_Initialized
     .\build\gpio_setup.o(i.ySetupDigitalO) refers to .\build\gpio_setup.o(.bss) for PinLibrary
+    .\build\adc_control.o(i.vReadADC) refers to .\build\adc_control.o(.bss) for ADC_Library
     mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_gpio.o)(i.gpio_init_in) refers to mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/gpio_api.o(i.gpio_init) for gpio_init
     mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_gpio.o)(i.gpio_init_in) refers to mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/gpio_api.o(i.gpio_dir) for gpio_dir
     mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_gpio.o)(i.gpio_init_in) refers to mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/gpio_api.o(i.gpio_mode) for gpio_mode
@@ -1654,6 +1655,9 @@ Removing Unused input sections from the image.
     Removing .\build\gpio_setup.o(.rrx_text), (6 bytes).
     Removing .\build\gpio_setup.o(i.vDigitalRead), (128 bytes).
     Removing .\build\gpio_setup.o(i.yDigitalWrite), (300 bytes).
+    Removing .\build\adc_control.o(i.vReadADC), (16 bytes).
+    Removing .\build\adc_control.o(.bss), (40 bytes).
+    Removing .\build\adc_control.o(.data), (1 bytes).
     Removing mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_gpio.o)(.rev16_text), (4 bytes).
     Removing mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_gpio.o)(.revsh_text), (4 bytes).
     Removing mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_gpio.o)(.rrx_text), (6 bytes).
@@ -1773,7 +1777,7 @@ Removing Unused input sections from the image.
     Removing mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(FileBase.o)(.constdata__ZTSN4mbed8FileBaseE), (17 bytes).
     Removing mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(FileBase.o)(.constdata__ZTSN4mbed11NonCopyableINS_8FileBaseEEE), (36 bytes).
 
-415 unused section(s) (total 23366 bytes) removed from the image.
+418 unused section(s) (total 23423 bytes) removed from the image.
 
 ==============================================================================
 
@@ -1956,37 +1960,37 @@ Image Symbol Table
     ../clib/signal.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(defsig_general.o) ABSOLUTE
     ../clib/signal.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__raise.o) ABSOLUTE
     ../clib/signal.s                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(defsig.o) ABSOLUTE
-    ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(setvbuf_locked.o) ABSOLUTE
+    ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(initio_locked.o) ABSOLUTE
     ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(fopen.o) ABSOLUTE
+    ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(fread_bytes_avail_locked.o) ABSOLUTE
     ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(flushlinebuffered_locked.o) ABSOLUTE
-    ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(setvbuf.o) ABSOLUTE
-    ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(fgets.o) ABSOLUTE
-    ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(fseek.o) ABSOLUTE
     ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(fgetc.o) ABSOLUTE
+    ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(fgets.o) ABSOLUTE
     ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(fflush.o) ABSOLUTE
+    ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(stdio.o) ABSOLUTE
+    ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(setvbuf.o) ABSOLUTE
+    ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(fseek.o) ABSOLUTE
     ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(filbuf.o) ABSOLUTE
-    ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(ferror.o) ABSOLUTE
     ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(ftell.o) ABSOLUTE
-    ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(freadfast_locked.o) ABSOLUTE
+    ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(ferror.o) ABSOLUTE
     ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(freadfast.o) ABSOLUTE
     ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(fread_bytes_avail.o) ABSOLUTE
     ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(flushlinebuffered.o) ABSOLUTE
     ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(fgets_locked.o) ABSOLUTE
-    ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(initio_locked.o) ABSOLUTE
-    ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(fread_bytes_avail_locked.o) ABSOLUTE
+    ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(freadfast_locked.o) ABSOLUTE
+    ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(setvbuf_locked.o) ABSOLUTE
+    ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(streamlock.o) ABSOLUTE
     ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(fopen_locked.o) ABSOLUTE
-    ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(ferror_locked.o) ABSOLUTE
     ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(fflush_locked.o) ABSOLUTE
+    ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(ferror_locked.o) ABSOLUTE
     ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(fgetc_locked.o) ABSOLUTE
+    ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(stdio_streams.o) ABSOLUTE
     ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(fclose.o) ABSOLUTE
     ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(initio.o) ABSOLUTE
-    ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(streamlock.o) ABSOLUTE
-    ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(stdio_streams.o) ABSOLUTE
     ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(setbuf.o) ABSOLUTE
-    ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(stdio.o) ABSOLUTE
     ../clib/stdlib.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(abort.o) ABSOLUTE
-    ../clib/string.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(strlen.o) ABSOLUTE
     ../clib/string.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(strncmp.o) ABSOLUTE
+    ../clib/string.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(strlen.o) ABSOLUTE
     ../clib/wchar.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(filbuf_fwide.o) ABSOLUTE
     ../fplib/daddsub.s                       0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(daddsub_clz.o) ABSOLUTE
     ../fplib/dcmpi.s                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(dcmpi.o) ABSOLUTE
@@ -2084,6 +2088,7 @@ Image Symbol Table
     /home/jenkins/mbed_jenkins/workspace/bm_wrap/1673/mbed-os/targets/TARGET_NXP/TARGET_LPC176X/spi_api.c 0x00000000   Number         0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/spi_api.o ABSOLUTE
     /home/jenkins/mbed_jenkins/workspace/bm_wrap/1673/mbed-os/targets/TARGET_NXP/TARGET_LPC176X/us_ticker.c 0x00000000   Number         0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o ABSOLUTE
     /home/jenkins/mbed_jenkins/workspace/bm_wrap/1673/mbed-os/targets/TARGET_NXP/TARGET_LPC176X/us_ticker.c 0x00000000   Number         0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o ABSOLUTE
+    ADC_control.c                            0x00000000   Number         0  .\build\adc_control.o ABSOLUTE
     GPIO_setup.c                             0x00000000   Number         0  .\build\gpio_setup.o ABSOLUTE
     GPIO_setup.c                             0x00000000   Number         0  .\build\gpio_setup.o ABSOLUTE
     LED_control.c                            0x00000000   Number         0  .\build\led_control.o ABSOLUTE
@@ -2893,158 +2898,158 @@ Memory Map of the image
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x00000300   0x00000300   0x00000008   Code   RO         1406  * !!!main             C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__main.o)
-    0x00000308   0x00000308   0x00000034   Code   RO         2038    !!!scatter          C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__scatter.o)
-    0x0000033c   0x0000033c   0x0000005a   Code   RO         2036    !!dczerorl2         C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__dczerorl2.o)
+    0x00000300   0x00000300   0x00000008   Code   RO         1425  * !!!main             C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__main.o)
+    0x00000308   0x00000308   0x00000034   Code   RO         2057    !!!scatter          C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__scatter.o)
+    0x0000033c   0x0000033c   0x0000005a   Code   RO         2055    !!dczerorl2         C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__dczerorl2.o)
     0x00000396   0x00000396   0x00000002   PAD
-    0x00000398   0x00000398   0x0000001c   Code   RO         2040    !!handler_zi        C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__scatter_zi.o)
-    0x000003b4   0x000003b4   0x00000000   Code   RO         1684    .ARM.Collect$$_printf_percent$$00000000  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_percent.o)
-    0x000003b4   0x000003b4   0x00000006   Code   RO         1673    .ARM.Collect$$_printf_percent$$00000001  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_n.o)
-    0x000003ba   0x000003ba   0x00000006   Code   RO         1675    .ARM.Collect$$_printf_percent$$00000002  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_p.o)
-    0x000003c0   0x000003c0   0x00000006   Code   RO         1680    .ARM.Collect$$_printf_percent$$00000003  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_f.o)
-    0x000003c6   0x000003c6   0x00000006   Code   RO         1681    .ARM.Collect$$_printf_percent$$00000004  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_e.o)
-    0x000003cc   0x000003cc   0x00000006   Code   RO         1682    .ARM.Collect$$_printf_percent$$00000005  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_g.o)
-    0x000003d2   0x000003d2   0x00000006   Code   RO         1683    .ARM.Collect$$_printf_percent$$00000006  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_a.o)
-    0x000003d8   0x000003d8   0x0000000a   Code   RO         1688    .ARM.Collect$$_printf_percent$$00000007  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_ll.o)
-    0x000003e2   0x000003e2   0x00000006   Code   RO         1677    .ARM.Collect$$_printf_percent$$00000008  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_i.o)
-    0x000003e8   0x000003e8   0x00000006   Code   RO         1678    .ARM.Collect$$_printf_percent$$00000009  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_d.o)
-    0x000003ee   0x000003ee   0x00000006   Code   RO         1679    .ARM.Collect$$_printf_percent$$0000000A  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_u.o)
-    0x000003f4   0x000003f4   0x00000006   Code   RO         1676    .ARM.Collect$$_printf_percent$$0000000B  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_o.o)
-    0x000003fa   0x000003fa   0x00000006   Code   RO         1674    .ARM.Collect$$_printf_percent$$0000000C  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_x.o)
-    0x00000400   0x00000400   0x00000006   Code   RO         1685    .ARM.Collect$$_printf_percent$$0000000D  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_lli.o)
-    0x00000406   0x00000406   0x00000006   Code   RO         1686    .ARM.Collect$$_printf_percent$$0000000E  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_lld.o)
-    0x0000040c   0x0000040c   0x00000006   Code   RO         1687    .ARM.Collect$$_printf_percent$$0000000F  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_llu.o)
-    0x00000412   0x00000412   0x00000006   Code   RO         1692    .ARM.Collect$$_printf_percent$$00000010  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_llo.o)
-    0x00000418   0x00000418   0x00000006   Code   RO         1693    .ARM.Collect$$_printf_percent$$00000011  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_llx.o)
-    0x0000041e   0x0000041e   0x0000000a   Code   RO         1689    .ARM.Collect$$_printf_percent$$00000012  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_l.o)
-    0x00000428   0x00000428   0x00000006   Code   RO         1671    .ARM.Collect$$_printf_percent$$00000013  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_c.o)
-    0x0000042e   0x0000042e   0x00000006   Code   RO         1672    .ARM.Collect$$_printf_percent$$00000014  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_s.o)
-    0x00000434   0x00000434   0x00000006   Code   RO         1690    .ARM.Collect$$_printf_percent$$00000015  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_lc.o)
-    0x0000043a   0x0000043a   0x00000006   Code   RO         1691    .ARM.Collect$$_printf_percent$$00000016  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_ls.o)
-    0x00000440   0x00000440   0x00000004   Code   RO         1852    .ARM.Collect$$_printf_percent$$00000017  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_percent_end.o)
-    0x00000444   0x00000444   0x00000002   Code   RO         1986    .ARM.Collect$$libinit$$00000000  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit.o)
-    0x00000446   0x00000446   0x00000000   Code   RO         1726    .ARM.Collect$$libinit$$00000002  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)
-    0x00000446   0x00000446   0x00000000   Code   RO         1728    .ARM.Collect$$libinit$$00000004  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)
-    0x00000446   0x00000446   0x00000008   Code   RO         1729    .ARM.Collect$$libinit$$00000005  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)
-    0x0000044e   0x0000044e   0x00000000   Code   RO         1731    .ARM.Collect$$libinit$$0000000A  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)
-    0x0000044e   0x0000044e   0x00000000   Code   RO         1733    .ARM.Collect$$libinit$$0000000C  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)
-    0x0000044e   0x0000044e   0x00000000   Code   RO         1735    .ARM.Collect$$libinit$$0000000E  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)
-    0x0000044e   0x0000044e   0x00000006   Code   RO         1736    .ARM.Collect$$libinit$$0000000F  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)
-    0x00000454   0x00000454   0x00000000   Code   RO         1738    .ARM.Collect$$libinit$$00000011  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)
-    0x00000454   0x00000454   0x0000000c   Code   RO         1739    .ARM.Collect$$libinit$$00000012  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)
-    0x00000460   0x00000460   0x00000000   Code   RO         1740    .ARM.Collect$$libinit$$00000013  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)
-    0x00000460   0x00000460   0x00000000   Code   RO         1742    .ARM.Collect$$libinit$$00000015  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)
-    0x00000460   0x00000460   0x0000000a   Code   RO         1743    .ARM.Collect$$libinit$$00000016  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)
-    0x0000046a   0x0000046a   0x00000000   Code   RO         1744    .ARM.Collect$$libinit$$00000017  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)
-    0x0000046a   0x0000046a   0x00000000   Code   RO         1746    .ARM.Collect$$libinit$$00000019  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)
-    0x0000046a   0x0000046a   0x00000000   Code   RO         1748    .ARM.Collect$$libinit$$0000001B  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)
-    0x0000046a   0x0000046a   0x00000000   Code   RO         1750    .ARM.Collect$$libinit$$0000001D  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)
-    0x0000046a   0x0000046a   0x00000000   Code   RO         1752    .ARM.Collect$$libinit$$0000001F  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)
-    0x0000046a   0x0000046a   0x00000000   Code   RO         1754    .ARM.Collect$$libinit$$00000021  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)
-    0x0000046a   0x0000046a   0x00000000   Code   RO         1756    .ARM.Collect$$libinit$$00000023  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)
-    0x0000046a   0x0000046a   0x00000004   Code   RO         1757    .ARM.Collect$$libinit$$00000024  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)
-    0x0000046e   0x0000046e   0x00000000   Code   RO         1758    .ARM.Collect$$libinit$$00000025  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)
-    0x0000046e   0x0000046e   0x00000000   Code   RO         1762    .ARM.Collect$$libinit$$0000002C  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)
-    0x0000046e   0x0000046e   0x00000000   Code   RO         1764    .ARM.Collect$$libinit$$0000002E  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)
-    0x0000046e   0x0000046e   0x00000000   Code   RO         1766    .ARM.Collect$$libinit$$00000030  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)
-    0x0000046e   0x0000046e   0x00000000   Code   RO         1768    .ARM.Collect$$libinit$$00000032  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)
-    0x0000046e   0x0000046e   0x00000002   Code   RO         1769    .ARM.Collect$$libinit$$00000033  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)
-    0x00000470   0x00000470   0x00000000   Code   RO         1891    .ARM.Collect$$libshutdown$$00000004  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libshutdown2.o)
-    0x00000470   0x00000470   0x00000000   Code   RO         1571    .ARM.Collect$$rtentry$$00000000  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__rtentry.o)
-    0x00000470   0x00000470   0x00000000   Code   RO         1811    .ARM.Collect$$rtentry$$00000002  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__rtentry2.o)
-    0x00000470   0x00000470   0x00000006   Code   RO         1823    .ARM.Collect$$rtentry$$00000004  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__rtentry4.o)
-    0x00000476   0x00000476   0x00000008   Code   RO         1812    .ARM.Collect$$rtentry$$00000008  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__rtentry2.o)
-    0x0000047e   0x0000047e   0x00000004   Code   RO         1814    .ARM.Collect$$rtentry$$0000000A  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__rtentry2.o)
-    0x00000482   0x00000482   0x00000000   Code   RO         1816    .ARM.Collect$$rtentry$$0000000C  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__rtentry2.o)
-    0x00000482   0x00000482   0x00000008   Code   RO         1817    .ARM.Collect$$rtentry$$0000000D  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__rtentry2.o)
+    0x00000398   0x00000398   0x0000001c   Code   RO         2059    !!handler_zi        C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__scatter_zi.o)
+    0x000003b4   0x000003b4   0x00000000   Code   RO         1703    .ARM.Collect$$_printf_percent$$00000000  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_percent.o)
+    0x000003b4   0x000003b4   0x00000006   Code   RO         1692    .ARM.Collect$$_printf_percent$$00000001  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_n.o)
+    0x000003ba   0x000003ba   0x00000006   Code   RO         1694    .ARM.Collect$$_printf_percent$$00000002  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_p.o)
+    0x000003c0   0x000003c0   0x00000006   Code   RO         1699    .ARM.Collect$$_printf_percent$$00000003  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_f.o)
+    0x000003c6   0x000003c6   0x00000006   Code   RO         1700    .ARM.Collect$$_printf_percent$$00000004  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_e.o)
+    0x000003cc   0x000003cc   0x00000006   Code   RO         1701    .ARM.Collect$$_printf_percent$$00000005  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_g.o)
+    0x000003d2   0x000003d2   0x00000006   Code   RO         1702    .ARM.Collect$$_printf_percent$$00000006  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_a.o)
+    0x000003d8   0x000003d8   0x0000000a   Code   RO         1707    .ARM.Collect$$_printf_percent$$00000007  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_ll.o)
+    0x000003e2   0x000003e2   0x00000006   Code   RO         1696    .ARM.Collect$$_printf_percent$$00000008  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_i.o)
+    0x000003e8   0x000003e8   0x00000006   Code   RO         1697    .ARM.Collect$$_printf_percent$$00000009  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_d.o)
+    0x000003ee   0x000003ee   0x00000006   Code   RO         1698    .ARM.Collect$$_printf_percent$$0000000A  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_u.o)
+    0x000003f4   0x000003f4   0x00000006   Code   RO         1695    .ARM.Collect$$_printf_percent$$0000000B  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_o.o)
+    0x000003fa   0x000003fa   0x00000006   Code   RO         1693    .ARM.Collect$$_printf_percent$$0000000C  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_x.o)
+    0x00000400   0x00000400   0x00000006   Code   RO         1704    .ARM.Collect$$_printf_percent$$0000000D  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_lli.o)
+    0x00000406   0x00000406   0x00000006   Code   RO         1705    .ARM.Collect$$_printf_percent$$0000000E  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_lld.o)
+    0x0000040c   0x0000040c   0x00000006   Code   RO         1706    .ARM.Collect$$_printf_percent$$0000000F  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_llu.o)
+    0x00000412   0x00000412   0x00000006   Code   RO         1711    .ARM.Collect$$_printf_percent$$00000010  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_llo.o)
+    0x00000418   0x00000418   0x00000006   Code   RO         1712    .ARM.Collect$$_printf_percent$$00000011  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_llx.o)
+    0x0000041e   0x0000041e   0x0000000a   Code   RO         1708    .ARM.Collect$$_printf_percent$$00000012  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_l.o)
+    0x00000428   0x00000428   0x00000006   Code   RO         1690    .ARM.Collect$$_printf_percent$$00000013  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_c.o)
+    0x0000042e   0x0000042e   0x00000006   Code   RO         1691    .ARM.Collect$$_printf_percent$$00000014  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_s.o)
+    0x00000434   0x00000434   0x00000006   Code   RO         1709    .ARM.Collect$$_printf_percent$$00000015  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_lc.o)
+    0x0000043a   0x0000043a   0x00000006   Code   RO         1710    .ARM.Collect$$_printf_percent$$00000016  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_ls.o)
+    0x00000440   0x00000440   0x00000004   Code   RO         1871    .ARM.Collect$$_printf_percent$$00000017  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_percent_end.o)
+    0x00000444   0x00000444   0x00000002   Code   RO         2005    .ARM.Collect$$libinit$$00000000  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit.o)
+    0x00000446   0x00000446   0x00000000   Code   RO         1745    .ARM.Collect$$libinit$$00000002  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)
+    0x00000446   0x00000446   0x00000000   Code   RO         1747    .ARM.Collect$$libinit$$00000004  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)
+    0x00000446   0x00000446   0x00000008   Code   RO         1748    .ARM.Collect$$libinit$$00000005  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)
+    0x0000044e   0x0000044e   0x00000000   Code   RO         1750    .ARM.Collect$$libinit$$0000000A  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)
+    0x0000044e   0x0000044e   0x00000000   Code   RO         1752    .ARM.Collect$$libinit$$0000000C  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)
+    0x0000044e   0x0000044e   0x00000000   Code   RO         1754    .ARM.Collect$$libinit$$0000000E  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)
+    0x0000044e   0x0000044e   0x00000006   Code   RO         1755    .ARM.Collect$$libinit$$0000000F  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)
+    0x00000454   0x00000454   0x00000000   Code   RO         1757    .ARM.Collect$$libinit$$00000011  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)
+    0x00000454   0x00000454   0x0000000c   Code   RO         1758    .ARM.Collect$$libinit$$00000012  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)
+    0x00000460   0x00000460   0x00000000   Code   RO         1759    .ARM.Collect$$libinit$$00000013  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)
+    0x00000460   0x00000460   0x00000000   Code   RO         1761    .ARM.Collect$$libinit$$00000015  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)
+    0x00000460   0x00000460   0x0000000a   Code   RO         1762    .ARM.Collect$$libinit$$00000016  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)
+    0x0000046a   0x0000046a   0x00000000   Code   RO         1763    .ARM.Collect$$libinit$$00000017  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)
+    0x0000046a   0x0000046a   0x00000000   Code   RO         1765    .ARM.Collect$$libinit$$00000019  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)
+    0x0000046a   0x0000046a   0x00000000   Code   RO         1767    .ARM.Collect$$libinit$$0000001B  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)
+    0x0000046a   0x0000046a   0x00000000   Code   RO         1769    .ARM.Collect$$libinit$$0000001D  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)
+    0x0000046a   0x0000046a   0x00000000   Code   RO         1771    .ARM.Collect$$libinit$$0000001F  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)
+    0x0000046a   0x0000046a   0x00000000   Code   RO         1773    .ARM.Collect$$libinit$$00000021  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)
+    0x0000046a   0x0000046a   0x00000000   Code   RO         1775    .ARM.Collect$$libinit$$00000023  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)
+    0x0000046a   0x0000046a   0x00000004   Code   RO         1776    .ARM.Collect$$libinit$$00000024  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)
+    0x0000046e   0x0000046e   0x00000000   Code   RO         1777    .ARM.Collect$$libinit$$00000025  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)
+    0x0000046e   0x0000046e   0x00000000   Code   RO         1781    .ARM.Collect$$libinit$$0000002C  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)
+    0x0000046e   0x0000046e   0x00000000   Code   RO         1783    .ARM.Collect$$libinit$$0000002E  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)
+    0x0000046e   0x0000046e   0x00000000   Code   RO         1785    .ARM.Collect$$libinit$$00000030  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)
+    0x0000046e   0x0000046e   0x00000000   Code   RO         1787    .ARM.Collect$$libinit$$00000032  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)
+    0x0000046e   0x0000046e   0x00000002   Code   RO         1788    .ARM.Collect$$libinit$$00000033  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o)
+    0x00000470   0x00000470   0x00000000   Code   RO         1910    .ARM.Collect$$libshutdown$$00000004  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libshutdown2.o)
+    0x00000470   0x00000470   0x00000000   Code   RO         1590    .ARM.Collect$$rtentry$$00000000  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__rtentry.o)
+    0x00000470   0x00000470   0x00000000   Code   RO         1830    .ARM.Collect$$rtentry$$00000002  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__rtentry2.o)
+    0x00000470   0x00000470   0x00000006   Code   RO         1842    .ARM.Collect$$rtentry$$00000004  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__rtentry4.o)
+    0x00000476   0x00000476   0x00000008   Code   RO         1831    .ARM.Collect$$rtentry$$00000008  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__rtentry2.o)
+    0x0000047e   0x0000047e   0x00000004   Code   RO         1833    .ARM.Collect$$rtentry$$0000000A  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__rtentry2.o)
+    0x00000482   0x00000482   0x00000000   Code   RO         1835    .ARM.Collect$$rtentry$$0000000C  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__rtentry2.o)
+    0x00000482   0x00000482   0x00000008   Code   RO         1836    .ARM.Collect$$rtentry$$0000000D  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__rtentry2.o)
     0x0000048a   0x0000048a   0x00000002   PAD
-    0x0000048c   0x0000048c   0x00000000   Code   RO         1829    .emb_text           C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(maybetermalloc1.o)
+    0x0000048c   0x0000048c   0x00000000   Code   RO         1848    .emb_text           C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(maybetermalloc1.o)
     0x0000048c   0x0000048c   0x00000024   Code   RO          567    .text               mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/startup_LPC17xx.o
-    0x000004b0   0x000004b0   0x00000008   Code   RO         1293    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(rt_errno_addr.o)
-    0x000004b8   0x000004b8   0x0000005e   Code   RO         1302    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(h1_alloc.o)
-    0x00000516   0x00000516   0x0000004e   Code   RO         1304    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(h1_free.o)
-    0x00000564   0x00000564   0x000000ee   Code   RO         1360    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lludivv7m.o)
-    0x00000652   0x00000652   0x00000026   Code   RO         1362    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(llshl.o)
-    0x00000678   0x00000678   0x00000034   Code   RO         1364    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(vsnprintf.o)
-    0x000006ac   0x000006ac   0x00000064   Code   RO         1370    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(fflush.o)
-    0x00000710   0x00000710   0x000000ec   Code   RO         1378    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(fopen.o)
-    0x000007fc   0x000007fc   0x0000003e   Code   RO         1394    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(strlen.o)
-    0x0000083a   0x0000083a   0x00000096   Code   RO         1396    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(strncmp.o)
-    0x000008d0   0x000008d0   0x00000064   Code   RO         1400    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(rt_memcpy_w.o)
-    0x00000934   0x00000934   0x00000080   Code   RO         1404    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(strcmpv7m.o)
-    0x000009b4   0x000009b4   0x00000008   Code   RO         1576    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(rt_heap_descriptor.o)
-    0x000009bc   0x000009bc   0x00000004   Code   RO         1581    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(hguard.o)
-    0x000009c0   0x000009c0   0x0000008a   Code   RO         1583    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(init_alloc.o)
-    0x00000a4a   0x00000a4a   0x0000000e   Code   RO         1587    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(h1_init.o)
-    0x00000a58   0x00000a58   0x0000004e   Code   RO         1603    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_pad.o)
-    0x00000aa6   0x00000aa6   0x00000024   Code   RO         1605    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_truncate.o)
-    0x00000aca   0x00000aca   0x00000052   Code   RO         1607    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_str.o)
-    0x00000b1c   0x00000b1c   0x00000078   Code   RO         1609    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_dec.o)
-    0x00000b94   0x00000b94   0x00000028   Code   RO         1611    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_charcount.o)
-    0x00000bbc   0x00000bbc   0x00000030   Code   RO         1613    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_char_common.o)
-    0x00000bec   0x00000bec   0x0000000a   Code   RO         1615    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_sputc.o)
-    0x00000bf6   0x00000bf6   0x00000010   Code   RO         1617    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_snputc.o)
+    0x000004b0   0x000004b0   0x00000008   Code   RO         1312    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(rt_errno_addr.o)
+    0x000004b8   0x000004b8   0x0000005e   Code   RO         1321    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(h1_alloc.o)
+    0x00000516   0x00000516   0x0000004e   Code   RO         1323    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(h1_free.o)
+    0x00000564   0x00000564   0x000000ee   Code   RO         1379    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lludivv7m.o)
+    0x00000652   0x00000652   0x00000026   Code   RO         1381    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(llshl.o)
+    0x00000678   0x00000678   0x00000034   Code   RO         1383    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(vsnprintf.o)
+    0x000006ac   0x000006ac   0x00000064   Code   RO         1389    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(fflush.o)
+    0x00000710   0x00000710   0x000000ec   Code   RO         1397    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(fopen.o)
+    0x000007fc   0x000007fc   0x0000003e   Code   RO         1413    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(strlen.o)
+    0x0000083a   0x0000083a   0x00000096   Code   RO         1415    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(strncmp.o)
+    0x000008d0   0x000008d0   0x00000064   Code   RO         1419    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(rt_memcpy_w.o)
+    0x00000934   0x00000934   0x00000080   Code   RO         1423    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(strcmpv7m.o)
+    0x000009b4   0x000009b4   0x00000008   Code   RO         1595    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(rt_heap_descriptor.o)
+    0x000009bc   0x000009bc   0x00000004   Code   RO         1600    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(hguard.o)
+    0x000009c0   0x000009c0   0x0000008a   Code   RO         1602    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(init_alloc.o)
+    0x00000a4a   0x00000a4a   0x0000000e   Code   RO         1606    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(h1_init.o)
+    0x00000a58   0x00000a58   0x0000004e   Code   RO         1622    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_pad.o)
+    0x00000aa6   0x00000aa6   0x00000024   Code   RO         1624    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_truncate.o)
+    0x00000aca   0x00000aca   0x00000052   Code   RO         1626    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_str.o)
+    0x00000b1c   0x00000b1c   0x00000078   Code   RO         1628    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_dec.o)
+    0x00000b94   0x00000b94   0x00000028   Code   RO         1630    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_charcount.o)
+    0x00000bbc   0x00000bbc   0x00000030   Code   RO         1632    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_char_common.o)
+    0x00000bec   0x00000bec   0x0000000a   Code   RO         1634    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_sputc.o)
+    0x00000bf6   0x00000bf6   0x00000010   Code   RO         1636    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_snputc.o)
     0x00000c06   0x00000c06   0x00000002   PAD
-    0x00000c08   0x00000c08   0x000000bc   Code   RO         1619    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_wctomb.o)
-    0x00000cc4   0x00000cc4   0x0000007c   Code   RO         1622    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_longlong_dec.o)
-    0x00000d40   0x00000d40   0x00000070   Code   RO         1628    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_oct_int_ll.o)
-    0x00000db0   0x00000db0   0x00000094   Code   RO         1648    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_hex_int_ll_ptr.o)
-    0x00000e44   0x00000e44   0x00000188   Code   RO         1668    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__printf_flags_ss_wp.o)
-    0x00000fcc   0x00000fcc   0x000000f8   Code   RO         1704    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(fseek.o)
-    0x000010c4   0x000010c4   0x00000046   Code   RO         1706    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(setvbuf.o)
+    0x00000c08   0x00000c08   0x000000bc   Code   RO         1638    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_wctomb.o)
+    0x00000cc4   0x00000cc4   0x0000007c   Code   RO         1641    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_longlong_dec.o)
+    0x00000d40   0x00000d40   0x00000070   Code   RO         1647    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_oct_int_ll.o)
+    0x00000db0   0x00000db0   0x00000094   Code   RO         1667    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_hex_int_ll_ptr.o)
+    0x00000e44   0x00000e44   0x00000188   Code   RO         1687    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__printf_flags_ss_wp.o)
+    0x00000fcc   0x00000fcc   0x000000f8   Code   RO         1723    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(fseek.o)
+    0x000010c4   0x000010c4   0x00000046   Code   RO         1725    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(setvbuf.o)
     0x0000110a   0x0000110a   0x00000002   PAD
-    0x0000110c   0x0000110c   0x000000f0   Code   RO         1708    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(stdio.o)
-    0x000011fc   0x000011fc   0x00000138   Code   RO         1711    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(initio.o)
-    0x00001334   0x00001334   0x0000004c   Code   RO         1713    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(fclose.o)
-    0x00001380   0x00001380   0x0000004e   Code   RO         1721    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(rt_memclr_w.o)
-    0x000013ce   0x000013ce   0x00000034   Code   RO         1831    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(h1_extend.o)
-    0x00001402   0x00001402   0x0000008a   Code   RO         1835    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lludiv10.o)
-    0x0000148c   0x0000148c   0x000000b2   Code   RO         1839    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_intcommon.o)
-    0x0000153e   0x0000153e   0x0000041e   Code   RO         1841    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_fp_dec.o)
-    0x0000195c   0x0000195c   0x000002fc   Code   RO         1843    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_fp_hex.o)
-    0x00001c58   0x00001c58   0x0000002c   Code   RO         1848    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_char.o)
-    0x00001c84   0x00001c84   0x0000002c   Code   RO         1850    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_wchar.o)
-    0x00001cb0   0x00001cb0   0x00000042   Code   RO         1855    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(ftell.o)
-    0x00001cf2   0x00001cf2   0x00000040   Code   RO         1871    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_wcrtomb.o)
-    0x00001d32   0x00001d32   0x0000000e   Code   RO         1873    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(defsig_rtred_outer.o)
-    0x00001d40   0x00001d40   0x0000000e   Code   RO         1877    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(defsig_rtmem_outer.o)
+    0x0000110c   0x0000110c   0x000000f0   Code   RO         1727    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(stdio.o)
+    0x000011fc   0x000011fc   0x00000138   Code   RO         1730    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(initio.o)
+    0x00001334   0x00001334   0x0000004c   Code   RO         1732    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(fclose.o)
+    0x00001380   0x00001380   0x0000004e   Code   RO         1740    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(rt_memclr_w.o)
+    0x000013ce   0x000013ce   0x00000034   Code   RO         1850    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(h1_extend.o)
+    0x00001402   0x00001402   0x0000008a   Code   RO         1854    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lludiv10.o)
+    0x0000148c   0x0000148c   0x000000b2   Code   RO         1858    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_intcommon.o)
+    0x0000153e   0x0000153e   0x0000041e   Code   RO         1860    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_fp_dec.o)
+    0x0000195c   0x0000195c   0x000002fc   Code   RO         1862    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_fp_hex.o)
+    0x00001c58   0x00001c58   0x0000002c   Code   RO         1867    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_char.o)
+    0x00001c84   0x00001c84   0x0000002c   Code   RO         1869    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_wchar.o)
+    0x00001cb0   0x00001cb0   0x00000042   Code   RO         1874    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(ftell.o)
+    0x00001cf2   0x00001cf2   0x00000040   Code   RO         1890    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_wcrtomb.o)
+    0x00001d32   0x00001d32   0x0000000e   Code   RO         1892    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(defsig_rtred_outer.o)
+    0x00001d40   0x00001d40   0x0000000e   Code   RO         1896    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(defsig_rtmem_outer.o)
     0x00001d4e   0x00001d4e   0x00000002   PAD
-    0x00001d50   0x00001d50   0x00000050   Code   RO         1881    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(heapauxa.o)
-    0x00001da0   0x00001da0   0x00000010   Code   RO         1921    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(rt_ctype_table.o)
-    0x00001db0   0x00001db0   0x00000008   Code   RO         1925    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(rt_locale.o)
-    0x00001db8   0x00001db8   0x00000080   Code   RO         1937    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_fp_infnan.o)
-    0x00001e38   0x00001e38   0x000000e4   Code   RO         1939    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(bigflt0.o)
-    0x00001f1c   0x00001f1c   0x0000000a   Code   RO         1969    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(defsig_exit.o)
+    0x00001d50   0x00001d50   0x00000050   Code   RO         1900    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(heapauxa.o)
+    0x00001da0   0x00001da0   0x00000010   Code   RO         1940    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(rt_ctype_table.o)
+    0x00001db0   0x00001db0   0x00000008   Code   RO         1944    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(rt_locale.o)
+    0x00001db8   0x00001db8   0x00000080   Code   RO         1956    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_fp_infnan.o)
+    0x00001e38   0x00001e38   0x000000e4   Code   RO         1958    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(bigflt0.o)
+    0x00001f1c   0x00001f1c   0x0000000a   Code   RO         1988    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(defsig_exit.o)
     0x00001f26   0x00001f26   0x00000002   PAD
-    0x00001f28   0x00001f28   0x00000034   Code   RO         1975    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(defsig_rtred_inner.o)
-    0x00001f5c   0x00001f5c   0x00000050   Code   RO         1977    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(defsig_rtmem_inner.o)
-    0x00001fac   0x00001fac   0x0000000c   Code   RO         1996    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(sys_exit.o)
-    0x00001fb8   0x00001fb8   0x00000032   Code   RO         2007    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(defsig_general.o)
-    0x00001fea   0x00001fea   0x0000000e   Code   RO         2015    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(sys_wrch.o)
-    0x00001ff8   0x00001ff8   0x00000002   Code   RO         2017    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(use_no_semi.o)
-    0x00001ffa   0x00001ffa   0x00000000   Code   RO         2019    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(indicate_semi.o)
-    0x00001ffa   0x00001ffa   0x0000003e   Code   RO         1942    CL$$btod_d2e        C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(btod.o)
-    0x00002038   0x00002038   0x00000046   Code   RO         1944    CL$$btod_d2e_denorm_low  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(btod.o)
-    0x0000207e   0x0000207e   0x00000060   Code   RO         1943    CL$$btod_d2e_norm_op1  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(btod.o)
-    0x000020de   0x000020de   0x00000338   Code   RO         1952    CL$$btod_div_common  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(btod.o)
-    0x00002416   0x00002416   0x000000dc   Code   RO         1949    CL$$btod_e2e        C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(btod.o)
-    0x000024f2   0x000024f2   0x0000002a   Code   RO         1946    CL$$btod_ediv       C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(btod.o)
-    0x0000251c   0x0000251c   0x0000002a   Code   RO         1945    CL$$btod_emul       C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(btod.o)
-    0x00002546   0x00002546   0x00000244   Code   RO         1951    CL$$btod_mult_common  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(btod.o)
+    0x00001f28   0x00001f28   0x00000034   Code   RO         1994    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(defsig_rtred_inner.o)
+    0x00001f5c   0x00001f5c   0x00000050   Code   RO         1996    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(defsig_rtmem_inner.o)
+    0x00001fac   0x00001fac   0x0000000c   Code   RO         2015    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(sys_exit.o)
+    0x00001fb8   0x00001fb8   0x00000032   Code   RO         2026    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(defsig_general.o)
+    0x00001fea   0x00001fea   0x0000000e   Code   RO         2034    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(sys_wrch.o)
+    0x00001ff8   0x00001ff8   0x00000002   Code   RO         2036    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(use_no_semi.o)
+    0x00001ffa   0x00001ffa   0x00000000   Code   RO         2038    .text               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(indicate_semi.o)
+    0x00001ffa   0x00001ffa   0x0000003e   Code   RO         1961    CL$$btod_d2e        C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(btod.o)
+    0x00002038   0x00002038   0x00000046   Code   RO         1963    CL$$btod_d2e_denorm_low  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(btod.o)
+    0x0000207e   0x0000207e   0x00000060   Code   RO         1962    CL$$btod_d2e_norm_op1  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(btod.o)
+    0x000020de   0x000020de   0x00000338   Code   RO         1971    CL$$btod_div_common  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(btod.o)
+    0x00002416   0x00002416   0x000000dc   Code   RO         1968    CL$$btod_e2e        C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(btod.o)
+    0x000024f2   0x000024f2   0x0000002a   Code   RO         1965    CL$$btod_ediv       C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(btod.o)
+    0x0000251c   0x0000251c   0x0000002a   Code   RO         1964    CL$$btod_emul       C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(btod.o)
+    0x00002546   0x00002546   0x00000244   Code   RO         1970    CL$$btod_mult_common  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(btod.o)
     0x0000278a   0x0000278a   0x0000000e   Code   RO          387    i.$Sub$$main        mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_sdk_boot.o
     0x00002798   0x00002798   0x0000001c   Code   RO          602    i.SysTick_Handler   .\build\main.o
     0x000027b4   0x000027b4   0x000000a0   Code   RO          573    i.SystemInit        mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/system_LPC17xx.o
-    0x00002854   0x00002854   0x00000004   Code   RO         1257    i._ZN4mbed8FileBase11getPathTypeEv  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(FileBase.o)
-    0x00002858   0x00002858   0x0000006c   Code   RO         1259    i._ZN4mbed8FileBase6lookupEPKcj  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(FileBase.o)
-    0x000028c4   0x000028c4   0x0000001e   Code   RO         1178    i._ZN4mbed8FilePath10fileSystemEv  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(FilePath.o)
-    0x000028e2   0x000028e2   0x0000001c   Code   RO         1180    i._ZN4mbed8FilePath4fileEv  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(FilePath.o)
-    0x000028fe   0x000028fe   0x0000000a   Code   RO         1181    i._ZN4mbed8FilePath6existsEv  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(FilePath.o)
-    0x00002908   0x00002908   0x00000018   Code   RO         1182    i._ZN4mbed8FilePath6isFileEv  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(FilePath.o)
-    0x00002920   0x00002920   0x00000004   Code   RO         1183    i._ZN4mbed8FilePath8fileNameEv  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(FilePath.o)
-    0x00002924   0x00002924   0x00000040   Code   RO         1184    i._ZN4mbed8FilePathC1EPKc  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(FilePath.o)
-    0x00002964   0x00002964   0x00000028   Code   RO         1994    i.__ARM_fpclassify  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\m_ws.l(fpclassify.o)
+    0x00002854   0x00002854   0x00000004   Code   RO         1276    i._ZN4mbed8FileBase11getPathTypeEv  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(FileBase.o)
+    0x00002858   0x00002858   0x0000006c   Code   RO         1278    i._ZN4mbed8FileBase6lookupEPKcj  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(FileBase.o)
+    0x000028c4   0x000028c4   0x0000001e   Code   RO         1197    i._ZN4mbed8FilePath10fileSystemEv  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(FilePath.o)
+    0x000028e2   0x000028e2   0x0000001c   Code   RO         1199    i._ZN4mbed8FilePath4fileEv  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(FilePath.o)
+    0x000028fe   0x000028fe   0x0000000a   Code   RO         1200    i._ZN4mbed8FilePath6existsEv  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(FilePath.o)
+    0x00002908   0x00002908   0x00000018   Code   RO         1201    i._ZN4mbed8FilePath6isFileEv  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(FilePath.o)
+    0x00002920   0x00002920   0x00000004   Code   RO         1202    i._ZN4mbed8FilePath8fileNameEv  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(FilePath.o)
+    0x00002924   0x00002924   0x00000040   Code   RO         1203    i._ZN4mbed8FilePathC1EPKc  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(FilePath.o)
+    0x00002964   0x00002964   0x00000028   Code   RO         2013    i.__ARM_fpclassify  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\m_ws.l(fpclassify.o)
     0x0000298c   0x0000298c   0x00000008   Code   RO          240    i.__user_setup_stackheap  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o
-    0x00002994   0x00002994   0x0000000e   Code   RO         1661    i._is_digit         C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__printf_wp.o)
+    0x00002994   0x00002994   0x0000000e   Code   RO         1680    i._is_digit         C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__printf_wp.o)
     0x000029a2   0x000029a2   0x00000002   PAD
     0x000029a4   0x000029a4   0x00000010   Code   RO          241    i._mbed_user_setup_stackheap  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o
     0x000029b4   0x000029b4   0x0000001c   Code   RO          388    i._platform_post_stackheap_init  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_sdk_boot.o
@@ -3054,26 +3059,26 @@ Memory Map of the image
     0x00002aa8   0x00002aa8   0x00000208   Code   RO          247    i._sys_open         mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o
     0x00002cb0   0x00002cb0   0x00000050   Code   RO          249    i._sys_seek         mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o
     0x00002d00   0x00002d00   0x00000080   Code   RO          250    i._sys_write        mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o
-    0x00002d80   0x00002d80   0x0000008c   Code   RO         1151    i.core_util_critical_section_enter  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_critical.o)
-    0x00002e0c   0x00002e0c   0x00000058   Code   RO         1152    i.core_util_critical_section_exit  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_critical.o)
-    0x00002e64   0x00002e64   0x00000028   Code   RO         1076    i.error             mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_error.o)
+    0x00002d80   0x00002d80   0x0000008c   Code   RO         1170    i.core_util_critical_section_enter  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_critical.o)
+    0x00002e0c   0x00002e0c   0x00000058   Code   RO         1171    i.core_util_critical_section_exit  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_critical.o)
+    0x00002e64   0x00002e64   0x00000028   Code   RO         1095    i.error             mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_error.o)
     0x00002e8c   0x00002e8c   0x0000002c   Code   RO          253    i.exit              mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o
-    0x00002eb8   0x00002eb8   0x00000008   Code   RO         1045    i.get_us_ticker_data  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_us_ticker_api.o)
+    0x00002eb8   0x00002eb8   0x00000008   Code   RO         1064    i.get_us_ticker_data  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_us_ticker_api.o)
     0x00002ec0   0x00002ec0   0x00000054   Code   RO          137    i.gpio_dir          mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/gpio_api.o
     0x00002f14   0x00002f14   0x0000003a   Code   RO          138    i.gpio_init         mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/gpio_api.o
-    0x00002f4e   0x00002f4e   0x00000028   Code   RO         1010    i.gpio_init_in      mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_gpio.o)
+    0x00002f4e   0x00002f4e   0x00000028   Code   RO         1029    i.gpio_init_in      mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_gpio.o)
     0x00002f76   0x00002f76   0x00000002   PAD
-    0x00002f78   0x00002f78   0x00000048   Code   RO         1013    i.gpio_init_out     mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_gpio.o)
-    0x00002fc0   0x00002fc0   0x00000068   Code   RO         1014    i.gpio_init_out_ex  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_gpio.o)
+    0x00002f78   0x00002f78   0x00000048   Code   RO         1032    i.gpio_init_out     mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_gpio.o)
+    0x00002fc0   0x00002fc0   0x00000068   Code   RO         1033    i.gpio_init_out_ex  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_gpio.o)
     0x00003028   0x00003028   0x00000006   Code   RO          139    i.gpio_mode         mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/gpio_api.o
     0x0000302e   0x0000302e   0x00000002   PAD
-    0x00003030   0x00003030   0x000000d4   Code   RO         1086    i.initialize        mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)
+    0x00003030   0x00003030   0x000000d4   Code   RO         1105    i.initialize        mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)
     0x00003104   0x00003104   0x00000024   Code   RO          603    i.main              .\build\main.o
-    0x00003128   0x00003128   0x00000054   Code   RO         1068    i.mbed_assert_internal  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_assert.o)
+    0x00003128   0x00003128   0x00000054   Code   RO         1087    i.mbed_assert_internal  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_assert.o)
     0x0000317c   0x0000317c   0x000000bc   Code   RO          209    i.mbed_die          mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_board.o
     0x00003238   0x00003238   0x00000058   Code   RO          210    i.mbed_error_printf  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_board.o
     0x00003290   0x00003290   0x00000054   Code   RO          211    i.mbed_error_vfprintf  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_board.o
-    0x000032e4   0x000032e4   0x00000004   Code   RO         1116    i.mbed_interface_connected  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_interface.o)
+    0x000032e4   0x000032e4   0x00000004   Code   RO         1135    i.mbed_interface_connected  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_interface.o)
     0x000032e8   0x000032e8   0x00000002   Code   RO          390    i.mbed_main         mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_sdk_boot.o
     0x000032ea   0x000032ea   0x00000002   Code   RO          391    i.mbed_sdk_init     mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_sdk_boot.o
     0x000032ec   0x000032ec   0x00000014   Code   RO          685    i.nDelayLED         .\build\led_control.o
@@ -3101,68 +3106,68 @@ Memory Map of the image
     0x00003844   0x00003844   0x00000018   Code   RO          765    i.nUART_TxString    .\build\uart_control.o
     0x0000385c   0x0000385c   0x0000005c   Code   RO          405    i.pin_function      mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/pinmap.o
     0x000038b8   0x000038b8   0x00000090   Code   RO          406    i.pin_mode          mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/pinmap.o
-    0x00003948   0x00003948   0x00000022   Code   RO         1028    i.pinmap_find_peripheral  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_pinmap_common.o)
+    0x00003948   0x00003948   0x00000022   Code   RO         1047    i.pinmap_find_peripheral  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_pinmap_common.o)
     0x0000396a   0x0000396a   0x00000002   PAD
-    0x0000396c   0x0000396c   0x0000003c   Code   RO         1030    i.pinmap_merge      mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_pinmap_common.o)
-    0x000039a8   0x000039a8   0x0000005c   Code   RO         1031    i.pinmap_peripheral  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_pinmap_common.o)
-    0x00003a04   0x00003a04   0x00000058   Code   RO         1032    i.pinmap_pinout     mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_pinmap_common.o)
-    0x00003a5c   0x00003a5c   0x000000e4   Code   RO         1087    i.schedule_interrupt  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)
-    0x00003b40   0x00003b40   0x00000010   Code   RO         1206    i.semihost_connected  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_semihost_api.o)
-    0x00003b50   0x00003b50   0x0000000c   Code   RO         1209    i.semihost_exit     mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_semihost_api.o)
+    0x0000396c   0x0000396c   0x0000003c   Code   RO         1049    i.pinmap_merge      mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_pinmap_common.o)
+    0x000039a8   0x000039a8   0x0000005c   Code   RO         1050    i.pinmap_peripheral  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_pinmap_common.o)
+    0x00003a04   0x00003a04   0x00000058   Code   RO         1051    i.pinmap_pinout     mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_pinmap_common.o)
+    0x00003a5c   0x00003a5c   0x000000e4   Code   RO         1106    i.schedule_interrupt  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)
+    0x00003b40   0x00003b40   0x00000010   Code   RO         1225    i.semihost_connected  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_semihost_api.o)
+    0x00003b50   0x00003b50   0x0000000c   Code   RO         1228    i.semihost_exit     mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_semihost_api.o)
     0x00003b5c   0x00003b5c   0x000001c4   Code   RO          479    i.serial_baud       mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o
     0x00003d20   0x00003d20   0x00000180   Code   RO          486    i.serial_init       mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o
     0x00003ea0   0x00003ea0   0x000000f8   Code   RO          489    i.serial_irq_set_internal  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o
     0x00003f98   0x00003f98   0x00000068   Code   RO          491    i.serial_putc       mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o
     0x00004000   0x00004000   0x0000010c   Code   RO          493    i.serial_set_flow_control  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o
     0x0000410c   0x0000410c   0x000001e0   Code   RO          766    i.tUART_Task        .\build\uart_control.o
-    0x000042ec   0x000042ec   0x0000004e   Code   RO         1091    i.ticker_irq_handler  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)
-    0x0000433a   0x0000433a   0x0000001c   Code   RO         1092    i.ticker_read       mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)
+    0x000042ec   0x000042ec   0x0000004e   Code   RO         1110    i.ticker_irq_handler  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)
+    0x0000433a   0x0000433a   0x0000001c   Code   RO         1111    i.ticker_read       mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)
     0x00004356   0x00004356   0x00000002   PAD
     0x00004358   0x00004358   0x00000014   Code   RO          495    i.uart0_irq         mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o
     0x0000436c   0x0000436c   0x00000014   Code   RO          496    i.uart1_irq         mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o
     0x00004380   0x00004380   0x00000014   Code   RO          497    i.uart2_irq         mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o
     0x00004394   0x00004394   0x00000014   Code   RO          498    i.uart3_irq         mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o
     0x000043a8   0x000043a8   0x00000068   Code   RO          499    i.uart_irq          mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o
-    0x00004410   0x00004410   0x00000104   Code   RO         1096    i.update_present_time  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)
+    0x00004410   0x00004410   0x00000104   Code   RO         1115    i.update_present_time  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)
     0x00004514   0x00004514   0x0000000c   Code   RO          583    i.us_ticker_clear_interrupt  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o
     0x00004520   0x00004520   0x00000010   Code   RO          584    i.us_ticker_disable_interrupt  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o
     0x00004530   0x00004530   0x0000000c   Code   RO          585    i.us_ticker_fire_interrupt  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o
     0x0000453c   0x0000453c   0x00000008   Code   RO          265    i.us_ticker_get_info  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o
     0x00004544   0x00004544   0x00000068   Code   RO          586    i.us_ticker_init    mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o
-    0x000045ac   0x000045ac   0x00000018   Code   RO         1047    i.us_ticker_irq_handler  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_us_ticker_api.o)
+    0x000045ac   0x000045ac   0x00000018   Code   RO         1066    i.us_ticker_irq_handler  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_us_ticker_api.o)
     0x000045c4   0x000045c4   0x00000064   Code   RO          587    i.us_ticker_read    mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o
     0x00004628   0x00004628   0x00000014   Code   RO          588    i.us_ticker_set_interrupt  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o
     0x0000463c   0x0000463c   0x00000064   Code   RO          767    i.vCheckPasscode    .\build\uart_control.o
     0x000046a0   0x000046a0   0x00000074   Code   RO          768    i.vCheckUsernames   .\build\uart_control.o
     0x00004714   0x00004714   0x00000078   Code   RO          769    i.vFindStringMatch  .\build\uart_control.o
-    0x0000478c   0x0000478c   0x00000024   Code   RO         1246    i.wait_ms           mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_wait_api_no_rtos.o)
+    0x0000478c   0x0000478c   0x00000024   Code   RO         1265    i.wait_ms           mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_wait_api_no_rtos.o)
     0x000047b0   0x000047b0   0x0000000e   Code   RO          770    i.yKeyHit           .\build\uart_control.o
     0x000047be   0x000047be   0x00000002   PAD
     0x000047c0   0x000047c0   0x000001e4   Code   RO          956    i.ySetupDigitalI    .\build\gpio_setup.o
     0x000049a4   0x000049a4   0x000001e4   Code   RO          957    i.ySetupDigitalO    .\build\gpio_setup.o
-    0x00004b88   0x00004b88   0x0000002c   Code   RO         1965    locale$$code        C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_numeric_c.o)
-    0x00004bb4   0x00004bb4   0x0000002c   Code   RO         2003    locale$$code        C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_ctype_c.o)
-    0x00004be0   0x00004be0   0x0000002c   Code   RO         1284    t._ZN12SingletonPtrI13PlatformMutexEptEv  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(FileBase.o)
-    0x00004c0c   0x00004c0c   0x000002b0   Code   RO         1515    x$fpl$ddiv          C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(ddiv.o)
-    0x00004ebc   0x00004ebc   0x0000005a   Code   RO         1522    x$fpl$dfixu         C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(dfixu.o)
-    0x00004f16   0x00004f16   0x0000002e   Code   RO         1527    x$fpl$dflt          C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(dflt_clz.o)
-    0x00004f44   0x00004f44   0x00000154   Code   RO         1532    x$fpl$dmul          C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(dmul.o)
-    0x00005098   0x00005098   0x0000009c   Code   RO         1791    x$fpl$dnaninf       C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(dnaninf.o)
-    0x00005134   0x00005134   0x0000000c   Code   RO         1793    x$fpl$dretinf       C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(dretinf.o)
-    0x00005140   0x00005140   0x00000004   Code   RO         1801    x$fpl$printf1       C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(printf1.o)
-    0x00005144   0x00005144   0x00000004   Code   RO         1803    x$fpl$printf2       C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(printf2.o)
-    0x00005148   0x00005148   0x00000000   Code   RO         1809    x$fpl$usenofp       C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(usenofp.o)
+    0x00004b88   0x00004b88   0x0000002c   Code   RO         1984    locale$$code        C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_numeric_c.o)
+    0x00004bb4   0x00004bb4   0x0000002c   Code   RO         2022    locale$$code        C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_ctype_c.o)
+    0x00004be0   0x00004be0   0x0000002c   Code   RO         1303    t._ZN12SingletonPtrI13PlatformMutexEptEv  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(FileBase.o)
+    0x00004c0c   0x00004c0c   0x000002b0   Code   RO         1534    x$fpl$ddiv          C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(ddiv.o)
+    0x00004ebc   0x00004ebc   0x0000005a   Code   RO         1541    x$fpl$dfixu         C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(dfixu.o)
+    0x00004f16   0x00004f16   0x0000002e   Code   RO         1546    x$fpl$dflt          C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(dflt_clz.o)
+    0x00004f44   0x00004f44   0x00000154   Code   RO         1551    x$fpl$dmul          C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(dmul.o)
+    0x00005098   0x00005098   0x0000009c   Code   RO         1810    x$fpl$dnaninf       C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(dnaninf.o)
+    0x00005134   0x00005134   0x0000000c   Code   RO         1812    x$fpl$dretinf       C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(dretinf.o)
+    0x00005140   0x00005140   0x00000004   Code   RO         1820    x$fpl$printf1       C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(printf1.o)
+    0x00005144   0x00005144   0x00000004   Code   RO         1822    x$fpl$printf2       C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(printf2.o)
+    0x00005148   0x00005148   0x00000000   Code   RO         1828    x$fpl$usenofp       C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(usenofp.o)
     0x00005148   0x00005148   0x00000028   Data   RO          311    .constdata          mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o
     0x00005170   0x00005170   0x00000120   Data   RO          501    .constdata          mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o
     0x00005290   0x00005290   0x00000040   Data   RO          772    .constdata          .\build\uart_control.o
-    0x000052d0   0x000052d0   0x0000001c   Data   RO         1049    .constdata          mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_us_ticker_api.o)
-    0x000052ec   0x000052ec   0x00000008   Data   RO         1050    .constdata          mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_us_ticker_api.o)
-    0x000052f4   0x000052f4   0x00000008   Data   RO         1620    .constdata          C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_wctomb.o)
-    0x000052fc   0x000052fc   0x00000028   Data   RO         1649    .constdata          C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_hex_int_ll_ptr.o)
-    0x00005324   0x00005324   0x00000011   Data   RO         1669    .constdata          C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__printf_flags_ss_wp.o)
-    0x00005335   0x00005335   0x00000026   Data   RO         1844    .constdata          C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_fp_hex.o)
+    0x000052d0   0x000052d0   0x0000001c   Data   RO         1068    .constdata          mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_us_ticker_api.o)
+    0x000052ec   0x000052ec   0x00000008   Data   RO         1069    .constdata          mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_us_ticker_api.o)
+    0x000052f4   0x000052f4   0x00000008   Data   RO         1639    .constdata          C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_wctomb.o)
+    0x000052fc   0x000052fc   0x00000028   Data   RO         1668    .constdata          C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_hex_int_ll_ptr.o)
+    0x00005324   0x00005324   0x00000011   Data   RO         1688    .constdata          C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__printf_flags_ss_wp.o)
+    0x00005335   0x00005335   0x00000026   Data   RO         1863    .constdata          C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_fp_hex.o)
     0x0000535b   0x0000535b   0x00000001   PAD
-    0x0000535c   0x0000535c   0x00000094   Data   RO         1940    .constdata          C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(bigflt0.o)
+    0x0000535c   0x0000535c   0x00000094   Data   RO         1959    .constdata          C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(bigflt0.o)
     0x000053f0   0x000053f0   0x00000014   Data   RO          382    .constdata__ZZN12SingletonPtrI13PlatformMutexE3getEvEs  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o
     0x00005404   0x00005404   0x0000005d   Data   RO          383    .constdata__ZZN12SingletonPtrI13PlatformMutexE3getEvEs_0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o
     0x00005461   0x00005461   0x00000003   PAD
@@ -3173,12 +3178,12 @@ Memory Map of the image
     0x000055ad   0x000055ad   0x00000003   PAD
     0x000055b0   0x000055b0   0x00000069   Data   RO          502    .conststring        mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o
     0x00005619   0x00005619   0x00000003   PAD
-    0x0000561c   0x0000561c   0x00000050   Data   RO         1097    .conststring        mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)
-    0x0000566c   0x0000566c   0x00000053   Data   RO         1154    .conststring        mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_critical.o)
+    0x0000561c   0x0000561c   0x00000050   Data   RO         1116    .conststring        mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)
+    0x0000566c   0x0000566c   0x00000053   Data   RO         1173    .conststring        mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_critical.o)
     0x000056bf   0x000056bf   0x00000001   PAD
-    0x000056c0   0x000056c0   0x00000020   Data   RO         2034    Region$$Table       anon$$obj.o
-    0x000056e0   0x000056e0   0x0000001c   Data   RO         1964    locale$$data        C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_numeric_c.o)
-    0x000056fc   0x000056fc   0x00000110   Data   RO         2002    locale$$data        C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_ctype_c.o)
+    0x000056c0   0x000056c0   0x00000020   Data   RO         2053    Region$$Table       anon$$obj.o
+    0x000056e0   0x000056e0   0x0000001c   Data   RO         1983    locale$$data        C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_numeric_c.o)
+    0x000056fc   0x000056fc   0x00000110   Data   RO         2021    locale$$data        C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_ctype_c.o)
 
 
     Execution Region RW_IRAM1 (Exec base: 0x100000c8, Load base: 0x0000580c, Size: 0x000007c0, Max: 0x00007f18, ABSOLUTE, COMPRESSED[0x000000ec])
@@ -3194,27 +3199,27 @@ Memory Map of the image
     0x10000248   COMPRESSED   0x00000165   Data   RW          773    .data               .\build\uart_control.o
     0x100003ad   COMPRESSED   0x00000001   Data   RW          959    .data               .\build\gpio_setup.o
     0x100003ae   COMPRESSED   0x00000002   PAD
-    0x100003b0   COMPRESSED   0x00000004   Data   RW         1051    .data               mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_us_ticker_api.o)
-    0x100003b4   COMPRESSED   0x00000001   Data   RW         1077    .data               mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_error.o)
+    0x100003b0   COMPRESSED   0x00000004   Data   RW         1070    .data               mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_us_ticker_api.o)
+    0x100003b4   COMPRESSED   0x00000001   Data   RW         1096    .data               mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_error.o)
     0x100003b5   COMPRESSED   0x00000003   PAD
-    0x100003b8   COMPRESSED   0x00000008   Data   RW         1155    .data               mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_critical.o)
-    0x100003c0   COMPRESSED   0x0000000c   Data   RW         1271    .data               mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(FileBase.o)
-    0x100003cc   COMPRESSED   0x00000004   Data   RW         1385    .data               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(stdio_streams.o)
-    0x100003d0   COMPRESSED   0x00000004   Data   RW         1386    .data               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(stdio_streams.o)
-    0x100003d4   COMPRESSED   0x00000004   Data   RW         1387    .data               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(stdio_streams.o)
-    0x100003d8   COMPRESSED   0x00000004   Data   RW         1882    .data               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(heapauxa.o)
+    0x100003b8   COMPRESSED   0x00000008   Data   RW         1174    .data               mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_critical.o)
+    0x100003c0   COMPRESSED   0x0000000c   Data   RW         1290    .data               mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(FileBase.o)
+    0x100003cc   COMPRESSED   0x00000004   Data   RW         1404    .data               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(stdio_streams.o)
+    0x100003d0   COMPRESSED   0x00000004   Data   RW         1405    .data               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(stdio_streams.o)
+    0x100003d4   COMPRESSED   0x00000004   Data   RW         1406    .data               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(stdio_streams.o)
+    0x100003d8   COMPRESSED   0x00000004   Data   RW         1901    .data               C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(heapauxa.o)
     0x100003dc        -       0x00000144   Zero   RW          310    .bss                mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o
     0x10000520        -       0x000000e0   Zero   RW          500    .bss                mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o
     0x10000600        -       0x00000010   Zero   RW          690    .bss                .\build\led_control.o
     0x10000610        -       0x00000080   Zero   RW          771    .bss                .\build\uart_control.o
     0x10000690        -       0x000000a0   Zero   RW          958    .bss                .\build\gpio_setup.o
-    0x10000730        -       0x00000040   Zero   RW         1048    .bss                mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_us_ticker_api.o)
-    0x10000770        -       0x00000004   Zero   RW         1294    .bss                C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(rt_errno_addr.o)
-    0x10000774        -       0x00000054   Zero   RW         1382    .bss                C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(stdio_streams.o)
-    0x100007c8        -       0x00000054   Zero   RW         1383    .bss                C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(stdio_streams.o)
-    0x1000081c        -       0x00000054   Zero   RW         1384    .bss                C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(stdio_streams.o)
-    0x10000870        -       0x00000004   Zero   RW         1577    .bss                C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(rt_heap_descriptor.o)
-    0x10000874        -       0x00000014   Zero   RW         1926    .bss                C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(rt_locale.o)
+    0x10000730        -       0x00000040   Zero   RW         1067    .bss                mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_us_ticker_api.o)
+    0x10000770        -       0x00000004   Zero   RW         1313    .bss                C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(rt_errno_addr.o)
+    0x10000774        -       0x00000054   Zero   RW         1401    .bss                C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(stdio_streams.o)
+    0x100007c8        -       0x00000054   Zero   RW         1402    .bss                C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(stdio_streams.o)
+    0x1000081c        -       0x00000054   Zero   RW         1403    .bss                C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(stdio_streams.o)
+    0x10000870        -       0x00000004   Zero   RW         1596    .bss                C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(rt_heap_descriptor.o)
+    0x10000874        -       0x00000014   Zero   RW         1945    .bss                C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(rt_locale.o)
 
 
     Execution Region RW_IRAM2 (Exec base: 0x2007c000, Load base: 0x000058f8, Size: 0x00000000, Max: 0x00004000, ABSOLUTE)

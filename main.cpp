@@ -7,9 +7,12 @@
 #include "systick.h"
 #include "pwm_setup.h"
 #include "GPIO_setup.h"
+#include "ADC_control.h"
+
 
 uint8_t led_flipper = 0;
 uint8_t wave_status;
+int adc_result = 0;
 
 int main() 
 {
@@ -18,10 +21,42 @@ int main()
 	
 	nUART0_init(9600);
 	
-	nSystickSetup(1000000);					// Should be setup last, to avoid interrupts generated during setup phase
+//	nSystickSetup(1000000);					// Should be setup last, to avoid interrupts generated during setup phase
+	
+	vSetupADC(1,1,1);
 	
 	while(1) {
-		tUART_Task();
+//		tUART_Task();
+		
+		LPC_ADC->ADCR |= 0x01;
+		
+		delay_ms(1);
+		
+		util_BitSet(LPC_ADC->ADCR,SBIT_START);
+		
+		while(util_GetBitStatus(LPC_ADC->ADGDR,SBIT_DONE)==0);
+		
+		adc_result = ( LPC_ADC->ADGDR >> SBIT_RESULT ) & 0xFFF;
+		
+		if (adc_result >= 2047)
+			nLED_SET(1,1,1,1);
+		
+		else if (adc_result >= 511)
+			nLED_SET(0,1,1,1);
+		
+		else if (adc_result >= 63)
+			nLED_SET(0,0,1,1);
+		
+		else if (adc_result >= 7)
+			nLED_SET(0,0,0,1);
+		
+		else
+			nLED_SET(0,0,0,0);
+		
+		delay_ms(100);
+		
+		
+		
 	}
 }
 

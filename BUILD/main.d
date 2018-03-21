@@ -15,3 +15,4 @@
 .\build\main.o: systick.h
 .\build\main.o: pwm_setup.h
 .\build\main.o: GPIO_setup.h
+.\build\main.o: ADC_control.h

@@ -14,18 +14,27 @@
  *	
  *
  *********************************************************************************************/
- 
+ #include "stdutils.h"
  
 // ****************************************************************************************
 //
 //					Constants
 //
 // ****************************************************************************************
-#define ADC_UNITS			2
-#define ADC_CHANNELS	20
+#define ADC_UNITS		1
+#define ADC_CHANNELS	8
 #define ADC_CAPACITY	ADC_UNITS * ADC_CHANNELS
 
+#define SBIT_BURST      16u
+#define SBIT_START      24u
+#define SBIT_PDN        21u
+#define SBIT_EDGE       27u 
+#define SBIT_DONE       31u
+#define SBIT_RESULT     4u
+#define SBIT_CLCKDIV    8u
 
+#define ADC_FREE		0
+#define ADC_
 
 // ****************************************************************************************
 //	Type		: 	YES_RETURN Functions
@@ -39,7 +48,7 @@
 //	Example		:	nXxXxX();
 //	Description	:	Does not return anything.
 // ****************************************************************************************
-
+extern void nInitialize_ADC_Library();
 
 // ****************************************************************************************
 //	Type		: 	VALUE_RETURN Functions

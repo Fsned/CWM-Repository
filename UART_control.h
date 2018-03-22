@@ -112,7 +112,7 @@ extern uint8_t yKeyHit( uint8_t KEY_CHECK , uint8_t KEY_HIT );
 //	Example		:	nXxXxX();
 //	Description	:	Does not return anything.
 // ****************************************************************************************
-extern void nNewLine							( void );
+extern void nNewLine							( uint8_t NumberOfLineSkips );
 
 extern void nUART0_init						( unsigned int baudrate);
 

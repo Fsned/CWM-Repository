@@ -44,6 +44,7 @@ uint8_t LOGGED_IN = 0;
 uint8_t USERNAME_MATCHED = 0;
 uint8_t PASSWORD_MATCHED = 0;
 
+static uint8_t UART_STATE = UartState_FindUser;
 
 char input_buffer[128];
 char USER_LIBRARY[USERS][5] =  {{"NON"},	// 0
@@ -51,6 +52,12 @@ char USER_LIBRARY[USERS][5] =  {{"NON"},	// 0
 																{"abh"},	// 2	
 																{"frs"},	// 3
 																{"nig"}};	// 4
+
+char USERS_NAMES[USERS][30]	= {{"Blind Makker"},
+															 {"Mark Appelgren"},
+															 {"Blind Makker"},
+															 {"Frederik Snedevind"},
+															 {"Blind Makker"}};
 
 char PASS_LIBRARY[USERS][5] =  {{"213"},	// 0
 																{"123"},	// 1
@@ -124,8 +131,10 @@ uint8_t yKeyHit( uint8_t KEY_CHECK , uint8_t KEY_HIT ) {
 //	Example		:	nXxXxX();
 //	Description	:	Does not return anything.
 // ****************************************************************************************
-void nNewLine() {
-	nUART_TxString("\r\n");
+void nNewLine( uint8_t NumberOfLineSkips ) {
+	
+	for (int i = 0; i < NumberOfLineSkips; i++)
+		nUART_TxString("\r\n");
 }
 
 void nTerminalLogout() {
@@ -133,10 +142,12 @@ void nTerminalLogout() {
 	PASSWORD_MATCHED = 0;
 	LOGGED_IN 			 = 0;
 	
-	nNewLine();
+	UART_STATE = UartState_FindUser;
 	
+	nNewLine( 1 );
+	nNewLine( 1 );
 	nUART_TxString("Logged out.\r\n");
-	nUART_TxString("Enter User: ");
+	nNewLine( 1 );
 	
 }
 
@@ -208,15 +219,11 @@ void nUART0_init( unsigned int baudrate) {
 	nUART_TxString(" branch____________________________| \r\n\n");
 }
 
-
 /* Function to transmit a char */
 void nUART_TxChar(char ch) {
     while(util_IsBitCleared(LPC_UART0->LSR,SBIT_THRE)); // Wait for Previous transmission
     LPC_UART0->THR=ch;                                  // Load the data to be transmitted
 }
-
-
-
 
 /* Function to Receive a char */
 char nUART_RxChar() {
@@ -225,8 +232,6 @@ char nUART_RxChar() {
     ch = LPC_UART0->RBR;                                // Read received data    
     return ch;
 }
-
-
 
 /* Function to transmit a string to UART */
 void nUART_TxString(char ch_s[]) {
@@ -246,15 +251,11 @@ void nTerminalHelp() {
 	nUART_TxString("The following commands are available\n\r");
 }
 
-
-
 /* Keyword funtion for "LED1" */ 
 void nTerminal_LED_1_ON() {
 	unsigned int arr[4] = {1,0,0,0};
 	nLEDFlip(arr);	
 }
-
-
 
 /* Keyword funtion for "LED2" */ 
 void nTerminal_LED_2_ON() {
@@ -262,15 +263,11 @@ void nTerminal_LED_2_ON() {
 	nLEDFlip(arr);
 }
 
-
-
 /* Keyword funtion for "LED3" */ 
 void nTerminal_LED_3_ON() {
 	unsigned int arr[4] = {0,0,1,0};
 	nLEDFlip(arr);
 }
-
-
 
 /* Keyword funtion for "LED4" */ 
 void nTerminal_LED_4_ON() {
@@ -278,21 +275,15 @@ void nTerminal_LED_4_ON() {
 	nLEDFlip(arr);
 }
 
-
-
 /* Keyword funtion for "LEDOFF" */ 
 void nTerminal_LED_OFF() {
 	nLED_SET(0,0,0,0);
 }
 
-
-
 /* Keyword funtion for "LEDALL" */ 
 void nTerminal_LED_ALL_ON() {
 	nLED_SET(1,1,1,1);
 }
-
-
 
 /* Keyword funtion for "status" */ 
 void nTerminalStatus() {
@@ -308,7 +299,6 @@ void nTerminalClear() {
 		nUART_TxString("\r\n");
 }
 
-
 /* Keyword funtion for undefined inputs */ 
 void nTerminalUndefined() {
 		nUART_TxChar('\r');
@@ -321,22 +311,19 @@ void nTerminalNoFunctionFound() {
 	nUART_TxString("No matching function found. try 'help' for more info. \r\n");
 }
 
-
 /* Task function for UART */
 void tUART_Task() {
-	
-	
+// *************************************
+// 						Local variables
 	int ChosenFunction;
 	char last_char;
-	static uint8_t inputs = 0;
-	static uint8_t UART_STATE = UartState_FindUser;
 	
+	static uint8_t inputs = 0;
 	static uint8_t OutedUserMsg 		= 0;
 	static uint8_t OutedPassMsg 		= 0;
 	static uint8_t OutedFunctionMsg = 0;
 	
 	switch (UART_STATE) {
-		
 		
 // *******************************************************************
 //										Check Username State
@@ -349,20 +336,21 @@ void tUART_Task() {
 			
 			last_char = nUART_RxChar();
 		
-			
-				
-			if ( yKeyHit (CHAR_ENTER , last_char ) && inputs == 0) 
-				nNewLine();
+			if ( yKeyHit (CHAR_ENTER , last_char ) && inputs == 0) {
+				nNewLine( 1 );
+				OutedUserMsg = 0;
+			}
 			
 			else if ( yKeyHit (CHAR_ENTER , last_char ) && inputs > 0) {
 				input_buffer[inputs] = '\0';
 				inputs++;
 				
 				USERNAME_MATCHED = vCheckUsernames(  input_buffer , inputs );
-				nNewLine();
-				
-				if (USERNAME_MATCHED)
-					UART_STATE++;
+				nNewLine( 1 );
+			
+				UART_STATE = UartState_FindPass;
+				inputs = 0;				
+				OutedUserMsg = 0;
 			}
 			
 			else {
@@ -371,10 +359,7 @@ void tUART_Task() {
 				inputs++;
 				
 			}
-			
-			
 			break;
-			
 			
 // *******************************************************************
 //										Check Password State
@@ -387,10 +372,11 @@ void tUART_Task() {
 			
 			last_char = nUART_RxChar();
 		
-			
-			
-			if ( yKeyHit (CHAR_ENTER , last_char ) && inputs == 0) 
-				nNewLine();
+			if ( yKeyHit (CHAR_ENTER , last_char ) && inputs == 0) {
+				nNewLine( 1 );
+				UART_STATE = UartState_FindUser;
+				OutedPassMsg = 0; 
+			}
 			
 			else if ( yKeyHit (CHAR_ENTER , last_char ) && inputs > 0) {
 				input_buffer[inputs] = '\0';
@@ -398,120 +384,64 @@ void tUART_Task() {
 				
 				if ( vCheckPasscode( input_buffer , inputs ) ) {
 					UART_STATE = UartState_Functioncall;
-					OutedUserMsg = 0;
-					OutedPassMsg = 0;
-					OutedFunctionMsg = 0;
+					inputs = 0;
+					nNewLine( 2 );
+					nUART_TxString("Logged In. Welcome ");
+					nUART_TxString(USERS_NAMES[USERNAME_MATCHED]);
+					nNewLine( 2 );
 				}
-				else
+				else {
+					nNewLine( 2 );
+					nUART_TxString("Unrecognized user.");
+					nNewLine( 1 );
 					UART_STATE = UartState_FindUser;
+					nNewLine( 1 );
+					inputs = 0;
+				}
+				OutedPassMsg = 0;
 			}
 			else {
 				input_buffer[inputs] = last_char;
-				nUART_TxChar(input_buffer[inputs]);
+				nUART_TxChar('*');
 				inputs++;
 			}
-			
 			break;
-			
 			
 // *******************************************************************
 //										Check Function State		
 		case UartState_Functioncall :
 			
-			last_char = nUART_RxChar();
-		
 			if (! OutedFunctionMsg) {
 				nUART_TxString("Command: ");
 				OutedFunctionMsg = 1;
 			}
-			
-			if ( yKeyHit (CHAR_ENTER , last_char ) && inputs == 0) 
-				nNewLine();
-			
+			last_char = nUART_RxChar();
+			if ( yKeyHit (CHAR_ENTER , last_char ) && inputs == 0) {
+				nNewLine( 1 );
+				OutedFunctionMsg = 0;
+			}
 			else if ( yKeyHit (CHAR_ENTER , last_char ) && inputs > 0) {
 				input_buffer[inputs] = '\0';
 				inputs++;
-				
 				keyword_functions[vFindStringMatch( input_buffer , inputs )]();
-				
-				nNewLine();																											// Start a new line		
+				nNewLine( 1 );																											// Start a new line		
 				inputs = 0;	
+				OutedFunctionMsg = 0; 
 			}
-			
 			else {
 				input_buffer[inputs] = last_char;
 				nUART_TxChar(input_buffer[inputs]);
 				inputs++;
 			}
-				
-			
 			break;
 		
 		default :
-			
+			nNewLine( 4 );
+			nUART_TxString("You aren't supposed to be here.");
+			UART_STATE = UartState_FindUser;
 			break;
 	}
 }
-//	last_char = nUART_RxChar();
-//	
-//	if ( yKeyHit(CHAR_ENTER , last_char) && inputs == 0)					// Check if enter is hit, without anything has been entered
-//			nNewLine();																										// Just start a new line
-//	
-//	else if ( yKeyHit(CHAR_ENTER , last_char) && inputs > 0 && !USERNAME_MATCHED) {
-//		input_buffer[inputs] = '\0';
-//		inputs++;
-//		
-//		USERNAME_MATCHED = vCheckUsernames( input_buffer , inputs );
-//		nNewLine();
-//		
-//		if (USERNAME_MATCHED)
-//			nUART_TxString("Enter Password: ");
-//		else
-//			nUART_TxString("Couldn't Recognize User. Try again\r\n");
-//		
-//		inputs = 0;
-//	}
-//	
-//	else if ( yKeyHit(CHAR_ENTER , last_char) && inputs > 0 && USERNAME_MATCHED && !LOGGED_IN) {
-//		input_buffer[inputs] = '\0';
-//		inputs++;
-//		
-//		if ( vCheckPasscode( input_buffer , inputs ) ) {
-//			PASSWORD_MATCHED = 1;
-//			LOGGED_IN = 1;
-//			nNewLine();
-//			nUART_TxString("User found. Welcome!\r\n");
-//		}
-//		else {
-//			nNewLine();
-//			nUART_TxString("Incorrect credentials.\r\n");
-//			USERNAME_MATCHED = 0;
-//			PASSWORD_MATCHED = 0;
-//			LOGGED_IN 			 = 0;
-//		}
-//		
-//		inputs = 0;
-//	}
-//	
-//	else if ( yKeyHit( CHAR_ENTER , last_char ) && LOGGED_IN) {								// Check if enter has been hit, after inputs have been made
-//		input_buffer[inputs] = '\0';																		// End the line input with a string terminatio character, to allow for comparison with keyword library
-//		inputs++;																												// Increment inputs counter, to accomodate for '\0' character
-//		
-//		ChosenFunction = vFindStringMatch( input_buffer , inputs );			// return an index number from 0 to amount of keywords. if no match is found, 19 or so is returned, which matches 'undefined function'
-//		keyword_functions[ChosenFunction](); 														// Call corresponding function from function library
-//		
-//		nNewLine();																											// Start a new line		
-//		inputs = 0;																											// reset input counter
-//	}																															// end else if
-//	
-//	else {																												// If anything else than enter has been hit, save the input in array, increment inputs counter and transmit it to screen
-//		input_buffer[inputs] = last_char;																// Save input in array
-//		nUART_TxChar(input_buffer[inputs]);															// Transmit it to screen
-//		inputs++;																												// Increment input counter
-//	}																															// End else if
-//}																														// End task		
-
-
 
 // ****************************************************************************************
 //	Type		: 	VALUE_RETURN Functions
@@ -589,7 +519,9 @@ uint8_t vCheckPasscode(char InputString[] , uint8_t length) {
 		if ( (InputString[n] != PASS_LIBRARY[USERNAME_MATCHED][n]) )
 			MatchFound = 0;
 	}
+	
 	return MatchFound;
+	
 }
 
 

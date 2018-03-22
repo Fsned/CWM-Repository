@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\BUILD\CWMW18_Controller_001.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\BUILD\CWMW18_Controller_001.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Thu Mar 22 08:32:59 2018
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Thu Mar 22 09:36:40 2018
 <BR><P>
 <H3>Maximum Stack Usage =        664 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -1719,8 +1719,8 @@ Global Symbols
 <LI><a href="#[15]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nDiscoFunc
 </UL>
 
-<P><STRONG><a name="[10c]"></a>nNewLine</STRONG> (Thumb, 10 bytes, Stack size 4 bytes, .\build\uart_control.o(i.nNewLine))
-<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = nNewLine &rArr; nUART_TxString
+<P><STRONG><a name="[10c]"></a>nNewLine</STRONG> (Thumb, 22 bytes, Stack size 12 bytes, .\build\uart_control.o(i.nNewLine))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = nNewLine &rArr; nUART_TxString
 </UL>
 <BR>[Calls]<UL><LI><a href="#[10d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nUART_TxString
 </UL>
@@ -1744,8 +1744,8 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> uart_control.o(.data)
 </UL>
-<P><STRONG><a name="[16]"></a>nTerminalLogout</STRONG> (Thumb, 34 bytes, Stack size 4 bytes, .\build\uart_control.o(i.nTerminalLogout))
-<BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = nTerminalLogout &rArr; nNewLine &rArr; nUART_TxString
+<P><STRONG><a name="[16]"></a>nTerminalLogout</STRONG> (Thumb, 46 bytes, Stack size 4 bytes, .\build\uart_control.o(i.nTerminalLogout))
+<BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = nTerminalLogout &rArr; nNewLine &rArr; nUART_TxString
 </UL>
 <BR>[Calls]<UL><LI><a href="#[10d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nUART_TxString
 <LI><a href="#[10c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nNewLine
@@ -1959,7 +1959,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;serial_init
 </UL>
 
-<P><STRONG><a name="[101]"></a>tUART_Task</STRONG> (Thumb, 486 bytes, Stack size 16 bytes, .\build\uart_control.o(i.tUART_Task))
+<P><STRONG><a name="[101]"></a>tUART_Task</STRONG> (Thumb, 598 bytes, Stack size 16 bytes, .\build\uart_control.o(i.tUART_Task))
 <BR><BR>[Stack]<UL><LI>Max Depth = 44<LI>Call Chain = tUART_Task &rArr; vFindStringMatch
 </UL>
 <BR>[Calls]<UL><LI><a href="#[116]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;yKeyHit

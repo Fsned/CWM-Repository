@@ -9,5 +9,10 @@
 .\build\main.o: mbed/TARGET_LPC1768/TARGET_NXP/TARGET_LPC176X/device/system_LPC17xx.h
 .\build\main.o: setup_file.h
 .\build\main.o: LED_control.h
+.\build\main.o: stdutils.h
 .\build\main.o: utilities.h
 .\build\main.o: UART_control.h
+.\build\main.o: systick.h
+.\build\main.o: pwm_setup.h
+.\build\main.o: GPIO_setup.h
+.\build\main.o: ADC_control.h

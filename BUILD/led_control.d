@@ -1,6 +1,7 @@
 .\build\led_control.o: LED_control.c
 .\build\led_control.o: mbed_config.h
 .\build\led_control.o: LED_control.h
+.\build\led_control.o: stdutils.h
 .\build\led_control.o: mbed/TARGET_LPC1768/TARGET_NXP/TARGET_LPC176X/device/lpc17xx.h
 .\build\led_control.o: mbed/TARGET_LPC1768/core_cm3.h
 .\build\led_control.o: mbed/TARGET_LPC1768/cmsis_version.h

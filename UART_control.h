@@ -86,6 +86,12 @@
 #define NO_OF_KEYWORDS 				 20
 
 #define USERS										5
+
+
+#define UartState_FindUser			1
+#define UartState_FindPass			2
+#define	UartState_Functioncall	3
+
  
 // ****************************************************************************************
 //

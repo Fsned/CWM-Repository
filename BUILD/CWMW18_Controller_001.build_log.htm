@@ -28,13 +28,10 @@ Project File Date:  03/21/2018
 *** Using Compiler 'V5.06 update 5 (build 528)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Rebuild target 'CWM18_Controller'
 compiling utilities.c...
-compiling pwm_setup.c...
-compiling GPIO_setup.c...
-compiling main.cpp...
-ADC_control.h(51): warning:  #1295-D: Deprecated declaration nInitialize_ADC_Library - give arg types
-  extern void nInitialize_ADC_Library();
-main.cpp: 1 warning, 0 errors
 compiling LED_control.c...
+compiling pwm_setup.c...
+compiling systick.c...
+compiling GPIO_setup.c...
 compiling ADC_control.c...
 ADC_control.h(51): warning:  #1295-D: Deprecated declaration nInitialize_ADC_Library - give arg types
   extern void nInitialize_ADC_Library();
@@ -44,17 +41,21 @@ ADC_control.c(59): warning:  #940-D: missing return statement at end of non-void
   }
 ADC_control.c(63): warning:  #940-D: missing return statement at end of non-void function "ySetdownADC" 
   }
-ADC_control.c(81): warning:  #513-D: a value of type "uint8_t *" cannot be assigned to an entity of type "uint8_t"
-  	vReadADC_ret = ADC_Library[ADCHandle];
 ADC_control.c(98): warning:  #940-D: missing return statement at end of non-void function "vSetupADC" 
   }
 ADC_control.c(102): warning:  #940-D: missing return statement at end of non-void function "vSetupADC_Avg" 
   }
-ADC_control.c: 7 warnings, 0 errors
-compiling systick.c...
+ADC_control.c: 6 warnings, 0 errors
+compiling main.cpp...
+ADC_control.h(51): warning:  #1295-D: Deprecated declaration nInitialize_ADC_Library - give arg types
+  extern void nInitialize_ADC_Library();
+main.cpp: 1 warning, 0 errors
 compiling UART_control.c...
+UART_control.c(329): warning:  #177-D: variable "ChosenFunction"  was declared but never referenced
+  	int ChosenFunction;
+UART_control.c: 1 warning, 0 errors
 linking...
-Program Size: Code=18044 RO-data=1932 RW-data=800 ZI-data=1072  
+Program Size: Code=18844 RO-data=1932 RW-data=804 ZI-data=1196  
 After Build - User command #1: fromelf --bin -o CWMW18_Controller_001.bin .\BUILD\CWMW18_Controller_001.axf
 ".\BUILD\CWMW18_Controller_001.axf" - 0 Error(s), 8 Warning(s).
 
@@ -70,7 +71,7 @@ Package Vendor: Keil
   C:\Keil_v5\ARM\PACK\Keil\LPC1700_DFP\2.4.0\Device\Include
 
 <h2>Collection of Component Files used:</h2>
-Build Time Elapsed:  00:00:01
+Build Time Elapsed:  00:00:00
 </pre>
 </body>
 </html>

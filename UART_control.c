@@ -126,115 +126,12 @@ uint8_t yKeyHit( uint8_t KEY_CHECK , uint8_t KEY_HIT ) {
 	return yKeyHit_ret;
 }
 
-<<<<<<< HEAD
-#define SBIT_WordLenght    0x00u
-#define SBIT_DLAB          0x07u
-#define SBIT_FIFO          0x00u
-#define SBIT_RxFIFO        0x01u
-#define SBIT_TxFIFO        0x02u
-
-#define SBIT_RDR           0x00u
-#define SBIT_THRE          0x05u
-
-#define NO_OF_KEYWORDS 			20
-
-#define USERS								5
-
-
-int LOGGED_IN = 0;
-int USERNAME_MATCHED = 0;
-int PASSWORD_MATCHED = 0;
-int USER_ID_MATCHED;
-
-char USER_IDS[USERS][5] = {{" frs"},
-													 {"map"},
-													 {"123"},
-													 {"321"},
-													 {"asd"}};
-
-char USER_PASS[USERS][5] = {{"9944"},
-														{"0000"},
-														{"0000"},
-														{"0000"},
-														{"0000"}};
-
-char branch_string[20] = {"Submaster"};
-char keyword_strings[NO_OF_KEYWORDS][10] = {{"help"},			// F1
-																						{"Help"},			// F2
-																						{"HELP"},			// F3
-																						{"LED1"},			// F4
-																						{"LED2"},			// F5
-																						{"LED3"},			// F6
-																						{"LED4"},			// F7
-																						{"LEDOFF"},		// F8
-																						{"LEDALL"},		// F9
-																						{"status"},		// F10
-																						{"clear"},		// F11
-																						{"Clear"},		// F12
-																						{"LEDSTATE1"},// F13
-																						{"LEDSTATE2"},// F14
-																						{"LEDSTATE3"},// F15
-																						{"LEDSTATE4"},// F16
-																						{"LED"},			// F17
-																						{"DiScO"},		// F18
-																						{"undef"},		// F19
-																						{"undef"}};		// F20
-
-void (*keyword_functions[20]) = {terminal_help , terminal_help , terminal_help , LED_1_ON, LED_2_ON, LED_3_ON, LED_4_ON, LED_OFF, terminal_LED_ALL_ON, terminal_status,
-												terminal_clear, terminal_clear, terminal_LED_1_ON, terminal_LED_2_ON, terminal_LED_3_ON, terminal_LED_4_ON, terminal_LED_1_ON, disco_func,
-												terminal_undefined, terminal_undefined};
-/*
-void (*keyword_functions[NO_OF_KEYWORDS])()={{terminal_help}, 		 // 
-																					 {terminal_help}, 		 //
-																					 {terminal_help},			 //
-																					 {terminal_LED_1_ON},	 //
-																					 {terminal_LED_2_ON},	 //
-																					 {terminal_LED_3_ON},	 //
-																					 {terminal_LED_4_ON},	 //
-																					 {terminal_LED_OFF},	 //
-																					 {terminal_LED_ALL_ON},//
-																					 {terminal_status},		 //
-																					 {terminal_clear},		 //
-																					 {terminal_clear},		 //
-																					 {terminal_LED_1_ON},	 //
-																					 {terminal_LED_2_ON},	 //
-																					 {terminal_LED_3_ON},	 //
-																					 {terminal_LED_4_ON},	 //
-																					 {terminal_LED_1_ON},	 //
-																					 {disco_func},				 //
-																					 {terminal_undefined}, //
-																					 {terminal_undefined}};//
-																					 */
-																
-char help[]				= "help";
-char Help[]				= "Help";
-char HELP[]				= "HELP";
-char LED_1_ON[]		= "LED1";
-char LED_2_ON[]		= "LED2";
-char LED_3_ON[]		= "LED3";
-char LED_4_ON[]		= "LED4";
-char LED_OFF[]		= "LEDOFF";
-char LED_ALL_ON[] = "LEDALL";
-char status[]			= "status";
-char clear[]			= "clear";
-char LEDSTATE1[]	= "LEDSTATE1";
-char LEDSTATE2[]	= "LEDSTATE2";
-char LEDSTATE3[]	= "LEDSTATE3";
-char LEDSTATE4[]	= "LEDSTATE4";
-char LED[]				= "LED";
-char disco_str[]	= "DiScO";
-
-
-
-void UART0_init( unsigned int baudrate) {
-=======
 // ****************************************************************************************
 //	Type		: 	NO_RETURN Functions
 //	Example		:	nXxXxX();
 //	Description	:	Does not return anything.
 // ****************************************************************************************
 void nNewLine( uint8_t NumberOfLineSkips ) {
->>>>>>> 809097d4f49cd6f5f56ee9fc7dc81f9d200d2cd2
 	
 	for (int i = 0; i < NumberOfLineSkips; i++)
 		nUART_TxString("\r\n");
@@ -311,21 +208,6 @@ void nUART0_init( unsigned int baudrate) {
 	LPC_UART0->DLM = (var_RegValue_u32 >> 0x08) & 0xFF;
 
 	util_BitClear(LPC_UART0->LCR,(SBIT_DLAB));  // Clear DLAB after setting DLL,DLM
-<<<<<<< HEAD
-	terminal_clear();
-	uart_string("\r\n");
-	uart_string("____________________________________________ \r\n");
-	uart_string("|                                          | \r\n");
-	uart_string("|           Jeros Control Panel            | \r\n");
-	uart_string("|");
-	uart_string(branch_string);
-	uart_string(" branch__________________________| \r\n");
-	uart_string("Indtast brugernavn :");
-	
-}	
-
-
-=======
 	nTerminalClear();
 	
 	nUART_TxString("\r\n");
@@ -336,7 +218,6 @@ void nUART0_init( unsigned int baudrate) {
 	nUART_TxString(branch_string);
 	nUART_TxString(" branch____________________________| \r\n\n");
 }
->>>>>>> 809097d4f49cd6f5f56ee9fc7dc81f9d200d2cd2
 
 /* Function to transmit a char */
 void nUART_TxChar(char ch) {
@@ -562,12 +443,6 @@ void tUART_Task() {
 	}
 }
 
-<<<<<<< HEAD
-void terminal_undefined() {
-		uart_TxChar('\r');
-		uart_TxChar('\n');
-		uart_string("Undefined function.");
-=======
 // ****************************************************************************************
 //	Type		: 	VALUE_RETURN Functions
 //	Example		:	vXxXxX();
@@ -597,12 +472,7 @@ uint8_t vFindStringMatch(char InputString[] , uint8_t length) {
 			KeywordMatched = i;
 	}
 	return KeywordMatched;
->>>>>>> 809097d4f49cd6f5f56ee9fc7dc81f9d200d2cd2
 }
-
-void terminal_no_function_found() {
-	uart_string("No match for input. try 'help'\r\n");
-}	
 
 
 
@@ -649,71 +519,6 @@ uint8_t vCheckPasscode(char InputString[] , uint8_t length) {
 		if ( (InputString[n] != PASS_LIBRARY[USERNAME_MATCHED][n]) )
 			MatchFound = 0;
 	}
-<<<<<<< HEAD
-		*/
-	
-	if (! LOGGED_IN) {
-		
-		if (! USERNAME_MATCHED) {
-			//uart_string("Indtast brugernavn: ");
-			for (int i = 0; i < 5; i++) {
-				if (checkstring(input_array, USER_IDS[i])) {
-					uart_string("\r\nUser found.\r\n");
-					USER_ID_MATCHED = i;
-					USERNAME_MATCHED = 1;
-				}
-			}	
-		}
-		else if (!PASSWORD_MATCHED && USERNAME_MATCHED) {
-			uart_string("Indtast password: ");
-			if (checkstring(input_array, USER_PASS[USER_ID_MATCHED])) {
-				LOGGED_IN = 1;
-				uart_string("logged in to user: ");
-				uart_string(USER_IDS[USER_ID_MATCHED]);
-			}
-		}
-	}
-	
-	else if (checkstring(input_array , LED))
-		terminal_LED_1_ON();
-	else if (checkstring(input_array , help))
-		terminal_help();
-	else if (checkstring(input_array , Help))
-		terminal_help();
-	else if (checkstring(input_array , HELP))
-		terminal_help();
-
-	else if (checkstring(input_array , LED_1_ON))
-		terminal_LED_1_ON();
-	else if (checkstring(input_array , LED_2_ON))
-		terminal_LED_2_ON();
-	else if (checkstring(input_array , LED_3_ON))
-		terminal_LED_3_ON();
-	else if (checkstring(input_array , LED_4_ON))
-		terminal_LED_4_ON();
-	else if (checkstring(input_array , LED_OFF))
-		terminal_LED_OFF();
-	else if (checkstring(input_array , status))
-		terminal_status();
-	else if (checkstring(input_array , clear))
-		terminal_clear();
-	else if (checkstring(input_array , LEDSTATE1))
-		terminal_LED_STATE_1();
-	else if (checkstring(input_array , LEDSTATE2))
-		terminal_LED_STATE_2();
-	else if (checkstring(input_array , LEDSTATE3))
-		terminal_LED_STATE_3();
-	else if (checkstring(input_array , LEDSTATE4))
-		terminal_LED_STATE_4();
-	else if (checkstring(input_array , disco_str))
-		disco_func();
-	else if (checkstring(input_array , LED_ALL_ON))
-		terminal_LED_ALL_ON();
-	else
-		terminal_no_function_found();			
-}
-
-=======
 	
 	return MatchFound;
 	
@@ -725,4 +530,3 @@ uint8_t vCheckPasscode(char InputString[] , uint8_t length) {
 
 
 
->>>>>>> 809097d4f49cd6f5f56ee9fc7dc81f9d200d2cd2

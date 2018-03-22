@@ -1,0 +1,17 @@
+.\build\heap_2.o: FreeRTOS\portable\MemMang\heap_2.c
+.\build\heap_2.o: mbed_config.h
+.\build\heap_2.o: .\FreeRTOS\include\FreeRTOS.h
+.\build\heap_2.o: .\FreeRTOS\include\projdefs.h
+.\build\heap_2.o: .\FreeRTOS\include\FreeRTOSConfig.h
+.\build\heap_2.o: mbed/TARGET_LPC1768/TARGET_NXP/TARGET_LPC176X/device/LPC17xx.h
+.\build\heap_2.o: mbed/TARGET_LPC1768/core_cm3.h
+.\build\heap_2.o: mbed/TARGET_LPC1768/cmsis_version.h
+.\build\heap_2.o: mbed/TARGET_LPC1768/cmsis_compiler.h
+.\build\heap_2.o: mbed/TARGET_LPC1768/cmsis_armcc.h
+.\build\heap_2.o: mbed/TARGET_LPC1768/mpu_armv7.h
+.\build\heap_2.o: mbed/TARGET_LPC1768/TARGET_NXP/TARGET_LPC176X/device/system_LPC17xx.h
+.\build\heap_2.o: .\FreeRTOS\include\portable.h
+.\build\heap_2.o: .\FreeRTOS\portable\GCC\ARM_CM3\portmacro.h
+.\build\heap_2.o: .\FreeRTOS\include\mpu_wrappers.h
+.\build\heap_2.o: .\FreeRTOS\include\task.h
+.\build\heap_2.o: .\FreeRTOS\include\list.h

@@ -1,8 +1,132 @@
+/**********************************************************************************************
+ * Source file : UART_control.c
+ * Author : Frederik Snedevind
+ *		    Frs@Jeros.com
+ *
+ * Company: Jeros A/S
+ *		   HTTP://www.Jeros.com/
+ *
+ * Date created : 9/3 - 2018
+ * Version			 : 0.1.0
+ * Revised			 : 16/3 - 2018
+ **********************************************************************************************
+ * Description:
+ * 	Source file providing functionality to the UART API.
+ *  
+ *	
+ *
+ **********************************************************************************************
+ * Dependencies:
+ *	This library uses the following files:
+ *	"stdutils.h"		-		library containg typedef for various datatypes used
+ *	"UART_control.h"-		own header file, providing API to other files
+ *	"lpc17xx.h"			-		Processor header, used to setup and access various registers
+ * 	"LED_control.h"	-		Handles LED functions on the DEV. board, used for debugging and development purposes
+ **********************************************************************************************/
+
+// ****************************************************************************************
+//
+//					Libraries
+//
+// ****************************************************************************************
+#include "stdutils.h"
 #include "UART_control.h"
 #include "lpc17xx.h"
-#include "stdutils.h"
 #include "LED_control.h"
+#include "GPIO_setup.h"
 
+// ****************************************************************************************
+//
+//					Variables
+//
+// ****************************************************************************************
+uint8_t LOGGED_IN = 0;
+uint8_t USERNAME_MATCHED = 0;
+uint8_t PASSWORD_MATCHED = 0;
+
+static uint8_t UART_STATE = UartState_FindUser;
+
+char input_buffer[128];
+char USER_LIBRARY[USERS][5] =  {{"NON"},	// 0
+																{"map"},	// 1
+																{"abh"},	// 2	
+																{"frs"},	// 3
+																{"nig"}};	// 4
+
+char USERS_NAMES[USERS][30]	= {{"Blind Makker"},
+															 {"Mark Appelgren"},
+															 {"Blind Makker"},
+															 {"Frederik Snedevind"},
+															 {"Blind Makker"}};
+
+char PASS_LIBRARY[USERS][5] =  {{"213"},	// 0
+																{"123"},	// 1
+																{"123"},	// 2
+																{"123"},	// 3
+																{"123"}};	// 4
+
+char branch_string[20] = {"Sandbox"};
+
+char keyword_strings[NO_OF_KEYWORDS][10] 	 = {{"help"},								// F0
+																							{"Help"},								// F1
+																							{"HELP"},								// F2
+																							{"LED1"},								// F3
+																							{"LED2"},								// F4
+																							{"LED3"},								// F5
+																							{"LED4"},								// F6
+																							{"LEDOFF"},							// F7
+																							{"LEDALL"},							// F8
+																							{"status"},							// F9
+																							{"clear"},							// F10
+																							{"Clear"},							// F11
+																							{"LEDSTATE1\0"},					// F12
+																							{"LEDSTATE2"},					// F13
+																							{"LEDSTATE3"},					// F14
+																							{"LEDSTATE4"},					// F15
+																							{"LED"},								// F16
+																							{"DiScO"},							// F17
+																							{"logout"},							// F18
+																							{"undef"}};							// F19
+
+void (*keyword_functions[NO_OF_KEYWORDS])() = {nTerminalHelp 		 	, 			// F0
+																							 nTerminalHelp  	 	, 			// F1
+																							 nTerminalHelp 		 	, 			// F2
+																							 nTerminal_LED_1_ON 	, 		// F3
+																							 nTerminal_LED_2_ON 	, 		// F4
+																							 nTerminal_LED_3_ON 	, 		// F5
+																							 nTerminal_LED_4_ON  , 			// F6
+																							 nTerminal_LED_OFF		, 		// F7
+																							 nTerminal_LED_ALL_ON, 			// F8
+																							 nTerminalStatus		, 			// F9
+																							 nTerminalClear		 	, 			// F10
+																							 nTerminalClear 	  , 			// F11
+																							 nTerminal_LED_1_ON 	, 		// F12
+																							 nTerminal_LED_2_ON	, 			// F13
+																							 nTerminal_LED_3_ON	, 			// F14
+																							 nTerminal_LED_4_ON 	, 		// F15
+																							 nTerminal_LED_1_ON	, 			// F16
+																							 nDiscoFunc					, 			// F17
+																							 nTerminalLogout	, 				// F18
+																							 nTerminalUndefined };			// F19
+
+																							 
+// ****************************************************************************************
+//	Type		: 	YES_RETURN Functions
+//	Example		:	yXxXxX();
+//	Description	:	Returns true (1) or false (0) depending on the success of the function
+// ****************************************************************************************
+uint8_t yKeyHit( uint8_t KEY_CHECK , uint8_t KEY_HIT ) {
+	uint8_t yKeyHit_ret;
+	
+	if (KEY_HIT == KEY_CHECK)
+		yKeyHit_ret = 1;
+	else
+		yKeyHit_ret = 0;
+	
+	return yKeyHit_ret;
+}
+
+<<<<<<< HEAD
 #define SBIT_WordLenght    0x00u
 #define SBIT_DLAB          0x07u
 #define SBIT_FIFO          0x00u
@@ -103,17 +227,46 @@ char disco_str[]	= "DiScO";
 
 
 void UART0_init( unsigned int baudrate) {
+=======
+// ****************************************************************************************
+//	Type		: 	NO_RETURN Functions
+//	Example		:	nXxXxX();
+//	Description	:	Does not return anything.
+// ****************************************************************************************
+void nNewLine( uint8_t NumberOfLineSkips ) {
+>>>>>>> 809097d4f49cd6f5f56ee9fc7dc81f9d200d2cd2
 	
+	for (int i = 0; i < NumberOfLineSkips; i++)
+		nUART_TxString("\r\n");
+}
+
+void nTerminalLogout() {
+	USERNAME_MATCHED = 0;
+	PASSWORD_MATCHED = 0;
+	LOGGED_IN 			 = 0;
 	
+	UART_STATE = UartState_FindUser;
 	
+	nNewLine( 1 );
+	nNewLine( 1 );
+	nUART_TxString("Logged out.\r\n");
+	nNewLine( 1 );
+	
+}
+
+/* Function to initialize UART0 */
+void nUART0_init( unsigned int baudrate) {
 	
 	unsigned int var_UartPclk_u32 , var_Pclk_u32 , var_RegValue_u32;
 	
 	LPC_PINCON->PINSEL0 &= ~0x000000F0;
 	LPC_PINCON->PINSEL0 |= 0x00000050;            // Enable TxD0 P0.2 and p0.3 
 	
-	LPC_UART0->FCR = (1<<SBIT_FIFO) | (1<<SBIT_RxFIFO) | (1<<SBIT_TxFIFO); // Enable FIFO and reset Rx/Tx FIFO buffers    
-	LPC_UART0->LCR = (0x03<<SBIT_WordLenght) | (1<<SBIT_DLAB); // 8bit data, 1Stop bit, No parity
+	// Enable FIFO and reset Rx/Tx FIFO buffers    
+	LPC_UART0->FCR = (1<<SBIT_FIFO) | (1<<SBIT_RxFIFO) | (1<<SBIT_TxFIFO); 
+	
+	// 8bit data, 1Stop bit, No parity
+	LPC_UART0->LCR = (0x03<<SBIT_WordLenght) | (1<<SBIT_DLAB); 
 	
 	/** Baud Rate Calculation :
        PCLKSELx registers contains the PCLK info for all the clock dependent peripherals.
@@ -130,6 +283,7 @@ void UART0_init( unsigned int baudrate) {
          0x02       SystemFreq/2
          0x03       SystemFreq/8   
 	 **/
+	
 	
 	var_UartPclk_u32 = (LPC_SC->PCLKSEL0 >> 6) & 0x03;
 
@@ -157,6 +311,7 @@ void UART0_init( unsigned int baudrate) {
 	LPC_UART0->DLM = (var_RegValue_u32 >> 0x08) & 0xFF;
 
 	util_BitClear(LPC_UART0->LCR,(SBIT_DLAB));  // Clear DLAB after setting DLL,DLM
+<<<<<<< HEAD
 	terminal_clear();
 	uart_string("\r\n");
 	uart_string("____________________________________________ \r\n");
@@ -170,99 +325,279 @@ void UART0_init( unsigned int baudrate) {
 }	
 
 
+=======
+	nTerminalClear();
+	
+	nUART_TxString("\r\n");
+	nUART_TxString("____________________________________________ \r\n");
+	nUART_TxString("|                                          | \r\n");
+	nUART_TxString("|           Jeros Control Panel            | \r\n");
+	nUART_TxString("|");
+	nUART_TxString(branch_string);
+	nUART_TxString(" branch____________________________| \r\n\n");
+}
+>>>>>>> 809097d4f49cd6f5f56ee9fc7dc81f9d200d2cd2
 
 /* Function to transmit a char */
-void uart_TxChar(char ch)
-{
+void nUART_TxChar(char ch) {
     while(util_IsBitCleared(LPC_UART0->LSR,SBIT_THRE)); // Wait for Previous transmission
     LPC_UART0->THR=ch;                                  // Load the data to be transmitted
 }
 
-
 /* Function to Receive a char */
-char uart_RxChar()
-{
+char nUART_RxChar() {
     char ch; 
     while(util_IsBitCleared(LPC_UART0->LSR,SBIT_RDR));  // Wait till the data is received
     ch = LPC_UART0->RBR;                                // Read received data    
     return ch;
 }
 
-void uart_string(char ch_s[])
-{
+/* Function to transmit a string to UART */
+void nUART_TxString(char ch_s[]) {
 	int i = 0;
 	while(ch_s[i] != '\0') {
-		uart_TxChar(ch_s[i]);
+		nUART_TxChar(ch_s[i]);
 		i++;
 	}
 }
 
-void terminal_help() {
-	uart_string("The following commands are available\n\r");
-	uart_string("The following commands are available\n\r");
-	uart_string("The following commands are available\n\r");
-	uart_string("The following commands are available\n\r");
-	uart_string("The following commands are available\n\r");
+/* Keyword function for "help" */
+void nTerminalHelp() {
+	nUART_TxString("The following commands are available\n\r");
+	nUART_TxString("The following commands are available\n\r");
+	nUART_TxString("The following commands are available\n\r");
+	nUART_TxString("The following commands are available\n\r");
+	nUART_TxString("The following commands are available\n\r");
 }
 
-void terminal_LED_1_ON() {
+/* Keyword funtion for "LED1" */ 
+void nTerminal_LED_1_ON() {
 	unsigned int arr[4] = {1,0,0,0};
-	LED_flip(arr);
+	nLEDFlip(arr);	
 }
-void terminal_LED_2_ON() {
+
+/* Keyword funtion for "LED2" */ 
+void nTerminal_LED_2_ON() {
 	unsigned int arr[4] = {0,1,0,0};
-	LED_flip(arr);
+	nLEDFlip(arr);
 }
-void terminal_LED_3_ON() {
+
+/* Keyword funtion for "LED3" */ 
+void nTerminal_LED_3_ON() {
 	unsigned int arr[4] = {0,0,1,0};
-	LED_flip(arr);
+	nLEDFlip(arr);
 }
 
-void terminal_LED_4_ON() {
+/* Keyword funtion for "LED4" */ 
+void nTerminal_LED_4_ON() {
 	unsigned int arr[4] = {0,0,0,1};
-	LED_flip(arr);
+	nLEDFlip(arr);
 }
 
-void terminal_LED_OFF() {
-	LED_SET(0,0,0,0);
+/* Keyword funtion for "LEDOFF" */ 
+void nTerminal_LED_OFF() {
+	nLED_SET(0,0,0,0);
 }
 
-void terminal_LED_ALL_ON() {
-	LED_SET(1,1,1,1);
+/* Keyword funtion for "LEDALL" */ 
+void nTerminal_LED_ALL_ON() {
+	nLED_SET(1,1,1,1);
 }
 
-void terminal_status() {
-	uart_string("\r\nCurrent state       : snoo\n\r");
-	uart_string("Current Temperature : \n\r");
-	uart_string("Current Program     : \n\r");
-}
-	
-void terminal_LED_STATE_1() {
-	LED_SET(1,0,0,0);
-	
+/* Keyword funtion for "status" */ 
+void nTerminalStatus() {
+	nUART_TxString("\r\nCurrent state       : snoo\n\r");
+	nUART_TxString("Current Temperature : \n\r");
+	nUART_TxString("Current Program     : \n\r");
 }
 
-void terminal_LED_STATE_2() {
-	LED_SET(0,1,0,0);
-}
 
-void terminal_LED_STATE_3() {
-	LED_SET(0,0,1,0);
-}
-
-void terminal_LED_STATE_4() {
-	LED_SET(0,0,0,1);
-}
-	
-void terminal_clear() {
+/* Keyword funtion for "clear" */ 
+void nTerminalClear() {
 	for(int i = 0; i < 25; i++)
-		uart_string("\r\n");
+		nUART_TxString("\r\n");
 }
 
+/* Keyword funtion for undefined inputs */ 
+void nTerminalUndefined() {
+		nUART_TxChar('\r');
+		nUART_TxChar('\n');
+		nUART_TxString("Undefined function.");
+}
+
+/* Keyword funtion for undefined inputs */ 
+void nTerminalNoFunctionFound() {
+	nUART_TxString("No matching function found. try 'help' for more info. \r\n");
+}
+
+/* Task function for UART */
+void tUART_Task() {
+// *************************************
+// 						Local variables
+	int ChosenFunction;
+	char last_char;
+	
+	static uint8_t inputs = 0;
+	static uint8_t OutedUserMsg 		= 0;
+	static uint8_t OutedPassMsg 		= 0;
+	static uint8_t OutedFunctionMsg = 0;
+	
+	switch (UART_STATE) {
+		
+// *******************************************************************
+//										Check Username State
+		case UartState_FindUser :
+			
+			if (! OutedUserMsg) {
+				nUART_TxString("Enter User: ");
+				OutedUserMsg = 1;
+			}
+			
+			last_char = nUART_RxChar();
+		
+			if ( yKeyHit (CHAR_ENTER , last_char ) && inputs == 0) {
+				nNewLine( 1 );
+				OutedUserMsg = 0;
+			}
+			
+			else if ( yKeyHit (CHAR_ENTER , last_char ) && inputs > 0) {
+				input_buffer[inputs] = '\0';
+				inputs++;
+				
+				USERNAME_MATCHED = vCheckUsernames(  input_buffer , inputs );
+				nNewLine( 1 );
+			
+				UART_STATE = UartState_FindPass;
+				inputs = 0;				
+				OutedUserMsg = 0;
+			}
+			
+			else {
+				input_buffer[inputs] = last_char;
+				nUART_TxChar(input_buffer[inputs]);
+				inputs++;
+				
+			}
+			break;
+			
+// *******************************************************************
+//										Check Password State
+		case UartState_FindPass :
+			
+			if (! OutedPassMsg) {
+				nUART_TxString("Enter Password: ");
+				OutedPassMsg = 1;
+			}
+			
+			last_char = nUART_RxChar();
+		
+			if ( yKeyHit (CHAR_ENTER , last_char ) && inputs == 0) {
+				nNewLine( 1 );
+				UART_STATE = UartState_FindUser;
+				OutedPassMsg = 0; 
+			}
+			
+			else if ( yKeyHit (CHAR_ENTER , last_char ) && inputs > 0) {
+				input_buffer[inputs] = '\0';
+				inputs++;
+				
+				if ( vCheckPasscode( input_buffer , inputs ) ) {
+					UART_STATE = UartState_Functioncall;
+					inputs = 0;
+					nNewLine( 2 );
+					nUART_TxString("Logged In. Welcome ");
+					nUART_TxString(USERS_NAMES[USERNAME_MATCHED]);
+					nNewLine( 2 );
+				}
+				else {
+					nNewLine( 2 );
+					nUART_TxString("Unrecognized user.");
+					nNewLine( 1 );
+					UART_STATE = UartState_FindUser;
+					nNewLine( 1 );
+					inputs = 0;
+				}
+				OutedPassMsg = 0;
+			}
+			else {
+				input_buffer[inputs] = last_char;
+				nUART_TxChar('*');
+				inputs++;
+			}
+			break;
+			
+// *******************************************************************
+//										Check Function State		
+		case UartState_Functioncall :
+			
+			if (! OutedFunctionMsg) {
+				nUART_TxString("Command: ");
+				OutedFunctionMsg = 1;
+			}
+			last_char = nUART_RxChar();
+			if ( yKeyHit (CHAR_ENTER , last_char ) && inputs == 0) {
+				nNewLine( 1 );
+				OutedFunctionMsg = 0;
+			}
+			else if ( yKeyHit (CHAR_ENTER , last_char ) && inputs > 0) {
+				input_buffer[inputs] = '\0';
+				inputs++;
+				keyword_functions[vFindStringMatch( input_buffer , inputs )]();
+				nNewLine( 1 );																											// Start a new line		
+				inputs = 0;	
+				OutedFunctionMsg = 0; 
+			}
+			else {
+				input_buffer[inputs] = last_char;
+				nUART_TxChar(input_buffer[inputs]);
+				inputs++;
+			}
+			break;
+		
+		default :
+			nNewLine( 4 );
+			nUART_TxString("You aren't supposed to be here.");
+			UART_STATE = UartState_FindUser;
+			break;
+	}
+}
+
+<<<<<<< HEAD
 void terminal_undefined() {
 		uart_TxChar('\r');
 		uart_TxChar('\n');
 		uart_string("Undefined function.");
+=======
+// ****************************************************************************************
+//	Type		: 	VALUE_RETURN Functions
+//	Example		:	vXxXxX();
+//	Description	:	Returns a value, either 1 or 0. no confirmation if successful or not.
+// ****************************************************************************************
+uint8_t vFindStringMatch(char InputString[] , uint8_t length) {
+	
+	uint8_t MatchFound = 0;
+	uint8_t KeywordMatched = 19;
+	
+	for (int i = 0; i < NO_OF_KEYWORDS; i++) {
+		MatchFound = 1;
+		
+		int Str1Length , Str2Length;
+		
+		for ( Str1Length = 0; InputString[Str1Length] 			 != '\0'; Str1Length++);
+		for ( Str2Length = 0; keyword_strings[i][Str2Length] != '\0'; Str2Length++); 
+		
+		if (Str1Length != Str2Length)
+			continue;
+		
+		for (int n = 0; n < length; n++) {
+			if ( (InputString[n] != keyword_strings[i][n]) )
+				MatchFound = 0;
+		}
+		if (MatchFound)
+			KeywordMatched = i;
+	}
+	return KeywordMatched;
+>>>>>>> 809097d4f49cd6f5f56ee9fc7dc81f9d200d2cd2
 }
 
 void terminal_no_function_found() {
@@ -271,26 +606,50 @@ void terminal_no_function_found() {
 
 
 
-int checkstring(char string_1[] , char string_2[]) {
-	int re_val = 1;
-	int length;
-	for (int length = 0; string_2[length] != '\0'; length++);
+uint8_t vCheckUsernames(char InputString[] , uint8_t length) {
 	
-	for(int i = length; i > 0; i--) {
-		if (string_1[length-i+1] != string_2[length-i])
-			re_val = 0;
+	uint8_t MatchFound = 0;
+	uint8_t UserMatched = 0;
+	
+	for (int i = 1; i < USERS; i++) {
+		MatchFound = 1;
+		
+		int Str1Length , Str2Length;
+		
+		for ( Str1Length = 0; InputString[Str1Length] 		!= '\0'; Str1Length++);
+		for ( Str2Length = 0; USER_LIBRARY[i][Str2Length]	!= '\0'; Str2Length++); 
+		
+		if (Str1Length != Str2Length)
+			continue;
+		
+		for (int n = 0; n < length; n++) {
+			if ( (InputString[n] != USER_LIBRARY[i][n]) )
+				MatchFound = 0;
+		}
+			if (MatchFound)
+				UserMatched = i;
 	}
-	return re_val;
+	return UserMatched;
 }
 
-void UART_chk_for_match(char input_array[]) {
-	/*
-	for (int i = 0; i < 18; i++) {
-		if (checkstring(input_array , keyword_strings[i])) {
-			//(*keyword_functions[i]);
-			//terminal_LED_1_ON();
-		}
+uint8_t vCheckPasscode(char InputString[] , uint8_t length) {
+	
+	uint8_t MatchFound = 0;
+	MatchFound = 1;
+	
+	int Str1Length , Str2Length;
+	
+	for ( Str1Length = 0; InputString[Str1Length] 		!= '\0'; Str1Length++);
+	for ( Str2Length = 0; PASS_LIBRARY[USERNAME_MATCHED][Str2Length]	!= '\0'; Str2Length++); 
+	
+	if (Str1Length != Str2Length)
+		MatchFound = 0;
+	
+	for (int n = 0; n < length; n++) {
+		if ( (InputString[n] != PASS_LIBRARY[USERNAME_MATCHED][n]) )
+			MatchFound = 0;
 	}
+<<<<<<< HEAD
 		*/
 	
 	if (! LOGGED_IN) {
@@ -354,3 +713,16 @@ void UART_chk_for_match(char input_array[]) {
 		terminal_no_function_found();			
 }
 
+=======
+	
+	return MatchFound;
+	
+}
+
+
+
+
+
+
+
+>>>>>>> 809097d4f49cd6f5f56ee9fc7dc81f9d200d2cd2

@@ -224,8 +224,8 @@ void nUART_TxChar(char ch) {
 char nUART_RxChar() {
     char ch; 
     while(util_IsBitCleared(LPC_UART0->LSR,SBIT_RDR));  // Wait till the data is received
-    ch = LPC_UART0->RBR;                                // Read received data    
-    return ch;
+		ch = LPC_UART0->RBR;                                // Read received data    
+		return ch;
 }
 
 /* Function to transmit a string to UART */

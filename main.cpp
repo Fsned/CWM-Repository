@@ -9,10 +9,28 @@
 #include "GPIO_setup.h"
 #include "ADC_control.h"
 
+#include "FreeRTOSConfig.h"
+#include "FreeRTOS.h"
+#include "task.h"
+#include "queue.h"
+#include "timers.h" 
+
+#define TASK_STACK_SIZE 128
+
+
+
+if ( configUSE_MALLOC_FAILED_HOOK == 1 )
+	void vApplicationMallocFailedHook( void );
+if ( configCHECK_FOR_STACK_OVERFLOW > 0 )
+	void vApplicationStackOverflowHook( TaskHandle_t pxTask, char *pcTaskName );
+
+
+void task (void*);
 
 uint8_t led_flipper = 0;
 uint8_t wave_status;
 int adc_result = 0;
+unsigned int myarr[4] = {0,0,0,1};
 
 int main() 
 {
@@ -22,53 +40,43 @@ int main()
 	nUART0_init(9600);
 	
 //	nSystickSetup(1000000);					// Should be setup last, to avoid interrupts generated during setup phase
+	uint16_t myvalue = 0;
 	
 	uint8_t ADC_Handle_1 = vSetupADC();
-	delay_ms(1);
-//	uint8_t ADC_Handle_2 = vSetupADC();
-//	delay_ms(1);
 	
 	while(1) {
 		
-//		tUART_Task();		
-		tADC_Task();
-		int myvalue = vReadADC(ADC_Handle_1);
-		
-		if (vReadADC(ADC_Handle_1) > 10)
-			nLED_SET(1,1,0,0);
-		
-		
+//		tUART_Task();			// Uart task latches until character is received, which spoils the scheduling.	
+////	  tADC_Task	
 //		
-//		if (vReadADC(ADC_Handle_2) > 0)
-//			nLED_SET(0,1,0,0);
-		
-		
-		
-		delay_ms(100);
-		
-		
-//		delay_ms(1);
 //		
-//		util_BitSet(LPC_ADC->ADCR,SBIT_START);
-//		
-//		while(util_GetBitStatus(LPC_ADC->ADGDR,SBIT_DONE)==0);
-//		
-//		adc_result = ( LPC_ADC->ADGDR >> SBIT_RESULT ) & 0xFFF;
-			
-		
+//		delay_ms(1); 
+//		tLEDAlive();
+		// Create a task.
+    xTaskCreate( task , "T01", TASK_STACK_SIZE, NULL, configMAX_PRIORITIES - 1, NULL );
+    // Start FreeRTOS scheduler.
+    vTaskStartScheduler();
 	}
 }
 
-
-
-
-void SysTick_Handler(void) {
-	
-	static int led_timer = 1;
-	
-	if (!(--led_timer)) {
-		led_timer = 1000000;
-	}
+void task (void *param) {
+	TickType_t xPreviousWakeTime = ( TickType_t ) 0U;
+    
+    for(;;) {
+        nLEDFlip(myarr);
+        
+        // Delay a task until next period (1 sec)
+        vTaskDelayUntil( &xPreviousWakeTime, ( TickType_t ) 1000 );
+    }
 }
+
+//void SysTick_Handler(void) {
+//	
+//	static int led_timer = 1;
+//	
+//	if (!(--led_timer)) {
+//		led_timer = 1000000;
+//	}
+//}
 
 

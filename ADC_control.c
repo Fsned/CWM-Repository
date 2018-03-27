@@ -74,8 +74,11 @@ uint8_t yADC_ChangeStatus( uint8_t ADCHandle) {
 //	Description	:	Does not return anything.
 // ****************************************************************************************
 void nInitialize_ADC_Library() {
-		for (int n = 0; n < 8; n++)
+		for (int n = 0; n < 8; n++) {
 			ADC_PinLibrary[n] = ADC_VACANT;
+			ADC_DataLibrary[n] = 0; 
+			
+		}
 	
 	ADC_Library_Initialized = 1;
 }
@@ -89,18 +92,17 @@ uint16_t vReadADC(uint8_t ADCHandle) {
 	
 	uint16_t vReadADC_ret = 0;
 	
-	//ADC_DataLibrary[0] = 11;
-//	if (ADC_PinLibrary[ADCHandle] >= ADC_PAUSE)
+//	ADC_DataLibrary[0] = 11;
+	if (ADC_PinLibrary[ADCHandle] >= ADC_PAUSE)
 		vReadADC_ret = ADC_DataLibrary[ADCHandle];
 //	else
-//		vReadADC_ret = 0xF000;
+//		vReadADC_ret = 0xF000; 
 	
 	return vReadADC_ret;
 }
 
 
 uint8_t vSetupADC() {
-	
 	uint8_t vSetupADC_ret;
 	
 	// Check if library has been initialized
@@ -113,6 +115,7 @@ uint8_t vSetupADC() {
 		if (ADC_PinLibrary[i] == ADC_VACANT) {
 			vSetupADC_ret = i;
 			ADC_PinLibrary[i] = ADC_ACTIVE;
+			i = 8;
 			break;
 		}
 	}
@@ -123,13 +126,11 @@ uint8_t vSetupADC() {
 //	delay_ms(1);
 	// Enables Clock
 	LPC_SC->PCONP |= ( 1 << 12 );				// Enable clock for Internal ADC controller
-	delay_us(10);
-	LPC_ADC->ADCR |= (( 1 << 21) | (10 <<SBIT_CLCKDIV ));																				// Set power ON
-
-	delay_us(10);
+	delay_ms(1);
+	LPC_ADC->ADCR |= (( 1 << 21) | (10 <<SBIT_CLCKDIV ));																				
+	// Set power ON
+	delay_ms(1);
 	// Set the pin up for Secondary function
-	
-	
 	
 	if (vSetupADC_ret == 0)
 		LPC_PINCON->PINSEL1 |= 1 << 14;																// Select P0_23 AD0[0] for ADC Function
@@ -147,7 +148,7 @@ uint8_t vSetupADC() {
 		LPC_PINCON->PINSEL3 |= 1 << 30;
 	
 	else if (vSetupADC_ret == 5)
-		LPC_PINCON->PINSEL3 |= 0x02 << 30;
+		LPC_PINCON->PINSEL3 |= 0x01 << 30;
 	
 	else if (vSetupADC_ret == 6)
 		LPC_PINCON->PINSEL0 |= 1 << 3;
@@ -155,29 +156,37 @@ uint8_t vSetupADC() {
 	else if (vSetupADC_ret == 7)
 		LPC_PINCON->PINSEL0 |= 1 << 2;
 	
+	delay_ms(1);
 	return vSetupADC_ret;
 }
 
 uint8_t vSetupADC_Avg(uint8_t PORT , uint8_t PIN , uint32_t FREQ , uint8_t Resolution) {
 	return 0;
+	
 }
-
-
-
 
 
 void tADC_Task() {
 	
-	
 	// Iterate through the Pinlibrary, checking what pins should be updated from the ADC. 
 	// only ACTIVE pins get updated data. 
 	// paused pins retain their data value until reactivated or setdown.
+	
 	for (int i = 0; i < 8; i++) {
 		if (ADC_PinLibrary[i] == ADC_ACTIVE) {
-			LPC_ADC->ADCR |= ( 0x01 << i );					
-			if( util_GetBitStatus(LPC_ADC->ADGDR,SBIT_DONE) == 0) 				// Check if conversion is ready on chosen channel
-				ADC_DataLibrary[i] = (LPC_ADC->ADGDR >> SBIT_RESULT) & 0xFFF;			// Store result in Data Library.
-		delay_us(10);
+			
+			// Select Channel to sample from
+			LPC_ADC->ADCR |= ( 0x1 << i );
+			
+			// Enable conversion 'now'.
+			LPC_ADC->ADCR |= ( 0x1 << 24 );			
+			
+			// Wait until conversion is ready, on the 31st bit in the ADGDR register
+			while ( util_GetBitStatus(LPC_ADC->ADGDR , SBIT_DONE) == 0 );
+			
+			ADC_DataLibrary[i] = (LPC_ADC->ADGDR >> SBIT_RESULT) & 0xFFF;			// Store result in Data Library.
+			
+			delay_ms(1);
 		}
 	}
 }

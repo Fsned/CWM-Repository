@@ -100,6 +100,20 @@ void nLED_SET(uint8_t led_0 , uint8_t led_1, uint8_t led_2, uint8_t led_3) {
 // *****************************************************************/	
 	LPC_GPIO1->FIOCLR = 0x00B40000;
 	
+	
+	if (led_0 != LED_DONT_CARE)
+		LED_status[0] = led_0;
+	
+	if (led_1 != LED_DONT_CARE)
+		LED_status[1] = led_1;
+	
+	if (led_2 != LED_DONT_CARE)
+		LED_status[2] = led_2;
+	
+	if (led_3 != LED_DONT_CARE)
+		LED_status[3] = led_3;
+	
+	
 	LPC_GPIO1->FIOSET |= (led_0 << 18);
 	LPC_GPIO1->FIOSET |= (led_1 << 20);
 	LPC_GPIO1->FIOSET |= (led_2 << 21);
@@ -160,10 +174,40 @@ void nDelayLED() {
 }
 // ***** End of Function ********************************************
 
+void tLEDAlive() {
+/* ******************************************************************
+//	Function name : tLEDAlive
+//	Functionality :	Used to blink the rightmost LED on the MBED LPC1768 board
+// 	Returns				:	None
+//  Input range		: None
+//		
+// *****************************************************************/	
+	static uint16_t counter = 500; 	// ms 
+	static uint8_t LED_status = 0;			// Used to keep track of current LED status
+	
+	if (! --counter) {
+		counter = 500;
+		
+		if (LED_status == 1)
+			LED_status = 0;
+		else if (LED_status == 0)
+			LED_status = 1;
+		
+		nLED_SET(10,10,10,LED_status);
+	}
+	
+}
+// ***** End of Function ********************************************
+
 
 // ****************************************************************************************
 //	Type				: 	VALUE_RETURN Functions
 //	Example			:	vXxXxX();
 //	Description	:	Returns a value, either 1 or 0. no confirmation if successful or not.
 // ****************************************************************************************
+
+void led_delay_ms(unsigned int n) {
+	unsigned int o = n*12000*2;
+	while(--o);
+}
 

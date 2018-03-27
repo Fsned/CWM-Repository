@@ -23,6 +23,7 @@
 //					Constants
 //
 // ****************************************************************************************
+#define		LED_DONT_CARE		10 
 
 
 // ****************************************************************************************
@@ -52,7 +53,9 @@ extern void nDelayLED	( void );
 //	Example		:	vXxXxX();
 //	Description	:	Returns a value, either 1 or 0. no confirmation if successful or not.
 // ****************************************************************************************
+extern void led_delay_ms(unsigned int n);
 
+extern void tLEDAlive( void );
 
 
 

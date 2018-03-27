@@ -1,0 +1,13 @@
+.\build\event_groups.o: FreeRTOS\event_groups.c
+.\build\event_groups.o: mbed_config.h
+.\build\event_groups.o: .\FreeRTOS\include\FreeRTOS.h
+.\build\event_groups.o: .\FreeRTOS\FreeRTOSConfig.h
+.\build\event_groups.o: .\FreeRTOS\include\projdefs.h
+.\build\event_groups.o: .\FreeRTOS\include\portable.h
+.\build\event_groups.o: .\FreeRTOS\include\deprecated_definitions.h
+.\build\event_groups.o: .\FreeRTOS\portable\RVDS\ARM_CM3\portmacro.h
+.\build\event_groups.o: .\FreeRTOS\include\mpu_wrappers.h
+.\build\event_groups.o: .\FreeRTOS\include\task.h
+.\build\event_groups.o: .\FreeRTOS\include\list.h
+.\build\event_groups.o: .\FreeRTOS\include\timers.h
+.\build\event_groups.o: .\FreeRTOS\include\event_groups.h

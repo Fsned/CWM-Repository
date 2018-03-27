@@ -23,21 +23,39 @@ int main()
 	
 //	nSystickSetup(1000000);					// Should be setup last, to avoid interrupts generated during setup phase
 	
-	vSetupADC(1,1,1);
+	uint8_t ADC_Handle_1 = vSetupADC();
+	delay_ms(1);
+//	uint8_t ADC_Handle_2 = vSetupADC();
+//	delay_ms(1);
 	
 	while(1) {
 		
-		tUART_Task();
+//		tUART_Task();		
+		tADC_Task();
+		int myvalue = vReadADC(ADC_Handle_1);
 		
-		LPC_ADC->ADCR |= 0x01;
+		if (vReadADC(ADC_Handle_1) > 10)
+			nLED_SET(1,1,0,0);
 		
-		delay_ms(1);
 		
-		util_BitSet(LPC_ADC->ADCR,SBIT_START);
+//		
+//		if (vReadADC(ADC_Handle_2) > 0)
+//			nLED_SET(0,1,0,0);
 		
-		while(util_GetBitStatus(LPC_ADC->ADGDR,SBIT_DONE)==0);
 		
-		adc_result = ( LPC_ADC->ADGDR >> SBIT_RESULT ) & 0xFFF;		
+		
+		delay_ms(100);
+		
+		
+//		delay_ms(1);
+//		
+//		util_BitSet(LPC_ADC->ADCR,SBIT_START);
+//		
+//		while(util_GetBitStatus(LPC_ADC->ADGDR,SBIT_DONE)==0);
+//		
+//		adc_result = ( LPC_ADC->ADGDR >> SBIT_RESULT ) & 0xFFF;
+			
+		
 	}
 }
 

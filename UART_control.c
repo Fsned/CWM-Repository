@@ -47,24 +47,19 @@ uint8_t PASSWORD_MATCHED = 0;
 static uint8_t UART_STATE = UartState_FindUser;
 
 char input_buffer[128];
-char USER_LIBRARY[USERS][5] =  {{"NON"},	// 0
-																{"map"},	// 1
-																{"abh"},	// 2	
-																{"frs"},	// 3
-																{"nig"}};	// 4
 
+
+char USER_LIBRARY[USERS][5] = {{"NON"} , {"map"} , {"ab"} , {"frs"} , {"nig"}};		// Brugernavne
+char PASS_LIBRARY[USERS][5] = {{"213"} , {"123"} , {"666"} , {"123"} , {"123"}};		// Passwords
+
+																
 char USERS_NAMES[USERS][30]	= {{"Blind Makker"},
 															 {"Mark Appelgren"},
-															 {"Blind Makker"},
+															 {"Anders B. Hansen"},
 															 {"Frederik Snedevind"},
 															 {"Blind Makker"}};
-
-char PASS_LIBRARY[USERS][5] =  {{"213"},	// 0
-																{"123"},	// 1
-																{"123"},	// 2
-																{"123"},	// 3
-																{"123"}};	// 4
-
+																
+																
 char branch_string[20] = {"Sandbox"};
 
 char keyword_strings[NO_OF_KEYWORDS][10] 	 = {{"help"},								// F0
@@ -315,7 +310,7 @@ void nTerminalNoFunctionFound() {
 void tUART_Task() {
 // *************************************
 // 						Local variables
-	int ChosenFunction;
+//	int ChosenFunction;
 	char last_char;
 	
 	static uint8_t inputs = 0;
@@ -519,9 +514,7 @@ uint8_t vCheckPasscode(char InputString[] , uint8_t length) {
 		if ( (InputString[n] != PASS_LIBRARY[USERNAME_MATCHED][n]) )
 			MatchFound = 0;
 	}
-	
 	return MatchFound;
-	
 }
 
 

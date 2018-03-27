@@ -22,42 +22,35 @@ Dialog DLL:      TCM.DLL V1.32.0.0
  
 <h2>Project:</h2>
 C:\Users\frs\Documents\GitHubR\CWM-Repository\mbed_blinky.uvprojx
-Project File Date:  03/21/2018
+Project File Date:  03/22/2018
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 5 (build 528)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Rebuild target 'CWM18_Controller'
 compiling utilities.c...
-compiling pwm_setup.c...
 compiling systick.c...
-compiling LED_control.c...
+compiling ADC_control.c...
+utilities.h(7): warning:  #1-D: last line of file ends without a newline
+  extern void delay_us(unsigned int n);
+ADC_control.c(150): warning:  #61-D: integer operation result is out of range
+  		
+PC_PINCON->PINSEL3 |= 0x02 << 30;
+ADC_control.c(150): warning:  #68-D: integer conversion resulted in a change of sign
+  		
+PC_PINCON->PINSEL3 |= 0x02 << 30;
+ADC_control.c: 3 warnings, 0 errors
+compiling pwm_setup.c...
 compiling main.cpp...
-ADC_control.h(51): warning:  #1295-D: Deprecated declaration nInitialize_ADC_Library - give arg types
-  extern void nInitialize_ADC_Library();
+utilities.h(7): warning:  #1-D: last line of file ends without a newline
+  extern void delay_us(unsigned int n);
 main.cpp: 1 warning, 0 errors
 compiling GPIO_setup.c...
-compiling ADC_control.c...
-ADC_control.h(51): warning:  #1295-D: Deprecated declaration nInitialize_ADC_Library - give arg types
-  extern void nInitialize_ADC_Library();
-ADC_control.c(55): warning:  #940-D: missing return statement at end of non-void function "yPauseADC" 
-  }
-ADC_control.c(59): warning:  #940-D: missing return statement at end of non-void function "yResumeADC" 
-  }
-ADC_control.c(63): warning:  #940-D: missing return statement at end of non-void function "ySetdownADC" 
-  }
-ADC_control.c(98): warning:  #940-D: missing return statement at end of non-void function "vSetupADC" 
-  }
-ADC_control.c(102): warning:  #940-D: missing return statement at end of non-void function "vSetupADC_Avg" 
-  }
-ADC_control.c: 6 warnings, 0 errors
+compiling LED_control.c...
 compiling UART_control.c...
-UART_control.c(318): warning:  #177-D: variable "ChosenFunction"  was declared but never referenced
-  	int ChosenFunction;
-UART_control.c: 1 warning, 0 errors
 linking...
-Program Size: Code=19044 RO-data=1932 RW-data=952 ZI-data=1200  
+Program Size: Code=18184 RO-data=1932 RW-data=952 ZI-data=1088  
 After Build - User command #1: fromelf --bin -o CWMW18_Controller_001.bin .\BUILD\CWMW18_Controller_001.axf
-".\BUILD\CWMW18_Controller_001.axf" - 0 Error(s), 8 Warning(s).
+".\BUILD\CWMW18_Controller_001.axf" - 0 Error(s), 4 Warning(s).
 
 <h2>Software Packages used:</h2>
 

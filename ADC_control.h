@@ -21,8 +21,8 @@
 //					Constants
 //
 // ****************************************************************************************
-#define ADC_UNITS		1
-#define ADC_CHANNELS	8
+#define ADC_UNITS				1
+#define ADC_CHANNELS		8
 #define ADC_CAPACITY	ADC_UNITS * ADC_CHANNELS
 
 #define SBIT_BURST      16u
@@ -33,29 +33,38 @@
 #define SBIT_RESULT     4u
 #define SBIT_CLCKDIV    8u
 
-#define ADC_FREE		0
-#define ADC_
+#define ADC_VACANT				0
+#define ADC_PAUSE					1
+#define ADC_HOLD					2
+#define ADC_ACTIVE				3
+
+#define ADC_NO_DATA 		0x1000
+#define ADC_PAUSED			0x2000
+#define ADC_NO_ACCESS 	0x3000
+
+
 
 // ****************************************************************************************
 //	Type		: 	YES_RETURN Functions
 //	Example		:	yXxXxX();
 //	Description	:	Returns true (1) or false (0) depending on the success of the function
 // ****************************************************************************************
-
+uint8_t yADC_ChangeStatus( uint8_t ADCHandle);
 
 // ****************************************************************************************
 //	Type		: 	NO_RETURN Functions
 //	Example		:	nXxXxX();
 //	Description	:	Does not return anything.
 // ****************************************************************************************
-extern void nInitialize_ADC_Library();
+extern void nInitialize_ADC_Library( void );
 
 // ****************************************************************************************
 //	Type		: 	VALUE_RETURN Functions
 //	Example		:	vXxXxX();
 //	Description	:	Returns a value, no confirmation if successful or not. can be a handle for e.g. ADC pin
 // ****************************************************************************************
-extern uint8_t vSetupADC(uint8_t PORT , uint8_t PIN , uint32_t FREQ);
+extern uint8_t vSetupADC( void );
 
-extern uint8_t vReadADC(uint8_t ADCHandle);
+extern uint16_t vReadADC(uint8_t ADCHandle);
 
+extern void tADC_Task( void );

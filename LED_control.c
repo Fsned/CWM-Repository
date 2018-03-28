@@ -33,6 +33,10 @@
 #include "lpc17xx.h"
 #include "stdutils.h"
 
+
+#include "FreeRTOS.h"
+#include "task.h"
+
 // ****************************************************************************************
 //
 //					Variables
@@ -42,9 +46,9 @@ int disco_arr[20][4] = {{0,0,0,0},{0,1,1,0},{1,0,0,1},{0,1,1,0},{1,1,1,1},
 												{1,0,0,0},{1,1,0,0},{0,1,0,0},{0,1,1,0},{0,0,1,0},
 												{0,0,1,1},{0,0,0,1},{0,0,1,1},{1,1,1,1},{1,1,1,0},
 												{1,1,0,0},{1,0,0,0},{0,0,0,0},{1,0,1,0},{0,1,0,1}};
-int LED_status[4] = {0,0,0,0};
+uint8_t LED_status[4] = {0,0,0,0};
 int LED_pins[4]   = {18, 20, 21, 23};
-
+int seconds_counter = 0;
 
 // ****************************************************************************************
 //	Type				: 	YES_RETURN Functions
@@ -71,21 +75,21 @@ void nLEDSetup(void) {
 	LPC_GPIO0->FIODIR   |=   0x0000000F;
 	LPC_GPIO1->FIODIR   |=   0x00B40000;	// Set Port 1 as output
 	
-	nLED_SET(1,0,0,0);
-	nDelayLED();
-	nLED_SET(1,1,0,0);
-	nDelayLED();
-	nLED_SET(1,1,1,0);
-	nDelayLED();
-	nLED_SET(1,1,1,1);
-	nDelayLED();
-	nLED_SET(0,1,1,1);
-	nDelayLED();
-	nLED_SET(0,0,1,1);
-	nDelayLED();
-	nLED_SET(0,0,0,1);
-	nDelayLED();
-	nLED_SET(0,0,0,0);
+//	nLED_SET(1,0,0,0);
+//	nDelayLED();
+//	nLED_SET(1,1,0,0);
+//	nDelayLED();
+//	nLED_SET(1,1,1,0);
+//	nDelayLED();
+//	nLED_SET(1,1,1,1);
+//	nDelayLED();
+//	nLED_SET(0,1,1,1);
+//	nDelayLED();
+//	nLED_SET(0,0,1,1);
+//	nDelayLED();
+//	nLED_SET(0,0,0,1);
+//	nDelayLED();
+//	nLED_SET(0,0,0,0);
 }
 // ***** End of Function ********************************************
 
@@ -99,7 +103,7 @@ void nLED_SET(uint8_t led_0 , uint8_t led_1, uint8_t led_2, uint8_t led_3) {
 //		
 // *****************************************************************/	
 	LPC_GPIO1->FIOCLR = 0x00B40000;
-	
+	led_delay_ms(1);
 	
 	if (led_0 != LED_DONT_CARE)
 		LED_status[0] = led_0;
@@ -115,9 +119,13 @@ void nLED_SET(uint8_t led_0 , uint8_t led_1, uint8_t led_2, uint8_t led_3) {
 	
 	
 	LPC_GPIO1->FIOSET |= (led_0 << 18);
+	led_delay_ms(1);
 	LPC_GPIO1->FIOSET |= (led_1 << 20);
+	led_delay_ms(1);
 	LPC_GPIO1->FIOSET |= (led_2 << 21);
+	led_delay_ms(1);
 	LPC_GPIO1->FIOSET |= (led_3 << 23);
+	led_delay_ms(1);
 }
 // ***** End of Function ********************************************
 
@@ -174,7 +182,7 @@ void nDelayLED() {
 }
 // ***** End of Function ********************************************
 
-void tLEDAlive() {
+void tLEDAlive( void *param ) {
 /* ******************************************************************
 //	Function name : tLEDAlive
 //	Functionality :	Used to blink the rightmost LED on the MBED LPC1768 board
@@ -182,20 +190,26 @@ void tLEDAlive() {
 //  Input range		: None
 //		
 // *****************************************************************/	
-	static uint16_t counter = 500; 	// ms 
-	static uint8_t LED_status = 0;			// Used to keep track of current LED status
+	uint8_t LED_status = 0;			// Used to keep track of current LED status
 	
-	if (! --counter) {
-		counter = 500;
+	TickType_t xPreviousWakeTime = ( TickType_t ) 0U;
+	
+	while(1) {
 		
-		if (LED_status == 1)
+		if (LED_status)
 			LED_status = 0;
-		else if (LED_status == 0)
+		else
 			LED_status = 1;
 		
-		nLED_SET(10,10,10,LED_status);
+		nLED_SET(LED_status,2,2,2);
+		
+		seconds_counter++; 
+		
+		
+//		vTaskDelay(1000);
+		
+		vTaskDelayUntil( &xPreviousWakeTime, ( TickType_t ) 1000 );
 	}
-	
 }
 // ***** End of Function ********************************************
 

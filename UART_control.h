@@ -146,7 +146,7 @@ extern void nTerminalNoFunctionFound( void );
 
 extern void nTerminalLogout				( void );
 
-extern void tUART_Task						( void );
+extern void tUART_Task						( void* );
 
 // ****************************************************************************************
 //	Type		: 	VALUE_RETURN Functions

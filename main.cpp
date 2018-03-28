@@ -16,22 +16,7 @@
 #include "queue.h"
 #include "timers.h" 
 
-#define TASK_STACK_SIZE 128
-
-
-
-//extern "C" 
-//{
-//#if ( configUSE_MALLOC_FAILED_HOOK == 1 )
-//void vApplicationMallocFailedHook( void );
-//#endif
-//#if ( configCHECK_FOR_STACK_OVERFLOW > 0 )
-//void vApplicationStackOverflowHook( TaskHandle_t pxTask, char *pcTaskName );
-//#endif
-//}
-
-
-void task (void*);
+#define TASK_STACK_SIZE 32
 
 uint8_t led_flipper = 0;
 uint8_t wave_status;
@@ -40,41 +25,73 @@ unsigned int myarr[4] = {0,0,0,1};
 
 int main() 
 {
+	
+	BaseType_t xReturned;
 	SystemInit();                    //Clock and PLL configuration
 	nGPIOSetup();
-	
+//	
 	nUART0_init(9600);
 	
 //	nSystickSetup(1000000);					// Should be setup last, to avoid interrupts generated during setup phase
 //	uint16_t myvalue = 0;
 	
-	uint8_t ADC_Handle_1 = vSetupADC();
+//	uint8_t ADC_Handle_1 = vSetupADC();
 	
 	while(1) {
-		
+//		
 //		tUART_Task();			// Uart task latches until character is received, which spoils the scheduling.	
-////	  tADC_Task	
-//		
-//		
-//		delay_ms(1); 
-//		tLEDAlive();
+//	  tADC_Task	
+
+		
 		// Create a task.
-    xTaskCreate( task , "T01", TASK_STACK_SIZE, NULL, configMAX_PRIORITIES - 1, NULL );
-    // Start FreeRTOS scheduler.
+    
+		xReturned = xTaskCreate( tUART_Task , "UARTC0", 128, NULL, configMAX_PRIORITIES - 1, NULL ); 
+//		
+    
+		
+		if (xReturned != pdPASS)
+			nLED_SET(1,1,1,1);
+		// LED Alive task
+		xTaskCreate( tLEDAlive , 	"T01"					, TASK_STACK_SIZE, NULL, configMAX_PRIORITIES - 1, NULL );
+		
+		
+		// Start FreeRTOS scheduler.
     vTaskStartScheduler();
 	}
 }
 
-void task (void *param) {
-	TickType_t xPreviousWakeTime = ( TickType_t ) 0U;
-    
-    for(;;) {
-        nLEDFlip(myarr);
-        
-        // Delay a task until next period (1 sec)
-        vTaskDelayUntil( &xPreviousWakeTime, ( TickType_t ) 1000 );
+
+#if ( configUSE_MALLOC_FAILED_HOOK == 1 )
+void vApplicationMallocFailedHook( void )
+{
+    taskDISABLE_INTERRUPTS();
+
+    for( ;; )
+    {
+        nLED_SET(LED_DONT_CARE,LED_DONT_CARE,LED_DONT_CARE,1);
+        delay_ms(1000);
+        nLED_SET(LED_DONT_CARE,LED_DONT_CARE,LED_DONT_CARE,0);
+        delay_ms(1000);
     }
 }
+#endif
 
+#if ( configCHECK_FOR_STACK_OVERFLOW > 0 )
+void vApplicationStackOverflowHook( TaskHandle_t pxTask, char *pcTaskName )
+{
+    ( void ) pcTaskName;
+    ( void ) pxTask;
+
+    taskDISABLE_INTERRUPTS();
+
+    for( ;; )
+    {
+        nLED_SET(LED_DONT_CARE,LED_DONT_CARE,LED_DONT_CARE,1);
+        delay_ms(500);
+        nLED_SET(LED_DONT_CARE,LED_DONT_CARE,LED_DONT_CARE,0);
+        delay_ms(500);
+    }
+}
+#endif
 
 

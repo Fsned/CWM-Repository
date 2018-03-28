@@ -23,7 +23,7 @@
 //					Constants
 //
 // ****************************************************************************************
-#define		LED_DONT_CARE		10 
+#define		LED_DONT_CARE		2 
 
 
 // ****************************************************************************************
@@ -55,7 +55,7 @@ extern void nDelayLED	( void );
 // ****************************************************************************************
 extern void led_delay_ms(unsigned int n);
 
-extern void tLEDAlive( void );
+extern void tLEDAlive( void* );
 
 
 

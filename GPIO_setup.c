@@ -364,7 +364,7 @@ void nGPIOSetup() {
 //  Input range		: None, Static coding
 //		
 // *****************************************************************/	
-	if (!PinLibrary_Initialized)
+	if (! PinLibrary_Initialized)
 		nInitializePinLibrary();
 	
 	// Setup Pins for LEDS 1:4

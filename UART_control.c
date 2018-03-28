@@ -228,8 +228,9 @@ void nUART_TxChar(char ch) {
 /* Function to Receive a char */
 char nUART_RxChar() {
     char ch; 
-	
-    while(util_IsBitCleared(LPC_UART0->LSR,SBIT_RDR));  // Wait till the data is received
+		nLED_SET(1,1,1,1);
+//    while(util_IsBitCleared(LPC_UART0->LSR,SBIT_RDR));  // Wait till the data is received
+		if (!util_IsBitCleared(LPC_UART0->LSR,SBIT_RDR))
 		ch = LPC_UART0->RBR;                                // Read received data    
 		
 		return ch;
@@ -238,6 +239,7 @@ char nUART_RxChar() {
 
 /* Function to transmit a string to UART */
 void nUART_TxString(char ch_s[]) {
+	
 	int i = 0;
 	while(ch_s[i] != '\0') {
 		nUART_TxChar(ch_s[i]);
@@ -322,7 +324,7 @@ void tUART_Task( void *param ) {
 // *************************************
 // 						Local variables
 //	int ChosenFunction;
-	char last_char;
+	static char last_char;
 	
 	static uint8_t inputs = 0;
 	static uint8_t OutedUserMsg 		= 0;
@@ -331,15 +333,14 @@ void tUART_Task( void *param ) {
 	
 	TickType_t xPreviousWakeTime = ( TickType_t ) 0U;
 	
-	while(1) {
+	while(true) {
 		switch (UART_STATE) {
 			
 	// *******************************************************************
 	//										Check Username State
 			case UartState_FindUser :
-				nLED_SET(1,1,0,1);
 				if (! OutedUserMsg) {
-					nUART_TxString("Enter User: ");
+//					nUART_TxString("Enter User: ");
 					OutedUserMsg = 1;
 				}
 				
@@ -347,6 +348,7 @@ void tUART_Task( void *param ) {
 			
 				if ( yKeyHit (CHAR_ENTER , last_char ) && inputs == 0) {
 					nNewLine( 1 );
+					nLED_SET(1,1,1,1);
 					OutedUserMsg = 0;
 				}
 				
@@ -367,8 +369,8 @@ void tUART_Task( void *param ) {
 					nUART_TxChar(input_buffer[inputs]);
 					inputs++;
 				}
-				
-				vTaskDelay(10);
+				nLED_SET(1,1,1,1);
+				vTaskDelay(500);
 				break;
 				
 	// *******************************************************************
@@ -533,10 +535,4 @@ uint8_t vCheckPasscode(char InputString[] , uint8_t length) {
 	}
 	return MatchFound;
 }
-
-
-
-
-
-
 

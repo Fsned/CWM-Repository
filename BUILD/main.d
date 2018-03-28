@@ -8,5 +8,3 @@
 .\build\main.o: mbed/TARGET_LPC1768/mpu_armv7.h
 .\build\main.o: mbed/TARGET_LPC1768/TARGET_NXP/TARGET_LPC176X/device/system_LPC17xx.h
 .\build\main.o: setup_file.h
-.\build\main.o: LED_control.h
-.\build\main.o: utilities.h

@@ -22,7 +22,7 @@ Dialog DLL:      TCM.DLL V1.32.0.0
  
 <h2>Project:</h2>
 C:\Users\frs\Documents\GitHubR\CWM-Repository\mbed_blinky.uvprojx
-Project File Date:  03/20/2018
+Project File Date:  03/28/2018
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 5 (build 528)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
@@ -32,12 +32,15 @@ compiling UART_control.c...
 UART_control.c(1): error:  #5: cannot open source input file "UART_control.h": Permission denied
   #include "UART_control.h"
 UART_control.c: 0 warnings, 1 error
-compiling main.cpp...
-main.cpp(5): error:  #5: cannot open source input file "UART_control.h": Permission denied
-  #include "UART_control.h"
-main.cpp: 0 warnings, 1 error
 compiling LED_control.c...
-".\BUILD\CWMW18_Controller_001.axf" - 2 Error(s), 0 Warning(s).
+LED_control.c(1): error:  #5: cannot open source input file "LED_control.h": Permission denied
+  #include "LED_control.h"
+LED_control.c: 0 warnings, 1 error
+compiling main.cpp...
+main.cpp(3): error:  #5: cannot open source input file "LED_control.h": Permission denied
+  #include "LED_control.h"
+main.cpp: 0 warnings, 1 error
+".\BUILD\CWMW18_Controller_001.axf" - 3 Error(s), 0 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -52,7 +55,7 @@ Package Vendor: Keil
 
 <h2>Collection of Component Files used:</h2>
 Target not created.
-Build Time Elapsed:  00:00:00
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>

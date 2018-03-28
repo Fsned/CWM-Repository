@@ -19,10 +19,10 @@
 
 
 
-if ( configUSE_MALLOC_FAILED_HOOK == 1 )
-	void vApplicationMallocFailedHook( void );
-if ( configCHECK_FOR_STACK_OVERFLOW > 0 )
-	void vApplicationStackOverflowHook( TaskHandle_t pxTask, char *pcTaskName );
+//if ( configUSE_MALLOC_FAILED_HOOK == 1 )
+//	void vApplicationMallocFailedHook( void );
+//if ( configCHECK_FOR_STACK_OVERFLOW > 0 )
+//	void vApplicationStackOverflowHook( TaskHandle_t pxTask, char *pcTaskName );
 
 
 void task (void*);

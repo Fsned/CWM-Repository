@@ -205,10 +205,10 @@ void tLEDAlive( void *param ) {
 		
 		seconds_counter++; 
 		
-		
-//		vTaskDelay(1000);
-		
-		vTaskDelayUntil( &xPreviousWakeTime, ( TickType_t ) 1000 );
+		if (LED_status)
+			vTaskDelayUntil( &xPreviousWakeTime, ( TickType_t ) 300 );
+		else
+			vTaskDelayUntil( &xPreviousWakeTime, ( TickType_t ) 1500 );
 	}
 }
 // ***** End of Function ********************************************

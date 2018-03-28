@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\BUILD\CWMW18_Controller_001.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\BUILD\CWMW18_Controller_001.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Wed Mar 28 13:18:29 2018
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Wed Mar 28 13:45:06 2018
 <BR><P>
 <H3>Maximum Stack Usage =        664 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -31,7 +31,7 @@ Mutually Recursive functions
  <LI><a href="#[c3]">_sys_write</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[f1]">serial_init</a><BR>
  <LI><a href="#[f9]">mbed_error_vfprintf</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[f1]">serial_init</a><BR>
  <LI><a href="#[f1]">serial_init</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[e8]">mbed_assert_internal</a><BR>
- <LI><a href="#[10f]">mbed_error_printf</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[f7]">core_util_critical_section_exit</a><BR>
+ <LI><a href="#[10e]">mbed_error_printf</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[f7]">core_util_critical_section_exit</a><BR>
 </UL>
 <P>
 <H3>
@@ -629,7 +629,7 @@ Global Symbols
 <LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_char_common
 </UL>
 <BR>[Called By]<UL><LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_error_vfprintf
-<LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_error_printf
+<LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_error_printf
 </UL>
 
 <P><STRONG><a name="[9a]"></a>_do_fflush</STRONG> (Thumb, 54 bytes, Stack size 16 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(fflush.o)(.text))
@@ -1503,7 +1503,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[153]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ticker_read
 <LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_die
 <LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_error_vfprintf
-<LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_error_printf
+<LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_error_printf
 <LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_assert_internal
 <LI><a href="#[18]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ticker_irq_handler
 </UL>
@@ -1516,7 +1516,7 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[153]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ticker_read
 <LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_error_vfprintf
-<LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_error_printf
+<LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_error_printf
 <LI><a href="#[18]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ticker_irq_handler
 </UL>
 
@@ -1550,7 +1550,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[15e]"></a>get_us_ticker_data</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_us_ticker_api.o)(i.get_us_ticker_data))
-<BR><BR>[Called By]<UL><LI><a href="#[110]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wait_ms
+<BR><BR>[Called By]<UL><LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wait_ms
 </UL>
 
 <P><STRONG><a name="[fd]"></a>gpio_dir</STRONG> (Thumb, 54 bytes, Stack size 16 bytes, mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/gpio_api.o(i.gpio_dir))
@@ -1619,18 +1619,17 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[117]"></a>led_delay_ms</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, .\build\led_control.o(i.led_delay_ms))
-<BR><BR>[Called By]<UL><LI><a href="#[10d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nLED_SET
+<BR><BR>[Called By]<UL><LI><a href="#[111]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nLED_SET
 </UL>
 
-<P><STRONG><a name="[e2]"></a>$Super$$main</STRONG> (Thumb, 84 bytes, Stack size 16 bytes, .\build\main.o(i.main))
+<P><STRONG><a name="[e2]"></a>$Super$$main</STRONG> (Thumb, 72 bytes, Stack size 16 bytes, .\build\main.o(i.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 184 + Unknown Stack Size
 <LI>Call Chain = $Super$$main &rArr; vTaskStartScheduler &rArr; xTimerCreateTimerTask &rArr; xTaskCreate &rArr; pvPortMalloc &rArr; xTaskResumeAll &rArr; xTaskIncrementTick
 </UL>
 <BR>[Calls]<UL><LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemInit
 <LI><a href="#[10c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskCreate
-<LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskStartScheduler
+<LI><a href="#[10d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskStartScheduler
 <LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nUART0_init
-<LI><a href="#[10d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nLED_SET
 <LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nGPIOSetup
 </UL>
 <BR>[Called By]<UL><LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
@@ -1641,7 +1640,7 @@ Global Symbols
 <LI>Call Chain = mbed_assert_internal &rArr; mbed_error_printf &rArr;  core_util_critical_section_exit (Cycle)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_die
-<LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_error_printf
+<LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_error_printf
 <LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;core_util_critical_section_enter
 </UL>
 <BR>[Called By]<UL><LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_init_out_ex
@@ -1664,7 +1663,7 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 192 + In Cycle
 <LI>Call Chain = mbed_die &rArr;  mbed_assert_internal (Cycle)
 </UL>
-<BR>[Calls]<UL><LI><a href="#[110]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wait_ms
+<BR>[Calls]<UL><LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wait_ms
 <LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_init_out
 <LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;core_util_critical_section_enter
 <LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_assert_internal
@@ -1673,7 +1672,7 @@ Global Symbols
 <LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_assert_internal
 </UL>
 
-<P><STRONG><a name="[10f]"></a>mbed_error_printf</STRONG> (Thumb, 76 bytes, Stack size 160 bytes, mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_board.o(i.mbed_error_printf))
+<P><STRONG><a name="[10e]"></a>mbed_error_printf</STRONG> (Thumb, 76 bytes, Stack size 160 bytes, mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_board.o(i.mbed_error_printf))
 <BR><BR>[Stack]<UL><LI>Max Depth = 536 + Unknown Stack Size
  + In Cycle
 <LI>Call Chain = mbed_error_printf &rArr;  core_util_critical_section_exit (Cycle)
@@ -1702,7 +1701,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[fa]"></a>mbed_interface_connected</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_interface.o)(i.mbed_interface_connected))
-<BR><BR>[Calls]<UL><LI><a href="#[111]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;semihost_connected
+<BR><BR>[Calls]<UL><LI><a href="#[110]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;semihost_connected
 </UL>
 <BR>[Called By]<UL><LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exit
 </UL>
@@ -1723,7 +1722,7 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = nDiscoFunc &rArr; nLED_SET
 </UL>
 <BR>[Calls]<UL><LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nDelayLED
-<LI><a href="#[10d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nLED_SET
+<LI><a href="#[111]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nLED_SET
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> uart_control.o(.data)
 </UL>
@@ -1746,7 +1745,7 @@ Global Symbols
 <P><STRONG><a name="[116]"></a>nLEDFlip</STRONG> (Thumb, 56 bytes, Stack size 12 bytes, .\build\led_control.o(i.nLEDFlip))
 <BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = nLEDFlip &rArr; nLED_SET
 </UL>
-<BR>[Calls]<UL><LI><a href="#[10d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nLED_SET
+<BR>[Calls]<UL><LI><a href="#[111]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nLED_SET
 </UL>
 <BR>[Called By]<UL><LI><a href="#[10]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nTerminal_LED_4_ON
 <LI><a href="#[f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nTerminal_LED_3_ON
@@ -1754,16 +1753,16 @@ Global Symbols
 <LI><a href="#[d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nTerminal_LED_1_ON
 </UL>
 
-<P><STRONG><a name="[10d]"></a>nLED_SET</STRONG> (Thumb, 128 bytes, Stack size 16 bytes, .\build\led_control.o(i.nLED_SET))
+<P><STRONG><a name="[111]"></a>nLED_SET</STRONG> (Thumb, 128 bytes, Stack size 16 bytes, .\build\led_control.o(i.nLED_SET))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = nLED_SET
 </UL>
 <BR>[Calls]<UL><LI><a href="#[117]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;led_delay_ms
 </UL>
-<BR>[Called By]<UL><LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
-<LI><a href="#[11]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nTerminal_LED_OFF
+<BR>[Called By]<UL><LI><a href="#[11]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nTerminal_LED_OFF
 <LI><a href="#[12]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nTerminal_LED_ALL_ON
 <LI><a href="#[116]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nLEDFlip
 <LI><a href="#[15]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nDiscoFunc
+<LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tUART_Task
 <LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tLEDAlive
 <LI><a href="#[156]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vApplicationStackOverflowHook
 <LI><a href="#[148]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vApplicationMallocFailedHook
@@ -1846,14 +1845,14 @@ Global Symbols
 <P><STRONG><a name="[12]"></a>nTerminal_LED_ALL_ON</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, .\build\uart_control.o(i.nTerminal_LED_ALL_ON))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = nTerminal_LED_ALL_ON &rArr; nLED_SET
 </UL>
-<BR>[Calls]<UL><LI><a href="#[10d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nLED_SET
+<BR>[Calls]<UL><LI><a href="#[111]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nLED_SET
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> uart_control.o(.data)
 </UL>
 <P><STRONG><a name="[11]"></a>nTerminal_LED_OFF</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, .\build\uart_control.o(i.nTerminal_LED_OFF))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = nTerminal_LED_OFF &rArr; nLED_SET
 </UL>
-<BR>[Calls]<UL><LI><a href="#[10d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nLED_SET
+<BR>[Calls]<UL><LI><a href="#[111]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nLED_SET
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> uart_control.o(.data)
 </UL>
@@ -1961,7 +1960,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[134]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;prvInitialiseNewTask
 </UL>
 
-<P><STRONG><a name="[111]"></a>semihost_connected</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_semihost_api.o)(i.semihost_connected))
+<P><STRONG><a name="[110]"></a>semihost_connected</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_semihost_api.o)(i.semihost_connected))
 <BR><BR>[Called By]<UL><LI><a href="#[fa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_interface_connected
 </UL>
 
@@ -1998,7 +1997,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sys_write
 <LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sys_open
 <LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_error_vfprintf
-<LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_error_printf
+<LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_error_printf
 </UL>
 
 <P><STRONG><a name="[f5]"></a>serial_putc</STRONG> (Thumb, 100 bytes, Stack size 12 bytes, mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(i.serial_putc))
@@ -2006,7 +2005,7 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sys_write
 <LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_error_vfprintf
-<LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_error_printf
+<LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_error_printf
 </UL>
 
 <P><STRONG><a name="[149]"></a>serial_set_flow_control</STRONG> (Thumb, 252 bytes, Stack size 40 bytes, mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(i.serial_set_flow_control))
@@ -2022,15 +2021,15 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[f1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;serial_init
 </UL>
 
-<P><STRONG><a name="[4a]"></a>tLEDAlive</STRONG> (Thumb, 52 bytes, Stack size 8 bytes, .\build\led_control.o(i.tLEDAlive))
+<P><STRONG><a name="[4a]"></a>tLEDAlive</STRONG> (Thumb, 66 bytes, Stack size 8 bytes, .\build\led_control.o(i.tLEDAlive))
 <BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = tLEDAlive &rArr; vTaskDelayUntil &rArr; xTaskResumeAll &rArr; xTaskIncrementTick
 </UL>
 <BR>[Calls]<UL><LI><a href="#[14c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskDelayUntil
-<LI><a href="#[10d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nLED_SET
+<LI><a href="#[111]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nLED_SET
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> main.o(i.main)
 </UL>
-<P><STRONG><a name="[49]"></a>tUART_Task</STRONG> (Thumb, 632 bytes, Stack size 8 bytes, .\build\uart_control.o(i.tUART_Task))
+<P><STRONG><a name="[49]"></a>tUART_Task</STRONG> (Thumb, 636 bytes, Stack size 8 bytes, .\build\uart_control.o(i.tUART_Task))
 <BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = tUART_Task &rArr; vTaskDelayUntil &rArr; xTaskResumeAll &rArr; xTaskIncrementTick
 </UL>
 <BR>[Calls]<UL><LI><a href="#[150]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskDelay
@@ -2043,6 +2042,7 @@ Global Symbols
 <LI><a href="#[14d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nUART_RxChar
 <LI><a href="#[118]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nNewLine
 <LI><a href="#[14c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskDelayUntil
+<LI><a href="#[111]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nLED_SET
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> main.o(i.main)
 </UL>
@@ -2066,7 +2066,7 @@ Global Symbols
 <LI><a href="#[108]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;update_present_time
 <LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initialize
 </UL>
-<BR>[Called By]<UL><LI><a href="#[110]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wait_ms
+<BR>[Called By]<UL><LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wait_ms
 </UL>
 
 <P><STRONG><a name="[4c]"></a>uart0_irq</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(i.uart0_irq))
@@ -2138,7 +2138,7 @@ Global Symbols
 <P><STRONG><a name="[148]"></a>vApplicationMallocFailedHook</STRONG> (Thumb, 62 bytes, Stack size 0 bytes, .\build\main.o(i.vApplicationMallocFailedHook))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = vApplicationMallocFailedHook &rArr; nLED_SET
 </UL>
-<BR>[Calls]<UL><LI><a href="#[10d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nLED_SET
+<BR>[Calls]<UL><LI><a href="#[111]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nLED_SET
 <LI><a href="#[155]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
 </UL>
 <BR>[Called By]<UL><LI><a href="#[147]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pvPortMalloc
@@ -2147,7 +2147,7 @@ Global Symbols
 <P><STRONG><a name="[156]"></a>vApplicationStackOverflowHook</STRONG> (Thumb, 62 bytes, Stack size 0 bytes, .\build\main.o(i.vApplicationStackOverflowHook))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = vApplicationStackOverflowHook &rArr; nLED_SET
 </UL>
-<BR>[Calls]<UL><LI><a href="#[10d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nLED_SET
+<BR>[Calls]<UL><LI><a href="#[111]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nLED_SET
 <LI><a href="#[155]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
 </UL>
 <BR>[Called By]<UL><LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskSwitchContext
@@ -2324,7 +2324,7 @@ Global Symbols
 <LI><a href="#[13e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xQueueGenericReceive
 </UL>
 
-<P><STRONG><a name="[10e]"></a>vTaskStartScheduler</STRONG> (Thumb, 118 bytes, Stack size 16 bytes, .\build\tasks.o(i.vTaskStartScheduler))
+<P><STRONG><a name="[10d]"></a>vTaskStartScheduler</STRONG> (Thumb, 118 bytes, Stack size 16 bytes, .\build\tasks.o(i.vTaskStartScheduler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 168 + Unknown Stack Size
 <LI>Call Chain = vTaskStartScheduler &rArr; xTimerCreateTimerTask &rArr; xTaskCreate &rArr; pvPortMalloc &rArr; xTaskResumeAll &rArr; xTaskIncrementTick
 </UL>
@@ -2354,7 +2354,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PendSV_Handler
 </UL>
 
-<P><STRONG><a name="[110]"></a>wait_ms</STRONG> (Thumb, 36 bytes, Stack size 16 bytes, mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_wait_api_no_rtos.o)(i.wait_ms))
+<P><STRONG><a name="[10f]"></a>wait_ms</STRONG> (Thumb, 36 bytes, Stack size 16 bytes, mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_wait_api_no_rtos.o)(i.wait_ms))
 <BR><BR>[Stack]<UL><LI>Max Depth = 168<LI>Call Chain = wait_ms &rArr; ticker_read &rArr;  core_util_critical_section_exit (Cycle)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[153]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ticker_read
@@ -2369,7 +2369,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[15f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPortSetupTimerInterrupt
 <LI><a href="#[160]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__asm___6_port_c_39a90d8d__prvStartFirstTask
 </UL>
-<BR>[Called By]<UL><LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskStartScheduler
+<BR>[Called By]<UL><LI><a href="#[10d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskStartScheduler
 </UL>
 
 <P><STRONG><a name="[128]"></a>xQueueGenericCreate</STRONG> (Thumb, 88 bytes, Stack size 32 bytes, .\build\queue.o(i.xQueueGenericCreate))
@@ -2463,7 +2463,7 @@ Global Symbols
 <LI><a href="#[122]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;prvAddNewTaskToReadyList
 </UL>
 <BR>[Called By]<UL><LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
-<LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskStartScheduler
+<LI><a href="#[10d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskStartScheduler
 <LI><a href="#[15c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTimerCreateTimerTask
 </UL>
 
@@ -2537,7 +2537,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[10c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskCreate
 <LI><a href="#[126]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;prvCheckForValidListAndQueue
 </UL>
-<BR>[Called By]<UL><LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskStartScheduler
+<BR>[Called By]<UL><LI><a href="#[10d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskStartScheduler
 </UL>
 
 <P><STRONG><a name="[13b]"></a>xTimerGenericCommand</STRONG> (Thumb, 126 bytes, Stack size 40 bytes, .\build\timers.o(i.xTimerGenericCommand))

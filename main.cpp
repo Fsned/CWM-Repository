@@ -38,27 +38,44 @@ int main()
 //	uint8_t ADC_Handle_1 = vSetupADC();
 	
 	while(1) {
-//		
-//		tUART_Task();			// Uart task latches until character is received, which spoils the scheduling.	
-//	  tADC_Task	
 
-		
 		// Create a task.
     
-		xReturned = xTaskCreate( tUART_Task , "UARTC0", 128, NULL, configMAX_PRIORITIES - 1, NULL ); 
-//		
-    
+		xReturned = xTaskCreate( tUART_Task , "UARTC0", 32, NULL, configMAX_PRIORITIES - 1, NULL ); 
 		
-		if (xReturned != pdPASS)
-			nLED_SET(1,1,1,1);
-		// LED Alive task
-		xTaskCreate( tLEDAlive , 	"T01"					, TASK_STACK_SIZE, NULL, configMAX_PRIORITIES - 1, NULL );
-		
+		if (xReturned == pdPASS)
+								xTaskCreate( tLEDAlive 	, 	"T01"	, TASK_STACK_SIZE, NULL, configMAX_PRIORITIES - 1, NULL );
+
 		
 		// Start FreeRTOS scheduler.
     vTaskStartScheduler();
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 #if ( configUSE_MALLOC_FAILED_HOOK == 1 )

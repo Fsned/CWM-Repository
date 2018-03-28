@@ -317,7 +317,7 @@ void nTerminalNoFunctionFound() {
 /* Task function for UART */
 void tUART_Task( void *param ) {
 	
-	nUART_TxChar("n");
+	
 	
 // *************************************
 // 						Local variables
@@ -337,7 +337,7 @@ void tUART_Task( void *param ) {
 	// *******************************************************************
 	//										Check Username State
 			case UartState_FindUser :
-				
+				nLED_SET(1,1,0,1);
 				if (! OutedUserMsg) {
 					nUART_TxString("Enter User: ");
 					OutedUserMsg = 1;
@@ -366,7 +366,6 @@ void tUART_Task( void *param ) {
 					input_buffer[inputs] = last_char;
 					nUART_TxChar(input_buffer[inputs]);
 					inputs++;
-					
 				}
 				
 				vTaskDelay(10);
@@ -375,7 +374,6 @@ void tUART_Task( void *param ) {
 	// *******************************************************************
 	//										Check Password State
 			case UartState_FindPass :
-				
 				if (! OutedPassMsg) {
 					nUART_TxString("Enter Password: ");
 					OutedPassMsg = 1;

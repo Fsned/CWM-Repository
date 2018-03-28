@@ -195,7 +195,7 @@
 
   <Group>
     <GroupName>mbed</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -2398,8 +2398,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\FreeRTOS\portable\MemMang\heap_1.c</PathWithFileName>
-      <FilenameWithoutPath>heap_1.c</FilenameWithoutPath>
+      <PathWithFileName>.\FreeRTOS\portable\MemMang\heap_2.c</PathWithFileName>
+      <FilenameWithoutPath>heap_2.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>

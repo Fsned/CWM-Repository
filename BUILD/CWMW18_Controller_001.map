@@ -505,12 +505,12 @@ Section Cross References
     .\build\event_groups.o(i.vEventGroupClearBitsCallback) refers to .\build\event_groups.o(i.xEventGroupClearBits) for xEventGroupClearBits
     .\build\event_groups.o(i.vEventGroupDelete) refers to .\build\tasks.o(i.vTaskSuspendAll) for vTaskSuspendAll
     .\build\event_groups.o(i.vEventGroupDelete) refers to .\build\tasks.o(i.xTaskRemoveFromUnorderedEventList) for xTaskRemoveFromUnorderedEventList
-    .\build\event_groups.o(i.vEventGroupDelete) refers to .\build\heap_1.o(i.vPortFree) for vPortFree
+    .\build\event_groups.o(i.vEventGroupDelete) refers to .\build\heap_2.o(i.vPortFree) for vPortFree
     .\build\event_groups.o(i.vEventGroupDelete) refers to .\build\tasks.o(i.xTaskResumeAll) for xTaskResumeAll
     .\build\event_groups.o(i.vEventGroupSetBitsCallback) refers to .\build\event_groups.o(i.xEventGroupSetBits) for xEventGroupSetBits
     .\build\event_groups.o(i.xEventGroupClearBits) refers to .\build\port.o(i.vPortEnterCritical) for vPortEnterCritical
     .\build\event_groups.o(i.xEventGroupClearBits) refers to .\build\port.o(i.vPortExitCritical) for vPortExitCritical
-    .\build\event_groups.o(i.xEventGroupCreate) refers to .\build\heap_1.o(i.pvPortMalloc) for pvPortMalloc
+    .\build\event_groups.o(i.xEventGroupCreate) refers to .\build\heap_2.o(i.pvPortMalloc) for pvPortMalloc
     .\build\event_groups.o(i.xEventGroupCreate) refers to .\build\list.o(i.vListInitialise) for vListInitialise
     .\build\event_groups.o(i.xEventGroupSetBits) refers to .\build\tasks.o(i.vTaskSuspendAll) for vTaskSuspendAll
     .\build\event_groups.o(i.xEventGroupSetBits) refers to .\build\tasks.o(i.xTaskRemoveFromUnorderedEventList) for xTaskRemoveFromUnorderedEventList
@@ -548,7 +548,7 @@ Section Cross References
     .\build\queue.o(i.uxQueueMessagesWaiting) refers to .\build\port.o(i.vPortExitCritical) for vPortExitCritical
     .\build\queue.o(i.uxQueueSpacesAvailable) refers to .\build\port.o(i.vPortEnterCritical) for vPortEnterCritical
     .\build\queue.o(i.uxQueueSpacesAvailable) refers to .\build\port.o(i.vPortExitCritical) for vPortExitCritical
-    .\build\queue.o(i.vQueueDelete) refers to .\build\heap_1.o(i.vPortFree) for vPortFree
+    .\build\queue.o(i.vQueueDelete) refers to .\build\heap_2.o(i.vPortFree) for vPortFree
     .\build\queue.o(i.vQueueWaitForMessageRestricted) refers to .\build\port.o(i.vPortEnterCritical) for vPortEnterCritical
     .\build\queue.o(i.vQueueWaitForMessageRestricted) refers to .\build\port.o(i.vPortExitCritical) for vPortExitCritical
     .\build\queue.o(i.vQueueWaitForMessageRestricted) refers to .\build\tasks.o(i.vTaskPlaceOnEventListRestricted) for vTaskPlaceOnEventListRestricted
@@ -556,7 +556,7 @@ Section Cross References
     .\build\queue.o(i.xQueueCreateCountingSemaphore) refers to .\build\queue.o(i.xQueueGenericCreate) for xQueueGenericCreate
     .\build\queue.o(i.xQueueCreateMutex) refers to .\build\queue.o(i.xQueueGenericCreate) for xQueueGenericCreate
     .\build\queue.o(i.xQueueCreateMutex) refers to .\build\queue.o(i.prvInitialiseMutex) for prvInitialiseMutex
-    .\build\queue.o(i.xQueueGenericCreate) refers to .\build\heap_1.o(i.pvPortMalloc) for pvPortMalloc
+    .\build\queue.o(i.xQueueGenericCreate) refers to .\build\heap_2.o(i.pvPortMalloc) for pvPortMalloc
     .\build\queue.o(i.xQueueGenericCreate) refers to .\build\queue.o(i.prvInitialiseNewQueue) for prvInitialiseNewQueue
     .\build\queue.o(i.xQueueGenericReceive) refers to .\build\tasks.o(i.xTaskGetSchedulerState) for xTaskGetSchedulerState
     .\build\queue.o(i.xQueueGenericReceive) refers to .\build\port.o(i.vPortEnterCritical) for vPortEnterCritical
@@ -622,7 +622,7 @@ Section Cross References
     .\build\tasks.o(i.prvCheckTasksWaitingTermination) refers to .\build\tasks.o(i.prvDeleteTCB) for prvDeleteTCB
     .\build\tasks.o(i.prvCheckTasksWaitingTermination) refers to .\build\tasks.o(.bss) for xTasksWaitingTermination
     .\build\tasks.o(i.prvCheckTasksWaitingTermination) refers to .\build\tasks.o(.data) for uxCurrentNumberOfTasks
-    .\build\tasks.o(i.prvDeleteTCB) refers to .\build\heap_1.o(i.vPortFree) for vPortFree
+    .\build\tasks.o(i.prvDeleteTCB) refers to .\build\heap_2.o(i.vPortFree) for vPortFree
     .\build\tasks.o(i.prvIdleTask) refers to .\build\tasks.o(i.prvCheckTasksWaitingTermination) for prvCheckTasksWaitingTermination
     .\build\tasks.o(i.prvIdleTask) refers to .\build\tasks.o(.bss) for pxReadyTasksLists
     .\build\tasks.o(i.prvInitialiseNewTask) refers to C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(aeabi_memset.o)(.text) for __aeabi_memset
@@ -716,8 +716,8 @@ Section Cross References
     .\build\tasks.o(i.xTaskCheckForTimeOut) refers to .\build\tasks.o(i.vTaskSetTimeOutState) for vTaskSetTimeOutState
     .\build\tasks.o(i.xTaskCheckForTimeOut) refers to .\build\port.o(i.vPortExitCritical) for vPortExitCritical
     .\build\tasks.o(i.xTaskCheckForTimeOut) refers to .\build\tasks.o(.data) for xTickCount
-    .\build\tasks.o(i.xTaskCreate) refers to .\build\heap_1.o(i.pvPortMalloc) for pvPortMalloc
-    .\build\tasks.o(i.xTaskCreate) refers to .\build\heap_1.o(i.vPortFree) for vPortFree
+    .\build\tasks.o(i.xTaskCreate) refers to .\build\heap_2.o(i.pvPortMalloc) for pvPortMalloc
+    .\build\tasks.o(i.xTaskCreate) refers to .\build\heap_2.o(i.vPortFree) for vPortFree
     .\build\tasks.o(i.xTaskCreate) refers to .\build\tasks.o(i.prvInitialiseNewTask) for prvInitialiseNewTask
     .\build\tasks.o(i.xTaskCreate) refers to .\build\tasks.o(i.prvAddNewTaskToReadyList) for prvAddNewTaskToReadyList
     .\build\tasks.o(i.xTaskGenericNotify) refers to .\build\port.o(i.vPortEnterCritical) for vPortEnterCritical
@@ -793,7 +793,7 @@ Section Cross References
     .\build\timers.o(i.prvProcessReceivedCommands) refers to .\build\timers.o(i.prvSampleTimeNow) for prvSampleTimeNow
     .\build\timers.o(i.prvProcessReceivedCommands) refers to .\build\timers.o(i.prvInsertTimerInActiveList) for prvInsertTimerInActiveList
     .\build\timers.o(i.prvProcessReceivedCommands) refers to .\build\timers.o(i.xTimerGenericCommand) for xTimerGenericCommand
-    .\build\timers.o(i.prvProcessReceivedCommands) refers to .\build\heap_1.o(i.vPortFree) for vPortFree
+    .\build\timers.o(i.prvProcessReceivedCommands) refers to .\build\heap_2.o(i.vPortFree) for vPortFree
     .\build\timers.o(i.prvProcessReceivedCommands) refers to .\build\queue.o(i.xQueueGenericReceive) for xQueueGenericReceive
     .\build\timers.o(i.prvProcessReceivedCommands) refers to .\build\timers.o(.data) for xTimerQueue
     .\build\timers.o(i.prvProcessTimerOrBlockTask) refers to .\build\tasks.o(i.vTaskSuspendAll) for vTaskSuspendAll
@@ -816,7 +816,7 @@ Section Cross References
     .\build\timers.o(i.pvTimerGetTimerID) refers to .\build\port.o(i.vPortExitCritical) for vPortExitCritical
     .\build\timers.o(i.vTimerSetTimerID) refers to .\build\port.o(i.vPortEnterCritical) for vPortEnterCritical
     .\build\timers.o(i.vTimerSetTimerID) refers to .\build\port.o(i.vPortExitCritical) for vPortExitCritical
-    .\build\timers.o(i.xTimerCreate) refers to .\build\heap_1.o(i.pvPortMalloc) for pvPortMalloc
+    .\build\timers.o(i.xTimerCreate) refers to .\build\heap_2.o(i.pvPortMalloc) for pvPortMalloc
     .\build\timers.o(i.xTimerCreate) refers to .\build\timers.o(i.prvInitialiseNewTimer) for prvInitialiseNewTimer
     .\build\timers.o(i.xTimerCreateTimerTask) refers to .\build\timers.o(i.prvCheckForValidListAndQueue) for prvCheckForValidListAndQueue
     .\build\timers.o(i.xTimerCreateTimerTask) refers to .\build\tasks.o(i.xTaskCreate) for xTaskCreate
@@ -829,12 +829,14 @@ Section Cross References
     .\build\timers.o(i.xTimerGetTimerDaemonTaskHandle) refers to .\build\timers.o(.data) for xTimerTaskHandle
     .\build\timers.o(i.xTimerIsTimerActive) refers to .\build\port.o(i.vPortEnterCritical) for vPortEnterCritical
     .\build\timers.o(i.xTimerIsTimerActive) refers to .\build\port.o(i.vPortExitCritical) for vPortExitCritical
-    .\build\heap_1.o(i.pvPortMalloc) refers to .\build\tasks.o(i.vTaskSuspendAll) for vTaskSuspendAll
-    .\build\heap_1.o(i.pvPortMalloc) refers to .\build\tasks.o(i.xTaskResumeAll) for xTaskResumeAll
-    .\build\heap_1.o(i.pvPortMalloc) refers to .\build\heap_1.o(.data) for pucAlignedHeap
-    .\build\heap_1.o(i.pvPortMalloc) refers to .\build\heap_1.o(.bss) for ucHeap
-    .\build\heap_1.o(i.vPortInitialiseBlocks) refers to .\build\heap_1.o(.data) for xNextFreeByte
-    .\build\heap_1.o(i.xPortGetFreeHeapSize) refers to .\build\heap_1.o(.data) for xNextFreeByte
+    .\build\heap_2.o(i.pvPortMalloc) refers to .\build\tasks.o(i.vTaskSuspendAll) for vTaskSuspendAll
+    .\build\heap_2.o(i.pvPortMalloc) refers to .\build\tasks.o(i.xTaskResumeAll) for xTaskResumeAll
+    .\build\heap_2.o(i.pvPortMalloc) refers to .\build\heap_2.o(.data) for xHeapHasBeenInitialised
+    .\build\heap_2.o(i.pvPortMalloc) refers to .\build\heap_2.o(.bss) for xHeap
+    .\build\heap_2.o(i.vPortFree) refers to .\build\tasks.o(i.vTaskSuspendAll) for vTaskSuspendAll
+    .\build\heap_2.o(i.vPortFree) refers to .\build\tasks.o(i.xTaskResumeAll) for xTaskResumeAll
+    .\build\heap_2.o(i.vPortFree) refers to .\build\heap_2.o(.data) for xStart
+    .\build\heap_2.o(i.xPortGetFreeHeapSize) refers to .\build\heap_2.o(.data) for xFreeBytesRemaining
     mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_gpio.o)(i.gpio_init_in) refers to mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/gpio_api.o(i.gpio_init) for gpio_init
     mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_gpio.o)(i.gpio_init_in) refers to mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/gpio_api.o(i.gpio_dir) for gpio_dir
     mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_gpio.o)(i.gpio_init_in) refers to mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/gpio_api.o(i.gpio_mode) for gpio_mode
@@ -2097,8 +2099,8 @@ Removing Unused input sections from the image.
     Removing .\build\timers.o(i.xTimerGetPeriod), (32 bytes).
     Removing .\build\timers.o(i.xTimerGetTimerDaemonTaskHandle), (48 bytes).
     Removing .\build\timers.o(i.xTimerIsTimerActive), (56 bytes).
-    Removing .\build\heap_1.o(i.vPortInitialiseBlocks), (12 bytes).
-    Removing .\build\heap_1.o(i.xPortGetFreeHeapSize), (16 bytes).
+    Removing .\build\heap_2.o(i.vPortInitialiseBlocks), (2 bytes).
+    Removing .\build\heap_2.o(i.xPortGetFreeHeapSize), (12 bytes).
     Removing mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_gpio.o)(.rev16_text), (4 bytes).
     Removing mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_gpio.o)(.revsh_text), (4 bytes).
     Removing mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_gpio.o)(.rrx_text), (6 bytes).
@@ -2218,4 +2220,4 @@ Removing Unused input sections from the image.
     Removing mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(FileBase.o)(.constdata__ZTSN4mbed8FileBaseE), (17 bytes).
     Removing mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(FileBase.o)(.constdata__ZTSN4mbed11NonCopyableINS_8FileBaseEEE), (36 bytes).
 
-494 unused section(s) (total 30698 bytes) removed from the image.
+494 unused section(s) (total 30684 bytes) removed from the image.

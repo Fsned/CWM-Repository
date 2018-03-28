@@ -1296,9 +1296,9 @@
               <FilePath>.\FreeRTOS\timers.c</FilePath>
             </File>
             <File>
-              <FileName>heap_1.c</FileName>
+              <FileName>heap_2.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\FreeRTOS\portable\MemMang\heap_1.c</FilePath>
+              <FilePath>.\FreeRTOS\portable\MemMang\heap_2.c</FilePath>
             </File>
           </Files>
         </Group>

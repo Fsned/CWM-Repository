@@ -9,6 +9,7 @@
 #include "GPIO_setup.h"
 #include "ADC_control.h"
 
+
 #include "FreeRTOSConfig.h"
 #include "FreeRTOS.h"
 #include "task.h"
@@ -19,10 +20,15 @@
 
 
 
-//if ( configUSE_MALLOC_FAILED_HOOK == 1 )
-//	void vApplicationMallocFailedHook( void );
-//if ( configCHECK_FOR_STACK_OVERFLOW > 0 )
-//	void vApplicationStackOverflowHook( TaskHandle_t pxTask, char *pcTaskName );
+//extern "C" 
+//{
+//#if ( configUSE_MALLOC_FAILED_HOOK == 1 )
+//void vApplicationMallocFailedHook( void );
+//#endif
+//#if ( configCHECK_FOR_STACK_OVERFLOW > 0 )
+//void vApplicationStackOverflowHook( TaskHandle_t pxTask, char *pcTaskName );
+//#endif
+//}
 
 
 void task (void*);
@@ -40,7 +46,7 @@ int main()
 	nUART0_init(9600);
 	
 //	nSystickSetup(1000000);					// Should be setup last, to avoid interrupts generated during setup phase
-	uint16_t myvalue = 0;
+//	uint16_t myvalue = 0;
 	
 	uint8_t ADC_Handle_1 = vSetupADC();
 	
@@ -70,13 +76,5 @@ void task (void *param) {
     }
 }
 
-//void SysTick_Handler(void) {
-//	
-//	static int led_timer = 1;
-//	
-//	if (!(--led_timer)) {
-//		led_timer = 1000000;
-//	}
-//}
 
 

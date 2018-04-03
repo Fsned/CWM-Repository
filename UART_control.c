@@ -64,7 +64,7 @@ char input_buffer[128];
 
 static uint8_t inputs = 0;
 
-char USER_LIBRARY[USERS][5] = {{"NON"} , {"map"} , {"ab"} , {"frs"} , {"nig"}};		// Brugernavne
+char USER_LIBRARY[USERS][5] = {{"NON"} , {"map"} , {"ab"} , {"frs"} , {"**"}};		// Brugernavne
 char PASS_LIBRARY[USERS][5] = {{"213"} , {"123"} , {"666"} , {"123"} , {"123"}};		// Passwords
 
 																

@@ -163,7 +163,7 @@ void nDiscoFunc() {
 	for (int n = 0; n < 1; n++) {
 		for(int i = 0; i < 20; i++) {
 			nLED_SET(disco_arr[i][0] , disco_arr[i][1] , disco_arr[i][2] , disco_arr[i][3]);
-			nDelayLED();
+			vTaskDelay(50);
 		}
 	}
 }

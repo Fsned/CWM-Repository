@@ -243,7 +243,7 @@ void nUART_TxChar(char ch) {
 
 /* Function to Receive a char */
 char nUART_RxChar() {
-<<<<<<< HEAD
+
     char ch; 
 		nLED_SET(1,1,1,1);
 //    while(util_IsBitCleared(LPC_UART0->LSR,SBIT_RDR));  // Wait till the data is received
@@ -347,14 +347,13 @@ void tUART_RxTask( void *param ) {
 	
 	uint8_t receive;
 	uint8_t transmit;
-	
-<<<<<<< HEAD
+
 // *************************************
 // 						Local variables
 //	int ChosenFunction;
 	static char last_char;
-=======
->>>>>>> sandbox
+
+
 	
 	static uint8_t OutedUserMsg 		= 0;
 	static uint8_t OutedPassMsg 		= 0;
@@ -363,10 +362,10 @@ void tUART_RxTask( void *param ) {
 	char blocked_character = '*';
 	
 	
-<<<<<<< HEAD
+
 	while(true) {
 		switch (UART_STATE) {
-=======
+
 	while(1) {
 		
 		
@@ -377,7 +376,7 @@ void tUART_RxTask( void *param ) {
 			switch (UART_STATE) {
 	// *******************************************************************
 	//										Check Username State
-<<<<<<< HEAD
+
 			case UartState_FindUser :
 				if (! OutedUserMsg) {
 //					nUART_TxString("Enter User: ");
@@ -391,10 +390,10 @@ void tUART_RxTask( void *param ) {
 					nLED_SET(1,1,1,1);
 					OutedUserMsg = 0;
 				}
-=======
+
 	// *******************************************************************					
 				case UartState_FindUser :
->>>>>>> sandbox
+
 				
 					if ( yKeyHit (CHAR_ENTER , receive ) && inputs == 0) {
 						nNewLine( 1 );
@@ -402,7 +401,7 @@ void tUART_RxTask( void *param ) {
 						vTaskDelay(10);
 					}
 					
-<<<<<<< HEAD
+
 					USERNAME_MATCHED = vCheckUsernames(  input_buffer , inputs );
 					nNewLine( 1 );
 				
@@ -439,14 +438,14 @@ void tUART_RxTask( void *param ) {
 				else if ( yKeyHit (CHAR_ENTER , last_char ) && inputs > 0) {
 					input_buffer[inputs] = '\0';
 					inputs++;
-=======
+
 					else if ( yKeyHit (CHAR_ENTER , receive ) && inputs > 0) {
 						input_buffer[inputs] = '\0';
 						inputs++;
 						
 						USERNAME_MATCHED = vCheckUsernames(  input_buffer , inputs );
 						nNewLine( 1 );
->>>>>>> sandbox
+
 					
 						UART_STATE = UartState_FindPass;
 						OutedStatusMsg = 0;

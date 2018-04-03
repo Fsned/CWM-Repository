@@ -1,0 +1,12 @@
+.\build\queue.o: FreeRTOS\queue.c
+.\build\queue.o: mbed_config.h
+.\build\queue.o: .\FreeRTOS\include\FreeRTOS.h
+.\build\queue.o: .\FreeRTOS\FreeRTOSConfig.h
+.\build\queue.o: .\FreeRTOS\include\projdefs.h
+.\build\queue.o: .\FreeRTOS\include\portable.h
+.\build\queue.o: .\FreeRTOS\include\deprecated_definitions.h
+.\build\queue.o: .\FreeRTOS\portable\RVDS\ARM_CM3\portmacro.h
+.\build\queue.o: .\FreeRTOS\include\mpu_wrappers.h
+.\build\queue.o: .\FreeRTOS\include\task.h
+.\build\queue.o: .\FreeRTOS\include\list.h
+.\build\queue.o: .\FreeRTOS\include\queue.h

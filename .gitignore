@@ -1,23 +1,2 @@
 
 *.TMP
-GPIO_setup.h
-*.d
-*.o
-*.d
-*.axf
-*.htm
-*.o
-*.d
-*.o
-*.dep
-*.d
-*.o
-*.h
-*.uvprojx
-*.uvoptx
-UART_control.h
-UART_control.h
-mbed_blinky.uvguix.frs
-LED_control.h
-LED_control.h
-*.h

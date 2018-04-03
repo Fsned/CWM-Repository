@@ -26,6 +26,18 @@
 ".\build\led_control.o"
 ".\build\utilities.o"
 ".\build\uart_control.o"
+".\build\systick.o"
+".\build\pwm_setup.o"
+".\build\gpio_setup.o"
+".\build\adc_control.o"
+".\build\port.o"
+".\build\croutine.o"
+".\build\event_groups.o"
+".\build\list.o"
+".\build\queue.o"
+".\build\tasks.o"
+".\build\timers.o"
+".\build\heap_2.o"
 --scatter ".\mbed\TARGET_LPC1768\TOOLCHAIN_ARM_STD\LPC1768.sct"
 --show_full_path --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

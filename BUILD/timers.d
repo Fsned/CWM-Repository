@@ -1,0 +1,13 @@
+.\build\timers.o: FreeRTOS\timers.c
+.\build\timers.o: mbed_config.h
+.\build\timers.o: .\FreeRTOS\include\FreeRTOS.h
+.\build\timers.o: .\FreeRTOS\FreeRTOSConfig.h
+.\build\timers.o: .\FreeRTOS\include\projdefs.h
+.\build\timers.o: .\FreeRTOS\include\portable.h
+.\build\timers.o: .\FreeRTOS\include\deprecated_definitions.h
+.\build\timers.o: .\FreeRTOS\portable\RVDS\ARM_CM3\portmacro.h
+.\build\timers.o: .\FreeRTOS\include\mpu_wrappers.h
+.\build\timers.o: .\FreeRTOS\include\task.h
+.\build\timers.o: .\FreeRTOS\include\list.h
+.\build\timers.o: .\FreeRTOS\include\queue.h
+.\build\timers.o: .\FreeRTOS\include\timers.h

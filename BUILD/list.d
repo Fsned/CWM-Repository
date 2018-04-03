@@ -1,0 +1,10 @@
+.\build\list.o: FreeRTOS\list.c
+.\build\list.o: mbed_config.h
+.\build\list.o: .\FreeRTOS\include\FreeRTOS.h
+.\build\list.o: .\FreeRTOS\FreeRTOSConfig.h
+.\build\list.o: .\FreeRTOS\include\projdefs.h
+.\build\list.o: .\FreeRTOS\include\portable.h
+.\build\list.o: .\FreeRTOS\include\deprecated_definitions.h
+.\build\list.o: .\FreeRTOS\portable\RVDS\ARM_CM3\portmacro.h
+.\build\list.o: .\FreeRTOS\include\mpu_wrappers.h
+.\build\list.o: .\FreeRTOS\include\list.h

@@ -49,8 +49,8 @@ int main()
 
 		
 		
-		qUART_RxQ		= xQueueCreate(32 , sizeof(char));
-		qUART_TxQ		= xQueueCreate(32 , sizeof(char));
+		qUART_RxQ		= xQueueCreate(48 , sizeof(char));
+		qUART_TxQ		= xQueueCreate(48 , sizeof(char));
 		
 		
 		// Start FreeRTOS scheduler.

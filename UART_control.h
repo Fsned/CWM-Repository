@@ -128,7 +128,7 @@ extern void nUART0_init						( unsigned int baudrate);
 
 extern void nUART_TxChar					( char ch );
 
-extern char nUART_RxChar					( void );
+extern void nUART_RxChar					( void );
 
 extern void nUART_TxString				( char ch_s[] );
 

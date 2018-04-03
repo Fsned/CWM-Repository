@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\BUILD\CWMW18_Controller_001.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\BUILD\CWMW18_Controller_001.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Tue Apr 03 14:10:17 2018
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Tue Apr 03 14:18:39 2018
 <BR><P>
 <H3>Maximum Stack Usage =        664 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -2040,15 +2040,15 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> main.o(i.main)
 </UL>
-<P><STRONG><a name="[49]"></a>tUART_RxTask</STRONG> (Thumb, 792 bytes, Stack size 16 bytes, .\build\uart_control.o(i.tUART_RxTask))
+<P><STRONG><a name="[49]"></a>tUART_RxTask</STRONG> (Thumb, 778 bytes, Stack size 16 bytes, .\build\uart_control.o(i.tUART_RxTask))
 <BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = tUART_RxTask &rArr; nUART_RxChar &rArr; xQueueGenericSend &rArr; vTaskPlaceOnEventList &rArr; prvAddCurrentTaskToDelayedList &rArr; vListInsert
 </UL>
 <BR>[Calls]<UL><LI><a href="#[11e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xQueueGenericSend
 <LI><a href="#[142]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xQueueGenericReceive
 <LI><a href="#[152]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskDelay
-<LI><a href="#[155]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;yUART_RxReady
+<LI><a href="#[156]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;yUART_RxReady
 <LI><a href="#[151]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;yKeyHit
-<LI><a href="#[156]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vFindStringMatch
+<LI><a href="#[155]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vFindStringMatch
 <LI><a href="#[153]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vCheckUsernames
 <LI><a href="#[154]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vCheckPasscode
 <LI><a href="#[11b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nUART_TxString
@@ -2189,7 +2189,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tUART_RxTask
 </UL>
 
-<P><STRONG><a name="[156]"></a>vFindStringMatch</STRONG> (Thumb, 114 bytes, Stack size 28 bytes, .\build\uart_control.o(i.vFindStringMatch))
+<P><STRONG><a name="[155]"></a>vFindStringMatch</STRONG> (Thumb, 114 bytes, Stack size 28 bytes, .\build\uart_control.o(i.vFindStringMatch))
 <BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = vFindStringMatch
 </UL>
 <BR>[Called By]<UL><LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tUART_RxTask
@@ -2603,7 +2603,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nGPIOSetup
 </UL>
 
-<P><STRONG><a name="[155]"></a>yUART_RxReady</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, .\build\uart_control.o(i.yUART_RxReady))
+<P><STRONG><a name="[156]"></a>yUART_RxReady</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, .\build\uart_control.o(i.yUART_RxReady))
 <BR><BR>[Called By]<UL><LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tUART_RxTask
 </UL>
 

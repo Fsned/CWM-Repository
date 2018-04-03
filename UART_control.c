@@ -64,15 +64,9 @@ char input_buffer[128];
 
 static uint8_t inputs = 0;
 
-char USER_LIBRARY[USERS][5] = {{"NON"} , {"map"} , {"ab"} , {"frs"} , {"**"}};		// Brugernavne
-char PASS_LIBRARY[USERS][5] = {{"213"} , {"123"} , {"666"} , {"123"} , {"123"}};		// Passwords
-
-																
-char USERS_NAMES[USERS][30]	= {{"Blind Makker"},
-															 {"Mark Appelgren"},
-															 {"Anders B. Hansen"},
-															 {"Frederik Snedevind"},
-															 {"Blind Makker"}};
+char USER_LIBRARY[USERS][5] = {{"NON"} 					, {"map"} 					 , {"ab"} 							, {"frs"} 							 , {"**"}};		// Brugernavne
+char PASS_LIBRARY[USERS][5] = {{"213"} 					, {"123"} 					 , {"666"} 							, {"123"} 							 , {"123"}};		// Passwords											
+char USERS_NAMES[USERS][30]	= {{"Blind Makker"} , {"Mark Appelgren"} , {"Anders B. Hansen"} , {"Frederik Snedevind"} , {"Blind Makker"}};
 																
 																
 char branch_string[20] = {"Sandbox"};
@@ -89,7 +83,7 @@ char keyword_strings[NO_OF_KEYWORDS][10] 	 = {{"help"},								// F0
 																							{"status"},							// F9
 																							{"clear"},							// F10
 																							{"Clear"},							// F11
-																							{"LEDSTATE1\0"},					// F12
+																							{"LEDSTATE1"},					// F12
 																							{"LEDSTATE2"},					// F13
 																							{"LEDSTATE3"},					// F14
 																							{"LEDSTATE4"},					// F15
@@ -246,7 +240,7 @@ void nUART_TxChar(char ch) {
 
 
 /* Function to Receive a char */
-char nUART_RxChar() {
+void nUART_RxChar() {
 	char ch;
 
 	ch = LPC_UART0->RBR;                                // Read received data    
@@ -341,9 +335,7 @@ void tUART_RxTask( void *param ) {
 	uint8_t transmit;
 	
 	
-	static uint8_t OutedUserMsg 		= 0;
-	static uint8_t OutedPassMsg 		= 0;
-	static uint8_t OutedFunctionMsg = 0;
+
 	
 	char blocked_character = '*';
 	
@@ -432,7 +424,7 @@ void tUART_RxTask( void *param ) {
 							nNewLine( 1 );
 							inputs = 0;
 						}
-						OutedPassMsg = 0;
+						OutedStatusMsg = 0;
 					}
 					
 					else {
@@ -450,8 +442,8 @@ void tUART_RxTask( void *param ) {
 		//										Check Function State		
 				case UartState_Functioncall :
 					
-					if (yUART_RxReady())
-						receive = nUART_RxChar();
+//					if (yUART_RxReady())
+//						receive = nUART_RxChar();
 					
 					if ( yKeyHit (CHAR_ENTER , receive ) && inputs == 0) {
 						nNewLine( 1 );

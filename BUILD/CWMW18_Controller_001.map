@@ -444,10 +444,10 @@ Section Cross References
     .\build\uart_control.o(i.tUART_RxTask) refers to .\build\uart_control.o(i.vCheckUsernames) for vCheckUsernames
     .\build\uart_control.o(i.tUART_RxTask) refers to .\build\uart_control.o(i.vCheckPasscode) for vCheckPasscode
     .\build\uart_control.o(i.tUART_RxTask) refers to .\build\uart_control.o(i.nUART_TxString) for nUART_TxString
-    .\build\uart_control.o(i.tUART_RxTask) refers to .\build\uart_control.o(i.yUART_RxReady) for yUART_RxReady
-    .\build\uart_control.o(i.tUART_RxTask) refers to .\build\uart_control.o(i.nUART_RxChar) for nUART_RxChar
     .\build\uart_control.o(i.tUART_RxTask) refers to .\build\uart_control.o(i.vFindStringMatch) for vFindStringMatch
     .\build\uart_control.o(i.tUART_RxTask) refers to .\build\uart_control.o(i.nUART_TxChar) for nUART_TxChar
+    .\build\uart_control.o(i.tUART_RxTask) refers to .\build\uart_control.o(i.yUART_RxReady) for yUART_RxReady
+    .\build\uart_control.o(i.tUART_RxTask) refers to .\build\uart_control.o(i.nUART_RxChar) for nUART_RxChar
     .\build\uart_control.o(i.tUART_RxTask) refers to .\build\uart_control.o(.data) for UART0_TxSemaphore
     .\build\uart_control.o(i.tUART_RxTask) refers to .\build\uart_control.o(.bss) for input_buffer
     .\build\uart_control.o(i.tUART_TxTask) refers to .\build\queue.o(i.xQueueGenericReceive) for xQueueGenericReceive
@@ -2243,11 +2243,11 @@ Image Symbol Table
     Symbol Name                              Value     Ov Type        Size  Object(Section)
 
     RESET                                    0x00000000   Section      196  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/startup_LPC17xx.o(RESET)
-    ../../../edgfe/lib_src/arm_exceptions.c  0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\cpplib\cpprt_w.l(arm_exceptions_callterm.o) ABSOLUTE
-    ../../../edgfe/lib_src/arm_exceptions.c  0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\cpplib\cpprt_w.l(arm_exceptions_globs.o) ABSOLUTE
-    ../../../edgfe/lib_src/arm_exceptions.c  0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\cpplib\cpprt_w.l(arm_exceptions_mem.o) ABSOLUTE
     ../../../edgfe/lib_src/arm_exceptions.c  0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\cpplib\cpprt_w.l(arm_exceptions_support.o) ABSOLUTE
     ../../../edgfe/lib_src/arm_exceptions.c  0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\cpplib\cpprt_w.l(arm_exceptions_terminate.o) ABSOLUTE
+    ../../../edgfe/lib_src/arm_exceptions.c  0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\cpplib\cpprt_w.l(arm_exceptions_globs.o) ABSOLUTE
+    ../../../edgfe/lib_src/arm_exceptions.c  0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\cpplib\cpprt_w.l(arm_exceptions_callterm.o) ABSOLUTE
+    ../../../edgfe/lib_src/arm_exceptions.c  0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\cpplib\cpprt_w.l(arm_exceptions_mem.o) ABSOLUTE
     ../../../edgfe/lib_src/arm_noexceptions.c 0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\cpplib\cpprt_w.l(arm_begincatch_noexceptions.o) ABSOLUTE
     ../../../edgfe/lib_src/typeinfo.c        0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\cpplib\cpprt_w.l(type_info_dtor.o) ABSOLUTE
     ../../../edgfe/lib_src/typeinfo.c        0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\cpplib\cpprt_w.l(lib_rtti_impl.o) ABSOLUTE
@@ -2255,108 +2255,103 @@ Image Symbol Table
     ../clib/angel/boardlib.s                 0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(boardinit1.o) ABSOLUTE
     ../clib/angel/dczerorl2.s                0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__dczerorl2.o) ABSOLUTE
     ../clib/angel/handlers.s                 0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__scatter_zi.o) ABSOLUTE
-    ../clib/angel/kernel.s                   0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__rtentry2.o) ABSOLUTE
     ../clib/angel/kernel.s                   0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__rtentry4.o) ABSOLUTE
     ../clib/angel/kernel.s                   0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__rtentry.o) ABSOLUTE
-    ../clib/angel/rt.s                       0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(rt_raise.o) ABSOLUTE
-    ../clib/angel/rt.s                       0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(rt_locale.o) ABSOLUTE
+    ../clib/angel/kernel.s                   0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__rtentry2.o) ABSOLUTE
+    ../clib/angel/rt.s                       0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(aeabi_ldiv0.o) ABSOLUTE
     ../clib/angel/rt.s                       0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(rt_div0.o) ABSOLUTE
     ../clib/angel/rt.s                       0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(rt_errno_addr.o) ABSOLUTE
-    ../clib/angel/rt.s                       0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(rt_eh_globals_addr.o) ABSOLUTE
-    ../clib/angel/rt.s                       0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(rt_eh_globals_addr_intlibspace.o) ABSOLUTE
-    ../clib/angel/rt.s                       0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(rt_locale_intlibspace.o) ABSOLUTE
     ../clib/angel/rt.s                       0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(rt_heap_descriptor_intlibspace.o) ABSOLUTE
     ../clib/angel/rt.s                       0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(rt_heap_descriptor.o) ABSOLUTE
     ../clib/angel/rt.s                       0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(aeabi_ldiv0_sigfpe.o) ABSOLUTE
     ../clib/angel/rt.s                       0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(rt_ctype_table.o) ABSOLUTE
-    ../clib/angel/rt.s                       0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(aeabi_ldiv0.o) ABSOLUTE
     ../clib/angel/rt.s                       0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(rt_errno_addr_intlibspace.o) ABSOLUTE
+    ../clib/angel/rt.s                       0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(rt_raise.o) ABSOLUTE
+    ../clib/angel/rt.s                       0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(rt_locale.o) ABSOLUTE
+    ../clib/angel/rt.s                       0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(rt_locale_intlibspace.o) ABSOLUTE
+    ../clib/angel/rt.s                       0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(rt_eh_globals_addr.o) ABSOLUTE
+    ../clib/angel/rt.s                       0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(rt_eh_globals_addr_intlibspace.o) ABSOLUTE
     ../clib/angel/scatter.s                  0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__scatter.o) ABSOLUTE
     ../clib/angel/startup.s                  0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__main.o) ABSOLUTE
-    ../clib/angel/sys.s                      0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(mutex_dummy.o) ABSOLUTE
     ../clib/angel/sys.s                      0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(use_no_semi.o) ABSOLUTE
-    ../clib/angel/sys.s                      0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(indicate_semi.o) ABSOLUTE
     ../clib/angel/sys.s                      0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libspace.o) ABSOLUTE
-    ../clib/angel/sysapp.c                   0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(sys_exit.o) ABSOLUTE
+    ../clib/angel/sys.s                      0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(indicate_semi.o) ABSOLUTE
+    ../clib/angel/sys.s                      0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(mutex_dummy.o) ABSOLUTE
     ../clib/angel/sysapp.c                   0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(sys_wrch.o) ABSOLUTE
+    ../clib/angel/sysapp.c                   0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(sys_exit.o) ABSOLUTE
     ../clib/armsys.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_get_argv_nomalloc.o) ABSOLUTE
     ../clib/armsys.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(no_argv.o) ABSOLUTE
-    ../clib/armsys.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(argv_veneer.o) ABSOLUTE
-    ../clib/armsys.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(argv_veneer.o) ABSOLUTE
     ../clib/armsys.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_get_argv.o) ABSOLUTE
+    ../clib/armsys.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(argv_veneer.o) ABSOLUTE
+    ../clib/armsys.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(argv_veneer.o) ABSOLUTE
     ../clib/bigflt.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(bigflt0.o) ABSOLUTE
     ../clib/btod.s                           0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(btod.o) ABSOLUTE
     ../clib/ctype.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(isspace.o) ABSOLUTE
-    ../clib/heap1.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(h1_init.o) ABSOLUTE
-    ../clib/heap1.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(h1_init_mt.o) ABSOLUTE
-    ../clib/heap1.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(h1_alloc.o) ABSOLUTE
-    ../clib/heap1.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(h1_final.o) ABSOLUTE
-    ../clib/heap1.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(h1_final_mt.o) ABSOLUTE
-    ../clib/heap1.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(h1_extend.o) ABSOLUTE
-    ../clib/heap1.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(h1_extend_mt.o) ABSOLUTE
-    ../clib/heap1.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(h1_free.o) ABSOLUTE
     ../clib/heap1.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(h1_alloc_mt.o) ABSOLUTE
+    ../clib/heap1.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(h1_alloc.o) ABSOLUTE
+    ../clib/heap1.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(h1_extend.o) ABSOLUTE
+    ../clib/heap1.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(h1_free.o) ABSOLUTE
+    ../clib/heap1.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(h1_final_mt.o) ABSOLUTE
     ../clib/heap1.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(h1_free_mt.o) ABSOLUTE
+    ../clib/heap1.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(h1_final.o) ABSOLUTE
+    ../clib/heap1.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(h1_extend_mt.o) ABSOLUTE
+    ../clib/heap1.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(h1_init_mt.o) ABSOLUTE
+    ../clib/heap1.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(h1_init.o) ABSOLUTE
     ../clib/heap2.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(heap2mt.o) ABSOLUTE
-    ../clib/heap2.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(fdtree.o) ABSOLUTE
     ../clib/heap2.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(heap2.o) ABSOLUTE
-    ../clib/heapalloc.c                      0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(free.o) ABSOLUTE
-    ../clib/heapalloc.c                      0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(term_alloc.o) ABSOLUTE
+    ../clib/heap2.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(fdtree.o) ABSOLUTE
+    ../clib/heapalloc.c                      0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(maybetermalloc2.o) ABSOLUTE
     ../clib/heapalloc.c                      0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(hguard.o) ABSOLUTE
-    ../clib/heapalloc.c                      0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(heapstubs.o) ABSOLUTE
+    ../clib/heapalloc.c                      0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(free.o) ABSOLUTE
+    ../clib/heapalloc.c                      0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(malloc.o) ABSOLUTE
+    ../clib/heapalloc.c                      0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(term_alloc.o) ABSOLUTE
     ../clib/heapalloc.c                      0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(hrguard.o) ABSOLUTE
     ../clib/heapalloc.c                      0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(maybetermalloc1.o) ABSOLUTE
     ../clib/heapalloc.c                      0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(maybetermalloc1.o) ABSOLUTE
     ../clib/heapalloc.c                      0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(maybetermalloc2.o) ABSOLUTE
-    ../clib/heapalloc.c                      0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(maybetermalloc2.o) ABSOLUTE
+    ../clib/heapalloc.c                      0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(heapstubs.o) ABSOLUTE
     ../clib/heapalloc.c                      0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(init_alloc.o) ABSOLUTE
-    ../clib/heapalloc.c                      0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(malloc.o) ABSOLUTE
-    ../clib/heapaux.c                        0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(heapauxa.o) ABSOLUTE
     ../clib/heapaux.c                        0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(heapauxi.o) ABSOLUTE
-    ../clib/libinit.s                        0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit.o) ABSOLUTE
+    ../clib/heapaux.c                        0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(heapauxa.o) ABSOLUTE
     ../clib/libinit.s                        0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit2.o) ABSOLUTE
+    ../clib/libinit.s                        0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libinit.o) ABSOLUTE
     ../clib/libinit.s                        0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(libshutdown2.o) ABSOLUTE
     ../clib/locale.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_wcrtomb.o) ABSOLUTE
-    ../clib/locale.s                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_ctype_c.o) ABSOLUTE
     ../clib/locale.s                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_numeric_c.o) ABSOLUTE
-    ../clib/longlong.s                       0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lludiv10.o) ABSOLUTE
-    ../clib/longlong.s                       0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(llshl.o) ABSOLUTE
+    ../clib/locale.s                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_ctype_c.o) ABSOLUTE
     ../clib/longlong.s                       0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lludivv7m.o) ABSOLUTE
-    ../clib/memcpset.s                       0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(rt_memclr.o) ABSOLUTE
-    ../clib/memcpset.s                       0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(rt_memcpy_v6.o) ABSOLUTE
+    ../clib/longlong.s                       0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(llshl.o) ABSOLUTE
+    ../clib/longlong.s                       0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lludiv10.o) ABSOLUTE
     ../clib/memcpset.s                       0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(rt_memcpy_w.o) ABSOLUTE
-    ../clib/memcpset.s                       0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(aeabi_memset.o) ABSOLUTE
-    ../clib/memcpset.s                       0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(rt_memclr_w.o) ABSOLUTE
+    ../clib/memcpset.s                       0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(rt_memcpy_v6.o) ABSOLUTE
     ../clib/memcpset.s                       0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(strcmpv7m.o) ABSOLUTE
+    ../clib/memcpset.s                       0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(rt_memclr.o) ABSOLUTE
+    ../clib/memcpset.s                       0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(rt_memclr_w.o) ABSOLUTE
+    ../clib/memcpset.s                       0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(aeabi_memset.o) ABSOLUTE
     ../clib/misc.s                           0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(printf_stubs.o) ABSOLUTE
-    ../clib/printf.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__printf_flags_ss.o) ABSOLUTE
-    ../clib/printf.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__printf_wp.o) ABSOLUTE
     ../clib/printf.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__printf_flags_wp.o) ABSOLUTE
     ../clib/printf.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__printf_ss_wp.o) ABSOLUTE
-    ../clib/printf.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_intcommon.o) ABSOLUTE
-    ../clib/printf.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_char.o) ABSOLUTE
-    ../clib/printf.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_wchar.o) ABSOLUTE
-    ../clib/printf.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_oct_ll.o) ABSOLUTE
     ../clib/printf.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__printf_flags_ss_wp.o) ABSOLUTE
-    ../clib/printf.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_hex_int_ptr.o) ABSOLUTE
-    ../clib/printf.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_snputc.o) ABSOLUTE
-    ../clib/printf.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__printf_nopercent.o) ABSOLUTE
-    ../clib/printf.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_oct_int.o) ABSOLUTE
-    ../clib/printf.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_oct_int_ll.o) ABSOLUTE
-    ../clib/printf.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_fp_hex.o) ABSOLUTE
-    ../clib/printf.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_fp_infnan.o) ABSOLUTE
-    ../clib/printf.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_hex_ll.o) ABSOLUTE
-    ../clib/printf.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_hex_int.o) ABSOLUTE
-    ../clib/printf.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_hex_int_ll.o) ABSOLUTE
-    ../clib/printf.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(vsnprintf.o) ABSOLUTE
-    ../clib/printf.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_fp_dec.o) ABSOLUTE
-    ../clib/printf.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_hex_ptr.o) ABSOLUTE
     ../clib/printf.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_hex_ll_ptr.o) ABSOLUTE
-    ../clib/printf.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_hex_int_ll_ptr.o) ABSOLUTE
-    ../clib/printf.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__printf_flags.o) ABSOLUTE
+    ../clib/printf.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__printf_nopercent.o) ABSOLUTE
+    ../clib/printf.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_fp_infnan.o) ABSOLUTE
+    ../clib/printf.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(vsnprintf.o) ABSOLUTE
     ../clib/printf.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__printf_ss.o) ABSOLUTE
+    ../clib/printf.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_intcommon.o) ABSOLUTE
+    ../clib/printf.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__printf_flags.o) ABSOLUTE
+    ../clib/printf.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_hex_int_ll_ptr.o) ABSOLUTE
+    ../clib/printf.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_hex_int_ptr.o) ABSOLUTE
+    ../clib/printf.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_hex_ptr.o) ABSOLUTE
+    ../clib/printf.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_hex_int_ll.o) ABSOLUTE
+    ../clib/printf.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_hex_int.o) ABSOLUTE
+    ../clib/printf.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_hex_ll.o) ABSOLUTE
+    ../clib/printf.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_fp_dec.o) ABSOLUTE
+    ../clib/printf.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_oct_int_ll.o) ABSOLUTE
+    ../clib/printf.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_oct_int.o) ABSOLUTE
+    ../clib/printf.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_oct_ll.o) ABSOLUTE
     ../clib/printf.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_longlong_dec.o) ABSOLUTE
     ../clib/printf.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_wctomb.o) ABSOLUTE
+    ../clib/printf.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_snputc.o) ABSOLUTE
     ../clib/printf.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_sputc.o) ABSOLUTE
     ../clib/printf.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_char_common.o) ABSOLUTE
     ../clib/printf.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_charcount.o) ABSOLUTE
@@ -2365,48 +2360,42 @@ Image Symbol Table
     ../clib/printf.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_truncate.o) ABSOLUTE
     ../clib/printf.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_pad.o) ABSOLUTE
     ../clib/printf.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__printf.o) ABSOLUTE
+    ../clib/printf.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_fp_hex.o) ABSOLUTE
+    ../clib/printf.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_char.o) ABSOLUTE
+    ../clib/printf.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_wchar.o) ABSOLUTE
+    ../clib/printf.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__printf_flags_ss.o) ABSOLUTE
+    ../clib/printf.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__printf_wp.o) ABSOLUTE
+    ../clib/printf_percent.s                 0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_u.o) ABSOLUTE
+    ../clib/printf_percent.s                 0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_d.o) ABSOLUTE
+    ../clib/printf_percent.s                 0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_i.o) ABSOLUTE
+    ../clib/printf_percent.s                 0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_o.o) ABSOLUTE
+    ../clib/printf_percent.s                 0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_p.o) ABSOLUTE
+    ../clib/printf_percent.s                 0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_x.o) ABSOLUTE
+    ../clib/printf_percent.s                 0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_n.o) ABSOLUTE
+    ../clib/printf_percent.s                 0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_s.o) ABSOLUTE
+    ../clib/printf_percent.s                 0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_c.o) ABSOLUTE
+    ../clib/printf_percent.s                 0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_percent_end.o) ABSOLUTE
+    ../clib/printf_percent.s                 0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_llx.o) ABSOLUTE
     ../clib/printf_percent.s                 0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_llo.o) ABSOLUTE
     ../clib/printf_percent.s                 0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_ls.o) ABSOLUTE
     ../clib/printf_percent.s                 0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_lc.o) ABSOLUTE
     ../clib/printf_percent.s                 0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_l.o) ABSOLUTE
     ../clib/printf_percent.s                 0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_ll.o) ABSOLUTE
-    ../clib/printf_percent.s                 0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_c.o) ABSOLUTE
+    ../clib/printf_percent.s                 0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_llu.o) ABSOLUTE
     ../clib/printf_percent.s                 0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_lld.o) ABSOLUTE
     ../clib/printf_percent.s                 0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_lli.o) ABSOLUTE
     ../clib/printf_percent.s                 0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_percent.o) ABSOLUTE
     ../clib/printf_percent.s                 0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_a.o) ABSOLUTE
-    ../clib/printf_percent.s                 0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_s.o) ABSOLUTE
-    ../clib/printf_percent.s                 0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_n.o) ABSOLUTE
-    ../clib/printf_percent.s                 0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_x.o) ABSOLUTE
-    ../clib/printf_percent.s                 0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_p.o) ABSOLUTE
-    ../clib/printf_percent.s                 0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_o.o) ABSOLUTE
-    ../clib/printf_percent.s                 0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_i.o) ABSOLUTE
-    ../clib/printf_percent.s                 0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_d.o) ABSOLUTE
-    ../clib/printf_percent.s                 0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_u.o) ABSOLUTE
-    ../clib/printf_percent.s                 0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_llu.o) ABSOLUTE
-    ../clib/printf_percent.s                 0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_llx.o) ABSOLUTE
     ../clib/printf_percent.s                 0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_g.o) ABSOLUTE
     ../clib/printf_percent.s                 0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_e.o) ABSOLUTE
     ../clib/printf_percent.s                 0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_f.o) ABSOLUTE
-    ../clib/printf_percent.s                 0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_percent_end.o) ABSOLUTE
-    ../clib/scanf.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_chval.o) ABSOLUTE
     ../clib/scanf.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_scanf.o) ABSOLUTE
+    ../clib/scanf.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_scanf_int.o) ABSOLUTE
     ../clib/scanf.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__0sscanf.o) ABSOLUTE
+    ../clib/scanf.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_chval.o) ABSOLUTE
     ../clib/scanf.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_sgetc.o) ABSOLUTE
     ../clib/scanf.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(scanf_char.o) ABSOLUTE
-    ../clib/scanf.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_scanf_int.o) ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(defsig_rtmem_formal.o) ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(defsig_rtmem_inner.o) ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(defsig_fpe_outer.o) ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(defsig_rtmem_outer.o) ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(defsig_rtred_formal.o) ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(defsig_rtred_inner.o) ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(defsig_rtred_outer.o) ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(defsig_fpe_formal.o) ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(defsig_segv_inner.o) ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(defsig_cppl_inner.o) ABSOLUTE
     ../clib/signal.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(defsig_pvfn_inner.o) ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(defsig_exit.o) ABSOLUTE
     ../clib/signal.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(defsig_stak_inner.o) ABSOLUTE
     ../clib/signal.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(defsig_abrt_inner.o) ABSOLUTE
     ../clib/signal.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(defsig_fpe_inner.o) ABSOLUTE
@@ -2414,8 +2403,29 @@ Image Symbol Table
     ../clib/signal.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(defsig_abrt_outer.o) ABSOLUTE
     ../clib/signal.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(defsig_general.o) ABSOLUTE
     ../clib/signal.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__raise.o) ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(defsig_rtmem_inner.o) ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(defsig_rtred_inner.o) ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(defsig_fpe_formal.o) ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(defsig_exit.o) ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(defsig_rtred_outer.o) ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(defsig_rtred_formal.o) ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(defsig_fpe_outer.o) ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(defsig_rtmem_outer.o) ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(defsig_rtmem_formal.o) ABSOLUTE
     ../clib/signal.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(defsig_other.o) ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(defsig_segv_inner.o) ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(defsig_cppl_inner.o) ABSOLUTE
     ../clib/signal.s                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(defsig.o) ABSOLUTE
+    ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(fread_bytes_avail.o) ABSOLUTE
+    ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(flushlinebuffered.o) ABSOLUTE
+    ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(fgetc.o) ABSOLUTE
+    ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(fopen_locked.o) ABSOLUTE
+    ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(fgets_locked.o) ABSOLUTE
+    ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(flushlinebuffered_locked.o) ABSOLUTE
+    ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(fread_bytes_avail_locked.o) ABSOLUTE
+    ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(freadfast_locked.o) ABSOLUTE
+    ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(fflush_locked.o) ABSOLUTE
+    ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(ferror.o) ABSOLUTE
     ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(initio_locked.o) ABSOLUTE
     ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(setvbuf_locked.o) ABSOLUTE
     ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(ferror_locked.o) ABSOLUTE
@@ -2426,27 +2436,17 @@ Image Symbol Table
     ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(setvbuf.o) ABSOLUTE
     ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(fseek.o) ABSOLUTE
     ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(filbuf.o) ABSOLUTE
-    ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(ferror.o) ABSOLUTE
-    ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(stdio_streams.o) ABSOLUTE
-    ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(fopen_locked.o) ABSOLUTE
-    ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(fflush_locked.o) ABSOLUTE
     ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(fgetc_locked.o) ABSOLUTE
+    ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(freadfast.o) ABSOLUTE
+    ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(ftell.o) ABSOLUTE
+    ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(stdio_streams.o) ABSOLUTE
     ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(setbuf.o) ABSOLUTE
     ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(fopen.o) ABSOLUTE
     ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(fgets.o) ABSOLUTE
-    ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(fgetc.o) ABSOLUTE
     ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(fflush.o) ABSOLUTE
-    ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(freadfast_locked.o) ABSOLUTE
-    ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(flushlinebuffered_locked.o) ABSOLUTE
-    ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(fread_bytes_avail_locked.o) ABSOLUTE
-    ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(fgets_locked.o) ABSOLUTE
-    ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(flushlinebuffered.o) ABSOLUTE
-    ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(fread_bytes_avail.o) ABSOLUTE
-    ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(freadfast.o) ABSOLUTE
-    ../clib/stdio.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(ftell.o) ABSOLUTE
     ../clib/stdlib.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(abort.o) ABSOLUTE
-    ../clib/string.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(strlen.o) ABSOLUTE
     ../clib/string.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(strncmp.o) ABSOLUTE
+    ../clib/string.c                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(strlen.o) ABSOLUTE
     ../clib/wchar.c                          0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(filbuf_fwide.o) ABSOLUTE
     ../fplib/daddsub.s                       0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(daddsub_clz.o) ABSOLUTE
     ../fplib/dcmpi.s                         0x00000000   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(dcmpi.o) ABSOLUTE
@@ -2848,124 +2848,124 @@ Image Symbol Table
     i.serial_set_flow_control                0x00004adc   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(i.serial_set_flow_control)
     i.tLEDAlive                              0x00004be8   Section        0  .\build\led_control.o(i.tLEDAlive)
     i.tUART_RxTask                           0x00004c30   Section        0  .\build\uart_control.o(i.tUART_RxTask)
-    i.tUART_TxTask                           0x00004fc4   Section        0  .\build\uart_control.o(i.tUART_TxTask)
-    i.ticker_irq_handler                     0x000050c0   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)(i.ticker_irq_handler)
-    i.ticker_read                            0x0000510e   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)(i.ticker_read)
-    i.uart0_irq                              0x0000512c   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(i.uart0_irq)
-    i.uart1_irq                              0x00005140   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(i.uart1_irq)
-    i.uart2_irq                              0x00005154   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(i.uart2_irq)
-    i.uart3_irq                              0x00005168   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(i.uart3_irq)
-    i.uart_irq                               0x0000517c   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(i.uart_irq)
-    uart_irq                                 0x0000517d   Thumb Code    94  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(i.uart_irq)
-    i.update_present_time                    0x000051e4   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)(i.update_present_time)
-    update_present_time                      0x000051e5   Thumb Code   254  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)(i.update_present_time)
-    i.us_ticker_clear_interrupt              0x000052e8   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o(i.us_ticker_clear_interrupt)
-    i.us_ticker_disable_interrupt            0x000052f4   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o(i.us_ticker_disable_interrupt)
-    i.us_ticker_fire_interrupt               0x00005304   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o(i.us_ticker_fire_interrupt)
-    i.us_ticker_get_info                     0x00005310   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o(i.us_ticker_get_info)
-    i.us_ticker_init                         0x00005318   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o(i.us_ticker_init)
-    i.us_ticker_irq_handler                  0x00005380   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_us_ticker_api.o)(i.us_ticker_irq_handler)
-    i.us_ticker_read                         0x00005398   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o(i.us_ticker_read)
-    i.us_ticker_set_interrupt                0x000053fc   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o(i.us_ticker_set_interrupt)
-    i.uxListRemove                           0x00005410   Section        0  .\build\list.o(i.uxListRemove)
-    i.vApplicationMallocFailedHook           0x00005438   Section        0  .\build\main.o(i.vApplicationMallocFailedHook)
-    i.vApplicationStackOverflowHook          0x00005476   Section        0  .\build\main.o(i.vApplicationStackOverflowHook)
-    i.vCheckPasscode                         0x000054b4   Section        0  .\build\uart_control.o(i.vCheckPasscode)
-    i.vCheckUsernames                        0x00005518   Section        0  .\build\uart_control.o(i.vCheckUsernames)
-    i.vFindStringMatch                       0x0000558c   Section        0  .\build\uart_control.o(i.vFindStringMatch)
-    i.vListInitialise                        0x00005604   Section        0  .\build\list.o(i.vListInitialise)
-    i.vListInitialiseItem                    0x0000561e   Section        0  .\build\list.o(i.vListInitialiseItem)
-    i.vListInsert                            0x00005624   Section        0  .\build\list.o(i.vListInsert)
-    i.vListInsertEnd                         0x00005658   Section        0  .\build\list.o(i.vListInsertEnd)
-    i.vPortEnterCritical                     0x00005670   Section        0  .\build\port.o(i.vPortEnterCritical)
-    i.vPortExitCritical                      0x000056c4   Section        0  .\build\port.o(i.vPortExitCritical)
-    i.vPortFree                              0x00005700   Section        0  .\build\heap_2.o(i.vPortFree)
-    i.vPortSetupTimerInterrupt               0x00005740   Section        0  .\build\port.o(i.vPortSetupTimerInterrupt)
-    i.vPortValidateInterruptPriority         0x00005760   Section        0  .\build\port.o(i.vPortValidateInterruptPriority)
-    i.vQueueWaitForMessageRestricted         0x000057d8   Section        0  .\build\queue.o(i.vQueueWaitForMessageRestricted)
-    i.vTaskDelay                             0x00005824   Section        0  .\build\tasks.o(i.vTaskDelay)
-    i.vTaskDelayUntil                        0x00005880   Section        0  .\build\tasks.o(i.vTaskDelayUntil)
-    i.vTaskMissedYield                       0x00005954   Section        0  .\build\tasks.o(i.vTaskMissedYield)
-    i.vTaskPlaceOnEventList                  0x00005960   Section        0  .\build\tasks.o(i.vTaskPlaceOnEventList)
-    i.vTaskPlaceOnEventListRestricted        0x00005998   Section        0  .\build\tasks.o(i.vTaskPlaceOnEventListRestricted)
-    i.vTaskPriorityInherit                   0x000059d8   Section        0  .\build\tasks.o(i.vTaskPriorityInherit)
-    i.vTaskSetTimeOutState                   0x00005a88   Section        0  .\build\tasks.o(i.vTaskSetTimeOutState)
-    i.vTaskStartScheduler                    0x00005ab8   Section        0  .\build\tasks.o(i.vTaskStartScheduler)
-    i.vTaskSuspendAll                        0x00005b4c   Section        0  .\build\tasks.o(i.vTaskSuspendAll)
-    i.vTaskSwitchContext                     0x00005b5c   Section        0  .\build\tasks.o(i.vTaskSwitchContext)
-    i.wait_ms                                0x00005c20   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_wait_api_no_rtos.o)(i.wait_ms)
-    i.xPortStartScheduler                    0x00005c44   Section        0  .\build\port.o(i.xPortStartScheduler)
-    i.xQueueGenericCreate                    0x00005ce4   Section        0  .\build\queue.o(i.xQueueGenericCreate)
-    i.xQueueGenericReceive                   0x00005d3c   Section        0  .\build\queue.o(i.xQueueGenericReceive)
-    i.xQueueGenericReset                     0x00005f00   Section        0  .\build\queue.o(i.xQueueGenericReset)
-    i.xQueueGenericSend                      0x00005f98   Section        0  .\build\queue.o(i.xQueueGenericSend)
-    i.xQueueGenericSendFromISR               0x00006140   Section        0  .\build\queue.o(i.xQueueGenericSendFromISR)
-    i.xTaskCheckForTimeOut                   0x00006238   Section        0  .\build\tasks.o(i.xTaskCheckForTimeOut)
-    i.xTaskCreate                            0x000062c4   Section        0  .\build\tasks.o(i.xTaskCreate)
-    i.xTaskGetSchedulerState                 0x00006324   Section        0  .\build\tasks.o(i.xTaskGetSchedulerState)
-    i.xTaskGetTickCount                      0x00006344   Section        0  .\build\tasks.o(i.xTaskGetTickCount)
-    i.xTaskIncrementTick                     0x00006350   Section        0  .\build\tasks.o(i.xTaskIncrementTick)
-    i.xTaskPriorityDisinherit                0x00006498   Section        0  .\build\tasks.o(i.xTaskPriorityDisinherit)
-    i.xTaskRemoveFromEventList               0x00006560   Section        0  .\build\tasks.o(i.xTaskRemoveFromEventList)
-    i.xTaskResumeAll                         0x000065f8   Section        0  .\build\tasks.o(i.xTaskResumeAll)
-    i.xTimerCreateTimerTask                  0x000066fc   Section        0  .\build\timers.o(i.xTimerCreateTimerTask)
-    i.xTimerGenericCommand                   0x00006754   Section        0  .\build\timers.o(i.xTimerGenericCommand)
-    i.yKeyHit                                0x000067d8   Section        0  .\build\uart_control.o(i.yKeyHit)
-    i.ySetupDigitalI                         0x000067e8   Section        0  .\build\gpio_setup.o(i.ySetupDigitalI)
-    i.ySetupDigitalO                         0x000069cc   Section        0  .\build\gpio_setup.o(i.ySetupDigitalO)
-    i.yUART_RxReady                          0x00006bb0   Section        0  .\build\uart_control.o(i.yUART_RxReady)
-    i.yUART_TxReady                          0x00006bc8   Section        0  .\build\uart_control.o(i.yUART_TxReady)
-    locale$$code                             0x00006be8   Section       44  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_numeric_c.o)(locale$$code)
-    locale$$code                             0x00006c14   Section       44  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_ctype_c.o)(locale$$code)
-    t._ZN12SingletonPtrI13PlatformMutexEptEv 0x00006c40   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(FileBase.o)(t._ZN12SingletonPtrI13PlatformMutexEptEv)
-    x$fpl$printf1                            0x00006c6c   Section        4  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(printf1.o)(x$fpl$printf1)
-    x$fpl$printf2                            0x00006c70   Section        4  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(printf2.o)(x$fpl$printf2)
-    .constdata                               0x00006c74   Section       40  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o(.constdata)
-    x$fpl$usenofp                            0x00006c74   Section        0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(usenofp.o)(x$fpl$usenofp)
-    info                                     0x00006c8c   Data           8  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o(.constdata)
-    info                                     0x00006c94   Data           8  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o(.constdata)
-    .constdata                               0x00006c9c   Section      288  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(.constdata)
-    PinMap_UART_TX                           0x00006c9c   Data         108  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(.constdata)
-    PinMap_UART_RX                           0x00006d08   Data         108  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(.constdata)
-    PinMap_UART_RTS                          0x00006d74   Data          36  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(.constdata)
-    PinMap_UART_CTS                          0x00006d98   Data          36  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(.constdata)
-    .constdata                               0x00006dbc   Section       64  .\build\uart_control.o(.constdata)
-    .constdata                               0x00006dfc   Section       28  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_us_ticker_api.o)(.constdata)
-    us_interface                             0x00006dfc   Data          28  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_us_ticker_api.o)(.constdata)
-    .constdata                               0x00006e18   Section        8  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_us_ticker_api.o)(.constdata)
-    us_data                                  0x00006e18   Data           8  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_us_ticker_api.o)(.constdata)
-    .constdata                               0x00006e20   Section        8  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_wctomb.o)(.constdata)
-    initial_mbstate                          0x00006e20   Data           8  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_wctomb.o)(.constdata)
-    .constdata                               0x00006e28   Section       40  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_hex_int_ll_ptr.o)(.constdata)
-    uc_hextab                                0x00006e28   Data          20  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_hex_int_ll_ptr.o)(.constdata)
-    lc_hextab                                0x00006e3c   Data          20  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_hex_int_ll_ptr.o)(.constdata)
-    .constdata                               0x00006e50   Section       17  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__printf_flags_ss_wp.o)(.constdata)
-    maptable                                 0x00006e50   Data          17  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__printf_flags_ss_wp.o)(.constdata)
-    .constdata                               0x00006e61   Section       38  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_fp_hex.o)(.constdata)
-    lc_hextab                                0x00006e61   Data          19  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_fp_hex.o)(.constdata)
-    uc_hextab                                0x00006e74   Data          19  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_fp_hex.o)(.constdata)
-    .constdata                               0x00006e88   Section      148  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(bigflt0.o)(.constdata)
-    tenpwrs_x                                0x00006e88   Data          60  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(bigflt0.o)(.constdata)
-    tenpwrs_i                                0x00006ec4   Data          64  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(bigflt0.o)(.constdata)
-    .constdata__ZZN12SingletonPtrI13PlatformMutexE3getEvEs 0x00006f1c   Section       20  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o(.constdata__ZZN12SingletonPtrI13PlatformMutexE3getEvEs)
-    .constdata__ZZN12SingletonPtrI13PlatformMutexE3getEvEs_0 0x00006f30   Section       93  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o(.constdata__ZZN12SingletonPtrI13PlatformMutexE3getEvEs_0)
-    .conststring                             0x00006f90   Section      103  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/gpio_api.o(.conststring)
-    .conststring                             0x00006ff8   Section      124  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_board.o(.conststring)
-    .conststring                             0x00007074   Section      101  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/pinmap.o(.conststring)
-    .conststring                             0x000070dc   Section      105  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(.conststring)
-    .conststring                             0x00007148   Section       80  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)(.conststring)
-    .conststring                             0x00007198   Section       83  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_critical.o)(.conststring)
-    locale$$data                             0x0000720c   Section       28  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_numeric_c.o)(locale$$data)
-    __lcnum_c_name                           0x00007210   Data           2  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_numeric_c.o)(locale$$data)
-    __lcnum_c_start                          0x00007218   Data           0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_numeric_c.o)(locale$$data)
-    __lcnum_c_point                          0x00007224   Data           0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_numeric_c.o)(locale$$data)
-    __lcnum_c_thousands                      0x00007226   Data           0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_numeric_c.o)(locale$$data)
-    __lcnum_c_grouping                       0x00007227   Data           0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_numeric_c.o)(locale$$data)
-    locale$$data                             0x00007228   Section      272  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_ctype_c.o)(locale$$data)
-    __lcnum_c_end                            0x00007228   Data           0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_numeric_c.o)(locale$$data)
-    __lcctype_c_name                         0x0000722c   Data           2  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_ctype_c.o)(locale$$data)
-    __lcctype_c_start                        0x00007234   Data           0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_ctype_c.o)(locale$$data)
-    __lcctype_c_end                          0x00007338   Data           0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_ctype_c.o)(locale$$data)
+    i.tUART_TxTask                           0x00004fb4   Section        0  .\build\uart_control.o(i.tUART_TxTask)
+    i.ticker_irq_handler                     0x000050b0   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)(i.ticker_irq_handler)
+    i.ticker_read                            0x000050fe   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)(i.ticker_read)
+    i.uart0_irq                              0x0000511c   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(i.uart0_irq)
+    i.uart1_irq                              0x00005130   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(i.uart1_irq)
+    i.uart2_irq                              0x00005144   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(i.uart2_irq)
+    i.uart3_irq                              0x00005158   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(i.uart3_irq)
+    i.uart_irq                               0x0000516c   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(i.uart_irq)
+    uart_irq                                 0x0000516d   Thumb Code    94  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(i.uart_irq)
+    i.update_present_time                    0x000051d4   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)(i.update_present_time)
+    update_present_time                      0x000051d5   Thumb Code   254  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)(i.update_present_time)
+    i.us_ticker_clear_interrupt              0x000052d8   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o(i.us_ticker_clear_interrupt)
+    i.us_ticker_disable_interrupt            0x000052e4   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o(i.us_ticker_disable_interrupt)
+    i.us_ticker_fire_interrupt               0x000052f4   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o(i.us_ticker_fire_interrupt)
+    i.us_ticker_get_info                     0x00005300   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o(i.us_ticker_get_info)
+    i.us_ticker_init                         0x00005308   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o(i.us_ticker_init)
+    i.us_ticker_irq_handler                  0x00005370   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_us_ticker_api.o)(i.us_ticker_irq_handler)
+    i.us_ticker_read                         0x00005388   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o(i.us_ticker_read)
+    i.us_ticker_set_interrupt                0x000053ec   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o(i.us_ticker_set_interrupt)
+    i.uxListRemove                           0x00005400   Section        0  .\build\list.o(i.uxListRemove)
+    i.vApplicationMallocFailedHook           0x00005428   Section        0  .\build\main.o(i.vApplicationMallocFailedHook)
+    i.vApplicationStackOverflowHook          0x00005466   Section        0  .\build\main.o(i.vApplicationStackOverflowHook)
+    i.vCheckPasscode                         0x000054a4   Section        0  .\build\uart_control.o(i.vCheckPasscode)
+    i.vCheckUsernames                        0x00005508   Section        0  .\build\uart_control.o(i.vCheckUsernames)
+    i.vFindStringMatch                       0x0000557c   Section        0  .\build\uart_control.o(i.vFindStringMatch)
+    i.vListInitialise                        0x000055f4   Section        0  .\build\list.o(i.vListInitialise)
+    i.vListInitialiseItem                    0x0000560e   Section        0  .\build\list.o(i.vListInitialiseItem)
+    i.vListInsert                            0x00005614   Section        0  .\build\list.o(i.vListInsert)
+    i.vListInsertEnd                         0x00005648   Section        0  .\build\list.o(i.vListInsertEnd)
+    i.vPortEnterCritical                     0x00005660   Section        0  .\build\port.o(i.vPortEnterCritical)
+    i.vPortExitCritical                      0x000056b4   Section        0  .\build\port.o(i.vPortExitCritical)
+    i.vPortFree                              0x000056f0   Section        0  .\build\heap_2.o(i.vPortFree)
+    i.vPortSetupTimerInterrupt               0x00005730   Section        0  .\build\port.o(i.vPortSetupTimerInterrupt)
+    i.vPortValidateInterruptPriority         0x00005750   Section        0  .\build\port.o(i.vPortValidateInterruptPriority)
+    i.vQueueWaitForMessageRestricted         0x000057c8   Section        0  .\build\queue.o(i.vQueueWaitForMessageRestricted)
+    i.vTaskDelay                             0x00005814   Section        0  .\build\tasks.o(i.vTaskDelay)
+    i.vTaskDelayUntil                        0x00005870   Section        0  .\build\tasks.o(i.vTaskDelayUntil)
+    i.vTaskMissedYield                       0x00005944   Section        0  .\build\tasks.o(i.vTaskMissedYield)
+    i.vTaskPlaceOnEventList                  0x00005950   Section        0  .\build\tasks.o(i.vTaskPlaceOnEventList)
+    i.vTaskPlaceOnEventListRestricted        0x00005988   Section        0  .\build\tasks.o(i.vTaskPlaceOnEventListRestricted)
+    i.vTaskPriorityInherit                   0x000059c8   Section        0  .\build\tasks.o(i.vTaskPriorityInherit)
+    i.vTaskSetTimeOutState                   0x00005a78   Section        0  .\build\tasks.o(i.vTaskSetTimeOutState)
+    i.vTaskStartScheduler                    0x00005aa8   Section        0  .\build\tasks.o(i.vTaskStartScheduler)
+    i.vTaskSuspendAll                        0x00005b3c   Section        0  .\build\tasks.o(i.vTaskSuspendAll)
+    i.vTaskSwitchContext                     0x00005b4c   Section        0  .\build\tasks.o(i.vTaskSwitchContext)
+    i.wait_ms                                0x00005c10   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_wait_api_no_rtos.o)(i.wait_ms)
+    i.xPortStartScheduler                    0x00005c34   Section        0  .\build\port.o(i.xPortStartScheduler)
+    i.xQueueGenericCreate                    0x00005cd4   Section        0  .\build\queue.o(i.xQueueGenericCreate)
+    i.xQueueGenericReceive                   0x00005d2c   Section        0  .\build\queue.o(i.xQueueGenericReceive)
+    i.xQueueGenericReset                     0x00005ef0   Section        0  .\build\queue.o(i.xQueueGenericReset)
+    i.xQueueGenericSend                      0x00005f88   Section        0  .\build\queue.o(i.xQueueGenericSend)
+    i.xQueueGenericSendFromISR               0x00006130   Section        0  .\build\queue.o(i.xQueueGenericSendFromISR)
+    i.xTaskCheckForTimeOut                   0x00006228   Section        0  .\build\tasks.o(i.xTaskCheckForTimeOut)
+    i.xTaskCreate                            0x000062b4   Section        0  .\build\tasks.o(i.xTaskCreate)
+    i.xTaskGetSchedulerState                 0x00006314   Section        0  .\build\tasks.o(i.xTaskGetSchedulerState)
+    i.xTaskGetTickCount                      0x00006334   Section        0  .\build\tasks.o(i.xTaskGetTickCount)
+    i.xTaskIncrementTick                     0x00006340   Section        0  .\build\tasks.o(i.xTaskIncrementTick)
+    i.xTaskPriorityDisinherit                0x00006488   Section        0  .\build\tasks.o(i.xTaskPriorityDisinherit)
+    i.xTaskRemoveFromEventList               0x00006550   Section        0  .\build\tasks.o(i.xTaskRemoveFromEventList)
+    i.xTaskResumeAll                         0x000065e8   Section        0  .\build\tasks.o(i.xTaskResumeAll)
+    i.xTimerCreateTimerTask                  0x000066ec   Section        0  .\build\timers.o(i.xTimerCreateTimerTask)
+    i.xTimerGenericCommand                   0x00006744   Section        0  .\build\timers.o(i.xTimerGenericCommand)
+    i.yKeyHit                                0x000067c8   Section        0  .\build\uart_control.o(i.yKeyHit)
+    i.ySetupDigitalI                         0x000067d8   Section        0  .\build\gpio_setup.o(i.ySetupDigitalI)
+    i.ySetupDigitalO                         0x000069bc   Section        0  .\build\gpio_setup.o(i.ySetupDigitalO)
+    i.yUART_RxReady                          0x00006ba0   Section        0  .\build\uart_control.o(i.yUART_RxReady)
+    i.yUART_TxReady                          0x00006bb8   Section        0  .\build\uart_control.o(i.yUART_TxReady)
+    locale$$code                             0x00006bd8   Section       44  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_numeric_c.o)(locale$$code)
+    locale$$code                             0x00006c04   Section       44  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_ctype_c.o)(locale$$code)
+    t._ZN12SingletonPtrI13PlatformMutexEptEv 0x00006c30   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(FileBase.o)(t._ZN12SingletonPtrI13PlatformMutexEptEv)
+    x$fpl$printf1                            0x00006c5c   Section        4  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(printf1.o)(x$fpl$printf1)
+    x$fpl$printf2                            0x00006c60   Section        4  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(printf2.o)(x$fpl$printf2)
+    .constdata                               0x00006c64   Section       40  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o(.constdata)
+    x$fpl$usenofp                            0x00006c64   Section        0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(usenofp.o)(x$fpl$usenofp)
+    info                                     0x00006c7c   Data           8  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o(.constdata)
+    info                                     0x00006c84   Data           8  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o(.constdata)
+    .constdata                               0x00006c8c   Section      288  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(.constdata)
+    PinMap_UART_TX                           0x00006c8c   Data         108  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(.constdata)
+    PinMap_UART_RX                           0x00006cf8   Data         108  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(.constdata)
+    PinMap_UART_RTS                          0x00006d64   Data          36  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(.constdata)
+    PinMap_UART_CTS                          0x00006d88   Data          36  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(.constdata)
+    .constdata                               0x00006dac   Section       64  .\build\uart_control.o(.constdata)
+    .constdata                               0x00006dec   Section       28  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_us_ticker_api.o)(.constdata)
+    us_interface                             0x00006dec   Data          28  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_us_ticker_api.o)(.constdata)
+    .constdata                               0x00006e08   Section        8  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_us_ticker_api.o)(.constdata)
+    us_data                                  0x00006e08   Data           8  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_us_ticker_api.o)(.constdata)
+    .constdata                               0x00006e10   Section        8  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_wctomb.o)(.constdata)
+    initial_mbstate                          0x00006e10   Data           8  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_wctomb.o)(.constdata)
+    .constdata                               0x00006e18   Section       40  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_hex_int_ll_ptr.o)(.constdata)
+    uc_hextab                                0x00006e18   Data          20  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_hex_int_ll_ptr.o)(.constdata)
+    lc_hextab                                0x00006e2c   Data          20  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_hex_int_ll_ptr.o)(.constdata)
+    .constdata                               0x00006e40   Section       17  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__printf_flags_ss_wp.o)(.constdata)
+    maptable                                 0x00006e40   Data          17  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__printf_flags_ss_wp.o)(.constdata)
+    .constdata                               0x00006e51   Section       38  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_fp_hex.o)(.constdata)
+    lc_hextab                                0x00006e51   Data          19  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_fp_hex.o)(.constdata)
+    uc_hextab                                0x00006e64   Data          19  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_fp_hex.o)(.constdata)
+    .constdata                               0x00006e78   Section      148  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(bigflt0.o)(.constdata)
+    tenpwrs_x                                0x00006e78   Data          60  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(bigflt0.o)(.constdata)
+    tenpwrs_i                                0x00006eb4   Data          64  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(bigflt0.o)(.constdata)
+    .constdata__ZZN12SingletonPtrI13PlatformMutexE3getEvEs 0x00006f0c   Section       20  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o(.constdata__ZZN12SingletonPtrI13PlatformMutexE3getEvEs)
+    .constdata__ZZN12SingletonPtrI13PlatformMutexE3getEvEs_0 0x00006f20   Section       93  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o(.constdata__ZZN12SingletonPtrI13PlatformMutexE3getEvEs_0)
+    .conststring                             0x00006f80   Section      103  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/gpio_api.o(.conststring)
+    .conststring                             0x00006fe8   Section      124  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_board.o(.conststring)
+    .conststring                             0x00007064   Section      101  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/pinmap.o(.conststring)
+    .conststring                             0x000070cc   Section      105  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(.conststring)
+    .conststring                             0x00007138   Section       80  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)(.conststring)
+    .conststring                             0x00007188   Section       83  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_critical.o)(.conststring)
+    locale$$data                             0x000071fc   Section       28  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_numeric_c.o)(locale$$data)
+    __lcnum_c_name                           0x00007200   Data           2  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_numeric_c.o)(locale$$data)
+    __lcnum_c_start                          0x00007208   Data           0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_numeric_c.o)(locale$$data)
+    __lcnum_c_point                          0x00007214   Data           0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_numeric_c.o)(locale$$data)
+    __lcnum_c_thousands                      0x00007216   Data           0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_numeric_c.o)(locale$$data)
+    __lcnum_c_grouping                       0x00007217   Data           0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_numeric_c.o)(locale$$data)
+    locale$$data                             0x00007218   Section      272  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_ctype_c.o)(locale$$data)
+    __lcnum_c_end                            0x00007218   Data           0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_numeric_c.o)(locale$$data)
+    __lcctype_c_name                         0x0000721c   Data           2  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_ctype_c.o)(locale$$data)
+    __lcctype_c_start                        0x00007224   Data           0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_ctype_c.o)(locale$$data)
+    __lcctype_c_end                          0x00007328   Data           0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_ctype_c.o)(locale$$data)
     .data                                    0x100000c8   Section       16  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o(.data)
     _mutex                                   0x100000c8   Data           8  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o(.data)
     filehandle_mutex                         0x100000d0   Data           8  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o(.data)
@@ -2974,14 +2974,11 @@ Image Symbol Table
     .data                                    0x100000e8   Section        4  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/system_LPC17xx.o(.data)
     .data                                    0x100000ec   Section        4  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o(.data)
     .data                                    0x100000f0   Section      344  .\build\led_control.o(.data)
-    .data                                    0x10000248   Section      523  .\build\uart_control.o(.data)
+    .data                                    0x10000248   Section      520  .\build\uart_control.o(.data)
     UART_STATE                               0x10000258   Data           1  .\build\uart_control.o(.data)
     OutedStatusMsg                           0x10000259   Data           1  .\build\uart_control.o(.data)
     inputs                                   0x1000025a   Data           1  .\build\uart_control.o(.data)
-    OutedUserMsg                             0x10000450   Data           1  .\build\uart_control.o(.data)
-    OutedPassMsg                             0x10000451   Data           1  .\build\uart_control.o(.data)
-    OutedFunctionMsg                         0x10000452   Data           1  .\build\uart_control.o(.data)
-    .data                                    0x10000453   Section        1  .\build\gpio_setup.o(.data)
+    .data                                    0x10000450   Section        1  .\build\gpio_setup.o(.data)
     .data                                    0x10000454   Section       12  .\build\port.o(.data)
     uxCriticalNesting                        0x10000454   Data           4  .\build\port.o(.data)
     ucMaxSysCallPriority                     0x10000458   Data           1  .\build\port.o(.data)
@@ -3410,84 +3407,84 @@ Image Symbol Table
     serial_putc                              0x00004a75   Thumb Code   100  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(i.serial_putc)
     serial_set_flow_control                  0x00004add   Thumb Code   252  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(i.serial_set_flow_control)
     tLEDAlive                                0x00004be9   Thumb Code    66  .\build\led_control.o(i.tLEDAlive)
-    tUART_RxTask                             0x00004c31   Thumb Code   792  .\build\uart_control.o(i.tUART_RxTask)
-    tUART_TxTask                             0x00004fc5   Thumb Code   190  .\build\uart_control.o(i.tUART_TxTask)
-    ticker_irq_handler                       0x000050c1   Thumb Code    78  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)(i.ticker_irq_handler)
-    ticker_read                              0x0000510f   Thumb Code    28  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)(i.ticker_read)
-    uart0_irq                                0x0000512d   Thumb Code    14  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(i.uart0_irq)
-    uart1_irq                                0x00005141   Thumb Code    14  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(i.uart1_irq)
-    uart2_irq                                0x00005155   Thumb Code    14  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(i.uart2_irq)
-    uart3_irq                                0x00005169   Thumb Code    14  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(i.uart3_irq)
-    us_ticker_clear_interrupt                0x000052e9   Thumb Code     8  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o(i.us_ticker_clear_interrupt)
-    us_ticker_disable_interrupt              0x000052f5   Thumb Code    12  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o(i.us_ticker_disable_interrupt)
-    us_ticker_fire_interrupt                 0x00005305   Thumb Code    12  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o(i.us_ticker_fire_interrupt)
-    us_ticker_get_info                       0x00005311   Thumb Code     4  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o(i.us_ticker_get_info)
-    us_ticker_init                           0x00005319   Thumb Code    74  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o(i.us_ticker_init)
-    us_ticker_irq_handler                    0x00005381   Thumb Code    14  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_us_ticker_api.o)(i.us_ticker_irq_handler)
-    us_ticker_read                           0x00005399   Thumb Code    72  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o(i.us_ticker_read)
-    us_ticker_set_interrupt                  0x000053fd   Thumb Code    14  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o(i.us_ticker_set_interrupt)
-    uxListRemove                             0x00005411   Thumb Code    40  .\build\list.o(i.uxListRemove)
-    vApplicationMallocFailedHook             0x00005439   Thumb Code    62  .\build\main.o(i.vApplicationMallocFailedHook)
-    vApplicationStackOverflowHook            0x00005477   Thumb Code    62  .\build\main.o(i.vApplicationStackOverflowHook)
-    vCheckPasscode                           0x000054b5   Thumb Code    90  .\build\uart_control.o(i.vCheckPasscode)
-    vCheckUsernames                          0x00005519   Thumb Code   110  .\build\uart_control.o(i.vCheckUsernames)
-    vFindStringMatch                         0x0000558d   Thumb Code   114  .\build\uart_control.o(i.vFindStringMatch)
-    vListInitialise                          0x00005605   Thumb Code    26  .\build\list.o(i.vListInitialise)
-    vListInitialiseItem                      0x0000561f   Thumb Code     6  .\build\list.o(i.vListInitialiseItem)
-    vListInsert                              0x00005625   Thumb Code    52  .\build\list.o(i.vListInsert)
-    vListInsertEnd                           0x00005659   Thumb Code    24  .\build\list.o(i.vListInsertEnd)
-    vPortEnterCritical                       0x00005671   Thumb Code    76  .\build\port.o(i.vPortEnterCritical)
-    vPortExitCritical                        0x000056c5   Thumb Code    56  .\build\port.o(i.vPortExitCritical)
-    vPortFree                                0x00005701   Thumb Code    56  .\build\heap_2.o(i.vPortFree)
-    vPortSetupTimerInterrupt                 0x00005741   Thumb Code    26  .\build\port.o(i.vPortSetupTimerInterrupt)
-    vPortValidateInterruptPriority           0x00005761   Thumb Code   106  .\build\port.o(i.vPortValidateInterruptPriority)
-    vQueueWaitForMessageRestricted           0x000057d9   Thumb Code    74  .\build\queue.o(i.vQueueWaitForMessageRestricted)
-    vTaskDelay                               0x00005825   Thumb Code    82  .\build\tasks.o(i.vTaskDelay)
-    vTaskDelayUntil                          0x00005881   Thumb Code   200  .\build\tasks.o(i.vTaskDelayUntil)
-    vTaskMissedYield                         0x00005955   Thumb Code     8  .\build\tasks.o(i.vTaskMissedYield)
-    vTaskPlaceOnEventList                    0x00005961   Thumb Code    52  .\build\tasks.o(i.vTaskPlaceOnEventList)
-    vTaskPlaceOnEventListRestricted          0x00005999   Thumb Code    60  .\build\tasks.o(i.vTaskPlaceOnEventListRestricted)
-    vTaskPriorityInherit                     0x000059d9   Thumb Code   164  .\build\tasks.o(i.vTaskPriorityInherit)
-    vTaskSetTimeOutState                     0x00005a89   Thumb Code    38  .\build\tasks.o(i.vTaskSetTimeOutState)
-    vTaskStartScheduler                      0x00005ab9   Thumb Code   118  .\build\tasks.o(i.vTaskStartScheduler)
-    vTaskSuspendAll                          0x00005b4d   Thumb Code    12  .\build\tasks.o(i.vTaskSuspendAll)
-    vTaskSwitchContext                       0x00005b5d   Thumb Code   174  .\build\tasks.o(i.vTaskSwitchContext)
-    wait_ms                                  0x00005c21   Thumb Code    36  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_wait_api_no_rtos.o)(i.wait_ms)
-    xPortStartScheduler                      0x00005c45   Thumb Code   140  .\build\port.o(i.xPortStartScheduler)
-    xQueueGenericCreate                      0x00005ce5   Thumb Code    88  .\build\queue.o(i.xQueueGenericCreate)
-    xQueueGenericReceive                     0x00005d3d   Thumb Code   446  .\build\queue.o(i.xQueueGenericReceive)
-    xQueueGenericReset                       0x00005f01   Thumb Code   146  .\build\queue.o(i.xQueueGenericReset)
-    xQueueGenericSend                        0x00005f99   Thumb Code   420  .\build\queue.o(i.xQueueGenericSend)
-    xQueueGenericSendFromISR                 0x00006141   Thumb Code   248  .\build\queue.o(i.xQueueGenericSendFromISR)
-    xTaskCheckForTimeOut                     0x00006239   Thumb Code   132  .\build\tasks.o(i.xTaskCheckForTimeOut)
-    xTaskCreate                              0x000062c5   Thumb Code    96  .\build\tasks.o(i.xTaskCreate)
-    xTaskGetSchedulerState                   0x00006325   Thumb Code    24  .\build\tasks.o(i.xTaskGetSchedulerState)
-    xTaskGetTickCount                        0x00006345   Thumb Code     6  .\build\tasks.o(i.xTaskGetTickCount)
-    xTaskIncrementTick                       0x00006351   Thumb Code   282  .\build\tasks.o(i.xTaskIncrementTick)
-    xTaskPriorityDisinherit                  0x00006499   Thumb Code   188  .\build\tasks.o(i.xTaskPriorityDisinherit)
-    xTaskRemoveFromEventList                 0x00006561   Thumb Code   128  .\build\tasks.o(i.xTaskRemoveFromEventList)
-    xTaskResumeAll                           0x000065f9   Thumb Code   224  .\build\tasks.o(i.xTaskResumeAll)
-    xTimerCreateTimerTask                    0x000066fd   Thumb Code    66  .\build\timers.o(i.xTimerCreateTimerTask)
-    xTimerGenericCommand                     0x00006755   Thumb Code   126  .\build\timers.o(i.xTimerGenericCommand)
-    yKeyHit                                  0x000067d9   Thumb Code    14  .\build\uart_control.o(i.yKeyHit)
-    ySetupDigitalI                           0x000067e9   Thumb Code   466  .\build\gpio_setup.o(i.ySetupDigitalI)
-    ySetupDigitalO                           0x000069cd   Thumb Code   466  .\build\gpio_setup.o(i.ySetupDigitalO)
-    yUART_RxReady                            0x00006bb1   Thumb Code    18  .\build\uart_control.o(i.yUART_RxReady)
-    yUART_TxReady                            0x00006bc9   Thumb Code    26  .\build\uart_control.o(i.yUART_TxReady)
-    _get_lc_numeric                          0x00006be9   Thumb Code    44  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_numeric_c.o)(locale$$code)
-    _get_lc_ctype                            0x00006c15   Thumb Code    44  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_ctype_c.o)(locale$$code)
-    SingletonPtr<PlatformMutex>::operator ->() 0x00006c41   Thumb Code    36  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(FileBase.o)(t._ZN12SingletonPtrI13PlatformMutexEptEv)
-    _printf_fp_dec                           0x00006c6d   Thumb Code     4  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(printf1.o)(x$fpl$printf1)
-    _printf_fp_hex                           0x00006c71   Thumb Code     4  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(printf2.o)(x$fpl$printf2)
-    __I$use$fp                               0x00006c74   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(usenofp.o)(x$fpl$usenofp)
-    __stdin_name                             0x00006c74   Data           7  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o(.constdata)
-    __stdout_name                            0x00006c7b   Data           8  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o(.constdata)
-    __stderr_name                            0x00006c83   Data           8  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o(.constdata)
-    SingletonPtr<PlatformMutex>::get()::string 0x00006f1c   Data          20  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o(.constdata__ZZN12SingletonPtrI13PlatformMutexE3getEvEs)
-    SingletonPtr<PlatformMutex>::get()::string (instance 2) 0x00006f30   Data          93  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o(.constdata__ZZN12SingletonPtrI13PlatformMutexE3getEvEs_0)
-    Region$$Table$$Base                      0x000071ec   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x0000720c   Number         0  anon$$obj.o(Region$$Table)
-    __ctype                                  0x00007235   Data           0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_ctype_c.o)(locale$$data)
+    tUART_RxTask                             0x00004c31   Thumb Code   778  .\build\uart_control.o(i.tUART_RxTask)
+    tUART_TxTask                             0x00004fb5   Thumb Code   190  .\build\uart_control.o(i.tUART_TxTask)
+    ticker_irq_handler                       0x000050b1   Thumb Code    78  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)(i.ticker_irq_handler)
+    ticker_read                              0x000050ff   Thumb Code    28  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)(i.ticker_read)
+    uart0_irq                                0x0000511d   Thumb Code    14  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(i.uart0_irq)
+    uart1_irq                                0x00005131   Thumb Code    14  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(i.uart1_irq)
+    uart2_irq                                0x00005145   Thumb Code    14  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(i.uart2_irq)
+    uart3_irq                                0x00005159   Thumb Code    14  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(i.uart3_irq)
+    us_ticker_clear_interrupt                0x000052d9   Thumb Code     8  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o(i.us_ticker_clear_interrupt)
+    us_ticker_disable_interrupt              0x000052e5   Thumb Code    12  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o(i.us_ticker_disable_interrupt)
+    us_ticker_fire_interrupt                 0x000052f5   Thumb Code    12  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o(i.us_ticker_fire_interrupt)
+    us_ticker_get_info                       0x00005301   Thumb Code     4  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o(i.us_ticker_get_info)
+    us_ticker_init                           0x00005309   Thumb Code    74  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o(i.us_ticker_init)
+    us_ticker_irq_handler                    0x00005371   Thumb Code    14  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_us_ticker_api.o)(i.us_ticker_irq_handler)
+    us_ticker_read                           0x00005389   Thumb Code    72  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o(i.us_ticker_read)
+    us_ticker_set_interrupt                  0x000053ed   Thumb Code    14  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o(i.us_ticker_set_interrupt)
+    uxListRemove                             0x00005401   Thumb Code    40  .\build\list.o(i.uxListRemove)
+    vApplicationMallocFailedHook             0x00005429   Thumb Code    62  .\build\main.o(i.vApplicationMallocFailedHook)
+    vApplicationStackOverflowHook            0x00005467   Thumb Code    62  .\build\main.o(i.vApplicationStackOverflowHook)
+    vCheckPasscode                           0x000054a5   Thumb Code    90  .\build\uart_control.o(i.vCheckPasscode)
+    vCheckUsernames                          0x00005509   Thumb Code   110  .\build\uart_control.o(i.vCheckUsernames)
+    vFindStringMatch                         0x0000557d   Thumb Code   114  .\build\uart_control.o(i.vFindStringMatch)
+    vListInitialise                          0x000055f5   Thumb Code    26  .\build\list.o(i.vListInitialise)
+    vListInitialiseItem                      0x0000560f   Thumb Code     6  .\build\list.o(i.vListInitialiseItem)
+    vListInsert                              0x00005615   Thumb Code    52  .\build\list.o(i.vListInsert)
+    vListInsertEnd                           0x00005649   Thumb Code    24  .\build\list.o(i.vListInsertEnd)
+    vPortEnterCritical                       0x00005661   Thumb Code    76  .\build\port.o(i.vPortEnterCritical)
+    vPortExitCritical                        0x000056b5   Thumb Code    56  .\build\port.o(i.vPortExitCritical)
+    vPortFree                                0x000056f1   Thumb Code    56  .\build\heap_2.o(i.vPortFree)
+    vPortSetupTimerInterrupt                 0x00005731   Thumb Code    26  .\build\port.o(i.vPortSetupTimerInterrupt)
+    vPortValidateInterruptPriority           0x00005751   Thumb Code   106  .\build\port.o(i.vPortValidateInterruptPriority)
+    vQueueWaitForMessageRestricted           0x000057c9   Thumb Code    74  .\build\queue.o(i.vQueueWaitForMessageRestricted)
+    vTaskDelay                               0x00005815   Thumb Code    82  .\build\tasks.o(i.vTaskDelay)
+    vTaskDelayUntil                          0x00005871   Thumb Code   200  .\build\tasks.o(i.vTaskDelayUntil)
+    vTaskMissedYield                         0x00005945   Thumb Code     8  .\build\tasks.o(i.vTaskMissedYield)
+    vTaskPlaceOnEventList                    0x00005951   Thumb Code    52  .\build\tasks.o(i.vTaskPlaceOnEventList)
+    vTaskPlaceOnEventListRestricted          0x00005989   Thumb Code    60  .\build\tasks.o(i.vTaskPlaceOnEventListRestricted)
+    vTaskPriorityInherit                     0x000059c9   Thumb Code   164  .\build\tasks.o(i.vTaskPriorityInherit)
+    vTaskSetTimeOutState                     0x00005a79   Thumb Code    38  .\build\tasks.o(i.vTaskSetTimeOutState)
+    vTaskStartScheduler                      0x00005aa9   Thumb Code   118  .\build\tasks.o(i.vTaskStartScheduler)
+    vTaskSuspendAll                          0x00005b3d   Thumb Code    12  .\build\tasks.o(i.vTaskSuspendAll)
+    vTaskSwitchContext                       0x00005b4d   Thumb Code   174  .\build\tasks.o(i.vTaskSwitchContext)
+    wait_ms                                  0x00005c11   Thumb Code    36  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_wait_api_no_rtos.o)(i.wait_ms)
+    xPortStartScheduler                      0x00005c35   Thumb Code   140  .\build\port.o(i.xPortStartScheduler)
+    xQueueGenericCreate                      0x00005cd5   Thumb Code    88  .\build\queue.o(i.xQueueGenericCreate)
+    xQueueGenericReceive                     0x00005d2d   Thumb Code   446  .\build\queue.o(i.xQueueGenericReceive)
+    xQueueGenericReset                       0x00005ef1   Thumb Code   146  .\build\queue.o(i.xQueueGenericReset)
+    xQueueGenericSend                        0x00005f89   Thumb Code   420  .\build\queue.o(i.xQueueGenericSend)
+    xQueueGenericSendFromISR                 0x00006131   Thumb Code   248  .\build\queue.o(i.xQueueGenericSendFromISR)
+    xTaskCheckForTimeOut                     0x00006229   Thumb Code   132  .\build\tasks.o(i.xTaskCheckForTimeOut)
+    xTaskCreate                              0x000062b5   Thumb Code    96  .\build\tasks.o(i.xTaskCreate)
+    xTaskGetSchedulerState                   0x00006315   Thumb Code    24  .\build\tasks.o(i.xTaskGetSchedulerState)
+    xTaskGetTickCount                        0x00006335   Thumb Code     6  .\build\tasks.o(i.xTaskGetTickCount)
+    xTaskIncrementTick                       0x00006341   Thumb Code   282  .\build\tasks.o(i.xTaskIncrementTick)
+    xTaskPriorityDisinherit                  0x00006489   Thumb Code   188  .\build\tasks.o(i.xTaskPriorityDisinherit)
+    xTaskRemoveFromEventList                 0x00006551   Thumb Code   128  .\build\tasks.o(i.xTaskRemoveFromEventList)
+    xTaskResumeAll                           0x000065e9   Thumb Code   224  .\build\tasks.o(i.xTaskResumeAll)
+    xTimerCreateTimerTask                    0x000066ed   Thumb Code    66  .\build\timers.o(i.xTimerCreateTimerTask)
+    xTimerGenericCommand                     0x00006745   Thumb Code   126  .\build\timers.o(i.xTimerGenericCommand)
+    yKeyHit                                  0x000067c9   Thumb Code    14  .\build\uart_control.o(i.yKeyHit)
+    ySetupDigitalI                           0x000067d9   Thumb Code   466  .\build\gpio_setup.o(i.ySetupDigitalI)
+    ySetupDigitalO                           0x000069bd   Thumb Code   466  .\build\gpio_setup.o(i.ySetupDigitalO)
+    yUART_RxReady                            0x00006ba1   Thumb Code    18  .\build\uart_control.o(i.yUART_RxReady)
+    yUART_TxReady                            0x00006bb9   Thumb Code    26  .\build\uart_control.o(i.yUART_TxReady)
+    _get_lc_numeric                          0x00006bd9   Thumb Code    44  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_numeric_c.o)(locale$$code)
+    _get_lc_ctype                            0x00006c05   Thumb Code    44  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_ctype_c.o)(locale$$code)
+    SingletonPtr<PlatformMutex>::operator ->() 0x00006c31   Thumb Code    36  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(FileBase.o)(t._ZN12SingletonPtrI13PlatformMutexEptEv)
+    _printf_fp_dec                           0x00006c5d   Thumb Code     4  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(printf1.o)(x$fpl$printf1)
+    _printf_fp_hex                           0x00006c61   Thumb Code     4  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(printf2.o)(x$fpl$printf2)
+    __I$use$fp                               0x00006c64   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(usenofp.o)(x$fpl$usenofp)
+    __stdin_name                             0x00006c64   Data           7  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o(.constdata)
+    __stdout_name                            0x00006c6b   Data           8  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o(.constdata)
+    __stderr_name                            0x00006c73   Data           8  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o(.constdata)
+    SingletonPtr<PlatformMutex>::get()::string 0x00006f0c   Data          20  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o(.constdata__ZZN12SingletonPtrI13PlatformMutexE3getEvEs)
+    SingletonPtr<PlatformMutex>::get()::string (instance 2) 0x00006f20   Data          93  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o(.constdata__ZZN12SingletonPtrI13PlatformMutexE3getEvEs_0)
+    Region$$Table$$Base                      0x000071dc   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x000071fc   Number         0  anon$$obj.o(Region$$Table)
+    __ctype                                  0x00007225   Data           0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_ctype_c.o)(locale$$data)
     stdio_uart_inited                        0x100000d8   Data           4  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(.data)
     stdio_uart                               0x100000e0   Data           8  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(.data)
     SystemCoreClock                          0x100000e8   Data           4  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/system_LPC17xx.o(.data)
@@ -3508,7 +3505,7 @@ Image Symbol Table
     branch_string                            0x10000323   Data          20  .\build\uart_control.o(.data)
     keyword_strings                          0x10000337   Data         200  .\build\uart_control.o(.data)
     keyword_functions                        0x10000400   Data          80  .\build\uart_control.o(.data)
-    PinLibrary_Initialized                   0x10000453   Data           1  .\build\gpio_setup.o(.data)
+    PinLibrary_Initialized                   0x10000450   Data           1  .\build\gpio_setup.o(.data)
     pxCurrentTCB                             0x10000460   Data           4  .\build\tasks.o(.data)
     mbed::FileBase::_head                    0x100004d8   Data           4  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(FileBase.o)(.data)
     mbed::FileBase::_mutex                   0x100004dc   Data           8  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(FileBase.o)(.data)
@@ -3530,7 +3527,7 @@ Memory Map of the image
 
   Image Entry point : 0x00000301
 
-  Load Region LR_IROM1 (Base: 0x00000000, Size: 0x00007764, Max: 0x00080000, ABSOLUTE, COMPRESSED[0x00007470])
+  Load Region LR_IROM1 (Base: 0x00000000, Size: 0x00007754, Max: 0x00080000, ABSOLUTE, COMPRESSED[0x00007460])
 
     Execution Region ER_IROM0 (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x000000c4, Max: 0x000002fc, ABSOLUTE)
 
@@ -3546,7 +3543,7 @@ Memory Map of the image
     0x000002fc   0x000002fc   0x00000004   Data   RO           78    .CRPSection         mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/CRP.o
 
 
-    Execution Region ER_IROM1 (Exec base: 0x00000300, Load base: 0x00000300, Size: 0x00007038, Max: 0x0007fd00, ABSOLUTE, FIXED)
+    Execution Region ER_IROM1 (Exec base: 0x00000300, Load base: 0x00000300, Size: 0x00007028, Max: 0x0007fd00, ABSOLUTE, FIXED)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -3809,111 +3806,111 @@ Memory Map of the image
     0x00004a74   0x00004a74   0x00000068   Code   RO          491    i.serial_putc       mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o
     0x00004adc   0x00004adc   0x0000010c   Code   RO          493    i.serial_set_flow_control  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o
     0x00004be8   0x00004be8   0x00000048   Code   RO          737    i.tLEDAlive         .\build\led_control.o
-    0x00004c30   0x00004c30   0x00000394   Code   RO          841    i.tUART_RxTask      .\build\uart_control.o
-    0x00004fc4   0x00004fc4   0x000000fc   Code   RO          842    i.tUART_TxTask      .\build\uart_control.o
-    0x000050c0   0x000050c0   0x0000004e   Code   RO         2092    i.ticker_irq_handler  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)
-    0x0000510e   0x0000510e   0x0000001c   Code   RO         2093    i.ticker_read       mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)
-    0x0000512a   0x0000512a   0x00000002   PAD
-    0x0000512c   0x0000512c   0x00000014   Code   RO          495    i.uart0_irq         mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o
-    0x00005140   0x00005140   0x00000014   Code   RO          496    i.uart1_irq         mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o
-    0x00005154   0x00005154   0x00000014   Code   RO          497    i.uart2_irq         mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o
-    0x00005168   0x00005168   0x00000014   Code   RO          498    i.uart3_irq         mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o
-    0x0000517c   0x0000517c   0x00000068   Code   RO          499    i.uart_irq          mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o
-    0x000051e4   0x000051e4   0x00000104   Code   RO         2097    i.update_present_time  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)
-    0x000052e8   0x000052e8   0x0000000c   Code   RO          583    i.us_ticker_clear_interrupt  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o
-    0x000052f4   0x000052f4   0x00000010   Code   RO          584    i.us_ticker_disable_interrupt  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o
-    0x00005304   0x00005304   0x0000000c   Code   RO          585    i.us_ticker_fire_interrupt  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o
-    0x00005310   0x00005310   0x00000008   Code   RO          265    i.us_ticker_get_info  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o
-    0x00005318   0x00005318   0x00000068   Code   RO          586    i.us_ticker_init    mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o
-    0x00005380   0x00005380   0x00000018   Code   RO         2048    i.us_ticker_irq_handler  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_us_ticker_api.o)
-    0x00005398   0x00005398   0x00000064   Code   RO          587    i.us_ticker_read    mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o
-    0x000053fc   0x000053fc   0x00000014   Code   RO          588    i.us_ticker_set_interrupt  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o
-    0x00005410   0x00005410   0x00000028   Code   RO         1364    i.uxListRemove      .\build\list.o
-    0x00005438   0x00005438   0x0000003e   Code   RO          603    i.vApplicationMallocFailedHook  .\build\main.o
-    0x00005476   0x00005476   0x0000003e   Code   RO          604    i.vApplicationStackOverflowHook  .\build\main.o
-    0x000054b4   0x000054b4   0x00000064   Code   RO          843    i.vCheckPasscode    .\build\uart_control.o
-    0x00005518   0x00005518   0x00000074   Code   RO          844    i.vCheckUsernames   .\build\uart_control.o
-    0x0000558c   0x0000558c   0x00000078   Code   RO          845    i.vFindStringMatch  .\build\uart_control.o
-    0x00005604   0x00005604   0x0000001a   Code   RO         1365    i.vListInitialise   .\build\list.o
-    0x0000561e   0x0000561e   0x00000006   Code   RO         1366    i.vListInitialiseItem  .\build\list.o
-    0x00005624   0x00005624   0x00000034   Code   RO         1367    i.vListInsert       .\build\list.o
-    0x00005658   0x00005658   0x00000018   Code   RO         1368    i.vListInsertEnd    .\build\list.o
-    0x00005670   0x00005670   0x00000054   Code   RO         1194    i.vPortEnterCritical  .\build\port.o
-    0x000056c4   0x000056c4   0x0000003c   Code   RO         1195    i.vPortExitCritical  .\build\port.o
-    0x00005700   0x00005700   0x00000040   Code   RO         1976    i.vPortFree         .\build\heap_2.o
-    0x00005740   0x00005740   0x00000020   Code   RO         1196    i.vPortSetupTimerInterrupt  .\build\port.o
-    0x00005760   0x00005760   0x00000078   Code   RO         1197    i.vPortValidateInterruptPriority  .\build\port.o
-    0x000057d8   0x000057d8   0x0000004a   Code   RO         1411    i.vQueueWaitForMessageRestricted  .\build\queue.o
-    0x00005822   0x00005822   0x00000002   PAD
-    0x00005824   0x00005824   0x0000005c   Code   RO         1574    i.vTaskDelay        .\build\tasks.o
-    0x00005880   0x00005880   0x000000d4   Code   RO         1575    i.vTaskDelayUntil   .\build\tasks.o
-    0x00005954   0x00005954   0x0000000c   Code   RO         1578    i.vTaskMissedYield  .\build\tasks.o
-    0x00005960   0x00005960   0x00000038   Code   RO         1580    i.vTaskPlaceOnEventList  .\build\tasks.o
-    0x00005998   0x00005998   0x00000040   Code   RO         1581    i.vTaskPlaceOnEventListRestricted  .\build\tasks.o
-    0x000059d8   0x000059d8   0x000000b0   Code   RO         1583    i.vTaskPriorityInherit  .\build\tasks.o
-    0x00005a88   0x00005a88   0x00000030   Code   RO         1586    i.vTaskSetTimeOutState  .\build\tasks.o
-    0x00005ab8   0x00005ab8   0x00000094   Code   RO         1587    i.vTaskStartScheduler  .\build\tasks.o
-    0x00005b4c   0x00005b4c   0x00000010   Code   RO         1589    i.vTaskSuspendAll   .\build\tasks.o
-    0x00005b5c   0x00005b5c   0x000000c4   Code   RO         1590    i.vTaskSwitchContext  .\build\tasks.o
-    0x00005c20   0x00005c20   0x00000024   Code   RO         2247    i.wait_ms           mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_wait_api_no_rtos.o)
-    0x00005c44   0x00005c44   0x000000a0   Code   RO         1198    i.xPortStartScheduler  .\build\port.o
-    0x00005ce4   0x00005ce4   0x00000058   Code   RO         1414    i.xQueueGenericCreate  .\build\queue.o
-    0x00005d3c   0x00005d3c   0x000001c4   Code   RO         1415    i.xQueueGenericReceive  .\build\queue.o
-    0x00005f00   0x00005f00   0x00000098   Code   RO         1416    i.xQueueGenericReset  .\build\queue.o
-    0x00005f98   0x00005f98   0x000001a8   Code   RO         1417    i.xQueueGenericSend  .\build\queue.o
-    0x00006140   0x00006140   0x000000f8   Code   RO         1418    i.xQueueGenericSendFromISR  .\build\queue.o
-    0x00006238   0x00006238   0x0000008c   Code   RO         1591    i.xTaskCheckForTimeOut  .\build\tasks.o
-    0x000062c4   0x000062c4   0x00000060   Code   RO         1592    i.xTaskCreate       .\build\tasks.o
-    0x00006324   0x00006324   0x00000020   Code   RO         1596    i.xTaskGetSchedulerState  .\build\tasks.o
-    0x00006344   0x00006344   0x0000000c   Code   RO         1597    i.xTaskGetTickCount  .\build\tasks.o
-    0x00006350   0x00006350   0x00000148   Code   RO         1599    i.xTaskIncrementTick  .\build\tasks.o
-    0x00006498   0x00006498   0x000000c8   Code   RO         1602    i.xTaskPriorityDisinherit  .\build\tasks.o
-    0x00006560   0x00006560   0x00000098   Code   RO         1603    i.xTaskRemoveFromEventList  .\build\tasks.o
-    0x000065f8   0x000065f8   0x00000104   Code   RO         1605    i.xTaskResumeAll    .\build\tasks.o
-    0x000066fc   0x000066fc   0x00000058   Code   RO         1870    i.xTimerCreateTimerTask  .\build\timers.o
-    0x00006754   0x00006754   0x00000084   Code   RO         1871    i.xTimerGenericCommand  .\build\timers.o
-    0x000067d8   0x000067d8   0x0000000e   Code   RO          846    i.yKeyHit           .\build\uart_control.o
-    0x000067e6   0x000067e6   0x00000002   PAD
-    0x000067e8   0x000067e8   0x000001e4   Code   RO         1062    i.ySetupDigitalI    .\build\gpio_setup.o
-    0x000069cc   0x000069cc   0x000001e4   Code   RO         1063    i.ySetupDigitalO    .\build\gpio_setup.o
-    0x00006bb0   0x00006bb0   0x00000018   Code   RO          847    i.yUART_RxReady     .\build\uart_control.o
-    0x00006bc8   0x00006bc8   0x00000020   Code   RO          848    i.yUART_TxReady     .\build\uart_control.o
-    0x00006be8   0x00006be8   0x0000002c   Code   RO         2968    locale$$code        C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_numeric_c.o)
-    0x00006c14   0x00006c14   0x0000002c   Code   RO         3006    locale$$code        C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_ctype_c.o)
-    0x00006c40   0x00006c40   0x0000002c   Code   RO         2285    t._ZN12SingletonPtrI13PlatformMutexEptEv  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(FileBase.o)
-    0x00006c6c   0x00006c6c   0x00000004   Code   RO         2804    x$fpl$printf1       C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(printf1.o)
-    0x00006c70   0x00006c70   0x00000004   Code   RO         2806    x$fpl$printf2       C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(printf2.o)
-    0x00006c74   0x00006c74   0x00000000   Code   RO         2812    x$fpl$usenofp       C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(usenofp.o)
-    0x00006c74   0x00006c74   0x00000028   Data   RO          311    .constdata          mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o
-    0x00006c9c   0x00006c9c   0x00000120   Data   RO          501    .constdata          mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o
-    0x00006dbc   0x00006dbc   0x00000040   Data   RO          850    .constdata          .\build\uart_control.o
-    0x00006dfc   0x00006dfc   0x0000001c   Data   RO         2050    .constdata          mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_us_ticker_api.o)
-    0x00006e18   0x00006e18   0x00000008   Data   RO         2051    .constdata          mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_us_ticker_api.o)
-    0x00006e20   0x00006e20   0x00000008   Data   RO         2623    .constdata          C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_wctomb.o)
-    0x00006e28   0x00006e28   0x00000028   Data   RO         2652    .constdata          C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_hex_int_ll_ptr.o)
-    0x00006e50   0x00006e50   0x00000011   Data   RO         2672    .constdata          C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__printf_flags_ss_wp.o)
-    0x00006e61   0x00006e61   0x00000026   Data   RO         2847    .constdata          C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_fp_hex.o)
-    0x00006e87   0x00006e87   0x00000001   PAD
-    0x00006e88   0x00006e88   0x00000094   Data   RO         2943    .constdata          C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(bigflt0.o)
-    0x00006f1c   0x00006f1c   0x00000014   Data   RO          382    .constdata__ZZN12SingletonPtrI13PlatformMutexE3getEvEs  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o
-    0x00006f30   0x00006f30   0x0000005d   Data   RO          383    .constdata__ZZN12SingletonPtrI13PlatformMutexE3getEvEs_0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o
-    0x00006f8d   0x00006f8d   0x00000003   PAD
-    0x00006f90   0x00006f90   0x00000067   Data   RO          141    .conststring        mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/gpio_api.o
-    0x00006ff7   0x00006ff7   0x00000001   PAD
-    0x00006ff8   0x00006ff8   0x0000007c   Data   RO          212    .conststring        mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_board.o
-    0x00007074   0x00007074   0x00000065   Data   RO          407    .conststring        mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/pinmap.o
-    0x000070d9   0x000070d9   0x00000003   PAD
-    0x000070dc   0x000070dc   0x00000069   Data   RO          502    .conststring        mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o
-    0x00007145   0x00007145   0x00000003   PAD
-    0x00007148   0x00007148   0x00000050   Data   RO         2098    .conststring        mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)
-    0x00007198   0x00007198   0x00000053   Data   RO         2155    .conststring        mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_critical.o)
-    0x000071eb   0x000071eb   0x00000001   PAD
-    0x000071ec   0x000071ec   0x00000020   Data   RO         3037    Region$$Table       anon$$obj.o
-    0x0000720c   0x0000720c   0x0000001c   Data   RO         2967    locale$$data        C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_numeric_c.o)
-    0x00007228   0x00007228   0x00000110   Data   RO         3005    locale$$data        C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_ctype_c.o)
+    0x00004c30   0x00004c30   0x00000384   Code   RO          841    i.tUART_RxTask      .\build\uart_control.o
+    0x00004fb4   0x00004fb4   0x000000fc   Code   RO          842    i.tUART_TxTask      .\build\uart_control.o
+    0x000050b0   0x000050b0   0x0000004e   Code   RO         2092    i.ticker_irq_handler  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)
+    0x000050fe   0x000050fe   0x0000001c   Code   RO         2093    i.ticker_read       mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)
+    0x0000511a   0x0000511a   0x00000002   PAD
+    0x0000511c   0x0000511c   0x00000014   Code   RO          495    i.uart0_irq         mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o
+    0x00005130   0x00005130   0x00000014   Code   RO          496    i.uart1_irq         mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o
+    0x00005144   0x00005144   0x00000014   Code   RO          497    i.uart2_irq         mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o
+    0x00005158   0x00005158   0x00000014   Code   RO          498    i.uart3_irq         mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o
+    0x0000516c   0x0000516c   0x00000068   Code   RO          499    i.uart_irq          mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o
+    0x000051d4   0x000051d4   0x00000104   Code   RO         2097    i.update_present_time  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)
+    0x000052d8   0x000052d8   0x0000000c   Code   RO          583    i.us_ticker_clear_interrupt  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o
+    0x000052e4   0x000052e4   0x00000010   Code   RO          584    i.us_ticker_disable_interrupt  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o
+    0x000052f4   0x000052f4   0x0000000c   Code   RO          585    i.us_ticker_fire_interrupt  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o
+    0x00005300   0x00005300   0x00000008   Code   RO          265    i.us_ticker_get_info  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o
+    0x00005308   0x00005308   0x00000068   Code   RO          586    i.us_ticker_init    mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o
+    0x00005370   0x00005370   0x00000018   Code   RO         2048    i.us_ticker_irq_handler  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_us_ticker_api.o)
+    0x00005388   0x00005388   0x00000064   Code   RO          587    i.us_ticker_read    mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o
+    0x000053ec   0x000053ec   0x00000014   Code   RO          588    i.us_ticker_set_interrupt  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o
+    0x00005400   0x00005400   0x00000028   Code   RO         1364    i.uxListRemove      .\build\list.o
+    0x00005428   0x00005428   0x0000003e   Code   RO          603    i.vApplicationMallocFailedHook  .\build\main.o
+    0x00005466   0x00005466   0x0000003e   Code   RO          604    i.vApplicationStackOverflowHook  .\build\main.o
+    0x000054a4   0x000054a4   0x00000064   Code   RO          843    i.vCheckPasscode    .\build\uart_control.o
+    0x00005508   0x00005508   0x00000074   Code   RO          844    i.vCheckUsernames   .\build\uart_control.o
+    0x0000557c   0x0000557c   0x00000078   Code   RO          845    i.vFindStringMatch  .\build\uart_control.o
+    0x000055f4   0x000055f4   0x0000001a   Code   RO         1365    i.vListInitialise   .\build\list.o
+    0x0000560e   0x0000560e   0x00000006   Code   RO         1366    i.vListInitialiseItem  .\build\list.o
+    0x00005614   0x00005614   0x00000034   Code   RO         1367    i.vListInsert       .\build\list.o
+    0x00005648   0x00005648   0x00000018   Code   RO         1368    i.vListInsertEnd    .\build\list.o
+    0x00005660   0x00005660   0x00000054   Code   RO         1194    i.vPortEnterCritical  .\build\port.o
+    0x000056b4   0x000056b4   0x0000003c   Code   RO         1195    i.vPortExitCritical  .\build\port.o
+    0x000056f0   0x000056f0   0x00000040   Code   RO         1976    i.vPortFree         .\build\heap_2.o
+    0x00005730   0x00005730   0x00000020   Code   RO         1196    i.vPortSetupTimerInterrupt  .\build\port.o
+    0x00005750   0x00005750   0x00000078   Code   RO         1197    i.vPortValidateInterruptPriority  .\build\port.o
+    0x000057c8   0x000057c8   0x0000004a   Code   RO         1411    i.vQueueWaitForMessageRestricted  .\build\queue.o
+    0x00005812   0x00005812   0x00000002   PAD
+    0x00005814   0x00005814   0x0000005c   Code   RO         1574    i.vTaskDelay        .\build\tasks.o
+    0x00005870   0x00005870   0x000000d4   Code   RO         1575    i.vTaskDelayUntil   .\build\tasks.o
+    0x00005944   0x00005944   0x0000000c   Code   RO         1578    i.vTaskMissedYield  .\build\tasks.o
+    0x00005950   0x00005950   0x00000038   Code   RO         1580    i.vTaskPlaceOnEventList  .\build\tasks.o
+    0x00005988   0x00005988   0x00000040   Code   RO         1581    i.vTaskPlaceOnEventListRestricted  .\build\tasks.o
+    0x000059c8   0x000059c8   0x000000b0   Code   RO         1583    i.vTaskPriorityInherit  .\build\tasks.o
+    0x00005a78   0x00005a78   0x00000030   Code   RO         1586    i.vTaskSetTimeOutState  .\build\tasks.o
+    0x00005aa8   0x00005aa8   0x00000094   Code   RO         1587    i.vTaskStartScheduler  .\build\tasks.o
+    0x00005b3c   0x00005b3c   0x00000010   Code   RO         1589    i.vTaskSuspendAll   .\build\tasks.o
+    0x00005b4c   0x00005b4c   0x000000c4   Code   RO         1590    i.vTaskSwitchContext  .\build\tasks.o
+    0x00005c10   0x00005c10   0x00000024   Code   RO         2247    i.wait_ms           mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_wait_api_no_rtos.o)
+    0x00005c34   0x00005c34   0x000000a0   Code   RO         1198    i.xPortStartScheduler  .\build\port.o
+    0x00005cd4   0x00005cd4   0x00000058   Code   RO         1414    i.xQueueGenericCreate  .\build\queue.o
+    0x00005d2c   0x00005d2c   0x000001c4   Code   RO         1415    i.xQueueGenericReceive  .\build\queue.o
+    0x00005ef0   0x00005ef0   0x00000098   Code   RO         1416    i.xQueueGenericReset  .\build\queue.o
+    0x00005f88   0x00005f88   0x000001a8   Code   RO         1417    i.xQueueGenericSend  .\build\queue.o
+    0x00006130   0x00006130   0x000000f8   Code   RO         1418    i.xQueueGenericSendFromISR  .\build\queue.o
+    0x00006228   0x00006228   0x0000008c   Code   RO         1591    i.xTaskCheckForTimeOut  .\build\tasks.o
+    0x000062b4   0x000062b4   0x00000060   Code   RO         1592    i.xTaskCreate       .\build\tasks.o
+    0x00006314   0x00006314   0x00000020   Code   RO         1596    i.xTaskGetSchedulerState  .\build\tasks.o
+    0x00006334   0x00006334   0x0000000c   Code   RO         1597    i.xTaskGetTickCount  .\build\tasks.o
+    0x00006340   0x00006340   0x00000148   Code   RO         1599    i.xTaskIncrementTick  .\build\tasks.o
+    0x00006488   0x00006488   0x000000c8   Code   RO         1602    i.xTaskPriorityDisinherit  .\build\tasks.o
+    0x00006550   0x00006550   0x00000098   Code   RO         1603    i.xTaskRemoveFromEventList  .\build\tasks.o
+    0x000065e8   0x000065e8   0x00000104   Code   RO         1605    i.xTaskResumeAll    .\build\tasks.o
+    0x000066ec   0x000066ec   0x00000058   Code   RO         1870    i.xTimerCreateTimerTask  .\build\timers.o
+    0x00006744   0x00006744   0x00000084   Code   RO         1871    i.xTimerGenericCommand  .\build\timers.o
+    0x000067c8   0x000067c8   0x0000000e   Code   RO          846    i.yKeyHit           .\build\uart_control.o
+    0x000067d6   0x000067d6   0x00000002   PAD
+    0x000067d8   0x000067d8   0x000001e4   Code   RO         1062    i.ySetupDigitalI    .\build\gpio_setup.o
+    0x000069bc   0x000069bc   0x000001e4   Code   RO         1063    i.ySetupDigitalO    .\build\gpio_setup.o
+    0x00006ba0   0x00006ba0   0x00000018   Code   RO          847    i.yUART_RxReady     .\build\uart_control.o
+    0x00006bb8   0x00006bb8   0x00000020   Code   RO          848    i.yUART_TxReady     .\build\uart_control.o
+    0x00006bd8   0x00006bd8   0x0000002c   Code   RO         2968    locale$$code        C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_numeric_c.o)
+    0x00006c04   0x00006c04   0x0000002c   Code   RO         3006    locale$$code        C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_ctype_c.o)
+    0x00006c30   0x00006c30   0x0000002c   Code   RO         2285    t._ZN12SingletonPtrI13PlatformMutexEptEv  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(FileBase.o)
+    0x00006c5c   0x00006c5c   0x00000004   Code   RO         2804    x$fpl$printf1       C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(printf1.o)
+    0x00006c60   0x00006c60   0x00000004   Code   RO         2806    x$fpl$printf2       C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(printf2.o)
+    0x00006c64   0x00006c64   0x00000000   Code   RO         2812    x$fpl$usenofp       C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(usenofp.o)
+    0x00006c64   0x00006c64   0x00000028   Data   RO          311    .constdata          mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o
+    0x00006c8c   0x00006c8c   0x00000120   Data   RO          501    .constdata          mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o
+    0x00006dac   0x00006dac   0x00000040   Data   RO          850    .constdata          .\build\uart_control.o
+    0x00006dec   0x00006dec   0x0000001c   Data   RO         2050    .constdata          mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_us_ticker_api.o)
+    0x00006e08   0x00006e08   0x00000008   Data   RO         2051    .constdata          mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_us_ticker_api.o)
+    0x00006e10   0x00006e10   0x00000008   Data   RO         2623    .constdata          C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_wctomb.o)
+    0x00006e18   0x00006e18   0x00000028   Data   RO         2652    .constdata          C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_hex_int_ll_ptr.o)
+    0x00006e40   0x00006e40   0x00000011   Data   RO         2672    .constdata          C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__printf_flags_ss_wp.o)
+    0x00006e51   0x00006e51   0x00000026   Data   RO         2847    .constdata          C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_fp_hex.o)
+    0x00006e77   0x00006e77   0x00000001   PAD
+    0x00006e78   0x00006e78   0x00000094   Data   RO         2943    .constdata          C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(bigflt0.o)
+    0x00006f0c   0x00006f0c   0x00000014   Data   RO          382    .constdata__ZZN12SingletonPtrI13PlatformMutexE3getEvEs  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o
+    0x00006f20   0x00006f20   0x0000005d   Data   RO          383    .constdata__ZZN12SingletonPtrI13PlatformMutexE3getEvEs_0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o
+    0x00006f7d   0x00006f7d   0x00000003   PAD
+    0x00006f80   0x00006f80   0x00000067   Data   RO          141    .conststring        mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/gpio_api.o
+    0x00006fe7   0x00006fe7   0x00000001   PAD
+    0x00006fe8   0x00006fe8   0x0000007c   Data   RO          212    .conststring        mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_board.o
+    0x00007064   0x00007064   0x00000065   Data   RO          407    .conststring        mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/pinmap.o
+    0x000070c9   0x000070c9   0x00000003   PAD
+    0x000070cc   0x000070cc   0x00000069   Data   RO          502    .conststring        mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o
+    0x00007135   0x00007135   0x00000003   PAD
+    0x00007138   0x00007138   0x00000050   Data   RO         2098    .conststring        mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)
+    0x00007188   0x00007188   0x00000053   Data   RO         2155    .conststring        mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_critical.o)
+    0x000071db   0x000071db   0x00000001   PAD
+    0x000071dc   0x000071dc   0x00000020   Data   RO         3037    Region$$Table       anon$$obj.o
+    0x000071fc   0x000071fc   0x0000001c   Data   RO         2967    locale$$data        C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_numeric_c.o)
+    0x00007218   0x00007218   0x00000110   Data   RO         3005    locale$$data        C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_ctype_c.o)
 
 
-    Execution Region RW_IRAM1 (Exec base: 0x100000c8, Load base: 0x00007338, Size: 0x000049b8, Max: 0x00007f18, ABSOLUTE, COMPRESSED[0x00000138])
+    Execution Region RW_IRAM1 (Exec base: 0x100000c8, Load base: 0x00007328, Size: 0x000049b8, Max: 0x00007f18, ABSOLUTE, COMPRESSED[0x00000138])
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -3922,8 +3919,9 @@ Memory Map of the image
     0x100000e8   COMPRESSED   0x00000004   Data   RW          574    .data               mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/system_LPC17xx.o
     0x100000ec   COMPRESSED   0x00000004   Data   RW          589    .data               mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o
     0x100000f0   COMPRESSED   0x00000158   Data   RW          738    .data               .\build\led_control.o
-    0x10000248   COMPRESSED   0x0000020b   Data   RW          851    .data               .\build\uart_control.o
-    0x10000453   COMPRESSED   0x00000001   Data   RW         1065    .data               .\build\gpio_setup.o
+    0x10000248   COMPRESSED   0x00000208   Data   RW          851    .data               .\build\uart_control.o
+    0x10000450   COMPRESSED   0x00000001   Data   RW         1065    .data               .\build\gpio_setup.o
+    0x10000451   COMPRESSED   0x00000003   PAD
     0x10000454   COMPRESSED   0x0000000c   Data   RW         1199    .data               .\build\port.o
     0x10000460   COMPRESSED   0x0000003c   Data   RW         1608    .data               .\build\tasks.o
     0x1000049c   COMPRESSED   0x00000014   Data   RW         1877    .data               .\build\timers.o
@@ -3953,17 +3951,17 @@ Memory Map of the image
     0x10004a6c        -       0x00000014   Zero   RW         2929    .bss                C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(rt_locale.o)
 
 
-    Execution Region RW_IRAM2 (Exec base: 0x2007c000, Load base: 0x00007470, Size: 0x00000000, Max: 0x00004000, ABSOLUTE)
+    Execution Region RW_IRAM2 (Exec base: 0x2007c000, Load base: 0x00007460, Size: 0x00000000, Max: 0x00004000, ABSOLUTE)
 
     **** No section assigned to this execution region ****
 
 
-    Execution Region RW_IRAM3 (Exec base: 0x20080000, Load base: 0x00007470, Size: 0x00000000, Max: 0x00004000, ABSOLUTE)
+    Execution Region RW_IRAM3 (Exec base: 0x20080000, Load base: 0x00007460, Size: 0x00000000, Max: 0x00004000, ABSOLUTE)
 
     **** No section assigned to this execution region ****
 
 
-    Execution Region RW_IRAM4 (Exec base: 0x40038000, Load base: 0x00007470, Size: 0x00000000, Max: 0x00000800, ABSOLUTE)
+    Execution Region RW_IRAM4 (Exec base: 0x40038000, Load base: 0x00007460, Size: 0x00000000, Max: 0x00000800, ABSOLUTE)
 
     **** No section assigned to this execution region ****
 
@@ -3994,14 +3992,14 @@ Image component sizes
        160         10          0          4          0         68   mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/system_LPC17xx.o
       3098        382          0         60        200      21863   .\build\tasks.o
       1118        110          0         20         40       8715   .\build\timers.o
-      2282        476         64        523        128      16662   .\build\uart_control.o
+      2266        474         64        520        128      16550   .\build\uart_control.o
        264         72          0          4          0        408   mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o
         18          0          0          0          0        439   .\build\utilities.o
 
     ----------------------------------------------------------------------
-     15232       1746       1180       1024      17460     122982   Object Totals
+     15216       1744       1180       1024      17460     122870   Object Totals
          0          0         32          0          0          0   (incl. Generated)
-        14          0         10          0          0          0   (incl. Padding)
+        14          0         10          3          0          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -4149,15 +4147,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     26996       2522       1932       1068      17804     119730   Grand Totals
-     26996       2522       1932        312      17804     119730   ELF Image Totals (compressed)
-     26996       2522       1932        312          0          0   ROM Totals
+     26980       2520       1932       1068      17804     119618   Grand Totals
+     26980       2520       1932        312      17804     119618   ELF Image Totals (compressed)
+     26980       2520       1932        312          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                28928 (  28.25kB)
+    Total RO  Size (Code + RO Data)                28912 (  28.23kB)
     Total RW  Size (RW Data + ZI Data)             18872 (  18.43kB)
-    Total ROM Size (Code + RO Data + RW Data)      29240 (  28.55kB)
+    Total ROM Size (Code + RO Data + RW Data)      29224 (  28.54kB)
 
 ==============================================================================
 

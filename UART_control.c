@@ -220,7 +220,7 @@ void nUART0_init( unsigned int baudrate) {
 
 /* Function to transmit a char */
 void nUART_TxChar(char ch) {
-    while(util_IsBitCleared(LPC_UART0->LSR,SBIT_THRE) == 0 ); 
+//    while(util_IsBitCleared(LPC_UART0->LSR,SBIT_THRE) == 0 ); 
 			// Wait for Previous transmission
     LPC_UART0->THR=ch;                                  // Load the data to be transmitted
 }
@@ -229,7 +229,7 @@ void nUART_TxChar(char ch) {
 char nUART_RxChar() {
     char ch; 
 	
-    while(util_IsBitCleared(LPC_UART0->LSR,SBIT_RDR));  // Wait till the data is received
+//    while(util_IsBitCleared(LPC_UART0->LSR,SBIT_RDR));  // Wait till the data is received
 		ch = LPC_UART0->RBR;                                // Read received data    
 		
 		return ch;

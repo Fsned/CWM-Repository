@@ -12,9 +12,6 @@
  **********************************************************************************************
  * Description:
  * 	Source file providing functionality to the UART API.
- *  
- *	
- *
  **********************************************************************************************
  * Dependencies:
  *	This library uses the following files:
@@ -39,9 +36,6 @@
 #include "task.h"
 #include "queue.h"
 #include "semphr.h"
-
-
-
 
 // ****************************************************************************************
 //
@@ -233,7 +227,6 @@ uint8_t yUART_RxReady( void ) {
 
 
 void nUART_TxChar(char ch) {
-	
 	if (yUART_TxReady())
 		LPC_UART0->THR=ch;                                  // Load the data to be transmitted
 }

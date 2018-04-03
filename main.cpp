@@ -26,7 +26,7 @@ unsigned int myarr[4] = {0,0,0,1};
 int main() 
 {
 	
-	BaseType_t xReturned;
+	BaseType_t xReturned = pdPASS;
 	SystemInit();                    //Clock and PLL configuration
 	nGPIOSetup();
 //	
@@ -41,11 +41,17 @@ int main()
 
 		// Create a task.
     
-		xReturned = xTaskCreate( tUART_Task , "UARTC0", 32, NULL, configMAX_PRIORITIES - 1, NULL ); 
+		xReturned &= xTaskCreate( tUART_RxTask , "UART Receive"	, 64, NULL, configMAX_PRIORITIES - 1, NULL ); 
+		xReturned &= xTaskCreate( tUART_TxTask , "UART Transmit"	, 64, NULL, configMAX_PRIORITIES - 1, NULL ); 
 		
 		if (xReturned == pdPASS)
-								xTaskCreate( tLEDAlive 	, 	"T01"	, TASK_STACK_SIZE, NULL, configMAX_PRIORITIES - 1, NULL );
+			xTaskCreate( tLEDAlive 	, 	"LED Alive task"	, 32 , NULL, configMAX_PRIORITIES - 1, NULL );
 
+		
+		
+		qUART_RxQ		= xQueueCreate(32 , sizeof(char));
+		qUART_TxQ		= xQueueCreate(32 , sizeof(char));
+		
 		
 		// Start FreeRTOS scheduler.
     vTaskStartScheduler();

@@ -14,6 +14,8 @@
  *	Keyword library etc.
  *
  *********************************************************************************************/
+ #include "FreeRTOS.h"
+ #include "queue.h"
  
  
 // ****************************************************************************************
@@ -92,13 +94,17 @@
 #define UartState_FindPass			2
 #define	UartState_Functioncall	3
 
+#define ENTER_USERNAME					255
+#define ENTER_PASSWORD					254
+
  
 // ****************************************************************************************
 //
 //					Variables
 //
 // ****************************************************************************************
-
+extern xQueueHandle qUART_RxQ;
+extern xQueueHandle qUART_TxQ;
 
 // ****************************************************************************************
 //	Type		: 	YES_RETURN Functions
@@ -106,6 +112,10 @@
 //	Description	:	Returns true (1) or false (0) depending on the success of the function
 // ****************************************************************************************
 extern uint8_t yKeyHit( uint8_t KEY_CHECK , uint8_t KEY_HIT );
+
+extern uint8_t yUART_TxReady( void );
+
+extern uint8_t yUART_RxReady( void );
 
 // ****************************************************************************************
 //	Type		: 	NO_RETURN Functions
@@ -148,6 +158,10 @@ extern void nTerminalLogout				( void );
 
 extern void tUART_Task						( void* );
 
+extern void tUART_RxTask					( void* );
+
+extern void tUART_TxTask					( void* );
+
 // ****************************************************************************************
 //	Type		: 	VALUE_RETURN Functions
 //	Example		:	vXxXxX();
@@ -158,3 +172,5 @@ extern uint8_t vFindStringMatch(char InputString[] , uint8_t length);
 extern uint8_t vCheckUsernames(char InputString[] , uint8_t length);
 
 extern uint8_t vCheckPasscode(char InputString[] , uint8_t length);
+
+

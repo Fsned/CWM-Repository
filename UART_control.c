@@ -38,6 +38,8 @@
 #include "FreeRTOS.h"
 #include "task.h"
 #include "queue.h"
+#include "semphr.h"
+
 
 
 
@@ -52,6 +54,8 @@ uint8_t PASSWORD_MATCHED = 0;
 
 xQueueHandle qUART_TxQ = NULL;
 xQueueHandle qUART_RxQ = NULL;
+
+SemaphoreHandle_t UART0_TxSemaphore = NULL;
 
 static uint8_t UART_STATE = UartState_FindUser;
 static uint8_t OutedStatusMsg = 0;
@@ -221,7 +225,7 @@ void nUART0_init( unsigned int baudrate) {
 
 uint8_t yUART_TxReady( void ) {
 	
-	while(! LPC_UART0->LSR & 0x20 );
+	while(! LPC_UART0->LSR & 0x21 );
 	
 	return 1;
 }
@@ -303,7 +307,7 @@ void nTerminal_LED_ALL_ON() {
 
 /* Keyword funtion for "status" */ 
 void nTerminalStatus() {
-	nUART_TxString("\r\nCurrent state       : snoo\n\r");
+	nUART_TxString("\r\n Current state       : snoo\n\r");
 	nUART_TxString("Current Temperature : \n\r");
 	nUART_TxString("Current Program     : \n\r");
 }
@@ -343,6 +347,9 @@ void tUART_RxTask( void *param ) {
 	
 	char blocked_character = '*';
 	
+	
+	UART0_TxSemaphore = xSemaphoreCreateBinary();
+	xSemaphoreGive( UART0_TxSemaphore );
 	
 	while(1) {
 		
@@ -405,9 +412,14 @@ void tUART_RxTask( void *param ) {
 							OutedStatusMsg = 0;
 							inputs = 0;
 							nNewLine( 2 );
-							nUART_TxString("Logged in.\r\n" );
-							nUART_TxString("Welcome ");
-							nUART_TxString(USERS_NAMES[USERNAME_MATCHED]);
+							
+							if (xSemaphoreTake(UART0_TxSemaphore, ( TickType_t ) 10 ) == pdTRUE) {
+								nUART_TxString("Logged in.\r\n" );
+								nUART_TxString("Welcome ");
+								nUART_TxString(USERS_NAMES[USERNAME_MATCHED]);
+								xSemaphoreGive( UART0_TxSemaphore );
+							}
+							
 							
 							nNewLine( 2 );
 						}
@@ -449,21 +461,30 @@ void tUART_RxTask( void *param ) {
 					else if ( yKeyHit (CHAR_ENTER , receive ) && inputs > 0) {
 						input_buffer[inputs] = '\0';
 						inputs++;
+						nNewLine( 1 );	
 						keyword_functions[vFindStringMatch( input_buffer , inputs )]();
-						nNewLine( 1 );																											// Start a new line		
+																																// Start a new line		
 						inputs = 0;	
 						OutedStatusMsg = 0;
 					}
 					else {
 						input_buffer[inputs] = receive;
+						if (xSemaphoreTake(UART0_TxSemaphore, ( TickType_t ) 10 ) == pdTRUE) {
 						nUART_TxChar(input_buffer[inputs]);
+						xSemaphoreGive( UART0_TxSemaphore );
+					}
+						
 						inputs++;
 					}
 					break;
 				
 				default :
 					nNewLine( 4 );
-					nUART_TxString("You aren't supposed to be here.");
+					if (xSemaphoreTake(UART0_TxSemaphore, ( TickType_t ) 10 ) == pdTRUE) {
+						nUART_TxString("You aren't supposed to be here.");
+						xSemaphoreGive( UART0_TxSemaphore );
+					}
+					
 					UART_STATE = UartState_FindUser;
 					break;
 			}
@@ -484,6 +505,8 @@ void tUART_RxTask( void *param ) {
 //	---------------------------------------------------
 void tUART_TxTask( void *param ) { 
 	
+	
+	
 	uint8_t receive;
 
 	while(1) {
@@ -491,15 +514,24 @@ void tUART_TxTask( void *param ) {
 		if (! OutedStatusMsg) {
 			switch(UART_STATE) {
 				case UartState_FindUser :
-					nUART_TxString("Enter Username :");
+					if (xSemaphoreTake(UART0_TxSemaphore, ( TickType_t ) 10 ) == pdTRUE) {
+						nUART_TxString("Enter Username :");
+						xSemaphoreGive( UART0_TxSemaphore );
+					}
 				break;
 				
 				case UartState_FindPass :
-					nUART_TxString("Enter Password :");
+					if (xSemaphoreTake(UART0_TxSemaphore, ( TickType_t ) 10 ) == pdTRUE) {
+						nUART_TxString("Enter Password :");
+						xSemaphoreGive( UART0_TxSemaphore );
+					}
 				break;
 				
 				case UartState_Functioncall :
-					nUART_TxString(">> ");
+					if (xSemaphoreTake(UART0_TxSemaphore, ( TickType_t ) 10 ) == pdTRUE) {
+						nUART_TxString(">> ");
+						xSemaphoreGive( UART0_TxSemaphore );
+					}
 				break;
 			}
 						OutedStatusMsg = 1;

@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\BUILD\CWMW18_Controller_001.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\BUILD\CWMW18_Controller_001.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Tue Apr 03 12:47:24 2018
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Tue Apr 03 13:33:34 2018
 <BR><P>
 <H3>Maximum Stack Usage =        664 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -903,8 +903,8 @@ Global Symbols
 <P><STRONG><a name="[70]"></a>_printf_int_hex</STRONG> (Thumb, 28 bytes, Stack size 16 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_hex_int_ll_ptr.o)(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = _printf_int_hex &rArr; _printf_longlong_hex &rArr; _printf_int_common &rArr; _printf_post_padding
 </UL>
-<BR>[Calls]<UL><LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_longlong_hex
-<LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_truncate_unsigned
+<BR>[Calls]<UL><LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_truncate_unsigned
+<LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_longlong_hex
 </UL>
 <BR>[Called By]<UL><LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_x
 </UL>
@@ -1053,10 +1053,10 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_post_padding
 <LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_pre_padding
 </UL>
-<BR>[Called By]<UL><LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_longlong_hex
-<LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_longlong_oct
+<BR>[Called By]<UL><LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_longlong_oct
 <LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_longlong_dec
 <LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_int_dec
+<LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_longlong_hex
 </UL>
 
 <P><STRONG><a name="[19b]"></a>__lib_sel_fp_printf</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_fp_dec.o)(.text), UNUSED)
@@ -2040,7 +2040,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> main.o(i.main)
 </UL>
-<P><STRONG><a name="[49]"></a>tUART_RxTask</STRONG> (Thumb, 668 bytes, Stack size 16 bytes, .\build\uart_control.o(i.tUART_RxTask))
+<P><STRONG><a name="[49]"></a>tUART_RxTask</STRONG> (Thumb, 792 bytes, Stack size 16 bytes, .\build\uart_control.o(i.tUART_RxTask))
 <BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = tUART_RxTask &rArr; nUART_RxChar &rArr; xQueueGenericSend &rArr; vTaskPlaceOnEventList &rArr; prvAddCurrentTaskToDelayedList &rArr; vListInsert
 </UL>
 <BR>[Calls]<UL><LI><a href="#[11e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xQueueGenericSend
@@ -2055,13 +2055,15 @@ Global Symbols
 <LI><a href="#[11c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nUART_TxChar
 <LI><a href="#[11d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nUART_RxChar
 <LI><a href="#[11a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nNewLine
+<LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xQueueGenericCreate
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> main.o(i.main)
 </UL>
-<P><STRONG><a name="[4a]"></a>tUART_TxTask</STRONG> (Thumb, 92 bytes, Stack size 8 bytes, .\build\uart_control.o(i.tUART_TxTask))
-<BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = tUART_TxTask &rArr; xQueueGenericReceive &rArr; vTaskPlaceOnEventList &rArr; prvAddCurrentTaskToDelayedList &rArr; vListInsert
+<P><STRONG><a name="[4a]"></a>tUART_TxTask</STRONG> (Thumb, 190 bytes, Stack size 8 bytes, .\build\uart_control.o(i.tUART_TxTask))
+<BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = tUART_TxTask &rArr; xQueueGenericSend &rArr; vTaskPlaceOnEventList &rArr; prvAddCurrentTaskToDelayedList &rArr; vListInsert
 </UL>
-<BR>[Calls]<UL><LI><a href="#[142]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xQueueGenericReceive
+<BR>[Calls]<UL><LI><a href="#[11e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xQueueGenericSend
+<LI><a href="#[142]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xQueueGenericReceive
 <LI><a href="#[152]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskDelay
 <LI><a href="#[11b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nUART_TxString
 <LI><a href="#[11c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nUART_TxChar
@@ -2401,6 +2403,7 @@ Global Symbols
 <LI><a href="#[136]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;prvInitialiseNewQueue
 </UL>
 <BR>[Called By]<UL><LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
+<LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tUART_RxTask
 <LI><a href="#[12b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;prvCheckForValidListAndQueue
 </UL>
 
@@ -2455,6 +2458,7 @@ Global Symbols
 <LI><a href="#[133]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;prvCopyDataToQueue
 </UL>
 <BR>[Called By]<UL><LI><a href="#[11d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nUART_RxChar
+<LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tUART_TxTask
 <LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tUART_RxTask
 <LI><a href="#[13f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTimerGenericCommand
 </UL>

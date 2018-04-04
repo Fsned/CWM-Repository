@@ -59,9 +59,9 @@ char input_buffer[128];
 
 static uint8_t inputs = 0;
 
-char USER_LIBRARY[USERS][5] = {{"NON"} 					, {"map"} 					 , {"ab"} 							, {"frs"} 							 , {"**"}};		// Brugernavne
-char PASS_LIBRARY[USERS][5] = {{"213"} 					, {"123"} 					 , {"666"} 							, {"123"} 							 , {"123"}};		// Passwords											
-char USERS_NAMES[USERS][30]	= {{"Blind Makker"} , {"Mark Appelgren"} , {"Anders B. Hansen"} , {"Frederik Snedevind"} , {"Blind Makker"}};
+char USER_LIBRARY[USERS][5] = {{"NON"} 					, {"map"} 					 , {"ab"} 							, {"frs"} 							 , {"bj"}};		// Brugernavne
+char PASS_LIBRARY[USERS][5] = {{"213"} 					, {"123"} 					 , {"666"} 							, {"123"} 							 , {"246"}};		// Passwords											
+char USERS_NAMES[USERS][30]	= {{"Blind Makker"} , {"Mark Appelgren"} , {"Anders B. Hansen"} , {"Frederik Snedevind"} , {"Brian Jorgensen"}};
 																
 																
 char branch_string[20] = {"Sandbox"};

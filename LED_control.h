@@ -25,7 +25,6 @@
 // ****************************************************************************************
 #define		LED_DONT_CARE		2 
 
-
 // ****************************************************************************************
 //	Type		: 	YES_RETURN Functions
 //	Example		:	yXxXxX();
@@ -47,6 +46,8 @@ extern void nDiscoFunc( void );
 extern void nLEDFlip	( unsigned int led_flip[] );
 
 extern void nDelayLED	( void );
+
+
 
 // ****************************************************************************************
 //	Type		: 	VALUE_RETURN Functions

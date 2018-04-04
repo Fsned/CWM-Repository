@@ -79,8 +79,8 @@ char keyword_strings[NO_OF_KEYWORDS][10] 	 = {{"help"},								// F0
 																							{"Clear"},							// F11
 																							{"setuppin1"},					// F12
 																							{"setuppin2"},					// F13
-																							{"pf1"},					// F14
-																							{"pf2"},					// F15
+																							{"pinflip1"},								// F14
+																							{"pf2"},								// F15
 																							{"LED"},								// F16
 																							{"DiScO"},							// F17
 																							{"logout"},							// F18
@@ -98,10 +98,10 @@ void (*keyword_functions[NO_OF_KEYWORDS])() = {nTerminalHelp 		 	, 			// F0
 																							 nTerminalStatus		, 			// F9
 																							 nTerminalClear		 	, 			// F10
 																							 nTerminalClear 	  , 			// F11
-																							 nPinSetup_1 	, 		// F12
-																							 nPinSetup_2	, 			// F13
-																							 nPinFlip_1	, 			// F14
-																							 nPinFlip_2 	, 		// F15
+																							 nPinSetup_1 	, 						// F12
+																							 nPinSetup_2	, 						// F13
+																							 nPinFlip_1	, 							// F14
+																							 nPinFlip_2 	, 						// F15
 																							 nTerminalUndefined	, 			// F16
 																							 nDiscoFunc					, 			// F17
 																							 nTerminalLogout	, 				// F18
@@ -130,17 +130,27 @@ uint8_t yKeyHit( uint8_t KEY_CHECK , uint8_t KEY_HIT ) {
 //	Description	:	Does not return anything.
 // ****************************************************************************************
 void nPinSetup_1() {
+	
+	
 		ySetupDigitalO( PORT_0 , PIN_0 );			// P9   for driving soappump relay
+		ySetupDigitalI( PORT_0 , PIN_18 );		
 }
 
 void nPinSetup_2() {
+	
 	ySetupDigitalO( PORT_0 , PIN_1 );			// P10	for driving soappump relay
 }
 
 
-void nPinFlip_1( ) {
+void nPinFlip_1() {
 	static int pin_1_status = 0;
 
+	if (xSemaphoreTake(UART0_TxSemaphore , 5)) {
+		nUART_TxString("Flipped pin 1\r\n");
+		xSemaphoreGive(UART0_TxSemaphore);
+	}
+	
+	
 	if ( pin_1_status == 0 )
 		pin_1_status = 1;
 	else
@@ -150,9 +160,14 @@ void nPinFlip_1( ) {
 }
 
 
-void nPinFlip_2( ) {
+void nPinFlip_2() {
 	static uint8_t pin_2_status = 0;
 
+	if (xSemaphoreTake(UART0_TxSemaphore , 5)) {
+		nUART_TxString("Flipped pin 2\r\n");
+		xSemaphoreGive(UART0_TxSemaphore);
+	}
+	
 	if ( pin_2_status == 0 )
 		pin_2_status = 1;
 	else
@@ -526,8 +541,6 @@ void tUART_RxTask( void *param ) {
 //									UART Transmit task
 //	---------------------------------------------------
 void tUART_TxTask( void *param ) { 
-	
-	
 	
 	uint8_t receive;
 

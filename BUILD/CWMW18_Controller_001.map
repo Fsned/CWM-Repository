@@ -411,11 +411,18 @@ Section Cross References
     .\build\led_control.o(i.tLEDAlive) refers to .\build\tasks.o(i.vTaskDelayUntil) for vTaskDelayUntil
     .\build\led_control.o(i.tLEDAlive) refers to .\build\led_control.o(.data) for seconds_counter
     .\build\uart_control.o(i.nNewLine) refers to .\build\uart_control.o(i.nUART_TxString) for nUART_TxString
+    .\build\uart_control.o(i.nPinFlip_1) refers to .\build\queue.o(i.xQueueGenericReceive) for xQueueGenericReceive
+    .\build\uart_control.o(i.nPinFlip_1) refers to .\build\uart_control.o(i.nUART_TxString) for nUART_TxString
+    .\build\uart_control.o(i.nPinFlip_1) refers to .\build\queue.o(i.xQueueGenericSend) for xQueueGenericSend
     .\build\uart_control.o(i.nPinFlip_1) refers to .\build\gpio_setup.o(i.yDigitalWrite) for yDigitalWrite
-    .\build\uart_control.o(i.nPinFlip_1) refers to .\build\uart_control.o(.data) for pin_1_status
+    .\build\uart_control.o(i.nPinFlip_1) refers to .\build\uart_control.o(.data) for UART0_TxSemaphore
+    .\build\uart_control.o(i.nPinFlip_2) refers to .\build\queue.o(i.xQueueGenericReceive) for xQueueGenericReceive
+    .\build\uart_control.o(i.nPinFlip_2) refers to .\build\uart_control.o(i.nUART_TxString) for nUART_TxString
+    .\build\uart_control.o(i.nPinFlip_2) refers to .\build\queue.o(i.xQueueGenericSend) for xQueueGenericSend
     .\build\uart_control.o(i.nPinFlip_2) refers to .\build\gpio_setup.o(i.yDigitalWrite) for yDigitalWrite
-    .\build\uart_control.o(i.nPinFlip_2) refers to .\build\uart_control.o(.data) for pin_2_status
+    .\build\uart_control.o(i.nPinFlip_2) refers to .\build\uart_control.o(.data) for UART0_TxSemaphore
     .\build\uart_control.o(i.nPinSetup_1) refers to .\build\gpio_setup.o(i.ySetupDigitalO) for ySetupDigitalO
+    .\build\uart_control.o(i.nPinSetup_1) refers to .\build\gpio_setup.o(i.ySetupDigitalI) for ySetupDigitalI
     .\build\uart_control.o(i.nPinSetup_2) refers to .\build\gpio_setup.o(i.ySetupDigitalO) for ySetupDigitalO
     .\build\uart_control.o(i.nTerminalClear) refers to .\build\uart_control.o(i.nUART_TxString) for nUART_TxString
     .\build\uart_control.o(i.nTerminalHelp) refers to .\build\uart_control.o(i.nUART_TxString) for nUART_TxString
@@ -2776,212 +2783,212 @@ Image Symbol Table
     i.nLED_SET                               0x00003640   Section        0  .\build\led_control.o(i.nLED_SET)
     i.nNewLine                               0x000036c8   Section        0  .\build\uart_control.o(i.nNewLine)
     i.nPinFlip_1                             0x000036e4   Section        0  .\build\uart_control.o(i.nPinFlip_1)
-    i.nPinFlip_2                             0x0000370c   Section        0  .\build\uart_control.o(i.nPinFlip_2)
-    i.nPinSetup_1                            0x00003734   Section        0  .\build\uart_control.o(i.nPinSetup_1)
-    i.nPinSetup_2                            0x00003740   Section        0  .\build\uart_control.o(i.nPinSetup_2)
-    i.nTerminalClear                         0x0000374c   Section        0  .\build\uart_control.o(i.nTerminalClear)
-    i.nTerminalHelp                          0x00003764   Section        0  .\build\uart_control.o(i.nTerminalHelp)
-    i.nTerminalLogout                        0x000037c4   Section        0  .\build\uart_control.o(i.nTerminalLogout)
-    i.nTerminalStatus                        0x00003814   Section        0  .\build\uart_control.o(i.nTerminalStatus)
-    i.nTerminalUndefined                     0x00003884   Section        0  .\build\uart_control.o(i.nTerminalUndefined)
-    i.nTerminal_LED_1_ON                     0x000038b4   Section        0  .\build\uart_control.o(i.nTerminal_LED_1_ON)
-    i.nTerminal_LED_2_ON                     0x000038cc   Section        0  .\build\uart_control.o(i.nTerminal_LED_2_ON)
-    i.nTerminal_LED_3_ON                     0x000038e4   Section        0  .\build\uart_control.o(i.nTerminal_LED_3_ON)
-    i.nTerminal_LED_4_ON                     0x000038fc   Section        0  .\build\uart_control.o(i.nTerminal_LED_4_ON)
-    i.nTerminal_LED_ALL_ON                   0x00003914   Section        0  .\build\uart_control.o(i.nTerminal_LED_ALL_ON)
-    i.nTerminal_LED_OFF                      0x00003924   Section        0  .\build\uart_control.o(i.nTerminal_LED_OFF)
-    i.nUART0_init                            0x00003934   Section        0  .\build\uart_control.o(i.nUART0_init)
-    i.nUART_RxChar                           0x000039bc   Section        0  .\build\uart_control.o(i.nUART_RxChar)
-    i.nUART_TxChar                           0x000039dc   Section        0  .\build\uart_control.o(i.nUART_TxChar)
-    i.nUART_TxString                         0x000039f0   Section        0  .\build\uart_control.o(i.nUART_TxString)
-    i.pin_function                           0x00003a08   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/pinmap.o(i.pin_function)
-    i.pin_mode                               0x00003a64   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/pinmap.o(i.pin_mode)
-    i.pinmap_find_peripheral                 0x00003af4   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_pinmap_common.o)(i.pinmap_find_peripheral)
-    i.pinmap_merge                           0x00003b18   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_pinmap_common.o)(i.pinmap_merge)
-    i.pinmap_peripheral                      0x00003b54   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_pinmap_common.o)(i.pinmap_peripheral)
-    i.pinmap_pinout                          0x00003bb0   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_pinmap_common.o)(i.pinmap_pinout)
-    i.prvAddCurrentTaskToDelayedList         0x00003c08   Section        0  .\build\tasks.o(i.prvAddCurrentTaskToDelayedList)
-    prvAddCurrentTaskToDelayedList           0x00003c09   Thumb Code   124  .\build\tasks.o(i.prvAddCurrentTaskToDelayedList)
-    i.prvAddNewTaskToReadyList               0x00003ca0   Section        0  .\build\tasks.o(i.prvAddNewTaskToReadyList)
-    prvAddNewTaskToReadyList                 0x00003ca1   Thumb Code   150  .\build\tasks.o(i.prvAddNewTaskToReadyList)
-    i.prvCheckForValidListAndQueue           0x00003d54   Section        0  .\build\timers.o(i.prvCheckForValidListAndQueue)
-    prvCheckForValidListAndQueue             0x00003d55   Thumb Code    56  .\build\timers.o(i.prvCheckForValidListAndQueue)
-    i.prvCheckTasksWaitingTermination        0x00003da0   Section        0  .\build\tasks.o(i.prvCheckTasksWaitingTermination)
-    prvCheckTasksWaitingTermination          0x00003da1   Thumb Code    86  .\build\tasks.o(i.prvCheckTasksWaitingTermination)
-    i.prvCopyDataFromQueue                   0x00003e04   Section        0  .\build\queue.o(i.prvCopyDataFromQueue)
-    prvCopyDataFromQueue                     0x00003e05   Thumb Code    42  .\build\queue.o(i.prvCopyDataFromQueue)
-    i.prvCopyDataToQueue                     0x00003e2e   Section        0  .\build\queue.o(i.prvCopyDataToQueue)
-    prvCopyDataToQueue                       0x00003e2f   Thumb Code   124  .\build\queue.o(i.prvCopyDataToQueue)
-    i.prvDeleteTCB                           0x00003eaa   Section        0  .\build\tasks.o(i.prvDeleteTCB)
-    prvDeleteTCB                             0x00003eab   Thumb Code    18  .\build\tasks.o(i.prvDeleteTCB)
-    i.prvGetNextExpireTime                   0x00003ebc   Section        0  .\build\timers.o(i.prvGetNextExpireTime)
-    prvGetNextExpireTime                     0x00003ebd   Thumb Code    36  .\build\timers.o(i.prvGetNextExpireTime)
-    i.prvIdleTask                            0x00003ee4   Section        0  .\build\tasks.o(i.prvIdleTask)
-    prvIdleTask                              0x00003ee5   Thumb Code    32  .\build\tasks.o(i.prvIdleTask)
-    i.prvInitialiseNewQueue                  0x00003f0c   Section        0  .\build\queue.o(i.prvInitialiseNewQueue)
-    prvInitialiseNewQueue                    0x00003f0d   Thumb Code    38  .\build\queue.o(i.prvInitialiseNewQueue)
-    i.prvInitialiseNewTask                   0x00003f32   Section        0  .\build\tasks.o(i.prvInitialiseNewTask)
-    prvInitialiseNewTask                     0x00003f33   Thumb Code   180  .\build\tasks.o(i.prvInitialiseNewTask)
-    i.prvInitialiseTaskLists                 0x00003fe8   Section        0  .\build\tasks.o(i.prvInitialiseTaskLists)
-    prvInitialiseTaskLists                   0x00003fe9   Thumb Code    70  .\build\tasks.o(i.prvInitialiseTaskLists)
-    i.prvInsertTimerInActiveList             0x00004050   Section        0  .\build\timers.o(i.prvInsertTimerInActiveList)
-    prvInsertTimerInActiveList               0x00004051   Thumb Code    80  .\build\timers.o(i.prvInsertTimerInActiveList)
-    i.prvIsQueueEmpty                        0x000040a8   Section        0  .\build\queue.o(i.prvIsQueueEmpty)
-    prvIsQueueEmpty                          0x000040a9   Thumb Code    26  .\build\queue.o(i.prvIsQueueEmpty)
-    i.prvIsQueueFull                         0x000040c2   Section        0  .\build\queue.o(i.prvIsQueueFull)
-    prvIsQueueFull                           0x000040c3   Thumb Code    30  .\build\queue.o(i.prvIsQueueFull)
-    i.prvProcessExpiredTimer                 0x000040e0   Section        0  .\build\timers.o(i.prvProcessExpiredTimer)
-    prvProcessExpiredTimer                   0x000040e1   Thumb Code    94  .\build\timers.o(i.prvProcessExpiredTimer)
-    i.prvProcessReceivedCommands             0x00004144   Section        0  .\build\timers.o(i.prvProcessReceivedCommands)
-    prvProcessReceivedCommands               0x00004145   Thumb Code   242  .\build\timers.o(i.prvProcessReceivedCommands)
-    i.prvProcessTimerOrBlockTask             0x0000423c   Section        0  .\build\timers.o(i.prvProcessTimerOrBlockTask)
-    prvProcessTimerOrBlockTask               0x0000423d   Thumb Code   102  .\build\timers.o(i.prvProcessTimerOrBlockTask)
-    i.prvResetNextTaskUnblockTime            0x000042b0   Section        0  .\build\tasks.o(i.prvResetNextTaskUnblockTime)
-    prvResetNextTaskUnblockTime              0x000042b1   Thumb Code    42  .\build\tasks.o(i.prvResetNextTaskUnblockTime)
-    i.prvSampleTimeNow                       0x000042e4   Section        0  .\build\timers.o(i.prvSampleTimeNow)
-    prvSampleTimeNow                         0x000042e5   Thumb Code    40  .\build\timers.o(i.prvSampleTimeNow)
-    i.prvSwitchTimerLists                    0x00004310   Section        0  .\build\timers.o(i.prvSwitchTimerLists)
-    prvSwitchTimerLists                      0x00004311   Thumb Code   150  .\build\timers.o(i.prvSwitchTimerLists)
-    i.prvTaskExitError                       0x000043b0   Section        0  .\build\port.o(i.prvTaskExitError)
-    prvTaskExitError                         0x000043b1   Thumb Code    60  .\build\port.o(i.prvTaskExitError)
-    i.prvTimerTask                           0x000043f0   Section        0  .\build\timers.o(i.prvTimerTask)
-    prvTimerTask                             0x000043f1   Thumb Code    26  .\build\timers.o(i.prvTimerTask)
-    i.prvUnlockQueue                         0x0000440a   Section        0  .\build\queue.o(i.prvUnlockQueue)
-    prvUnlockQueue                           0x0000440b   Thumb Code   126  .\build\queue.o(i.prvUnlockQueue)
-    i.pvPortMalloc                           0x00004488   Section        0  .\build\heap_2.o(i.pvPortMalloc)
-    i.pvTaskIncrementMutexHeldCount          0x00004568   Section        0  .\build\tasks.o(i.pvTaskIncrementMutexHeldCount)
-    i.pxPortInitialiseStack                  0x00004588   Section        0  .\build\port.o(i.pxPortInitialiseStack)
-    i.schedule_interrupt                     0x000045ac   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)(i.schedule_interrupt)
-    schedule_interrupt                       0x000045ad   Thumb Code   224  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)(i.schedule_interrupt)
-    i.semihost_connected                     0x00004690   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_semihost_api.o)(i.semihost_connected)
-    i.semihost_exit                          0x000046a0   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_semihost_api.o)(i.semihost_exit)
-    i.serial_baud                            0x000046ac   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(i.serial_baud)
-    i.serial_init                            0x00004870   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(i.serial_init)
-    i.serial_irq_set_internal                0x000049f0   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(i.serial_irq_set_internal)
-    serial_irq_set_internal                  0x000049f1   Thumb Code   222  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(i.serial_irq_set_internal)
-    i.serial_putc                            0x00004ae8   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(i.serial_putc)
-    i.serial_set_flow_control                0x00004b50   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(i.serial_set_flow_control)
-    i.tLEDAlive                              0x00004c5c   Section        0  .\build\led_control.o(i.tLEDAlive)
-    i.tUART_RxTask                           0x00004ca4   Section        0  .\build\uart_control.o(i.tUART_RxTask)
-    i.tUART_TxTask                           0x00005028   Section        0  .\build\uart_control.o(i.tUART_TxTask)
-    i.ticker_irq_handler                     0x00005124   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)(i.ticker_irq_handler)
-    i.ticker_read                            0x00005172   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)(i.ticker_read)
-    i.uart0_irq                              0x00005190   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(i.uart0_irq)
-    i.uart1_irq                              0x000051a4   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(i.uart1_irq)
-    i.uart2_irq                              0x000051b8   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(i.uart2_irq)
-    i.uart3_irq                              0x000051cc   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(i.uart3_irq)
-    i.uart_irq                               0x000051e0   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(i.uart_irq)
-    uart_irq                                 0x000051e1   Thumb Code    94  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(i.uart_irq)
-    i.update_present_time                    0x00005248   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)(i.update_present_time)
-    update_present_time                      0x00005249   Thumb Code   254  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)(i.update_present_time)
-    i.us_ticker_clear_interrupt              0x0000534c   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o(i.us_ticker_clear_interrupt)
-    i.us_ticker_disable_interrupt            0x00005358   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o(i.us_ticker_disable_interrupt)
-    i.us_ticker_fire_interrupt               0x00005368   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o(i.us_ticker_fire_interrupt)
-    i.us_ticker_get_info                     0x00005374   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o(i.us_ticker_get_info)
-    i.us_ticker_init                         0x0000537c   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o(i.us_ticker_init)
-    i.us_ticker_irq_handler                  0x000053e4   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_us_ticker_api.o)(i.us_ticker_irq_handler)
-    i.us_ticker_read                         0x000053fc   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o(i.us_ticker_read)
-    i.us_ticker_set_interrupt                0x00005460   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o(i.us_ticker_set_interrupt)
-    i.uxListRemove                           0x00005474   Section        0  .\build\list.o(i.uxListRemove)
-    i.vApplicationMallocFailedHook           0x0000549c   Section        0  .\build\main.o(i.vApplicationMallocFailedHook)
-    i.vApplicationStackOverflowHook          0x000054da   Section        0  .\build\main.o(i.vApplicationStackOverflowHook)
-    i.vCheckPasscode                         0x00005518   Section        0  .\build\uart_control.o(i.vCheckPasscode)
-    i.vCheckUsernames                        0x0000557c   Section        0  .\build\uart_control.o(i.vCheckUsernames)
-    i.vFindStringMatch                       0x000055f0   Section        0  .\build\uart_control.o(i.vFindStringMatch)
-    i.vListInitialise                        0x00005668   Section        0  .\build\list.o(i.vListInitialise)
-    i.vListInitialiseItem                    0x00005682   Section        0  .\build\list.o(i.vListInitialiseItem)
-    i.vListInsert                            0x00005688   Section        0  .\build\list.o(i.vListInsert)
-    i.vListInsertEnd                         0x000056bc   Section        0  .\build\list.o(i.vListInsertEnd)
-    i.vPortEnterCritical                     0x000056d4   Section        0  .\build\port.o(i.vPortEnterCritical)
-    i.vPortExitCritical                      0x00005728   Section        0  .\build\port.o(i.vPortExitCritical)
-    i.vPortFree                              0x00005764   Section        0  .\build\heap_2.o(i.vPortFree)
-    i.vPortSetupTimerInterrupt               0x000057a4   Section        0  .\build\port.o(i.vPortSetupTimerInterrupt)
-    i.vPortValidateInterruptPriority         0x000057c4   Section        0  .\build\port.o(i.vPortValidateInterruptPriority)
-    i.vQueueWaitForMessageRestricted         0x0000583c   Section        0  .\build\queue.o(i.vQueueWaitForMessageRestricted)
-    i.vTaskDelay                             0x00005888   Section        0  .\build\tasks.o(i.vTaskDelay)
-    i.vTaskDelayUntil                        0x000058e4   Section        0  .\build\tasks.o(i.vTaskDelayUntil)
-    i.vTaskMissedYield                       0x000059b8   Section        0  .\build\tasks.o(i.vTaskMissedYield)
-    i.vTaskPlaceOnEventList                  0x000059c4   Section        0  .\build\tasks.o(i.vTaskPlaceOnEventList)
-    i.vTaskPlaceOnEventListRestricted        0x000059fc   Section        0  .\build\tasks.o(i.vTaskPlaceOnEventListRestricted)
-    i.vTaskPriorityInherit                   0x00005a3c   Section        0  .\build\tasks.o(i.vTaskPriorityInherit)
-    i.vTaskSetTimeOutState                   0x00005aec   Section        0  .\build\tasks.o(i.vTaskSetTimeOutState)
-    i.vTaskStartScheduler                    0x00005b1c   Section        0  .\build\tasks.o(i.vTaskStartScheduler)
-    i.vTaskSuspendAll                        0x00005bb0   Section        0  .\build\tasks.o(i.vTaskSuspendAll)
-    i.vTaskSwitchContext                     0x00005bc0   Section        0  .\build\tasks.o(i.vTaskSwitchContext)
-    i.wait_ms                                0x00005c84   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_wait_api_no_rtos.o)(i.wait_ms)
-    i.xPortStartScheduler                    0x00005ca8   Section        0  .\build\port.o(i.xPortStartScheduler)
-    i.xQueueGenericCreate                    0x00005d48   Section        0  .\build\queue.o(i.xQueueGenericCreate)
-    i.xQueueGenericReceive                   0x00005da0   Section        0  .\build\queue.o(i.xQueueGenericReceive)
-    i.xQueueGenericReset                     0x00005f64   Section        0  .\build\queue.o(i.xQueueGenericReset)
-    i.xQueueGenericSend                      0x00005ffc   Section        0  .\build\queue.o(i.xQueueGenericSend)
-    i.xQueueGenericSendFromISR               0x000061a4   Section        0  .\build\queue.o(i.xQueueGenericSendFromISR)
-    i.xTaskCheckForTimeOut                   0x0000629c   Section        0  .\build\tasks.o(i.xTaskCheckForTimeOut)
-    i.xTaskCreate                            0x00006328   Section        0  .\build\tasks.o(i.xTaskCreate)
-    i.xTaskGetSchedulerState                 0x00006388   Section        0  .\build\tasks.o(i.xTaskGetSchedulerState)
-    i.xTaskGetTickCount                      0x000063a8   Section        0  .\build\tasks.o(i.xTaskGetTickCount)
-    i.xTaskIncrementTick                     0x000063b4   Section        0  .\build\tasks.o(i.xTaskIncrementTick)
-    i.xTaskPriorityDisinherit                0x000064fc   Section        0  .\build\tasks.o(i.xTaskPriorityDisinherit)
-    i.xTaskRemoveFromEventList               0x000065c4   Section        0  .\build\tasks.o(i.xTaskRemoveFromEventList)
-    i.xTaskResumeAll                         0x0000665c   Section        0  .\build\tasks.o(i.xTaskResumeAll)
-    i.xTimerCreateTimerTask                  0x00006760   Section        0  .\build\timers.o(i.xTimerCreateTimerTask)
-    i.xTimerGenericCommand                   0x000067b8   Section        0  .\build\timers.o(i.xTimerGenericCommand)
-    i.yDigitalWrite                          0x0000683c   Section        0  .\build\gpio_setup.o(i.yDigitalWrite)
-    i.yKeyHit                                0x00006968   Section        0  .\build\uart_control.o(i.yKeyHit)
-    i.ySetupDigitalI                         0x00006978   Section        0  .\build\gpio_setup.o(i.ySetupDigitalI)
-    i.ySetupDigitalO                         0x00006b5c   Section        0  .\build\gpio_setup.o(i.ySetupDigitalO)
-    i.yUART_RxReady                          0x00006d40   Section        0  .\build\uart_control.o(i.yUART_RxReady)
-    i.yUART_TxReady                          0x00006d58   Section        0  .\build\uart_control.o(i.yUART_TxReady)
-    locale$$code                             0x00006d78   Section       44  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_numeric_c.o)(locale$$code)
-    locale$$code                             0x00006da4   Section       44  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_ctype_c.o)(locale$$code)
-    t._ZN12SingletonPtrI13PlatformMutexEptEv 0x00006dd0   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(FileBase.o)(t._ZN12SingletonPtrI13PlatformMutexEptEv)
-    x$fpl$printf1                            0x00006dfc   Section        4  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(printf1.o)(x$fpl$printf1)
-    x$fpl$printf2                            0x00006e00   Section        4  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(printf2.o)(x$fpl$printf2)
-    .constdata                               0x00006e04   Section       40  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o(.constdata)
-    x$fpl$usenofp                            0x00006e04   Section        0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(usenofp.o)(x$fpl$usenofp)
-    info                                     0x00006e1c   Data           8  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o(.constdata)
-    info                                     0x00006e24   Data           8  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o(.constdata)
-    .constdata                               0x00006e2c   Section      288  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(.constdata)
-    PinMap_UART_TX                           0x00006e2c   Data         108  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(.constdata)
-    PinMap_UART_RX                           0x00006e98   Data         108  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(.constdata)
-    PinMap_UART_RTS                          0x00006f04   Data          36  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(.constdata)
-    PinMap_UART_CTS                          0x00006f28   Data          36  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(.constdata)
-    .constdata                               0x00006f4c   Section       64  .\build\uart_control.o(.constdata)
-    .constdata                               0x00006f8c   Section       28  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_us_ticker_api.o)(.constdata)
-    us_interface                             0x00006f8c   Data          28  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_us_ticker_api.o)(.constdata)
-    .constdata                               0x00006fa8   Section        8  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_us_ticker_api.o)(.constdata)
-    us_data                                  0x00006fa8   Data           8  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_us_ticker_api.o)(.constdata)
-    .constdata                               0x00006fb0   Section        8  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_wctomb.o)(.constdata)
-    initial_mbstate                          0x00006fb0   Data           8  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_wctomb.o)(.constdata)
-    .constdata                               0x00006fb8   Section       40  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_hex_int_ll_ptr.o)(.constdata)
-    uc_hextab                                0x00006fb8   Data          20  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_hex_int_ll_ptr.o)(.constdata)
-    lc_hextab                                0x00006fcc   Data          20  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_hex_int_ll_ptr.o)(.constdata)
-    .constdata                               0x00006fe0   Section       17  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__printf_flags_ss_wp.o)(.constdata)
-    maptable                                 0x00006fe0   Data          17  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__printf_flags_ss_wp.o)(.constdata)
-    .constdata                               0x00006ff1   Section       38  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_fp_hex.o)(.constdata)
-    lc_hextab                                0x00006ff1   Data          19  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_fp_hex.o)(.constdata)
-    uc_hextab                                0x00007004   Data          19  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_fp_hex.o)(.constdata)
-    .constdata                               0x00007018   Section      148  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(bigflt0.o)(.constdata)
-    tenpwrs_x                                0x00007018   Data          60  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(bigflt0.o)(.constdata)
-    tenpwrs_i                                0x00007054   Data          64  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(bigflt0.o)(.constdata)
-    .constdata__ZZN12SingletonPtrI13PlatformMutexE3getEvEs 0x000070ac   Section       20  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o(.constdata__ZZN12SingletonPtrI13PlatformMutexE3getEvEs)
-    .constdata__ZZN12SingletonPtrI13PlatformMutexE3getEvEs_0 0x000070c0   Section       93  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o(.constdata__ZZN12SingletonPtrI13PlatformMutexE3getEvEs_0)
-    .conststring                             0x00007120   Section      103  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/gpio_api.o(.conststring)
-    .conststring                             0x00007188   Section      124  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_board.o(.conststring)
-    .conststring                             0x00007204   Section      101  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/pinmap.o(.conststring)
-    .conststring                             0x0000726c   Section      105  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(.conststring)
-    .conststring                             0x000072d8   Section       80  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)(.conststring)
-    .conststring                             0x00007328   Section       83  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_critical.o)(.conststring)
-    locale$$data                             0x0000739c   Section       28  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_numeric_c.o)(locale$$data)
-    __lcnum_c_name                           0x000073a0   Data           2  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_numeric_c.o)(locale$$data)
-    __lcnum_c_start                          0x000073a8   Data           0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_numeric_c.o)(locale$$data)
-    __lcnum_c_point                          0x000073b4   Data           0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_numeric_c.o)(locale$$data)
-    __lcnum_c_thousands                      0x000073b6   Data           0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_numeric_c.o)(locale$$data)
-    __lcnum_c_grouping                       0x000073b7   Data           0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_numeric_c.o)(locale$$data)
-    locale$$data                             0x000073b8   Section      272  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_ctype_c.o)(locale$$data)
-    __lcnum_c_end                            0x000073b8   Data           0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_numeric_c.o)(locale$$data)
-    __lcctype_c_name                         0x000073bc   Data           2  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_ctype_c.o)(locale$$data)
-    __lcctype_c_start                        0x000073c4   Data           0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_ctype_c.o)(locale$$data)
-    __lcctype_c_end                          0x000074c8   Data           0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_ctype_c.o)(locale$$data)
+    i.nPinFlip_2                             0x00003744   Section        0  .\build\uart_control.o(i.nPinFlip_2)
+    i.nPinSetup_1                            0x000037a4   Section        0  .\build\uart_control.o(i.nPinSetup_1)
+    i.nPinSetup_2                            0x000037b8   Section        0  .\build\uart_control.o(i.nPinSetup_2)
+    i.nTerminalClear                         0x000037c4   Section        0  .\build\uart_control.o(i.nTerminalClear)
+    i.nTerminalHelp                          0x000037dc   Section        0  .\build\uart_control.o(i.nTerminalHelp)
+    i.nTerminalLogout                        0x0000383c   Section        0  .\build\uart_control.o(i.nTerminalLogout)
+    i.nTerminalStatus                        0x0000388c   Section        0  .\build\uart_control.o(i.nTerminalStatus)
+    i.nTerminalUndefined                     0x000038fc   Section        0  .\build\uart_control.o(i.nTerminalUndefined)
+    i.nTerminal_LED_1_ON                     0x0000392c   Section        0  .\build\uart_control.o(i.nTerminal_LED_1_ON)
+    i.nTerminal_LED_2_ON                     0x00003944   Section        0  .\build\uart_control.o(i.nTerminal_LED_2_ON)
+    i.nTerminal_LED_3_ON                     0x0000395c   Section        0  .\build\uart_control.o(i.nTerminal_LED_3_ON)
+    i.nTerminal_LED_4_ON                     0x00003974   Section        0  .\build\uart_control.o(i.nTerminal_LED_4_ON)
+    i.nTerminal_LED_ALL_ON                   0x0000398c   Section        0  .\build\uart_control.o(i.nTerminal_LED_ALL_ON)
+    i.nTerminal_LED_OFF                      0x0000399c   Section        0  .\build\uart_control.o(i.nTerminal_LED_OFF)
+    i.nUART0_init                            0x000039ac   Section        0  .\build\uart_control.o(i.nUART0_init)
+    i.nUART_RxChar                           0x00003a34   Section        0  .\build\uart_control.o(i.nUART_RxChar)
+    i.nUART_TxChar                           0x00003a54   Section        0  .\build\uart_control.o(i.nUART_TxChar)
+    i.nUART_TxString                         0x00003a68   Section        0  .\build\uart_control.o(i.nUART_TxString)
+    i.pin_function                           0x00003a80   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/pinmap.o(i.pin_function)
+    i.pin_mode                               0x00003adc   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/pinmap.o(i.pin_mode)
+    i.pinmap_find_peripheral                 0x00003b6c   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_pinmap_common.o)(i.pinmap_find_peripheral)
+    i.pinmap_merge                           0x00003b90   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_pinmap_common.o)(i.pinmap_merge)
+    i.pinmap_peripheral                      0x00003bcc   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_pinmap_common.o)(i.pinmap_peripheral)
+    i.pinmap_pinout                          0x00003c28   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_pinmap_common.o)(i.pinmap_pinout)
+    i.prvAddCurrentTaskToDelayedList         0x00003c80   Section        0  .\build\tasks.o(i.prvAddCurrentTaskToDelayedList)
+    prvAddCurrentTaskToDelayedList           0x00003c81   Thumb Code   124  .\build\tasks.o(i.prvAddCurrentTaskToDelayedList)
+    i.prvAddNewTaskToReadyList               0x00003d18   Section        0  .\build\tasks.o(i.prvAddNewTaskToReadyList)
+    prvAddNewTaskToReadyList                 0x00003d19   Thumb Code   150  .\build\tasks.o(i.prvAddNewTaskToReadyList)
+    i.prvCheckForValidListAndQueue           0x00003dcc   Section        0  .\build\timers.o(i.prvCheckForValidListAndQueue)
+    prvCheckForValidListAndQueue             0x00003dcd   Thumb Code    56  .\build\timers.o(i.prvCheckForValidListAndQueue)
+    i.prvCheckTasksWaitingTermination        0x00003e18   Section        0  .\build\tasks.o(i.prvCheckTasksWaitingTermination)
+    prvCheckTasksWaitingTermination          0x00003e19   Thumb Code    86  .\build\tasks.o(i.prvCheckTasksWaitingTermination)
+    i.prvCopyDataFromQueue                   0x00003e7c   Section        0  .\build\queue.o(i.prvCopyDataFromQueue)
+    prvCopyDataFromQueue                     0x00003e7d   Thumb Code    42  .\build\queue.o(i.prvCopyDataFromQueue)
+    i.prvCopyDataToQueue                     0x00003ea6   Section        0  .\build\queue.o(i.prvCopyDataToQueue)
+    prvCopyDataToQueue                       0x00003ea7   Thumb Code   124  .\build\queue.o(i.prvCopyDataToQueue)
+    i.prvDeleteTCB                           0x00003f22   Section        0  .\build\tasks.o(i.prvDeleteTCB)
+    prvDeleteTCB                             0x00003f23   Thumb Code    18  .\build\tasks.o(i.prvDeleteTCB)
+    i.prvGetNextExpireTime                   0x00003f34   Section        0  .\build\timers.o(i.prvGetNextExpireTime)
+    prvGetNextExpireTime                     0x00003f35   Thumb Code    36  .\build\timers.o(i.prvGetNextExpireTime)
+    i.prvIdleTask                            0x00003f5c   Section        0  .\build\tasks.o(i.prvIdleTask)
+    prvIdleTask                              0x00003f5d   Thumb Code    32  .\build\tasks.o(i.prvIdleTask)
+    i.prvInitialiseNewQueue                  0x00003f84   Section        0  .\build\queue.o(i.prvInitialiseNewQueue)
+    prvInitialiseNewQueue                    0x00003f85   Thumb Code    38  .\build\queue.o(i.prvInitialiseNewQueue)
+    i.prvInitialiseNewTask                   0x00003faa   Section        0  .\build\tasks.o(i.prvInitialiseNewTask)
+    prvInitialiseNewTask                     0x00003fab   Thumb Code   180  .\build\tasks.o(i.prvInitialiseNewTask)
+    i.prvInitialiseTaskLists                 0x00004060   Section        0  .\build\tasks.o(i.prvInitialiseTaskLists)
+    prvInitialiseTaskLists                   0x00004061   Thumb Code    70  .\build\tasks.o(i.prvInitialiseTaskLists)
+    i.prvInsertTimerInActiveList             0x000040c8   Section        0  .\build\timers.o(i.prvInsertTimerInActiveList)
+    prvInsertTimerInActiveList               0x000040c9   Thumb Code    80  .\build\timers.o(i.prvInsertTimerInActiveList)
+    i.prvIsQueueEmpty                        0x00004120   Section        0  .\build\queue.o(i.prvIsQueueEmpty)
+    prvIsQueueEmpty                          0x00004121   Thumb Code    26  .\build\queue.o(i.prvIsQueueEmpty)
+    i.prvIsQueueFull                         0x0000413a   Section        0  .\build\queue.o(i.prvIsQueueFull)
+    prvIsQueueFull                           0x0000413b   Thumb Code    30  .\build\queue.o(i.prvIsQueueFull)
+    i.prvProcessExpiredTimer                 0x00004158   Section        0  .\build\timers.o(i.prvProcessExpiredTimer)
+    prvProcessExpiredTimer                   0x00004159   Thumb Code    94  .\build\timers.o(i.prvProcessExpiredTimer)
+    i.prvProcessReceivedCommands             0x000041bc   Section        0  .\build\timers.o(i.prvProcessReceivedCommands)
+    prvProcessReceivedCommands               0x000041bd   Thumb Code   242  .\build\timers.o(i.prvProcessReceivedCommands)
+    i.prvProcessTimerOrBlockTask             0x000042b4   Section        0  .\build\timers.o(i.prvProcessTimerOrBlockTask)
+    prvProcessTimerOrBlockTask               0x000042b5   Thumb Code   102  .\build\timers.o(i.prvProcessTimerOrBlockTask)
+    i.prvResetNextTaskUnblockTime            0x00004328   Section        0  .\build\tasks.o(i.prvResetNextTaskUnblockTime)
+    prvResetNextTaskUnblockTime              0x00004329   Thumb Code    42  .\build\tasks.o(i.prvResetNextTaskUnblockTime)
+    i.prvSampleTimeNow                       0x0000435c   Section        0  .\build\timers.o(i.prvSampleTimeNow)
+    prvSampleTimeNow                         0x0000435d   Thumb Code    40  .\build\timers.o(i.prvSampleTimeNow)
+    i.prvSwitchTimerLists                    0x00004388   Section        0  .\build\timers.o(i.prvSwitchTimerLists)
+    prvSwitchTimerLists                      0x00004389   Thumb Code   150  .\build\timers.o(i.prvSwitchTimerLists)
+    i.prvTaskExitError                       0x00004428   Section        0  .\build\port.o(i.prvTaskExitError)
+    prvTaskExitError                         0x00004429   Thumb Code    60  .\build\port.o(i.prvTaskExitError)
+    i.prvTimerTask                           0x00004468   Section        0  .\build\timers.o(i.prvTimerTask)
+    prvTimerTask                             0x00004469   Thumb Code    26  .\build\timers.o(i.prvTimerTask)
+    i.prvUnlockQueue                         0x00004482   Section        0  .\build\queue.o(i.prvUnlockQueue)
+    prvUnlockQueue                           0x00004483   Thumb Code   126  .\build\queue.o(i.prvUnlockQueue)
+    i.pvPortMalloc                           0x00004500   Section        0  .\build\heap_2.o(i.pvPortMalloc)
+    i.pvTaskIncrementMutexHeldCount          0x000045e0   Section        0  .\build\tasks.o(i.pvTaskIncrementMutexHeldCount)
+    i.pxPortInitialiseStack                  0x00004600   Section        0  .\build\port.o(i.pxPortInitialiseStack)
+    i.schedule_interrupt                     0x00004624   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)(i.schedule_interrupt)
+    schedule_interrupt                       0x00004625   Thumb Code   224  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)(i.schedule_interrupt)
+    i.semihost_connected                     0x00004708   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_semihost_api.o)(i.semihost_connected)
+    i.semihost_exit                          0x00004718   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_semihost_api.o)(i.semihost_exit)
+    i.serial_baud                            0x00004724   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(i.serial_baud)
+    i.serial_init                            0x000048e8   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(i.serial_init)
+    i.serial_irq_set_internal                0x00004a68   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(i.serial_irq_set_internal)
+    serial_irq_set_internal                  0x00004a69   Thumb Code   222  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(i.serial_irq_set_internal)
+    i.serial_putc                            0x00004b60   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(i.serial_putc)
+    i.serial_set_flow_control                0x00004bc8   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(i.serial_set_flow_control)
+    i.tLEDAlive                              0x00004cd4   Section        0  .\build\led_control.o(i.tLEDAlive)
+    i.tUART_RxTask                           0x00004d1c   Section        0  .\build\uart_control.o(i.tUART_RxTask)
+    i.tUART_TxTask                           0x000050a0   Section        0  .\build\uart_control.o(i.tUART_TxTask)
+    i.ticker_irq_handler                     0x0000519c   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)(i.ticker_irq_handler)
+    i.ticker_read                            0x000051ea   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)(i.ticker_read)
+    i.uart0_irq                              0x00005208   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(i.uart0_irq)
+    i.uart1_irq                              0x0000521c   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(i.uart1_irq)
+    i.uart2_irq                              0x00005230   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(i.uart2_irq)
+    i.uart3_irq                              0x00005244   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(i.uart3_irq)
+    i.uart_irq                               0x00005258   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(i.uart_irq)
+    uart_irq                                 0x00005259   Thumb Code    94  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(i.uart_irq)
+    i.update_present_time                    0x000052c0   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)(i.update_present_time)
+    update_present_time                      0x000052c1   Thumb Code   254  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)(i.update_present_time)
+    i.us_ticker_clear_interrupt              0x000053c4   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o(i.us_ticker_clear_interrupt)
+    i.us_ticker_disable_interrupt            0x000053d0   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o(i.us_ticker_disable_interrupt)
+    i.us_ticker_fire_interrupt               0x000053e0   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o(i.us_ticker_fire_interrupt)
+    i.us_ticker_get_info                     0x000053ec   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o(i.us_ticker_get_info)
+    i.us_ticker_init                         0x000053f4   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o(i.us_ticker_init)
+    i.us_ticker_irq_handler                  0x0000545c   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_us_ticker_api.o)(i.us_ticker_irq_handler)
+    i.us_ticker_read                         0x00005474   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o(i.us_ticker_read)
+    i.us_ticker_set_interrupt                0x000054d8   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o(i.us_ticker_set_interrupt)
+    i.uxListRemove                           0x000054ec   Section        0  .\build\list.o(i.uxListRemove)
+    i.vApplicationMallocFailedHook           0x00005514   Section        0  .\build\main.o(i.vApplicationMallocFailedHook)
+    i.vApplicationStackOverflowHook          0x00005552   Section        0  .\build\main.o(i.vApplicationStackOverflowHook)
+    i.vCheckPasscode                         0x00005590   Section        0  .\build\uart_control.o(i.vCheckPasscode)
+    i.vCheckUsernames                        0x000055f4   Section        0  .\build\uart_control.o(i.vCheckUsernames)
+    i.vFindStringMatch                       0x00005668   Section        0  .\build\uart_control.o(i.vFindStringMatch)
+    i.vListInitialise                        0x000056e0   Section        0  .\build\list.o(i.vListInitialise)
+    i.vListInitialiseItem                    0x000056fa   Section        0  .\build\list.o(i.vListInitialiseItem)
+    i.vListInsert                            0x00005700   Section        0  .\build\list.o(i.vListInsert)
+    i.vListInsertEnd                         0x00005734   Section        0  .\build\list.o(i.vListInsertEnd)
+    i.vPortEnterCritical                     0x0000574c   Section        0  .\build\port.o(i.vPortEnterCritical)
+    i.vPortExitCritical                      0x000057a0   Section        0  .\build\port.o(i.vPortExitCritical)
+    i.vPortFree                              0x000057dc   Section        0  .\build\heap_2.o(i.vPortFree)
+    i.vPortSetupTimerInterrupt               0x0000581c   Section        0  .\build\port.o(i.vPortSetupTimerInterrupt)
+    i.vPortValidateInterruptPriority         0x0000583c   Section        0  .\build\port.o(i.vPortValidateInterruptPriority)
+    i.vQueueWaitForMessageRestricted         0x000058b4   Section        0  .\build\queue.o(i.vQueueWaitForMessageRestricted)
+    i.vTaskDelay                             0x00005900   Section        0  .\build\tasks.o(i.vTaskDelay)
+    i.vTaskDelayUntil                        0x0000595c   Section        0  .\build\tasks.o(i.vTaskDelayUntil)
+    i.vTaskMissedYield                       0x00005a30   Section        0  .\build\tasks.o(i.vTaskMissedYield)
+    i.vTaskPlaceOnEventList                  0x00005a3c   Section        0  .\build\tasks.o(i.vTaskPlaceOnEventList)
+    i.vTaskPlaceOnEventListRestricted        0x00005a74   Section        0  .\build\tasks.o(i.vTaskPlaceOnEventListRestricted)
+    i.vTaskPriorityInherit                   0x00005ab4   Section        0  .\build\tasks.o(i.vTaskPriorityInherit)
+    i.vTaskSetTimeOutState                   0x00005b64   Section        0  .\build\tasks.o(i.vTaskSetTimeOutState)
+    i.vTaskStartScheduler                    0x00005b94   Section        0  .\build\tasks.o(i.vTaskStartScheduler)
+    i.vTaskSuspendAll                        0x00005c28   Section        0  .\build\tasks.o(i.vTaskSuspendAll)
+    i.vTaskSwitchContext                     0x00005c38   Section        0  .\build\tasks.o(i.vTaskSwitchContext)
+    i.wait_ms                                0x00005cfc   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_wait_api_no_rtos.o)(i.wait_ms)
+    i.xPortStartScheduler                    0x00005d20   Section        0  .\build\port.o(i.xPortStartScheduler)
+    i.xQueueGenericCreate                    0x00005dc0   Section        0  .\build\queue.o(i.xQueueGenericCreate)
+    i.xQueueGenericReceive                   0x00005e18   Section        0  .\build\queue.o(i.xQueueGenericReceive)
+    i.xQueueGenericReset                     0x00005fdc   Section        0  .\build\queue.o(i.xQueueGenericReset)
+    i.xQueueGenericSend                      0x00006074   Section        0  .\build\queue.o(i.xQueueGenericSend)
+    i.xQueueGenericSendFromISR               0x0000621c   Section        0  .\build\queue.o(i.xQueueGenericSendFromISR)
+    i.xTaskCheckForTimeOut                   0x00006314   Section        0  .\build\tasks.o(i.xTaskCheckForTimeOut)
+    i.xTaskCreate                            0x000063a0   Section        0  .\build\tasks.o(i.xTaskCreate)
+    i.xTaskGetSchedulerState                 0x00006400   Section        0  .\build\tasks.o(i.xTaskGetSchedulerState)
+    i.xTaskGetTickCount                      0x00006420   Section        0  .\build\tasks.o(i.xTaskGetTickCount)
+    i.xTaskIncrementTick                     0x0000642c   Section        0  .\build\tasks.o(i.xTaskIncrementTick)
+    i.xTaskPriorityDisinherit                0x00006574   Section        0  .\build\tasks.o(i.xTaskPriorityDisinherit)
+    i.xTaskRemoveFromEventList               0x0000663c   Section        0  .\build\tasks.o(i.xTaskRemoveFromEventList)
+    i.xTaskResumeAll                         0x000066d4   Section        0  .\build\tasks.o(i.xTaskResumeAll)
+    i.xTimerCreateTimerTask                  0x000067d8   Section        0  .\build\timers.o(i.xTimerCreateTimerTask)
+    i.xTimerGenericCommand                   0x00006830   Section        0  .\build\timers.o(i.xTimerGenericCommand)
+    i.yDigitalWrite                          0x000068b4   Section        0  .\build\gpio_setup.o(i.yDigitalWrite)
+    i.yKeyHit                                0x000069e0   Section        0  .\build\uart_control.o(i.yKeyHit)
+    i.ySetupDigitalI                         0x000069f0   Section        0  .\build\gpio_setup.o(i.ySetupDigitalI)
+    i.ySetupDigitalO                         0x00006bd4   Section        0  .\build\gpio_setup.o(i.ySetupDigitalO)
+    i.yUART_RxReady                          0x00006db8   Section        0  .\build\uart_control.o(i.yUART_RxReady)
+    i.yUART_TxReady                          0x00006dd0   Section        0  .\build\uart_control.o(i.yUART_TxReady)
+    locale$$code                             0x00006df0   Section       44  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_numeric_c.o)(locale$$code)
+    locale$$code                             0x00006e1c   Section       44  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_ctype_c.o)(locale$$code)
+    t._ZN12SingletonPtrI13PlatformMutexEptEv 0x00006e48   Section        0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(FileBase.o)(t._ZN12SingletonPtrI13PlatformMutexEptEv)
+    x$fpl$printf1                            0x00006e74   Section        4  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(printf1.o)(x$fpl$printf1)
+    x$fpl$printf2                            0x00006e78   Section        4  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(printf2.o)(x$fpl$printf2)
+    .constdata                               0x00006e7c   Section       40  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o(.constdata)
+    x$fpl$usenofp                            0x00006e7c   Section        0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(usenofp.o)(x$fpl$usenofp)
+    info                                     0x00006e94   Data           8  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o(.constdata)
+    info                                     0x00006e9c   Data           8  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o(.constdata)
+    .constdata                               0x00006ea4   Section      288  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(.constdata)
+    PinMap_UART_TX                           0x00006ea4   Data         108  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(.constdata)
+    PinMap_UART_RX                           0x00006f10   Data         108  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(.constdata)
+    PinMap_UART_RTS                          0x00006f7c   Data          36  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(.constdata)
+    PinMap_UART_CTS                          0x00006fa0   Data          36  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(.constdata)
+    .constdata                               0x00006fc4   Section       64  .\build\uart_control.o(.constdata)
+    .constdata                               0x00007004   Section       28  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_us_ticker_api.o)(.constdata)
+    us_interface                             0x00007004   Data          28  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_us_ticker_api.o)(.constdata)
+    .constdata                               0x00007020   Section        8  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_us_ticker_api.o)(.constdata)
+    us_data                                  0x00007020   Data           8  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_us_ticker_api.o)(.constdata)
+    .constdata                               0x00007028   Section        8  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_wctomb.o)(.constdata)
+    initial_mbstate                          0x00007028   Data           8  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_wctomb.o)(.constdata)
+    .constdata                               0x00007030   Section       40  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_hex_int_ll_ptr.o)(.constdata)
+    uc_hextab                                0x00007030   Data          20  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_hex_int_ll_ptr.o)(.constdata)
+    lc_hextab                                0x00007044   Data          20  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_hex_int_ll_ptr.o)(.constdata)
+    .constdata                               0x00007058   Section       17  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__printf_flags_ss_wp.o)(.constdata)
+    maptable                                 0x00007058   Data          17  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__printf_flags_ss_wp.o)(.constdata)
+    .constdata                               0x00007069   Section       38  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_fp_hex.o)(.constdata)
+    lc_hextab                                0x00007069   Data          19  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_fp_hex.o)(.constdata)
+    uc_hextab                                0x0000707c   Data          19  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_fp_hex.o)(.constdata)
+    .constdata                               0x00007090   Section      148  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(bigflt0.o)(.constdata)
+    tenpwrs_x                                0x00007090   Data          60  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(bigflt0.o)(.constdata)
+    tenpwrs_i                                0x000070cc   Data          64  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(bigflt0.o)(.constdata)
+    .constdata__ZZN12SingletonPtrI13PlatformMutexE3getEvEs 0x00007124   Section       20  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o(.constdata__ZZN12SingletonPtrI13PlatformMutexE3getEvEs)
+    .constdata__ZZN12SingletonPtrI13PlatformMutexE3getEvEs_0 0x00007138   Section       93  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o(.constdata__ZZN12SingletonPtrI13PlatformMutexE3getEvEs_0)
+    .conststring                             0x00007198   Section      103  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/gpio_api.o(.conststring)
+    .conststring                             0x00007200   Section      124  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_board.o(.conststring)
+    .conststring                             0x0000727c   Section      101  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/pinmap.o(.conststring)
+    .conststring                             0x000072e4   Section      105  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(.conststring)
+    .conststring                             0x00007350   Section       80  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)(.conststring)
+    .conststring                             0x000073a0   Section       83  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_critical.o)(.conststring)
+    locale$$data                             0x00007414   Section       28  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_numeric_c.o)(locale$$data)
+    __lcnum_c_name                           0x00007418   Data           2  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_numeric_c.o)(locale$$data)
+    __lcnum_c_start                          0x00007420   Data           0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_numeric_c.o)(locale$$data)
+    __lcnum_c_point                          0x0000742c   Data           0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_numeric_c.o)(locale$$data)
+    __lcnum_c_thousands                      0x0000742e   Data           0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_numeric_c.o)(locale$$data)
+    __lcnum_c_grouping                       0x0000742f   Data           0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_numeric_c.o)(locale$$data)
+    locale$$data                             0x00007430   Section      272  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_ctype_c.o)(locale$$data)
+    __lcnum_c_end                            0x00007430   Data           0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_numeric_c.o)(locale$$data)
+    __lcctype_c_name                         0x00007434   Data           2  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_ctype_c.o)(locale$$data)
+    __lcctype_c_start                        0x0000743c   Data           0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_ctype_c.o)(locale$$data)
+    __lcctype_c_end                          0x00007540   Data           0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_ctype_c.o)(locale$$data)
     .data                                    0x100000c8   Section       16  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o(.data)
     _mutex                                   0x100000c8   Data           8  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o(.data)
     filehandle_mutex                         0x100000d0   Data           8  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o(.data)
@@ -3394,120 +3401,120 @@ Image Symbol Table
     nLEDFlip                                 0x00003605   Thumb Code    56  .\build\led_control.o(i.nLEDFlip)
     nLED_SET                                 0x00003641   Thumb Code   128  .\build\led_control.o(i.nLED_SET)
     nNewLine                                 0x000036c9   Thumb Code    22  .\build\uart_control.o(i.nNewLine)
-    nPinFlip_1                               0x000036e5   Thumb Code    36  .\build\uart_control.o(i.nPinFlip_1)
-    nPinFlip_2                               0x0000370d   Thumb Code    36  .\build\uart_control.o(i.nPinFlip_2)
-    nPinSetup_1                              0x00003735   Thumb Code    12  .\build\uart_control.o(i.nPinSetup_1)
-    nPinSetup_2                              0x00003741   Thumb Code    12  .\build\uart_control.o(i.nPinSetup_2)
-    nTerminalClear                           0x0000374d   Thumb Code    20  .\build\uart_control.o(i.nTerminalClear)
-    nTerminalHelp                            0x00003765   Thumb Code    46  .\build\uart_control.o(i.nTerminalHelp)
-    nTerminalLogout                          0x000037c5   Thumb Code    46  .\build\uart_control.o(i.nTerminalLogout)
-    nTerminalStatus                          0x00003815   Thumb Code    22  .\build\uart_control.o(i.nTerminalStatus)
-    nTerminalUndefined                       0x00003885   Thumb Code    22  .\build\uart_control.o(i.nTerminalUndefined)
-    nTerminal_LED_1_ON                       0x000038b5   Thumb Code    18  .\build\uart_control.o(i.nTerminal_LED_1_ON)
-    nTerminal_LED_2_ON                       0x000038cd   Thumb Code    18  .\build\uart_control.o(i.nTerminal_LED_2_ON)
-    nTerminal_LED_3_ON                       0x000038e5   Thumb Code    18  .\build\uart_control.o(i.nTerminal_LED_3_ON)
-    nTerminal_LED_4_ON                       0x000038fd   Thumb Code    18  .\build\uart_control.o(i.nTerminal_LED_4_ON)
-    nTerminal_LED_ALL_ON                     0x00003915   Thumb Code    16  .\build\uart_control.o(i.nTerminal_LED_ALL_ON)
-    nTerminal_LED_OFF                        0x00003925   Thumb Code    16  .\build\uart_control.o(i.nTerminal_LED_OFF)
-    nUART0_init                              0x00003935   Thumb Code   118  .\build\uart_control.o(i.nUART0_init)
-    nUART_RxChar                             0x000039bd   Thumb Code    24  .\build\uart_control.o(i.nUART_RxChar)
-    nUART_TxChar                             0x000039dd   Thumb Code    16  .\build\uart_control.o(i.nUART_TxChar)
-    nUART_TxString                           0x000039f1   Thumb Code    24  .\build\uart_control.o(i.nUART_TxString)
-    pin_function                             0x00003a09   Thumb Code    68  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/pinmap.o(i.pin_function)
-    pin_mode                                 0x00003a65   Thumb Code   120  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/pinmap.o(i.pin_mode)
-    pinmap_find_peripheral                   0x00003af5   Thumb Code    34  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_pinmap_common.o)(i.pinmap_find_peripheral)
-    pinmap_merge                             0x00003b19   Thumb Code    38  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_pinmap_common.o)(i.pinmap_merge)
-    pinmap_peripheral                        0x00003b55   Thumb Code    58  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_pinmap_common.o)(i.pinmap_peripheral)
-    pinmap_pinout                            0x00003bb1   Thumb Code    66  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_pinmap_common.o)(i.pinmap_pinout)
-    pvPortMalloc                             0x00004489   Thumb Code   204  .\build\heap_2.o(i.pvPortMalloc)
-    pvTaskIncrementMutexHeldCount            0x00004569   Thumb Code    26  .\build\tasks.o(i.pvTaskIncrementMutexHeldCount)
-    pxPortInitialiseStack                    0x00004589   Thumb Code    30  .\build\port.o(i.pxPortInitialiseStack)
-    semihost_connected                       0x00004691   Thumb Code    10  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_semihost_api.o)(i.semihost_connected)
-    semihost_exit                            0x000046a1   Thumb Code    12  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_semihost_api.o)(i.semihost_exit)
-    serial_baud                              0x000046ad   Thumb Code   408  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(i.serial_baud)
-    serial_init                              0x00004871   Thumb Code   344  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(i.serial_init)
-    serial_putc                              0x00004ae9   Thumb Code   100  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(i.serial_putc)
-    serial_set_flow_control                  0x00004b51   Thumb Code   252  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(i.serial_set_flow_control)
-    tLEDAlive                                0x00004c5d   Thumb Code    66  .\build\led_control.o(i.tLEDAlive)
-    tUART_RxTask                             0x00004ca5   Thumb Code   778  .\build\uart_control.o(i.tUART_RxTask)
-    tUART_TxTask                             0x00005029   Thumb Code   190  .\build\uart_control.o(i.tUART_TxTask)
-    ticker_irq_handler                       0x00005125   Thumb Code    78  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)(i.ticker_irq_handler)
-    ticker_read                              0x00005173   Thumb Code    28  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)(i.ticker_read)
-    uart0_irq                                0x00005191   Thumb Code    14  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(i.uart0_irq)
-    uart1_irq                                0x000051a5   Thumb Code    14  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(i.uart1_irq)
-    uart2_irq                                0x000051b9   Thumb Code    14  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(i.uart2_irq)
-    uart3_irq                                0x000051cd   Thumb Code    14  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(i.uart3_irq)
-    us_ticker_clear_interrupt                0x0000534d   Thumb Code     8  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o(i.us_ticker_clear_interrupt)
-    us_ticker_disable_interrupt              0x00005359   Thumb Code    12  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o(i.us_ticker_disable_interrupt)
-    us_ticker_fire_interrupt                 0x00005369   Thumb Code    12  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o(i.us_ticker_fire_interrupt)
-    us_ticker_get_info                       0x00005375   Thumb Code     4  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o(i.us_ticker_get_info)
-    us_ticker_init                           0x0000537d   Thumb Code    74  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o(i.us_ticker_init)
-    us_ticker_irq_handler                    0x000053e5   Thumb Code    14  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_us_ticker_api.o)(i.us_ticker_irq_handler)
-    us_ticker_read                           0x000053fd   Thumb Code    72  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o(i.us_ticker_read)
-    us_ticker_set_interrupt                  0x00005461   Thumb Code    14  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o(i.us_ticker_set_interrupt)
-    uxListRemove                             0x00005475   Thumb Code    40  .\build\list.o(i.uxListRemove)
-    vApplicationMallocFailedHook             0x0000549d   Thumb Code    62  .\build\main.o(i.vApplicationMallocFailedHook)
-    vApplicationStackOverflowHook            0x000054db   Thumb Code    62  .\build\main.o(i.vApplicationStackOverflowHook)
-    vCheckPasscode                           0x00005519   Thumb Code    90  .\build\uart_control.o(i.vCheckPasscode)
-    vCheckUsernames                          0x0000557d   Thumb Code   110  .\build\uart_control.o(i.vCheckUsernames)
-    vFindStringMatch                         0x000055f1   Thumb Code   114  .\build\uart_control.o(i.vFindStringMatch)
-    vListInitialise                          0x00005669   Thumb Code    26  .\build\list.o(i.vListInitialise)
-    vListInitialiseItem                      0x00005683   Thumb Code     6  .\build\list.o(i.vListInitialiseItem)
-    vListInsert                              0x00005689   Thumb Code    52  .\build\list.o(i.vListInsert)
-    vListInsertEnd                           0x000056bd   Thumb Code    24  .\build\list.o(i.vListInsertEnd)
-    vPortEnterCritical                       0x000056d5   Thumb Code    76  .\build\port.o(i.vPortEnterCritical)
-    vPortExitCritical                        0x00005729   Thumb Code    56  .\build\port.o(i.vPortExitCritical)
-    vPortFree                                0x00005765   Thumb Code    56  .\build\heap_2.o(i.vPortFree)
-    vPortSetupTimerInterrupt                 0x000057a5   Thumb Code    26  .\build\port.o(i.vPortSetupTimerInterrupt)
-    vPortValidateInterruptPriority           0x000057c5   Thumb Code   106  .\build\port.o(i.vPortValidateInterruptPriority)
-    vQueueWaitForMessageRestricted           0x0000583d   Thumb Code    74  .\build\queue.o(i.vQueueWaitForMessageRestricted)
-    vTaskDelay                               0x00005889   Thumb Code    82  .\build\tasks.o(i.vTaskDelay)
-    vTaskDelayUntil                          0x000058e5   Thumb Code   200  .\build\tasks.o(i.vTaskDelayUntil)
-    vTaskMissedYield                         0x000059b9   Thumb Code     8  .\build\tasks.o(i.vTaskMissedYield)
-    vTaskPlaceOnEventList                    0x000059c5   Thumb Code    52  .\build\tasks.o(i.vTaskPlaceOnEventList)
-    vTaskPlaceOnEventListRestricted          0x000059fd   Thumb Code    60  .\build\tasks.o(i.vTaskPlaceOnEventListRestricted)
-    vTaskPriorityInherit                     0x00005a3d   Thumb Code   164  .\build\tasks.o(i.vTaskPriorityInherit)
-    vTaskSetTimeOutState                     0x00005aed   Thumb Code    38  .\build\tasks.o(i.vTaskSetTimeOutState)
-    vTaskStartScheduler                      0x00005b1d   Thumb Code   118  .\build\tasks.o(i.vTaskStartScheduler)
-    vTaskSuspendAll                          0x00005bb1   Thumb Code    12  .\build\tasks.o(i.vTaskSuspendAll)
-    vTaskSwitchContext                       0x00005bc1   Thumb Code   174  .\build\tasks.o(i.vTaskSwitchContext)
-    wait_ms                                  0x00005c85   Thumb Code    36  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_wait_api_no_rtos.o)(i.wait_ms)
-    xPortStartScheduler                      0x00005ca9   Thumb Code   140  .\build\port.o(i.xPortStartScheduler)
-    xQueueGenericCreate                      0x00005d49   Thumb Code    88  .\build\queue.o(i.xQueueGenericCreate)
-    xQueueGenericReceive                     0x00005da1   Thumb Code   446  .\build\queue.o(i.xQueueGenericReceive)
-    xQueueGenericReset                       0x00005f65   Thumb Code   146  .\build\queue.o(i.xQueueGenericReset)
-    xQueueGenericSend                        0x00005ffd   Thumb Code   420  .\build\queue.o(i.xQueueGenericSend)
-    xQueueGenericSendFromISR                 0x000061a5   Thumb Code   248  .\build\queue.o(i.xQueueGenericSendFromISR)
-    xTaskCheckForTimeOut                     0x0000629d   Thumb Code   132  .\build\tasks.o(i.xTaskCheckForTimeOut)
-    xTaskCreate                              0x00006329   Thumb Code    96  .\build\tasks.o(i.xTaskCreate)
-    xTaskGetSchedulerState                   0x00006389   Thumb Code    24  .\build\tasks.o(i.xTaskGetSchedulerState)
-    xTaskGetTickCount                        0x000063a9   Thumb Code     6  .\build\tasks.o(i.xTaskGetTickCount)
-    xTaskIncrementTick                       0x000063b5   Thumb Code   282  .\build\tasks.o(i.xTaskIncrementTick)
-    xTaskPriorityDisinherit                  0x000064fd   Thumb Code   188  .\build\tasks.o(i.xTaskPriorityDisinherit)
-    xTaskRemoveFromEventList                 0x000065c5   Thumb Code   128  .\build\tasks.o(i.xTaskRemoveFromEventList)
-    xTaskResumeAll                           0x0000665d   Thumb Code   224  .\build\tasks.o(i.xTaskResumeAll)
-    xTimerCreateTimerTask                    0x00006761   Thumb Code    66  .\build\timers.o(i.xTimerCreateTimerTask)
-    xTimerGenericCommand                     0x000067b9   Thumb Code   126  .\build\timers.o(i.xTimerGenericCommand)
-    yDigitalWrite                            0x0000683d   Thumb Code   288  .\build\gpio_setup.o(i.yDigitalWrite)
-    yKeyHit                                  0x00006969   Thumb Code    14  .\build\uart_control.o(i.yKeyHit)
-    ySetupDigitalI                           0x00006979   Thumb Code   466  .\build\gpio_setup.o(i.ySetupDigitalI)
-    ySetupDigitalO                           0x00006b5d   Thumb Code   466  .\build\gpio_setup.o(i.ySetupDigitalO)
-    yUART_RxReady                            0x00006d41   Thumb Code    18  .\build\uart_control.o(i.yUART_RxReady)
-    yUART_TxReady                            0x00006d59   Thumb Code    26  .\build\uart_control.o(i.yUART_TxReady)
-    _get_lc_numeric                          0x00006d79   Thumb Code    44  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_numeric_c.o)(locale$$code)
-    _get_lc_ctype                            0x00006da5   Thumb Code    44  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_ctype_c.o)(locale$$code)
-    SingletonPtr<PlatformMutex>::operator ->() 0x00006dd1   Thumb Code    36  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(FileBase.o)(t._ZN12SingletonPtrI13PlatformMutexEptEv)
-    _printf_fp_dec                           0x00006dfd   Thumb Code     4  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(printf1.o)(x$fpl$printf1)
-    _printf_fp_hex                           0x00006e01   Thumb Code     4  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(printf2.o)(x$fpl$printf2)
-    __I$use$fp                               0x00006e04   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(usenofp.o)(x$fpl$usenofp)
-    __stdin_name                             0x00006e04   Data           7  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o(.constdata)
-    __stdout_name                            0x00006e0b   Data           8  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o(.constdata)
-    __stderr_name                            0x00006e13   Data           8  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o(.constdata)
-    SingletonPtr<PlatformMutex>::get()::string 0x000070ac   Data          20  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o(.constdata__ZZN12SingletonPtrI13PlatformMutexE3getEvEs)
-    SingletonPtr<PlatformMutex>::get()::string (instance 2) 0x000070c0   Data          93  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o(.constdata__ZZN12SingletonPtrI13PlatformMutexE3getEvEs_0)
-    Region$$Table$$Base                      0x0000737c   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x0000739c   Number         0  anon$$obj.o(Region$$Table)
-    __ctype                                  0x000073c5   Data           0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_ctype_c.o)(locale$$data)
+    nPinFlip_1                               0x000036e5   Thumb Code    72  .\build\uart_control.o(i.nPinFlip_1)
+    nPinFlip_2                               0x00003745   Thumb Code    72  .\build\uart_control.o(i.nPinFlip_2)
+    nPinSetup_1                              0x000037a5   Thumb Code    20  .\build\uart_control.o(i.nPinSetup_1)
+    nPinSetup_2                              0x000037b9   Thumb Code    12  .\build\uart_control.o(i.nPinSetup_2)
+    nTerminalClear                           0x000037c5   Thumb Code    20  .\build\uart_control.o(i.nTerminalClear)
+    nTerminalHelp                            0x000037dd   Thumb Code    46  .\build\uart_control.o(i.nTerminalHelp)
+    nTerminalLogout                          0x0000383d   Thumb Code    46  .\build\uart_control.o(i.nTerminalLogout)
+    nTerminalStatus                          0x0000388d   Thumb Code    22  .\build\uart_control.o(i.nTerminalStatus)
+    nTerminalUndefined                       0x000038fd   Thumb Code    22  .\build\uart_control.o(i.nTerminalUndefined)
+    nTerminal_LED_1_ON                       0x0000392d   Thumb Code    18  .\build\uart_control.o(i.nTerminal_LED_1_ON)
+    nTerminal_LED_2_ON                       0x00003945   Thumb Code    18  .\build\uart_control.o(i.nTerminal_LED_2_ON)
+    nTerminal_LED_3_ON                       0x0000395d   Thumb Code    18  .\build\uart_control.o(i.nTerminal_LED_3_ON)
+    nTerminal_LED_4_ON                       0x00003975   Thumb Code    18  .\build\uart_control.o(i.nTerminal_LED_4_ON)
+    nTerminal_LED_ALL_ON                     0x0000398d   Thumb Code    16  .\build\uart_control.o(i.nTerminal_LED_ALL_ON)
+    nTerminal_LED_OFF                        0x0000399d   Thumb Code    16  .\build\uart_control.o(i.nTerminal_LED_OFF)
+    nUART0_init                              0x000039ad   Thumb Code   118  .\build\uart_control.o(i.nUART0_init)
+    nUART_RxChar                             0x00003a35   Thumb Code    24  .\build\uart_control.o(i.nUART_RxChar)
+    nUART_TxChar                             0x00003a55   Thumb Code    16  .\build\uart_control.o(i.nUART_TxChar)
+    nUART_TxString                           0x00003a69   Thumb Code    24  .\build\uart_control.o(i.nUART_TxString)
+    pin_function                             0x00003a81   Thumb Code    68  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/pinmap.o(i.pin_function)
+    pin_mode                                 0x00003add   Thumb Code   120  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/pinmap.o(i.pin_mode)
+    pinmap_find_peripheral                   0x00003b6d   Thumb Code    34  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_pinmap_common.o)(i.pinmap_find_peripheral)
+    pinmap_merge                             0x00003b91   Thumb Code    38  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_pinmap_common.o)(i.pinmap_merge)
+    pinmap_peripheral                        0x00003bcd   Thumb Code    58  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_pinmap_common.o)(i.pinmap_peripheral)
+    pinmap_pinout                            0x00003c29   Thumb Code    66  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_pinmap_common.o)(i.pinmap_pinout)
+    pvPortMalloc                             0x00004501   Thumb Code   204  .\build\heap_2.o(i.pvPortMalloc)
+    pvTaskIncrementMutexHeldCount            0x000045e1   Thumb Code    26  .\build\tasks.o(i.pvTaskIncrementMutexHeldCount)
+    pxPortInitialiseStack                    0x00004601   Thumb Code    30  .\build\port.o(i.pxPortInitialiseStack)
+    semihost_connected                       0x00004709   Thumb Code    10  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_semihost_api.o)(i.semihost_connected)
+    semihost_exit                            0x00004719   Thumb Code    12  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_semihost_api.o)(i.semihost_exit)
+    serial_baud                              0x00004725   Thumb Code   408  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(i.serial_baud)
+    serial_init                              0x000048e9   Thumb Code   344  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(i.serial_init)
+    serial_putc                              0x00004b61   Thumb Code   100  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(i.serial_putc)
+    serial_set_flow_control                  0x00004bc9   Thumb Code   252  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(i.serial_set_flow_control)
+    tLEDAlive                                0x00004cd5   Thumb Code    66  .\build\led_control.o(i.tLEDAlive)
+    tUART_RxTask                             0x00004d1d   Thumb Code   778  .\build\uart_control.o(i.tUART_RxTask)
+    tUART_TxTask                             0x000050a1   Thumb Code   190  .\build\uart_control.o(i.tUART_TxTask)
+    ticker_irq_handler                       0x0000519d   Thumb Code    78  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)(i.ticker_irq_handler)
+    ticker_read                              0x000051eb   Thumb Code    28  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)(i.ticker_read)
+    uart0_irq                                0x00005209   Thumb Code    14  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(i.uart0_irq)
+    uart1_irq                                0x0000521d   Thumb Code    14  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(i.uart1_irq)
+    uart2_irq                                0x00005231   Thumb Code    14  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(i.uart2_irq)
+    uart3_irq                                0x00005245   Thumb Code    14  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(i.uart3_irq)
+    us_ticker_clear_interrupt                0x000053c5   Thumb Code     8  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o(i.us_ticker_clear_interrupt)
+    us_ticker_disable_interrupt              0x000053d1   Thumb Code    12  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o(i.us_ticker_disable_interrupt)
+    us_ticker_fire_interrupt                 0x000053e1   Thumb Code    12  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o(i.us_ticker_fire_interrupt)
+    us_ticker_get_info                       0x000053ed   Thumb Code     4  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o(i.us_ticker_get_info)
+    us_ticker_init                           0x000053f5   Thumb Code    74  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o(i.us_ticker_init)
+    us_ticker_irq_handler                    0x0000545d   Thumb Code    14  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_us_ticker_api.o)(i.us_ticker_irq_handler)
+    us_ticker_read                           0x00005475   Thumb Code    72  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o(i.us_ticker_read)
+    us_ticker_set_interrupt                  0x000054d9   Thumb Code    14  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o(i.us_ticker_set_interrupt)
+    uxListRemove                             0x000054ed   Thumb Code    40  .\build\list.o(i.uxListRemove)
+    vApplicationMallocFailedHook             0x00005515   Thumb Code    62  .\build\main.o(i.vApplicationMallocFailedHook)
+    vApplicationStackOverflowHook            0x00005553   Thumb Code    62  .\build\main.o(i.vApplicationStackOverflowHook)
+    vCheckPasscode                           0x00005591   Thumb Code    90  .\build\uart_control.o(i.vCheckPasscode)
+    vCheckUsernames                          0x000055f5   Thumb Code   110  .\build\uart_control.o(i.vCheckUsernames)
+    vFindStringMatch                         0x00005669   Thumb Code   114  .\build\uart_control.o(i.vFindStringMatch)
+    vListInitialise                          0x000056e1   Thumb Code    26  .\build\list.o(i.vListInitialise)
+    vListInitialiseItem                      0x000056fb   Thumb Code     6  .\build\list.o(i.vListInitialiseItem)
+    vListInsert                              0x00005701   Thumb Code    52  .\build\list.o(i.vListInsert)
+    vListInsertEnd                           0x00005735   Thumb Code    24  .\build\list.o(i.vListInsertEnd)
+    vPortEnterCritical                       0x0000574d   Thumb Code    76  .\build\port.o(i.vPortEnterCritical)
+    vPortExitCritical                        0x000057a1   Thumb Code    56  .\build\port.o(i.vPortExitCritical)
+    vPortFree                                0x000057dd   Thumb Code    56  .\build\heap_2.o(i.vPortFree)
+    vPortSetupTimerInterrupt                 0x0000581d   Thumb Code    26  .\build\port.o(i.vPortSetupTimerInterrupt)
+    vPortValidateInterruptPriority           0x0000583d   Thumb Code   106  .\build\port.o(i.vPortValidateInterruptPriority)
+    vQueueWaitForMessageRestricted           0x000058b5   Thumb Code    74  .\build\queue.o(i.vQueueWaitForMessageRestricted)
+    vTaskDelay                               0x00005901   Thumb Code    82  .\build\tasks.o(i.vTaskDelay)
+    vTaskDelayUntil                          0x0000595d   Thumb Code   200  .\build\tasks.o(i.vTaskDelayUntil)
+    vTaskMissedYield                         0x00005a31   Thumb Code     8  .\build\tasks.o(i.vTaskMissedYield)
+    vTaskPlaceOnEventList                    0x00005a3d   Thumb Code    52  .\build\tasks.o(i.vTaskPlaceOnEventList)
+    vTaskPlaceOnEventListRestricted          0x00005a75   Thumb Code    60  .\build\tasks.o(i.vTaskPlaceOnEventListRestricted)
+    vTaskPriorityInherit                     0x00005ab5   Thumb Code   164  .\build\tasks.o(i.vTaskPriorityInherit)
+    vTaskSetTimeOutState                     0x00005b65   Thumb Code    38  .\build\tasks.o(i.vTaskSetTimeOutState)
+    vTaskStartScheduler                      0x00005b95   Thumb Code   118  .\build\tasks.o(i.vTaskStartScheduler)
+    vTaskSuspendAll                          0x00005c29   Thumb Code    12  .\build\tasks.o(i.vTaskSuspendAll)
+    vTaskSwitchContext                       0x00005c39   Thumb Code   174  .\build\tasks.o(i.vTaskSwitchContext)
+    wait_ms                                  0x00005cfd   Thumb Code    36  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_wait_api_no_rtos.o)(i.wait_ms)
+    xPortStartScheduler                      0x00005d21   Thumb Code   140  .\build\port.o(i.xPortStartScheduler)
+    xQueueGenericCreate                      0x00005dc1   Thumb Code    88  .\build\queue.o(i.xQueueGenericCreate)
+    xQueueGenericReceive                     0x00005e19   Thumb Code   446  .\build\queue.o(i.xQueueGenericReceive)
+    xQueueGenericReset                       0x00005fdd   Thumb Code   146  .\build\queue.o(i.xQueueGenericReset)
+    xQueueGenericSend                        0x00006075   Thumb Code   420  .\build\queue.o(i.xQueueGenericSend)
+    xQueueGenericSendFromISR                 0x0000621d   Thumb Code   248  .\build\queue.o(i.xQueueGenericSendFromISR)
+    xTaskCheckForTimeOut                     0x00006315   Thumb Code   132  .\build\tasks.o(i.xTaskCheckForTimeOut)
+    xTaskCreate                              0x000063a1   Thumb Code    96  .\build\tasks.o(i.xTaskCreate)
+    xTaskGetSchedulerState                   0x00006401   Thumb Code    24  .\build\tasks.o(i.xTaskGetSchedulerState)
+    xTaskGetTickCount                        0x00006421   Thumb Code     6  .\build\tasks.o(i.xTaskGetTickCount)
+    xTaskIncrementTick                       0x0000642d   Thumb Code   282  .\build\tasks.o(i.xTaskIncrementTick)
+    xTaskPriorityDisinherit                  0x00006575   Thumb Code   188  .\build\tasks.o(i.xTaskPriorityDisinherit)
+    xTaskRemoveFromEventList                 0x0000663d   Thumb Code   128  .\build\tasks.o(i.xTaskRemoveFromEventList)
+    xTaskResumeAll                           0x000066d5   Thumb Code   224  .\build\tasks.o(i.xTaskResumeAll)
+    xTimerCreateTimerTask                    0x000067d9   Thumb Code    66  .\build\timers.o(i.xTimerCreateTimerTask)
+    xTimerGenericCommand                     0x00006831   Thumb Code   126  .\build\timers.o(i.xTimerGenericCommand)
+    yDigitalWrite                            0x000068b5   Thumb Code   288  .\build\gpio_setup.o(i.yDigitalWrite)
+    yKeyHit                                  0x000069e1   Thumb Code    14  .\build\uart_control.o(i.yKeyHit)
+    ySetupDigitalI                           0x000069f1   Thumb Code   466  .\build\gpio_setup.o(i.ySetupDigitalI)
+    ySetupDigitalO                           0x00006bd5   Thumb Code   466  .\build\gpio_setup.o(i.ySetupDigitalO)
+    yUART_RxReady                            0x00006db9   Thumb Code    18  .\build\uart_control.o(i.yUART_RxReady)
+    yUART_TxReady                            0x00006dd1   Thumb Code    26  .\build\uart_control.o(i.yUART_TxReady)
+    _get_lc_numeric                          0x00006df1   Thumb Code    44  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_numeric_c.o)(locale$$code)
+    _get_lc_ctype                            0x00006e1d   Thumb Code    44  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_ctype_c.o)(locale$$code)
+    SingletonPtr<PlatformMutex>::operator ->() 0x00006e49   Thumb Code    36  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(FileBase.o)(t._ZN12SingletonPtrI13PlatformMutexEptEv)
+    _printf_fp_dec                           0x00006e75   Thumb Code     4  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(printf1.o)(x$fpl$printf1)
+    _printf_fp_hex                           0x00006e79   Thumb Code     4  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(printf2.o)(x$fpl$printf2)
+    __I$use$fp                               0x00006e7c   Number         0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(usenofp.o)(x$fpl$usenofp)
+    __stdin_name                             0x00006e7c   Data           7  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o(.constdata)
+    __stdout_name                            0x00006e83   Data           8  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o(.constdata)
+    __stderr_name                            0x00006e8b   Data           8  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o(.constdata)
+    SingletonPtr<PlatformMutex>::get()::string 0x00007124   Data          20  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o(.constdata__ZZN12SingletonPtrI13PlatformMutexE3getEvEs)
+    SingletonPtr<PlatformMutex>::get()::string (instance 2) 0x00007138   Data          93  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o(.constdata__ZZN12SingletonPtrI13PlatformMutexE3getEvEs_0)
+    Region$$Table$$Base                      0x000073f4   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x00007414   Number         0  anon$$obj.o(Region$$Table)
+    __ctype                                  0x0000743d   Data           0  C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_ctype_c.o)(locale$$data)
     stdio_uart_inited                        0x100000d8   Data           4  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(.data)
     stdio_uart                               0x100000e0   Data           8  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o(.data)
     SystemCoreClock                          0x100000e8   Data           4  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/system_LPC17xx.o(.data)
@@ -3550,7 +3557,7 @@ Memory Map of the image
 
   Image Entry point : 0x00000301
 
-  Load Region LR_IROM1 (Base: 0x00000000, Size: 0x000078f8, Max: 0x00080000, ABSOLUTE, COMPRESSED[0x0000760c])
+  Load Region LR_IROM1 (Base: 0x00000000, Size: 0x00007970, Max: 0x00080000, ABSOLUTE, COMPRESSED[0x0000768c])
 
     Execution Region ER_IROM0 (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x000000c4, Max: 0x000002fc, ABSOLUTE)
 
@@ -3566,7 +3573,7 @@ Memory Map of the image
     0x000002fc   0x000002fc   0x00000004   Data   RO           78    .CRPSection         mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/CRP.o
 
 
-    Execution Region ER_IROM1 (Exec base: 0x00000300, Load base: 0x00000300, Size: 0x000071c8, Max: 0x0007fd00, ABSOLUTE, FIXED)
+    Execution Region ER_IROM1 (Exec base: 0x00000300, Load base: 0x00000300, Size: 0x00007240, Max: 0x0007fd00, ABSOLUTE, FIXED)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -3770,175 +3777,175 @@ Memory Map of the image
     0x00003604   0x00003604   0x0000003c   Code   RO          734    i.nLEDFlip          .\build\led_control.o
     0x00003640   0x00003640   0x00000088   Code   RO          736    i.nLED_SET          .\build\led_control.o
     0x000036c8   0x000036c8   0x0000001c   Code   RO          824    i.nNewLine          .\build\uart_control.o
-    0x000036e4   0x000036e4   0x00000028   Code   RO          825    i.nPinFlip_1        .\build\uart_control.o
-    0x0000370c   0x0000370c   0x00000028   Code   RO          826    i.nPinFlip_2        .\build\uart_control.o
-    0x00003734   0x00003734   0x0000000c   Code   RO          827    i.nPinSetup_1       .\build\uart_control.o
-    0x00003740   0x00003740   0x0000000c   Code   RO          828    i.nPinSetup_2       .\build\uart_control.o
-    0x0000374c   0x0000374c   0x00000018   Code   RO          829    i.nTerminalClear    .\build\uart_control.o
-    0x00003764   0x00003764   0x00000060   Code   RO          830    i.nTerminalHelp     .\build\uart_control.o
-    0x000037c4   0x000037c4   0x00000050   Code   RO          831    i.nTerminalLogout   .\build\uart_control.o
-    0x00003814   0x00003814   0x00000070   Code   RO          833    i.nTerminalStatus   .\build\uart_control.o
-    0x00003884   0x00003884   0x00000030   Code   RO          834    i.nTerminalUndefined  .\build\uart_control.o
-    0x000038b4   0x000038b4   0x00000018   Code   RO          835    i.nTerminal_LED_1_ON  .\build\uart_control.o
-    0x000038cc   0x000038cc   0x00000018   Code   RO          836    i.nTerminal_LED_2_ON  .\build\uart_control.o
-    0x000038e4   0x000038e4   0x00000018   Code   RO          837    i.nTerminal_LED_3_ON  .\build\uart_control.o
-    0x000038fc   0x000038fc   0x00000018   Code   RO          838    i.nTerminal_LED_4_ON  .\build\uart_control.o
-    0x00003914   0x00003914   0x00000010   Code   RO          839    i.nTerminal_LED_ALL_ON  .\build\uart_control.o
-    0x00003924   0x00003924   0x00000010   Code   RO          840    i.nTerminal_LED_OFF  .\build\uart_control.o
-    0x00003934   0x00003934   0x00000088   Code   RO          841    i.nUART0_init       .\build\uart_control.o
-    0x000039bc   0x000039bc   0x00000020   Code   RO          842    i.nUART_RxChar      .\build\uart_control.o
-    0x000039dc   0x000039dc   0x00000014   Code   RO          843    i.nUART_TxChar      .\build\uart_control.o
-    0x000039f0   0x000039f0   0x00000018   Code   RO          844    i.nUART_TxString    .\build\uart_control.o
-    0x00003a08   0x00003a08   0x0000005c   Code   RO          405    i.pin_function      mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/pinmap.o
-    0x00003a64   0x00003a64   0x00000090   Code   RO          406    i.pin_mode          mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/pinmap.o
-    0x00003af4   0x00003af4   0x00000022   Code   RO         2053    i.pinmap_find_peripheral  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_pinmap_common.o)
-    0x00003b16   0x00003b16   0x00000002   PAD
-    0x00003b18   0x00003b18   0x0000003c   Code   RO         2055    i.pinmap_merge      mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_pinmap_common.o)
-    0x00003b54   0x00003b54   0x0000005c   Code   RO         2056    i.pinmap_peripheral  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_pinmap_common.o)
-    0x00003bb0   0x00003bb0   0x00000058   Code   RO         2057    i.pinmap_pinout     mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_pinmap_common.o)
-    0x00003c08   0x00003c08   0x00000098   Code   RO         1583    i.prvAddCurrentTaskToDelayedList  .\build\tasks.o
-    0x00003ca0   0x00003ca0   0x000000b4   Code   RO         1584    i.prvAddNewTaskToReadyList  .\build\tasks.o
-    0x00003d54   0x00003d54   0x0000004c   Code   RO         1881    i.prvCheckForValidListAndQueue  .\build\timers.o
-    0x00003da0   0x00003da0   0x00000064   Code   RO         1585    i.prvCheckTasksWaitingTermination  .\build\tasks.o
-    0x00003e04   0x00003e04   0x0000002a   Code   RO         1424    i.prvCopyDataFromQueue  .\build\queue.o
-    0x00003e2e   0x00003e2e   0x0000007c   Code   RO         1425    i.prvCopyDataToQueue  .\build\queue.o
-    0x00003eaa   0x00003eaa   0x00000012   Code   RO         1586    i.prvDeleteTCB      .\build\tasks.o
-    0x00003ebc   0x00003ebc   0x00000028   Code   RO         1882    i.prvGetNextExpireTime  .\build\timers.o
-    0x00003ee4   0x00003ee4   0x00000028   Code   RO         1587    i.prvIdleTask       .\build\tasks.o
-    0x00003f0c   0x00003f0c   0x00000026   Code   RO         1427    i.prvInitialiseNewQueue  .\build\queue.o
-    0x00003f32   0x00003f32   0x000000b4   Code   RO         1588    i.prvInitialiseNewTask  .\build\tasks.o
-    0x00003fe6   0x00003fe6   0x00000002   PAD
-    0x00003fe8   0x00003fe8   0x00000068   Code   RO         1589    i.prvInitialiseTaskLists  .\build\tasks.o
-    0x00004050   0x00004050   0x00000058   Code   RO         1884    i.prvInsertTimerInActiveList  .\build\timers.o
-    0x000040a8   0x000040a8   0x0000001a   Code   RO         1428    i.prvIsQueueEmpty   .\build\queue.o
-    0x000040c2   0x000040c2   0x0000001e   Code   RO         1429    i.prvIsQueueFull    .\build\queue.o
-    0x000040e0   0x000040e0   0x00000064   Code   RO         1885    i.prvProcessExpiredTimer  .\build\timers.o
-    0x00004144   0x00004144   0x000000f8   Code   RO         1886    i.prvProcessReceivedCommands  .\build\timers.o
-    0x0000423c   0x0000423c   0x00000074   Code   RO         1887    i.prvProcessTimerOrBlockTask  .\build\timers.o
-    0x000042b0   0x000042b0   0x00000034   Code   RO         1590    i.prvResetNextTaskUnblockTime  .\build\tasks.o
-    0x000042e4   0x000042e4   0x0000002c   Code   RO         1888    i.prvSampleTimeNow  .\build\timers.o
-    0x00004310   0x00004310   0x000000a0   Code   RO         1889    i.prvSwitchTimerLists  .\build\timers.o
-    0x000043b0   0x000043b0   0x00000040   Code   RO         1215    i.prvTaskExitError  .\build\port.o
-    0x000043f0   0x000043f0   0x0000001a   Code   RO         1890    i.prvTimerTask      .\build\timers.o
-    0x0000440a   0x0000440a   0x0000007e   Code   RO         1430    i.prvUnlockQueue    .\build\queue.o
-    0x00004488   0x00004488   0x000000e0   Code   RO         1999    i.pvPortMalloc      .\build\heap_2.o
-    0x00004568   0x00004568   0x00000020   Code   RO         1592    i.pvTaskIncrementMutexHeldCount  .\build\tasks.o
-    0x00004588   0x00004588   0x00000024   Code   RO         1216    i.pxPortInitialiseStack  .\build\port.o
-    0x000045ac   0x000045ac   0x000000e4   Code   RO         2112    i.schedule_interrupt  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)
-    0x00004690   0x00004690   0x00000010   Code   RO         2231    i.semihost_connected  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_semihost_api.o)
-    0x000046a0   0x000046a0   0x0000000c   Code   RO         2234    i.semihost_exit     mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_semihost_api.o)
-    0x000046ac   0x000046ac   0x000001c4   Code   RO          479    i.serial_baud       mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o
-    0x00004870   0x00004870   0x00000180   Code   RO          486    i.serial_init       mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o
-    0x000049f0   0x000049f0   0x000000f8   Code   RO          489    i.serial_irq_set_internal  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o
-    0x00004ae8   0x00004ae8   0x00000068   Code   RO          491    i.serial_putc       mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o
-    0x00004b50   0x00004b50   0x0000010c   Code   RO          493    i.serial_set_flow_control  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o
-    0x00004c5c   0x00004c5c   0x00000048   Code   RO          737    i.tLEDAlive         .\build\led_control.o
-    0x00004ca4   0x00004ca4   0x00000384   Code   RO          845    i.tUART_RxTask      .\build\uart_control.o
-    0x00005028   0x00005028   0x000000fc   Code   RO          846    i.tUART_TxTask      .\build\uart_control.o
-    0x00005124   0x00005124   0x0000004e   Code   RO         2116    i.ticker_irq_handler  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)
-    0x00005172   0x00005172   0x0000001c   Code   RO         2117    i.ticker_read       mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)
-    0x0000518e   0x0000518e   0x00000002   PAD
-    0x00005190   0x00005190   0x00000014   Code   RO          495    i.uart0_irq         mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o
-    0x000051a4   0x000051a4   0x00000014   Code   RO          496    i.uart1_irq         mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o
-    0x000051b8   0x000051b8   0x00000014   Code   RO          497    i.uart2_irq         mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o
-    0x000051cc   0x000051cc   0x00000014   Code   RO          498    i.uart3_irq         mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o
-    0x000051e0   0x000051e0   0x00000068   Code   RO          499    i.uart_irq          mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o
-    0x00005248   0x00005248   0x00000104   Code   RO         2121    i.update_present_time  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)
-    0x0000534c   0x0000534c   0x0000000c   Code   RO          583    i.us_ticker_clear_interrupt  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o
-    0x00005358   0x00005358   0x00000010   Code   RO          584    i.us_ticker_disable_interrupt  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o
-    0x00005368   0x00005368   0x0000000c   Code   RO          585    i.us_ticker_fire_interrupt  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o
-    0x00005374   0x00005374   0x00000008   Code   RO          265    i.us_ticker_get_info  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o
-    0x0000537c   0x0000537c   0x00000068   Code   RO          586    i.us_ticker_init    mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o
-    0x000053e4   0x000053e4   0x00000018   Code   RO         2072    i.us_ticker_irq_handler  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_us_ticker_api.o)
-    0x000053fc   0x000053fc   0x00000064   Code   RO          587    i.us_ticker_read    mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o
-    0x00005460   0x00005460   0x00000014   Code   RO          588    i.us_ticker_set_interrupt  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o
-    0x00005474   0x00005474   0x00000028   Code   RO         1388    i.uxListRemove      .\build\list.o
-    0x0000549c   0x0000549c   0x0000003e   Code   RO          603    i.vApplicationMallocFailedHook  .\build\main.o
-    0x000054da   0x000054da   0x0000003e   Code   RO          604    i.vApplicationStackOverflowHook  .\build\main.o
-    0x00005518   0x00005518   0x00000064   Code   RO          847    i.vCheckPasscode    .\build\uart_control.o
-    0x0000557c   0x0000557c   0x00000074   Code   RO          848    i.vCheckUsernames   .\build\uart_control.o
-    0x000055f0   0x000055f0   0x00000078   Code   RO          849    i.vFindStringMatch  .\build\uart_control.o
-    0x00005668   0x00005668   0x0000001a   Code   RO         1389    i.vListInitialise   .\build\list.o
-    0x00005682   0x00005682   0x00000006   Code   RO         1390    i.vListInitialiseItem  .\build\list.o
-    0x00005688   0x00005688   0x00000034   Code   RO         1391    i.vListInsert       .\build\list.o
-    0x000056bc   0x000056bc   0x00000018   Code   RO         1392    i.vListInsertEnd    .\build\list.o
-    0x000056d4   0x000056d4   0x00000054   Code   RO         1218    i.vPortEnterCritical  .\build\port.o
-    0x00005728   0x00005728   0x0000003c   Code   RO         1219    i.vPortExitCritical  .\build\port.o
-    0x00005764   0x00005764   0x00000040   Code   RO         2000    i.vPortFree         .\build\heap_2.o
-    0x000057a4   0x000057a4   0x00000020   Code   RO         1220    i.vPortSetupTimerInterrupt  .\build\port.o
-    0x000057c4   0x000057c4   0x00000078   Code   RO         1221    i.vPortValidateInterruptPriority  .\build\port.o
-    0x0000583c   0x0000583c   0x0000004a   Code   RO         1435    i.vQueueWaitForMessageRestricted  .\build\queue.o
-    0x00005886   0x00005886   0x00000002   PAD
-    0x00005888   0x00005888   0x0000005c   Code   RO         1598    i.vTaskDelay        .\build\tasks.o
-    0x000058e4   0x000058e4   0x000000d4   Code   RO         1599    i.vTaskDelayUntil   .\build\tasks.o
-    0x000059b8   0x000059b8   0x0000000c   Code   RO         1602    i.vTaskMissedYield  .\build\tasks.o
-    0x000059c4   0x000059c4   0x00000038   Code   RO         1604    i.vTaskPlaceOnEventList  .\build\tasks.o
-    0x000059fc   0x000059fc   0x00000040   Code   RO         1605    i.vTaskPlaceOnEventListRestricted  .\build\tasks.o
-    0x00005a3c   0x00005a3c   0x000000b0   Code   RO         1607    i.vTaskPriorityInherit  .\build\tasks.o
-    0x00005aec   0x00005aec   0x00000030   Code   RO         1610    i.vTaskSetTimeOutState  .\build\tasks.o
-    0x00005b1c   0x00005b1c   0x00000094   Code   RO         1611    i.vTaskStartScheduler  .\build\tasks.o
-    0x00005bb0   0x00005bb0   0x00000010   Code   RO         1613    i.vTaskSuspendAll   .\build\tasks.o
-    0x00005bc0   0x00005bc0   0x000000c4   Code   RO         1614    i.vTaskSwitchContext  .\build\tasks.o
-    0x00005c84   0x00005c84   0x00000024   Code   RO         2271    i.wait_ms           mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_wait_api_no_rtos.o)
-    0x00005ca8   0x00005ca8   0x000000a0   Code   RO         1222    i.xPortStartScheduler  .\build\port.o
-    0x00005d48   0x00005d48   0x00000058   Code   RO         1438    i.xQueueGenericCreate  .\build\queue.o
-    0x00005da0   0x00005da0   0x000001c4   Code   RO         1439    i.xQueueGenericReceive  .\build\queue.o
-    0x00005f64   0x00005f64   0x00000098   Code   RO         1440    i.xQueueGenericReset  .\build\queue.o
-    0x00005ffc   0x00005ffc   0x000001a8   Code   RO         1441    i.xQueueGenericSend  .\build\queue.o
-    0x000061a4   0x000061a4   0x000000f8   Code   RO         1442    i.xQueueGenericSendFromISR  .\build\queue.o
-    0x0000629c   0x0000629c   0x0000008c   Code   RO         1615    i.xTaskCheckForTimeOut  .\build\tasks.o
-    0x00006328   0x00006328   0x00000060   Code   RO         1616    i.xTaskCreate       .\build\tasks.o
-    0x00006388   0x00006388   0x00000020   Code   RO         1620    i.xTaskGetSchedulerState  .\build\tasks.o
-    0x000063a8   0x000063a8   0x0000000c   Code   RO         1621    i.xTaskGetTickCount  .\build\tasks.o
-    0x000063b4   0x000063b4   0x00000148   Code   RO         1623    i.xTaskIncrementTick  .\build\tasks.o
-    0x000064fc   0x000064fc   0x000000c8   Code   RO         1626    i.xTaskPriorityDisinherit  .\build\tasks.o
-    0x000065c4   0x000065c4   0x00000098   Code   RO         1627    i.xTaskRemoveFromEventList  .\build\tasks.o
-    0x0000665c   0x0000665c   0x00000104   Code   RO         1629    i.xTaskResumeAll    .\build\tasks.o
-    0x00006760   0x00006760   0x00000058   Code   RO         1894    i.xTimerCreateTimerTask  .\build\timers.o
-    0x000067b8   0x000067b8   0x00000084   Code   RO         1895    i.xTimerGenericCommand  .\build\timers.o
-    0x0000683c   0x0000683c   0x0000012c   Code   RO         1085    i.yDigitalWrite     .\build\gpio_setup.o
-    0x00006968   0x00006968   0x0000000e   Code   RO          850    i.yKeyHit           .\build\uart_control.o
-    0x00006976   0x00006976   0x00000002   PAD
-    0x00006978   0x00006978   0x000001e4   Code   RO         1086    i.ySetupDigitalI    .\build\gpio_setup.o
-    0x00006b5c   0x00006b5c   0x000001e4   Code   RO         1087    i.ySetupDigitalO    .\build\gpio_setup.o
-    0x00006d40   0x00006d40   0x00000018   Code   RO          851    i.yUART_RxReady     .\build\uart_control.o
-    0x00006d58   0x00006d58   0x00000020   Code   RO          852    i.yUART_TxReady     .\build\uart_control.o
-    0x00006d78   0x00006d78   0x0000002c   Code   RO         2992    locale$$code        C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_numeric_c.o)
-    0x00006da4   0x00006da4   0x0000002c   Code   RO         3030    locale$$code        C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_ctype_c.o)
-    0x00006dd0   0x00006dd0   0x0000002c   Code   RO         2309    t._ZN12SingletonPtrI13PlatformMutexEptEv  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(FileBase.o)
-    0x00006dfc   0x00006dfc   0x00000004   Code   RO         2828    x$fpl$printf1       C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(printf1.o)
-    0x00006e00   0x00006e00   0x00000004   Code   RO         2830    x$fpl$printf2       C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(printf2.o)
-    0x00006e04   0x00006e04   0x00000000   Code   RO         2836    x$fpl$usenofp       C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(usenofp.o)
-    0x00006e04   0x00006e04   0x00000028   Data   RO          311    .constdata          mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o
-    0x00006e2c   0x00006e2c   0x00000120   Data   RO          501    .constdata          mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o
-    0x00006f4c   0x00006f4c   0x00000040   Data   RO          854    .constdata          .\build\uart_control.o
-    0x00006f8c   0x00006f8c   0x0000001c   Data   RO         2074    .constdata          mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_us_ticker_api.o)
-    0x00006fa8   0x00006fa8   0x00000008   Data   RO         2075    .constdata          mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_us_ticker_api.o)
-    0x00006fb0   0x00006fb0   0x00000008   Data   RO         2647    .constdata          C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_wctomb.o)
-    0x00006fb8   0x00006fb8   0x00000028   Data   RO         2676    .constdata          C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_hex_int_ll_ptr.o)
-    0x00006fe0   0x00006fe0   0x00000011   Data   RO         2696    .constdata          C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__printf_flags_ss_wp.o)
-    0x00006ff1   0x00006ff1   0x00000026   Data   RO         2871    .constdata          C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_fp_hex.o)
-    0x00007017   0x00007017   0x00000001   PAD
-    0x00007018   0x00007018   0x00000094   Data   RO         2967    .constdata          C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(bigflt0.o)
-    0x000070ac   0x000070ac   0x00000014   Data   RO          382    .constdata__ZZN12SingletonPtrI13PlatformMutexE3getEvEs  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o
-    0x000070c0   0x000070c0   0x0000005d   Data   RO          383    .constdata__ZZN12SingletonPtrI13PlatformMutexE3getEvEs_0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o
-    0x0000711d   0x0000711d   0x00000003   PAD
-    0x00007120   0x00007120   0x00000067   Data   RO          141    .conststring        mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/gpio_api.o
-    0x00007187   0x00007187   0x00000001   PAD
-    0x00007188   0x00007188   0x0000007c   Data   RO          212    .conststring        mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_board.o
-    0x00007204   0x00007204   0x00000065   Data   RO          407    .conststring        mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/pinmap.o
-    0x00007269   0x00007269   0x00000003   PAD
-    0x0000726c   0x0000726c   0x00000069   Data   RO          502    .conststring        mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o
-    0x000072d5   0x000072d5   0x00000003   PAD
-    0x000072d8   0x000072d8   0x00000050   Data   RO         2122    .conststring        mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)
-    0x00007328   0x00007328   0x00000053   Data   RO         2179    .conststring        mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_critical.o)
-    0x0000737b   0x0000737b   0x00000001   PAD
-    0x0000737c   0x0000737c   0x00000020   Data   RO         3061    Region$$Table       anon$$obj.o
-    0x0000739c   0x0000739c   0x0000001c   Data   RO         2991    locale$$data        C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_numeric_c.o)
-    0x000073b8   0x000073b8   0x00000110   Data   RO         3029    locale$$data        C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_ctype_c.o)
+    0x000036e4   0x000036e4   0x00000060   Code   RO          825    i.nPinFlip_1        .\build\uart_control.o
+    0x00003744   0x00003744   0x00000060   Code   RO          826    i.nPinFlip_2        .\build\uart_control.o
+    0x000037a4   0x000037a4   0x00000014   Code   RO          827    i.nPinSetup_1       .\build\uart_control.o
+    0x000037b8   0x000037b8   0x0000000c   Code   RO          828    i.nPinSetup_2       .\build\uart_control.o
+    0x000037c4   0x000037c4   0x00000018   Code   RO          829    i.nTerminalClear    .\build\uart_control.o
+    0x000037dc   0x000037dc   0x00000060   Code   RO          830    i.nTerminalHelp     .\build\uart_control.o
+    0x0000383c   0x0000383c   0x00000050   Code   RO          831    i.nTerminalLogout   .\build\uart_control.o
+    0x0000388c   0x0000388c   0x00000070   Code   RO          833    i.nTerminalStatus   .\build\uart_control.o
+    0x000038fc   0x000038fc   0x00000030   Code   RO          834    i.nTerminalUndefined  .\build\uart_control.o
+    0x0000392c   0x0000392c   0x00000018   Code   RO          835    i.nTerminal_LED_1_ON  .\build\uart_control.o
+    0x00003944   0x00003944   0x00000018   Code   RO          836    i.nTerminal_LED_2_ON  .\build\uart_control.o
+    0x0000395c   0x0000395c   0x00000018   Code   RO          837    i.nTerminal_LED_3_ON  .\build\uart_control.o
+    0x00003974   0x00003974   0x00000018   Code   RO          838    i.nTerminal_LED_4_ON  .\build\uart_control.o
+    0x0000398c   0x0000398c   0x00000010   Code   RO          839    i.nTerminal_LED_ALL_ON  .\build\uart_control.o
+    0x0000399c   0x0000399c   0x00000010   Code   RO          840    i.nTerminal_LED_OFF  .\build\uart_control.o
+    0x000039ac   0x000039ac   0x00000088   Code   RO          841    i.nUART0_init       .\build\uart_control.o
+    0x00003a34   0x00003a34   0x00000020   Code   RO          842    i.nUART_RxChar      .\build\uart_control.o
+    0x00003a54   0x00003a54   0x00000014   Code   RO          843    i.nUART_TxChar      .\build\uart_control.o
+    0x00003a68   0x00003a68   0x00000018   Code   RO          844    i.nUART_TxString    .\build\uart_control.o
+    0x00003a80   0x00003a80   0x0000005c   Code   RO          405    i.pin_function      mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/pinmap.o
+    0x00003adc   0x00003adc   0x00000090   Code   RO          406    i.pin_mode          mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/pinmap.o
+    0x00003b6c   0x00003b6c   0x00000022   Code   RO         2053    i.pinmap_find_peripheral  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_pinmap_common.o)
+    0x00003b8e   0x00003b8e   0x00000002   PAD
+    0x00003b90   0x00003b90   0x0000003c   Code   RO         2055    i.pinmap_merge      mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_pinmap_common.o)
+    0x00003bcc   0x00003bcc   0x0000005c   Code   RO         2056    i.pinmap_peripheral  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_pinmap_common.o)
+    0x00003c28   0x00003c28   0x00000058   Code   RO         2057    i.pinmap_pinout     mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_pinmap_common.o)
+    0x00003c80   0x00003c80   0x00000098   Code   RO         1583    i.prvAddCurrentTaskToDelayedList  .\build\tasks.o
+    0x00003d18   0x00003d18   0x000000b4   Code   RO         1584    i.prvAddNewTaskToReadyList  .\build\tasks.o
+    0x00003dcc   0x00003dcc   0x0000004c   Code   RO         1881    i.prvCheckForValidListAndQueue  .\build\timers.o
+    0x00003e18   0x00003e18   0x00000064   Code   RO         1585    i.prvCheckTasksWaitingTermination  .\build\tasks.o
+    0x00003e7c   0x00003e7c   0x0000002a   Code   RO         1424    i.prvCopyDataFromQueue  .\build\queue.o
+    0x00003ea6   0x00003ea6   0x0000007c   Code   RO         1425    i.prvCopyDataToQueue  .\build\queue.o
+    0x00003f22   0x00003f22   0x00000012   Code   RO         1586    i.prvDeleteTCB      .\build\tasks.o
+    0x00003f34   0x00003f34   0x00000028   Code   RO         1882    i.prvGetNextExpireTime  .\build\timers.o
+    0x00003f5c   0x00003f5c   0x00000028   Code   RO         1587    i.prvIdleTask       .\build\tasks.o
+    0x00003f84   0x00003f84   0x00000026   Code   RO         1427    i.prvInitialiseNewQueue  .\build\queue.o
+    0x00003faa   0x00003faa   0x000000b4   Code   RO         1588    i.prvInitialiseNewTask  .\build\tasks.o
+    0x0000405e   0x0000405e   0x00000002   PAD
+    0x00004060   0x00004060   0x00000068   Code   RO         1589    i.prvInitialiseTaskLists  .\build\tasks.o
+    0x000040c8   0x000040c8   0x00000058   Code   RO         1884    i.prvInsertTimerInActiveList  .\build\timers.o
+    0x00004120   0x00004120   0x0000001a   Code   RO         1428    i.prvIsQueueEmpty   .\build\queue.o
+    0x0000413a   0x0000413a   0x0000001e   Code   RO         1429    i.prvIsQueueFull    .\build\queue.o
+    0x00004158   0x00004158   0x00000064   Code   RO         1885    i.prvProcessExpiredTimer  .\build\timers.o
+    0x000041bc   0x000041bc   0x000000f8   Code   RO         1886    i.prvProcessReceivedCommands  .\build\timers.o
+    0x000042b4   0x000042b4   0x00000074   Code   RO         1887    i.prvProcessTimerOrBlockTask  .\build\timers.o
+    0x00004328   0x00004328   0x00000034   Code   RO         1590    i.prvResetNextTaskUnblockTime  .\build\tasks.o
+    0x0000435c   0x0000435c   0x0000002c   Code   RO         1888    i.prvSampleTimeNow  .\build\timers.o
+    0x00004388   0x00004388   0x000000a0   Code   RO         1889    i.prvSwitchTimerLists  .\build\timers.o
+    0x00004428   0x00004428   0x00000040   Code   RO         1215    i.prvTaskExitError  .\build\port.o
+    0x00004468   0x00004468   0x0000001a   Code   RO         1890    i.prvTimerTask      .\build\timers.o
+    0x00004482   0x00004482   0x0000007e   Code   RO         1430    i.prvUnlockQueue    .\build\queue.o
+    0x00004500   0x00004500   0x000000e0   Code   RO         1999    i.pvPortMalloc      .\build\heap_2.o
+    0x000045e0   0x000045e0   0x00000020   Code   RO         1592    i.pvTaskIncrementMutexHeldCount  .\build\tasks.o
+    0x00004600   0x00004600   0x00000024   Code   RO         1216    i.pxPortInitialiseStack  .\build\port.o
+    0x00004624   0x00004624   0x000000e4   Code   RO         2112    i.schedule_interrupt  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)
+    0x00004708   0x00004708   0x00000010   Code   RO         2231    i.semihost_connected  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_semihost_api.o)
+    0x00004718   0x00004718   0x0000000c   Code   RO         2234    i.semihost_exit     mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_semihost_api.o)
+    0x00004724   0x00004724   0x000001c4   Code   RO          479    i.serial_baud       mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o
+    0x000048e8   0x000048e8   0x00000180   Code   RO          486    i.serial_init       mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o
+    0x00004a68   0x00004a68   0x000000f8   Code   RO          489    i.serial_irq_set_internal  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o
+    0x00004b60   0x00004b60   0x00000068   Code   RO          491    i.serial_putc       mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o
+    0x00004bc8   0x00004bc8   0x0000010c   Code   RO          493    i.serial_set_flow_control  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o
+    0x00004cd4   0x00004cd4   0x00000048   Code   RO          737    i.tLEDAlive         .\build\led_control.o
+    0x00004d1c   0x00004d1c   0x00000384   Code   RO          845    i.tUART_RxTask      .\build\uart_control.o
+    0x000050a0   0x000050a0   0x000000fc   Code   RO          846    i.tUART_TxTask      .\build\uart_control.o
+    0x0000519c   0x0000519c   0x0000004e   Code   RO         2116    i.ticker_irq_handler  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)
+    0x000051ea   0x000051ea   0x0000001c   Code   RO         2117    i.ticker_read       mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)
+    0x00005206   0x00005206   0x00000002   PAD
+    0x00005208   0x00005208   0x00000014   Code   RO          495    i.uart0_irq         mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o
+    0x0000521c   0x0000521c   0x00000014   Code   RO          496    i.uart1_irq         mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o
+    0x00005230   0x00005230   0x00000014   Code   RO          497    i.uart2_irq         mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o
+    0x00005244   0x00005244   0x00000014   Code   RO          498    i.uart3_irq         mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o
+    0x00005258   0x00005258   0x00000068   Code   RO          499    i.uart_irq          mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o
+    0x000052c0   0x000052c0   0x00000104   Code   RO         2121    i.update_present_time  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)
+    0x000053c4   0x000053c4   0x0000000c   Code   RO          583    i.us_ticker_clear_interrupt  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o
+    0x000053d0   0x000053d0   0x00000010   Code   RO          584    i.us_ticker_disable_interrupt  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o
+    0x000053e0   0x000053e0   0x0000000c   Code   RO          585    i.us_ticker_fire_interrupt  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o
+    0x000053ec   0x000053ec   0x00000008   Code   RO          265    i.us_ticker_get_info  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o
+    0x000053f4   0x000053f4   0x00000068   Code   RO          586    i.us_ticker_init    mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o
+    0x0000545c   0x0000545c   0x00000018   Code   RO         2072    i.us_ticker_irq_handler  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_us_ticker_api.o)
+    0x00005474   0x00005474   0x00000064   Code   RO          587    i.us_ticker_read    mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o
+    0x000054d8   0x000054d8   0x00000014   Code   RO          588    i.us_ticker_set_interrupt  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o
+    0x000054ec   0x000054ec   0x00000028   Code   RO         1388    i.uxListRemove      .\build\list.o
+    0x00005514   0x00005514   0x0000003e   Code   RO          603    i.vApplicationMallocFailedHook  .\build\main.o
+    0x00005552   0x00005552   0x0000003e   Code   RO          604    i.vApplicationStackOverflowHook  .\build\main.o
+    0x00005590   0x00005590   0x00000064   Code   RO          847    i.vCheckPasscode    .\build\uart_control.o
+    0x000055f4   0x000055f4   0x00000074   Code   RO          848    i.vCheckUsernames   .\build\uart_control.o
+    0x00005668   0x00005668   0x00000078   Code   RO          849    i.vFindStringMatch  .\build\uart_control.o
+    0x000056e0   0x000056e0   0x0000001a   Code   RO         1389    i.vListInitialise   .\build\list.o
+    0x000056fa   0x000056fa   0x00000006   Code   RO         1390    i.vListInitialiseItem  .\build\list.o
+    0x00005700   0x00005700   0x00000034   Code   RO         1391    i.vListInsert       .\build\list.o
+    0x00005734   0x00005734   0x00000018   Code   RO         1392    i.vListInsertEnd    .\build\list.o
+    0x0000574c   0x0000574c   0x00000054   Code   RO         1218    i.vPortEnterCritical  .\build\port.o
+    0x000057a0   0x000057a0   0x0000003c   Code   RO         1219    i.vPortExitCritical  .\build\port.o
+    0x000057dc   0x000057dc   0x00000040   Code   RO         2000    i.vPortFree         .\build\heap_2.o
+    0x0000581c   0x0000581c   0x00000020   Code   RO         1220    i.vPortSetupTimerInterrupt  .\build\port.o
+    0x0000583c   0x0000583c   0x00000078   Code   RO         1221    i.vPortValidateInterruptPriority  .\build\port.o
+    0x000058b4   0x000058b4   0x0000004a   Code   RO         1435    i.vQueueWaitForMessageRestricted  .\build\queue.o
+    0x000058fe   0x000058fe   0x00000002   PAD
+    0x00005900   0x00005900   0x0000005c   Code   RO         1598    i.vTaskDelay        .\build\tasks.o
+    0x0000595c   0x0000595c   0x000000d4   Code   RO         1599    i.vTaskDelayUntil   .\build\tasks.o
+    0x00005a30   0x00005a30   0x0000000c   Code   RO         1602    i.vTaskMissedYield  .\build\tasks.o
+    0x00005a3c   0x00005a3c   0x00000038   Code   RO         1604    i.vTaskPlaceOnEventList  .\build\tasks.o
+    0x00005a74   0x00005a74   0x00000040   Code   RO         1605    i.vTaskPlaceOnEventListRestricted  .\build\tasks.o
+    0x00005ab4   0x00005ab4   0x000000b0   Code   RO         1607    i.vTaskPriorityInherit  .\build\tasks.o
+    0x00005b64   0x00005b64   0x00000030   Code   RO         1610    i.vTaskSetTimeOutState  .\build\tasks.o
+    0x00005b94   0x00005b94   0x00000094   Code   RO         1611    i.vTaskStartScheduler  .\build\tasks.o
+    0x00005c28   0x00005c28   0x00000010   Code   RO         1613    i.vTaskSuspendAll   .\build\tasks.o
+    0x00005c38   0x00005c38   0x000000c4   Code   RO         1614    i.vTaskSwitchContext  .\build\tasks.o
+    0x00005cfc   0x00005cfc   0x00000024   Code   RO         2271    i.wait_ms           mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_wait_api_no_rtos.o)
+    0x00005d20   0x00005d20   0x000000a0   Code   RO         1222    i.xPortStartScheduler  .\build\port.o
+    0x00005dc0   0x00005dc0   0x00000058   Code   RO         1438    i.xQueueGenericCreate  .\build\queue.o
+    0x00005e18   0x00005e18   0x000001c4   Code   RO         1439    i.xQueueGenericReceive  .\build\queue.o
+    0x00005fdc   0x00005fdc   0x00000098   Code   RO         1440    i.xQueueGenericReset  .\build\queue.o
+    0x00006074   0x00006074   0x000001a8   Code   RO         1441    i.xQueueGenericSend  .\build\queue.o
+    0x0000621c   0x0000621c   0x000000f8   Code   RO         1442    i.xQueueGenericSendFromISR  .\build\queue.o
+    0x00006314   0x00006314   0x0000008c   Code   RO         1615    i.xTaskCheckForTimeOut  .\build\tasks.o
+    0x000063a0   0x000063a0   0x00000060   Code   RO         1616    i.xTaskCreate       .\build\tasks.o
+    0x00006400   0x00006400   0x00000020   Code   RO         1620    i.xTaskGetSchedulerState  .\build\tasks.o
+    0x00006420   0x00006420   0x0000000c   Code   RO         1621    i.xTaskGetTickCount  .\build\tasks.o
+    0x0000642c   0x0000642c   0x00000148   Code   RO         1623    i.xTaskIncrementTick  .\build\tasks.o
+    0x00006574   0x00006574   0x000000c8   Code   RO         1626    i.xTaskPriorityDisinherit  .\build\tasks.o
+    0x0000663c   0x0000663c   0x00000098   Code   RO         1627    i.xTaskRemoveFromEventList  .\build\tasks.o
+    0x000066d4   0x000066d4   0x00000104   Code   RO         1629    i.xTaskResumeAll    .\build\tasks.o
+    0x000067d8   0x000067d8   0x00000058   Code   RO         1894    i.xTimerCreateTimerTask  .\build\timers.o
+    0x00006830   0x00006830   0x00000084   Code   RO         1895    i.xTimerGenericCommand  .\build\timers.o
+    0x000068b4   0x000068b4   0x0000012c   Code   RO         1085    i.yDigitalWrite     .\build\gpio_setup.o
+    0x000069e0   0x000069e0   0x0000000e   Code   RO          850    i.yKeyHit           .\build\uart_control.o
+    0x000069ee   0x000069ee   0x00000002   PAD
+    0x000069f0   0x000069f0   0x000001e4   Code   RO         1086    i.ySetupDigitalI    .\build\gpio_setup.o
+    0x00006bd4   0x00006bd4   0x000001e4   Code   RO         1087    i.ySetupDigitalO    .\build\gpio_setup.o
+    0x00006db8   0x00006db8   0x00000018   Code   RO          851    i.yUART_RxReady     .\build\uart_control.o
+    0x00006dd0   0x00006dd0   0x00000020   Code   RO          852    i.yUART_TxReady     .\build\uart_control.o
+    0x00006df0   0x00006df0   0x0000002c   Code   RO         2992    locale$$code        C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_numeric_c.o)
+    0x00006e1c   0x00006e1c   0x0000002c   Code   RO         3030    locale$$code        C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_ctype_c.o)
+    0x00006e48   0x00006e48   0x0000002c   Code   RO         2309    t._ZN12SingletonPtrI13PlatformMutexEptEv  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(FileBase.o)
+    0x00006e74   0x00006e74   0x00000004   Code   RO         2828    x$fpl$printf1       C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(printf1.o)
+    0x00006e78   0x00006e78   0x00000004   Code   RO         2830    x$fpl$printf2       C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(printf2.o)
+    0x00006e7c   0x00006e7c   0x00000000   Code   RO         2836    x$fpl$usenofp       C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ws.l(usenofp.o)
+    0x00006e7c   0x00006e7c   0x00000028   Data   RO          311    .constdata          mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o
+    0x00006ea4   0x00006ea4   0x00000120   Data   RO          501    .constdata          mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o
+    0x00006fc4   0x00006fc4   0x00000040   Data   RO          854    .constdata          .\build\uart_control.o
+    0x00007004   0x00007004   0x0000001c   Data   RO         2074    .constdata          mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_us_ticker_api.o)
+    0x00007020   0x00007020   0x00000008   Data   RO         2075    .constdata          mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_us_ticker_api.o)
+    0x00007028   0x00007028   0x00000008   Data   RO         2647    .constdata          C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_wctomb.o)
+    0x00007030   0x00007030   0x00000028   Data   RO         2676    .constdata          C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_hex_int_ll_ptr.o)
+    0x00007058   0x00007058   0x00000011   Data   RO         2696    .constdata          C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__printf_flags_ss_wp.o)
+    0x00007069   0x00007069   0x00000026   Data   RO         2871    .constdata          C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(_printf_fp_hex.o)
+    0x0000708f   0x0000708f   0x00000001   PAD
+    0x00007090   0x00007090   0x00000094   Data   RO         2967    .constdata          C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(bigflt0.o)
+    0x00007124   0x00007124   0x00000014   Data   RO          382    .constdata__ZZN12SingletonPtrI13PlatformMutexE3getEvEs  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o
+    0x00007138   0x00007138   0x0000005d   Data   RO          383    .constdata__ZZN12SingletonPtrI13PlatformMutexE3getEvEs_0  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_retarget.o
+    0x00007195   0x00007195   0x00000003   PAD
+    0x00007198   0x00007198   0x00000067   Data   RO          141    .conststring        mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/gpio_api.o
+    0x000071ff   0x000071ff   0x00000001   PAD
+    0x00007200   0x00007200   0x0000007c   Data   RO          212    .conststring        mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed_board.o
+    0x0000727c   0x0000727c   0x00000065   Data   RO          407    .conststring        mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/pinmap.o
+    0x000072e1   0x000072e1   0x00000003   PAD
+    0x000072e4   0x000072e4   0x00000069   Data   RO          502    .conststring        mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/serial_api.o
+    0x0000734d   0x0000734d   0x00000003   PAD
+    0x00007350   0x00007350   0x00000050   Data   RO         2122    .conststring        mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)
+    0x000073a0   0x000073a0   0x00000053   Data   RO         2179    .conststring        mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar(mbed_critical.o)
+    0x000073f3   0x000073f3   0x00000001   PAD
+    0x000073f4   0x000073f4   0x00000020   Data   RO         3061    Region$$Table       anon$$obj.o
+    0x00007414   0x00007414   0x0000001c   Data   RO         2991    locale$$data        C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_numeric_c.o)
+    0x00007430   0x00007430   0x00000110   Data   RO         3029    locale$$data        C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(lc_ctype_c.o)
 
 
-    Execution Region RW_IRAM1 (Exec base: 0x100000c8, Load base: 0x000074c8, Size: 0x000049c0, Max: 0x00007f18, ABSOLUTE, COMPRESSED[0x00000144])
+    Execution Region RW_IRAM1 (Exec base: 0x100000c8, Load base: 0x00007540, Size: 0x000049c0, Max: 0x00007f18, ABSOLUTE, COMPRESSED[0x0000014c])
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -3980,17 +3987,17 @@ Memory Map of the image
     0x10004a74        -       0x00000014   Zero   RW         2953    .bss                C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(rt_locale.o)
 
 
-    Execution Region RW_IRAM2 (Exec base: 0x2007c000, Load base: 0x0000760c, Size: 0x00000000, Max: 0x00004000, ABSOLUTE)
+    Execution Region RW_IRAM2 (Exec base: 0x2007c000, Load base: 0x0000768c, Size: 0x00000000, Max: 0x00004000, ABSOLUTE)
 
     **** No section assigned to this execution region ****
 
 
-    Execution Region RW_IRAM3 (Exec base: 0x20080000, Load base: 0x0000760c, Size: 0x00000000, Max: 0x00004000, ABSOLUTE)
+    Execution Region RW_IRAM3 (Exec base: 0x20080000, Load base: 0x0000768c, Size: 0x00000000, Max: 0x00004000, ABSOLUTE)
 
     **** No section assigned to this execution region ****
 
 
-    Execution Region RW_IRAM4 (Exec base: 0x40038000, Load base: 0x0000760c, Size: 0x00000000, Max: 0x00000800, ABSOLUTE)
+    Execution Region RW_IRAM4 (Exec base: 0x40038000, Load base: 0x0000768c, Size: 0x00000000, Max: 0x00000800, ABSOLUTE)
 
     **** No section assigned to this execution region ****
 
@@ -4021,12 +4028,12 @@ Image component sizes
        160         10          0          4          0         68   mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/system_LPC17xx.o
       3098        382          0         60        200      21863   .\build\tasks.o
       1118        110          0         20         40       8715   .\build\timers.o
-      2390        490         64        525        128      18352   .\build\uart_control.o
+      2510        530         64        525        128      18384   .\build\uart_control.o
        264         72          0          4          0        408   mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/us_ticker.o
         18          0          0          0          0        439   .\build\utilities.o
 
     ----------------------------------------------------------------------
-     15632       1784       1180       1028      17464     125464   Object Totals
+     15752       1824       1180       1028      17464     125496   Object Totals
          0          0         32          0          0          0   (incl. Generated)
         14          0         10          2          4          0   (incl. Padding)
 
@@ -4176,15 +4183,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     27396       2560       1932       1072      17808     121952   Grand Totals
-     27396       2560       1932        324      17808     121952   ELF Image Totals (compressed)
-     27396       2560       1932        324          0          0   ROM Totals
+     27516       2600       1932       1072      17808     121984   Grand Totals
+     27516       2600       1932        332      17808     121984   ELF Image Totals (compressed)
+     27516       2600       1932        332          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                29328 (  28.64kB)
+    Total RO  Size (Code + RO Data)                29448 (  28.76kB)
     Total RW  Size (RW Data + ZI Data)             18880 (  18.44kB)
-    Total ROM Size (Code + RO Data + RW Data)      29652 (  28.96kB)
+    Total ROM Size (Code + RO Data + RW Data)      29780 (  29.08kB)
 
 ==============================================================================
 

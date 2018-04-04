@@ -372,8 +372,8 @@ void nGPIOSetup() {
 	ySetupDigitalO( PORT_1 , LED_2 );
 	ySetupDigitalO( PORT_1 , LED_3 );
 	ySetupDigitalO( PORT_1 , LED_4 );
-
-	ySetupDigitalO( PORT_0 , PIN_0 );
+	
+	
 	
 	// Setup 1 GPIO_INPUT pin, to receive signal from wavegen
 	ySetupDigitalI( PORT_0 , PIN_26 );

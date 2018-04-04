@@ -162,6 +162,14 @@ extern void tUART_RxTask					( void* );
 
 extern void tUART_TxTask					( void* );
 
+extern void nPinSetup_1						( void );
+
+extern void nPinSetup_2						( void );
+
+extern void nPinFlip_1						( void );
+	
+extern void nPinFlip_2 						( void );
+
 // ****************************************************************************************
 //	Type		: 	VALUE_RETURN Functions
 //	Example		:	vXxXxX();

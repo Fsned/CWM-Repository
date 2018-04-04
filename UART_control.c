@@ -77,10 +77,10 @@ char keyword_strings[NO_OF_KEYWORDS][10] 	 = {{"help"},								// F0
 																							{"status"},							// F9
 																							{"clear"},							// F10
 																							{"Clear"},							// F11
-																							{"LEDSTATE1"},					// F12
-																							{"LEDSTATE2"},					// F13
-																							{"LEDSTATE3"},					// F14
-																							{"LEDSTATE4"},					// F15
+																							{"setuppin1"},					// F12
+																							{"setuppin2"},					// F13
+																							{"pf1"},					// F14
+																							{"pf2"},					// F15
 																							{"LED"},								// F16
 																							{"DiScO"},							// F17
 																							{"logout"},							// F18
@@ -98,11 +98,11 @@ void (*keyword_functions[NO_OF_KEYWORDS])() = {nTerminalHelp 		 	, 			// F0
 																							 nTerminalStatus		, 			// F9
 																							 nTerminalClear		 	, 			// F10
 																							 nTerminalClear 	  , 			// F11
-																							 nTerminal_LED_1_ON 	, 		// F12
-																							 nTerminal_LED_2_ON	, 			// F13
-																							 nTerminal_LED_3_ON	, 			// F14
-																							 nTerminal_LED_4_ON 	, 		// F15
-																							 nTerminal_LED_1_ON	, 			// F16
+																							 nPinSetup_1 	, 		// F12
+																							 nPinSetup_2	, 			// F13
+																							 nPinFlip_1	, 			// F14
+																							 nPinFlip_2 	, 		// F15
+																							 nTerminalUndefined	, 			// F16
 																							 nDiscoFunc					, 			// F17
 																							 nTerminalLogout	, 				// F18
 																							 nTerminalUndefined };			// F19
@@ -129,6 +129,41 @@ uint8_t yKeyHit( uint8_t KEY_CHECK , uint8_t KEY_HIT ) {
 //	Example		:	nXxXxX();
 //	Description	:	Does not return anything.
 // ****************************************************************************************
+void nPinSetup_1() {
+		ySetupDigitalO( PORT_0 , PIN_0 );			// P9   for driving soappump relay
+}
+
+void nPinSetup_2() {
+	ySetupDigitalO( PORT_0 , PIN_1 );			// P10	for driving soappump relay
+}
+
+
+void nPinFlip_1( ) {
+	static int pin_1_status = 0;
+
+	if ( pin_1_status == 0 )
+		pin_1_status = 1;
+	else
+		pin_1_status = 0;
+	
+	yDigitalWrite(PORT_0 , PIN_0 , pin_1_status);
+}
+
+
+void nPinFlip_2( ) {
+	static uint8_t pin_2_status = 0;
+
+	if ( pin_2_status == 0 )
+		pin_2_status = 1;
+	else
+		pin_2_status = 0;
+	
+	yDigitalWrite(PORT_0 , PIN_1 , pin_2_status);
+}
+
+
+
+
 void nNewLine( uint8_t NumberOfLineSkips ) {
 	
 	for (int i = 0; i < NumberOfLineSkips; i++)
@@ -252,10 +287,12 @@ void nUART_TxString(char ch_s[]) {
 /* Keyword function for "help" */
 void nTerminalHelp() {
 	nUART_TxString("The following commands are available\n\r");
-	nUART_TxString("The following commands are available\n\r");
-	nUART_TxString("The following commands are available\n\r");
-	nUART_TxString("The following commands are available\n\r");
-	nUART_TxString("The following commands are available\n\r");
+	nNewLine( 2 );
+	
+	for (int i = 0; i < NO_OF_KEYWORDS; i++) {
+		nUART_TxString(keyword_strings[i]);
+		nUART_TxString("\r\n");
+	}
 }
 
 /* Keyword funtion for "LED1" */ 

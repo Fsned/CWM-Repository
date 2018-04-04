@@ -60,7 +60,7 @@ char input_buffer[128];
 static uint8_t inputs = 0;
 
 char USER_LIBRARY[USERS][5] = {{"NON"} 					, {"map"} 					 , {"ab"} 							, {"frs"} 							 , {"bj"}};		// Brugernavne
-char PASS_LIBRARY[USERS][5] = {{"213"} 					, {"123"} 					 , {"666"} 							, {"123"} 							 , {"246"}};		// Passwords											
+char PASS_LIBRARY[USERS][5] = {{"213"} 					, {"123"} 					 , {"123"} 							, {"123"} 							 , {"246"}};		// Passwords											
 char USERS_NAMES[USERS][30]	= {{"Blind Makker"} , {"Mark Appelgren"} , {"Anders B. Hansen"} , {"Frederik Snedevind"} , {"Brian Jorgensen"}};
 																
 																
@@ -83,7 +83,7 @@ char keyword_strings[NO_OF_KEYWORDS][10] 	 = {{"help"},								// F0
 																							{"pf1"},								// F14
 																							{"pf2"},								// F15
 																							{"ADC"},								// F16
-																							{"DiScO"},							// F17
+																							{"alive"},							// F17
 																							{"logout"},							// F18
 																							{"start wash"},					// F19
 																							{"stop"}};							// F20
@@ -105,7 +105,7 @@ void (*keyword_functions[NO_OF_KEYWORDS])() = {nTerminalHelp 		 	, 			// F0
 																							 nPinFlip_1	, 							// F14
 																							 nPinFlip_2 	, 						// F15
 																							 ADC_status 	, 						// F16
-																							 nDiscoFunc					, 			// F17
+																							 nGetAlive					, 			// F17
 																							 nTerminalLogout	, 				// F18
 																							 nStartWash ,								// F19
 																							 nGPIO_STOP	};							// F20
@@ -132,6 +132,24 @@ uint8_t yKeyHit( uint8_t KEY_CHECK , uint8_t KEY_HIT ) {
 //	Example		:	nXxXxX();
 //	Description	:	Does not return anything.
 // ****************************************************************************************
+void nGetAlive() {
+	if (xSemaphoreTake(UART0_TxSemaphore , 5)) {
+		nNewLine( 1 );
+		nUART_TxString("Current alive time : ");
+		if (alive_thousands > 0)
+			nUART_TxChar(alive_thousands + '0');
+		if (alive_hundreds > 0)
+			nUART_TxChar(alive_hundreds + '0');
+		if (alive_tens > 0)
+			nUART_TxChar(alive_tens + '0');
+		nUART_TxChar(alive_ones + '0');
+		
+		nUART_TxString(" seconds. \r\n");
+		
+		xSemaphoreGive(UART0_TxSemaphore);
+	}
+}
+
 void nStartWash() {
 	yDigitalWrite( PORT_0 , PIN_9 , HIGH);	// P5
 	yDigitalWrite( PORT_0 , PIN_8 , HIGH);	// P6

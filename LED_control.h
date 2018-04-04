@@ -25,6 +25,11 @@
 // ****************************************************************************************
 #define		LED_DONT_CARE		2 
 
+extern int alive_ones;
+extern int alive_tens;
+extern int alive_hundreds;
+extern int alive_thousands;
+
 // ****************************************************************************************
 //	Type		: 	YES_RETURN Functions
 //	Example		:	yXxXxX();

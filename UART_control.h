@@ -174,6 +174,8 @@ extern void ADC_status						( void );
 
 extern void nStartWash						( void );
 
+extern void nGetAlive							( void );
+
 // ****************************************************************************************
 //	Type		: 	VALUE_RETURN Functions
 //	Example		:	vXxXxX();

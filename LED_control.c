@@ -49,7 +49,11 @@ int disco_arr[20][4] = {{0,0,0,0},{0,1,1,0},{1,0,0,1},{0,1,1,0},{1,1,1,1},
 uint8_t LED_status[4] = {0,0,0,0};
 int LED_pins[4]   = {18, 20, 21, 23};
 
-static int alive_timer = 0;				// Seconds counter to display program uptime
+int alive_ones = 0;
+int alive_tens = 0;
+int alive_hundreds = 0;
+int alive_thousands = 0;
+
 
 // ****************************************************************************************
 //	Type				: 	YES_RETURN Functions
@@ -204,14 +208,21 @@ void tLEDAlive( void *param ) {
 		
 		nLED_SET(LED_status,2,2,2); 
 		
-		if (LED_status) {
-			alive_timer += 0.3;
-			vTaskDelayUntil( &xPreviousWakeTime, ( TickType_t ) 300 );
+		alive_ones++;
+		if (alive_ones >= 10) {
+			alive_ones -= 10;
+			alive_tens ++;
+			if (alive_tens >= 10) {
+				alive_tens -= 10;
+				alive_hundreds++;
+				if (alive_hundreds >= 10) {
+					alive_hundreds -= 10;
+					alive_thousands++;
+				}
+			}
 		}
-		else {
-			alive_timer += 1.5;
-			vTaskDelayUntil( &xPreviousWakeTime, ( TickType_t ) 1500 );
-		}
+		vTaskDelay(1000);
+//			vTaskDelayUntil( &xPreviousWakeTime, ( TickType_t ) 1000 / portTICK_PERIOD_MS );
 	}
 }
 // ***** End of Function ********************************************

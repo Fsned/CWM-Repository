@@ -35,6 +35,8 @@
 #include "queue.h"
 
 
+
+
 // ****************************************************************************************
 //
 //					Variables
@@ -54,9 +56,24 @@ void tWashing_Task( void *param ) {
 	while(1) {
 		switch(WASHING_STATE) {
 			case 1 :
+				
+				// Grab time for various units in the timer library
+				// Fire units that got time
+				// decrement timers each second
+				// If timer == 0; yDigitalWrite( timerPORT, timerPIN, LOW);
+				
+				
+				// Check if time's up for relevant units, and check if sensors are O.K.
+				// Move on to next state
 				break;
 			
 			case 2 :
+				// Grab time for various units in timer library
+				// Fire units that got time
+				// decrement timers each second
+				// If timer == 0; yDigitalWrite( timerPORT , timerPIN , LOW);
+			
+			
 				break;
 			
 			default :

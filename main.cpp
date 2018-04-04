@@ -8,7 +8,7 @@
 #include "pwm_setup.h"
 #include "GPIO_setup.h"
 #include "ADC_control.h"
-
+#include "Washing_file.h"
 
 #include "FreeRTOSConfig.h"
 #include "FreeRTOS.h"
@@ -43,7 +43,7 @@ int main()
 		xReturned &= xTaskCreate( tUART_RxTask , "UART Receive"		, 64, NULL, configMAX_PRIORITIES - 1, NULL ); 
 		xReturned &= xTaskCreate( tUART_TxTask , "UART Transmit"	, 64, NULL, configMAX_PRIORITIES - 1, NULL ); 
 		xReturned &= xTaskCreate( tADC_Task		 , "ADC_Task"				, 32, NULL, configMAX_PRIORITIES - 1, NULL );
-		
+		xReturned &= xTaskCreate( tWashing_Task, "Washing Task"		, 32, NULL, configMAX_PRIORITIES - 1, NULL );
 		
 		if (xReturned == pdPASS)
 			xTaskCreate( tLEDAlive 	, 	"LED Alive task"	, 32 , NULL, configMAX_PRIORITIES - 1, NULL );

@@ -9,6 +9,7 @@
 .\build\led_control.o: mbed/TARGET_LPC1768/cmsis_armcc.h
 .\build\led_control.o: mbed/TARGET_LPC1768/mpu_armv7.h
 .\build\led_control.o: mbed/TARGET_LPC1768/TARGET_NXP/TARGET_LPC176X/device/system_LPC17xx.h
+.\build\led_control.o: UART_control.h
 .\build\led_control.o: .\FreeRTOS\include\FreeRTOS.h
 .\build\led_control.o: .\FreeRTOS\FreeRTOSConfig.h
 .\build\led_control.o: .\FreeRTOS\include\projdefs.h
@@ -16,5 +17,6 @@
 .\build\led_control.o: .\FreeRTOS\include\deprecated_definitions.h
 .\build\led_control.o: .\FreeRTOS\portable\RVDS\ARM_CM3\portmacro.h
 .\build\led_control.o: .\FreeRTOS\include\mpu_wrappers.h
+.\build\led_control.o: .\FreeRTOS\include\queue.h
 .\build\led_control.o: .\FreeRTOS\include\task.h
 .\build\led_control.o: .\FreeRTOS\include\list.h

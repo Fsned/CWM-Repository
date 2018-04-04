@@ -105,7 +105,7 @@ void (*keyword_functions[NO_OF_KEYWORDS])() = {nTerminalHelp 		 	, 			// F0
 																							 nPinFlip_1	, 							// F14
 																							 nPinFlip_2 	, 						// F15
 																							 ADC_status 	, 						// F16
-																							 nGetAlive					, 			// F17
+																							 nPrintAlive					, 		// F17
 																							 nTerminalLogout	, 				// F18
 																							 nStartWash ,								// F19
 																							 nGPIO_STOP	};							// F20
@@ -158,7 +158,9 @@ void nStartWash() {
 	yDigitalWrite( PORT_0 , PIN_0 , HIGH);	// P9
 	yDigitalWrite( PORT_0 , PIN_1 , HIGH);	// P10
 	yDigitalWrite( PORT_0 , PIN_18, HIGH);	// P11
-	yDigitalWrite( PORT_0 , PIN_17, HIGH);	// P12
+	yDigitalWrite( PORT_0 , PIN_17, HIGH);	// P12 
+	
+	nUART_TxString("Started wash\r\n");
 	
 }
 

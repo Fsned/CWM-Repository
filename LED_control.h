@@ -52,7 +52,7 @@ extern void nLEDFlip	( unsigned int led_flip[] );
 
 extern void nDelayLED	( void );
 
-
+extern void nPrintAlive( void );
 
 // ****************************************************************************************
 //	Type		: 	VALUE_RETURN Functions

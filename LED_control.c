@@ -32,7 +32,7 @@
 #include "LED_control.h"
 #include "lpc17xx.h"
 #include "stdutils.h"
-
+#include "UART_control.h"
 
 #include "FreeRTOS.h"
 #include "task.h"
@@ -49,6 +49,7 @@ int disco_arr[20][4] = {{0,0,0,0},{0,1,1,0},{1,0,0,1},{0,1,1,0},{1,1,1,1},
 uint8_t LED_status[4] = {0,0,0,0};
 int LED_pins[4]   = {18, 20, 21, 23};
 
+int alive_timer = 0;
 int alive_ones = 0;
 int alive_tens = 0;
 int alive_hundreds = 0;
@@ -208,25 +209,80 @@ void tLEDAlive( void *param ) {
 		
 		nLED_SET(LED_status,2,2,2); 
 		
-		alive_ones++;
-		if (alive_ones >= 10) {
-			alive_ones -= 10;
-			alive_tens ++;
-			if (alive_tens >= 10) {
-				alive_tens -= 10;
-				alive_hundreds++;
-				if (alive_hundreds >= 10) {
-					alive_hundreds -= 10;
-					alive_thousands++;
-				}
-			}
-		}
+		alive_timer++;
+		
 		vTaskDelay(1000);
 //			vTaskDelayUntil( &xPreviousWakeTime, ( TickType_t ) 1000 / portTICK_PERIOD_MS );
 	}
 }
 // ***** End of Function ********************************************
 
+
+void nPrintAlive() {
+	static int seconds;
+	static int seconds_ones;
+	static int seconds_tens;
+	
+	static int minutes;
+	static int minutes_ones;
+	static int minutes_tens;
+	
+	static int hours;
+	static int hours_ones;
+	static int hours_tens;
+	
+	int i;
+	seconds = alive_timer; 
+	
+	
+	// Divide the time into hours, minutes and seconds
+	hours = seconds / 3600;
+	minutes = seconds - (hours * 3600);
+	seconds = seconds - ((hours * 3600) + (minutes * 60));
+//	
+//	minutes = seconds / 60;
+//	seconds -= minutes * 60;
+	
+	// Divide seconds into 2 characters
+	for ( i = 0; seconds-(i*10) > 9; i++)
+		seconds_tens = i;
+		
+	seconds_ones = seconds - i*10;
+		
+//	seconds_ones = seconds;// - (seconds_tens * 10);	
+	
+	// Divide minutes into 2 characters
+	for ( i = 0; minutes-(i*10) > 9; i++)
+		minutes_tens = i;
+		
+	minutes_ones = minutes - (minutes_tens * 10);		
+
+	// Divide Hours into 2 characters
+	for ( i = 0; hours-(i*10) > 9; i++)
+		hours_tens = i;
+		
+	hours_ones = hours - (hours_tens * 10);	
+
+	
+	nUART_TxString("Current alive time \r\n");
+	nUART_TxString("Hours   : ");
+	if ( hours_tens > 0)
+		nUART_TxChar(hours_tens + '0');
+	nUART_TxChar(hours_ones + '0');
+	nUART_TxString("\r\n");
+	
+	nUART_TxString("Minutes : ");
+	if ( minutes_tens > 0)	
+		nUART_TxChar(minutes_tens + '0');
+	nUART_TxChar(minutes_ones + '0');
+	nUART_TxString("\r\n");
+	
+	nUART_TxString("Seconds : ");
+	if ( seconds_tens > 0)
+		nUART_TxChar(seconds_tens + '0');
+	nUART_TxChar(seconds_ones + '0');
+	nUART_TxString("\r\n");
+}
 
 // ****************************************************************************************
 //	Type				: 	VALUE_RETURN Functions

@@ -94,7 +94,7 @@ void nGPIOSetup							( void );
 
 void nInitializePinLibrary	( void );
 
-
+extern void nGPIO_STOP			( void );
 // ****************************************************************************************
 //	Type		: 	VALUE_RETURN Functions
 //	Example		:	vXxXxX();

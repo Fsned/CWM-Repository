@@ -1,0 +1,13 @@
+.\build\washing_file.o: Washing_file.c
+.\build\washing_file.o: mbed_config.h
+.\build\washing_file.o: stdutils.h
+.\build\washing_file.o: .\FreeRTOS\include\FreeRTOS.h
+.\build\washing_file.o: .\FreeRTOS\FreeRTOSConfig.h
+.\build\washing_file.o: .\FreeRTOS\include\projdefs.h
+.\build\washing_file.o: .\FreeRTOS\include\portable.h
+.\build\washing_file.o: .\FreeRTOS\include\deprecated_definitions.h
+.\build\washing_file.o: .\FreeRTOS\portable\RVDS\ARM_CM3\portmacro.h
+.\build\washing_file.o: .\FreeRTOS\include\mpu_wrappers.h
+.\build\washing_file.o: .\FreeRTOS\include\task.h
+.\build\washing_file.o: .\FreeRTOS\include\list.h
+.\build\washing_file.o: .\FreeRTOS\include\queue.h

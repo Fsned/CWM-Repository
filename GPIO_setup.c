@@ -154,6 +154,22 @@ uint8_t ySetupDigitalO ( uint8_t Port, int Pin ) {
 }
 // ***** End of Function ********************************************
 
+
+//	Function to stop all GPIO outputs. they will be set to GPIO_FREE in the library.
+//	This means a new setup has to be run for each pin, in order for it to work normally (in most cases)
+void nGPIO_STOP() {
+	for (int i = 0; i < 5; i++) {
+		for (int n = 0; n < 32; n++) {
+			if (PinLibrary[i][n] == GPIO_OUTPUT) {
+				yDigitalWrite(/*PORT*/ i , /*PIN*/ n , /* STATE */ GPIO_LOW);
+				PinLibrary[i][n] = GPIO_FREE;
+			}
+		}
+	}
+}
+
+
+
 uint8_t ySetupDigitalI ( uint8_t Port, int Pin) {
 /* ******************************************************************
 //	Function name : ySetupDigitalI
@@ -372,6 +388,18 @@ void nGPIOSetup() {
 	ySetupDigitalO( PORT_1 , LED_2 );
 	ySetupDigitalO( PORT_1 , LED_3 );
 	ySetupDigitalO( PORT_1 , LED_4 );
+	
+	
+	// SETUP P5 - P12 up for digital output for 'dummy'-washing program
+	ySetupDigitalO( PORT_0 , PIN_9 );	// P5
+	ySetupDigitalO( PORT_0 , PIN_8 );	// P6
+	ySetupDigitalO( PORT_0 , PIN_7 );	// P7
+	ySetupDigitalO( PORT_0 , PIN_6 );	// P8
+	ySetupDigitalO( PORT_0 , PIN_0 );	// P9
+	ySetupDigitalO( PORT_0 , PIN_1 );	// P10
+	ySetupDigitalO( PORT_0 , PIN_18);	// P11
+	ySetupDigitalO( PORT_0 , PIN_17);	// P12
+	
 	
 	// Setup 1 GPIO_INPUT pin, to receive signal from wavegen
 	ySetupDigitalI( PORT_0 , PIN_26 );

@@ -85,7 +85,7 @@
 #define SBIT_TxFIFO        	0x02u
 #define SBIT_RDR           	0x00u
 #define SBIT_THRE          	0x05u
-#define NO_OF_KEYWORDS 				 20
+#define NO_OF_KEYWORDS 				 30
 
 #define USERS										5
 
@@ -169,6 +169,10 @@ extern void nPinSetup_2						( void );
 extern void nPinFlip_1						( void );
 	
 extern void nPinFlip_2 						( void );
+
+extern void ADC_status						( void );
+
+extern void nStartWash						( void );
 
 // ****************************************************************************************
 //	Type		: 	VALUE_RETURN Functions

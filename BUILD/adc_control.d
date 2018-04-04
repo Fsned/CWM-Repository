@@ -12,3 +12,12 @@
 .\build\adc_control.o: LED_control.h
 .\build\adc_control.o: GPIO_setup.h
 .\build\adc_control.o: utilities.h
+.\build\adc_control.o: .\FreeRTOS\include\FreeRTOS.h
+.\build\adc_control.o: .\FreeRTOS\FreeRTOSConfig.h
+.\build\adc_control.o: .\FreeRTOS\include\projdefs.h
+.\build\adc_control.o: .\FreeRTOS\include\portable.h
+.\build\adc_control.o: .\FreeRTOS\include\deprecated_definitions.h
+.\build\adc_control.o: .\FreeRTOS\portable\RVDS\ARM_CM3\portmacro.h
+.\build\adc_control.o: .\FreeRTOS\include\mpu_wrappers.h
+.\build\adc_control.o: .\FreeRTOS\include\task.h
+.\build\adc_control.o: .\FreeRTOS\include\list.h

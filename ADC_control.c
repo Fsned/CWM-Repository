@@ -36,6 +36,10 @@
 #include "GPIO_setup.h"
 #include "utilities.h"
 
+#include "FreeRTOS.h"
+#include "task.h"
+
+
 
 // ****************************************************************************************
 //
@@ -88,6 +92,8 @@ void nInitialize_ADC_Library() {
 //	Example		:	vXxXxX();
 //	Description	:	Returns a value, no confirmation if successful or not. can be a handle for e.g. ADC pin
 // ****************************************************************************************
+
+
 uint16_t vReadADC(uint8_t ADCHandle) {
 	
 	uint16_t vReadADC_ret = 0;
@@ -166,28 +172,34 @@ uint8_t vSetupADC_Avg(uint8_t PORT , uint8_t PIN , uint32_t FREQ , uint8_t Resol
 }
 
 
-void tADC_Task() {
+void tADC_Task(void *param) {
 	
 	// Iterate through the Pinlibrary, checking what pins should be updated from the ADC. 
 	// only ACTIVE pins get updated data. 
 	// paused pins retain their data value until reactivated or setdown.
-	
-	for (int i = 0; i < 8; i++) {
-		if (ADC_PinLibrary[i] == ADC_ACTIVE) {
-			
-			// Select Channel to sample from
-			LPC_ADC->ADCR |= ( 0x1 << i );
-			
-			// Enable conversion 'now'.
-			LPC_ADC->ADCR |= ( 0x1 << 24 );			
-			
-			// Wait until conversion is ready, on the 31st bit in the ADGDR register
-			while ( util_GetBitStatus(LPC_ADC->ADGDR , SBIT_DONE) == 0 );
-			
-			ADC_DataLibrary[i] = (LPC_ADC->ADGDR >> SBIT_RESULT) & 0xFFF;			// Store result in Data Library.
-			
-			delay_ms(1);
+	while(1) {
+		
+		for (int i = 0; i < 8; i++) {
+			if (ADC_PinLibrary[i] == ADC_ACTIVE) {
+				
+				// Select Channel to sample from
+				LPC_ADC->ADCR |= ( 0x1 << i );
+				
+				// Enable conversion 'now'.
+				LPC_ADC->ADCR |= ( 0x1 << 24 );			
+				
+				// Wait until conversion is ready, on the 31st bit in the ADGDR register
+				
+				while (! LPC_ADC->ADGDR & 0x8000000);
+//				while ( util_GetBitStatus(LPC_ADC->ADGDR , SBIT_DONE) == 0 );
+				
+				ADC_DataLibrary[i] = (LPC_ADC->ADGDR >> SBIT_RESULT) & 0xFFF;			// Store result in Data Library.
+				
+				delay_ms(1);
+			}
 		}
+		
+		vTaskDelay(10);
 	}
 }
 

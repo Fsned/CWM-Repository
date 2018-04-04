@@ -1300,6 +1300,16 @@
               <FileType>1</FileType>
               <FilePath>.\FreeRTOS\portable\MemMang\heap_2.c</FilePath>
             </File>
+            <File>
+              <FileName>Washing_file.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Washing_file.c</FilePath>
+            </File>
+            <File>
+              <FileName>Washing_file.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Washing_file.h</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>

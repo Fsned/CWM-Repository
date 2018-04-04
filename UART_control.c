@@ -31,6 +31,7 @@
 #include "lpc17xx.h"
 #include "LED_control.h"
 #include "GPIO_setup.h"
+#include "ADC_control.h"
 
 #include "FreeRTOS.h"
 #include "task.h"
@@ -79,12 +80,13 @@ char keyword_strings[NO_OF_KEYWORDS][10] 	 = {{"help"},								// F0
 																							{"Clear"},							// F11
 																							{"setuppin1"},					// F12
 																							{"setuppin2"},					// F13
-																							{"pinflip1"},								// F14
+																							{"pf1"},								// F14
 																							{"pf2"},								// F15
-																							{"LED"},								// F16
+																							{"ADC"},								// F16
 																							{"DiScO"},							// F17
 																							{"logout"},							// F18
-																							{"undef"}};							// F19
+																							{"start wash"},					// F19
+																							{"stop"}};							// F20
 
 void (*keyword_functions[NO_OF_KEYWORDS])() = {nTerminalHelp 		 	, 			// F0
 																							 nTerminalHelp  	 	, 			// F1
@@ -102,10 +104,11 @@ void (*keyword_functions[NO_OF_KEYWORDS])() = {nTerminalHelp 		 	, 			// F0
 																							 nPinSetup_2	, 						// F13
 																							 nPinFlip_1	, 							// F14
 																							 nPinFlip_2 	, 						// F15
-																							 nTerminalUndefined	, 			// F16
+																							 ADC_status 	, 						// F16
 																							 nDiscoFunc					, 			// F17
 																							 nTerminalLogout	, 				// F18
-																							 nTerminalUndefined };			// F19
+																							 nStartWash ,								// F19
+																							 nGPIO_STOP	};							// F20
 
 																							 
 // ****************************************************************************************
@@ -129,6 +132,34 @@ uint8_t yKeyHit( uint8_t KEY_CHECK , uint8_t KEY_HIT ) {
 //	Example		:	nXxXxX();
 //	Description	:	Does not return anything.
 // ****************************************************************************************
+void nStartWash() {
+	yDigitalWrite( PORT_0 , PIN_9 , HIGH);	// P5
+	yDigitalWrite( PORT_0 , PIN_8 , HIGH);	// P6
+	yDigitalWrite( PORT_0 , PIN_7 , HIGH);	// P7
+	yDigitalWrite( PORT_0 , PIN_6 , HIGH);	// P8
+	yDigitalWrite( PORT_0 , PIN_0 , HIGH);	// P9
+	yDigitalWrite( PORT_0 , PIN_1 , HIGH);	// P10
+	yDigitalWrite( PORT_0 , PIN_18, HIGH);	// P11
+	yDigitalWrite( PORT_0 , PIN_17, HIGH);	// P12
+	
+}
+
+
+void ADC_status() {
+	if (xSemaphoreTake(UART0_TxSemaphore , 5)) {
+		nUART_TxString("Analog Inputs \r\n");
+		for (uint8_t i = 0; i < 8; i++) {
+			nUART_TxString("Pin ");
+			nUART_TxChar(i + '0');
+			nUART_TxString(" : ");
+			nUART_TxChar(ADC_DataLibrary[i] + '0');
+			nUART_TxString("\r\n");
+		}
+		
+		xSemaphoreGive(UART0_TxSemaphore);
+	}
+}
+
 void nPinSetup_1() {
 	
 	
@@ -389,8 +420,6 @@ void tUART_RxTask( void *param ) {
 	xSemaphoreGive( UART0_TxSemaphore );
 	
 	while(1) {
-		
-		
 		
 		if (xQueueReceive(qUART_RxQ , &receive , 2)) {
 			

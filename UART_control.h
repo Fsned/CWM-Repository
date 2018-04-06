@@ -13,6 +13,7 @@
  *  Includes Setup of UART0, with wanted Baudrate as argument, Login function, user library,
  *	Keyword library etc.
  *
+ * For further documentation please check the corresponding .c-file
  *********************************************************************************************/
  #include "FreeRTOS.h"
  #include "queue.h"
@@ -170,7 +171,7 @@ extern void nPinFlip_1						( void );
 	
 extern void nPinFlip_2 						( void );
 
-extern void ADC_status						( void );
+extern void nADC_Status 					( void );
 
 extern void nStartWash						( void );
 

@@ -49,7 +49,21 @@
 //	Example		:	yXxXxX();
 //	Description	:	Returns true (1) or false (0) depending on the success of the function
 // ****************************************************************************************
+
+
+
+// ****************************************************************************************
+//	Type		: 	Task
+//	Example		:	tXx();
+//	Description	:	Designed for FreeRTOS. runs in a while loop, with *param to pass arguments for vTask*(); calls
+// ****************************************************************************************
 void tWashing_Task( void *param ) {
+/* ******************************************************************
+//	Function name : tWashing_Task
+//	Functionality :	FreeRTOS Task - Used to control the washing block of any running program
+// 	Returns				:	None	
+//  Input range		: None
+// *****************************************************************/
 	
 	static uint8_t WASHING_STATE;
 	

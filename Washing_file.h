@@ -28,7 +28,7 @@
 //	Example		:	yXxXxX();
 //	Description	:	Returns true (1) or false (0) depending on the success of the function
 // ****************************************************************************************
-void tWashing_Task( void* );
+
 
 // ****************************************************************************************
 //	Type		: 	NO_RETURN Functions
@@ -42,3 +42,11 @@ void tWashing_Task( void* );
 //	Example		:	vXxXxX();
 //	Description	:	Returns a value, no confirmation if successful or not. can be a handle for e.g. ADC pin
 // ****************************************************************************************
+
+
+// ****************************************************************************************
+//	Type		: 	Task
+//	Example		:	tXx();
+//	Description	:	Designed for FreeRTOS. runs in a while loop, with *param to pass arguments for vTask*(); calls
+// ****************************************************************************************
+void tWashing_Task( void* );

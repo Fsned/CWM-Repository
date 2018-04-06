@@ -158,6 +158,12 @@ uint8_t ySetupDigitalO ( uint8_t Port, int Pin ) {
 //	Function to stop all GPIO outputs. they will be set to GPIO_FREE in the library.
 //	This means a new setup has to be run for each pin, in order for it to work normally (in most cases)
 void nGPIO_STOP() {
+/* ******************************************************************
+//	Function name : nGPIO_STOP
+//	Functionality :	Sets all GPIO that has been setup to LOW. note that any functions that does not take use of the GPIO API for setting up pins might be excluded from this feature.
+// 	Returns				:	None	
+//  Input range		: None
+// *****************************************************************/
 	for (int i = 0; i < 5; i++) {
 		for (int n = 0; n < 32; n++) {
 			if (PinLibrary[i][n] == GPIO_OUTPUT) {
@@ -176,7 +182,6 @@ uint8_t ySetupDigitalI ( uint8_t Port, int Pin) {
 //	Functionality :	Setup a GPIO pin to digital Input
 // 	Returns				:	True (1) or false (0)
 //  Input range		: PORT_0 : PORT_4  ,  PIN_0 : PIN_31
-//		
 // *****************************************************************/
 	
 	if (!PinLibrary_Initialized)
@@ -276,7 +281,6 @@ uint8_t yDigitalWrite( uint8_t Port , int Pin , uint8_t State ) {
 //	Functionality :	Write a value to a digital output
 // 	Returns				:	True (1) or false (0), depending on successful operation or no
 //  Input range		: PORT_0 : PORT_4  ,  PIN_0 : PIN_31  ,  0 : 1
-//		
 // *****************************************************************/
 	if (! PinLibrary_Initialized)
 		nInitializePinLibrary();
@@ -377,8 +381,7 @@ void nGPIOSetup() {
 //	Function name : nGPIOSetup
 //	Functionality :	Used to quickly setup several pins, can be used at startup
 // 	Returns				:	Nothing
-//  Input range		: None, Static coding
-//		
+//  Input range		: None
 // *****************************************************************/	
 	if (! PinLibrary_Initialized)
 		nInitializePinLibrary();
@@ -415,7 +418,6 @@ void nInitializePinLibrary() {
 //	Functionality :	Used to set all pins to GPIO_FREE, to allow setups to reserve pins, and prevent overlapping on pins
 // 	Returns				:	Nothing
 //  Input range		: None
-//		
 // *****************************************************************/		
 	for (int column = 0; column < 5; column++) {
 		for (int row = 0; row < 32; row++)
@@ -440,7 +442,6 @@ uint8_t vDigitalRead( uint8_t Port , int Pin ) {
 //	Functionality :	Read a digital input from a pin, and return it
 // 	Returns				:	A value 0 or 1, depending on status of pin
 //  Input range		: PORT_0 : PORT_4  ,  PIN_0 : PIN_31
-//		
 // *****************************************************************/
 	if (! PinLibrary_Initialized)
 		nInitializePinLibrary();

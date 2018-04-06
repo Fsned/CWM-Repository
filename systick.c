@@ -60,7 +60,6 @@ void nSystickSetup(int frequency) {
 //	Functionality :	Setup systick timer to a chosen frequency (inprecise below 1kHz, & above 5MHz)
 // 	Returns				:	nothing. Calls function "SysTick_Handler()" with chosen frequency
 //  Input range		: 0 - SystemCoreClock
-//		
 // *****************************************************************/	
 	
 	STRELOAD = ( 100000000 / ((frequency*2)*1.0425) );

@@ -75,7 +75,6 @@ void nLEDSetup(void) {
 //	Functionality :	Setup the 4 LEDS on LPC1768 mbed Dev board
 // 	Returns				:	None	
 //  Input range		: None
-//		
 // *****************************************************************/
 	LPC_PINCON->PINSEL4 &= ~(0x0000CF30);	// Set P1:18, P1:20, P1:21, P1:23 to function 1 (GPIO)
 	LPC_GPIO0->FIODIR   |=   0x0000000F;
@@ -106,7 +105,6 @@ void nLED_SET(uint8_t led_0 , uint8_t led_1, uint8_t led_2, uint8_t led_3) {
 //	Functionality :	Clears all LEDS and sets the given values on the 4 LEDS on the dev. board
 // 	Returns				:	None.	
 //  Input range		: 0:1 , 0:1 , 0:1 , 0:1
-//		
 // *****************************************************************/	
 	LPC_GPIO1->FIOCLR = 0x00B40000;
 	led_delay_ms(1);
@@ -142,7 +140,6 @@ void nLEDFlip(unsigned int led_flip[]) {
 //	Functionality :	Takes 4 ints in an array, and flips the corresponding LEDS, to the 1's in the array
 // 	Returns				:	none.
 //  Input range		: [1:0 , 1:0 , 1:0 , 1:0];
-//		
 // *****************************************************************/	
 	
 	for (int i = 0; i < 4; i++) {
@@ -162,9 +159,8 @@ void nDiscoFunc() {
 /* ******************************************************************
 //	Function name : nDiscoFunc
 //	Functionality :	Disco's 4 LEDS on Dev board. can be used to verify various stuff
-// 	Returns				:		
-//  Input range		:
-//		
+// 	Returns				:	None
+//  Input range		: None
 // *****************************************************************/	
 	for (int n = 0; n < 1; n++) {
 		for(int i = 0; i < 20; i++) {
@@ -182,7 +178,6 @@ void nDelayLED() {
 //	Functionality :	Used rarely, as static non-dynamic delay for setting up LEDS
 // 	Returns				:	None
 //  Input range		: None
-//		
 // *****************************************************************/	
 	for (int i = 0; i < 1500000; i++);
 }
@@ -194,7 +189,6 @@ void tLEDAlive( void *param ) {
 //	Functionality :	Used to blink the rightmost LED on the MBED LPC1768 board
 // 	Returns				:	None
 //  Input range		: None
-//		
 // *****************************************************************/	
 	uint8_t LED_status = 0;			// Used to keep track of current LED status
 	
@@ -291,6 +285,12 @@ void nPrintAlive() {
 // ****************************************************************************************
 
 void led_delay_ms(unsigned int n) {
+/* ******************************************************************
+//	Function name : led_delay_ms
+//	Functionality :	static delay used for various LED functions.
+// 	Returns				:	None	
+//  Input range		: 0 - ?, delay multiplier, probably roughly in milliseconds
+// *****************************************************************/
 	unsigned int o = n*12000*2;
 	while(--o);
 }

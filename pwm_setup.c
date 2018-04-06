@@ -25,6 +25,12 @@
 #define PWM_4          6 //P2_3 (6-7 Bits of PINSEL4)
 
 void pwm_setup() {
+/* ******************************************************************
+//	Function name : pwm_setup
+//	Functionality :	sets up the pwm feature. it's all sketchy, needs a revise
+// 	Returns				:	None	
+//  Input range		: None
+// *****************************************************************/
 //	int Duty_Cycle;
 	LPC_PINCON->PINSEL4 = (1 << PWM_1) | (1 << PWM_2) | (1 << PWM_3) | (1 << PWM_4);		// Set [P2.0 : P2.3] to Func. 2, [PWM1.1:PWM1.4]
 	LPC_PWM1->TCR = (1 << SBIT_CNTEN) | (1 << SBIT_PWMEN);

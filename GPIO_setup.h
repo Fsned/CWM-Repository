@@ -11,7 +11,7 @@
  * Description:
  * Header file belonging to the source file GPIO_setup.h
  *  to provide an API for GPIO manipulation, setup and configuration
- *	
+ * For further documentation check the corresponding .c-file	
  *
  *********************************************************************************************/
 

@@ -57,18 +57,40 @@ uint16_t ADC_DataLibrary[8];
 //	Description	:	Returns true (1) or false (0) depending on the success of the function
 // ****************************************************************************************
 uint8_t yPauseADC(uint8_t ADCHandle) {
+/* ******************************************************************
+//	Function name : yPauseADC
+//	Functionality :	Function to pause a specific ADC channel. Keeping it setup and keeping last collected dataset in the ADC datalibrary
+// 	Returns				:	True or false depending on the success	
+//  Input range		: ADCHandle
+// *****************************************************************/
 	return 0;
 }
 
 uint8_t yResumeADC(uint8_t ADCHandle) {
+/* ******************************************************************
+//	Function name : yResumeADC
+//	Functionality :	Resumes an ADC channel,
+// 	Returns				:	True or false depending on the success. requires channel to be SETUP and PAUSED in order to succeed. will return false otherwise
+//  Input range		: ADCHandle gotten from vSetupADC();
+// *****************************************************************/
 	return 0;
 }
 
 uint8_t ySetdownADC(uint8_t ADCHandle) {
+/* ******************************************************************
+//	Function name : ySetdownADC
+//	Functionality :	Eliminates an ADC channel
+// 	Returns				:	True or false depending on success. channel has to be SETUP and either PAUSED or RUNNING to succeed
+//  Input range		: ADCHandle gotten from vSetupADC();
+// *****************************************************************/
 	return 0;
 }
 
 uint8_t yADC_ChangeStatus( uint8_t ADCHandle) {
+/* ******************************************************************
+//	Function name : yADC_ChangeStatus
+//	Should this function be here at all?
+// *****************************************************************/
 	return 0;
 }
 
@@ -78,12 +100,16 @@ uint8_t yADC_ChangeStatus( uint8_t ADCHandle) {
 //	Description	:	Does not return anything.
 // ****************************************************************************************
 void nInitialize_ADC_Library() {
+/* ******************************************************************
+//	Function name : nInitialize_ADC_Library
+//	Functionality :	Creates a library for each ADC channel, and sets them all to VACANT. is necessary for further use of the ADC library
+// 	Returns				:	Nothing. internal calling
+//  Input range		: None
+// *****************************************************************/
 		for (int n = 0; n < 8; n++) {
 			ADC_PinLibrary[n] = ADC_VACANT;
 			ADC_DataLibrary[n] = 0; 
-			
 		}
-	
 	ADC_Library_Initialized = 1;
 }
 
@@ -95,7 +121,12 @@ void nInitialize_ADC_Library() {
 
 
 uint16_t vReadADC(uint8_t ADCHandle) {
-	
+/* ******************************************************************
+//	Function name : vReadADC
+//	Functionality :	Reads latest data from an ADC channel in the ADC_DataLibrary
+// 	Returns				:	Latest datavalue if ADC pin is paused or running, 0 otherwise
+//  Input range		: ADC Handle
+// *****************************************************************/	
 	uint16_t vReadADC_ret = 0;
 	
 //	ADC_DataLibrary[0] = 11;
@@ -109,6 +140,13 @@ uint16_t vReadADC(uint8_t ADCHandle) {
 
 
 uint8_t vSetupADC() {
+/* ******************************************************************
+//	Function name : vSetupADC
+//	Functionality :	Sets up first possible ADC channel. initializes ADC library if it hasn't been before.
+// 	Returns				:	0 to 7, Depending on the firstcome vacant ADC channel (starts from 0), vSetdownADC() returns the given channel to ADC_Vacant. 
+			The returned value is the unique Handle for that specific ADC channel, used when reading the ADC channel, so it should be saved in a variable
+//  Input range		: None
+// *****************************************************************/	
 	uint8_t vSetupADC_ret;
 	
 	// Check if library has been initialized
@@ -171,8 +209,20 @@ uint8_t vSetupADC_Avg(uint8_t PORT , uint8_t PIN , uint32_t FREQ , uint8_t Resol
 	
 }
 
+// ****************************************************************************************
+//	Type		: 	Task
+//	Example		:	tXx();
+//	Description	:	Designed for FreeRTOS. runs in a while loop, with *param to pass arguments for vTask*(); calls
+// ****************************************************************************************
 
 void tADC_Task(void *param) {
+/* ******************************************************************
+//	Function name : tADC_Task
+//	Functionality :	FreeRTOS Task for the Receiving Part of the UART communication on channel 0
+// 	Returns				:	None	
+//  Input range		: None
+// *****************************************************************/
+
 	
 	// Iterate through the Pinlibrary, checking what pins should be updated from the ADC. 
 	// only ACTIVE pins get updated data. 

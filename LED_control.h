@@ -13,7 +13,7 @@
  * Description:
  * 	Header file for LED_control.c, providing LED API to other files
  *  
- *	
+ * For further documentation please check the corresponding .c-file	
  *
  *********************************************************************************************/
  #include "stdutils.h"

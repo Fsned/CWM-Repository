@@ -10,7 +10,7 @@
  **********************************************************************************************
  * Description:
  * 	Header file providing ADC API to the rest of the program
- *  
+ *  	For further function description check the corresponding .c-file
  *	
  *
  *********************************************************************************************/
@@ -67,4 +67,9 @@ extern uint8_t vSetupADC( void );
 
 extern uint16_t vReadADC(uint8_t ADCHandle);
 
+// ****************************************************************************************
+//	Type		: 	Task
+//	Example		:	tXx();
+//	Description	:	Designed for FreeRTOS. runs in a while loop, with *param to pass arguments for vTask*(); calls
+// ****************************************************************************************
 extern void tADC_Task( void* );

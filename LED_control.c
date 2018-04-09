@@ -79,22 +79,6 @@ void nLEDSetup(void) {
 	LPC_PINCON->PINSEL4 &= ~(0x0000CF30);	// Set P1:18, P1:20, P1:21, P1:23 to function 1 (GPIO)
 	LPC_GPIO0->FIODIR   |=   0x0000000F;
 	LPC_GPIO1->FIODIR   |=   0x00B40000;	// Set Port 1 as output
-	
-//	nLED_SET(1,0,0,0);
-//	nDelayLED();
-//	nLED_SET(1,1,0,0);
-//	nDelayLED();
-//	nLED_SET(1,1,1,0);
-//	nDelayLED();
-//	nLED_SET(1,1,1,1);
-//	nDelayLED();
-//	nLED_SET(0,1,1,1);
-//	nDelayLED();
-//	nLED_SET(0,0,1,1);
-//	nDelayLED();
-//	nLED_SET(0,0,0,1);
-//	nDelayLED();
-//	nLED_SET(0,0,0,0);
 }
 // ***** End of Function ********************************************
 
@@ -213,69 +197,92 @@ void tLEDAlive( void *param ) {
 
 
 void nPrintAlive() {
-	static int seconds;
-	static int seconds_ones;
-	static int seconds_tens;
+/* ******************************************************************
+//	Function name : tLEDAlive
+//	Functionality :	Used to blink the rightmost LED on the MBED LPC1768 board
+// 	Returns				:	None
+//  Input range		: None
+// *****************************************************************/	
+	uint32_t 	seconds;
+	uint8_t 	seconds_ones = 0;
+	uint8_t 	seconds_tens = 0;
 	
-	static int minutes;
-	static int minutes_ones;
-	static int minutes_tens;
+	uint8_t 	minutes = 0;
+	uint8_t 	minutes_ones = 0;
+	uint8_t 	minutes_tens = 0;
 	
-	static int hours;
-	static int hours_ones;
-	static int hours_tens;
+	uint8_t 	hours = 0;
+	uint8_t 	hours_ones = 0;
+	uint8_t 	hours_tens = 0;
 	
-	int i;
-	seconds = alive_timer; 
-	
-	
-	// Divide the time into hours, minutes and seconds
-	hours = seconds / 3600;
-	minutes = seconds - (hours * 3600);
-	seconds = seconds - ((hours * 3600) + (minutes * 60));
-//	
-//	minutes = seconds / 60;
-//	seconds -= minutes * 60;
-	
-	// Divide seconds into 2 characters
-	for ( i = 0; seconds-(i*10) > 9; i++)
-		seconds_tens = i;
-		
-	seconds_ones = seconds - i*10;
-		
-//	seconds_ones = seconds;// - (seconds_tens * 10);	
-	
-	// Divide minutes into 2 characters
-	for ( i = 0; minutes-(i*10) > 9; i++)
-		minutes_tens = i;
-		
-	minutes_ones = minutes - (minutes_tens * 10);		
+	seconds = alive_timer;
 
-	// Divide Hours into 2 characters
-	for ( i = 0; hours-(i*10) > 9; i++)
-		hours_tens = i;
-		
-	hours_ones = hours - (hours_tens * 10);	
-
+	while(seconds >= 3600) {
+		hours++;
+		seconds -= 3600;
+	}
 	
-	nUART_TxString("Current alive time \r\n");
-	nUART_TxString("Hours   : ");
-	if ( hours_tens > 0)
+	while(seconds >= 60) {
+		minutes++;
+		seconds -= 60;
+	}
+	
+	while(hours >= 10) {
+		hours_tens++;
+		hours -= 10;
+	}
+	
+	while(hours >= 1) {
+		hours_ones++;
+		hours -= 1;
+	}
+	
+	while(minutes >= 10) {
+		minutes_tens++;
+		minutes -= 10;
+	}
+	
+	while(minutes >= 1) {
+		minutes_ones++;
+		minutes -= 1;
+	}
+	
+	while(seconds >= 10) {
+		seconds_tens++;
+		seconds -= 10;
+	}
+	
+	while(seconds >= 1) {
+		seconds_ones++;
+		seconds -= 1;
+	}
+	
+	nUART_TxString("Current alive time :    ");
+	
+	if (hours_tens > 0)
 		nUART_TxChar(hours_tens + '0');
 	nUART_TxChar(hours_ones + '0');
-	nUART_TxString("\r\n");
 	
-	nUART_TxString("Minutes : ");
-	if ( minutes_tens > 0)	
+	nUART_TxString(":");
+	
+	if (minutes_tens > 0)
 		nUART_TxChar(minutes_tens + '0');
 	nUART_TxChar(minutes_ones + '0');
-	nUART_TxString("\r\n");
 	
-	nUART_TxString("Seconds : ");
-	if ( seconds_tens > 0)
+	nUART_TxString(":");
+	
+	if (seconds_tens > 0)
 		nUART_TxChar(seconds_tens + '0');
 	nUART_TxChar(seconds_ones + '0');
+	
 	nUART_TxString("\r\n");
+	nNewLine( 1 );
+	nUART_TxString("Error counter        : 0");										// Should get Error_Counter variable from error library
+	nNewLine( 1 );
+	nUART_TxString("Warning counter      : 0");										// Should get Warning_Counter variable from error library
+	nNewLine( 1 );	
+	nUART_TxString("Safety Actions taken : 0");										// Should get Safety_Action_Counter variable from error library
+	nNewLine( 2 );
 }
 
 // ****************************************************************************************

@@ -78,6 +78,8 @@
 #define CHAR_Z	'Z'
 
 #define CHAR_ENTER	'\r'
+#define CHAR_BACKSPACE 0x7F
+
 
 #define SBIT_WordLenght    	0x00u
 #define SBIT_DLAB          	0x07u

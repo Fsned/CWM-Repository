@@ -52,6 +52,8 @@ xQueueHandle qUART_RxQ = NULL;
 
 SemaphoreHandle_t UART0_TxSemaphore = NULL;
 
+
+static uint8_t CurrentPermissionLevel = 0;
 static uint8_t UART_STATE = UartState_FindUser;
 static uint8_t OutedStatusMsg = 0;
 
@@ -59,10 +61,11 @@ char input_buffer[128];
 
 static uint8_t inputs = 0;
 
-char USER_LIBRARY[USERS][5] = {{"NON"} 					, {"map"} 					 , {"ab"} 							, {"frs"} 							 , {"bj"}};		// Brugernavne
-char PASS_LIBRARY[USERS][5] = {{"213"} 					, {"123"} 					 , {"123"} 							, {"123"} 							 , {"246"}};		// Passwords											
-char USERS_NAMES[USERS][30]	= {{"Blind Makker"} , {"Mark Appelgren"} , {"Anders B. Hansen"} , {"Frederik Snedevind"} , {"Brian Jorgensen"}};
-																
+char USER_LIBRARY[USERS][5] 				= {{"NON"} 					, {"map"} 					 , {"ab"} 							, {"frs"} 							 , {"bj"}};		// Brugernavne
+char PASS_LIBRARY[USERS][5] 				= {{"213"} 					, {"123"} 					 , {"123"} 							, {"123"} 							 , {"246"}};		// Passwords											
+char USERS_NAMES[USERS][30]					= {{"Blind Makker"} , {"Mark Appelgren"} , {"Anders B. Hansen"} , {"Frederik Snedevind"} , {"Brian Jorgensen"}};
+char USER_PERMISSIONS[USERS]				= {'0','0','0','5','0'}; 
+
 																
 char branch_string[20] = {"Sandbox"};
 
@@ -604,7 +607,16 @@ void tUART_RxTask( void *param ) {
 	// *******************************************************************					
 				case UartState_FindUser :
 				
-					if ( yKeyHit (CHAR_ENTER , receive ) && inputs == 0) {
+					if ( yKeyHit (CHAR_BACKSPACE , receive)) {
+						if (inputs > 0) {
+							inputs--;
+							nUART_TxChar(CHAR_BACKSPACE);
+							nUART_TxChar(' ');
+							nUART_TxChar(CHAR_BACKSPACE);
+						}
+					}
+				
+					else if ( yKeyHit (CHAR_ENTER , receive ) && inputs == 0) {
 						nNewLine( 1 );
 						OutedStatusMsg = 0;
 						vTaskDelay(10);
@@ -637,7 +649,16 @@ void tUART_RxTask( void *param ) {
 					
 				case UartState_FindPass : 
 					
-					if ( yKeyHit (CHAR_ENTER , receive ) && inputs == 0) {
+					if ( yKeyHit (CHAR_BACKSPACE , receive)) {
+						if (inputs > 0) {
+							inputs--;
+							nUART_TxChar(CHAR_BACKSPACE);
+							nUART_TxChar(' ');
+							nUART_TxChar(CHAR_BACKSPACE);
+						}
+					}
+				
+					else if ( yKeyHit (CHAR_ENTER , receive ) && inputs == 0) {
 						nNewLine( 1 );
 						UART_STATE = UartState_FindUser;
 						OutedStatusMsg = 0; 
@@ -657,20 +678,29 @@ void tUART_RxTask( void *param ) {
 								nUART_TxString("Logged in.\r\n" );
 								nUART_TxString("Welcome ");
 								nUART_TxString(USERS_NAMES[USERNAME_MATCHED]);
+								nNewLine( 1 );
+								nUART_TxString("Current Permission level : ");
+								nUART_TxChar(USER_PERMISSIONS[USERNAME_MATCHED]);
+								CurrentPermissionLevel = USER_PERMISSIONS[USERNAME_MATCHED];
 								xSemaphoreGive( UART0_TxSemaphore );
 							}
 							
-							
-							nNewLine( 2 );
+							if (xSemaphoreTake(UART0_TxSemaphore, ( TickType_t ) 10 ) == pdTRUE) {
+								nNewLine( 2 );
+								xSemaphoreGive( UART0_TxSemaphore );
+							}
 						}
 						else {
-							nNewLine( 2 );
-							nUART_TxString("Unrecognized user.");
-							nNewLine( 1 );
-							UART_STATE = UartState_FindUser;
-							OutedStatusMsg = 0;
-							nNewLine( 1 );
-							inputs = 0;
+							if (xSemaphoreTake(UART0_TxSemaphore, ( TickType_t ) 10 ) == pdTRUE) {
+								nNewLine( 2 );
+								nUART_TxString("Unrecognized user.");
+								nNewLine( 1 );
+								UART_STATE = UartState_FindUser;
+								OutedStatusMsg = 0;
+								nNewLine( 1 );
+								inputs = 0;
+								xSemaphoreGive( UART0_TxSemaphore );
+							}
 						}
 						OutedStatusMsg = 0;
 					}
@@ -690,7 +720,16 @@ void tUART_RxTask( void *param ) {
 		//										Check Function State		
 				case UartState_Functioncall :
 					
-					if ( yKeyHit (CHAR_ENTER , receive ) && inputs == 0) {
+					if ( yKeyHit (CHAR_BACKSPACE , receive)) {
+						if (inputs > 0) {
+							inputs--;
+							nUART_TxChar(CHAR_BACKSPACE);
+							nUART_TxChar(' ');
+							nUART_TxChar(CHAR_BACKSPACE);
+						}
+					}
+				
+					else if ( yKeyHit (CHAR_ENTER , receive ) && inputs == 0) {
 						nNewLine( 1 );
 						OutedStatusMsg = 0;
 					}

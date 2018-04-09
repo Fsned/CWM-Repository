@@ -1,4 +1,4 @@
-#include <lpc17xx.h>   
+#include <lpc17xx.h>
 #include "setup_file.h"
 #include "LED_control.h"
 #include "utilities.h"
@@ -14,7 +14,7 @@
 #include "FreeRTOS.h"
 #include "task.h"
 #include "queue.h"
-#include "timers.h" 
+#include "timers.h"
 
 #define TASK_STACK_SIZE 32
 
@@ -23,7 +23,7 @@ uint8_t wave_status;
 int adc_result = 0;
 unsigned int myarr[4] = {0,0,0,1};
 
-int main() 
+int main()
 {
 	
 	BaseType_t xReturned = pdPASS;

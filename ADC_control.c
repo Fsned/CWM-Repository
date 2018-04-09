@@ -245,7 +245,7 @@ void tADC_Task(void *param) {
 				
 				ADC_DataLibrary[i] = (LPC_ADC->ADGDR >> SBIT_RESULT) & 0xFFF;			// Store result in Data Library.
 				
-				delay_ms(1);
+				vTaskDelay(1);
 			}
 		}
 		

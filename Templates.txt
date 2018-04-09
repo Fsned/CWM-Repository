@@ -129,7 +129,6 @@ function_type function_name ( type argument_1 , type argument_2 ) {
 //	Functionality :	
 // 	Returns				:		
 //  Input range		:
-//		
 // *****************************************************************/
 
 

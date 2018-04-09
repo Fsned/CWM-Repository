@@ -1,0 +1,14 @@
+.\build\programs_file.o: Programs_file.c
+.\build\programs_file.o: mbed_config.h
+.\build\programs_file.o: Programs_file.h
+.\build\programs_file.o: stdutils.h
+.\build\programs_file.o: .\FreeRTOS\include\FreeRTOS.h
+.\build\programs_file.o: .\FreeRTOS\FreeRTOSConfig.h
+.\build\programs_file.o: .\FreeRTOS\include\projdefs.h
+.\build\programs_file.o: .\FreeRTOS\include\portable.h
+.\build\programs_file.o: .\FreeRTOS\include\deprecated_definitions.h
+.\build\programs_file.o: .\FreeRTOS\portable\RVDS\ARM_CM3\portmacro.h
+.\build\programs_file.o: .\FreeRTOS\include\mpu_wrappers.h
+.\build\programs_file.o: .\FreeRTOS\include\task.h
+.\build\programs_file.o: .\FreeRTOS\include\list.h
+.\build\programs_file.o: .\FreeRTOS\include\queue.h

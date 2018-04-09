@@ -1301,14 +1301,24 @@
               <FilePath>.\FreeRTOS\portable\MemMang\heap_2.c</FilePath>
             </File>
             <File>
-              <FileName>Washing_file.c</FileName>
+              <FileName>Programs_file.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Washing_file.c</FilePath>
+              <FilePath>.\Programs_file.c</FilePath>
             </File>
             <File>
-              <FileName>Washing_file.h</FileName>
+              <FileName>Programs_file.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\Washing_file.h</FilePath>
+              <FilePath>.\Programs_file.h</FilePath>
+            </File>
+            <File>
+              <FileName>Sensor_file.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Sensor_file.c</FilePath>
+            </File>
+            <File>
+              <FileName>Sensor_file.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Sensor_file.h</FilePath>
             </File>
           </Files>
         </Group>

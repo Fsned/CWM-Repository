@@ -100,5 +100,6 @@ extern void nGPIO_STOP			( void );
 //	Example		:	vXxXxX();
 //	Description	:	Returns a value, either 1 or 0. no confirmation if successful or not.
 // ****************************************************************************************
-uint8_t vDigitalRead( uint8_t Port , int Pin );
+extern uint8_t vDigitalRead( uint8_t Port , int Pin ); 
+
 

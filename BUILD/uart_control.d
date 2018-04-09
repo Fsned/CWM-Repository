@@ -20,6 +20,7 @@
 .\build\uart_control.o: LED_control.h
 .\build\uart_control.o: GPIO_setup.h
 .\build\uart_control.o: ADC_control.h
+.\build\uart_control.o: Sensor_file.h
 .\build\uart_control.o: .\FreeRTOS\include\task.h
 .\build\uart_control.o: .\FreeRTOS\include\list.h
 .\build\uart_control.o: .\FreeRTOS\include\semphr.h

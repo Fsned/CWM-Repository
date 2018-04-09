@@ -192,7 +192,7 @@ uint8_t vSetupADC() {
 		LPC_PINCON->PINSEL3 |= 1 << 30;
 	
 	else if (vSetupADC_ret == 5)
-		LPC_PINCON->PINSEL3 |= 0x01 << 30;
+		LPC_PINCON->PINSEL3 |= 1 << 30;
 	
 	else if (vSetupADC_ret == 6)
 		LPC_PINCON->PINSEL0 |= 1 << 3;

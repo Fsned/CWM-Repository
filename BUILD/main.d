@@ -25,6 +25,7 @@
 .\build\main.o: GPIO_setup.h
 .\build\main.o: ADC_control.h
 .\build\main.o: Washing_file.h
+.\build\main.o: Sensor_file.h
 .\build\main.o: .\FreeRTOS\include\task.h
 .\build\main.o: .\FreeRTOS\include\list.h
 .\build\main.o: .\FreeRTOS\include\timers.h

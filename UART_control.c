@@ -32,6 +32,7 @@
 #include "LED_control.h"
 #include "GPIO_setup.h"
 #include "ADC_control.h"
+#include "Sensor_file.h"
 
 #include "FreeRTOS.h"
 #include "task.h"
@@ -52,7 +53,6 @@ xQueueHandle qUART_RxQ = NULL;
 
 SemaphoreHandle_t UART0_TxSemaphore = NULL;
 
-
 static uint8_t CurrentPermissionLevel = 0;
 static uint8_t UART_STATE = UartState_FindUser;
 static uint8_t OutedStatusMsg = 0;
@@ -61,15 +61,14 @@ char input_buffer[128];
 
 static uint8_t inputs = 0;
 
-char USER_LIBRARY[USERS][5] 				= {{"NON"} 					, {"map"} 					 , {"ab"} 							, {"frs"} 							 , {"bj"}};		// Brugernavne
-char PASS_LIBRARY[USERS][5] 				= {{"213"} 					, {"123"} 					 , {"123"} 							, {"123"} 							 , {"246"}};		// Passwords											
-char USERS_NAMES[USERS][30]					= {{"Blind Makker"} , {"Mark Appelgren"} , {"Anders B. Hansen"} , {"Frederik Snedevind"} , {"Brian Jorgensen"}};
-char USER_PERMISSIONS[USERS]				= {'0','0','0','5','0'}; 
+char USER_LIBRARY[USERS][8] 				= {{"guest"} 					, {"map"} 					 , {"ab"} 							, {"frs"} 							 , {"bj"}};		// Brugernavne
+char PASS_LIBRARY[USERS][8] 				= {{"guest"} 					, {"123"} 					 , {"123"} 							, {"123"} 							 , {"246"}};		// Passwords											
+char USERS_NAMES[USERS][30]					= {{"Guest"} , {"Mark Appelgren"} , {"Anders B. Hansen"} , {"Frederik Snedevind"} , {"Brian Jorgensen"}};
+char USER_PERMISSIONS[USERS]				= {'1','0','0','5','0'}; 
 
-																
 char branch_string[20] = {"Sandbox"};
 
-char keyword_strings[NO_OF_KEYWORDS][10] 	 = {{"help"},								// F0
+char keyword_strings[NO_OF_KEYWORDS][12] 	 = {{" "},									// F0
 																							{"Help"},								// F1
 																							{"HELP"},								// F2
 																							{"LED1"},								// F3
@@ -89,29 +88,33 @@ char keyword_strings[NO_OF_KEYWORDS][10] 	 = {{"help"},								// F0
 																							{"alive"},							// F17
 																							{"logout"},							// F18
 																							{"start wash"},					// F19
-																							{"stop"}};							// F20
+																							{"stop"},								// F20
+																							{"help"},								// F21
+																							{"sensordata"}};					// F22
 
-void (*keyword_functions[NO_OF_KEYWORDS])() = {nTerminalHelp 		 	, 			// F0
-																							 nTerminalHelp  	 	, 			// F1
-																							 nTerminalHelp 		 	, 			// F2
-																							 nTerminal_LED_1_ON 	, 		// F3
-																							 nTerminal_LED_2_ON 	, 		// F4
-																							 nTerminal_LED_3_ON 	, 		// F5
-																							 nTerminal_LED_4_ON  , 			// F6
-																							 nTerminal_LED_OFF		, 		// F7
-																							 nTerminal_LED_ALL_ON, 			// F8
-																							 nTerminalStatus		, 			// F9
-																							 nTerminalClear		 	, 			// F10
-																							 nTerminalClear 	  , 			// F11
-																							 nPinSetup_1 	, 						// F12
-																							 nPinSetup_2	, 						// F13
-																							 nPinFlip_1	, 							// F14
-																							 nPinFlip_2 	, 						// F15
-																							 nADC_Status 	, 						// F16
-																							 nPrintAlive					, 		// F17
-																							 nTerminalLogout	, 				// F18
-																							 nStartWash ,								// F19						// This should be undefined function. 19 is always returned if no function could be found. either change it in the FindKeyword? function or put undefined function here
-																							 nGPIO_STOP	};							// F20
+void (*keyword_functions[NO_OF_KEYWORDS])() = {nTerminalUndefined, 		// F0
+																							 nTerminalHelp  	 	, 	// F1
+																							 nTerminalHelp 		 	, 	// F2
+																							 nTerminal_LED_1_ON 	, // F3
+																							 nTerminal_LED_2_ON 	, // F4
+																							 nTerminal_LED_3_ON 	, // F5
+																							 nTerminal_LED_4_ON  , 	// F6
+																							 nTerminal_LED_OFF		, // F7
+																							 nTerminal_LED_ALL_ON, 	// F8
+																							 nTerminalStatus		, 	// F9
+																							 nTerminalClear		 	, 	// F10
+																							 nTerminalClear 	  , 	// F11
+																							 nPinSetup_1 	, 				// F12
+																							 nPinSetup_2	, 				// F13
+																							 nPinFlip_1	, 					// F14
+																							 nPinFlip_2 	, 				// F15
+																							 nADC_Status 	, 				// F16
+																							 nPrintAlive					, // F17
+																							 nTerminalLogout	, 		// F18
+																							 nStartWash ,						// F19						// This should be undefined function. 19 is always returned if no function could be found. either change it in the FindKeyword? function or put undefined function here
+																							 nGPIO_STOP,						// F20
+																							 nTerminalHelp,					// F21
+																							 nSensorData};					// F22
 
 																							 
 // ****************************************************************************************
@@ -145,7 +148,6 @@ uint8_t yUART_TxReady( void ) {
 //	Functionality :	Check if bit 0 & bit 5 is set in LSR register, indicating data ready to be read, and transmission complete
 // 	Returns				:	1 after a while. Should have a timeout timer as well, to avoid infinite loops in failure conditions	
 //  Input range		: None
-//		
 // *****************************************************************/	
 	while (! LPC_UART0->LSR & 0x21 );
 	return 1;
@@ -267,7 +269,6 @@ void nPinFlip_1() {
 		nUART_TxString("Flipped pin 1 \r\n");
 		xSemaphoreGive(UART0_TxSemaphore);
 	}
-	
 	
 	if ( pin_1_status == 0 )
 		pin_1_status = 1;
@@ -452,12 +453,17 @@ void nTerminalHelp() {
 // 	Returns				:	None, but prints stuff to UART
 //  Input range		: None
 // *****************************************************************/
-	nUART_TxString("The following commands are available\n\r");
-	nNewLine( 2 );
-	
-	for (int i = 0; i < NO_OF_KEYWORDS; i++) {
-		nUART_TxString(keyword_strings[i]);
-		nUART_TxString("\r\n");
+	if (xSemaphoreTake(UART0_TxSemaphore , 5)) {
+		nUART_TxString("The following commands are available\n\r");
+		nNewLine( 0 );
+		
+		for (int i = 0; i < NO_OF_KEYWORDS; i++) {
+			nUART_TxString("-> ");
+			nUART_TxString(keyword_strings[i]);
+			nUART_TxString("\r\n");
+		}
+		xSemaphoreGive(UART0_TxSemaphore);
+		
 	}
 }
 
@@ -626,13 +632,13 @@ void tUART_RxTask( void *param ) {
 						input_buffer[inputs] = '\0';
 						inputs++;
 						
-						USERNAME_MATCHED = vCheckUsernames(  input_buffer , inputs );
-						nNewLine( 1 );
-					
-						UART_STATE = UartState_FindPass;
-						OutedStatusMsg = 0;
-						inputs = 0;				
-						vTaskDelay(10);
+							USERNAME_MATCHED = vCheckUsernames(  input_buffer , inputs );
+							nNewLine( 1 );
+						
+							UART_STATE = UartState_FindPass;
+							OutedStatusMsg = 0;
+							inputs = 0;				
+							vTaskDelay(10);
 					}
 					
 					else {
@@ -746,8 +752,8 @@ void tUART_RxTask( void *param ) {
 					else {
 						input_buffer[inputs] = receive;
 						if (xSemaphoreTake(UART0_TxSemaphore, ( TickType_t ) 10 ) == pdTRUE) {
-						nUART_TxChar(input_buffer[inputs]);
-						xSemaphoreGive( UART0_TxSemaphore );
+							nUART_TxChar(input_buffer[inputs]);
+							xSemaphoreGive( UART0_TxSemaphore );
 						}
 						
 						inputs++;
@@ -843,7 +849,7 @@ uint8_t vFindStringMatch(char InputString[] , uint8_t length) {
 //  Fixes					: Check if (MatchFound) and return 0 if not, keep "undefined function" as 0'th function in keyword function register
 // *****************************************************************/	
 	uint8_t MatchFound = 0;
-	uint8_t KeywordMatched = 19;
+	uint8_t KeywordMatched = 0;
 	
 	for (int i = 0; i < NO_OF_KEYWORDS; i++) {
 		MatchFound = 1;

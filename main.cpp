@@ -26,16 +26,15 @@ int main()
 	
 	BaseType_t xReturned = pdPASS;
 	SystemInit();                    //Clock and PLL configuration
-	nGPIOSetup();
+//	nGPIOSetup();
 	nUART0_init(9600);
 	
 	while(1) {
 
 		// Create a task.
-    
 		xReturned &= xTaskCreate( tUART_RxTask , "UART Receive"		, 48, NULL, configMAX_PRIORITIES - 1, NULL ); 
 		xReturned &= xTaskCreate( tUART_TxTask , "UART Transmit"	, 48, NULL, configMAX_PRIORITIES - 1, NULL ); 
-		xReturned &= xTaskCreate( tSensor_Task , "Sensor Task"    , 32 , NULL, configMAX_PRIORITIES - 1, NULL );
+//		xReturned &= xTaskCreate( tSensor_Task , "Sensor Task"    , 32, NULL, configMAX_PRIORITIES - 1, NULL );
 //		xReturned &= xTaskCreate(tProgram_Handler,"Program Handler",32, NULL, configMAX_PRIORITIES - 1, NULL );
 //		xReturned &= xTaskCreate( tADC_Task		 , "ADC_Task"				, 32, NULL, configMAX_PRIORITIES - 1, NULL );			// ADC_TASK skal laves om til Sensor_Task, som holder styr på data på samtlige følere, analoge og digitale, samt giver API til at hente disse data.		
 		

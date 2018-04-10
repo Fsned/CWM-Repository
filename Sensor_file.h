@@ -111,7 +111,7 @@ extern void nSensorData		( void );
 //	Example		:	vXxXxX();
 //	Description	:	Returns a value, no confirmation if successful or not. can be a handle for e.g. ADC pin
 // ****************************************************************************************
-
+extern uint16_t vGetSensorData( uint8_t SENSOR );
 
 // ****************************************************************************************
 //	Type		: 	Tasks

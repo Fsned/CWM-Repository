@@ -51,7 +51,7 @@ xQueueHandle SensorQ = NULL;
 
 uint8_t  SensorStatusLibrary[NUMBER_OF_SENSORS];
 
-uint8_t SensorDataLibrary[NUMBER_OF_SENSORS][3] = {{1,2,3},
+uint16_t SensorDataLibrary[NUMBER_OF_SENSORS][3] = {{1,2,3},
 																										{1,2,3},
 																										{1,2,3},
 																										{1,2,3},
@@ -88,6 +88,13 @@ void nSensorData() {
 		nNewLine( 1 );
 		nUART_TxString("Current Sensordata ---\r\n");
 		for (uint8_t i = 0; i < NUMBER_OF_SENSORS; i++) {
+			
+			if ( ! i )
+				nUART_TxString("--- Analog Sensors ---\r\n");
+			
+			if ( i == DIGITAL_SENSORS_START )
+				nUART_TxString("--- Digital Sensors ---\r\n");
+			
 			if (SensorStatusLibrary[i] != SENSOR_ACTIVE)
 				continue;
 			
@@ -117,6 +124,19 @@ void nSensorDataLibrary_Init() {
 //	Example		:	vXxXxX();
 //	Description	:	Returns a value, no confirmation if successful or not. can be a handle for e.g. ADC pin
 // ****************************************************************************************
+uint16_t vGetSensorData( uint8_t SENSOR ) {
+/* ******************************************************************
+//	Function name : vGetSensorData
+//	Functionality :	Returns the newest data from a given sensor, from the SensorDataLibrary
+// 	Returns				:	Value, either 12-bit from ADC's, or 1-bit from digital inputs
+//  Input range		: 0 to NUMBER_OF_SENSORS - 1
+// *****************************************************************/
+	if (SensorStatusLibrary[SENSOR] == SENSOR_ACTIVE || SensorStatusLibrary[SENSOR] == SENSOR_PAUSED)
+		return SensorDataLibrary[SENSOR][0];
+	else
+		return 0x1000;
+}
+
 
 
 // ****************************************************************************************
@@ -182,9 +202,19 @@ void tSensor_Task( void *param) {
 	
 	while( 1 ) {
 		
+		
 		switch ( SENSOR_TASK_STATE ) {
 			
 			case SENSOR_STATE_IDLE :
+				
+				uint8_t ACTIVE_SENSORS = 0;
+				for (int i = 0; i < NUMBER_OF_SENSORS; i++) {
+					if ( SensorStatusLibrary[i] == SENSOR_ACTIVE )
+						ACTIVE_SENSORS++;
+				}
+			
+			
+			
 				vTaskDelay(10);
 				SENSOR_TASK_STATE = SENSOR_STATE_DATA_COLLECTION;
 				break;

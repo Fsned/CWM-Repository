@@ -17,7 +17,7 @@
  **********************************************************************************************
  * Dependencies:
  *	This library uses the following files:
- *	"lpc17xx-h"			-		Contains information for Pin manipulation
+ *	"lpc17xx.h"			-		Contains information for Pin manipulation
  *	"GPIO_setup.h"	-		Associated header file
  *	"stdutils.h"		-		Contains typedef for among many, 'uint8_t' to limit memory usage
  * 
@@ -176,7 +176,7 @@ void nGPIO_STOP() {
 
 
 
-uint8_t ySetupDigitalI ( uint8_t Port, int Pin) {
+uint8_t ySetupDigitalI ( int Port, int Pin) {
 /* ******************************************************************
 //	Function name : ySetupDigitalI
 //	Functionality :	Setup a GPIO pin to digital Input

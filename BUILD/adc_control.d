@@ -10,8 +10,6 @@
 .\build\adc_control.o: mbed/TARGET_LPC1768/TARGET_NXP/TARGET_LPC176X/device/system_LPC17xx.h
 .\build\adc_control.o: ADC_control.h
 .\build\adc_control.o: LED_control.h
-.\build\adc_control.o: GPIO_setup.h
-.\build\adc_control.o: utilities.h
 .\build\adc_control.o: .\FreeRTOS\include\FreeRTOS.h
 .\build\adc_control.o: .\FreeRTOS\FreeRTOSConfig.h
 .\build\adc_control.o: .\FreeRTOS\include\projdefs.h
@@ -21,3 +19,5 @@
 .\build\adc_control.o: .\FreeRTOS\include\mpu_wrappers.h
 .\build\adc_control.o: .\FreeRTOS\include\task.h
 .\build\adc_control.o: .\FreeRTOS\include\list.h
+.\build\adc_control.o: GPIO_setup.h
+.\build\adc_control.o: utilities.h

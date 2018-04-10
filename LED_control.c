@@ -42,10 +42,6 @@
 //					Variables
 //
 // ****************************************************************************************
-int disco_arr[20][4] = {{0,0,0,0},{0,1,1,0},{1,0,0,1},{0,1,1,0},{1,1,1,1},
-												{1,0,0,0},{1,1,0,0},{0,1,0,0},{0,1,1,0},{0,0,1,0},
-												{0,0,1,1},{0,0,0,1},{0,0,1,1},{1,1,1,1},{1,1,1,0},
-												{1,1,0,0},{1,0,0,0},{0,0,0,0},{1,0,1,0},{0,1,0,1}};
 uint8_t LED_status[4] = {0,0,0,0};
 int LED_pins[4]   = {18, 20, 21, 23};
 
@@ -54,6 +50,8 @@ int alive_ones = 0;
 int alive_tens = 0;
 int alive_hundreds = 0;
 int alive_thousands = 0;
+
+TaskHandle_t AliveHandle = NULL;
 
 
 // ****************************************************************************************
@@ -139,21 +137,26 @@ void nLEDFlip(unsigned int led_flip[]) {
 // ***** End of Function ********************************************
 
 
-void nDiscoFunc() {
+
+void nAliveSuspend() {
 /* ******************************************************************
-//	Function name : nDiscoFunc
-//	Functionality :	Disco's 4 LEDS on Dev board. can be used to verify various stuff
+//	Function name : nAliveSuspend
+//	Functionality :	Used to suspend the Alive LED Task
 // 	Returns				:	None
 //  Input range		: None
-// *****************************************************************/	
-	for (int n = 0; n < 1; n++) {
-		for(int i = 0; i < 20; i++) {
-			nLED_SET(disco_arr[i][0] , disco_arr[i][1] , disco_arr[i][2] , disco_arr[i][3]);
-			nDelayLED();
-		}
-	}
+// *****************************************************************/
+	vTaskSuspend(AliveHandle);
 }
-// ***** End of Function ********************************************
+
+void nAliveResume() {
+/* ******************************************************************
+//	Function name : nAliveResume
+//	Functionality :	Used to resume the Alive LED Task
+// 	Returns				:	None
+//  Input range		: None
+// *****************************************************************/
+	vTaskResume(AliveHandle);
+}
 
 
 void nDelayLED() {

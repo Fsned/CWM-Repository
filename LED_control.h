@@ -17,6 +17,9 @@
  *
  *********************************************************************************************/
  #include "stdutils.h"
+ #include "FreeRTOS.h"
+ #include "task.h"
+// #include "queue.h"
  
 // ****************************************************************************************
 //
@@ -29,6 +32,8 @@ extern int alive_ones;
 extern int alive_tens;
 extern int alive_hundreds;
 extern int alive_thousands;
+
+extern TaskHandle_t AliveHandle;
 
 // ****************************************************************************************
 //	Type		: 	YES_RETURN Functions
@@ -46,14 +51,15 @@ extern void nLEDSetup	( void );
 
 extern void nLED_SET	( uint8_t led_0 , uint8_t led_1, uint8_t led_2, uint8_t led_3 );
 
-extern void nDiscoFunc( void );
-
 extern void nLEDFlip	( unsigned int led_flip[] );
 
 extern void nDelayLED	( void );
 
 extern void nPrintAlive( void );
 
+extern void nAliveSuspend ( void );
+
+extern void nAliveResume  ( void );
 // ****************************************************************************************
 //	Type		: 	VALUE_RETURN Functions
 //	Example		:	vXxXxX();

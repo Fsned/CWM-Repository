@@ -80,7 +80,7 @@
 // ****************************************************************************************
 uint8_t ySetupDigitalO 		( uint8_t Port , int Pin);
 
-uint8_t ySetupDigitalI 		( uint8_t Port , int Pin);
+uint8_t ySetupDigitalI 		( int Port , int Pin);
 
 uint8_t yDigitalWrite			( uint8_t Port , int Pin , uint8_t State );
 

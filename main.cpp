@@ -19,10 +19,7 @@
 
 #define TASK_STACK_SIZE 32
 
-uint8_t led_flipper = 0;
-uint8_t wave_status;
-int adc_result = 0;
-unsigned int myarr[4] = {0,0,0,1};
+
 
 int main()
 {
@@ -30,25 +27,20 @@ int main()
 	BaseType_t xReturned = pdPASS;
 	SystemInit();                    //Clock and PLL configuration
 	nGPIOSetup();
-//	
 	nUART0_init(9600);
-	
-//	uint16_t myvalue = 0;
-	
-	//uint8_t ADC_Handle_1 = vSetupADC();
 	
 	while(1) {
 
 		// Create a task.
     
-		xReturned &= xTaskCreate( tUART_RxTask , "UART Receive"		, 64, NULL, configMAX_PRIORITIES - 1, NULL ); 
-		xReturned &= xTaskCreate( tUART_TxTask , "UART Transmit"	, 64, NULL, configMAX_PRIORITIES - 1, NULL ); 
-//		xReturned &= xTaskCreate( tADC_Task		 , "ADC_Task"				, 32, NULL, configMAX_PRIORITIES - 1, NULL );			// ADC_TASK skal laves om til Sensor_Task, som holder styr på data på samtlige følere, analoge og digitale, samt giver API til at hente disse data.
-		xReturned &= xTaskCreate( tSensor_Task , "Sensor Task"    , 32, NULL, configMAX_PRIORITIES - 1, NULL );
+		xReturned &= xTaskCreate( tUART_RxTask , "UART Receive"		, 48, NULL, configMAX_PRIORITIES - 1, NULL ); 
+		xReturned &= xTaskCreate( tUART_TxTask , "UART Transmit"	, 48, NULL, configMAX_PRIORITIES - 1, NULL ); 
+		xReturned &= xTaskCreate( tSensor_Task , "Sensor Task"    , 32 , NULL, configMAX_PRIORITIES - 1, NULL );
 //		xReturned &= xTaskCreate(tProgram_Handler,"Program Handler",32, NULL, configMAX_PRIORITIES - 1, NULL );
+//		xReturned &= xTaskCreate( tADC_Task		 , "ADC_Task"				, 32, NULL, configMAX_PRIORITIES - 1, NULL );			// ADC_TASK skal laves om til Sensor_Task, som holder styr på data på samtlige følere, analoge og digitale, samt giver API til at hente disse data.		
 		
 		if (xReturned == pdPASS)
-			xTaskCreate( tLEDAlive 	, 	"LED Alive task"	, 32 , NULL, configMAX_PRIORITIES - 1, NULL );
+			xTaskCreate( tLEDAlive 	, 	"LED Alive task"	, 32 , NULL, configMAX_PRIORITIES - 1, &AliveHandle );
 		
 		qUART_RxQ		= xQueueCreate(32 , sizeof(char));
 		qUART_TxQ		= xQueueCreate(32 , sizeof(char));

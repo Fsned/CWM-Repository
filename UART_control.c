@@ -90,7 +90,9 @@ char keyword_strings[NO_OF_KEYWORDS][12] 	 = {{" "},									// F0
 																							{"start wash"},					// F19
 																							{"stop"},								// F20
 																							{"help"},								// F21
-																							{"sensordata"}};					// F22
+																							{"sensordata"},					// F22
+																							{"alive stop"},					// F23
+																							{"alive start"}};				// F24
 
 void (*keyword_functions[NO_OF_KEYWORDS])() = {nTerminalUndefined, 		// F0
 																							 nTerminalHelp  	 	, 	// F1
@@ -114,7 +116,9 @@ void (*keyword_functions[NO_OF_KEYWORDS])() = {nTerminalUndefined, 		// F0
 																							 nStartWash ,						// F19						// This should be undefined function. 19 is always returned if no function could be found. either change it in the FindKeyword? function or put undefined function here
 																							 nGPIO_STOP,						// F20
 																							 nTerminalHelp,					// F21
-																							 nSensorData};					// F22
+																							 nSensorData,						// F22
+																							 nAliveSuspend,					// F23
+																							 nAliveResume};					// F24
 
 																							 
 // ****************************************************************************************

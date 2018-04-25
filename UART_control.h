@@ -88,7 +88,7 @@
 #define SBIT_TxFIFO        	0x02u
 #define SBIT_RDR           	0x00u
 #define SBIT_THRE          	0x05u
-#define NO_OF_KEYWORDS 				 30
+#define NO_OF_KEYWORDS 				 25
 
 #define USERS										5
 

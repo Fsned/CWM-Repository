@@ -47,13 +47,9 @@ extern TaskHandle_t AliveHandle;
 //	Example		:	nXxXxX();
 //	Description	:	Does not return anything.
 // ****************************************************************************************
-extern void nLEDSetup	( void );
-
 extern void nLED_SET	( uint8_t led_0 , uint8_t led_1, uint8_t led_2, uint8_t led_3 );
 
-extern void nLEDFlip	( unsigned int led_flip[] );
-
-extern void nDelayLED	( void );
+extern void nLEDFlip	( uint8_t led_flip[] );
 
 extern void nPrintAlive( void );
 

@@ -289,7 +289,7 @@ void nFillTanksOperation() {
 			If anything mishaps, put down all pumps and return an error code to the error handler
 */	
 	uint8_t transmit;
-//	uint8_t receive;
+ 
 	
 //	int timer;
 	
@@ -352,7 +352,7 @@ void nFillSoapOperation () {
 	
 	*/
 	uint8_t transmit;
-//	uint8_t receive;
+ 
 	
 	nUART_TxString("\r\n\r\nStarted CHECK_SOAP Operation. \r\n");
 // ==========================================================================================================	
@@ -414,7 +414,7 @@ void nWashOperation		 () {
 	
 	
 	uint8_t transmit;
-//	uint8_t receive;
+ 
 	
 	const uint8_t NOT_INIT	= 0;
 	const uint8_t COOLING		= 1;
@@ -510,7 +510,7 @@ void nRinseOperation	 () {
 	int timer = ProgramTimerLibrary[RUN_RINSE][CurrentProgram] * 1000;
 	
 	uint8_t transmit;
-//	uint8_t receive;
+ 
 	const uint8_t NOT_INIT	= 0;
 	const uint8_t COOLING		= 1;
 	const uint8_t HEATING		= 2;
@@ -602,7 +602,7 @@ void nWaitOperation		 () {
 	*/
 	int timer = ProgramTimerLibrary[RUN_WAIT][CurrentProgram] * 1000;
 	uint8_t transmit;
-//	uint8_t receive;
+ 
 	
 	nUART_TxString("\r\n\r\nStarted WAIT Operation. \r\n");
 	nUART_TxString("Operation Runtime: ");
@@ -644,7 +644,7 @@ void nFillSoftenerOperation () {
 			indisputably precise.
 	*/
 	uint8_t transmit;
-//	uint8_t receive;
+ 
 //	int timer = ProgramTimerLibrary[CHECK_SOFTENER][CurrentProgram];
 	
 	const uint8_t NOT_INIT 	= 0;
@@ -698,7 +698,7 @@ void nCheckWashTemperature	() {
 //  Input range		: None
 // ********************************************************************************************************/
 	uint8_t transmit;
-//	uint8_t receive;
+ 
 	
 	const uint8_t NOT_INIT 	= 0;
 	const uint8_t HEATING  	= 1;
@@ -744,7 +744,7 @@ void nCheckRinseTemperature	() {
 //  Input range		: None
 // ********************************************************************************************************/
 	uint8_t transmit;
-//	uint8_t receive;
+ 
 	
 	const uint8_t NOT_INIT 	= 0;
 	const uint8_t HEATING  	= 1;
@@ -821,7 +821,7 @@ void tProgram_Handler		( void *param ) {
 	uint8_t OutedMsg = 0;
 //	uint8_t PROGRAM_STARTED = 0;
 	
-	nWashProgram_2();
+	
 	
 	
 	while(1) {

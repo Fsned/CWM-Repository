@@ -33,6 +33,7 @@
 #include "lpc17xx.h"
 #include "stdutils.h"
 #include "UART_control.h"
+#include "utilities.h"
 
 #include "FreeRTOS.h"
 #include "task.h"
@@ -66,19 +67,6 @@ TaskHandle_t AliveHandle = NULL;
 //	Example			:	nXxXxX();
 //	Description	:	Does not return anything.
 // ****************************************************************************************
-
-void nLEDSetup(void) {
-/* ******************************************************************
-//	Function name : nLEDSetup
-//	Functionality :	Setup the 4 LEDS on LPC1768 mbed Dev board
-// 	Returns				:	None	
-//  Input range		: None
-// *****************************************************************/
-	LPC_PINCON->PINSEL4 &= ~(0x0000CF30);	// Set P1:18, P1:20, P1:21, P1:23 to function 1 (GPIO)
-	LPC_GPIO0->FIODIR   |=   0x0000000F;
-	LPC_GPIO1->FIODIR   |=   0x00B40000;	// Set Port 1 as output
-}
-// ***** End of Function ********************************************
 
 
 void nLED_SET(uint8_t led_0 , uint8_t led_1, uint8_t led_2, uint8_t led_3) {
@@ -116,7 +104,7 @@ void nLED_SET(uint8_t led_0 , uint8_t led_1, uint8_t led_2, uint8_t led_3) {
 // ***** End of Function ********************************************
 
 
-void nLEDFlip(unsigned int led_flip[]) {
+void nLEDFlip(uint8_t led_flip[]) {
 /* ******************************************************************
 //	Function name : nLEDFlip
 //	Functionality :	Takes 4 ints in an array, and flips the corresponding LEDS, to the 1's in the array
@@ -157,17 +145,6 @@ void nAliveResume() {
 // *****************************************************************/
 	vTaskResume(AliveHandle);
 }
-
-
-void nDelayLED() {
-/* ******************************************************************
-//	Function name : nDelayLED
-//	Functionality :	Used rarely, as static non-dynamic delay for setting up LEDS
-// 	Returns				:	None
-//  Input range		: None
-// *****************************************************************/	
-	for (int i = 0; i < 1500000; i++);
-}
 // ***** End of Function ********************************************
 
 void tLEDAlive( void *param ) {
@@ -178,8 +155,6 @@ void tLEDAlive( void *param ) {
 //  Input range		: None
 // *****************************************************************/	
 	uint8_t LED_status = 0;			// Used to keep track of current LED status
-	
-	TickType_t xPreviousWakeTime = ( TickType_t ) 0U;
 	
 	while(1) {
 		
@@ -192,8 +167,8 @@ void tLEDAlive( void *param ) {
 		
 		alive_timer++;
 		
-//		vTaskDelay(1000);
-			vTaskDelayUntil( &xPreviousWakeTime, ( TickType_t ) 1000 / portTICK_PERIOD_MS );
+		vTaskDelay(1000);
+//			vTaskDelayUntil( &xPreviousWakeTime, ( TickType_t ) 1000 / portTICK_PERIOD_MS );
 	}
 }
 // ***** End of Function ********************************************
@@ -207,16 +182,8 @@ void nPrintAlive() {
 //  Input range		: None
 // *****************************************************************/	
 	uint32_t 	seconds;
-	uint8_t 	seconds_ones = 0;
-	uint8_t 	seconds_tens = 0;
-	
 	uint8_t 	minutes = 0;
-	uint8_t 	minutes_ones = 0;
-	uint8_t 	minutes_tens = 0;
-	
 	uint8_t 	hours = 0;
-	uint8_t 	hours_ones = 0;
-	uint8_t 	hours_tens = 0;
 	
 	seconds = alive_timer;
 
@@ -230,62 +197,25 @@ void nPrintAlive() {
 		seconds -= 60;
 	}
 	
-	while(hours >= 10) {
-		hours_tens++;
-		hours -= 10;
-	}
+	nUART_TxString("Current alive time : ");
 	
-	while(hours >= 1) {
-		hours_ones++;
-		hours -= 1;
-	}
+	if ( hours >= 10 ) 
+		nUART_TxChar(int_to_char_10(hours) + '0');
+	nUART_TxChar(int_to_char_1 (hours) + '0');
 	
-	while(minutes >= 10) {
-		minutes_tens++;
-		minutes -= 10;
-	}
+	nUART_TxChar(':');
 	
-	while(minutes >= 1) {
-		minutes_ones++;
-		minutes -= 1;
-	}
+	if ( minutes >= 10 )
+		nUART_TxChar(int_to_char_10(minutes) + '0');
+	nUART_TxChar(int_to_char_1 (minutes) + '0');
 	
-	while(seconds >= 10) {
-		seconds_tens++;
-		seconds -= 10;
-	}
+	nUART_TxChar(':');
 	
-	while(seconds >= 1) {
-		seconds_ones++;
-		seconds -= 1;
-	}
+	if ( seconds >= 10 )
+		nUART_TxChar(int_to_char_10(seconds) + '0');
+	nUART_TxChar(int_to_char_1 (seconds) + '0');
 	
-	nUART_TxString("Current alive time :    ");
-	
-	if (hours_tens)
-		nUART_TxChar(hours_tens + '0');
-	nUART_TxChar(hours_ones + '0');
-	
-	nUART_TxString(":");
-	
-	if (minutes_tens)
-		nUART_TxChar(minutes_tens + '0');
-	nUART_TxChar(minutes_ones + '0');
-	
-	nUART_TxString(":");
-	
-	if (seconds_tens)
-		nUART_TxChar(seconds_tens + '0');
-	nUART_TxChar(seconds_ones + '0');
-	
-	nUART_TxString("\r\n");
 	nNewLine( 1 );
-	nUART_TxString("Error counter        : 0");										// Should get Error_Counter variable from error library
-	nNewLine( 1 );
-	nUART_TxString("Warning counter      : 0");										// Should get Warning_Counter variable from error library
-	nNewLine( 1 );	
-	nUART_TxString("Safety Actions taken : 0");										// Should get Safety_Action_Counter variable from error library
-	nNewLine( 2 );
 }
 
 // ****************************************************************************************

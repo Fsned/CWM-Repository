@@ -469,7 +469,7 @@ void nTerminalHelp() {
 		for (int i = 0; i < NO_OF_KEYWORDS; i++) {
 			nUART_TxString("-> ");
 			nUART_TxString(keyword_strings[i]);
-			nUART_TxString("\r\n");
+			nNewLine( 1 );
 		}
 		xSemaphoreGive(UART0_TxSemaphore);
 		
@@ -484,8 +484,9 @@ void nTerminal_LED_1_ON() {
 // 	Returns				:	None	
 //  Input range		: None
 // *****************************************************************/
-	unsigned int arr[4] = {1,0,0,0};
-	nLEDFlip(arr);	
+	uint8_t arr[4] = {1,0,0,0};
+	nLEDFlip(arr);
+	
 }
 
 void nTerminal_LED_2_ON() {
@@ -495,7 +496,7 @@ void nTerminal_LED_2_ON() {
 // 	Returns				:	None	
 //  Input range		: None
 // *****************************************************************/
-	unsigned int arr[4] = {0,1,0,0};
+	uint8_t arr[4] = {0,1,0,0};
 	nLEDFlip(arr);
 }
 
@@ -506,7 +507,7 @@ void nTerminal_LED_3_ON() {
 // 	Returns				:	None	
 //  Input range		: None
 // *****************************************************************/
-	unsigned int arr[4] = {0,0,1,0};
+	uint8_t arr[4] = {0,0,1,0};
 	nLEDFlip(arr);
 }
 
@@ -517,7 +518,7 @@ void nTerminal_LED_4_ON() {
 // 	Returns				:	None	
 //  Input range		: None
 // *****************************************************************/
-	unsigned int arr[4] = {0,0,0,1};
+	uint8_t arr[4] = {0,0,0,1};
 	nLEDFlip(arr);
 }
 
@@ -561,8 +562,7 @@ void nTerminalClear() {
 // 	Returns				:	None	
 //  Input range		: None
 // *****************************************************************/
-	for(int i = 0; i < 25; i++)
-		nUART_TxString("\r\n");
+	nNewLine( 25 );
 }
 
 void nTerminalUndefined() {
@@ -572,7 +572,7 @@ void nTerminalUndefined() {
 // 	Returns				:	None	
 //  Input range		: None
 // *****************************************************************/
-		nUART_TxString("\n\r");
+		nNewLine( 1 );
 		nUART_TxString("Undefined function. \n\r");
 }
 
@@ -707,7 +707,7 @@ void tUART_RxTask( void *param ) {
 						else {
 							if (xSemaphoreTake(UART0_TxSemaphore, ( TickType_t ) 10 ) == pdTRUE) {
 								nNewLine( 2 );
-								nUART_TxString("Unrecognized user.");
+								nUART_TxString("Unrecognized user. \r\n");
 								nNewLine( 1 );
 								UART_STATE = UartState_FindUser;
 								OutedStatusMsg = 0;
@@ -843,9 +843,6 @@ void tUART_TxTask( void *param ) {
 //	Example		:	vXxXxX();
 //	Description	:	Returns a value, either 1 or 0. no confirmation if successful or not.
 // ****************************************************************************************
-
-
-
 
 uint8_t vFindStringMatch(char InputString[] , uint8_t length) {
 /* ******************************************************************

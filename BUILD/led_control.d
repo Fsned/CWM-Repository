@@ -20,3 +20,4 @@
 .\build\led_control.o: mbed/TARGET_LPC1768/TARGET_NXP/TARGET_LPC176X/device/system_LPC17xx.h
 .\build\led_control.o: UART_control.h
 .\build\led_control.o: .\FreeRTOS\include\queue.h
+.\build\led_control.o: utilities.h

@@ -105,7 +105,7 @@ void (*keyword_functions[NO_OF_KEYWORDS])() = {nTerminalUndefined, 		// F0
 																							 nTerminal_LED_ALL_ON, 	// F8
 																							 nTerminalStatus		, 	// F9
 																							 nTerminalClear		 	, 	// F10
-																							 yWashProgram_2 	  , 	// F11
+																							 nWashProgram_2 	  , 	// F11
 																							 nPinSetup_1 	, 				// F12
 																							 nPinSetup_2	, 				// F13
 																							 nPinFlip_1	, 					// F14

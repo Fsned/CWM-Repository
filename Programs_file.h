@@ -124,11 +124,7 @@ extern xQueueHandle ProgramLibrary;
 //	Example		:	yXxXxX();
 //	Description	:	Returns true (1) or false (0) depending on the success of the function
 // ***************************************************************************************
-extern void 		yWashProgram_1( void );
-																	
-extern void 		yWashProgram_2( void );
-	
-extern void 		yWashProgram_3( void );
+
 																	
 extern uint8_t 	ySetHWStatus 	( uint8_t HardwareHandle , uint8_t NewStatus );													
 
@@ -152,6 +148,12 @@ extern void nFillSoftenerOperation 	( void );
 extern void nCheckWashTemperature		( void );
 
 extern void nCheckRinseTemperature	( void );
+
+extern void nWashProgram_1					( void );
+						
+extern void nWashProgram_2					( void );
+	
+extern void nWashProgram_3					( void );
 // ****************************************************************************************
 //	Type		: 	VALUE_RETURN Functions
 //	Example		:	vXxXxX();

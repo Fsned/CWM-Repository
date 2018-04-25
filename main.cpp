@@ -49,11 +49,11 @@ int main()
 	nUART0_init(9600);
 	
 //		// Create a task.
-//		xReturned &= xTaskCreate( tUART_RxTask , "UART Receive"		, 64, NULL, configMAX_PRIORITIES - 1, NULL ); 
+		xReturned &= xTaskCreate( tUART_RxTask , "UART Receive"		, 64, NULL, configMAX_PRIORITIES - 1, NULL ); 
 //		xReturned &= xTaskCreate( tUART_TxTask , "UART Transmit"	, 128, NULL, configMAX_PRIORITIES - 1, NULL ); 
 //		xReturned &= xTaskCreate( tSensor_Task , "Sensor Handler"    , 24, NULL, configMAX_PRIORITIES - 1, NULL );
 //		
-		xReturned &= xTaskCreate(tProgram_Handler,"Program Handler", 128 , NULL, configMAX_PRIORITIES - 1, NULL );
+//		xReturned &= xTaskCreate(tProgram_Handler,"Program Handler", 128 , NULL, configMAX_PRIORITIES - 1, NULL );
 //////////		
 //		if (xReturned == pdPASS)
 //			xTaskCreate( tLEDAlive 	, 	"LED Alive task"	, 32 , NULL, configMAX_PRIORITIES - 1, &AliveHandle );

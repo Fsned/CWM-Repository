@@ -45,25 +45,6 @@
 //					Variables
 //
 // ****************************************************************************************
-//char CONSTANT_STRINGS[16][25] = {	{"Ready for new program"},			// S0
-//																	{"Occupied with program"},			// S1
-//																	{"Finishing up"},								// S2
-//																	{"Stopped by sensors"},					// S3
-//																	{"N/A"},												// S4
-//																	{"N/A"},												// S5													
-//																	{"N/A"},												// S6
-//																	{"N/A"},												// S7
-//																	{"N/A"},												// S8
-//																	{"N/A"},												// S9
-//																	{"N/A"},												// S10
-//																	{"N/A"},												// S11
-//																	{"N/A"},												// S12
-//																	{"N/A"},												// S13
-//																	{"N/A"},												// S14
-//																	{"N/A"}}; 											// S15
-
-
-//void (*execution_array[MAX_NUMBER_OF_OPERATIONS])();						// Array Containing pointers to various operations
 
 xQueueHandle OperationQ			 	= NULL;																	// Queue to talk to execution task, signalling e.g. program start, program stop, etc.
 xQueueHandle ProgramLibrary		= NULL;
@@ -151,9 +132,9 @@ uint8_t ySetHWStatus ( uint8_t HardwareHandle , uint8_t NewStatus) {
 																				
 																				
 																				
-void yWashProgram_1() {
+void nWashProgram_1() {
 /* ******************************************************************
-//	Function name : yWashProgram_1
+//	Function name : nWashprogram_1
 //	Functionality :	Fills Execution Queue with operations for washing program number 1
 // 	Returns				:	True / False depending on whether or not program has been loaded
 //  Input range		: None
@@ -181,9 +162,9 @@ void yWashProgram_1() {
 }
 
 
-void yWashProgram_2() {
+void nWashProgram_2() {
 /* ******************************************************************
-//	Function name : yWashProgram_2
+//	Function name : nWashprogram_2
 //	Functionality :	Fills Execution Queue with operations for washing program number 2
 // 	Returns				:	True / False depending on whether or not program has been loaded
 //  Input range		: None
@@ -259,9 +240,9 @@ void yWashProgram_2() {
 }
 
 
-void yWashProgram_3() {
+void nWashProgram_3() {
 /* ******************************************************************
-//	Function name : yWashProgram_3
+//	Function name : nWashprogram_3
 //	Functionality :	Fills Execution Queue with operations for washing program number 3
 // 	Returns				:	True / False depending on whether or not program has been loaded
 //  Input range		: None
@@ -308,9 +289,9 @@ void nFillTanksOperation() {
 			If anything mishaps, put down all pumps and return an error code to the error handler
 */	
 	uint8_t transmit;
-	uint8_t receive;
+//	uint8_t receive;
 	
-	int timer;
+//	int timer;
 	
 	nUART_TxString("\r\n\r\nStarted CHECK_WATER_LEVEL. \r\n");
 	
@@ -371,7 +352,7 @@ void nFillSoapOperation () {
 	
 	*/
 	uint8_t transmit;
-	uint8_t receive;
+//	uint8_t receive;
 	
 	nUART_TxString("\r\n\r\nStarted CHECK_SOAP Operation. \r\n");
 // ==========================================================================================================	
@@ -433,7 +414,7 @@ void nWashOperation		 () {
 	
 	
 	uint8_t transmit;
-	uint8_t receive;
+//	uint8_t receive;
 	
 	const uint8_t NOT_INIT	= 0;
 	const uint8_t COOLING		= 1;
@@ -529,7 +510,7 @@ void nRinseOperation	 () {
 	int timer = ProgramTimerLibrary[RUN_RINSE][CurrentProgram] * 1000;
 	
 	uint8_t transmit;
-	uint8_t receive;
+//	uint8_t receive;
 	const uint8_t NOT_INIT	= 0;
 	const uint8_t COOLING		= 1;
 	const uint8_t HEATING		= 2;
@@ -621,7 +602,7 @@ void nWaitOperation		 () {
 	*/
 	int timer = ProgramTimerLibrary[RUN_WAIT][CurrentProgram] * 1000;
 	uint8_t transmit;
-	uint8_t receive;
+//	uint8_t receive;
 	
 	nUART_TxString("\r\n\r\nStarted WAIT Operation. \r\n");
 	nUART_TxString("Operation Runtime: ");
@@ -663,7 +644,7 @@ void nFillSoftenerOperation () {
 			indisputably precise.
 	*/
 	uint8_t transmit;
-	uint8_t receive;
+//	uint8_t receive;
 //	int timer = ProgramTimerLibrary[CHECK_SOFTENER][CurrentProgram];
 	
 	const uint8_t NOT_INIT 	= 0;
@@ -717,7 +698,7 @@ void nCheckWashTemperature	() {
 //  Input range		: None
 // ********************************************************************************************************/
 	uint8_t transmit;
-	uint8_t receive;
+//	uint8_t receive;
 	
 	const uint8_t NOT_INIT 	= 0;
 	const uint8_t HEATING  	= 1;
@@ -763,7 +744,7 @@ void nCheckRinseTemperature	() {
 //  Input range		: None
 // ********************************************************************************************************/
 	uint8_t transmit;
-	uint8_t receive;
+//	uint8_t receive;
 	
 	const uint8_t NOT_INIT 	= 0;
 	const uint8_t HEATING  	= 1;
@@ -834,13 +815,14 @@ void tProgram_Handler		( void *param ) {
 // ********************************************************************************************************/
 	
 	uint8_t receive;
-	uint8_t transmit;
+//	uint8_t transmit;
 	
 	uint8_t	ProgramHandlerState = IDLE;
 	uint8_t OutedMsg = 0;
-	uint8_t PROGRAM_STARTED = 0;
+//	uint8_t PROGRAM_STARTED = 0;
 	
-	yWashProgram_2();
+	nWashProgram_2();
+	
 	
 	while(1) {
 		// The program Handler makes sure each operation for every wash program is executed.

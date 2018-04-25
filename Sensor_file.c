@@ -300,12 +300,6 @@ void tSensor_Task( void *param) {
 				vTaskDelay(1);
 			break;
 			
-				
-				
-			case SENSOR_STATE_ALARM :
-				
-			break;
-			
 			default :
 				SENSOR_TASK_STATE = SENSOR_STATE_IDLE;
 			break;

@@ -13,3 +13,4 @@ extern int int_to_char_100	(int input);
 extern int int_to_char_10		(int input);
 
 extern int int_to_char_1		(int input);
+

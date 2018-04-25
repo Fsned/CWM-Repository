@@ -29,6 +29,7 @@
 //					Libraries
 //
 // ****************************************************************************************
+#include "stdutils.h"
 
 
 // ****************************************************************************************
@@ -72,5 +73,40 @@ void delay_us(unsigned int n) {
 	while(--o);
 }
 
+int int_to_char_1000(int input) {
+	uint8_t output = 0;
+	while(input >= 1000) {
+		input -= 1;
+		output += 1;
+	}
+	return output;
+}
+
+int int_to_char_100(int input) {
+	uint8_t output = 0;
+	while(input >= 100) {
+		input -= 1;
+		output += 1;
+	}
+	return output;
+}
+
+int int_to_char_10(int input) {
+	uint8_t output = 0;
+	while(input >= 10) {
+		input -= 1;
+		output += 1;
+	}
+	return output;
+}
+
+int int_to_char_1(int input) {
+	uint8_t output = 0;
+	while(input >= 1) {
+		input -= 1;
+		output += 1;
+	}
+	return output;
+}
 
 

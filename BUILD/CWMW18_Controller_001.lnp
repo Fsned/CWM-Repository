@@ -4,7 +4,6 @@
 ".\build\utilities.o"
 ".\build\uart_control.o"
 ".\build\gpio_setup.o"
-".\build\adc_control.o"
 ".\build\port.o"
 ".\build\croutine.o"
 ".\build\event_groups.o"

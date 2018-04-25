@@ -262,19 +262,19 @@ void nPrintAlive() {
 	
 	nUART_TxString("Current alive time :    ");
 	
-	if (hours_tens > 0)
+	if (hours_tens)
 		nUART_TxChar(hours_tens + '0');
 	nUART_TxChar(hours_ones + '0');
 	
 	nUART_TxString(":");
 	
-	if (minutes_tens > 0)
+	if (minutes_tens)
 		nUART_TxChar(minutes_tens + '0');
 	nUART_TxChar(minutes_ones + '0');
 	
 	nUART_TxString(":");
 	
-	if (seconds_tens > 0)
+	if (seconds_tens)
 		nUART_TxChar(seconds_tens + '0');
 	nUART_TxChar(seconds_ones + '0');
 	

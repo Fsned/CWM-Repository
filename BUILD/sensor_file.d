@@ -13,6 +13,7 @@
 .\build\sensor_file.o: .\FreeRTOS\include\queue.h
 .\build\sensor_file.o: GPIO_setup.h
 .\build\sensor_file.o: UART_control.h
+.\build\sensor_file.o: LED_control.h
 .\build\sensor_file.o: stdutils.h
 .\build\sensor_file.o: mbed/TARGET_LPC1768/TARGET_NXP/TARGET_LPC176X/device/lpc17xx.h
 .\build\sensor_file.o: mbed/TARGET_LPC1768/core_cm3.h

@@ -27,11 +27,12 @@
 //
 // ****************************************************************************************
 #include "stdutils.h"
-#include "UART_control.h"
 #include "lpc17xx.h"
+
+#include "UART_control.h"
 #include "LED_control.h"
 #include "GPIO_setup.h"
-#include "ADC_control.h"
+#include "Programs_file.h"
 #include "Sensor_file.h"
 
 #include "FreeRTOS.h"
@@ -53,11 +54,10 @@ xQueueHandle qUART_RxQ = NULL;
 
 SemaphoreHandle_t UART0_TxSemaphore = NULL;
 
-static uint8_t CurrentPermissionLevel = 0;
 static uint8_t UART_STATE = UartState_FindUser;
 static uint8_t OutedStatusMsg = 0;
 
-char input_buffer[128];
+char input_buffer[32];
 
 static uint8_t inputs = 0;
 
@@ -79,7 +79,7 @@ char keyword_strings[NO_OF_KEYWORDS][12] 	 = {{" "},									// F0
 																							{"LEDALL"},							// F8
 																							{"status"},							// F9
 																							{"clear"},							// F10
-																							{"Clear"},							// F11
+																							{"wash2"},							// F11
 																							{"setuppin1"},					// F12
 																							{"setuppin2"},					// F13
 																							{"pf1"},								// F14
@@ -87,7 +87,7 @@ char keyword_strings[NO_OF_KEYWORDS][12] 	 = {{" "},									// F0
 																							{"ADC"},								// F16
 																							{"alive"},							// F17
 																							{"logout"},							// F18
-																							{"start wash"},					// F19
+																							{"startwash"},					// F19
 																							{"stop"},								// F20
 																							{"help"},								// F21
 																							{"sensordata"},					// F22
@@ -105,7 +105,7 @@ void (*keyword_functions[NO_OF_KEYWORDS])() = {nTerminalUndefined, 		// F0
 																							 nTerminal_LED_ALL_ON, 	// F8
 																							 nTerminalStatus		, 	// F9
 																							 nTerminalClear		 	, 	// F10
-																							 nTerminalClear 	  , 	// F11
+																							 yWashProgram_2 	  , 	// F11
 																							 nPinSetup_1 	, 				// F12
 																							 nPinSetup_2	, 				// F13
 																							 nPinFlip_1	, 					// F14
@@ -227,11 +227,16 @@ void nADC_Status() {
 // *****************************************************************/	
 	if (xSemaphoreTake(UART0_TxSemaphore , 5)) {
 		nUART_TxString("Analog Inputs \r\n");
-		for (uint8_t i = 0; i < 8; i++) {
+		for (uint8_t i = 0; i < ANALOG_SENSORS_END; i++) {
 			nUART_TxString("Pin ");
 			nUART_TxChar(i + '0');
 			nUART_TxString(" : ");
-			nUART_TxChar(ADC_DataLibrary[i] + '0');
+			if (vGetSensorStatus(i) == SENSOR_VACANT)
+				nUART_TxString("Vacant");
+			else if (vGetSensorStatus(i) == SENSOR_ACTIVE)
+				nUART_TxString("Active");
+			else if (vGetSensorStatus(i) == SENSOR_PAUSED)
+				nUART_TxString("Paused");
 			nUART_TxString("\r\n");
 		}
 		
@@ -601,6 +606,7 @@ void tUART_RxTask( void *param ) {
 //  Input range		: None
 // *****************************************************************/
 	
+	
 	uint8_t receive;
 	uint8_t transmit;
 	
@@ -685,13 +691,11 @@ void tUART_RxTask( void *param ) {
 							nNewLine( 2 );
 							
 							if (xSemaphoreTake(UART0_TxSemaphore, ( TickType_t ) 10 ) == pdTRUE) {
-								nUART_TxString("Logged in.\r\n" );
-								nUART_TxString("Welcome ");
+								nUART_TxString("Logged in.\r\nWelcome " );
 								nUART_TxString(USERS_NAMES[USERNAME_MATCHED]);
 								nNewLine( 1 );
 								nUART_TxString("Current Permission level : ");
 								nUART_TxChar(USER_PERMISSIONS[USERNAME_MATCHED]);
-								CurrentPermissionLevel = USER_PERMISSIONS[USERNAME_MATCHED];
 								xSemaphoreGive( UART0_TxSemaphore );
 							}
 							
@@ -767,7 +771,6 @@ void tUART_RxTask( void *param ) {
 				default :
 					nNewLine( 4 );
 					if (xSemaphoreTake(UART0_TxSemaphore, ( TickType_t ) 10 ) == pdTRUE) {
-						nUART_TxString("You aren't supposed to be here.");
 						xSemaphoreGive( UART0_TxSemaphore );
 					}
 					
@@ -920,7 +923,7 @@ uint8_t vCheckPasscode(char InputString[] , uint8_t length) {
 	
 	int Str1Length , Str2Length;
 	
-	for ( Str1Length = 0; InputString[Str1Length] 		!= '\0'; Str1Length++);
+	for ( Str1Length = 0; InputString[Str1Length] 										!= '\0'; Str1Length++);
 	for ( Str2Length = 0; PASS_LIBRARY[USERNAME_MATCHED][Str2Length]	!= '\0'; Str2Length++); 
 	
 	if (Str1Length != Str2Length)

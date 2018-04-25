@@ -5,7 +5,7 @@
  * Company: Jeros A/S
  *		   HTTP://www.Jeros.com/
  *
- * Date created : 14/3 - 2018 
+ * Date created  : 14/3 - 2018 
  * Version			 : 0.0.1
  * Revised			 : 15/3 - 2018 
  **********************************************************************************************
@@ -45,7 +45,6 @@ uint8_t PinLibrary[5][32];
 // Variable to keep track of whether PinLibrary has been initialized or no. will
 // Be set to 1 once it has been initialized, preventing further initializations
 uint8_t PinLibrary_Initialized = 0;
-
 
 // ****************************************************************************************
 //	Type		: 	YES_RETURN Functions
@@ -416,7 +415,7 @@ void nInitializePinLibrary() {
 /* ******************************************************************
 //	Function name : nInitializePinLibrary
 //	Functionality :	Used to set all pins to GPIO_FREE, to allow setups to reserve pins, and prevent overlapping on pins
-// 	Returns				:	Nothing
+// 	Returns				:	None
 //  Input range		: None
 // *****************************************************************/		
 	for (int column = 0; column < 5; column++) {
@@ -443,7 +442,7 @@ uint8_t vDigitalRead( uint8_t Port , int Pin ) {
 // 	Returns				:	A value 0 or 1, depending on status of pin
 //  Input range		: PORT_0 : PORT_4  ,  PIN_0 : PIN_31
 // *****************************************************************/
-	if (! PinLibrary_Initialized)
+	if ( ! PinLibrary_Initialized )
 		nInitializePinLibrary();
 	
 	uint8_t vDigitalRead_ret;
@@ -480,3 +479,16 @@ uint8_t vDigitalRead( uint8_t Port , int Pin ) {
 	return vDigitalRead_ret;
 }
 // ***** End of Function ********************************************
+
+
+uint8_t vGetPinStatus	( uint8_t Port , int Pin ) {
+	/* ******************************************************************
+//	Function name : vGetPinStatus
+//	Functionality :	Returns the PIN_STATUS of a given pin, from the pin library.
+// 	Returns				:	None
+//  Input range		: PORT_0 - PORT_4 , PIN_0 - PIN_31
+// *****************************************************************/		
+	return PinLibrary[Port][Pin];
+}
+// ***** End of Function ********************************************
+

@@ -26,10 +26,16 @@
 // ****************************************************************************************
 #define NUMBER_OF_SENSORS 16
 
+// Sensor task STATEs
 #define SENSOR_STATE_IDLE							0
 #define SENSOR_STATE_DATA_COLLECTION	1
 #define SENSOR_STATE_ALARM						2
 
+// Sensor Data anchors
+#define SENSOR_LOW										0
+#define	SENSOR_HIGH										1
+
+// Sensor status'
 #define SENSOR_VACANT									0
 #define SENSOR_ACTIVE									1
 #define SENSOR_PAUSED									2
@@ -46,9 +52,10 @@
 #define TEMPERATURE_SENSOR_RINSE	1
 #define SOAP_SENSOR								2
 #define REVERSAL_CURRENT_SENSOR		3
+#define SOFTENER_SENSOR						4
 //#define VACANT ANALOG SENSOR    4
 
-// Digital Sensors		Amonut : ~10
+// Digital Sensors		Amount : ~10
 #define PRESSOSWITCH_WASH					5
 #define	PRESSOSWITCH_RINSE				6
 #define BOILERSWITCH_WASH					7
@@ -85,19 +92,13 @@
 #define ADC_HOLD					2
 #define ADC_ACTIVE				3
 
+// Error codes to return in various erroneous conditions
 #define ADC_NO_DATA 		0x1000
 #define ADC_PAUSED			0x2000
 #define ADC_NO_ACCESS 	0x3000
 
-
+// Queue Handles for Sensor task
 extern xQueueHandle SensorQ;
-
-// ****************************************************************************************
-//	Type		: 	YES_RETURN Functions
-//	Example		:	yXxXxX();
-//	Description	:	Returns true (1) or false (0) depending on the success of the function
-// ****************************************************************************************
-
 
 // ****************************************************************************************
 //	Type		: 	NO_RETURN Functions
@@ -111,8 +112,9 @@ extern void nSensorData		( void );
 //	Example		:	vXxXxX();
 //	Description	:	Returns a value, no confirmation if successful or not. can be a handle for e.g. ADC pin
 // ****************************************************************************************
-extern uint16_t vGetSensorData( uint8_t SENSOR );
+extern uint16_t vGetSensorData		( uint8_t SENSOR_HANDLE );
 
+extern uint8_t  vGetSensorStatus	( uint8_t SENSOR_HANDLE );
 // ****************************************************************************************
 //	Type		: 	Tasks
 //	Example		:	tXx();

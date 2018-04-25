@@ -22,48 +22,61 @@ Dialog DLL:      TCM.DLL V1.32.0.0
  
 <h2>Project:</h2>
 C:\Users\frs\Documents\GitHubR\CWM-Repository\mbed_blinky.uvprojx
-Project File Date:  04/10/2018
+Project File Date:  04/19/2018
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 5 (build 528)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Rebuild target 'CWM18_Controller'
 compiling utilities.c...
 compiling croutine.c...
-compiling port.c...
-compiling GPIO_setup.c...
 compiling event_groups.c...
-compiling ADC_control.c...
+compiling GPIO_setup.c...
+compiling port.c...
+compiling list.c...
+compiling LED_control.c...
+compiling main.cpp...
+utilities.h(15): warning:  #1-D: last line of file ends without a newline
+  extern int int_to_char_1		(int input);
+main.cpp: 1 warning, 0 errors
 compiling UART_control.c...
 UART_control.c(169): warning:  #940-D: missing return statement at end of non-void function "yUART_RxReady" 
   }
-UART_control.c(56): warning:  #550-D: variable "CurrentPermissionLevel"  was set but never used
-  static uint8_t CurrentPermissionLevel = 0;
-UART_control.c: 2 warnings, 0 errors
-compiling LED_control.c...
-compiling list.c...
-compiling main.cpp...
+UART_control.c: 1 warning, 0 errors
 compiling queue.c...
 compiling heap_2.c...
-compiling Programs_file.c...
-Programs_file.c(66): warning:  #177-D: variable "program_1_operations"  was declared but never referenced
-  	void (*program_1_operations[MAX_NUMBER_OF_OPERATIONS])() = {nFillTanksOperation,
-Programs_file.c: 1 warning, 0 errors
 compiling timers.c...
 compiling tasks.c...
+compiling Programs_file.c...
+utilities.h(15): warning:  #1-D: last line of file ends without a newline
+  extern int int_to_char_1		(int input);
+Programs_file.c(311): warning:  #177-D: variable "receive"  was declared but never referenced
+  	uint8_t receive;
+Programs_file.c(313): warning:  #177-D: variable "timer"  was declared but never referenced
+  	int timer;
+Programs_file.c(374): warning:  #177-D: variable "receive"  was declared but never referenced
+  	uint8_t receive;
+Programs_file.c(436): warning:  #177-D: variable "receive"  was declared but never referenced
+  	uint8_t receive;
+Programs_file.c(532): warning:  #177-D: variable "receive"  was declared but never referenced
+  	uint8_t receive;
+Programs_file.c(624): warning:  #177-D: variable "receive"  was declared but never referenced
+  	uint8_t receive;
+Programs_file.c(666): warning:  #177-D: variable "receive"  was declared but never referenced
+  	uint8_t receive;
+Programs_file.c(720): warning:  #177-D: variable "receive"  was declared but never referenced
+  	uint8_t receive;
+Programs_file.c(766): warning:  #177-D: variable "receive"  was declared but never referenced
+  	uint8_t receive;
+Programs_file.c(837): warning:  #177-D: variable "transmit"  was declared but never referenced
+  	uint8_t transmit;
+Programs_file.c(841): warning:  #177-D: variable "PROGRAM_STARTED"  was declared but never referenced
+  	uint8_t PROGRAM_STARTED = 0;
+Programs_file.c: 12 warnings, 0 errors
 compiling Sensor_file.c...
-Sensor_file.c(210): warning:  #1182-D: a declaration cannot have a label
-  				uint8_t ACTIVE_SENSORS = 0;
-Sensor_file.c(206): warning:  #546-D: transfer of control bypasses initialization of:
-            variable "ACTIVE_SENSORS"  (declared at line 210)
-  		switch ( SENSOR_TASK_STATE ) {
-  		^
-Sensor_file.c(199): warning:  #177-D: variable "SENSOR_ITERATOR"  was declared but never referenced
-  	uint8_t SENSOR_ITERATOR = 0;
-Sensor_file.c: 3 warnings, 0 errors
 linking...
-.\BUILD\CWMW18_Controller_001.axf: error: L6047U: The size of this image (32820 bytes) exceeds the maximum allowed for this version of the linker
-Finished: 0 information, 0 warning, 0 error and 1 fatal error messages.
-".\BUILD\CWMW18_Controller_001.axf" - 1 Error(s), 6 Warning(s).
+Program Size: Code=29472 RO-data=1948 RW-data=1288 ZI-data=17696  
+After Build - User command #1: fromelf --bin -o CWMW18_Controller_001.bin .\BUILD\CWMW18_Controller_001.axf
+".\BUILD\CWMW18_Controller_001.axf" - 0 Error(s), 14 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -77,7 +90,6 @@ Package Vendor: Keil
   C:\Keil_v5\ARM\PACK\Keil\LPC1700_DFP\2.4.0\Device\Include
 
 <h2>Collection of Component Files used:</h2>
-Target not created.
 Build Time Elapsed:  00:00:02
 </pre>
 </body>

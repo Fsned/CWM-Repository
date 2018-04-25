@@ -84,22 +84,21 @@ uint8_t ySetupDigitalI 		( int Port , int Pin);
 
 uint8_t yDigitalWrite			( uint8_t Port , int Pin , uint8_t State );
 
-
 // ****************************************************************************************
 //	Type		: 	NO_RETURN Functions
 //	Example		:	nXxXxX();
 //	Description	:	Does not return anything.
 // ****************************************************************************************
-void nGPIOSetup							( void );
+void nGPIOSetup								( void );
 
-void nInitializePinLibrary	( void );
+void nInitializePinLibrary		( void );
 
-extern void nGPIO_STOP			( void );
+extern void nGPIO_STOP				( void );
 // ****************************************************************************************
 //	Type		: 	VALUE_RETURN Functions
 //	Example		:	vXxXxX();
 //	Description	:	Returns a value, either 1 or 0. no confirmation if successful or not.
 // ****************************************************************************************
-extern uint8_t vDigitalRead( uint8_t Port , int Pin ); 
+extern uint8_t vDigitalRead		( uint8_t Port , int Pin ); 
 
-
+extern uint8_t vGetPinStatus	( uint8_t Port , int Pin );

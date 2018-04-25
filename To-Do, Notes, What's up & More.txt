@@ -16,7 +16,7 @@
  * Opsæt UART protokol
  *----------------------------------------------------------
  *
- * Lær config af ADC
+ * lær config af adc
  * Lær config af PWM
  * 
  * Lær korrekt opsætning og afvikling af tasks m. mutex, sleeping task mm.
@@ -62,5 +62,3 @@
  * 9/3-18:	Revision af kravspec.
  *
 */
-
-

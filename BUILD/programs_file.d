@@ -9,6 +9,9 @@
 .\build\programs_file.o: .\FreeRTOS\include\deprecated_definitions.h
 .\build\programs_file.o: .\FreeRTOS\portable\RVDS\ARM_CM3\portmacro.h
 .\build\programs_file.o: .\FreeRTOS\include\mpu_wrappers.h
+.\build\programs_file.o: .\FreeRTOS\include\queue.h
+.\build\programs_file.o: Sensor_file.h
 .\build\programs_file.o: .\FreeRTOS\include\task.h
 .\build\programs_file.o: .\FreeRTOS\include\list.h
-.\build\programs_file.o: .\FreeRTOS\include\queue.h
+.\build\programs_file.o: UART_control.h
+.\build\programs_file.o: utilities.h

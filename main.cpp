@@ -1,17 +1,35 @@
-#include <lpc17xx.h>
-#include "setup_file.h"
-#include "LED_control.h"
-#include "utilities.h"
-#include "UART_control.h"
-#include "stdio.h"
-#include "systick.h"
-#include "pwm_setup.h"
-#include "GPIO_setup.h"
-#include "ADC_control.h"
-#include "Washing_file.h"
-#include "Sensor_file.h"
+// ==========================================================
+//	Controller software for Jeros A/S' Coarse washing Machines
+//	All copyright
+//
+//	Copyright Notice :
+//
+//	Year of Creation : 2018
+//	Author : Frederik Snedevind , Head of Software Development, Jeros A/S
+//	© :
+//		All rights reserved for Jeros A/S.
+//		No Distribution of this software for other use than
+//		originally intended is allowed. Cannot be used for
+//		any kind of exercises, further development within any
+//    other establishments than Jeros A/S.
+//
+//
+// ==========================================================
 
-#include "FreeRTOSConfig.h"
+
+
+#include <lpc17xx.h>
+#include "utilities.h"
+#include "stdio.h"
+
+
+#include "Programs_file.h"
+#include "LED_control.h"
+#include "GPIO_setup.h"
+#include "Sensor_file.h"
+#include "UART_control.h"
+
+
 #include "FreeRTOS.h"
 #include "task.h"
 #include "queue.h"
@@ -25,29 +43,39 @@ int main()
 {
 	
 	BaseType_t xReturned = pdPASS;
+	
 	SystemInit();                    //Clock and PLL configuration
 //	nGPIOSetup();
 	nUART0_init(9600);
 	
-	while(1) {
-
-		// Create a task.
-		xReturned &= xTaskCreate( tUART_RxTask , "UART Receive"		, 48, NULL, configMAX_PRIORITIES - 1, NULL ); 
-		xReturned &= xTaskCreate( tUART_TxTask , "UART Transmit"	, 48, NULL, configMAX_PRIORITIES - 1, NULL ); 
-//		xReturned &= xTaskCreate( tSensor_Task , "Sensor Task"    , 32, NULL, configMAX_PRIORITIES - 1, NULL );
-//		xReturned &= xTaskCreate(tProgram_Handler,"Program Handler",32, NULL, configMAX_PRIORITIES - 1, NULL );
-//		xReturned &= xTaskCreate( tADC_Task		 , "ADC_Task"				, 32, NULL, configMAX_PRIORITIES - 1, NULL );			// ADC_TASK skal laves om til Sensor_Task, som holder styr på data på samtlige følere, analoge og digitale, samt giver API til at hente disse data.		
-		
-		if (xReturned == pdPASS)
-			xTaskCreate( tLEDAlive 	, 	"LED Alive task"	, 32 , NULL, configMAX_PRIORITIES - 1, &AliveHandle );
-		
-		qUART_RxQ		= xQueueCreate(32 , sizeof(char));
-		qUART_TxQ		= xQueueCreate(32 , sizeof(char));
-		SensorQ			= xQueueCreate(16 , sizeof(uint8_t));
-		
-		// Start FreeRTOS scheduler.
-    vTaskStartScheduler();
-	}
+//		// Create a task.
+//		xReturned &= xTaskCreate( tUART_RxTask , "UART Receive"		, 64, NULL, configMAX_PRIORITIES - 1, NULL ); 
+//		xReturned &= xTaskCreate( tUART_TxTask , "UART Transmit"	, 128, NULL, configMAX_PRIORITIES - 1, NULL ); 
+//		xReturned &= xTaskCreate( tSensor_Task , "Sensor Handler"    , 24, NULL, configMAX_PRIORITIES - 1, NULL );
+//		
+		xReturned &= xTaskCreate(tProgram_Handler,"Program Handler", 128 , NULL, configMAX_PRIORITIES - 1, NULL );
+//////////		
+//		if (xReturned == pdPASS)
+//			xTaskCreate( tLEDAlive 	, 	"LED Alive task"	, 32 , NULL, configMAX_PRIORITIES - 1, &AliveHandle );
+	
+/* *********************************************		
+//
+//									Queues
+//		
+***********************************************/		
+	
+	
+	
+	qUART_RxQ		= xQueueCreate(24 , sizeof(char));
+	qUART_TxQ		= xQueueCreate(24 , sizeof(char));
+	SensorQ			= xQueueCreate(24 , sizeof(uint8_t));
+	
+	ProgramHandlerQ = xQueueCreate(12 , sizeof(uint8_t));
+	ProgramLibrary	= xQueueCreate(12 , sizeof(uint8_t));
+	OperationQ 			= xQueueCreate(12 , sizeof(uint8_t));
+	
+	// Start FreeRTOS scheduler.
+	vTaskStartScheduler();
 }
 
 

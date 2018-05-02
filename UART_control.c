@@ -295,7 +295,7 @@ void nNewLine( uint8_t NumberOfLineSkips ) {
 // 	Returns				:	None	
 //  Input range		: 0:? 
 // *****************************************************************/
-	for (int i = 0; i < NumberOfLineSkips; i++)
+	for (uint8_t i = 0; i < NumberOfLineSkips; i++)
 		nUART_TxString("\r\n");
 }
 
@@ -422,11 +422,8 @@ void nUART_TxString(char ch_s[]) {
 // 	Returns				:	None	
 //  Input range		: None
 // *****************************************************************/
-	int i = 0;
-	while(ch_s[i] != '\0') {
+	for (uint8_t i = 0; ch_s[i] != '\0'; i++)
 		nUART_TxChar(ch_s[i]);
-		i++;
-	}
 }
 
 
@@ -439,10 +436,10 @@ void nTerminalHelp() {
 // *****************************************************************/
 	while(! yUART_RxReady()) {
 		if (xSemaphoreTake(UART0_TxSemaphore , 5)) {
-			nUART_TxString("The following commands are available\n\r");
-			nNewLine( 0 );
+			nUART_TxString("The following commands are available");
+			nNewLine( 1 );
 			
-			for (int i = 1; i < 20 ; i++) {
+			for (uint8_t i = 1; i < 20 ; i++) {
 				nUART_TxString("-> ");
 				nUART_TxString(keyword_strings[i]);
 				nNewLine( 1 );
@@ -679,7 +676,7 @@ void tUART_RxTask( void *param ) {
 								nUART_TxString("Logged in.\r\nWelcome " );
 								nUART_TxString(USERS_NAMES[USERNAME_MATCHED]);
 								nNewLine( 1 );
-								nUART_TxString("Current Permission level : ");
+								nUART_TxString("Current Permission level: ");
 								nUART_TxChar(USER_PERMISSIONS[USERNAME_MATCHED]);
 								xSemaphoreGive( UART0_TxSemaphore );
 							}
@@ -692,7 +689,7 @@ void tUART_RxTask( void *param ) {
 						else {
 							if (xSemaphoreTake(UART0_TxSemaphore, ( TickType_t ) 10 ) == pdTRUE) {
 								nNewLine( 2 );
-								nUART_TxString("Unrecognized user. \r\n");
+								nUART_TxString("Unrecognized user.\r\n");
 								nNewLine( 1 );
 								UART_STATE = UartState_FindUser;
 								OutedStatusMsg = 0;
@@ -792,14 +789,14 @@ void tUART_TxTask( void *param ) {
 			switch(UART_STATE) {
 				case UartState_FindUser :
 					if (xSemaphoreTake(UART0_TxSemaphore, ( TickType_t ) 10 ) == pdTRUE) {
-						nUART_TxString("Enter Username :");
+						nUART_TxString("Enter Username: ");
 						xSemaphoreGive( UART0_TxSemaphore );
 					}
 				break;
 				
 				case UartState_FindPass :
 					if (xSemaphoreTake(UART0_TxSemaphore, ( TickType_t ) 10 ) == pdTRUE) {
-						nUART_TxString("Enter Password :");
+						nUART_TxString("Enter Password: ");
 						xSemaphoreGive( UART0_TxSemaphore );
 					}
 				break;
@@ -840,10 +837,10 @@ uint8_t vFindStringMatch(char InputString[] , uint8_t length) {
 	uint8_t MatchFound = 0;
 	uint8_t KeywordMatched = 0;
 	
-	for (int i = 0; i < NO_OF_KEYWORDS; i++) {
-		MatchFound = 1;
+	for (uint16_t i = 0; i < NO_OF_KEYWORDS; i++) {															// 16 bits iterator allows for max ~65k keywords.
+		MatchFound = 1;																														// 8 bits iterator allows for only 255 different keywords.
 		
-		int Str1Length , Str2Length;
+		uint8_t Str1Length , Str2Length;
 		
 		for ( Str1Length = 0; InputString[Str1Length] 			 != '\0'; Str1Length++);
 		for ( Str2Length = 0; keyword_strings[i][Str2Length] != '\0'; Str2Length++); 
@@ -851,7 +848,7 @@ uint8_t vFindStringMatch(char InputString[] , uint8_t length) {
 		if (Str1Length != Str2Length)
 			continue;
 		
-		for (int n = 0; n < length; n++) {
+		for (uint8_t n = 0; n < length; n++) {
 			if ( (InputString[n] != keyword_strings[i][n]) )
 				MatchFound = 0;
 		}
@@ -873,10 +870,10 @@ uint8_t vCheckUsernames(char InputString[] , uint8_t length) {
 	uint8_t MatchFound = 0;
 	uint8_t UserMatched = 0;
 	
-	for (int i = 1; i < USERS; i++) {
+	for (uint8_t i = 1; i < USERS; i++) {
 		MatchFound = 1;
 		
-		int Str1Length , Str2Length;
+		uint8_t Str1Length , Str2Length;
 		
 		for ( Str1Length = 0; InputString[Str1Length] 		!= '\0'; Str1Length++);
 		for ( Str2Length = 0; USER_LIBRARY[i][Str2Length]	!= '\0'; Str2Length++); 
@@ -884,7 +881,7 @@ uint8_t vCheckUsernames(char InputString[] , uint8_t length) {
 		if (Str1Length != Str2Length)
 			continue;
 		
-		for (int n = 0; n < length; n++) {
+		for (uint8_t n = 0; n < length; n++) {
 			if ( (InputString[n] != USER_LIBRARY[i][n]) )
 				MatchFound = 0;
 		}
@@ -903,7 +900,7 @@ uint8_t vCheckPasscode(char InputString[] , uint8_t length) {
 // *****************************************************************/	
 	uint8_t MatchFound = 1;
 	
-	int Str1Length , Str2Length;
+	uint8_t Str1Length , Str2Length;
 	
 	for ( Str1Length = 0; InputString[Str1Length] 										!= '\0'; Str1Length++);
 	for ( Str2Length = 0; PASS_LIBRARY[USERNAME_MATCHED][Str2Length]	!= '\0'; Str2Length++); 
@@ -912,7 +909,7 @@ uint8_t vCheckPasscode(char InputString[] , uint8_t length) {
 		MatchFound = 0;
 	
 	if (MatchFound) {
-		for (int n = 0; n < length; n++) {
+		for (uint8_t n = 0; n < length; n++) {
 			if ( (InputString[n] != PASS_LIBRARY[USERNAME_MATCHED][n]) )
 				MatchFound = 0;
 		}

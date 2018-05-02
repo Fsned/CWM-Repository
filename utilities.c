@@ -30,7 +30,7 @@
 //
 // ****************************************************************************************
 #include "stdutils.h"
-
+#include "stdio.h"
 
 // ****************************************************************************************
 //
@@ -64,12 +64,12 @@
 // 																Undocumented functions 
 // ****************************************************************************************
 void delay_ms(unsigned int n) {
-	unsigned int o = n*12000*2;
+	uint32_t o = n*12000*2;
 	while(--o);
 }
 
 void delay_us(unsigned int n) {
-	unsigned int o = n*12*2;
+	unsigned  o = n*12*2;
 	while(--o);
 }
 
@@ -83,7 +83,7 @@ void delay_us(unsigned int n) {
 
 int int_to_char_1000(int input) {
 	
-	int output = 0;
+	uint8_t output = 0;
 	while(input >= 1000) {
 		input -= 1;
 		output += 1;
@@ -92,7 +92,7 @@ int int_to_char_1000(int input) {
 }
 
 int int_to_char_100(int input) {
-	int output = 0;
+	uint8_t output = 0;
 	while(input >= 100) {
 		input -= 1;
 		output += 1;
@@ -101,7 +101,7 @@ int int_to_char_100(int input) {
 }
 
 int int_to_char_10(int input) {
-	int output = 0;
+	uint8_t output = 0;
 	while(input >= 10) {
 		input -= 1;
 		output += 1;
@@ -110,7 +110,7 @@ int int_to_char_10(int input) {
 }
 
 int int_to_char_1(int input) {
-	int output = 0;
+	uint8_t output = 0;
 	while(input >= 1) {
 		input -= 1;
 		output += 1;

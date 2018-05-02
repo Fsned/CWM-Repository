@@ -69,7 +69,7 @@ void delay_ms(unsigned int n) {
 }
 
 void delay_us(unsigned int n) {
-	unsigned int o = n*12*2;
+	unsigned  o = n*12*2;
 	while(--o);
 }
 

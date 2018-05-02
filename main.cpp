@@ -22,7 +22,6 @@
 #include "utilities.h"
 #include "stdio.h"
 
-
 #include "Programs_file.h"
 #include "LED_control.h"
 #include "GPIO_setup.h"
@@ -48,16 +47,16 @@ int main()
 	SystemInit();                    //Clock and PLL configuration
 	
 	// Setup various GPIO, LEDS, Wavegen inputs
-	nGPIOSetup();
+//	nGPIOSetup();
 	
 	// Initialize the UART Channel 0 to 9600 baud
 	nUART0_init(9600);
 	
 //		// Create a task.
-//		xReturned &= xTaskCreate( tUART_RxTask , "UART Receive"		, 128, NULL, configMAX_PRIORITIES - 1, NULL );				// Task to Receive input from the terminal, and process it in the program
-//		xReturned &= xTaskCreate( tUART_TxTask , "UART Transmit"	, 128, NULL, configMAX_PRIORITIES - 1, NULL ); 			// Task to transmit response and info to the terminal to assist and validate the user
+		xReturned &= xTaskCreate( tUART_RxTask , "UART Receive"		, 256, NULL, configMAX_PRIORITIES - 1, NULL );				// Task to Receive input from the terminal, and process it in the program
+		xReturned &= xTaskCreate( tUART_TxTask , "UART Transmit"	, 256, NULL, configMAX_PRIORITIES - 1, NULL ); 			// Task to transmit response and info to the terminal to assist and validate the user
 //		xReturned &= xTaskCreate( tSensor_Task , "Sensor Handler"    , 24, NULL, configMAX_PRIORITIES - 1, NULL );		// Task to setup, control and collect data from sensors
-		xReturned &= xTaskCreate(tProgram_Handler,"Program Handler", 128 , NULL, configMAX_PRIORITIES - 1, NULL );		// Task to execute programs
+//		xReturned &= xTaskCreate(tProgram_Handler,"Program Handler", 128 , NULL, configMAX_PRIORITIES - 1, NULL );		// Task to execute programs
 ////////		
 //		if (xReturned == pdPASS)
 //			xTaskCreate( tLEDAlive 	, 	"LED Alive task"	, 32 , NULL, configMAX_PRIORITIES - 1, &AliveHandle );
@@ -112,14 +111,14 @@ int main()
 void vApplicationMallocFailedHook( void )
 {
     taskDISABLE_INTERRUPTS();
-
-    for( ;; )
-    {
-        nLED_SET(LED_DONT_CARE,LED_DONT_CARE,LED_DONT_CARE,1);
-        delay_ms(1000);
-        nLED_SET(LED_DONT_CARE,LED_DONT_CARE,LED_DONT_CARE,0);
-        delay_ms(1000);
-    }
+		nTerminal_LED_ALL_ON();
+//    for( ;; )
+//    {
+//        nLED_SET(LED_DONT_CARE,LED_DONT_CARE,LED_DONT_CARE,1);
+//        delay_ms(1000);
+//        nLED_SET(LED_DONT_CARE,LED_DONT_CARE,LED_DONT_CARE,0);
+//        delay_ms(1000);
+//    }
 }
 #endif
 
@@ -130,14 +129,15 @@ void vApplicationStackOverflowHook( TaskHandle_t pxTask, char *pcTaskName )
     ( void ) pxTask;
 
     taskDISABLE_INTERRUPTS();
-
-    for( ;; )
-    {
-        nLED_SET(LED_DONT_CARE,LED_DONT_CARE,LED_DONT_CARE,1);
-        delay_ms(500);
-        nLED_SET(LED_DONT_CARE,LED_DONT_CARE,LED_DONT_CARE,0);
-        delay_ms(500);
-    }
+		nTerminal_LED_ALL_ON();
+//	
+//    for( ;; )
+//    {
+//        nLED_SET(LED_DONT_CARE,LED_DONT_CARE,LED_DONT_CARE,1);
+//        delay_ms(500);
+//        nLED_SET(LED_DONT_CARE,LED_DONT_CARE,LED_DONT_CARE,0);
+//        delay_ms(500);
+//    }
 }
 #endif
 

@@ -53,7 +53,7 @@ xQueueHandle ProgramHandlerQ	= NULL;
 const uint8_t SENSORSKIP = 1;
 const uint8_t TIMERSKIP = 1;
 
-uint8_t CurrentProgram = 0;
+uint8_t CurrentProgram = 0;																						// 0 == No Program Selected.
 				// 																Operation Timer Library
 				//														 		P1		P1		P2		P2		P3		P3
 				//														 		STD		 			STD		 			STD
@@ -170,9 +170,7 @@ void nWashProgram_2() {
 //  Input range		: None
 // *****************************************************************/
 	uint8_t transmit;
-	
-	nTerminalClear();
-	uint8_t Program_2_Recipe[10] = {PROGRAM_2,
+	uint8_t Program_2_Recipe[] = {PROGRAM_2,
 																	CHECK_WATER_LEVEL,
 																	CHECK_SOAP,
 																	CHECK_WASH_TEMPERATURE,
@@ -180,18 +178,7 @@ void nWashProgram_2() {
 																	RUN_WAIT,
 																	CHECK_RINSE_TEMPERATURE,
 																	RUN_RINSE,
-																	END_PROGRAM};	
-	/*
-	uint8_t Program_2_Recipe[10] = {PROGRAM_2,
-																	CHECK_WATER_LEVEL,
-																	CHECK_SOAP,
-																	CHECK_WASH_TEMPERATURE,
-																	RUN_WASH,
-																	RUN_WAIT,
-																	CHECK_RINSE_TEMPERATURE,
-																	RUN_RINSE,
-																	END_PROGRAM};																
-		*/															
+																	END_PROGRAM};								
 																	
 	int TotalRuntime;
 																	
@@ -222,11 +209,12 @@ void nWashProgram_2() {
 	if (TotalRuntime_Hundreds || TotalRuntime_Tens)
 		nUART_TxChar(TotalRuntime_Tens + '0');
   nUART_TxChar(TotalRuntime_Ones + '0');																
-	nUART_TxString(" Seconds.\r\n");
+	nUART_TxString(" Seconds.");
+	nNewLine( 1 );
 	
 																	
 	if (! uxQueueMessagesWaiting(ProgramLibrary)) {
-		for (unsigned int i = 0; i < (sizeof(Program_2_Recipe) / sizeof(Program_2_Recipe[0])); i++) {
+		for (uint8_t i = 0; i < (sizeof(Program_2_Recipe) / sizeof(Program_2_Recipe[0])); i++) {
 			transmit = Program_2_Recipe[i];
 			xQueueSend(ProgramLibrary , &transmit , 10);
 		}
@@ -234,9 +222,10 @@ void nWashProgram_2() {
 		transmit = START_PROGRAM;
 		xQueueSend(ProgramHandlerQ , &transmit , 10);
 		
-		nUART_TxString("WASH PROGRAM 2: Completed Initialization. \r\n");
+		nUART_TxString("WASH PROGRAM 2: Completed Initialization.");
+		nNewLine( 1 );
 	}
-	vTaskDelay(10);
+//	vTaskDelay(10);
 }
 
 
@@ -289,11 +278,9 @@ void nFillTanksOperation() {
 			If anything mishaps, put down all pumps and return an error code to the error handler
 */	
 	uint8_t transmit;
- 
-	
-//	int timer;
-	
-	nUART_TxString("\r\n\r\nStarted CHECK_WATER_LEVEL. \r\n");
+	nNewLine( 2 );
+	nUART_TxString("Started CHECK_WATER_LEVEL.");
+	nNewLine( 1 );
 	
 // =============================================================================
 		
@@ -334,7 +321,8 @@ void nFillTanksOperation() {
 		xQueueSend(ProgramHandlerQ , &transmit , 10);
 	}
 	
-	nUART_TxString("Ended CHECK_WATER_LEVEL. \r\n");
+	nUART_TxString("Ended CHECK_WATER_LEVEL.");
+	nNewLine( 1 );
 }
 
 void nFillSoapOperation () {
@@ -353,8 +341,9 @@ void nFillSoapOperation () {
 	*/
 	uint8_t transmit;
  
-	
-	nUART_TxString("\r\n\r\nStarted CHECK_SOAP Operation. \r\n");
+	nNewLine( 2 );
+	nUART_TxString("Started CHECK_SOAP Operation.");
+	nNewLine( 1 );
 // ==========================================================================================================	
 	while (vGetSensorData(SOAP_SENSOR) < 0.95 * SOAP_LEVEL && ! SENSORSKIP) {
 		ySetHWStatus(SOAP_PUMP , HARDWARE_ACTIVE);
@@ -386,7 +375,8 @@ void nFillSoapOperation () {
 	
 // ==========================================================================================================
 	
-	nUART_TxString("Ended CHECK_SOAP. \r\n");
+	nUART_TxString("Ended CHECK_SOAP.");
+	nNewLine( 1 );
 	
 	if (SENSORSKIP) {
 		transmit = OPERATION_ENDED;
@@ -424,12 +414,16 @@ void nWashOperation		 () {
 	
 	uint8_t Reversal_Direction = 0;			// Either 0 for towards the user (forwards) or 1 for towards the back of the machine (backwards).
 	
-	nUART_TxString("\r\n\r\nStarted RUN_WASH Operation. \r\n");
+	nNewLine( 2 );
+	nUART_TxString("Started RUN_WASH Operation.");
+	
+	nNewLine( 1 );
 	nUART_TxString("Operation Runtime: ");
 	if (int_to_char_100(ProgramTimerLibrary[RUN_WASH][CurrentProgram])) nUART_TxChar(int_to_char_100(ProgramTimerLibrary[RUN_WASH][CurrentProgram]) + '0');
 	nUART_TxChar(int_to_char_10	(ProgramTimerLibrary[RUN_WASH][CurrentProgram]) + '0');
 	nUART_TxChar(int_to_char_1	(ProgramTimerLibrary[RUN_WASH][CurrentProgram]) + '0');
-	nUART_TxString(" Seconds.\r\n");
+	nUART_TxString(" Seconds.");
+	nNewLine( 1 );
 	
 	while ( timer && ! TIMERSKIP) {
 		
@@ -489,7 +483,8 @@ void nWashOperation		 () {
 		xQueueSend( ProgramHandlerQ , &transmit , 10 );
 	}
 	
-	nUART_TxString("Ended RUN WASH Operation.\r\n");
+	nUART_TxString("Ended RUN WASH Operation.");
+	nNewLine( 1 );
 }
 
 
@@ -519,12 +514,16 @@ void nRinseOperation	 () {
 	
 	uint8_t Reversal_Direction = 0;
 	
-	nUART_TxString("\r\n\r\nStarted RUN_RINSE Operation. \r\n");
+	nNewLine( 2 );
+	nUART_TxString("Started RUN_RINSE Operation.");
+	nNewLine( 1 );
 	nUART_TxString("Operation Runtime: ");
+	
 	if (int_to_char_100(ProgramTimerLibrary[RUN_RINSE][CurrentProgram])) nUART_TxChar(int_to_char_100(ProgramTimerLibrary[RUN_RINSE][CurrentProgram]) + '0');
 	nUART_TxChar(int_to_char_10	(ProgramTimerLibrary[RUN_RINSE][CurrentProgram]) + '0');
 	nUART_TxChar(int_to_char_1	(ProgramTimerLibrary[RUN_RINSE][CurrentProgram]) + '0');
-	nUART_TxString(" Seconds.\r\n");
+	nUART_TxString(" Seconds.");
+	nNewLine( 1 );
 
 	while ( timer && ! TIMERSKIP) {
 		
@@ -581,7 +580,8 @@ void nRinseOperation	 () {
 		}
 	}
 	
-	nUART_TxString("Ended RUN RINSE Operation.\r\n");
+	nUART_TxString("Ended RUN RINSE Operation.");
+	nNewLine( 1 );
 	
 	if (TIMERSKIP) {
 		transmit = OPERATION_ENDED;
@@ -603,13 +603,15 @@ void nWaitOperation		 () {
 	int timer = ProgramTimerLibrary[RUN_WAIT][CurrentProgram] * 1000;
 	uint8_t transmit;
  
-	
-	nUART_TxString("\r\n\r\nStarted WAIT Operation. \r\n");
+	nNewLine( 1 );
+	nUART_TxString("Started WAIT Operation.");
+	nNewLine( 1 );
 	nUART_TxString("Operation Runtime: ");
 	if (int_to_char_100(ProgramTimerLibrary[RUN_WAIT][CurrentProgram])) nUART_TxChar(int_to_char_100(ProgramTimerLibrary[RUN_WAIT][CurrentProgram]) + '0');
   nUART_TxChar(int_to_char_10	(ProgramTimerLibrary[RUN_WAIT][CurrentProgram]) + '0');
 	nUART_TxChar(int_to_char_1	(ProgramTimerLibrary[RUN_WAIT][CurrentProgram]) + '0');
-	nUART_TxString(" Seconds.\r\n");
+	nUART_TxString(" Seconds.");
+	nNewLine( 1 );
 		
 	while ( timer && ! TIMERSKIP) {
 		
@@ -622,7 +624,8 @@ void nWaitOperation		 () {
 		}
 	}
 	
-	nUART_TxString("Ended WAIT Operation. \r\n");
+	nUART_TxString("Ended WAIT Operation.");
+	nNewLine( 1 );
 	
 	if (TIMERSKIP) {
 		transmit = OPERATION_ENDED;
@@ -644,8 +647,6 @@ void nFillSoftenerOperation () {
 			indisputably precise.
 	*/
 	uint8_t transmit;
- 
-//	int timer = ProgramTimerLibrary[CHECK_SOFTENER][CurrentProgram];
 	
 	const uint8_t NOT_INIT 	= 0;
 	const uint8_t FILLING 	= 1;
@@ -653,7 +654,9 @@ void nFillSoftenerOperation () {
 	
 	uint8_t SoftenerPumpState = NOT_INIT;
 	
-	nUART_TxString("\r\n\r\nStarted CHECK_SOFTENER Operation. \r\n");
+	nNewLine( 2 );
+	nUART_TxString("Started CHECK_SOFTENER Operation.");
+	nNewLine( 1 );
 	
 	while (vGetSensorData(SOFTENER_SENSOR) < SOFTENER_LEVEL && ! SENSORSKIP) {
 		if ( vGetSensorData(SOFTENER_SENSOR) < (1 - ( SOFTENER_DEVIATION / 100)) * SOFTENER_LEVEL && (SoftenerPumpState == FALLING || SoftenerPumpState == NOT_INIT)) {
@@ -675,7 +678,8 @@ void nFillSoftenerOperation () {
 			break;
 		}
 		
-		nUART_TxString("Stopped nFillSoftenerOperation.\r\n");
+		nUART_TxString("Stopped nFillSoftenerOperation.");
+		nNewLine( 1 );
 		vTaskDelay(100);
 	}
 	
@@ -706,8 +710,10 @@ void nCheckWashTemperature	() {
 	
 	uint8_t WashHeatingState = NOT_INIT;
 	
+	nNewLine( 2 );
+	nUART_TxString("Started CHECK WASH TEMPERATURE.");
+	nNewLine( 1 );
 	
-	nUART_TxString("\r\n\r\nStarted CHECK WASH TEMPERATURE. \r\n");
 	while ( vGetSensorData(WASHING_TEMPERATURE) < WASHING_TEMPERATURE && ! SENSORSKIP) {
 		
 		if (vGetSensorData(WASHING_TEMPERATURE) < (1 - (TEMPERATURE_DEVIATION / 100)) * WASHING_TEMPERATURE && (WashHeatingState == COOLING || WashHeatingState == NOT_INIT)) {
@@ -732,7 +738,8 @@ void nCheckWashTemperature	() {
 		xQueueSend( ProgramHandlerQ , &transmit , 10 );
 	}
 	
-	nUART_TxString("Ended CHECK WASH TEMPERATURE. \r\n");
+	nUART_TxString("Ended CHECK WASH TEMPERATURE.");
+	nNewLine( 1 );
 	
 }
 
@@ -752,7 +759,10 @@ void nCheckRinseTemperature	() {
 	
 	uint8_t RinseHeatingState = NOT_INIT;
 	
-	nUART_TxString("\r\n\r\nStarted CHECK RINSE TEMPERATURE. \r\n");
+	nNewLine( 2 );
+	nUART_TxString("Started CHECK RINSE TEMPERATURE.");
+	nNewLine( 1 );
+	
 	while ( vGetSensorData(RINSING_TEMPERATURE) < RINSING_TEMPERATURE) {
 		
 		if (vGetSensorData(RINSING_TEMPERATURE) < (1 - (TEMPERATURE_DEVIATION / 100)) * RINSING_TEMPERATURE && (RinseHeatingState == COOLING || RinseHeatingState == NOT_INIT)) {
@@ -778,7 +788,8 @@ void nCheckRinseTemperature	() {
 		xQueueSend( ProgramHandlerQ , &transmit , 10 );
 	}
 	
-	nUART_TxString("Ended CHECK RINSE TEMPERATURE. \r\n");	
+	nUART_TxString("Ended CHECK RINSE TEMPERATURE.");	
+	nNewLine( 1 );
 }
 
 
@@ -819,10 +830,6 @@ void tProgram_Handler		( void *param ) {
 	uint8_t	ProgramHandlerState = IDLE;
 	uint8_t OutedMsg = 0;
 //	uint8_t PROGRAM_STARTED = 0;
-	
-	
-	
-	
 	while(1) {
 		// The program Handler makes sure each operation for every wash program is executed.
 		// The Program Handler can be in 3 states:
@@ -900,12 +907,14 @@ void tProgram_Handler		( void *param ) {
 						case END_PROGRAM:
 							ProgramHandlerState = IDLE;
 							CurrentProgram = 0;
-							nUART_TxString("\r\nEnded Program Successfully.\r\n\r\n");
+							nNewLine( 1 );
+							nUART_TxString("Ended Program Successfully.");
+							nNewLine( 2 );
 						break;
 						
 						default:
 //							nUART_TxString("Didn't Understand Input to ProgramLibrary. \r\n");
-							break;
+						break;
 					}
 				}
 			break;
@@ -924,9 +933,10 @@ void tProgram_Handler		( void *param ) {
 			}
 			break;
 			
+			
 			default :
 				
-				break;
+			break;
 		}
 		vTaskDelay(10);
 	}

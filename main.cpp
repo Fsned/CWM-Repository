@@ -52,16 +52,16 @@ int main()
 	
 	// Initialize the UART Channel 0 to 9600 baud
 	nUART0_init(9600);
-	
+	// If compiling Rx and Tx Tasks, LED ALIVE task must also be compiled.
 //		// Create a task.
-//		xReturned &= xTaskCreate( tUART_RxTask , "UART Receive"		, 128, NULL, configMAX_PRIORITIES - 1, NULL );				// Task to Receive input from the terminal, and process it in the program
-//		xReturned &= xTaskCreate( tUART_TxTask , "UART Transmit"	, 128, NULL, configMAX_PRIORITIES - 1, NULL ); 			// Task to transmit response and info to the terminal to assist and validate the user
+		xReturned &= xTaskCreate( tUART_RxTask , "UART Receive"		, 128, NULL, configMAX_PRIORITIES - 1, NULL );				// Task to Receive input from the terminal, and process it in the program
+		xReturned &= xTaskCreate( tUART_TxTask , "UART Transmit"	, 128, NULL, configMAX_PRIORITIES - 1, NULL ); 			// Task to transmit response and info to the terminal to assist and validate the user
 //		xReturned &= xTaskCreate( tSensor_Task , "Sensor Handler"    , 24, NULL, configMAX_PRIORITIES - 1, NULL );		// Task to setup, control and collect data from sensors
-		xReturned &= xTaskCreate(tProgram_Handler,"Program Handler", 128 , NULL, configMAX_PRIORITIES - 1, NULL );		// Task to execute programs
+//		xReturned &= xTaskCreate(tProgram_Handler,"Program Handler", 128 , NULL, configMAX_PRIORITIES - 1, NULL );		// Task to execute programs
 ////////		
 //		if (xReturned == pdPASS)
 //			xTaskCreate( tLEDAlive 	, 	"LED Alive task"	, 32 , NULL, configMAX_PRIORITIES - 1, &AliveHandle );
-	
+		
 /* *********************************************		
 //
 //									Queues

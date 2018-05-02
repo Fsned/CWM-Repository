@@ -62,7 +62,7 @@ uint8_t ProgramTimerLibrary[16][6] = {	{	10	,	10	,	10	,	10	,	10	,	10	}, 	// 0 Ri
 																				{	10	,	10	,	10	,	10	,	10	,	10	},	// 1 Washing Operation
 																				{	10	,	10	,	10	,	10	,	10	,	10	},	// 2 Softener Operation
 																				{	10	,	10	,	10	,	10	,	10	,	10	},	// 3 
-																				{	10	,	10	,	10	,	10	,	10	,	10	},	// 4
+																				{	10	,	10	,	10	,	10	,	10	,	10	},	// 4 
 																				{	10	,	10	,	10	,	10	,	10	,	10	},	// 5
 																				{	10	,	10	,	10	,	10	,	10	,	10	},	// 6
 																				{	10	,	10	,	10	,	10	,	10	,	10	},	// 7 
@@ -122,7 +122,7 @@ uint8_t ySetHWStatus ( uint8_t HardwareHandle , uint8_t NewStatus) {
 //	Functionality :	Set Hardware status to a desired value, if it's not in failure or alarm mode.
 // 	Returns				:	true or false. if hw is in failure or alarm mode, returns false, otherwise true	
 //  Input range		: 0 - NUMBER_OF_HW - 1 , 0 - 3
-// *****************************************************************/		
+// *****************************************************************/
 	if (HardwareLibrary[HardwareHandle][0] != HARDWARE_ALARM && HardwareLibrary[HardwareHandle][0] != HARDWARE_FAILURE) {
 		HardwareLibrary[HardwareHandle][0] = NewStatus;
 		return 1;
@@ -815,7 +815,6 @@ void tProgram_Handler		( void *param ) {
 // ********************************************************************************************************/
 	
 	uint8_t receive;
-//	uint8_t transmit;
 	
 	uint8_t	ProgramHandlerState = IDLE;
 	uint8_t OutedMsg = 0;
@@ -901,11 +900,11 @@ void tProgram_Handler		( void *param ) {
 						case END_PROGRAM:
 							ProgramHandlerState = IDLE;
 							CurrentProgram = 0;
-							nUART_TxString("\r\nEnded Program Successfully. \r\n \r\n");
+							nUART_TxString("\r\nEnded Program Successfully.\r\n\r\n");
 						break;
 						
 						default:
-							nUART_TxString("Didn't Understand Input to ProgramLibrary. \r\n");
+//							nUART_TxString("Didn't Understand Input to ProgramLibrary. \r\n");
 							break;
 					}
 				}
@@ -917,13 +916,16 @@ void tProgram_Handler		( void *param ) {
 					case OPERATION_ENDED:
 						ProgramHandlerState = READY;
 					break;
+					
 					default:
-						break;
+					
+					break;
 				}
 			}
 			break;
 			
 			default :
+				
 				break;
 		}
 		vTaskDelay(10);

@@ -92,13 +92,13 @@ void nLED_SET(uint8_t led_0 , uint8_t led_1, uint8_t led_2, uint8_t led_3) {
 		LED_status[3] = led_3;
 	
 	
-	LPC_GPIO1->FIOSET |= (led_0 << 18);
+	LPC_GPIO1->FIOSET |= (LED_status[0] << 18);
 	led_delay_ms(1);
-	LPC_GPIO1->FIOSET |= (led_1 << 20);
+	LPC_GPIO1->FIOSET |= (LED_status[1] << 20);
 	led_delay_ms(1);
-	LPC_GPIO1->FIOSET |= (led_2 << 21);
+	LPC_GPIO1->FIOSET |= (LED_status[2] << 21);
 	led_delay_ms(1);
-	LPC_GPIO1->FIOSET |= (led_3 << 23);
+	LPC_GPIO1->FIOSET |= (LED_status[3] << 23);
 	led_delay_ms(1);
 }
 // ***** End of Function ********************************************

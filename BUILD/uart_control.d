@@ -1,6 +1,5 @@
 .\build\uart_control.o: UART_control.c
 .\build\uart_control.o: mbed_config.h
-.\build\uart_control.o: stdutils.h
 .\build\uart_control.o: mbed/TARGET_LPC1768/TARGET_NXP/TARGET_LPC176X/device/lpc17xx.h
 .\build\uart_control.o: mbed/TARGET_LPC1768/core_cm3.h
 .\build\uart_control.o: mbed/TARGET_LPC1768/cmsis_version.h
@@ -8,7 +7,7 @@
 .\build\uart_control.o: mbed/TARGET_LPC1768/cmsis_armcc.h
 .\build\uart_control.o: mbed/TARGET_LPC1768/mpu_armv7.h
 .\build\uart_control.o: mbed/TARGET_LPC1768/TARGET_NXP/TARGET_LPC176X/device/system_LPC17xx.h
-.\build\uart_control.o: UART_control.h
+.\build\uart_control.o: stdutils.h
 .\build\uart_control.o: .\FreeRTOS\include\FreeRTOS.h
 .\build\uart_control.o: .\FreeRTOS\FreeRTOSConfig.h
 .\build\uart_control.o: .\FreeRTOS\include\projdefs.h
@@ -16,11 +15,12 @@
 .\build\uart_control.o: .\FreeRTOS\include\deprecated_definitions.h
 .\build\uart_control.o: .\FreeRTOS\portable\RVDS\ARM_CM3\portmacro.h
 .\build\uart_control.o: .\FreeRTOS\include\mpu_wrappers.h
-.\build\uart_control.o: .\FreeRTOS\include\queue.h
-.\build\uart_control.o: LED_control.h
 .\build\uart_control.o: .\FreeRTOS\include\task.h
 .\build\uart_control.o: .\FreeRTOS\include\list.h
+.\build\uart_control.o: .\FreeRTOS\include\queue.h
+.\build\uart_control.o: .\FreeRTOS\include\semphr.h
+.\build\uart_control.o: UART_control.h
+.\build\uart_control.o: LED_control.h
 .\build\uart_control.o: GPIO_setup.h
 .\build\uart_control.o: Programs_file.h
 .\build\uart_control.o: Sensor_file.h
-.\build\uart_control.o: .\FreeRTOS\include\semphr.h

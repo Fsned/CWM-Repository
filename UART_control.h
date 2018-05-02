@@ -175,8 +175,6 @@ extern void nPinFlip_2 						( void );
 
 extern void nADC_Status 					( void );
 
-extern void nStartWash						( void );
-
 extern void nGetAlive							( void );
 
 // ****************************************************************************************

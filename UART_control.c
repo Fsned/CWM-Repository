@@ -26,8 +26,13 @@
 //					Libraries
 //
 // ****************************************************************************************
-#include "stdutils.h"
 #include "lpc17xx.h"
+#include "stdutils.h"
+
+#include "FreeRTOS.h"
+#include "task.h"
+#include "queue.h"
+#include "semphr.h"
 
 #include "UART_control.h"
 #include "LED_control.h"
@@ -35,10 +40,7 @@
 #include "Programs_file.h"
 #include "Sensor_file.h"
 
-#include "FreeRTOS.h"
-#include "task.h"
-#include "queue.h"
-#include "semphr.h"
+
 
 // ****************************************************************************************
 //
@@ -71,54 +73,44 @@ char branch_string[20] = {"Sandbox"};
 char keyword_strings[NO_OF_KEYWORDS][12] 	 = {{" "},									// F0
 																							{"Help"},								// F1
 																							{"HELP"},								// F2
-																							{"LED1"},								// F3
-																							{"LED2"},								// F4
-																							{"LED3"},								// F5
-																							{"LED4"},								// F6
-																							{"LEDOFF"},							// F7
-																							{"LEDALL"},							// F8
-																							{"status"},							// F9
-																							{"clear"},							// F10
-																							{"wash2"},							// F11
-																							{"setuppin1"},					// F12
-																							{"setuppin2"},					// F13
-																							{"pf1"},								// F14
-																							{"pf2"},								// F15
-																							{"ADC"},								// F16
-																							{"alive"},							// F17
-																							{"logout"},							// F18
-																							{"startwash"},					// F19
-																							{"stop"},								// F20
-																							{"help"},								// F21
-																							{"sensordata"},					// F22
-																							{"alive stop"},					// F23
-																							{"alive start"}};				// F24
+																							{"LEDOFF"},							// F3
+																							{"LEDALL"},							// F4
+																							{"status"},							// F5
+																							{"clear"},							// F6
+																							{"wash2"},							// F7
+																							{"setuppin1"},					// F8
+																							{"setuppin2"},					// F9
+																							{"pf1"},								// F10
+																							{"pf2"},								// F11
+																							{"ADC"},								// F12
+																							{"uptime"},							// F13
+																							{"logout"},							// F14
+																							{"stop"},								// F15
+																							{"help"},								// F16
+																							{"sensordata"},					// F17
+																							{"alive stop"},					// F18
+																							{"alive start"}};				// F19
 
 void (*keyword_functions[NO_OF_KEYWORDS])() = {nTerminalUndefined, 		// F0
 																							 nTerminalHelp  	 	, 	// F1
 																							 nTerminalHelp 		 	, 	// F2
-																							 nTerminal_LED_1_ON 	, // F3
-																							 nTerminal_LED_2_ON 	, // F4
-																							 nTerminal_LED_3_ON 	, // F5
-																							 nTerminal_LED_4_ON  , 	// F6
-																							 nTerminal_LED_OFF		, // F7
-																							 nTerminal_LED_ALL_ON, 	// F8
-																							 nTerminalStatus		, 	// F9
-																							 nTerminalClear		 	, 	// F10
-																							 nWashProgram_2 	  , 	// F11
-																							 nPinSetup_1 	, 				// F12
-																							 nPinSetup_2	, 				// F13
-																							 nPinFlip_1	, 					// F14
-																							 nPinFlip_2 	, 				// F15
-																							 nADC_Status 	, 				// F16
-																							 nPrintAlive					, // F17
-																							 nTerminalLogout	, 		// F18
-																							 nStartWash ,						// F19						// This should be undefined function. 19 is always returned if no function could be found. either change it in the FindKeyword? function or put undefined function here
-																							 nGPIO_STOP,						// F20
-																							 nTerminalHelp,					// F21
-																							 nSensorData,						// F22
-																							 nAliveSuspend,					// F23
-																							 nAliveResume};					// F24
+																							 nTerminal_LED_OFF		, // F3
+																							 nTerminal_LED_ALL_ON, 	// F4
+																							 nTerminalStatus		, 	// F5
+																							 nTerminalClear		 	, 	// F6
+																							 nWashProgram_2 	  , 	// F7
+																							 nPinSetup_1 	, 				// F8
+																							 nPinSetup_2	, 				// F9
+																							 nPinFlip_1	, 					// F10
+																							 nPinFlip_2 	, 				// F11
+																							 nADC_Status 	, 				// F12
+																							 nPrintAlive					, // F13
+																							 nTerminalLogout	, 		// F14
+																							 nGPIO_STOP,						// F15
+																							 nTerminalHelp,					// F16
+																							 nSensorData,						// F17
+																							 nAliveSuspend,					// F18
+																							 nAliveResume};					// F19
 
 																							 
 // ****************************************************************************************
@@ -164,8 +156,11 @@ uint8_t yUART_RxReady( void ) {
 // 	Returns				:	1 after a while. Should have a timeout timer as well, to avoid infinite loops in failure conditions	
 //  Input range		: None
 // *****************************************************************/		
+	uint8_t ret_val = 0;
 	if (LPC_UART0->LSR & 0x1)
-		return 1;
+		ret_val = 1;
+	
+	return ret_val;
 }
 
 // ****************************************************************************************
@@ -182,12 +177,12 @@ void nGetAlive() {
 // *****************************************************************/
 	if (xSemaphoreTake(UART0_TxSemaphore , 5)) {
 		nNewLine( 1 );
-		nUART_TxString("Current alive time : ");
-		if (alive_thousands > 0)
+		nUART_TxString("Current alive time: ");
+		if ( alive_thousands )
 			nUART_TxChar(alive_thousands + '0');
-		if (alive_hundreds > 0)
+		if ( alive_hundreds || alive_thousands )
 			nUART_TxChar(alive_hundreds + '0');
-		if (alive_tens > 0)
+		if ( alive_tens || alive_hundreds || alive_thousands )
 			nUART_TxChar(alive_tens + '0');
 		nUART_TxChar(alive_ones + '0');
 		
@@ -195,26 +190,6 @@ void nGetAlive() {
 		
 		xSemaphoreGive(UART0_TxSemaphore);
 	}
-}
-
-void nStartWash() {
-/* ******************************************************************
-//	Function name : nStartWash
-//	Functionality :	Set 8 Pins high, useful for debugging
-// 	Returns				:	None	
-//  Input range		: None
-// *****************************************************************/
-	yDigitalWrite( PORT_0 , PIN_9 , HIGH);	// P5
-	yDigitalWrite( PORT_0 , PIN_8 , HIGH);	// P6
-	yDigitalWrite( PORT_0 , PIN_7 , HIGH);	// P7
-	yDigitalWrite( PORT_0 , PIN_6 , HIGH);	// P8
-	yDigitalWrite( PORT_0 , PIN_0 , HIGH);	// P9
-	yDigitalWrite( PORT_0 , PIN_1 , HIGH);	// P10
-	yDigitalWrite( PORT_0 , PIN_18, HIGH);	// P11
-	yDigitalWrite( PORT_0 , PIN_17, HIGH);	// P12 
-	
-	nUART_TxString("Started wash\r\n");
-	
 }
 
 
@@ -226,7 +201,7 @@ void nADC_Status() {
 //  Input range		: None
 // *****************************************************************/	
 	if (xSemaphoreTake(UART0_TxSemaphore , 5)) {
-		nUART_TxString("Analog Inputs \r\n");
+		nUART_TxString("Analog Inputs\r\n");
 		for (uint8_t i = 0; i < ANALOG_SENSORS_END; i++) {
 			nUART_TxString("Pin ");
 			nUART_TxChar(i + '0');
@@ -237,7 +212,7 @@ void nADC_Status() {
 				nUART_TxString("Active");
 			else if (vGetSensorStatus(i) == SENSOR_PAUSED)
 				nUART_TxString("Paused");
-			nUART_TxString("\r\n");
+			nNewLine( 1 );
 		}
 		
 		xSemaphoreGive(UART0_TxSemaphore);
@@ -462,18 +437,30 @@ void nTerminalHelp() {
 // 	Returns				:	None, but prints stuff to UART
 //  Input range		: None
 // *****************************************************************/
-	if (xSemaphoreTake(UART0_TxSemaphore , 5)) {
-		nUART_TxString("The following commands are available\n\r");
-		nNewLine( 0 );
-		
-		for (int i = 0; i < NO_OF_KEYWORDS; i++) {
-			nUART_TxString("-> ");
-			nUART_TxString(keyword_strings[i]);
-			nNewLine( 1 );
+	while(! yUART_RxReady()) {
+		if (xSemaphoreTake(UART0_TxSemaphore , 5)) {
+			nUART_TxString("The following commands are available\n\r");
+			nNewLine( 0 );
+			
+			for (int i = 1; i < 20 ; i++) {
+				nUART_TxString("-> ");
+				nUART_TxString(keyword_strings[i]);
+				nNewLine( 1 );
+			}
+			xSemaphoreGive(UART0_TxSemaphore);
+			
 		}
-		xSemaphoreGive(UART0_TxSemaphore);
+		vTaskDelay(1500);
 		
+		nTerminalStatus();
+		
+		vTaskDelay(1500);
+		
+		nGetAlive();
+		
+		vTaskDelay(1500);
 	}
+	
 }
 
 
@@ -549,7 +536,7 @@ void nTerminalStatus() {
 // 	Returns				:	None	
 //  Input range		: None
 // *****************************************************************/
-	nUART_TxString("\r\n Current state       : snoo\n\r");
+	nUART_TxString("Current state       : snoo\n\r");
 	nUART_TxString("Current Temperature : \n\r");
 	nUART_TxString("Current Program     : \n\r");
 }
@@ -573,7 +560,7 @@ void nTerminalUndefined() {
 //  Input range		: None
 // *****************************************************************/
 		nNewLine( 1 );
-		nUART_TxString("Undefined function. \n\r");
+		nUART_TxString("Undefined function.\n\r");
 }
 
 
@@ -584,7 +571,7 @@ void nTerminalNoFunctionFound() {
 // 	Returns				:	None	
 //  Input range		: None
 // *****************************************************************/
-	nUART_TxString("No matching function found. try 'help' for more info. \r\n");
+	nUART_TxString("No matching function found. Try 'help' for more info.\r\n");
 }
 
 
@@ -624,7 +611,7 @@ void tUART_RxTask( void *param ) {
 				case UartState_FindUser :
 				
 					if ( yKeyHit (CHAR_BACKSPACE , receive)) {
-						if (inputs > 0) {
+						if ( inputs ) {
 							inputs--;
 							nUART_TxChar(CHAR_BACKSPACE);
 							nUART_TxChar(' ');
@@ -635,7 +622,6 @@ void tUART_RxTask( void *param ) {
 					else if ( yKeyHit (CHAR_ENTER , receive ) && inputs == 0) {
 						nNewLine( 1 );
 						OutedStatusMsg = 0;
-						vTaskDelay(10);
 					}
 					
 					else if ( yKeyHit (CHAR_ENTER , receive ) && inputs > 0) {
@@ -648,7 +634,6 @@ void tUART_RxTask( void *param ) {
 							UART_STATE = UartState_FindPass;
 							OutedStatusMsg = 0;
 							inputs = 0;				
-							vTaskDelay(10);
 					}
 					
 					else {

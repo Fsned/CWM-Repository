@@ -24,4 +24,3 @@
 .\build\main.o: GPIO_setup.h
 .\build\main.o: Sensor_file.h
 .\build\main.o: UART_control.h
-.\build\main.o: .\FreeRTOS\include\timers.h

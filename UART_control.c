@@ -172,7 +172,7 @@ void nGetAlive() {
 /* ******************************************************************
 //	Function name : nGetAlive
 //	Functionality :	Print the alive timer value to UART to see how long program has been running for
-// 	Returns				:	None	
+// 	Returns				:	None
 //  Input range		: None
 // *****************************************************************/
 	if (xSemaphoreTake(UART0_TxSemaphore , 5)) {
@@ -186,7 +186,8 @@ void nGetAlive() {
 			nUART_TxChar(alive_tens + '0');
 		nUART_TxChar(alive_ones + '0');
 		
-		nUART_TxString(" seconds. \r\n");
+		nUART_TxString(" seconds.");
+		nNewLine( 1 );
 		
 		xSemaphoreGive(UART0_TxSemaphore);
 	}
@@ -201,7 +202,8 @@ void nADC_Status() {
 //  Input range		: None
 // *****************************************************************/	
 	if (xSemaphoreTake(UART0_TxSemaphore , 5)) {
-		nUART_TxString("Analog Inputs\r\n");
+		nUART_TxString("Analog Inputs");
+		nNewLine( 1 );
 		for (uint8_t i = 0; i < ANALOG_SENSORS_END; i++) {
 			nUART_TxString("Pin ");
 			nUART_TxChar(i + '0');
@@ -250,7 +252,8 @@ void nPinFlip_1() {
 	static int pin_1_status = 0;
 
 	if (xSemaphoreTake(UART0_TxSemaphore , 5)) {
-		nUART_TxString("Flipped pin 1 \r\n");
+		nUART_TxString("Flipped pin 1");
+		nNewLine( 1 );
 		xSemaphoreGive(UART0_TxSemaphore);
 	}
 	
@@ -273,7 +276,8 @@ void nPinFlip_2() {
 	static uint8_t pin_2_status = 0;
 
 	if (xSemaphoreTake(UART0_TxSemaphore , 5)) {
-		nUART_TxString("Flipped pin 2\r\n");
+		nUART_TxString("Flipped pin 2");
+		nNewLine( 1 );
 		xSemaphoreGive(UART0_TxSemaphore);
 	}
 	
@@ -312,10 +316,9 @@ void nTerminalLogout() {
 	
 	UART_STATE = UartState_FindUser;
 	
-	nNewLine( 1 );
-	nNewLine( 1 );
-	nUART_TxString("Logged out.\r\n");
-	nNewLine( 1 );
+	nNewLine( 2 );
+	nUART_TxString("Logged out.");
+	nNewLine( 2 );
 	
 }
 
@@ -434,30 +437,20 @@ void nTerminalHelp() {
 // 	Returns				:	None, but prints stuff to UART
 //  Input range		: None
 // *****************************************************************/
-	while(! yUART_RxReady()) {
-		if (xSemaphoreTake(UART0_TxSemaphore , 5)) {
-			nUART_TxString("The following commands are available");
+	if (xSemaphoreTake(UART0_TxSemaphore , 5)) {
+		nUART_TxString("The following commands are available");
+		nNewLine( 1 );
+		
+		for (uint8_t i = 1; i < 20 ; i++) {
+			nUART_TxString("-> ");
+			nUART_TxString(keyword_strings[i]);
 			nNewLine( 1 );
-			
-			for (uint8_t i = 1; i < 20 ; i++) {
-				nUART_TxString("-> ");
-				nUART_TxString(keyword_strings[i]);
-				nNewLine( 1 );
-			}
-			xSemaphoreGive(UART0_TxSemaphore);
-			
 		}
-		vTaskDelay(1500);
+		nNewLine( 1 );
 		
-		nTerminalStatus();
+		xSemaphoreGive(UART0_TxSemaphore);
 		
-		vTaskDelay(1500);
-		
-		nGetAlive();
-		
-		vTaskDelay(1500);
 	}
-	
 }
 
 
@@ -557,7 +550,8 @@ void nTerminalUndefined() {
 //  Input range		: None
 // *****************************************************************/
 		nNewLine( 1 );
-		nUART_TxString("Undefined function.\n\r");
+		nUART_TxString("Undefined function.");
+		nNewLine( 1 );
 }
 
 
@@ -568,7 +562,8 @@ void nTerminalNoFunctionFound() {
 // 	Returns				:	None	
 //  Input range		: None
 // *****************************************************************/
-	nUART_TxString("No matching function found. Try 'help' for more info.\r\n");
+	nUART_TxString("No matching function found. Try 'help' for more info.");
+	nNewLine( 1 );
 }
 
 
@@ -899,7 +894,6 @@ uint8_t vCheckPasscode(char InputString[] , uint8_t length) {
 //  Input range		: None
 // *****************************************************************/	
 	uint8_t MatchFound = 1;
-	
 	uint8_t Str1Length , Str2Length;
 	
 	for ( Str1Length = 0; InputString[Str1Length] 										!= '\0'; Str1Length++);

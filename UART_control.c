@@ -70,47 +70,71 @@ char USER_PERMISSIONS[USERS]				= {'1','0','0','5','0'};
 
 char branch_string[20] = {"Sandbox"};
 
-char keyword_strings[NO_OF_KEYWORDS][12] 	 = {{" "},									// F0
-																							{"Help"},								// F1
-																							{"HELP"},								// F2
+char keyword_strings[][12] 									= {{" "},									// F0
+//																							{"Help"},								// F1
+//																							{"HELP"},								// F2
 																							{"LEDOFF"},							// F3
 																							{"LEDALL"},							// F4
-																							{"status"},							// F5
+//																							{"status"},							// F5
 																							{"clear"},							// F6
-																							{"wash2"},							// F7
-																							{"setuppin1"},					// F8
-																							{"setuppin2"},					// F9
-																							{"pf1"},								// F10
-																							{"pf2"},								// F11
+//																							{"wash2"},							// F7
+//																							{"setuppin1"},					// F8
+//																							{"setuppin2"},					// F9
+//																							{"pf1"},								// F10
+//																							{"pf2"},								// F11
 																							{"ADC"},								// F12
 																							{"uptime"},							// F13
 																							{"logout"},							// F14
 																							{"stop"},								// F15
 																							{"help"},								// F16
 																							{"sensordata"},					// F17
-																							{"alive stop"},					// F18
-																							{"alive start"}};				// F19
+//																							{"alive stop"},					// F18
+//																							{"alive start"},				// F19
+																							{"flip p20"},							// F20
+																							{"flip p21"},							// F21
+																							{"flip p22"},							// F22
+																							{"flip p23"},							// F23
+																							{"flip p24"},							// F24
+																							{"flip p25"},							// F25
+																							{"flip p26"},							// F26
+																							{"flip p27"},							// F27
+																							{"flip p28"}};						// F28
 
-void (*keyword_functions[NO_OF_KEYWORDS])() = {nTerminalUndefined, 		// F0
-																							 nTerminalHelp  	 	, 	// F1
-																							 nTerminalHelp 		 	, 	// F2
-																							 nTerminal_LED_OFF		, // F3
-																							 nTerminal_LED_ALL_ON, 	// F4
-																							 nTerminalStatus		, 	// F5
-																							 nTerminalClear		 	, 	// F6
-																							 nWashProgram_2 	  , 	// F7
-																							 nPinSetup_1 	, 				// F8
-																							 nPinSetup_2	, 				// F9
-																							 nPinFlip_1	, 					// F10
-																							 nPinFlip_2 	, 				// F11
-																							 nADC_Status 	, 				// F12
-																							 nPrintAlive					, // F13
-																							 nTerminalLogout	, 		// F14
-																							 nGPIO_STOP,						// F15
-																							 nTerminalHelp,					// F16
-																							 nSensorData,						// F17
-																							 nAliveSuspend,					// F18
-																							 nAliveResume};					// F19
+void (*keyword_functions[])() 						 = {nTerminalUndefined, 		// F0
+//																								nTerminalHelp  	 	, 		// F1
+//																								nTerminalHelp 		 	, 	// F2
+																								nTerminal_LED_OFF		, 	// F3
+																								nTerminal_LED_ALL_ON, 	// F4
+//																								nTerminalStatus		, 		// F5
+																								nTerminalClear		 	, 	// F6
+//																								nWashProgram_2 	  , 		// F7
+//																								nPinSetup_1 	, 				// F8
+//																								nPinSetup_2	, 					// F9
+//																								nPinFlip_1	, 					// F10
+//																								nPinFlip_2 	, 					// F11
+																								nADC_Status 	, 				// F12
+																								nPrintAlive					, 	// F13
+																								nTerminalLogout	, 			// F14
+																								nGPIO_STOP,							// F15
+																								nTerminalHelp,					// F16
+																								nSensorData,						// F17
+//																								nAliveSuspend,					// F18
+//																								nAliveResume,						// F19
+																								nPinFlip_P20,						// F20
+																								nPinFlip_P21,						// F21
+																								nPinFlip_P22,						// F22
+																								nPinFlip_P23,						// F23
+																								nPinFlip_P24,						// F24
+																								nPinFlip_P25,						// F25
+																								nPinFlip_P26,						// F26
+																								nPinFlip_P27,						// F27
+																								nPinFlip_P28,						// F28
+																								
+																								
+																								
+	
+	
+};					// F19
 
 																							 
 // ****************************************************************************************
@@ -290,6 +314,173 @@ void nPinFlip_2() {
 }
 
 
+void nPinFlip_P20() {
+/* ******************************************************************
+//	Function name : nPinFlip_P20
+//	Functionality :	None. P20 is sacred! NO TOUCHING!
+// 	Returns				:	None	
+//  Input range		: None
+// *****************************************************************/	
+
+	// THIS PIN IS USED FOR THE SYSTEM CLOCK.
+	nUART_TxString("No action.");
+	nNewLine( 1 );
+}
+
+void nPinFlip_P21() {
+/* ******************************************************************
+//	Function name : nPinFlip_P21
+//	Functionality :	Flip P21
+// 	Returns				:	None	
+//  Input range		: None
+// *****************************************************************/	
+	static int8_t pin_status = 1;									// Variable to contain the current pin status
+	
+	if (pin_status == GPIO_HIGH)									// If pin is high, set new status to low
+		pin_status = GPIO_LOW;
+	
+	else if (! pin_status)												// If pin is low, set new status to high
+		pin_status = GPIO_HIGH;
+	
+	yDigitalWrite( PORT_2 , PIN_5 , pin_status );	// Write the new status to the pin
+	
+	nUART_TxString("Flipped P21");
+	nNewLine( 1 );
+}
+
+void nPinFlip_P22() {
+/* ******************************************************************
+//	Function name : nPinFlip_P22
+//	Functionality :	Flip P22
+// 	Returns				:	None	
+//  Input range		: None
+// *****************************************************************/	
+	static int8_t pin_status = 1;									// Variable to contain the current pin status
+	
+	if (pin_status == GPIO_HIGH)									// If pin is high, set new status to low
+		pin_status = GPIO_LOW;
+	
+	else if (! pin_status)												// If pin is low, set new status to high
+		pin_status = GPIO_HIGH;
+	
+	yDigitalWrite( PORT_2 , PIN_4 , pin_status );	// Write the new status to the pin
+	nUART_TxString("Flipped P22");
+	nNewLine( 1 );
+}
+void nPinFlip_P23() {
+/* ******************************************************************
+//	Function name : nPinFlip_P23
+//	Functionality :	Flip P23
+// 	Returns				:	None	
+//  Input range		: None
+// *****************************************************************/	
+	static int8_t pin_status = 1;									// Variable to contain the current pin status
+	
+	if (pin_status == GPIO_HIGH)									// If pin is high, set new status to low
+		pin_status = GPIO_LOW;
+	
+	else if (! pin_status)												// If pin is low, set new status to high
+		pin_status = GPIO_HIGH;
+	
+	yDigitalWrite( PORT_2 , PIN_3 , pin_status );	// Write the new status to the pin
+	nUART_TxString("Flipped P23");
+	nNewLine( 1 );
+}
+void nPinFlip_P24() {
+/* ******************************************************************
+//	Function name : nPinFlip_P24
+//	Functionality :	Flip P24
+// 	Returns				:	None	
+//  Input range		: None
+// *****************************************************************/	
+	static int8_t pin_status = 1;									// Variable to contain the current pin status
+	
+	if (pin_status == GPIO_HIGH)									// If pin is high, set new status to low
+		pin_status = GPIO_LOW;
+	
+	else if (! pin_status)												// If pin is low, set new status to high
+		pin_status = GPIO_HIGH;
+	
+	yDigitalWrite( PORT_2 , PIN_2 , pin_status );	// Write the new status to the pin
+	nUART_TxString("Flipped P24");
+	nNewLine( 1 );
+}
+void nPinFlip_P25() {
+/* ******************************************************************
+//	Function name : nPinFlip_P25
+//	Functionality :	Flip P25
+// 	Returns				:	None	
+//  Input range		: None
+// *****************************************************************/	
+	static int8_t pin_status = 1;									// Variable to contain the current pin status
+	
+	if (pin_status == GPIO_HIGH)									// If pin is high, set new status to low
+		pin_status = GPIO_LOW;
+	
+	else if (! pin_status)												// If pin is low, set new status to high
+		pin_status = GPIO_HIGH;
+	
+	yDigitalWrite( PORT_2 , PIN_1 , pin_status );	// Write the new status to the pin
+	nUART_TxString("Flipped P25");
+	nNewLine( 1 );
+}
+void nPinFlip_P26() {
+/* ******************************************************************
+//	Function name : nPinFlip_P26
+//	Functionality :	Flip P26
+// 	Returns				:	None	
+//  Input range		: None
+// *****************************************************************/	
+	static int8_t pin_status = 1;									// Variable to contain the current pin status
+	
+	if (pin_status == GPIO_HIGH)									// If pin is high, set new status to low
+		pin_status = GPIO_LOW;
+	
+	else if (! pin_status)												// If pin is low, set new status to high
+		pin_status = GPIO_HIGH;
+	
+	yDigitalWrite( PORT_2 , PIN_0 , pin_status );	// Write the new status to the pin
+	nUART_TxString("Flipped P26");
+	nNewLine( 1 );
+}
+void nPinFlip_P27() {
+/* ******************************************************************
+//	Function name : nPinFlip_P27
+//	Functionality :	Flip P27
+// 	Returns				:	None	
+//  Input range		: None
+// *****************************************************************/	
+	static int8_t pin_status = 1;									// Variable to contain the current pin status
+	
+	if (pin_status == GPIO_HIGH)									// If pin is high, set new status to low
+		pin_status = GPIO_LOW;
+	
+	else if (! pin_status)												// If pin is low, set new status to high
+		pin_status = GPIO_HIGH;
+	
+	yDigitalWrite( PORT_0 , PIN_11 , pin_status );	// Write the new status to the pin
+	nUART_TxString("Flipped P27");
+	nNewLine( 1 );
+}
+void nPinFlip_P28() {
+/* ******************************************************************
+//	Function name : nPinFlip_P28
+//	Functionality :	Flip P28
+// 	Returns				:	None	
+//  Input range		: None
+// *****************************************************************/	
+	static int8_t pin_status = 1;									// Variable to contain the current pin status
+	
+	if (pin_status == GPIO_HIGH)									// If pin is high, set new status to low
+		pin_status = GPIO_LOW;
+	
+	else if (! pin_status)												// If pin is low, set new status to high
+		pin_status = GPIO_HIGH;
+	
+	yDigitalWrite( PORT_0 , PIN_10 , pin_status );	// Write the new status to the pin
+	nUART_TxString("Flipped P28");
+	nNewLine( 1 );
+}
 
 
 void nNewLine( uint8_t NumberOfLineSkips ) {
@@ -439,9 +630,9 @@ void nTerminalHelp() {
 // *****************************************************************/
 	if (xSemaphoreTake(UART0_TxSemaphore , 5)) {
 		nUART_TxString("The following commands are available");
-		nNewLine( 1 );
+		nNewLine( 2 );
 		
-		for (uint8_t i = 1; i < 20 ; i++) {
+		for (uint8_t i = 0; i < (sizeof(keyword_strings) / sizeof(keyword_strings[0])) ; i++) {
 			nUART_TxString("-> ");
 			nUART_TxString(keyword_strings[i]);
 			nNewLine( 1 );

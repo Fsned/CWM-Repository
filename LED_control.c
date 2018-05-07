@@ -197,23 +197,32 @@ void nPrintAlive() {
 		seconds -= 60;
 	}
 	
-	nUART_TxString("Current alive time : ");
+	nUART_TxString("Current alive time: ");
 	
-	if ( hours >= 10 ) 
+	if ( hours >= 10 ) {
 		nUART_TxChar(int_to_char_10(hours) + '0');
-	nUART_TxChar(int_to_char_1 (hours) + '0');
+		nUART_TxChar(int_to_char_1 (hours - int_to_char_10(hours)) + '0');
+	}
+	else
+		nUART_TxChar(int_to_char_1 (hours) + '0');
 	
 	nUART_TxChar(':');
 	
-	if ( minutes >= 10 )
+	if ( minutes >= 10 ) {
 		nUART_TxChar(int_to_char_10(minutes) + '0');
-	nUART_TxChar(int_to_char_1 (minutes) + '0');
+		nUART_TxChar(int_to_char_1 (minutes - int_to_char_10(minutes)) + '0');
+	}
+	else
+		nUART_TxChar(int_to_char_1(minutes) + '0');
 	
 	nUART_TxChar(':');
 	
-	if ( seconds >= 10 )
+	if ( seconds >= 10 ) {
 		nUART_TxChar(int_to_char_10(seconds) + '0');
-	nUART_TxChar(int_to_char_1 (seconds) + '0');
+		nUART_TxChar(int_to_char_1 (seconds - int_to_char_10(seconds)) + '0');
+	}
+	else
+		nUART_TxChar(int_to_char_1(seconds) + '0');
 	
 	nNewLine( 1 );
 }

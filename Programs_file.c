@@ -33,6 +33,7 @@
 #include "Sensor_file.h"
 #include "UART_control.h"
 #include "utilities.h"
+#include "GPIO_setup.h"
 
 
 #include "FreeRTOS.h"
@@ -51,29 +52,16 @@ xQueueHandle ProgramLibrary		= NULL;
 xQueueHandle ProgramHandlerQ	= NULL;
 
 const uint8_t SENSORSKIP = 1;
-const uint8_t TIMERSKIP = 1;
+const uint8_t TIMERSKIP  = 0;
 
 uint8_t CurrentProgram = 0;																						// 0 == No Program Selected.
 				// 																Operation Timer Library
 				//														 		P1		P1		P2		P2		P3		P3
 				//														 		STD		 			STD		 			STD
 				//																[0]		[1]		[2]		[3]		[4]		[5]
-uint8_t ProgramTimerLibrary[16][6] = {	{	10	,	10	,	10	,	10	,	10	,	10	}, 	// 0 Rinsing Operation
-																				{	10	,	10	,	10	,	10	,	10	,	10	},	// 1 Washing Operation
-																				{	10	,	10	,	10	,	10	,	10	,	10	},	// 2 Softener Operation
-																				{	10	,	10	,	10	,	10	,	10	,	10	},	// 3 
-																				{	10	,	10	,	10	,	10	,	10	,	10	},	// 4 
-																				{	10	,	10	,	10	,	10	,	10	,	10	},	// 5
-																				{	10	,	10	,	10	,	10	,	10	,	10	},	// 6
-																				{	10	,	10	,	10	,	10	,	10	,	10	},	// 7 
-																				{	10	,	10	,	10	,	10	,	10	,	10	},	// 8
-																				{	10	,	10	,	10	,	10	,	10	,	10	},	// 9
-																				{	10	,	10	,	10	,	10	,	10	,	10	},	// 10
-																				{	10	,	10	,	10	,	10	,	10	,	10	},	// 11
-																				{	10	,	10	,	10	,	5 	,	10	,	10	},	// 12	Wash
-																				{	10	,	10	,	10	,	10	,	10	,	10	},	// 13	Wait
-																				{	10	,	10 	,	10	,	8 	,	10	,	10	},	// 14	Rinse
-																				{	10	,	10	,	10	,	10	,	10	,	10	}};	// 15
+uint8_t ProgramTimerLibrary[16][6] = {	{	10	,	10	,	10	,	30 	,	10	,	10	},	// 12	Wash
+																				{	10	,	10	,	10	,	9 	,	10	,	10	},	// 13	Wait
+																				{	10	,	10 	,	10	,	30 	,	10	,	10	}};	// 14	Rinse
 
 															//{ [0] Value , [1] Minimum , [2] Maximum , [3] Req. Perm. Level };
 //uint16_t ParameterLibrary[16][4] = { 	{	1	,	2	,	3	,	4	}, 	// Washing Temperature
@@ -93,22 +81,38 @@ uint8_t ProgramTimerLibrary[16][6] = {	{	10	,	10	,	10	,	10	,	10	,	10	}, 	// 0 Ri
 //										{	1	,	2	,	3	,	4	}, 
 //										{	1	,	2	,	3	,	4	}};
 
-uint16_t HardwareLibrary[16][2] = 	{	{ 1 , 2 },					
-																			{ 1 , 2 },
-																			{ 1 , 2 },
-																			{ 1 , 2 },
-																			{ 1 , 2 },
-																			{ 1 , 2 },
-																			{ 1 , 2 },
-																			{ 1 , 2 },
-																			{ 1 , 2 },
-																			{ 1 , 2 },
-																			{ 1 , 2 },
-																			{ 1 , 2 },
-																			{ 1 , 2 },
-																			{ 1 , 2 },
-																			{ 1 , 2 },
-																			{ 1 , 2 }};
+uint16_t HardwareLibrary[15][2] = 	{	{ HARDWARE_OFF , 2 },					
+																			{ HARDWARE_OFF , 2 },
+																			{ HARDWARE_OFF , 2 },
+																			{ HARDWARE_OFF , 2 },
+																			{ HARDWARE_OFF , 2 },
+																			{ HARDWARE_OFF , 2 },
+																			{ HARDWARE_OFF , 2 },
+																			{ HARDWARE_OFF , 2 },
+																			{ HARDWARE_OFF , 2 },
+																			{ HARDWARE_OFF , 2 },
+																			{ HARDWARE_OFF , 2 },
+																			{ HARDWARE_OFF , 2 },
+																			{ HARDWARE_OFF , 2 },
+																			{ HARDWARE_OFF , 2 },
+																			{ HARDWARE_OFF , 2 }};
+// PINMAP for 
+//													 PORT ,	PIN
+uint8_t HW_Pinmap [15][2] =  {{0	,	 9},									// F0		|| P5
+															{0 	,	 8},									// F1		|| P6
+															{0 	,	 7},									// F2		|| P7
+															{0 	,	 6},									// F3		|| P8
+															{0 	,	 0},									// F4		|| P9
+															{0 	,	 1},									// F5		|| P10
+															{0 	,	 18},									// F6		|| P11
+															{0 	,	 17},									// F7		|| P12
+															{0 	,	 15},									// F8		|| P13
+															{0 	,	 16},									// F9		|| P14
+															{1 	,	 30},									// F10	|| P19
+															{1 	,	 31},									// F11	|| P20
+															{2 	,	 5},									// F12	|| P21
+															{2 	,	 4},									// F13	|| P22
+															{2 	,	 3}};									// F14	|| P23
 																			
 
 // ****************************************************************************************
@@ -125,6 +129,8 @@ uint8_t ySetHWStatus ( uint8_t HardwareHandle , uint8_t NewStatus) {
 // *****************************************************************/
 	if (HardwareLibrary[HardwareHandle][0] != HARDWARE_ALARM && HardwareLibrary[HardwareHandle][0] != HARDWARE_FAILURE) {
 		HardwareLibrary[HardwareHandle][0] = NewStatus;
+		
+		yDigitalWrite(HW_Pinmap[HardwareHandle][0] , HW_Pinmap[HardwareHandle][1] , NewStatus);
 		return 1;
 	}
 	return 0;
@@ -180,15 +186,15 @@ void nWashProgram_2() {
 																	RUN_RINSE,
 																	END_PROGRAM};								
 																	
-	int TotalRuntime;
+	int TotalRuntime = 0;
 																	
 	uint8_t TotalRuntime_Hundreds = 0;
 	uint8_t TotalRuntime_Tens = 0;
 	uint8_t TotalRuntime_Ones = 0;
 																				
-	TotalRuntime += ProgramTimerLibrary[RUN_WASH][3];
-	TotalRuntime += ProgramTimerLibrary[RUN_RINSE][3];
-	TotalRuntime += ProgramTimerLibrary[RUN_WAIT][3];
+	TotalRuntime += ProgramTimerLibrary[WASHING_OPERATION][3];
+	TotalRuntime += ProgramTimerLibrary[RINSING_OPERATION][3];
+	TotalRuntime += ProgramTimerLibrary[WAITING_OPERATION][3]; 
 																	
 	while(TotalRuntime >= 100) {
 		TotalRuntime -= 100;
@@ -400,7 +406,7 @@ void nWashOperation		 () {
 			The water temperature should match the temperature stored in a library (somewhere), and the operation must not begin before the water is at least AT the specific temperature (-.5% degrees)
 			And then keep the water temperature with a 3% degree range. (2.4 deg. C. @ 80 deg. C. Washing temperature)
 	*/
-	int timer = ProgramTimerLibrary[RUN_WASH][CurrentProgram] * 1000; 
+	int timer = ProgramTimerLibrary[WASHING_OPERATION][CurrentProgram] * 1000; 
 	
 	
 	uint8_t transmit;
@@ -419,9 +425,22 @@ void nWashOperation		 () {
 	
 	nNewLine( 1 );
 	nUART_TxString("Operation Runtime: ");
-	if (int_to_char_100(ProgramTimerLibrary[RUN_WASH][CurrentProgram])) nUART_TxChar(int_to_char_100(ProgramTimerLibrary[RUN_WASH][CurrentProgram]) + '0');
-	nUART_TxChar(int_to_char_10	(ProgramTimerLibrary[RUN_WASH][CurrentProgram]) + '0');
-	nUART_TxChar(int_to_char_1	(ProgramTimerLibrary[RUN_WASH][CurrentProgram]) + '0');
+	
+	int timer_100 = int_to_char_100(ProgramTimerLibrary[WASHING_OPERATION][CurrentProgram]);
+	int timer_10 = int_to_char_10(ProgramTimerLibrary[WASHING_OPERATION][CurrentProgram] - (timer_100*100));
+	int timer_1 = int_to_char_1(ProgramTimerLibrary[WASHING_OPERATION][CurrentProgram] - ((timer_100*100) + (timer_10*10)));
+	
+	if (timer_100)
+		nUART_TxChar(timer_100 + '0');
+	
+	if (timer_100 || timer_10)
+		nUART_TxChar(timer_10 + '0');
+	
+	nUART_TxChar(timer_1 + '0');
+	
+//	if (int_to_char_100(ProgramTimerLibrary[WASHING_OPERATION][CurrentProgram])) nUART_TxChar(int_to_char_100(ProgramTimerLibrary[WASHING_OPERATION][CurrentProgram]) + '0');
+//	nUART_TxChar(int_to_char_10	(ProgramTimerLibrary[WASHING_OPERATION][CurrentProgram]) + '0');
+//	nUART_TxChar(int_to_char_1	(ProgramTimerLibrary[WASHING_OPERATION][CurrentProgram]) + '0');
 	nUART_TxString(" Seconds.");
 	nNewLine( 1 );
 	
@@ -466,6 +485,9 @@ void nWashOperation		 () {
 			
 		}
 		
+		timer -= 100;
+		vTaskDelay(100);
+		
 		if (! timer ) {
 			transmit = OPERATION_ENDED;
 			xQueueSend(ProgramHandlerQ , &transmit , 10);
@@ -476,7 +498,8 @@ void nWashOperation		 () {
 			ySetHWStatus(HEATING_WASH_1		, HARDWARE_READY);
 			ySetHWStatus(HEATING_WASH_2		, HARDWARE_READY);
 		}
-		vTaskDelay(100);
+		
+		
 	}
 	if (TIMERSKIP) {
 		transmit = OPERATION_ENDED;
@@ -502,7 +525,7 @@ void nRinseOperation	 () {
 			and then keep the water temperature with a 3% degree range. (2.4 deg. C. @ 80 deg. C. Rinsing temperature)
 	*/
 	
-	int timer = ProgramTimerLibrary[RUN_RINSE][CurrentProgram] * 1000;
+	int timer = ProgramTimerLibrary[RINSING_OPERATION][CurrentProgram] * 1000;
 	
 	uint8_t transmit;
  
@@ -519,9 +542,9 @@ void nRinseOperation	 () {
 	nNewLine( 1 );
 	nUART_TxString("Operation Runtime: ");
 	
-	if (int_to_char_100(ProgramTimerLibrary[RUN_RINSE][CurrentProgram])) nUART_TxChar(int_to_char_100(ProgramTimerLibrary[RUN_RINSE][CurrentProgram]) + '0');
-	nUART_TxChar(int_to_char_10	(ProgramTimerLibrary[RUN_RINSE][CurrentProgram]) + '0');
-	nUART_TxChar(int_to_char_1	(ProgramTimerLibrary[RUN_RINSE][CurrentProgram]) + '0');
+	if (int_to_char_100(ProgramTimerLibrary[RINSING_OPERATION][CurrentProgram])) nUART_TxChar(int_to_char_100(ProgramTimerLibrary[RINSING_OPERATION][CurrentProgram]) + '0');
+	nUART_TxChar(int_to_char_10	(ProgramTimerLibrary[RINSING_OPERATION][CurrentProgram]) + '0');
+	nUART_TxChar(int_to_char_1	(ProgramTimerLibrary[RINSING_OPERATION][CurrentProgram]) + '0');
 	nUART_TxString(" Seconds.");
 	nNewLine( 1 );
 
@@ -600,16 +623,16 @@ void nWaitOperation		 () {
 			The wait operation can be called between other operations. this could be after a washing operation
 			and before a rinsing operation, to allow soap to fall off subjects, to provide a better end result.
 	*/
-	int timer = ProgramTimerLibrary[RUN_WAIT][CurrentProgram] * 1000;
+	int timer = ProgramTimerLibrary[WAITING_OPERATION][CurrentProgram] * 1000;
 	uint8_t transmit;
  
 	nNewLine( 1 );
 	nUART_TxString("Started WAIT Operation.");
 	nNewLine( 1 );
 	nUART_TxString("Operation Runtime: ");
-	if (int_to_char_100(ProgramTimerLibrary[RUN_WAIT][CurrentProgram])) nUART_TxChar(int_to_char_100(ProgramTimerLibrary[RUN_WAIT][CurrentProgram]) + '0');
-  nUART_TxChar(int_to_char_10	(ProgramTimerLibrary[RUN_WAIT][CurrentProgram]) + '0');
-	nUART_TxChar(int_to_char_1	(ProgramTimerLibrary[RUN_WAIT][CurrentProgram]) + '0');
+	if (int_to_char_100(ProgramTimerLibrary[WAITING_OPERATION][CurrentProgram])) nUART_TxChar(int_to_char_100(ProgramTimerLibrary[WAITING_OPERATION][CurrentProgram]) + '0');
+  nUART_TxChar(int_to_char_10	(ProgramTimerLibrary[WAITING_OPERATION][CurrentProgram]) + '0');
+	nUART_TxChar(int_to_char_1	(ProgramTimerLibrary[WAITING_OPERATION][CurrentProgram]) + '0');
 	nUART_TxString(" Seconds.");
 	nNewLine( 1 );
 		
@@ -830,6 +853,9 @@ void tProgram_Handler		( void *param ) {
 	uint8_t	ProgramHandlerState = IDLE;
 	uint8_t OutedMsg = 0;
 //	uint8_t PROGRAM_STARTED = 0;
+	
+	nWashProgram_2();
+	
 	while(1) {
 		// The program Handler makes sure each operation for every wash program is executed.
 		// The Program Handler can be in 3 states:

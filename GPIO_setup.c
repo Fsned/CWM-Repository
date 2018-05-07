@@ -164,11 +164,11 @@ void nGPIO_STOP() {
 // 	Returns				:	None	
 //  Input range		: None
 // *****************************************************************/
-	for (int i = 0; i < 5; i++) {
-		for (int n = 0; n < 32; n++) {
+	for (int i = PORT_0; i <= PORT_4; i++) {
+		for (int n = PIN_0; n <= PIN_31; n++) {
 			if (PinLibrary[i][n] == GPIO_OUTPUT) {
 				yDigitalWrite(/*PORT*/ i , /*PIN*/ n , /* STATE */ GPIO_LOW);
-				PinLibrary[i][n] = GPIO_FREE;
+				PinLibrary[i][n] = GPIO_FREE;																			// Setting the PinLibrary to GPIO_FREE prevents any calls to yDigitalWrite( PORT, PIN , status ).
 			}
 		}
 	}
@@ -392,20 +392,23 @@ void nGPIOSetup() {
 	ySetupDigitalO( PORT_1 , LED_3 );
 	ySetupDigitalO( PORT_1 , LED_4 );
 	
+	// Digital Outputs for hardware (see HW_Pinmap in Programs_file.c
+	ySetupDigitalO( PORT_0 , PIN_9 );				// P5
+	ySetupDigitalO( PORT_0 , PIN_8 );				// P6
+	ySetupDigitalO( PORT_0 , PIN_7 );				// P7
+	ySetupDigitalO( PORT_0 , PIN_6 );				// P8
+	ySetupDigitalO( PORT_0 , PIN_0 );				// P9
+	ySetupDigitalO( PORT_0 , PIN_1 );				// P10
+	ySetupDigitalO( PORT_0 , PIN_18 );			// P11
+	ySetupDigitalO( PORT_0 , PIN_17 );			// P12
+	ySetupDigitalO( PORT_0 , PIN_15 );			// P13
+	ySetupDigitalO( PORT_0 , PIN_16 );			// P14
+	ySetupDigitalO( PORT_1 , PIN_30 );			// P19
+	ySetupDigitalO( PORT_1 , PIN_31 );			// P20
+	ySetupDigitalO( PORT_2 , PIN_5 );				// P21
+	ySetupDigitalO( PORT_2 , PIN_4 );				// P22
+	ySetupDigitalO( PORT_2 , PIN_3 );				// P23
 	
-	// SETUP P5 - P12 up for digital output for 'dummy'-washing program
-	ySetupDigitalO( PORT_0 , PIN_9 );	// P5
-	ySetupDigitalO( PORT_0 , PIN_8 );	// P6
-	ySetupDigitalO( PORT_0 , PIN_7 );	// P7
-	ySetupDigitalO( PORT_0 , PIN_6 );	// P8
-	ySetupDigitalO( PORT_0 , PIN_0 );	// P9
-	ySetupDigitalO( PORT_0 , PIN_1 );	// P10
-	ySetupDigitalO( PORT_0 , PIN_18);	// P11
-	ySetupDigitalO( PORT_0 , PIN_17);	// P12
-	
-	
-	// Setup 1 GPIO_INPUT pin, to receive signal from wavegen
-	ySetupDigitalI( PORT_0 , PIN_26 );
 }
 
 

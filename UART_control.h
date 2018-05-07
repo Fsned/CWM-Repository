@@ -177,6 +177,17 @@ extern void nADC_Status 					( void );
 
 extern void nGetAlive							( void );
 
+
+extern void nPinFlip_P20					( void );
+extern void nPinFlip_P21					( void );
+extern void nPinFlip_P22					( void );
+extern void nPinFlip_P23					( void );
+extern void nPinFlip_P24					( void );
+extern void nPinFlip_P25					( void );
+extern void nPinFlip_P26					( void );
+extern void nPinFlip_P27					( void );
+extern void nPinFlip_P28					( void );
+
 // ****************************************************************************************
 //	Type		: 	VALUE_RETURN Functions
 //	Example		:	vXxXxX();

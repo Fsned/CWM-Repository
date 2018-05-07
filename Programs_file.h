@@ -112,6 +112,10 @@
 #define RUN_WAIT											13
 #define RUN_RINSE											14
 
+#define WASHING_OPERATION							0
+#define WAITING_OPERATION							1
+#define RINSING_OPERATION							2
+
 #define MAX_NUMBER_OF_OPERATIONS 			16
 																	
 extern xQueueHandle ProgramHandlerQ;

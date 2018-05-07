@@ -223,10 +223,10 @@ void tSensor_Task( void *param) {
 	// Sensor:			 	5						6						7						8
 	//								9						10					11					12
 	
-	uint8_t	Digital_sensors_ports[8] = {2,2,2,2,0 ,0 ,0,0};		// PORTS for the 8 digital inputs
-	uint8_t Digital_sensors_pins [8] = {3,2,1,0,11,10,5,4};		// PINS for the 8 digital inputs
+	uint8_t	Digital_sensors_ports[] = {2,2,2,0 ,0 ,0,0};		// PORTS for the 7 digital inputs
+	uint8_t Digital_sensors_pins [] = {2,1,0,11,10,5,4};		// PINS for the 7 digital inputs
 	
-	for (uint8_t i = 0; i < 8; i++) {
+	for (uint8_t i = 0; i < (sizeof(Digital_sensors_pins) / sizeof(Digital_sensors_pins[0])); i++) {
 		ySetupDigitalI(Digital_sensors_ports[i] , Digital_sensors_pins[i]);
 		SensorStatusLibrary[i + DIGITAL_SENSORS_START] = SENSOR_ACTIVE;
 	}
@@ -249,8 +249,8 @@ void tSensor_Task( void *param) {
 // INACTIVE ADC Channels
 //	LPC_PINCON->PINSEL3 |= 1 << 30;					// AD4, P1.30
 //	LPC_PINCON->PINSEL3 |= 1 << 30;					// AD5, P1.31
-//	LPC_PINCON->PINSEL0 |= 1 << 3;					// AD6, P0.3
-//	LPC_PINCON->PINSEL0 |= 1 << 2;					// AD7, P0.2
+//	LPC_PINCON->PINSEL0 |= 1 << 3;					// AD6, P0.3				// This pin is not compatible.
+//	LPC_PINCON->PINSEL0 |= 1 << 2;					// AD7, P0.2				// This pin is not compatible.
 	for (uint8_t i = ANALOG_SENSORS_START; i < ANALOG_SENSORS_END; i++)
 		SensorStatusLibrary[i] = SENSOR_ACTIVE;
 		

@@ -15,3 +15,4 @@
 .\build\programs_file.o: .\FreeRTOS\include\list.h
 .\build\programs_file.o: UART_control.h
 .\build\programs_file.o: utilities.h
+.\build\programs_file.o: GPIO_setup.h

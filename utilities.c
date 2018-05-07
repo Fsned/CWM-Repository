@@ -64,11 +64,23 @@
 // 																Undocumented functions 
 // ****************************************************************************************
 void delay_ms(unsigned int n) {
+/* ******************************************************************
+//	Function name : delay_ms
+//	Functionality :	Used to create a delay, with the amount of milliseconds as only input argument. do note this is done with a while(), preventing any proper scheduling
+// 	Returns				:	None
+//  Input range		: 0 - uint_range
+// *****************************************************************/		
 	uint32_t o = n*12000*2;
 	while(--o);
 }
 
 void delay_us(unsigned int n) {
+/* ******************************************************************
+//	Function name : delay_us
+//	Functionality :	Used to create a delay, with the amount of microseconds as only input argument. do note this is done with a while(), preventing any proper scheduling
+// 	Returns				:	None
+//  Input range		: 0 - uint_range
+// *****************************************************************/
 	unsigned int o = n*12*2;
 	while(--o);
 }
@@ -82,8 +94,13 @@ void delay_us(unsigned int n) {
 
 
 int int_to_char_1000(int input) {
-	
-	uint8_t output = 0;
+/* ******************************************************************
+//	Function name : int_to_char_1000
+//	Functionality :	Returns the amount of 1000's in the number, used to various UART contexts.
+// 	Returns				:	uint8_t with amount of 1000's in the input (e.g. 9000 as input, returns 9).
+//  Input range		: 0 - int_range
+// *****************************************************************/
+	int output = 0;
 	while(input >= 1000) {
 		input -= 1;
 		output += 1;
@@ -92,7 +109,13 @@ int int_to_char_1000(int input) {
 }
 
 int int_to_char_100(int input) {
-	uint8_t output = 0;
+/* ******************************************************************
+//	Function name : int_to_char_100
+//	Functionality :	Returns the amount of 100's in the number, used to various UART contexts.
+// 	Returns				:	uint8_t with amount of 100's in the input (e.g. 900 as input, returns 9).
+//  Input range		: 0 - int_range
+// *****************************************************************/
+	int output = 0;
 	while(input >= 100) {
 		input -= 1;
 		output += 1;
@@ -101,7 +124,13 @@ int int_to_char_100(int input) {
 }
 
 int int_to_char_10(int input) {
-	uint8_t output = 0;
+/* ******************************************************************
+//	Function name : int_to_char_10
+//	Functionality :	Returns the amount of 10's in the number, used to various UART contexts.
+// 	Returns				:	uint8_t with amount of 10's in the input (e.g. 90 as input, returns 9).
+//  Input range		: 0 - int_range
+// *****************************************************************/
+	int output = 0;
 	while(input >= 10) {
 		input -= 1;
 		output += 1;
@@ -110,7 +139,13 @@ int int_to_char_10(int input) {
 }
 
 int int_to_char_1(int input) {
-	uint8_t output = 0;
+/* ******************************************************************
+//	Function name : int_to_char_1
+//	Functionality :	Returns the amount of 1's in the number, used to various UART contexts.
+// 	Returns				:	uint8_t with amount of 10's in the input (e.g. 9 as input, returns 9).
+//  Input range		: 0 - int_range
+// *****************************************************************/
+	int output = 0;
 	while(input >= 1) {
 		input -= 1;
 		output += 1;

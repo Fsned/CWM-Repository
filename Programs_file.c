@@ -59,9 +59,9 @@ uint8_t CurrentProgram = 0;																						// 0 == No Program Selected.
 				//														 		P1		P1		P2		P2		P3		P3
 				//														 		STD		 			STD		 			STD
 				//																[0]		[1]		[2]		[3]		[4]		[5]
-uint8_t ProgramTimerLibrary[16][6] = {	{	10	,	10	,	10	,	30 	,	10	,	10	},	// 12	Wash
-																				{	10	,	10	,	10	,	9 	,	10	,	10	},	// 13	Wait
-																				{	10	,	10 	,	10	,	30 	,	10	,	10	}};	// 14	Rinse
+uint8_t ProgramTimerLibrary[16][6] = {	{	10	,	10	,	10	,	3 	,	10	,	10	},	// 12	Wash
+																				{	10	,	10	,	10	,	3 	,	10	,	10	},	// 13	Wait
+																				{	10	,	10 	,	10	,	3 	,	10	,	10	}};	// 14	Rinse
 
 															//{ [0] Value , [1] Minimum , [2] Maximum , [3] Req. Perm. Level };
 //uint16_t ParameterLibrary[16][4] = { 	{	1	,	2	,	3	,	4	}, 	// Washing Temperature

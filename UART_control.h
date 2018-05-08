@@ -177,9 +177,6 @@ extern void nPinFlip_2 						( void );
 
 extern void nADC_Status 					( void );
 
-extern void nGetAlive							( void );
-
-
 extern void nPinFlip_P20					( void );
 extern void nPinFlip_P21					( void );
 extern void nPinFlip_P22					( void );

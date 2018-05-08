@@ -81,7 +81,60 @@ uint16_t SensorDataLibrary[NUMBER_OF_SENSORS][3] = {{1,2,3},
 //	Example		:	nXxXxX();
 //	Description	:	Does not return anything.
 // ****************************************************************************************
+void nInitializeAnalogSensors() {
+/* ******************************************************************
+//	Function name : nInitializeAnalogSensors
+//	Functionality :	
+// 	Returns				:	None
+//  Input range		: None
+// *****************************************************************/
+
+	LPC_SC->PCONP |= ( 1 << 12 );				// Enable clock for Internal ADC controller
+	LPC_ADC->ADCR |= (( 1 << 21) | (10 << SBIT_CLCKDIV ));	
+	
+// ACTIVE ADC Channels
+	LPC_PINCON->PINSEL1 |= 1 << 14;					// AD0, P0.23			// Sensor 0		// P15
+	LPC_PINCON->PINSEL1 |= 1 << 16;					// AD1, P0.24			// Sensor 1		// P16
+	LPC_PINCON->PINSEL1 |= 1 << 18;					// AD2, P0.25			// Sensor 2		// P17
+	LPC_PINCON->PINSEL1 |= 1 << 20;					// AD3, P0.26			// Sensor 3		// P18
+	
+	for (uint8_t i = ANALOG_SENSORS_START; i < ANALOG_SENSORS_END; i++)
+		SensorStatusLibrary[i] = SENSOR_ACTIVE;		
+}
+
+void nInitializeDigitalSensors() {
+/* ******************************************************************
+//	Function name : nInitializeDigitalSensors
+//	Functionality :	
+// 	Returns				:	None
+//  Input range		: None
+// *****************************************************************/
+	nSensorLibrary_Init(); 
+
+	// Digital Inputs:
+				/* 		DI0:    		DI1: P24		DI2: P25		DI3: P26
+				 * 		DI4: P27		DI5: P28		DI6: P29		DI7: P30	*/
+	// Sensor:			 	   					6						7						8
+	//								9						10					11					12
+	
+	uint8_t	Digital_sensors_ports[] = {2,2,2,0 ,0 ,0,0};		// PORTS for the 7 digital inputs
+	uint8_t Digital_sensors_pins [] = {2,1,0,11,10,5,4};		// PINS for the 7 digital inputs
+	
+	for (uint8_t i = 0; i < (sizeof(Digital_sensors_pins) / sizeof(Digital_sensors_pins[0])); i++) {
+		ySetupDigitalI(Digital_sensors_ports[i] , Digital_sensors_pins[i]);
+		SensorStatusLibrary[i + DIGITAL_SENSORS_START] = SENSOR_ACTIVE;
+	}
+}
+																										
+																										
 void nSensorData() {
+/* ******************************************************************
+//	Function name : nSensorData
+//	Functionality :	
+// 	Returns				:	None
+//  Input range		: None
+// *****************************************************************/
+	
 	while(! yUART_RxReady()) {
 		nNewLine( 1 );
 		nUART_TxString("Sensordata\r\n");
@@ -124,7 +177,7 @@ void nSensorData() {
 			else
 				nUART_TxChar(SensorDataLibrary[i][0] + '0');
 			
-			nUART_TxString("\r\n");
+			nNewLine( 1 );
 			
 		}
 		vTaskDelay(1500);
@@ -142,9 +195,13 @@ void nSensorLibrary_Init() {
 // 	Returns				:	None
 //  Input range		: None
 // *****************************************************************/
-	for (uint8_t i = 0; i < NUMBER_OF_SENSORS; i++) {
-		SensorDataLibrary[i][0] = '0';
-		SensorStatusLibrary[i] 	= SENSOR_VACANT;
+	static uint8_t INITIALIZED = 0;
+	if (! INITIALIZED) {
+		for (uint8_t i = 0; i < NUMBER_OF_SENSORS; i++) {
+			SensorDataLibrary[i][0] = '0';
+			SensorStatusLibrary[i] 	= SENSOR_VACANT;
+		}
+		INITIALIZED = 1;
 	}
 }
 // ****************************************************************************************
@@ -174,50 +231,9 @@ uint16_t vGetSensorData( uint8_t SENSOR ) {
 // ****************************************************************************************
 
 void tSensor_Task( void *param) {
-	// Initialize the SensorDataLibrary
-	nSensorLibrary_Init();
-	
-	// ------------------------------------------------------------------------------------------------------------
-	//		SETUP DIGITAL SENSOR INPUTS					Digital Inputs : 8
-	// ------------------------------------------------------------------------------------------------------------
-	// Digital Inputs:
-				/* 		DI0: P23		DI1: P24		DI2: P25		DI3: P26
-				 * 		DI4: P27		DI5: P28		DI6: P29		DI7: P30	*/
-	// Sensor:			 	5						6						7						8
-	//								9						10					11					12
 	
 	uint8_t	Digital_sensors_ports[] = {2,2,2,0 ,0 ,0,0};		// PORTS for the 7 digital inputs
 	uint8_t Digital_sensors_pins [] = {2,1,0,11,10,5,4};		// PINS for the 7 digital inputs
-	
-	for (uint8_t i = 0; i < (sizeof(Digital_sensors_pins) / sizeof(Digital_sensors_pins[0])); i++) {
-		ySetupDigitalI(Digital_sensors_ports[i] , Digital_sensors_pins[i]);
-		SensorStatusLibrary[i + DIGITAL_SENSORS_START] = SENSOR_ACTIVE;
-	}
-	// Digital input setup end	------------------------------------------------------------------------------------
-	
-	
-	
-	
-	// ------------------------------------------------------------------------------------------------------------
-	//		SETUP Analog SENSOR INPUTS					Analog Inputs : 4
-	// ------------------------------------------------------------------------------------------------------------
-	LPC_SC->PCONP |= ( 1 << 12 );				// Enable clock for Internal ADC controller
-	LPC_ADC->ADCR |= (( 1 << 21) | (10 << SBIT_CLCKDIV ));	
-// ACTIVE ADC Channels
-	LPC_PINCON->PINSEL1 |= 1 << 14;					// AD0, P0.23			// Sensor 0		// P15
-	LPC_PINCON->PINSEL1 |= 1 << 16;					// AD1, P0.24			// Sensor 1		// P16
-	LPC_PINCON->PINSEL1 |= 1 << 18;					// AD2, P0.25			// Sensor 2		// P17
-	LPC_PINCON->PINSEL1 |= 1 << 20;					// AD3, P0.26			// Sensor 3		// P18
-	
-// INACTIVE ADC Channels
-//	LPC_PINCON->PINSEL3 |= 1 << 30;					// AD4, P1.30
-//	LPC_PINCON->PINSEL3 |= 1 << 30;					// AD5, P1.31
-//	LPC_PINCON->PINSEL0 |= 1 << 3;					// AD6, P0.3				// This pin is not compatible.
-//	LPC_PINCON->PINSEL0 |= 1 << 2;					// AD7, P0.2				// This pin is not compatible.
-	for (uint8_t i = ANALOG_SENSORS_START; i < ANALOG_SENSORS_END; i++)
-		SensorStatusLibrary[i] = SENSOR_ACTIVE;
-		
-	// Analog input setup end --------------------------------------------------------------------------------------
 	
 //	uint8_t SENSOR_ITERATOR = 0;
 	uint8_t SENSOR_TASK_STATE = SENSOR_STATE_IDLE;

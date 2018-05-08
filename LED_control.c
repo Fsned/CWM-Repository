@@ -168,7 +168,6 @@ void tLEDAlive( void *param ) {
 		alive_timer++;
 		
 		vTaskDelay(1000);
-//			vTaskDelayUntil( &xPreviousWakeTime, ( TickType_t ) 1000 / portTICK_PERIOD_MS );
 	}
 }
 // ***** End of Function ********************************************

@@ -107,6 +107,11 @@ extern xQueueHandle SensorQ;
 // ****************************************************************************************
 extern void nSensorData		( void );
 
+extern void nInitializeDigitalSensors ( void );
+
+extern void nInitializeAnalogSensors  ( void );
+
+extern void nSensorLibrary_Init				( void );
 // ****************************************************************************************
 //	Type		: 	VALUE_RETURN Functions
 //	Example		:	vXxXxX();

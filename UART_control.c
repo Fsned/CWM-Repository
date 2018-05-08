@@ -66,9 +66,9 @@ static uint8_t inputs = 0;
 char USER_LIBRARY[USERS][8] 				= {{"guest"} 					, {"map"} 					 , {"ab"} 							, {"frs"} 							 , {"bj"}};		// Brugernavne
 char PASS_LIBRARY[USERS][8] 				= {{"guest"} 					, {"123"} 					 , {"123"} 							, {"123"} 							 , {"246"}};		// Passwords											
 char USERS_NAMES[USERS][30]					= {{"Guest"} , {"Mark Appelgren"} , {"Anders B. Hansen"} , {"Frederik Snedevind"} , {"Brian Jorgensen"}};
-char USER_PERMISSIONS[USERS]				= {'1','0','0','5','0'}; 
+char USER_PERMISSIONS[USERS]				= {		'1'		 ,				'0'					,				'0'						 ,				'5'							,						'0'}; 
 
-char branch_string[20] = {"Sandbox"};
+char branch_string[16] = {"Sandbox"};
 
 char keyword_strings[][12] 									= {{" "},									// F0
 //																							{"Help"},								// F1
@@ -192,31 +192,6 @@ uint8_t yUART_RxReady( void ) {
 //	Example		:	nXxXxX();
 //	Description	:	Does not return anything.
 // ****************************************************************************************
-void nGetAlive() {
-/* ******************************************************************
-//	Function name : nGetAlive
-//	Functionality :	Print the alive timer value to UART to see how long program has been running for
-// 	Returns				:	None
-//  Input range		: None
-// *****************************************************************/
-	if (xSemaphoreTake(UART0_TxSemaphore , 5)) {
-		nNewLine( 1 );
-		nUART_TxString("Current alive time: ");
-		if ( alive_thousands )
-			nUART_TxChar(alive_thousands + '0');
-		if ( alive_hundreds || alive_thousands )
-			nUART_TxChar(alive_hundreds + '0');
-		if ( alive_tens || alive_hundreds || alive_thousands )
-			nUART_TxChar(alive_tens + '0');
-		nUART_TxChar(alive_ones + '0');
-		
-		nUART_TxString(" seconds.");
-		nNewLine( 1 );
-		
-		xSemaphoreGive(UART0_TxSemaphore);
-	}
-}
-
 
 void nADC_Status() {
 /* ******************************************************************
@@ -873,17 +848,19 @@ void tUART_RxTask( void *param ) {
 					
 				case UartState_FindPass : 
 					
-					if ( yKeyHit (CHAR_BACKSPACE , receive)) {
+					if ( yKeyHit ( CHAR_BACKSPACE , receive )) {
 						if (inputs > 0) {
 							inputs--;
-							nUART_TxChar(CHAR_BACKSPACE);
+							nUART_TxChar( CHAR_BACKSPACE );
 							nUART_TxChar(' ');
-							nUART_TxChar(CHAR_BACKSPACE);
+							nUART_TxChar( CHAR_BACKSPACE );
 						}
 					}
 				
-					else if ( yKeyHit (CHAR_ENTER , receive ) && inputs == 0) {
+					else if ( yKeyHit ( CHAR_ENTER , receive ) && inputs == 0) {
 						nNewLine( 1 );
+						nUART_TxString("Unrecognized user.");
+						nNewLine( 2 );
 						UART_STATE = UartState_FindUser;
 						OutedStatusMsg = 0; 
 					}

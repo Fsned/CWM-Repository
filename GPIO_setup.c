@@ -486,7 +486,7 @@ uint8_t vDigitalRead( uint8_t Port , int Pin ) {
 
 
 uint8_t vGetPinStatus	( uint8_t Port , int Pin ) {
-	/* ******************************************************************
+/* ******************************************************************
 //	Function name : vGetPinStatus
 //	Functionality :	Returns the PIN_STATUS of a given pin, from the pin library.
 // 	Returns				:	None

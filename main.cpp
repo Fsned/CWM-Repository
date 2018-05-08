@@ -36,6 +36,9 @@
 /*
 Hello Laptop!
 */
+/*
+Hello Desktop
+*/
 
 int main()
 {

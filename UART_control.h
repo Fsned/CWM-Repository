@@ -78,6 +78,8 @@
 #define CHAR_Z	'Z'
 
 #define CHAR_ENTER	'\r'
+
+
 #define CHAR_BACKSPACE 0x7F
 
 
@@ -187,6 +189,8 @@ extern void nPinFlip_P25					( void );
 extern void nPinFlip_P26					( void );
 extern void nPinFlip_P27					( void );
 extern void nPinFlip_P28					( void );
+
+extern void nPrintInt							( int input );
 
 // ****************************************************************************************
 //	Type		: 	VALUE_RETURN Functions

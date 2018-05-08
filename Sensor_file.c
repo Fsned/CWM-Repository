@@ -34,16 +34,12 @@
 #include "UART_control.h"
 #include "LED_control.h"
 
-
 #include "FreeRTOS.h"
 #include "task.h"
 #include "queue.h"
 
-
 #include "stdutils.h"
 #include "lpc17xx.h"
-
-
 
 // ****************************************************************************************
 //
@@ -99,63 +95,30 @@ void nSensorData() {
 			
 			if (SensorStatusLibrary[i] == SENSOR_PAUSED) {
 				nUART_TxString("S ");
-				nUART_TxChar(i + '0');
+				nPrintInt(i);
 				nUART_TxString(" : ");
 				nUART_TxString("PAUSED\r\n");
 			}
+			
 			else if (SensorStatusLibrary[i] == SENSOR_VACANT){
 				nUART_TxString("S ");
-				nUART_TxChar(i + '0');
+				nPrintInt(i);
 				nUART_TxString(" : ");
 				nUART_TxString("VACANT\r\n");
 			}
 				
-			
 			if (SensorStatusLibrary[i] != SENSOR_ACTIVE)
 				continue;
 			
 			nUART_TxString("S ");
-			nUART_TxChar(i + '0');
+			nPrintInt(i);
 			nUART_TxString(" : ");
+			
 			// Analog sensor output needs to be split into up to 4 characters (12 bit ADC top value is 4095).
 			if ( i <= ANALOG_SENSORS_END) {
-				uint8_t ADC_thousands = 0;
-				uint8_t ADC_hundreds = 0;
-				uint8_t ADC_tens = 0;
-				uint8_t ADC_ones = 0;
 				
-				uint16_t ADC_Sample = SensorDataLibrary[i][0];
-				
-				while (ADC_Sample >= 1000) {
-					ADC_Sample -= 1000;
-					ADC_thousands++;
-				}
-				
-				while (ADC_Sample >= 100) {
-					ADC_Sample -= 100;
-					ADC_hundreds++;
-				}
-				
-				while (ADC_Sample >= 10) {
-					ADC_Sample -= 10;
-					ADC_tens++;
-				}
-				
-				while (ADC_Sample >= 1) {
-					ADC_Sample -= 1;
-					ADC_ones++;
-				}
-				
-				if (ADC_thousands)
-					nUART_TxChar(ADC_thousands + '0');
-				
-				if (ADC_thousands || ADC_hundreds)
-					nUART_TxChar(ADC_hundreds + '0');
-				
-				if (ADC_thousands || ADC_hundreds || ADC_tens)
-					nUART_TxChar(ADC_tens + '0');
-				
-				nUART_TxChar(ADC_ones + '0');
+				int ADC_Sample = SensorDataLibrary[i][0];
+				nPrintInt(ADC_Sample);
 			}
 			// Digital Sensor output is only 1 character (0 or 1). It gets output by typecasting it to a char
 			else

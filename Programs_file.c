@@ -59,9 +59,9 @@ uint8_t CurrentProgram = 0;																						// 0 == No Program Selected.
 				//														 		P1		P1		P2		P2		P3		P3
 				//														 		STD		 			STD		 			STD
 				//																[0]		[1]		[2]		[3]		[4]		[5]
-uint8_t ProgramTimerLibrary[16][6] = {	{	10	,	10	,	10	,	3 	,	10	,	10	},	// 12	Wash
-																				{	10	,	10	,	10	,	3 	,	10	,	10	},	// 13	Wait
-																				{	10	,	10 	,	10	,	3 	,	10	,	10	}};	// 14	Rinse
+uint8_t ProgramTimerLibrary[16][6] = {	{	10	,	10	,	10	,	255 	,	10	,	10	},	// 12	Wash
+																				{	10	,	10	,	10	,	4 	,	10	,	10	},	// 13	Wait
+																				{	10	,	10 	,	10	,	8 	,	10	,	10	}};	// 14	Rinse
 
 															//{ [0] Value , [1] Minimum , [2] Maximum , [3] Req. Perm. Level };
 //uint16_t ParameterLibrary[16][4] = { 	{	1	,	2	,	3	,	4	}, 	// Washing Temperature
@@ -187,37 +187,15 @@ void nWashProgram_2() {
 																	END_PROGRAM};								
 																	
 	int TotalRuntime = 0;
-																	
-	uint8_t TotalRuntime_Hundreds = 0;
-	uint8_t TotalRuntime_Tens = 0;
-	uint8_t TotalRuntime_Ones = 0;
 																				
 	TotalRuntime += ProgramTimerLibrary[WASHING_OPERATION][3];
 	TotalRuntime += ProgramTimerLibrary[RINSING_OPERATION][3];
-	TotalRuntime += ProgramTimerLibrary[WAITING_OPERATION][3]; 
+	TotalRuntime += ProgramTimerLibrary[WAITING_OPERATION][3];
 																	
-	while(TotalRuntime >= 100) {
-		TotalRuntime -= 100;
-		TotalRuntime_Hundreds++;
-	}
-	while(TotalRuntime >= 10) {
-		TotalRuntime -= 10;
-		TotalRuntime_Tens++;
-	}
-	while(TotalRuntime >= 1) {
-		TotalRuntime--;
-		TotalRuntime_Ones++;
-	}
-	nUART_TxString("Total Program Runtime: ");
-	
-	if (TotalRuntime_Hundreds)
-		nUART_TxChar(TotalRuntime_Hundreds + '0');
-	if (TotalRuntime_Hundreds || TotalRuntime_Tens)
-		nUART_TxChar(TotalRuntime_Tens + '0');
-  nUART_TxChar(TotalRuntime_Ones + '0');																
+	nUART_TxString("Total Program Runtime: ");														
+	nPrintInt(TotalRuntime);
 	nUART_TxString(" Seconds.");
-	nNewLine( 1 );
-	
+	nNewLine( 1 );													
 																	
 	if (! uxQueueMessagesWaiting(ProgramLibrary)) {
 		for (uint8_t i = 0; i < (sizeof(Program_2_Recipe) / sizeof(Program_2_Recipe[0])); i++) {
@@ -426,21 +404,8 @@ void nWashOperation		 () {
 	nNewLine( 1 );
 	nUART_TxString("Operation Runtime: ");
 	
-	int timer_100 = int_to_char_100(ProgramTimerLibrary[WASHING_OPERATION][CurrentProgram]);
-	int timer_10 = int_to_char_10(ProgramTimerLibrary[WASHING_OPERATION][CurrentProgram] - (timer_100*100));
-	int timer_1 = int_to_char_1(ProgramTimerLibrary[WASHING_OPERATION][CurrentProgram] - ((timer_100*100) + (timer_10*10)));
+	nPrintInt(ProgramTimerLibrary[WASHING_OPERATION][CurrentProgram]);
 	
-	if (timer_100)
-		nUART_TxChar(timer_100 + '0');
-	
-	if (timer_100 || timer_10)
-		nUART_TxChar(timer_10 + '0');
-	
-	nUART_TxChar(timer_1 + '0');
-	
-//	if (int_to_char_100(ProgramTimerLibrary[WASHING_OPERATION][CurrentProgram])) nUART_TxChar(int_to_char_100(ProgramTimerLibrary[WASHING_OPERATION][CurrentProgram]) + '0');
-//	nUART_TxChar(int_to_char_10	(ProgramTimerLibrary[WASHING_OPERATION][CurrentProgram]) + '0');
-//	nUART_TxChar(int_to_char_1	(ProgramTimerLibrary[WASHING_OPERATION][CurrentProgram]) + '0');
 	nUART_TxString(" Seconds.");
 	nNewLine( 1 );
 	
@@ -541,10 +506,7 @@ void nRinseOperation	 () {
 	nUART_TxString("Started RUN_RINSE Operation.");
 	nNewLine( 1 );
 	nUART_TxString("Operation Runtime: ");
-	
-	if (int_to_char_100(ProgramTimerLibrary[RINSING_OPERATION][CurrentProgram])) nUART_TxChar(int_to_char_100(ProgramTimerLibrary[RINSING_OPERATION][CurrentProgram]) + '0');
-	nUART_TxChar(int_to_char_10	(ProgramTimerLibrary[RINSING_OPERATION][CurrentProgram]) + '0');
-	nUART_TxChar(int_to_char_1	(ProgramTimerLibrary[RINSING_OPERATION][CurrentProgram]) + '0');
+	nPrintInt(ProgramTimerLibrary[RINSING_OPERATION][CurrentProgram]);
 	nUART_TxString(" Seconds.");
 	nNewLine( 1 );
 
@@ -598,8 +560,6 @@ void nRinseOperation	 () {
 			ySetHWStatus(REVERSAL_ENGINE 	, HARDWARE_READY);
 			ySetHWStatus(HEATING_RINSE_1	, HARDWARE_READY);
 			ySetHWStatus(HEATING_RINSE_2	, HARDWARE_READY);
-			
-			
 		}
 	}
 	
@@ -630,9 +590,7 @@ void nWaitOperation		 () {
 	nUART_TxString("Started WAIT Operation.");
 	nNewLine( 1 );
 	nUART_TxString("Operation Runtime: ");
-	if (int_to_char_100(ProgramTimerLibrary[WAITING_OPERATION][CurrentProgram])) nUART_TxChar(int_to_char_100(ProgramTimerLibrary[WAITING_OPERATION][CurrentProgram]) + '0');
-  nUART_TxChar(int_to_char_10	(ProgramTimerLibrary[WAITING_OPERATION][CurrentProgram]) + '0');
-	nUART_TxChar(int_to_char_1	(ProgramTimerLibrary[WAITING_OPERATION][CurrentProgram]) + '0');
+	nPrintInt(ProgramTimerLibrary[WAITING_OPERATION][CurrentProgram]);
 	nUART_TxString(" Seconds.");
 	nNewLine( 1 );
 		

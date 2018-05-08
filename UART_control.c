@@ -758,6 +758,47 @@ void nTerminalNoFunctionFound() {
 }
 
 
+void nPrintInt ( int input ) {
+/* ******************************************************************
+//	Function name : nPrintInt
+//	Functionality :	Prints an integer correctly to the UART Terminal.
+// 	Returns				:	None	
+//  Input range		: 0 - 9999
+// *****************************************************************/
+	uint8_t ones = 0;
+	uint8_t tens = 0;
+	uint8_t hundreds = 0;
+	uint8_t thousands = 0;
+	
+	while (input >= 1000) {
+		thousands++;
+		input -= 1000;
+	}
+	while (input >= 100) {
+		hundreds++;
+		input -= 100;
+	}
+	while (input >= 10) {
+		tens++;
+		input -= 10;
+	}
+	while (input >= 1) {
+		ones++;
+		input -= 1;
+	}
+	
+	if (thousands)
+		nUART_TxChar(thousands + '0');
+	
+	if (thousands || hundreds)
+		nUART_TxChar(hundreds + '0');
+	
+	if (thousands || hundreds || tens)
+		nUART_TxChar(tens + '0');
+	
+	nUART_TxChar(ones + '0');
+}
+
 
 
 
@@ -775,7 +816,6 @@ void tUART_RxTask( void *param ) {
 // 	Returns				:	None	
 //  Input range		: None
 // *****************************************************************/
-	
 	
 	uint8_t receive;
 	uint8_t transmit;

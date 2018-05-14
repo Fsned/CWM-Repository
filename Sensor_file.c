@@ -137,7 +137,9 @@ void nSensorData() {
 	
 	while(! yUART_RxReady()) {
 		nNewLine( 1 );
-		nUART_TxString("Sensordata\r\n");
+		nUART_TxString("Sensordata");
+		nNewLine( 1 );
+		
 		for (uint8_t i = 0; i < NUMBER_OF_SENSORS; i++) {
 			
 			if ( i == ANALOG_SENSORS_START )
@@ -150,14 +152,16 @@ void nSensorData() {
 				nUART_TxString("S ");
 				nPrintInt(i);
 				nUART_TxString(" : ");
-				nUART_TxString("PAUSED\r\n");
+				nUART_TxString("PAUSED");
+				nNewLine( 1 );
 			}
 			
 			else if (SensorStatusLibrary[i] == SENSOR_VACANT){
 				nUART_TxString("S ");
 				nPrintInt(i);
 				nUART_TxString(" : ");
-				nUART_TxString("VACANT\r\n");
+				nUART_TxString("VACANT");
+				nNewLine( 1 );
 			}
 				
 			if (SensorStatusLibrary[i] != SENSOR_ACTIVE)

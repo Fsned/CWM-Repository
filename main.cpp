@@ -52,7 +52,7 @@ int main()
 // =============================================================
 	xReturned &= xTaskCreate( tUART_RxTask , "UART Receive"		, 128, NULL, configMAX_PRIORITIES - 1, NULL );					// Task to Receive input from the terminal, and process it in the program
 	xReturned &= xTaskCreate( tUART_TxTask , "UART Transmit"	, 128, NULL, configMAX_PRIORITIES - 1, NULL ); 					// Task to transmit response and info to the terminal to assist and validate the user
-	xReturned &= xTaskCreate( tSensor_Task , "Sensor Handler"    , 24, NULL, configMAX_PRIORITIES - 1, NULL );				// Task to setup, control and collect data from sensors
+	xReturned &= xTaskCreate( tSensor_Task , "Sensor Handler"       , 24, NULL, configMAX_PRIORITIES - 1, NULL );				// Task to setup, control and collect data from sensors
 //  xReturned &= xTaskCreate(tProgram_Handler,"Program Handler", 128 , NULL, configMAX_PRIORITIES - 1, NULL );			// Task to execute programs
 		
 	
@@ -60,8 +60,8 @@ int main()
 // =============================================================
 //			FreeRTOS Stack check
 // =============================================================
-		if (xReturned == pdPASS)
-			xTaskCreate( tLEDAlive 	, 	"LED Alive task"	, 32 , NULL, configMAX_PRIORITIES - 1, &AliveHandle );
+	if (xReturned == pdPASS)
+		xTaskCreate( tLEDAlive 	, 	"LED Alive task"	, 32 , NULL, configMAX_PRIORITIES - 1, &AliveHandle );
 	
 // =============================================================
 //			Queues
@@ -71,10 +71,10 @@ int main()
 	qUART_RxQ				= xQueueCreate(24 , sizeof(char));
 	qUART_TxQ				= xQueueCreate(24 , sizeof(char));
 		
-// Queue(s) for SensorTask
+// Queue(s) for Sensor Handler
 	SensorQ					= xQueueCreate(24 , sizeof(uint8_t));
 	
-// Queue(s) for ProgramHandlerTask
+// Queue(s) for Program Handler
 	ProgramHandlerQ = xQueueCreate(12 , sizeof(uint8_t));
 	ProgramLibrary	= xQueueCreate(12 , sizeof(uint8_t));
 	OperationQ 			= xQueueCreate(12 , sizeof(uint8_t));
@@ -84,6 +84,7 @@ int main()
 // =============================================================
 	vTaskStartScheduler();
 }
+// ********************** End of Main **************************
 
 
 
@@ -109,8 +110,9 @@ int main()
 
 
 
-
-
+// =============================================================
+//			FreeRTOS Stack Shortage Hooks
+// =============================================================
 #if ( configUSE_MALLOC_FAILED_HOOK == 1 )
 void vApplicationMallocFailedHook( void )
 {

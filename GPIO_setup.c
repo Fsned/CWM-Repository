@@ -53,133 +53,10 @@ uint8_t PinLibrary_Initialized = 0;
 //	Description	:	Returns true (1) or false (0) depending on the success of the function
 // ****************************************************************************************
 
-
-uint8_t ySetupDigitalO ( uint8_t Port, int Pin ) {
+uint8_t ySetupDigitalIO ( uint8_t Port, int Pin, uint8_t InputOutput) {
 /* ******************************************************************
-//	Function name : ySetupDigitalO
-//	Functionality :	Setup a GPIO pin to digital output
-// 	Returns				:	True (1) or false (0)
-//  Input range		: PORT_0 : PORT_4  ,  PIN_0 : PIN_31
-//		
-// *****************************************************************/
-	
-	if (!PinLibrary_Initialized)
-		nInitializePinLibrary();
-	
-	uint8_t SetupDigitalO_ret = 0;
-	
-	if (PinLibrary[Port][Pin] == GPIO_FREE) {
-		switch (Port) {
-			case PORT_0:
-				LPC_GPIO0->FIODIR |= (1 << Pin);
-				if (Pin >= PIN_0 && Pin <= PIN_15) {
-					LPC_PINCON->PINSEL0 &= ~(0b11 << Pin*2);
-					SetupDigitalO_ret = 1;
-				}
-				else if (Pin >= PIN_16 && Pin <= PIN_31) {
-					LPC_PINCON->PINSEL1 &= ~(0b11 << (Pin-16)*2);
-					SetupDigitalO_ret = 1;
-				}
-				else
-					SetupDigitalO_ret = 0;
-				break;
-			
-			case PORT_1:
-				LPC_GPIO1->FIODIR |= (1 << Pin);
-				if (Pin >= PIN_0 && Pin <= PIN_15) {
-					LPC_PINCON->PINSEL2 &= ~(0b11 << Pin*2);
-					SetupDigitalO_ret = 1;
-				}
-				else if (Pin >= PIN_16 && Pin <= PIN_31) {
-					LPC_PINCON->PINSEL3 &= ~(0b11 << (Pin-16)*2);
-					SetupDigitalO_ret = 1;
-				}
-				else
-					SetupDigitalO_ret = 0;
-				break;
-			
-			case PORT_2:
-				LPC_GPIO2->FIODIR |= (1 << Pin);
-				if (Pin >= PIN_0 && Pin <= PIN_15) {
-					LPC_PINCON->PINSEL4 &= ~(0b11 << Pin*2);
-					SetupDigitalO_ret = 1;
-				}
-				else if (Pin >= PIN_16 && Pin <= PIN_31) {
-					LPC_PINCON->PINSEL5 &= ~(0b11 << (Pin-16)*2);
-					SetupDigitalO_ret = 1;
-				}
-				else
-					SetupDigitalO_ret = 0;
-				break;
-			
-			case PORT_3:
-				LPC_GPIO3->FIODIR |= (1 << Pin);
-				if (Pin >= PIN_0 && Pin <= PIN_15) {
-					LPC_PINCON->PINSEL6 &= ~(0b11 << Pin*2);
-					SetupDigitalO_ret = 1;
-				}
-				else if (Pin >= PIN_16 && Pin <= PIN_31) {
-					LPC_PINCON->PINSEL7 &= ~(0b11 << (Pin-16)*2);
-					SetupDigitalO_ret = 1;
-				}
-				else
-					SetupDigitalO_ret = 0;
-				break;
-			
-			case PORT_4:
-				LPC_GPIO4->FIODIR |= (1 << Pin);
-				if (Pin >= PIN_0 && Pin <= PIN_15) {
-					LPC_PINCON->PINSEL8 &= ~(0b11 << Pin*2);
-					SetupDigitalO_ret = 1;
-				}
-				else if (Pin >= PIN_16 && Pin <= PIN_31) {
-					LPC_PINCON->PINSEL9 &= ~(0b11 << (Pin-16)*2);
-					SetupDigitalO_ret = 1;
-				}
-				else
-					SetupDigitalO_ret = 0;
-				break;
-			
-			default :
-				SetupDigitalO_ret = 0;
-		}
-	}
-	else
-		SetupDigitalO_ret = 0;
-	
-	if (SetupDigitalO_ret)
-		PinLibrary[Port][Pin] = GPIO_OUTPUT;
-	
-	return SetupDigitalO_ret;
-}
-// ***** End of Function ********************************************
-
-
-//	Function to stop all GPIO outputs. they will be set to GPIO_FREE in the library.
-//	This means a new setup has to be run for each pin, in order for it to work normally (in most cases)
-void nGPIO_STOP() {
-/* ******************************************************************
-//	Function name : nGPIO_STOP
-//	Functionality :	Sets all GPIO that has been setup to LOW. note that any functions that does not take use of the GPIO API for setting up pins might be excluded from this feature.
-// 	Returns				:	None	
-//  Input range		: None
-// *****************************************************************/
-	for (int i = PORT_0; i <= PORT_4; i++) {
-		for (int n = PIN_0; n <= PIN_31; n++) {
-			if (PinLibrary[i][n] == GPIO_OUTPUT) {
-				yDigitalWrite(/*PORT*/ i , /*PIN*/ n , /* STATE */ GPIO_LOW);
-				PinLibrary[i][n] = GPIO_FREE;																			// Setting the PinLibrary to GPIO_FREE prevents any calls to yDigitalWrite( PORT, PIN , status ).
-			}
-		}
-	}
-}
-
-
-
-uint8_t ySetupDigitalI ( int Port, int Pin) {
-/* ******************************************************************
-//	Function name : ySetupDigitalI
-//	Functionality :	Setup a GPIO pin to digital Input
+//	Function name : ySetupDigitalIO
+//	Functionality :	Setup a GPIO pin to digital Input or Output
 // 	Returns				:	True (1) or false (0)
 //  Input range		: PORT_0 : PORT_4  ,  PIN_0 : PIN_31
 // *****************************************************************/
@@ -187,93 +64,119 @@ uint8_t ySetupDigitalI ( int Port, int Pin) {
 	if (!PinLibrary_Initialized)
 		nInitializePinLibrary();
 	
-	uint8_t SetupDigitalI_ret = 0;
+	uint8_t SetupDigitalIO_ret = 0;
+	
+	
 	
 	if (PinLibrary[Port][Pin] == GPIO_FREE) {
 		switch (Port) {
 			case PORT_0:
-				LPC_GPIO0->FIODIR &= ~(1 << Pin);
+			
+				if ( InputOutput == GPIO_INPUT )
+					LPC_GPIO0->FIODIR &= ~(1 << Pin);
+				else if ( InputOutput == GPIO_OUTPUT )
+					LPC_GPIO0->FIODIR |= (1 << Pin);
+					
 				if (Pin >= PIN_0 && Pin <= PIN_15) {
 					LPC_PINCON->PINSEL0 &= ~(0b11 << Pin*2);
-					SetupDigitalI_ret = 1;
+					SetupDigitalIO_ret = 1;
 				}
 				else if (Pin >= PIN_16 && Pin <= PIN_31) {
 					LPC_PINCON->PINSEL1 &= ~(0b11 << (Pin-16)*2);
-					SetupDigitalI_ret = 1;
+					SetupDigitalIO_ret = 1;
 				}
 				else
-					SetupDigitalI_ret = 0;
+					SetupDigitalIO_ret = 0;
 				break;
 			
 			case PORT_1:
-				LPC_GPIO1->FIODIR &= ~(1 << Pin);
+				
+				if ( InputOutput == GPIO_INPUT )
+					LPC_GPIO1->FIODIR &= ~(1 << Pin);
+				else if ( InputOutput == GPIO_OUTPUT )
+					LPC_GPIO1->FIODIR |= (1 << Pin);
+					
 				if (Pin >= PIN_0 && Pin <= PIN_15) {
 					LPC_PINCON->PINSEL2 &= ~(0b11 << Pin*2);
-					SetupDigitalI_ret = 1;
+					SetupDigitalIO_ret = 1;
 				}
 				else if (Pin >= PIN_16 && Pin <= PIN_31) {
 					LPC_PINCON->PINSEL3 &= ~(0b11 << (Pin-16)*2);
-					SetupDigitalI_ret = 1;
+					SetupDigitalIO_ret = 1;
 				}
 				else
-					SetupDigitalI_ret = 0;
+					SetupDigitalIO_ret = 0;
 				break;
 			
 			case PORT_2:
-				LPC_GPIO2->FIODIR &= ~(1 << Pin);
+			
+				if ( InputOutput == GPIO_INPUT )
+					LPC_GPIO2->FIODIR &= ~(1 << Pin);
+				else if ( InputOutput == GPIO_OUTPUT )
+					LPC_GPIO2->FIODIR |= (1 << Pin);
+					
 				if (Pin >= PIN_0 && Pin <= PIN_15) {
 					LPC_PINCON->PINSEL4 &= ~(0b11 << Pin*2);
-					SetupDigitalI_ret = 1;
+					SetupDigitalIO_ret = 1;
 				}
 				else if (Pin >= PIN_16 && Pin <= PIN_31) {
 					LPC_PINCON->PINSEL5 &= ~(0b11 << (Pin-16)*2);
-					SetupDigitalI_ret = 1;
+					SetupDigitalIO_ret = 1;
 				}
 				else
-					SetupDigitalI_ret = 0;
+					SetupDigitalIO_ret = 0;
 				break;
 			
 			case PORT_3:
-				LPC_GPIO3->FIODIR &= ~(1 << Pin);
+				
+				if ( InputOutput == GPIO_INPUT )
+					LPC_GPIO3->FIODIR &= ~(1 << Pin);
+				else if ( InputOutput == GPIO_OUTPUT )
+					LPC_GPIO3->FIODIR |= (1 << Pin);
+					
 				if (Pin >= PIN_0 && Pin <= PIN_15) {
 					LPC_PINCON->PINSEL6 &= ~(0b11 << Pin*2);
-					SetupDigitalI_ret = 1;
+					SetupDigitalIO_ret = 1;
 				}
 				else if (Pin >= PIN_16 && Pin <= PIN_31) {
 					LPC_PINCON->PINSEL7 &= ~(0b11 << (Pin-16)*2);
-					SetupDigitalI_ret = 1;
+					SetupDigitalIO_ret = 1;
 				}
 				else
-					SetupDigitalI_ret = 0;
+					SetupDigitalIO_ret = 0;
 				break;
 			
 			case PORT_4:
-				LPC_GPIO4->FIODIR &= ~(1 << Pin);
+				
+				if ( InputOutput == GPIO_INPUT )
+					LPC_GPIO4->FIODIR &= ~(1 << Pin);
+				else if ( InputOutput == GPIO_OUTPUT )
+					LPC_GPIO4->FIODIR |= (1 << Pin);
+					
 				if (Pin >= PIN_0 && Pin <= PIN_15) {
 					LPC_PINCON->PINSEL8 &= ~(0b11 << Pin*2);
-					SetupDigitalI_ret = 1;
+					SetupDigitalIO_ret = 1;
 				}
 				else if (Pin >= PIN_16 && Pin <= PIN_31) {
 					LPC_PINCON->PINSEL9 &= ~(0b11 << (Pin-16)*2);
-					SetupDigitalI_ret = 1;
+					SetupDigitalIO_ret = 1;
 				}
 				else
-					SetupDigitalI_ret = 0;
+					SetupDigitalIO_ret = 0;
 				break;
 			
 			default :
-				SetupDigitalI_ret = 0;
+				SetupDigitalIO_ret = 0;
 		}
 	}
 	else
-		SetupDigitalI_ret = 0;
+		SetupDigitalIO_ret = 0;
 	
-	if (SetupDigitalI_ret)
-		PinLibrary[Port][Pin] = GPIO_INPUT;
+	if (SetupDigitalIO_ret)
+		PinLibrary[Port][Pin] = InputOutput;
 	
-	return SetupDigitalI_ret;
+	return SetupDigitalIO_ret;
 }
-// ***** End of Function ********************************************
 
 uint8_t yDigitalWrite( uint8_t Port , int Pin , uint8_t State ) {
 /* ******************************************************************
@@ -375,6 +278,22 @@ uint8_t yDigitalWrite( uint8_t Port , int Pin , uint8_t State ) {
 //	Description	:	Does not return anything.
 // ****************************************************************************************
 
+void nGPIO_STOP() {
+/* ******************************************************************
+//	Function name : nGPIO_STOP
+//	Functionality :	Sets all GPIO that has been setup to LOW. note that any functions that does not take use of the GPIO API for setting up pins might be excluded from this feature.
+// 	Returns				:	None	
+//  Input range		: None
+// *****************************************************************/
+	for (int i = PORT_0; i <= PORT_4; i++) {
+		for (int n = PIN_0; n <= PIN_31; n++) {
+			if (PinLibrary[i][n] == GPIO_OUTPUT) {
+				yDigitalWrite(/*PORT*/ i , /*PIN*/ n , /* STATE */ GPIO_LOW);
+				PinLibrary[i][n] = GPIO_FREE;																			// Setting the PinLibrary to GPIO_FREE prevents any calls to yDigitalWrite( PORT, PIN , status ).
+			}
+		}
+	}
+}
 
 void nGPIOSetup() {
 /* ******************************************************************
@@ -387,27 +306,27 @@ void nGPIOSetup() {
 		nInitializePinLibrary();
 	
 	// Setup Pins for LEDS 1:4
-	ySetupDigitalO( PORT_1 , LED_1 );
-	ySetupDigitalO( PORT_1 , LED_2 );
-	ySetupDigitalO( PORT_1 , LED_3 );
-	ySetupDigitalO( PORT_1 , LED_4 );
+	ySetupDigitalIO( PORT_1 , LED_1 , GPIO_OUTPUT );
+	ySetupDigitalIO( PORT_1 , LED_2 , GPIO_OUTPUT );
+	ySetupDigitalIO( PORT_1 , LED_3 , GPIO_OUTPUT );
+	ySetupDigitalIO( PORT_1 , LED_4 , GPIO_OUTPUT );
 	
 	// Digital Outputs for hardware (see HW_Pinmap in Programs_file.c
-	ySetupDigitalO( PORT_0 , PIN_9 );				// P5
-	ySetupDigitalO( PORT_0 , PIN_8 );				// P6
-	ySetupDigitalO( PORT_0 , PIN_7 );				// P7
-	ySetupDigitalO( PORT_0 , PIN_6 );				// P8
-	ySetupDigitalO( PORT_0 , PIN_0 );				// P9
-	ySetupDigitalO( PORT_0 , PIN_1 );				// P10
-	ySetupDigitalO( PORT_0 , PIN_18 );			// P11
-	ySetupDigitalO( PORT_0 , PIN_17 );			// P12
-	ySetupDigitalO( PORT_0 , PIN_15 );			// P13
-	ySetupDigitalO( PORT_0 , PIN_16 );			// P14
-	ySetupDigitalO( PORT_1 , PIN_30 );			// P19
-	ySetupDigitalO( PORT_1 , PIN_31 );			// P20
-	ySetupDigitalO( PORT_2 , PIN_5 );				// P21
-	ySetupDigitalO( PORT_2 , PIN_4 );				// P22
-	ySetupDigitalO( PORT_2 , PIN_3 );				// P23
+	ySetupDigitalIO( PORT_0 , PIN_9  , GPIO_OUTPUT );				// P5
+	ySetupDigitalIO( PORT_0 , PIN_8  , GPIO_OUTPUT );				// P6
+	ySetupDigitalIO( PORT_0 , PIN_7  , GPIO_OUTPUT );				// P7
+	ySetupDigitalIO( PORT_0 , PIN_6  , GPIO_OUTPUT );				// P8
+	ySetupDigitalIO( PORT_0 , PIN_0  , GPIO_OUTPUT );				// P9
+	ySetupDigitalIO( PORT_0 , PIN_1  , GPIO_OUTPUT );				// P10
+	ySetupDigitalIO( PORT_0 , PIN_18 , GPIO_OUTPUT );				// P11
+	ySetupDigitalIO( PORT_0 , PIN_17 , GPIO_OUTPUT );				// P12
+	ySetupDigitalIO( PORT_0 , PIN_15 , GPIO_OUTPUT );				// P13
+	ySetupDigitalIO( PORT_0 , PIN_16 , GPIO_OUTPUT );				// P14
+	ySetupDigitalIO( PORT_1 , PIN_30 , GPIO_OUTPUT );				// P19
+	ySetupDigitalIO( PORT_1 , PIN_31 , GPIO_OUTPUT );				// P20
+	ySetupDigitalIO( PORT_2 , PIN_5  , GPIO_OUTPUT );				// P21
+	ySetupDigitalIO( PORT_2 , PIN_4  , GPIO_OUTPUT );				// P22
+	ySetupDigitalIO( PORT_2 , PIN_3  , GPIO_OUTPUT );				// P23
 	
 }
 

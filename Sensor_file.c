@@ -121,7 +121,7 @@ void nInitializeDigitalSensors() {
 	uint8_t Digital_sensors_pins [] = {2,1,0,11,10,5,4};		// PINS for the 7 digital inputs
 	
 	for (uint8_t i = 0; i < (sizeof(Digital_sensors_pins) / sizeof(Digital_sensors_pins[0])); i++) {
-		ySetupDigitalI(Digital_sensors_ports[i] , Digital_sensors_pins[i]);
+		ySetupDigitalIO(Digital_sensors_ports[i] , Digital_sensors_pins[i] , GPIO_INPUT );
 		SensorStatusLibrary[i + DIGITAL_SENSORS_START] = SENSOR_ACTIVE;
 	}
 }

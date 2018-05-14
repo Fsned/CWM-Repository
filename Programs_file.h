@@ -58,21 +58,40 @@
 #define HARDWARE_ALARM								3
 
 // Hardware Handles
-#define WASH_PUMP_1										0
-#define WASH_PUMP_2										1
-#define RINSE_PUMP_1									2
-#define RINSE_PUMP_2									3
-#define REVERSAL_ENGINE								4
-#define	SOAP_PUMP											5
-#define SOFTENER_PUMP									6
-#define	HEATING_RINSE_1								7
-#define HEATING_RINSE_2								8
-#define HEATING_WASH_1								9
-#define HEATING_WASH_2								10
-#define CURTAIN_ENGINE								11
-#define DRAIN_PUMP										12
-#define	ELECTROVALVE									13
-#define REVERSAL_ENG_DIRECTION				14
+
+enum HardwareIndeces {
+	WASH_PUMP_1							= 0,
+	WASH_PUMP_2 						= 1,
+	RINSE_PUMP_1 						= 2,
+	RINSE_PUMP_2 						= 3,
+	REVERSAL_ENGINE 				= 4,
+	SOAP_PUMP 							= 5,
+	SOFTENER_PUMP 					= 6,
+	HEATING_RINSE_1 				= 7,
+	HEATING_RINSE_2 				= 8,
+	HEATING_WASH_1 					= 9,
+	HEATING_WASH_2 					= 10,
+	CURTAIN_ENGINE 					= 11,
+	DRAIN_PUMP 							= 12,
+	ELECTROVALVE 						= 13,
+	REVERSAL_ENG_DIRECTION 	= 14
+};
+
+//#define WASH_PUMP_1										0
+//#define WASH_PUMP_2										1
+//#define RINSE_PUMP_1									2
+//#define RINSE_PUMP_2									3
+//#define REVERSAL_ENGINE								4
+//#define	SOAP_PUMP											5
+//#define SOFTENER_PUMP									6
+//#define	HEATING_RINSE_1								7
+//#define HEATING_RINSE_2								8
+//#define HEATING_WASH_1								9
+//#define HEATING_WASH_2								10
+//#define CURTAIN_ENGINE								11
+//#define DRAIN_PUMP										12
+//#define	ELECTROVALVE									13
+//#define REVERSAL_ENG_DIRECTION				14
 
 
 
@@ -96,9 +115,17 @@
 
 
 // Program Operation Indexes
-#define PROGRAM_1											1
-#define PROGRAM_2											2
-#define PROGRAM_3											3
+enum ProgramIndeces {
+	PROGRAM_1 = 1,
+	PROGRAM_2 = 2,
+	PROGRAM_3 = 3,
+	PROGRAM_4 = 4,
+	PROGRAM_5 = 5
+};
+
+//#define PROGRAM_1											1
+//#define PROGRAM_2											2
+//#define PROGRAM_3											3
 
 #define START_PROGRAM									5
 #define	END_PROGRAM										6
@@ -117,7 +144,7 @@
 #define RINSING_OPERATION							2
 
 #define MAX_NUMBER_OF_OPERATIONS 			16
-																	
+
 extern xQueueHandle ProgramHandlerQ;
 extern xQueueHandle OperationQ;
 extern xQueueHandle ProgramLibrary; 

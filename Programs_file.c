@@ -55,6 +55,14 @@ const uint8_t SENSORSKIP = 1;
 const uint8_t TIMERSKIP  = 0;
 
 uint8_t CurrentProgram = 0;																						// 0 == No Program Selected.
+
+
+
+/* =============================================================================================
+																				PROGRAM TIMER LIBRARY
+		Used to modify timers for various operations in washing programs. also contains 
+		Standard values for all operations, to allow to return settings to default values
+   ============================================================================================= */
 				// 																Operation Timer Library
 				//														 		P1		P1		P2		P2		P3		P3
 				//														 		STD		 			STD		 			STD
@@ -63,24 +71,37 @@ uint8_t ProgramTimerLibrary[16][6] = {	{	10	,	10	,	10	,	255 	,	10	,	10	},	// 12	
 																				{	10	,	10	,	10	,	4 	,	10	,	10	},	// 13	Wait
 																				{	10	,	10 	,	10	,	8 	,	10	,	10	}};	// 14	Rinse
 
-															//{ [0] Value , [1] Minimum , [2] Maximum , [3] Req. Perm. Level };
-//uint16_t ParameterLibrary[16][4] = { 	{	1	,	2	,	3	,	4	}, 	// Washing Temperature
-//										{	1	,	2	,	3	,	4	},	// Rinsing Temperature
-//										{	1	,	2	,	3	,	4	}, 	// 
-//										{	1	,	2	,	3	,	4	},
-//										{	1	,	2	,	3	,	4	}, 
-//										{	1	,	2	,	3	,	4	},
-//										{	1	,	2	,	3	,	4	}, 
-//										{	1	,	2	,	3	,	4	},
-//										{	1	,	2	,	3	,	4	}, 
-//										{	1	,	2	,	3	,	4	},
-//										{	1	,	2	,	3	,	4	}, 
-//										{	1	,	2	,	3	,	4	},
-//										{	1	,	2	,	3	,	4	}, 
-//										{	1	,	2	,	3	,	4	},
-//										{	1	,	2	,	3	,	4	}, 
-//										{	1	,	2	,	3	,	4	}};
+																				
+/* =============================================================================================
+																				PARAMETER LIBRARY
+Used to Determine various boundaries, such as soap level, rinsing temperature, 
+washing temperature, etc.
+   ============================================================================================= */
+																				
+//								{ [0] Value , [1] Minimum , [2] Maximum , [3] Req. Perm. Level };
+																				
+//uint16_t ParameterLibrary[16][4] = {{	1	,	2	,	3	,	4	}, 					// Washing Temperature
+//																		{	1	,	2	,	3	,	4	},					// Rinsing Temperature
+//																		{	1	,	2	,	3	,	4	}, 					// 
+//																		{	1	,	2	,	3	,	4	},
+//																		{	1	,	2	,	3	,	4	}, 
+//																		{	1	,	2	,	3	,	4	},
+//																		{	1	,	2	,	3	,	4	}, 
+//																		{	1	,	2	,	3	,	4	},
+//																		{	1	,	2	,	3	,	4	}, 
+//																		{	1	,	2	,	3	,	4	},
+//																		{	1	,	2	,	3	,	4	}, 
+//																		{	1	,	2	,	3	,	4	},
+//																		{	1	,	2	,	3	,	4	}, 
+//																		{	1	,	2	,	3	,	4	},
+//																		{	1	,	2	,	3	,	4	}, 
+//																		{	1	,	2	,	3	,	4	}};
 
+/* =============================================================================================
+																				HARDWARE STATUS LIBRARY
+Used to keep track of current Hardware status. to see if a certain pump should be flipped or not
+depending on current program state. 
+   ============================================================================================= */
 uint16_t HardwareLibrary[15][2] = 	{	{ HARDWARE_OFF , 2 },					
 																			{ HARDWARE_OFF , 2 },
 																			{ HARDWARE_OFF , 2 },
@@ -96,30 +117,39 @@ uint16_t HardwareLibrary[15][2] = 	{	{ HARDWARE_OFF , 2 },
 																			{ HARDWARE_OFF , 2 },
 																			{ HARDWARE_OFF , 2 },
 																			{ HARDWARE_OFF , 2 }};
+				
+/* =============================================================================================
+																				HARDWARE PIN MAP
+Mapping of all controllable hardware in the machines, to their corresponding PORTS and PINS
+Should be remade once new processor hits the table																			
+   ============================================================================================= */
 // PINMAP for 
-//													 PORT ,	PIN
-uint8_t HW_Pinmap [15][2] =  {{0	,	 9},									// F0		|| P5
-															{0 	,	 8},									// F1		|| P6
-															{0 	,	 7},									// F2		|| P7
-															{0 	,	 6},									// F3		|| P8
-															{0 	,	 0},									// F4		|| P9
-															{0 	,	 1},									// F5		|| P10
-															{0 	,	 18},									// F6		|| P11
-															{0 	,	 17},									// F7		|| P12
-															{0 	,	 15},									// F8		|| P13
-															{0 	,	 16},									// F9		|| P14
-															{1 	,	 30},									// F10	|| P19
-															{1 	,	 31},									// F11	|| P20
-															{2 	,	 5},									// F12	|| P21
-															{2 	,	 4},									// F13	|| P22
-															{2 	,	 3}};									// F14	|| P23
+//													 				 PORT ,	 PIN
+				uint8_t HW_Pinmap [15][2] =  {{0	,	 9},									// F0		|| P5		|| WASH PUMP 1
+																			{0 	,	 8},									// F1		|| P6		|| WASH PUMP 2
+																			{0 	,	 7},									// F2		|| P7		|| RINSE PUMP 1
+																			{0 	,	 6},									// F3		|| P8		|| RINSE PUMP 2
+																			{0 	,	 0},									// F4		|| P9		|| REVERSAL ENGINE
+																			{0 	,	 1},									// F5		|| P10	|| SOAP PUMP
+																			{0 	,	 18},									// F6		|| P11	|| SOFTENER PUMP
+																			{0 	,	 17},									// F7		|| P12	|| HEATER RINSE 1
+																			{0 	,	 15},									// F8		|| P13	|| HEATER RINSE 2
+																			{0 	,	 16},									// F9		|| P14	|| HEATER WASH 1
+																			{1 	,	 30},									// F10	|| P19	|| HEATER WASH 2
+																			{1 	,	 31},									// F11	|| P20	|| CURTAIN ENGINE
+																			{2 	,	 5},									// F12	|| P21	|| DRAIN PUMP
+																			{2 	,	 4},									// F13	|| P22	|| ELECTROVALVE
+																			{2 	,	 3}};									// F14	|| P23	|| REVERSAL ENGINE DIRECTION
 																			
 
-// ****************************************************************************************
+// ========================================================================================
 //	Type				: YES_RETURN Functions
 //	Example			:	yXxXxX();
-//	Description	:	Returns true (1) or false (0) depending on the success of the function
-// ****************************************************************************************
+//	Description	:	Functions that return TRUE (1) or FALSE (0) based on the success of the function.
+// ========================================================================================
+																			
+																			
+																			
 uint8_t ySetHWStatus ( uint8_t HardwareHandle , uint8_t NewStatus) {
 /* ******************************************************************
 //	Function name : ySetHWStatus
@@ -136,7 +166,11 @@ uint8_t ySetHWStatus ( uint8_t HardwareHandle , uint8_t NewStatus) {
 	return 0;
 }	
 																				
-																				
+// ========================================================================================
+//	Type		: 	NO_RETURN Functions
+//	Example		:	nXxXxX();
+//	Description	:	Does not return anything.
+// ========================================================================================																			
 																				
 void nWashProgram_1() {
 /* ******************************************************************
@@ -166,6 +200,7 @@ void nWashProgram_1() {
 //	}
 //	vTaskDelay(10);
 }
+
 
 
 void nWashProgram_2() {
@@ -245,11 +280,7 @@ void nWashProgram_3() {
 
 
 
-// ****************************************************************************************
-//	Type		: 	NO_RETURN Functions
-//	Example		:	nXxXxX();
-//	Description	:	Does not return anything.
-// ****************************************************************************************
+
 void nFillTanksOperation() {
 /* *********************************************************************************************************
 //	Function name : nFillTanksOperation

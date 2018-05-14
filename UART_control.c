@@ -227,7 +227,7 @@ void nPinSetup_1() {
 // 	Returns				:	None	
 //  Input range		: None	
 // *****************************************************************/	
-		ySetupDigitalO( PORT_0 , PIN_0 );			// P9   for driving soappump relay		
+		ySetupDigitalIO( PORT_0 , PIN_0 , GPIO_OUTPUT);			// P9   for driving soappump relay		
 }
 
 void nPinSetup_2() {
@@ -237,7 +237,7 @@ void nPinSetup_2() {
 // 	Returns				:	None	
 //  Input range		: None
 // *****************************************************************/	
-	ySetupDigitalO( PORT_0 , PIN_1 );			// P10	for driving soappump relay
+	ySetupDigitalIO( PORT_0 , PIN_1 , GPIO_OUTPUT );			// P10	for driving soappump relay
 }
 
 
@@ -562,7 +562,7 @@ void nUART_TxChar(char ch) {
 //  Input range		: 0 - 255, all chars
 // *****************************************************************/
 	if (yUART_TxReady())
-		LPC_UART0->THR=ch;                                  // Load the data to be transmitted
+		xQueueSend(qUART_TxQ , &ch , 10);
 }
 
 
@@ -1015,7 +1015,8 @@ void tUART_TxTask( void *param ) {
 		}
 
 		if (xQueueReceive(qUART_TxQ , &receive , 2) )
-			nUART_TxChar(receive);
+				LPC_UART0->THR = receive;                                  // Load the data to be transmitted
+		//nUART_TxChar(receive);
 		
 		vTaskDelay(10); 
 	}

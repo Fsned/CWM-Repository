@@ -105,7 +105,7 @@ extern xQueueHandle SensorQ;
 //	Example		:	nXxXxX();
 //	Description	:	Does not return anything.
 // ****************************************************************************************
-extern void nSensorData		( void );
+extern void nSensorData								( void );
 
 extern void nInitializeDigitalSensors ( void );
 

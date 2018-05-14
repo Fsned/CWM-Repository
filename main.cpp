@@ -55,8 +55,6 @@ int main()
 	xReturned &= xTaskCreate( tSensor_Task , "Sensor Handler"       , 24, NULL, configMAX_PRIORITIES - 1, NULL );				// Task to setup, control and collect data from sensors
 //  xReturned &= xTaskCreate(tProgram_Handler,"Program Handler", 128 , NULL, configMAX_PRIORITIES - 1, NULL );			// Task to execute programs
 		
-	
-	
 // =============================================================
 //			FreeRTOS Stack check
 // =============================================================
@@ -69,7 +67,7 @@ int main()
 	
 // Queue(s) for UART
 	qUART_RxQ				= xQueueCreate(24 , sizeof(char));
-	qUART_TxQ				= xQueueCreate(24 , sizeof(char));
+	qUART_TxQ				= xQueueCreate(48 , sizeof(char));
 		
 // Queue(s) for Sensor Handler
 	SensorQ					= xQueueCreate(24 , sizeof(uint8_t));

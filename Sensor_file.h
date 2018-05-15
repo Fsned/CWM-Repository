@@ -14,6 +14,9 @@
  * Check the corresponding .c-file for further explanation of functions.	
  *
  *********************************************************************************************/
+ #ifndef SENSOR_FILE_H
+ #define SENSOR_FILE_H
+ 
  #include "FreeRTOS.h"
  #include "task.h"
  #include "queue.h"
@@ -126,4 +129,6 @@ extern uint8_t  vGetSensorStatus	( uint8_t SENSOR_HANDLE );
 //	Description	:	FreeRTOS Task Structure
 // ****************************************************************************************
 extern void tSensor_Task( void* );
+
+#endif /* SENSOR_FILE_H */
 

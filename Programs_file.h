@@ -14,6 +14,10 @@
  *	
  *
  *********************************************************************************************/
+ #ifndef PROGAMS_FILE_H
+ #define PROGRAMS_FILE_H
+ 
+ 
  #include "stdutils.h"
  #include "FreeRTOS.h"
  #include "queue.h"
@@ -198,4 +202,6 @@ extern uint8_t vGetHWStatus	( uint8_t HardwareHandle );
 //	Description	:	Task functions designed for FreeRTOS scheduling
 // ****************************************************************************************
 extern void tProgram_Handler				( void* );
+
+#endif /* PROGAMS_FILE_H */
 

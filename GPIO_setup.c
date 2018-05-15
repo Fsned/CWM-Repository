@@ -41,11 +41,11 @@
 
 // Array to contain the setup status for 32 pins on each port, (Port 0 - Port 4). 
 // Will be initialized to "GPIO_FREE" = 0, once first function in file is called
+// Each pin can hold 1 of 3 statuses:
+// 		GPIO_FREE
+// 		GPIO_INPUT
+// 		GPIO_OUTPUT
 uint8_t PinLibrary[5][32];
-
-// Variable to keep track of whether PinLibrary has been initialized or no. will
-// Be set to 1 once it has been initialized, preventing further initializations
-uint8_t PinLibrary_Initialized = 0;
 
 // ****************************************************************************************
 //	Type		: 	YES_RETURN Functions
@@ -60,13 +60,10 @@ uint8_t ySetupDigitalIO ( uint8_t Port, int Pin, uint8_t InputOutput) {
 // 	Returns				:	True (1) or false (0)
 //  Input range		: PORT_0 : PORT_4  ,  PIN_0 : PIN_31
 // *****************************************************************/
-	
-	if (!PinLibrary_Initialized)
-		nInitializePinLibrary();
+
+	nInitializePinLibrary();
 	
 	uint8_t SetupDigitalIO_ret = 0;
-	
-	
 	
 	if (PinLibrary[Port][Pin] == GPIO_FREE) {
 		switch (Port) {
@@ -185,12 +182,11 @@ uint8_t yDigitalWrite( uint8_t Port , int Pin , uint8_t State ) {
 // 	Returns				:	True (1) or false (0), depending on successful operation or no
 //  Input range		: PORT_0 : PORT_4  ,  PIN_0 : PIN_31  ,  0 : 1
 // *****************************************************************/
-	if (! PinLibrary_Initialized)
-		nInitializePinLibrary();
+	nInitializePinLibrary();
 	
 	uint8_t yDigitalWrite_ret = 0;
 	
-	if (PinLibrary[Port][Pin] == GPIO_OUTPUT) {
+	if ( PinLibrary[Port][Pin] == GPIO_OUTPUT ) {
 		switch(State) {
 			case GPIO_HIGH:
 				switch(Port) {
@@ -285,9 +281,9 @@ void nGPIO_STOP() {
 // 	Returns				:	None	
 //  Input range		: None
 // *****************************************************************/
-	for (int i = PORT_0; i <= PORT_4; i++) {
-		for (int n = PIN_0; n <= PIN_31; n++) {
-			if (PinLibrary[i][n] == GPIO_OUTPUT) {
+	for (uint8_t i = PORT_0; i <= PORT_4; i++) {
+		for (uint8_t n = PIN_0; n <= PIN_31; n++) {
+			if ( PinLibrary[i][n] == GPIO_OUTPUT ) {
 				yDigitalWrite(/*PORT*/ i , /*PIN*/ n , /* STATE */ GPIO_LOW);
 				PinLibrary[i][n] = GPIO_FREE;																			// Setting the PinLibrary to GPIO_FREE prevents any calls to yDigitalWrite( PORT, PIN , status ).
 			}
@@ -302,8 +298,7 @@ void nGPIOSetup() {
 // 	Returns				:	Nothing
 //  Input range		: None
 // *****************************************************************/	
-	if (! PinLibrary_Initialized)
-		nInitializePinLibrary();
+	nInitializePinLibrary();
 	
 	// Setup Pins for LEDS 1:4
 	ySetupDigitalIO( PORT_1 , LED_1 , GPIO_OUTPUT );
@@ -340,12 +335,19 @@ void nInitializePinLibrary() {
 //	Functionality :	Used to set all pins to GPIO_FREE, to allow setups to reserve pins, and prevent overlapping on pins
 // 	Returns				:	None
 //  Input range		: None
-// *****************************************************************/		
-	for (int column = 0; column < 5; column++) {
-		for (int row = 0; row < 32; row++)
-			PinLibrary[column][row] = GPIO_FREE;
+// *****************************************************************/
+	static uint8_t Initialized = 0;
+	
+	
+	if (! Initialized ) {
+		
+		for ( uint8_t column = 0; column < 5; column++ ) {
+			for ( uint8_t row = 0; row < 32; row++ )
+				PinLibrary[column][row] = GPIO_FREE;
+		}
+		
+		Initialized = 1;
 	}
-	PinLibrary_Initialized = 1;
 }
 // ***** End of Function ********************************************
 
@@ -365,8 +367,7 @@ uint8_t vDigitalRead( uint8_t Port , int Pin ) {
 // 	Returns				:	A value 0 or 1, depending on status of pin
 //  Input range		: PORT_0 : PORT_4  ,  PIN_0 : PIN_31
 // *****************************************************************/
-	if ( ! PinLibrary_Initialized )
-		nInitializePinLibrary();
+	nInitializePinLibrary();
 	
 	uint8_t vDigitalRead_ret;
 	

@@ -150,7 +150,7 @@ void nSensorData() {
 			
 			if (SensorStatusLibrary[i] == SENSOR_PAUSED) {
 				nUART_TxString("S ");
-				nPrintInt(i);
+				nPrintInteger(i);
 				nUART_TxString(" : ");
 				nUART_TxString("PAUSED");
 				nNewLine( 1 );
@@ -158,7 +158,7 @@ void nSensorData() {
 			
 			else if (SensorStatusLibrary[i] == SENSOR_VACANT){
 				nUART_TxString("S ");
-				nPrintInt(i);
+				nPrintInteger(i);
 				nUART_TxString(" : ");
 				nUART_TxString("VACANT");
 				nNewLine( 1 );
@@ -168,14 +168,14 @@ void nSensorData() {
 				continue;
 			
 			nUART_TxString("S ");
-			nPrintInt(i);
+			nPrintInteger(i);
 			nUART_TxString(" : ");
 			
 			// Analog sensor output needs to be split into up to 4 characters (12 bit ADC top value is 4095).
 			if ( i <= ANALOG_SENSORS_END) {
 				
 				int ADC_Sample = SensorDataLibrary[i][0];
-				nPrintInt(ADC_Sample);
+				nPrintInteger(ADC_Sample);
 			}
 			// Digital Sensor output is only 1 character (0 or 1). It gets output by typecasting it to a char
 			else

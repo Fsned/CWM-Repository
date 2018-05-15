@@ -21,3 +21,4 @@
 .\build\led_control.o: UART_control.h
 .\build\led_control.o: .\FreeRTOS\include\queue.h
 .\build\led_control.o: utilities.h
+.\build\led_control.o: GPIO_setup.h

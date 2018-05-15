@@ -16,6 +16,10 @@
  * For further documentation please check the corresponding .c-file	
  *
  *********************************************************************************************/
+ #ifndef LED_CONTROL_H
+ #define LED_CONTOL_H
+ 
+ 
  #include "stdutils.h"
  #include "FreeRTOS.h"
  #include "task.h"
@@ -66,4 +70,4 @@ extern void led_delay_ms(unsigned int n);
 extern void tLEDAlive( void* );
 
 
-
+#endif /* LED_CONTROL_H */

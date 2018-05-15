@@ -15,6 +15,9 @@
  *
  * For further documentation please check the corresponding .c-file
  *********************************************************************************************/
+ #ifndef UART_CONTROL_H
+ #define UART_CONTROL_H
+ 
  #include "FreeRTOS.h"
  #include "queue.h"
  
@@ -245,17 +248,18 @@ extern void nPinFlip_P26					( void );
 extern void nPinFlip_P27					( void );
 extern void nPinFlip_P28					( void );
 
-extern void nPrintInt							( int input );
+extern void nPrintInteger					( int input );
 
 // ****************************************************************************************
 //	Type		: 	VALUE_RETURN Functions
 //	Example		:	vXxXxX();
 //	Description	:	Returns a value, either 1 or 0. no confirmation if successful or not.
 // ****************************************************************************************
-extern uint8_t vFindStringMatch(char InputString[] , uint8_t length);
+extern uint8_t vFindStringMatch	( char InputString[] , uint8_t length );
 
-extern uint8_t vCheckUsernames(char InputString[] , uint8_t length);
+extern uint8_t vCheckUsernames	( char InputString[] , uint8_t length );
 
-extern uint8_t vCheckPasscode(char InputString[] , uint8_t length);
+extern uint8_t vCheckPasscode	( char InputString[] , uint8_t length );
 
+#endif /* UART_CONTROL_H */
 

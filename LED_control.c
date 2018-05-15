@@ -34,6 +34,7 @@
 #include "stdutils.h"
 #include "UART_control.h"
 #include "utilities.h"
+#include "GPIO_setup.h"
 
 #include "FreeRTOS.h"
 #include "task.h"
@@ -92,14 +93,11 @@ void nLED_SET(uint8_t led_0 , uint8_t led_1, uint8_t led_2, uint8_t led_3) {
 		LED_status[3] = led_3;
 	
 	
-	LPC_GPIO1->FIOSET |= (LED_status[0] << 18);
-	led_delay_ms(1);
-	LPC_GPIO1->FIOSET |= (LED_status[1] << 20);
-	led_delay_ms(1);
-	LPC_GPIO1->FIOSET |= (LED_status[2] << 21);
-	led_delay_ms(1);
-	LPC_GPIO1->FIOSET |= (LED_status[3] << 23);
-	led_delay_ms(1);
+	
+	yDigitalWrite( PORT_LED , LED_1 , LED_status[0] );
+	yDigitalWrite( PORT_LED , LED_2 , LED_status[1] );
+	yDigitalWrite( PORT_LED , LED_3 , LED_status[2] );
+	yDigitalWrite( PORT_LED , LED_4 , LED_status[3] );
 }
 // ***** End of Function ********************************************
 
@@ -198,11 +196,11 @@ void nPrintAlive() {
 	
 	nUART_TxString("Current alive time: ");
 	
-	nPrintInt(hours);
+	nPrintInteger(hours);
 	nUART_TxChar(':');
-	nPrintInt(minutes);
+	nPrintInteger(minutes);
 	nUART_TxChar(':');
-	nPrintInt(seconds);
+	nPrintInteger(seconds);
 	
 	nNewLine( 1 );
 }

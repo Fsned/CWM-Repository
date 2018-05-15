@@ -105,6 +105,11 @@ typedef volatile uint32_t RwReg;
 
 #define C_UINT32_MAX  0xFFFFFFFFu
 #define C_UINT32_MIN  0x00u
+
+#define UNSUCCESSFUL		0x0000
+#define SUCCESSFUL			0x1000
+#define PIN_NOT_SETUP		0x2000
+#define PIN_WRONG_DIRECTION	0x3000
 /***************************************************************************************************/
 
 

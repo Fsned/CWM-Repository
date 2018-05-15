@@ -51,7 +51,7 @@ xQueueHandle OperationQ			 	= NULL;																	// Queue to talk to executio
 xQueueHandle ProgramLibrary		= NULL;
 xQueueHandle ProgramHandlerQ	= NULL;
 
-const uint8_t SENSORSKIP = 1;
+const uint8_t SENSORSKIP = 0;
 const uint8_t TIMERSKIP  = 0;
 
 uint8_t CurrentProgram = 0;																						// 0 == No Program Selected.
@@ -63,13 +63,13 @@ uint8_t CurrentProgram = 0;																						// 0 == No Program Selected.
 		Used to modify timers for various operations in washing programs. also contains 
 		Standard values for all operations, to allow to return settings to default values
    ============================================================================================= */
-				// 																Operation Timer Library
-				//														 		P1		P1		P2		P2		P3		P3
-				//														 		STD		 			STD		 			STD
-				//																[0]		[1]		[2]		[3]		[4]		[5]
+// 																				Operation Timer Library
+//														 						P1		P1		P2		P2			P3		P3
+//														 					 STD		 		 STD		 			 STD
+//																			 [0]	 [1]	 [2]		[3]		 [4]	 [5]
 uint8_t ProgramTimerLibrary[16][6] = {	{	10	,	10	,	10	,	255 	,	10	,	10	},	// 12	Wash
-																				{	10	,	10	,	10	,	4 	,	10	,	10	},	// 13	Wait
-																				{	10	,	10 	,	10	,	8 	,	10	,	10	}};	// 14	Rinse
+																				{	10	,	10	,	10	,	4 		,	10	,	10	},	// 13	Wait
+																				{	10	,	10 	,	10	,	8 		,	10	,	10	}};	// 14	Rinse
 
 																				
 /* =============================================================================================
@@ -228,7 +228,7 @@ void nWashProgram_2() {
 	TotalRuntime += ProgramTimerLibrary[WAITING_OPERATION][3];
 																	
 	nUART_TxString("Total Program Runtime: ");														
-	nPrintInt(TotalRuntime);
+	nPrintInteger(TotalRuntime);
 	nUART_TxString(" Seconds.");
 	nNewLine( 1 );													
 																	
@@ -435,7 +435,7 @@ void nWashOperation		 () {
 	nNewLine( 1 );
 	nUART_TxString("Operation Runtime: ");
 	
-	nPrintInt(ProgramTimerLibrary[WASHING_OPERATION][CurrentProgram]);
+	nPrintInteger(ProgramTimerLibrary[WASHING_OPERATION][CurrentProgram]);
 	
 	nUART_TxString(" Seconds.");
 	nNewLine( 1 );
@@ -523,21 +523,20 @@ void nRinseOperation	 () {
 	
 	int timer = ProgramTimerLibrary[RINSING_OPERATION][CurrentProgram] * 1000;
 	
-	uint8_t transmit;
- 
-	const uint8_t NOT_INIT	= 0;
-	const uint8_t COOLING		= 1;
-	const uint8_t HEATING		= 2;
+				uint8_t transmit;
+	const uint8_t NOT_INIT						= 0;
+	const uint8_t COOLING							= 1;
+	const uint8_t HEATING							= 2;
+				uint8_t Reversal_Direction 	= 0;
+				uint8_t HeatingStatus 			= NOT_INIT;
 	
-	uint8_t HeatingStatus = NOT_INIT;
 	
-	uint8_t Reversal_Direction = 0;
 	
 	nNewLine( 2 );
 	nUART_TxString("Started RUN_RINSE Operation.");
 	nNewLine( 1 );
 	nUART_TxString("Operation Runtime: ");
-	nPrintInt(ProgramTimerLibrary[RINSING_OPERATION][CurrentProgram]);
+	nPrintInteger(ProgramTimerLibrary[RINSING_OPERATION][CurrentProgram]);
 	nUART_TxString(" Seconds.");
 	nNewLine( 1 );
 
@@ -621,7 +620,7 @@ void nWaitOperation		 () {
 	nUART_TxString("Started WAIT Operation.");
 	nNewLine( 1 );
 	nUART_TxString("Operation Runtime: ");
-	nPrintInt(ProgramTimerLibrary[WAITING_OPERATION][CurrentProgram]);
+	nPrintInteger(ProgramTimerLibrary[WAITING_OPERATION][CurrentProgram]);
 	nUART_TxString(" Seconds.");
 	nNewLine( 1 );
 		
@@ -658,13 +657,11 @@ void nFillSoftenerOperation () {
 			Because of this, the task will for the moment also be controlled by a timer. the softener dosage isn't required to be 
 			indisputably precise.
 	*/
-	uint8_t transmit;
-	
-	const uint8_t NOT_INIT 	= 0;
-	const uint8_t FILLING 	= 1;
-	const uint8_t FALLING 	= 2;
-	
-	uint8_t SoftenerPumpState = NOT_INIT;
+				uint8_t transmit;
+	const uint8_t NOT_INIT 					= 0;
+	const uint8_t FILLING 					= 1;
+	const uint8_t FALLING 					= 2;
+				uint8_t SoftenerPumpState = NOT_INIT;
 	
 	nNewLine( 2 );
 	nUART_TxString("Started CHECK_SOFTENER Operation.");
@@ -713,14 +710,11 @@ void nCheckWashTemperature	() {
 // 	Returns				:	None
 //  Input range		: None
 // ********************************************************************************************************/
-	uint8_t transmit;
- 
-	
-	const uint8_t NOT_INIT 	= 0;
-	const uint8_t HEATING  	= 1;
-	const uint8_t COOLING		= 2;
-	
-	uint8_t WashHeatingState = NOT_INIT;
+				uint8_t transmit;
+	const uint8_t NOT_INIT 					= 0;
+	const uint8_t HEATING  					= 1;
+	const uint8_t COOLING						= 2;
+				uint8_t WashHeatingState 	= NOT_INIT;
 	
 	nNewLine( 2 );
 	nUART_TxString("Started CHECK WASH TEMPERATURE.");
@@ -762,14 +756,11 @@ void nCheckRinseTemperature	() {
 // 	Returns				:	None
 //  Input range		: None
 // ********************************************************************************************************/
-	uint8_t transmit;
- 
-	
-	const uint8_t NOT_INIT 	= 0;
-	const uint8_t HEATING  	= 1;
-	const uint8_t COOLING		= 2;
-	
-	uint8_t RinseHeatingState = NOT_INIT;
+				uint8_t transmit;
+	const uint8_t NOT_INIT 					= 0;
+	const uint8_t HEATING  					= 1;
+	const uint8_t COOLING						= 2;
+				uint8_t RinseHeatingState = NOT_INIT;
 	
 	nNewLine( 2 );
 	nUART_TxString("Started CHECK RINSE TEMPERATURE.");
@@ -838,10 +829,9 @@ void tProgram_Handler		( void *param ) {
 // ********************************************************************************************************/
 	
 	uint8_t receive;
-	
 	uint8_t	ProgramHandlerState = IDLE;
-	uint8_t OutedMsg = 0;
-//	uint8_t PROGRAM_STARTED = 0;
+	uint8_t OutedMsg 						= 0;
+//	uint8_t PROGRAM_STARTED 	 	= 0;
 	
 	nWashProgram_2();
 	

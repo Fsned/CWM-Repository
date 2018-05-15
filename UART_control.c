@@ -70,65 +70,65 @@ char USER_PERMISSIONS[USERS]				= {		'1'		 ,				'0'					,				'0'						 ,				'5'	
 
 char branch_string[16] = {"Sandbox"};
 
-char keyword_strings[][12] 									= {{" "},									// F0
-//																							{"Help"},								// F1
-//																							{"HELP"},								// F2
-																							{"LEDOFF"},							// F3
-																							{"LEDALL"},							// F4
-//																							{"status"},							// F5
-																							{"clear"},							// F6
-//																							{"wash2"},							// F7
-//																							{"setuppin1"},					// F8
-//																							{"setuppin2"},					// F9
-//																							{"pf1"},								// F10
-//																							{"pf2"},								// F11
-																							{"ADC"},								// F12
-																							{"uptime"},							// F13
-																							{"logout"},							// F14
-																							{"stop"},								// F15
-																							{"help"},								// F16
-																							{"sensordata"},					// F17
-//																							{"alive stop"},					// F18
-//																							{"alive start"},				// F19
-																							{"flip p20"},							// F20
-																							{"flip p21"},							// F21
-																							{"flip p22"},							// F22
-																							{"flip p23"},							// F23
-																							{"flip p24"},							// F24
-																							{"flip p25"},							// F25
-																							{"flip p26"},							// F26
-																							{"flip p27"},							// F27
-																							{"flip p28"}};						// F28
+char keyword_strings[][12] 		 = {{" "},									// F0
+//																	{"Help"},								// F1
+//																	{"HELP"},								// F2
+																	{"LEDOFF"},							// F3
+																	{"LEDALL"},							// F4
+//																	{"status"},							// F5
+																	{"clear"},							// F6
+//																	{"wash2"},							// F7
+//																	{"setuppin1"},					// F8
+//																	{"setuppin2"},					// F9
+//																	{"pf1"},								// F10
+//																	{"pf2"},								// F11
+																	{"ADC"},								// F12
+																	{"uptime"},							// F13
+																	{"logout"},							// F14
+																	{"stop"},								// F15
+																	{"help"},								// F16
+																	{"sensordata"},					// F17
+//																	{"alive stop"},					// F18
+//																	{"alive start"},				// F19
+																	{"flip p20"},						// F20
+																	{"flip p21"},						// F21
+																	{"flip p22"},						// F22
+																	{"flip p23"},						// F23
+																	{"flip p24"},						// F24
+																	{"flip p25"},						// F25
+																	{"flip p26"},						// F26
+																	{"flip p27"},						// F27
+																	{"flip p28"}};					// F28
 
-void (*keyword_functions[])() 						 = {nTerminalUndefined, 		// F0
-//																								nTerminalHelp  	 	, 		// F1
-//																								nTerminalHelp 		 	, 	// F2
-																								nTerminal_LED_OFF		, 	// F3
-																								nTerminal_LED_ALL_ON, 	// F4
-//																								nTerminalStatus		, 		// F5
-																								nTerminalClear		 	, 	// F6
-//																								nWashProgram_2 	  , 		// F7
-//																								nPinSetup_1 	, 				// F8
-//																								nPinSetup_2	, 					// F9
-//																								nPinFlip_1	, 					// F10
-//																								nPinFlip_2 	, 					// F11
-																								nADC_Status 	, 				// F12
-																								nPrintAlive					, 	// F13
-																								nTerminalLogout	, 			// F14
-																								nGPIO_STOP,							// F15
-																								nTerminalHelp,					// F16
-																								nSensorData,						// F17
-//																								nAliveSuspend,					// F18
-//																								nAliveResume,						// F19
-																								nPinFlip_P20,						// F20
-																								nPinFlip_P21,						// F21
-																								nPinFlip_P22,						// F22
-																								nPinFlip_P23,						// F23
-																								nPinFlip_P24,						// F24
-																								nPinFlip_P25,						// F25
-																								nPinFlip_P26,						// F26
-																								nPinFlip_P27,						// F27
-																								nPinFlip_P28,						// F28
+void (*keyword_functions[])()  = {nTerminalUndefined, 		// F0
+//																	nTerminalHelp  	 	, 		// F1
+//																	nTerminalHelp 		 	, 	// F2
+																	nTerminal_LED_OFF		, 	// F3
+																	nTerminal_LED_ALL_ON, 	// F4
+//																	nTerminalStatus		, 		// F5
+																	nTerminalClear		 	, 	// F6
+//																	nWashProgram_2 	  , 		// F7
+//																	nPinSetup_1 	, 				// F8
+//																	nPinSetup_2	, 					// F9
+//																	nPinFlip_1	, 					// F10
+//																	nPinFlip_2 	, 					// F11
+																	nADC_Status 	, 				// F12
+																	nPrintAlive					, 	// F13
+																	nTerminalLogout	, 			// F14
+																	nGPIO_STOP,							// F15
+																	nTerminalHelp,					// F16
+																	nSensorData,						// F17
+//																	nAliveSuspend,					// F18
+//																	nAliveResume,						// F19
+																	nPinFlip_P20,						// F20
+																	nPinFlip_P21,						// F21
+																	nPinFlip_P22,						// F22
+																	nPinFlip_P23,						// F23
+																	nPinFlip_P24,						// F24
+																	nPinFlip_P25,						// F25
+																	nPinFlip_P26,						// F26
+																	nPinFlip_P27,						// F27
+																	nPinFlip_P28,						// F28
 																								
 																								
 																								
@@ -399,6 +399,7 @@ void nPinFlip_P25() {
 	nUART_TxString("Flipped P25");
 	nNewLine( 1 );
 }
+
 void nPinFlip_P26() {
 /* ******************************************************************
 //	Function name : nPinFlip_P26
@@ -418,6 +419,7 @@ void nPinFlip_P26() {
 	nUART_TxString("Flipped P26");
 	nNewLine( 1 );
 }
+
 void nPinFlip_P27() {
 /* ******************************************************************
 //	Function name : nPinFlip_P27
@@ -437,6 +439,7 @@ void nPinFlip_P27() {
 	nUART_TxString("Flipped P27");
 	nNewLine( 1 );
 }
+
 void nPinFlip_P28() {
 /* ******************************************************************
 //	Function name : nPinFlip_P28
@@ -561,8 +564,8 @@ void nUART_TxChar(char ch) {
 // 	Returns				:	None	
 //  Input range		: 0 - 255, all chars
 // *****************************************************************/
-	if (yUART_TxReady())
-		xQueueSend(qUART_TxQ , &ch , 10);
+	
+	xQueueSend(qUART_TxQ , &ch , 10);
 }
 
 
@@ -733,17 +736,23 @@ void nTerminalNoFunctionFound() {
 }
 
 
-void nPrintInt ( int input ) {
+void nPrintInteger ( int input ) {
 /* ******************************************************************
-//	Function name : nPrintInt
+//	Function name : nPrintInteger
 //	Functionality :	Prints an integer correctly to the UART Terminal.
 // 	Returns				:	None	
 //  Input range		: 0 - 9999
 // *****************************************************************/
-	uint8_t ones = 0;
-	uint8_t tens = 0;
-	uint8_t hundreds = 0;
-	uint8_t thousands = 0;
+	uint8_t ones 					= 0;
+	uint8_t tens 					= 0;
+	uint8_t hundreds 			= 0;
+	uint8_t thousands 		= 0;
+	uint8_t tenthousands 	= 0;
+	
+	while (input >= 10000) {
+		tenthousands++;
+		input -= 10000;
+	}
 	
 	while (input >= 1000) {
 		thousands++;
@@ -762,13 +771,17 @@ void nPrintInt ( int input ) {
 		input -= 1;
 	}
 	
-	if (thousands)
+	if (tenthousands) {
+		nUART_TxChar(tenthousands + '0');
+	}
+	
+	if (tenthousands || thousands)
 		nUART_TxChar(thousands + '0');
 	
-	if (thousands || hundreds)
+	if (tenthousands || thousands || hundreds)
 		nUART_TxChar(hundreds + '0');
 	
-	if (thousands || hundreds || tens)
+	if (tenthousands || thousands || hundreds || tens)
 		nUART_TxChar(tens + '0');
 	
 	nUART_TxChar(ones + '0');
@@ -801,43 +814,43 @@ void tUART_RxTask( void *param ) {
 	xSemaphoreGive( UART0_TxSemaphore );
 	
 	while(1) {	
-		if (xQueueReceive(qUART_RxQ , &receive , 2)) {
-			switch (UART_STATE) {
+		if ( xQueueReceive( qUART_RxQ , &receive , 2 )) {
+			switch ( UART_STATE ) {
 	// *******************************************************************
 	//										Check Username State
 	// *******************************************************************					
 				case UartState_FindUser :
 				
-					if ( yKeyHit (CHAR_BACKSPACE , receive)) {
+					if ( yKeyHit ( CHAR_BACKSPACE , receive )) {
 						if ( inputs ) {
 							inputs--;
-							nUART_TxChar(CHAR_BACKSPACE);
+							nUART_TxChar( CHAR_BACKSPACE );
 							nUART_TxChar(' ');
-							nUART_TxChar(CHAR_BACKSPACE);
+							nUART_TxChar( CHAR_BACKSPACE );
 						}
 					}
 				
-					else if ( yKeyHit (CHAR_ENTER , receive ) && inputs == 0) {
+					else if ( yKeyHit ( CHAR_ENTER , receive ) && inputs == 0) {
 						nNewLine( 1 );
 						OutedStatusMsg = 0;
 					}
 					
-					else if ( yKeyHit (CHAR_ENTER , receive ) && inputs > 0) {
+					else if ( yKeyHit ( CHAR_ENTER , receive ) && inputs > 0) {
 						input_buffer[inputs] = '\0';
 						inputs++;
 						
-							USERNAME_MATCHED = vCheckUsernames(  input_buffer , inputs );
-							nNewLine( 1 );
-						
-							UART_STATE = UartState_FindPass;
-							OutedStatusMsg = 0;
-							inputs = 0;				
+						USERNAME_MATCHED = vCheckUsernames( input_buffer , inputs );
+						nNewLine( 1 );
+					
+						UART_STATE = UartState_FindPass;
+						OutedStatusMsg = 0;
+						inputs = 0;				
 					}
 					
-					else {
-							input_buffer[inputs] = receive;
-							xQueueSend(qUART_TxQ , &input_buffer[inputs] , 2);
-							inputs++;						
+					else {						
+						input_buffer[inputs] = receive;
+						xQueueSend( qUART_TxQ , &input_buffer[inputs] , 2 );
+						inputs++;						
 					}
 					
 					vTaskDelay(10);
@@ -937,13 +950,13 @@ void tUART_RxTask( void *param ) {
 						input_buffer[inputs] = '\0';
 						inputs++;
 						nNewLine( 1 );	
-						keyword_functions[vFindStringMatch( input_buffer , inputs )]();
-																																// Start a new line		
+						keyword_functions[vFindStringMatch( input_buffer , inputs )]();	
 						inputs = 0;	
 						OutedStatusMsg = 0;
 					}
 					else {
 						input_buffer[inputs] = receive;
+						
 						if (xSemaphoreTake(UART0_TxSemaphore, ( TickType_t ) 10 ) == pdTRUE) {
 							nUART_TxChar(input_buffer[inputs]);
 							xSemaphoreGive( UART0_TxSemaphore );
@@ -956,6 +969,9 @@ void tUART_RxTask( void *param ) {
 				default :
 					nNewLine( 4 );
 					if (xSemaphoreTake(UART0_TxSemaphore, ( TickType_t ) 10 ) == pdTRUE) {
+						nUART_TxString( "You're not supposed to be here." );
+						nNewLine( 1 );
+						nUART_TxString( "Returning to start." );
 						xSemaphoreGive( UART0_TxSemaphore );
 					}
 					
@@ -1014,8 +1030,11 @@ void tUART_TxTask( void *param ) {
 						OutedStatusMsg = 1;
 		}
 
-		if (xQueueReceive(qUART_TxQ , &receive , 2) )
+		
+		if (xQueueReceive(qUART_TxQ , &receive , 2) ) {
+			if (yUART_TxReady())
 				LPC_UART0->THR = receive;                                  // Load the data to be transmitted
+		}
 		//nUART_TxChar(receive);
 		
 		vTaskDelay(10); 
@@ -1119,3 +1138,5 @@ uint8_t vCheckPasscode(char InputString[] , uint8_t length) {
 	}
 	return MatchFound;
 }
+
+

@@ -133,7 +133,6 @@ void vApplicationStackOverflowHook( TaskHandle_t pxTask, char *pcTaskName )
     ( void ) pxTask;
 
     taskDISABLE_INTERRUPTS();
-//		nTerminal_LED_ALL_ON();
 	
     for( ;; )
     {

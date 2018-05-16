@@ -60,7 +60,7 @@ int main()
 	xReturned &= xTaskCreate( tUART_RxTask , "UART Receive"		, 128, NULL, configMAX_PRIORITIES - 1, NULL );					// Task to Receive input from the terminal, and process it in the program
 	xReturned &= xTaskCreate( tUART_TxTask , "UART Transmit"	, 128, NULL, configMAX_PRIORITIES - 1, NULL ); 					// Task to transmit response and info to the terminal to assist and validate the user
 	xReturned &= xTaskCreate( tSensor_Task , "Sensor Handler"       , 24, NULL, configMAX_PRIORITIES - 1, NULL );			// Task to setup, control and collect data from sensors
-//  xReturned &= xTaskCreate(tProgram_Handler,"Program Handler", 128 , NULL, configMAX_PRIORITIES - 1, NULL );				// Task to execute programs
+//	xReturned &= xTaskCreate(tProgram_Handler,"Program Handler", 128 , NULL, configMAX_PRIORITIES - 1, NULL );				// Task to execute programs
 		
 // =============================================================
 //			FreeRTOS Stack check

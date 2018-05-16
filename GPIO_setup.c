@@ -29,7 +29,6 @@
 //
 // ****************************************************************************************
 #include "lpc17xx.h"
-
 #include "GPIO_setup.h"
 
 
@@ -60,8 +59,8 @@ uint8_t ySetupDigitalIO ( uint8_t Port, int Pin, uint8_t InputOutput) {
 // 	Returns				:	True (1) or false (0)
 //  Input range		: PORT_0 : PORT_4  ,  PIN_0 : PIN_31
 // *****************************************************************/
-
 	nInitializePinLibrary();
+	
 	
 	uint8_t SetupDigitalIO_ret = 0;
 	
@@ -329,7 +328,7 @@ void nGPIOSetup() {
 
 // ***** End of Function ********************************************
 
-void nInitializePinLibrary() {
+void nInitializePinLibrary() { 
 /* ******************************************************************
 //	Function name : nInitializePinLibrary
 //	Functionality :	Used to set all pins to GPIO_FREE, to allow setups to reserve pins, and prevent overlapping on pins
@@ -337,7 +336,6 @@ void nInitializePinLibrary() {
 //  Input range		: None
 // *****************************************************************/
 	static uint8_t Initialized = 0;
-	
 	
 	if (! Initialized ) {
 		
@@ -373,28 +371,30 @@ uint8_t vDigitalRead( uint8_t Port , int Pin ) {
 	
 	if (PinLibrary[Port][Pin] == GPIO_INPUT) {
 		switch(Port) {
+			
 			case PORT_0:
 				vDigitalRead_ret = (LPC_GPIO0->FIOPIN>>Pin) & 0x01;
-				break;
+			break;
 			
 			case PORT_1:
 				vDigitalRead_ret = (LPC_GPIO1->FIOPIN>>Pin) & 0x01;
-				break;
+			break;
 			
 			case PORT_2:
 				vDigitalRead_ret = (LPC_GPIO2->FIOPIN>>Pin) & 0x01;
-				break;
+			break;
 			
 			case PORT_3:
 				vDigitalRead_ret = (LPC_GPIO3->FIOPIN>>Pin) & 0x01;
-				break;
+			break;
 			
 			case PORT_4:
 				vDigitalRead_ret = (LPC_GPIO4->FIOPIN>>Pin) & 0x01;
-				break;
+			break;
 			
 			default: 
-				break;
+			
+			break;
 		}
 	}
 	else
@@ -412,6 +412,8 @@ uint8_t vGetPinStatus	( uint8_t Port , int Pin ) {
 // 	Returns				:	None
 //  Input range		: PORT_0 - PORT_4 , PIN_0 - PIN_31
 // *****************************************************************/		
+	nInitializePinLibrary();
+	
 	return PinLibrary[Port][Pin];
 }
 // ***** End of Function ********************************************

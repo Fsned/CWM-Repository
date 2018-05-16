@@ -79,20 +79,25 @@ void nLED_SET(uint8_t led_0 , uint8_t led_1, uint8_t led_2, uint8_t led_3) {
 // *****************************************************************/	
 	LPC_GPIO1->FIOCLR = 0x00B40000;
 	led_delay_ms(1);
-	
-	if (led_0 != LED_DONT_CARE)
+	if (led_0 == LED_FLIP)
+		LED_status[0] ^= LED_status[0];
+	else if (led_0 != LED_DONT_CARE)
 		LED_status[0] = led_0;
 	
-	if (led_1 != LED_DONT_CARE)
+	if (led_1 == LED_FLIP)
+		LED_status[1] ^= LED_status[1];
+	else if (led_1 != LED_DONT_CARE)
 		LED_status[1] = led_1;
 	
-	if (led_2 != LED_DONT_CARE)
+	if (led_2 == LED_FLIP)
+		LED_status[2] ^= LED_status[2];
+	else if (led_2 != LED_DONT_CARE)
 		LED_status[2] = led_2;
 	
-	if (led_3 != LED_DONT_CARE)
+	if (led_3 == LED_FLIP)
+		LED_status[3] ^= LED_status[3];
+	else if (led_3 != LED_DONT_CARE)
 		LED_status[3] = led_3;
-	
-	
 	
 	yDigitalWrite( PORT_LED , LED_1 , LED_status[0] );
 	yDigitalWrite( PORT_LED , LED_2 , LED_status[1] );
@@ -100,28 +105,6 @@ void nLED_SET(uint8_t led_0 , uint8_t led_1, uint8_t led_2, uint8_t led_3) {
 	yDigitalWrite( PORT_LED , LED_4 , LED_status[3] );
 }
 // ***** End of Function ********************************************
-
-
-void nLEDFlip(uint8_t led_flip[]) {
-/* ******************************************************************
-//	Function name : nLEDFlip
-//	Functionality :	Takes 4 ints in an array, and flips the corresponding LEDS, to the 1's in the array
-// 	Returns				:	none.
-//  Input range		: [1:0 , 1:0 , 1:0 , 1:0];
-// *****************************************************************/	
-	
-	for (int i = 0; i < 4; i++) {
-		if (led_flip[i]) {
-			if (LED_status[i])
-				LED_status[i] = 0;
-			else
-				LED_status[i] = 1;
-		}
-	}
-	nLED_SET(LED_status[0], LED_status[1], LED_status[2], LED_status[3]);
-}
-// ***** End of Function ********************************************
-
 
 
 void nAliveSuspend() {

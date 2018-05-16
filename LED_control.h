@@ -17,7 +17,7 @@
  *
  *********************************************************************************************/
  #ifndef LED_CONTROL_H
- #define LED_CONTOL_H
+ #define LED_CONTROL_H
  
  
  #include "stdutils.h"
@@ -31,6 +31,8 @@
 //
 // ****************************************************************************************
 #define		LED_DONT_CARE		2 
+#define 	LED_FLIP				3
+
 
 extern int alive_ones;
 extern int alive_tens;
@@ -52,8 +54,6 @@ extern TaskHandle_t AliveHandle;
 //	Description	:	Does not return anything.
 // ****************************************************************************************
 extern void nLED_SET	( uint8_t led_0 , uint8_t led_1, uint8_t led_2, uint8_t led_3 );
-
-extern void nLEDFlip	( uint8_t led_flip[] );
 
 extern void nPrintAlive( void );
 

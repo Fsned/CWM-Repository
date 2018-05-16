@@ -63,11 +63,11 @@ char input_buffer[32];
 
 static uint8_t inputs = 0;
 
-char USER_LIBRARY[USERS][8] 				= {{"guest"} 					, {"map"} 					 , {"ab"} 							, {"frs"} 							 , {"bj"}};		// Brugernavne
-char PASS_LIBRARY[USERS][8] 				= {{"guest"} 					, {"123"} 					 , {"123"} 							, {"123"} 							 , {"246"}};		// Passwords											
-char USERS_NAMES[USERS][30]					= {{"Guest"} , {"Mark Appelgren"} , {"Anders B. Hansen"} , {"Frederik Snedevind"} , {"Brian Jorgensen"}};
-char USER_PERMISSIONS[USERS]				= {		'1'		 ,				'0'					,				'0'						 ,				'5'							,						'0'}; 
-
+char USER_LIBRARY[USERS][8] 				= {{"guest"} , {"map"} 				, {"ab"} 				, {"frs"} 				 , {"bj"}};				// Brugernavne
+char PASS_LIBRARY[USERS][8] 				= {{"guest"} , {"123"} 				, {"123"} 				, {"123"} 				 , {"246"}};			// Passwords											
+char USERS_NAMES[USERS][30]					= {{"Guest"} , {"Mark Appelgren"} 	, {"Anders B. Hansen"} 	, {"Frederik Snedevind"} , {"Brian Jorgensen"}};// Fulde navne
+char USER_PERMISSIONS[USERS]				= {	'1',		'0',			   		'0',				   '5',						'0'}; 	// Permission level
+char OffOnStrings[2][4] = {{"Off"} , {"On"}};
 char branch_string[16] = {"Sandbox"};
 
 char keyword_strings[][12] 		 = {{" "},									// F0
@@ -197,15 +197,15 @@ void nADC_Status() {
 /* ******************************************************************
 //	Function name : nADC_Status
 //	Functionality :	Print the current data from 8 ADC Channels to UART
-// 	Returns				:	None	
-//  Input range		: None
+// 	Returns		  :	None	
+//  Input range	  : None
 // *****************************************************************/	
 	if (xSemaphoreTake(UART0_TxSemaphore , 5)) {
 		nUART_TxString("Analog Inputs");
 		nNewLine( 1 );
 		for (uint8_t i = 0; i < ANALOG_SENSORS_END; i++) {
 			nUART_TxString("Pin ");
-			nUART_TxChar(i + '0');
+			nPrintInteger(i);
 			nUART_TxString(" : ");
 			if (vGetSensorStatus(i) == SENSOR_VACANT)
 				nUART_TxString("Vacant");
@@ -251,15 +251,12 @@ void nPinFlip_1() {
 	static int pin_1_status = 0;
 
 	if (xSemaphoreTake(UART0_TxSemaphore , 5)) {
-		nUART_TxString("Flipped pin 1");
+		nUART_TxString("Pin 1");
 		nNewLine( 1 );
 		xSemaphoreGive(UART0_TxSemaphore);
 	}
 	
-	if ( pin_1_status == 0 )
-		pin_1_status = 1;
-	else
-		pin_1_status = 0;
+	pin_1_status ^= pin_1_status;
 	
 	yDigitalWrite(PORT_0 , PIN_0 , pin_1_status);
 }
@@ -275,15 +272,11 @@ void nPinFlip_2() {
 	static uint8_t pin_2_status = 0;
 
 	if (xSemaphoreTake(UART0_TxSemaphore , 5)) {
-		nUART_TxString("Flipped pin 2");
+		nUART_TxString("Pin 2");
 		nNewLine( 1 );
 		xSemaphoreGive(UART0_TxSemaphore);
 	}
-	
-	if ( pin_2_status == 0 )
-		pin_2_status = 1;
-	else
-		pin_2_status = 0;
+	pin_2_status ^= pin_2_status;
 	
 	yDigitalWrite(PORT_0 , PIN_1 , pin_2_status);
 }
@@ -306,20 +299,17 @@ void nPinFlip_P21() {
 /* ******************************************************************
 //	Function name : nPinFlip_P21
 //	Functionality :	Flip P21
-// 	Returns				:	None	
-//  Input range		: None
+// 	Returns		  :	None	
+//  Input range	  : None
 // *****************************************************************/	
-	static int8_t pin_status = 1;									// Variable to contain the current pin status
-	
-	if (pin_status == GPIO_HIGH)									// If pin is high, set new status to low
-		pin_status = GPIO_LOW;
-	
-	else if (! pin_status)												// If pin is low, set new status to high
-		pin_status = GPIO_HIGH;
+	static GPIOPIN pin_status = GPIO_HIGH;
+	pin_status ^= pin_status;
 	
 	yDigitalWrite( PORT_2 , PIN_5 , pin_status );	// Write the new status to the pin
 	
-	nUART_TxString("Flipped P21");
+	nUART_TxString("P21 to: ");
+	nUART_TxString(OffOnStrings[pin_status]);
+	
 	nNewLine( 1 );
 }
 
@@ -330,16 +320,13 @@ void nPinFlip_P22() {
 // 	Returns				:	None	
 //  Input range		: None
 // *****************************************************************/	
-	static int8_t pin_status = 1;									// Variable to contain the current pin status
-	
-	if (pin_status == GPIO_HIGH)									// If pin is high, set new status to low
-		pin_status = GPIO_LOW;
-	
-	else if (! pin_status)												// If pin is low, set new status to high
-		pin_status = GPIO_HIGH;
+	static GPIOPIN pin_status = GPIO_HIGH;
+	pin_status ^= pin_status;
 	
 	yDigitalWrite( PORT_2 , PIN_4 , pin_status );	// Write the new status to the pin
-	nUART_TxString("Flipped P22");
+	nUART_TxString("P22 to: ");
+	nUART_TxString(OffOnStrings[pin_status]);
+	
 	nNewLine( 1 );
 }
 void nPinFlip_P23() {
@@ -349,16 +336,13 @@ void nPinFlip_P23() {
 // 	Returns				:	None	
 //  Input range		: None
 // *****************************************************************/	
-	static int8_t pin_status = 1;									// Variable to contain the current pin status
-	
-	if (pin_status == GPIO_HIGH)									// If pin is high, set new status to low
-		pin_status = GPIO_LOW;
-	
-	else if (! pin_status)												// If pin is low, set new status to high
-		pin_status = GPIO_HIGH;
+	static GPIOPIN pin_status = GPIO_HIGH;
+	pin_status ^= pin_status;
 	
 	yDigitalWrite( PORT_2 , PIN_3 , pin_status );	// Write the new status to the pin
-	nUART_TxString("Flipped P23");
+	nUART_TxString("P23 to: ");
+	nUART_TxString(OffOnStrings[pin_status]);
+	
 	nNewLine( 1 );
 }
 void nPinFlip_P24() {
@@ -368,16 +352,13 @@ void nPinFlip_P24() {
 // 	Returns				:	None	
 //  Input range		: None
 // *****************************************************************/	
-	static int8_t pin_status = 1;									// Variable to contain the current pin status
-	
-	if (pin_status == GPIO_HIGH)									// If pin is high, set new status to low
-		pin_status = GPIO_LOW;
-	
-	else if (! pin_status)												// If pin is low, set new status to high
-		pin_status = GPIO_HIGH;
+	static GPIOPIN pin_status = GPIO_HIGH;
+	pin_status ^= pin_status;
 	
 	yDigitalWrite( PORT_2 , PIN_2 , pin_status );	// Write the new status to the pin
-	nUART_TxString("Flipped P24");
+	nUART_TxString("P24 to: ");
+	nUART_TxString(OffOnStrings[pin_status]);
+	
 	nNewLine( 1 );
 }
 void nPinFlip_P25() {
@@ -387,16 +368,13 @@ void nPinFlip_P25() {
 // 	Returns				:	None	
 //  Input range		: None
 // *****************************************************************/	
-	static int8_t pin_status = 1;									// Variable to contain the current pin status
-	
-	if (pin_status == GPIO_HIGH)									// If pin is high, set new status to low
-		pin_status = GPIO_LOW;
-	
-	else if (! pin_status)												// If pin is low, set new status to high
-		pin_status = GPIO_HIGH;
+	static GPIOPIN pin_status = GPIO_HIGH;
+	pin_status ^= pin_status;
 	
 	yDigitalWrite( PORT_2 , PIN_1 , pin_status );	// Write the new status to the pin
-	nUART_TxString("Flipped P25");
+	nUART_TxString("P25 to: ");
+	nUART_TxString(OffOnStrings[pin_status]);
+	
 	nNewLine( 1 );
 }
 
@@ -407,16 +385,16 @@ void nPinFlip_P26() {
 // 	Returns				:	None	
 //  Input range		: None
 // *****************************************************************/	
-	static int8_t pin_status = 1;									// Variable to contain the current pin status
-	
-	if (pin_status == GPIO_HIGH)									// If pin is high, set new status to low
-		pin_status = GPIO_LOW;
-	
-	else if (! pin_status)												// If pin is low, set new status to high
-		pin_status = GPIO_HIGH;
+	static GPIOPIN pin_status = GPIO_HIGH;
+	pin_status ^= pin_status;
 	
 	yDigitalWrite( PORT_2 , PIN_0 , pin_status );	// Write the new status to the pin
-	nUART_TxString("Flipped P26");
+	nUART_TxString("P26 to: ");
+	nUART_TxString(OffOnStrings[pin_status]);
+	
+	
+	
+	
 	nNewLine( 1 );
 }
 
@@ -427,16 +405,13 @@ void nPinFlip_P27() {
 // 	Returns				:	None	
 //  Input range		: None
 // *****************************************************************/	
-	static int8_t pin_status = 1;									// Variable to contain the current pin status
-	
-	if (pin_status == GPIO_HIGH)									// If pin is high, set new status to low
-		pin_status = GPIO_LOW;
-	
-	else if (! pin_status)												// If pin is low, set new status to high
-		pin_status = GPIO_HIGH;
+	static GPIOPIN pin_status = GPIO_HIGH;
+	pin_status ^= pin_status;
 	
 	yDigitalWrite( PORT_0 , PIN_11 , pin_status );	// Write the new status to the pin
-	nUART_TxString("Flipped P27");
+	nUART_TxString("P27 to: ");
+	nUART_TxString(OffOnStrings[pin_status]);
+	
 	nNewLine( 1 );
 }
 
@@ -447,16 +422,13 @@ void nPinFlip_P28() {
 // 	Returns				:	None	
 //  Input range		: None
 // *****************************************************************/	
-	static int8_t pin_status = 1;									// Variable to contain the current pin status
-	
-	if (pin_status == GPIO_HIGH)									// If pin is high, set new status to low
-		pin_status = GPIO_LOW;
-	
-	else if (! pin_status)												// If pin is low, set new status to high
-		pin_status = GPIO_HIGH;
+	static GPIOPIN pin_status = GPIO_HIGH;
+	pin_status ^= pin_status;
 	
 	yDigitalWrite( PORT_0 , PIN_10 , pin_status );	// Write the new status to the pin
-	nUART_TxString("Flipped P28");
+	nUART_TxString("P28 to: ");
+	nUART_TxString(OffOnStrings[pin_status]);
+	
 	nNewLine( 1 );
 }
 
@@ -481,7 +453,7 @@ void nTerminalLogout() {
 // *****************************************************************/
 	USERNAME_MATCHED = 0;
 	PASSWORD_MATCHED = 0;
-	LOGGED_IN 			 = 0;
+	LOGGED_IN 		 = 0;
 	
 	UART_STATE = UartState_FindUser;
 	
@@ -564,13 +536,13 @@ void nUART_TxChar(char ch) {
 // 	Returns				:	None	
 //  Input range		: 0 - 255, all chars
 // *****************************************************************/
-	
 	xQueueSend(qUART_TxQ , &ch , 10);
 }
 
 
 /* Function to Receive a char */
 void nUART_RxChar() {
+	
 /* ******************************************************************
 //	Function name : nUART_RxChar
 //	Functionality :	Receive a char from UART channel, and send it to the 
@@ -579,7 +551,7 @@ void nUART_RxChar() {
 //  Input range		: None
 // *****************************************************************/
 	char ch;
-  if (yUART_RxReady()) {
+	if (yUART_RxReady()) {
 		ch = LPC_UART0->RBR;                                // Read received data    
 		xQueueSend(qUART_RxQ , &ch , 2);
 	}
@@ -630,8 +602,7 @@ void nTerminal_LED_1_ON() {
 // 	Returns				:	None	
 //  Input range		: None
 // *****************************************************************/
-	uint8_t arr[4] = {1,0,0,0};
-	nLEDFlip(arr);
+	nLED_SET( LED_FLIP , 0 , 0 , 0 );
 	
 }
 
@@ -642,8 +613,7 @@ void nTerminal_LED_2_ON() {
 // 	Returns				:	None	
 //  Input range		: None
 // *****************************************************************/
-	uint8_t arr[4] = {0,1,0,0};
-	nLEDFlip(arr);
+	nLED_SET( 0 , LED_FLIP , 0 , 0 );
 }
 
 void nTerminal_LED_3_ON() {
@@ -653,8 +623,7 @@ void nTerminal_LED_3_ON() {
 // 	Returns				:	None	
 //  Input range		: None
 // *****************************************************************/
-	uint8_t arr[4] = {0,0,1,0};
-	nLEDFlip(arr);
+	nLED_SET( 0 , 0 , LED_FLIP , 0 );
 }
 
 void nTerminal_LED_4_ON() {
@@ -664,8 +633,7 @@ void nTerminal_LED_4_ON() {
 // 	Returns				:	None	
 //  Input range		: None
 // *****************************************************************/
-	uint8_t arr[4] = {0,0,0,1};
-	nLEDFlip(arr);
+	nLED_SET( 0 , 0 , 0 , LED_FLIP );
 }
 
 void nTerminal_LED_OFF() {
@@ -743,37 +711,52 @@ void nPrintInteger ( int input ) {
 // 	Returns				:	None	
 //  Input range		: 0 - 9999
 // *****************************************************************/
-	uint8_t ones 					= 0;
-	uint8_t tens 					= 0;
-	uint8_t hundreds 			= 0;
+	uint8_t ones 			= 0;
+	uint8_t tens 			= 0;
+	uint8_t hundreds 		= 0;
 	uint8_t thousands 		= 0;
 	uint8_t tenthousands 	= 0;
 	
-	while (input >= 10000) {
-		tenthousands++;
-		input -= 10000;
+	boolean Negated = FALSE;	
+		
+	if (input < 0) {
+		input = -input;
+		Negated = TRUE;
 	}
 	
-	while (input >= 1000) {
-		thousands++;
-		input -= 1000;
-	}
-	while (input >= 100) {
-		hundreds++;
-		input -= 100;
-	}
-	while (input >= 10) {
-		tens++;
-		input -= 10;
-	}
-	while (input >= 1) {
-		ones++;
-		input -= 1;
-	}
+	for (tenthousands = 0; 	input >= 10000	; input -= 10000	, tenthousands++);
+	for (thousands = 0	 ; 	input >= 1000 	; input -= 1000 	, thousands++	);
+	for (hundreds = 0	 ; 	input >= 100	; input -= 100		, hundreds++	);
+	for (tens = 0		 ; 	input >= 10	 	; input -= 10		, tens++        );
+	for (ones = 0		 ; 	input >= 1	 	; input -= 1		, ones++        );
 	
-	if (tenthousands) {
+//	while (input >= 10000) {
+//		tenthousands++;
+//		input -= 10000;
+//	}
+//	
+//	while (input >= 1000) {
+//		thousands++;
+//		input -= 1000;
+//	}
+//	while (input >= 100) {
+//		hundreds++;
+//		input -= 100;
+//	}
+//	while (input >= 10) {
+//		tens++;
+//		input -= 10;
+//	}
+//	while (input >= 1) {
+//		ones++;
+//		input -= 1;
+//	}
+	
+	if (Negated)
+		nUART_TxChar('-');
+	
+	if (tenthousands)
 		nUART_TxChar(tenthousands + '0');
-	}
 	
 	if (tenthousands || thousands)
 		nUART_TxChar(thousands + '0');
@@ -807,8 +790,7 @@ void tUART_RxTask( void *param ) {
 	
 	uint8_t receive;
 	uint8_t transmit;
-	
-	char blocked_character = '*';
+	uint8_t blocked_character = '*';
 	
 	UART0_TxSemaphore = xSemaphoreCreateBinary();
 	xSemaphoreGive( UART0_TxSemaphore );
@@ -816,9 +798,9 @@ void tUART_RxTask( void *param ) {
 	while(1) {	
 		if ( xQueueReceive( qUART_RxQ , &receive , 2 )) {
 			switch ( UART_STATE ) {
-	// *******************************************************************
+	// ===================================================================
 	//										Check Username State
-	// *******************************************************************					
+	// ===================================================================					
 				case UartState_FindUser :
 				
 					if ( yKeyHit ( CHAR_BACKSPACE , receive )) {
@@ -856,9 +838,9 @@ void tUART_RxTask( void *param ) {
 					vTaskDelay(10);
 					break;
 					
-		// *******************************************************************
+		// ===================================================================
 		//										Check Password State
-					
+		// ===================================================================			
 				case UartState_FindPass : 
 					
 					if ( yKeyHit ( CHAR_BACKSPACE , receive )) {
@@ -928,25 +910,26 @@ void tUART_RxTask( void *param ) {
 					
 					break;
 					
-		// *******************************************************************
+		// ===================================================================
 		//										Check Function State		
+		// ===================================================================			
 				case UartState_Functioncall :
 					
-					if ( yKeyHit (CHAR_BACKSPACE , receive)) {
+					if ( yKeyHit ( CHAR_BACKSPACE , receive )) {
 						if (inputs > 0) {
 							inputs--;
-							nUART_TxChar(CHAR_BACKSPACE);
+							nUART_TxChar( CHAR_BACKSPACE );
 							nUART_TxChar(' ');
-							nUART_TxChar(CHAR_BACKSPACE);
+							nUART_TxChar( CHAR_BACKSPACE );
 						}
 					}
 				
-					else if ( yKeyHit (CHAR_ENTER , receive ) && inputs == 0) {
+					else if ( yKeyHit ( CHAR_ENTER , receive ) && inputs == 0 ) {
 						nNewLine( 1 );
 						OutedStatusMsg = 0;
 					}
 					
-					else if ( yKeyHit (CHAR_ENTER , receive ) && inputs > 0) {
+					else if ( yKeyHit ( CHAR_ENTER , receive ) && inputs > 0 ) {
 						input_buffer[inputs] = '\0';
 						inputs++;
 						nNewLine( 1 );	
@@ -958,7 +941,7 @@ void tUART_RxTask( void *param ) {
 						input_buffer[inputs] = receive;
 						
 						if (xSemaphoreTake(UART0_TxSemaphore, ( TickType_t ) 10 ) == pdTRUE) {
-							nUART_TxChar(input_buffer[inputs]);
+							nUART_TxChar( input_buffer[inputs] );
 							xSemaphoreGive( UART0_TxSemaphore );
 						}
 						
@@ -968,31 +951,30 @@ void tUART_RxTask( void *param ) {
 				
 				default :
 					nNewLine( 4 );
-					if (xSemaphoreTake(UART0_TxSemaphore, ( TickType_t ) 10 ) == pdTRUE) {
+					if (xSemaphoreTake( UART0_TxSemaphore, ( TickType_t ) 10 ) == pdTRUE ) {
 						nUART_TxString( "You're not supposed to be here." );
 						nNewLine( 1 );
 						nUART_TxString( "Returning to start." );
 						xSemaphoreGive( UART0_TxSemaphore );
 					}
 					
+					
 					UART_STATE = UartState_FindUser;
-					break;
+				break;
 			}
 		}
 		else
 			vTaskDelay(10);
 		
-		if (yUART_RxReady())
-			nUART_RxChar();
-		
+		nUART_RxChar();
 		vTaskDelay(10);
 	}
 }
 
 
-//	---------------------------------------------------
+//	===================================================================
 //									UART Transmit task
-//	---------------------------------------------------
+//	===================================================================
 void tUART_TxTask( void *param ) { 
 /* ******************************************************************
 //	Function name : tUART_TxTask
@@ -1007,32 +989,32 @@ void tUART_TxTask( void *param ) {
 		if (! OutedStatusMsg) {
 			switch(UART_STATE) {
 				case UartState_FindUser :
-					if (xSemaphoreTake(UART0_TxSemaphore, ( TickType_t ) 10 ) == pdTRUE) {
-						nUART_TxString("Enter Username: ");
+					if ( xSemaphoreTake( UART0_TxSemaphore, ( TickType_t ) 10 ) == pdTRUE ) {
+						nUART_TxString( "Enter Username: " );
 						xSemaphoreGive( UART0_TxSemaphore );
 					}
 				break;
 				
 				case UartState_FindPass :
-					if (xSemaphoreTake(UART0_TxSemaphore, ( TickType_t ) 10 ) == pdTRUE) {
-						nUART_TxString("Enter Password: ");
+					if (xSemaphoreTake( UART0_TxSemaphore, ( TickType_t ) 10 ) == pdTRUE ) {
+						nUART_TxString( "Enter Password: " );
 						xSemaphoreGive( UART0_TxSemaphore );
 					}
 				break;
 				
 				case UartState_Functioncall :
-					if (xSemaphoreTake(UART0_TxSemaphore, ( TickType_t ) 10 ) == pdTRUE) {
-						nUART_TxString(">> ");
+					if (xSemaphoreTake( UART0_TxSemaphore, ( TickType_t ) 10 ) == pdTRUE ) {
+						nUART_TxString( ">> " );
 						xSemaphoreGive( UART0_TxSemaphore );
 					}
 				break;
 			}
-						OutedStatusMsg = 1;
+			OutedStatusMsg = 1;
 		}
 
 		
-		if (xQueueReceive(qUART_TxQ , &receive , 2) ) {
-			if (yUART_TxReady())
+		if (xQueueReceive( qUART_TxQ , &receive , 2 ) ) {
+			if ( yUART_TxReady() )
 				LPC_UART0->THR = receive;                                  // Load the data to be transmitted
 		}
 		//nUART_TxChar(receive);
@@ -1124,7 +1106,7 @@ uint8_t vCheckPasscode(char InputString[] , uint8_t length) {
 	uint8_t MatchFound = 1;
 	uint8_t Str1Length , Str2Length;
 	
-	for ( Str1Length = 0; InputString[Str1Length] 										!= '\0'; Str1Length++);
+	for ( Str1Length = 0; InputString[Str1Length] 						!= '\0'; Str1Length++);
 	for ( Str2Length = 0; PASS_LIBRARY[USERNAME_MATCHED][Str2Length]	!= '\0'; Str2Length++); 
 	
 	if (Str1Length != Str2Length)

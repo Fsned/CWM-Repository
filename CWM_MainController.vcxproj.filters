@@ -1,0 +1,285 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source files">
+      <UniqueIdentifier>{7c94abdb-6fb2-4a63-9044-9f493a22f3df}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header files">
+      <UniqueIdentifier>{71bd7b95-550e-4860-b16a-1f1b1304373c}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource files">
+      <UniqueIdentifier>{dc228672-739a-4c0c-a60d-c74088814b61}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="Source files\CWM18_Controller_001">
+      <UniqueIdentifier>{d5115083-4c6f-4388-bd7c-2bad8e4bd942}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\mbed">
+      <UniqueIdentifier>{c9b7e0fc-58fc-46a0-b8b2-49de08f2ffca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\Device-specific files">
+      <UniqueIdentifier>{bd9fa04d-9640-4f0b-b407-f29ad08d6ba5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\CWM18_Controller_001">
+      <UniqueIdentifier>{922bdaef-4efb-47ec-8f7a-74d0bf47894c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\mbed">
+      <UniqueIdentifier>{ecfcd03c-1d5a-464c-aea4-268a96b1fcc1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\Device-specific files">
+      <UniqueIdentifier>{301a4402-4bc6-4557-97f9-305d7d1eefd4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="VisualGDB settings">
+      <UniqueIdentifier>{5bcc296c-9b1b-44f8-b401-0d7489f653b3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source files\CWM18_Controller_001</Filter>
+    </ClCompile>
+    <ClCompile Include="LED_control.c">
+      <Filter>Source files\CWM18_Controller_001</Filter>
+    </ClCompile>
+    <ClCompile Include="utilities.c">
+      <Filter>Source files\CWM18_Controller_001</Filter>
+    </ClCompile>
+    <ClCompile Include="UART_control.c">
+      <Filter>Source files\CWM18_Controller_001</Filter>
+    </ClCompile>
+    <ClCompile Include="GPIO_setup.c">
+      <Filter>Source files\CWM18_Controller_001</Filter>
+    </ClCompile>
+    <ClCompile Include="freertos\portable\gcc\arm_cm3\port.c">
+      <Filter>Source files\CWM18_Controller_001</Filter>
+    </ClCompile>
+    <ClCompile Include="FreeRTOS\croutine.c">
+      <Filter>Source files\CWM18_Controller_001</Filter>
+    </ClCompile>
+    <ClCompile Include="FreeRTOS\event_groups.c">
+      <Filter>Source files\CWM18_Controller_001</Filter>
+    </ClCompile>
+    <ClCompile Include="FreeRTOS\list.c">
+      <Filter>Source files\CWM18_Controller_001</Filter>
+    </ClCompile>
+    <ClCompile Include="FreeRTOS\queue.c">
+      <Filter>Source files\CWM18_Controller_001</Filter>
+    </ClCompile>
+    <ClCompile Include="FreeRTOS\tasks.c">
+      <Filter>Source files\CWM18_Controller_001</Filter>
+    </ClCompile>
+    <ClCompile Include="FreeRTOS\timers.c">
+      <Filter>Source files\CWM18_Controller_001</Filter>
+    </ClCompile>
+    <ClCompile Include="FreeRTOS\portable\MemMang\heap_2.c">
+      <Filter>Source files\CWM18_Controller_001</Filter>
+    </ClCompile>
+    <ClCompile Include="Programs_file.c">
+      <Filter>Source files\CWM18_Controller_001</Filter>
+    </ClCompile>
+    <ClCompile Include="Sensor_file.c">
+      <Filter>Source files\CWM18_Controller_001</Filter>
+    </ClCompile>
+    <None Include="mbed\TARGET_LPC1768\TOOLCHAIN_ARM_STD\analogin_api.o">
+      <Filter>Source files\mbed</Filter>
+    </None>
+    <None Include="mbed\TARGET_LPC1768\TOOLCHAIN_ARM_STD\analogout_api.o">
+      <Filter>Source files\mbed</Filter>
+    </None>
+    <None Include="mbed\TARGET_LPC1768\TOOLCHAIN_ARM_STD\can_api.o">
+      <Filter>Source files\mbed</Filter>
+    </None>
+    <None Include="mbed\TARGET_LPC1768\TOOLCHAIN_ARM_STD\CRP.o">
+      <Filter>Source files\mbed</Filter>
+    </None>
+    <None Include="mbed\TARGET_LPC1768\TOOLCHAIN_ARM_STD\ethernet_api.o">
+      <Filter>Source files\mbed</Filter>
+    </None>
+    <None Include="mbed\TARGET_LPC1768\TOOLCHAIN_ARM_STD\flash_api.o">
+      <Filter>Source files\mbed</Filter>
+    </None>
+    <None Include="mbed\TARGET_LPC1768\TOOLCHAIN_ARM_STD\gpio_api.o">
+      <Filter>Source files\mbed</Filter>
+    </None>
+    <None Include="mbed\TARGET_LPC1768\TOOLCHAIN_ARM_STD\gpio_irq_api.o">
+      <Filter>Source files\mbed</Filter>
+    </None>
+    <None Include="mbed\TARGET_LPC1768\TOOLCHAIN_ARM_STD\i2c_api.o">
+      <Filter>Source files\mbed</Filter>
+    </None>
+    <None Include="mbed\TARGET_LPC1768\TOOLCHAIN_ARM_STD\mbed_board.o">
+      <Filter>Source files\mbed</Filter>
+    </None>
+    <None Include="mbed\TARGET_LPC1768\TOOLCHAIN_ARM_STD\mbed_retarget.o">
+      <Filter>Source files\mbed</Filter>
+    </None>
+    <None Include="mbed\TARGET_LPC1768\TOOLCHAIN_ARM_STD\mbed_sdk_boot.o">
+      <Filter>Source files\mbed</Filter>
+    </None>
+    <None Include="mbed\TARGET_LPC1768\TOOLCHAIN_ARM_STD\pinmap.o">
+      <Filter>Source files\mbed</Filter>
+    </None>
+    <None Include="mbed\TARGET_LPC1768\TOOLCHAIN_ARM_STD\port_api.o">
+      <Filter>Source files\mbed</Filter>
+    </None>
+    <None Include="mbed\TARGET_LPC1768\TOOLCHAIN_ARM_STD\pwmout_api.o">
+      <Filter>Source files\mbed</Filter>
+    </None>
+    <None Include="mbed\TARGET_LPC1768\TOOLCHAIN_ARM_STD\rtc_api.o">
+      <Filter>Source files\mbed</Filter>
+    </None>
+    <None Include="mbed\TARGET_LPC1768\TOOLCHAIN_ARM_STD\serial_api.o">
+      <Filter>Source files\mbed</Filter>
+    </None>
+    <None Include="mbed\TARGET_LPC1768\TOOLCHAIN_ARM_STD\sleep.o">
+      <Filter>Source files\mbed</Filter>
+    </None>
+    <None Include="mbed\TARGET_LPC1768\TOOLCHAIN_ARM_STD\spi_api.o">
+      <Filter>Source files\mbed</Filter>
+    </None>
+    <None Include="mbed\TARGET_LPC1768\TOOLCHAIN_ARM_STD\startup_LPC17xx.o">
+      <Filter>Source files\mbed</Filter>
+    </None>
+    <None Include="mbed\TARGET_LPC1768\TOOLCHAIN_ARM_STD\system_LPC17xx.o">
+      <Filter>Source files\mbed</Filter>
+    </None>
+    <None Include="mbed\TARGET_LPC1768\TOOLCHAIN_ARM_STD\us_ticker.o">
+      <Filter>Source files\mbed</Filter>
+    </None>
+    <None Include="mbed\TARGET_LPC1768\TOOLCHAIN_ARM_STD\mbed.ar">
+      <Filter>Source files\mbed</Filter>
+    </None>
+    <None Include="stm32.props">
+      <Filter>Source files\Device-specific files</Filter>
+    </None>
+    <ClCompile Include="$(BSP_ROOT)\STM32F1xxxx\StartupFiles\startup_stm32f103xb.c">
+      <Filter>Source files\Device-specific files</Filter>
+    </ClCompile>
+    <ClInclude Include="GPIO_setup.h">
+      <Filter>Header files\CWM18_Controller_001</Filter>
+    </ClInclude>
+    <None Include="Templates.txt">
+      <Filter>Header files\CWM18_Controller_001</Filter>
+    </None>
+    <ClInclude Include="Programs_file.h">
+      <Filter>Header files\CWM18_Controller_001</Filter>
+    </ClInclude>
+    <ClInclude Include="Sensor_file.h">
+      <Filter>Header files\CWM18_Controller_001</Filter>
+    </ClInclude>
+    <ClInclude Include="mbed\mbed.h">
+      <Filter>Header files\mbed</Filter>
+    </ClInclude>
+    <ClInclude Include="mbed\TARGET_LPC1768\arm_math.h">
+      <Filter>Header files\mbed</Filter>
+    </ClInclude>
+    <ClInclude Include="mbed\TARGET_LPC1768\cmsis_iccarm.h">
+      <Filter>Header files\mbed</Filter>
+    </ClInclude>
+    <ClInclude Include="mbed\TARGET_LPC1768\cmsis_version.h">
+      <Filter>Header files\mbed</Filter>
+    </ClInclude>
+    <ClInclude Include="mbed\TARGET_LPC1768\core_armv8mbl.h">
+      <Filter>Header files\mbed</Filter>
+    </ClInclude>
+    <ClInclude Include="mbed\TARGET_LPC1768\core_armv8mml.h">
+      <Filter>Header files\mbed</Filter>
+    </ClInclude>
+    <ClInclude Include="mbed\TARGET_LPC1768\core_cm0.h">
+      <Filter>Header files\mbed</Filter>
+    </ClInclude>
+    <ClInclude Include="mbed\TARGET_LPC1768\core_cm0plus.h">
+      <Filter>Header files\mbed</Filter>
+    </ClInclude>
+    <ClInclude Include="mbed\TARGET_LPC1768\core_cm3.h">
+      <Filter>Header files\mbed</Filter>
+    </ClInclude>
+    <ClInclude Include="mbed\TARGET_LPC1768\core_cm4.h">
+      <Filter>Header files\mbed</Filter>
+    </ClInclude>
+    <ClInclude Include="mbed\TARGET_LPC1768\core_cm7.h">
+      <Filter>Header files\mbed</Filter>
+    </ClInclude>
+    <ClInclude Include="mbed\TARGET_LPC1768\core_cm23.h">
+      <Filter>Header files\mbed</Filter>
+    </ClInclude>
+    <ClInclude Include="mbed\TARGET_LPC1768\core_cm33.h">
+      <Filter>Header files\mbed</Filter>
+    </ClInclude>
+    <ClInclude Include="mbed\TARGET_LPC1768\core_cmSecureAccess.h">
+      <Filter>Header files\mbed</Filter>
+    </ClInclude>
+    <ClInclude Include="mbed\TARGET_LPC1768\core_sc000.h">
+      <Filter>Header files\mbed</Filter>
+    </ClInclude>
+    <ClInclude Include="mbed\TARGET_LPC1768\core_sc300.h">
+      <Filter>Header files\mbed</Filter>
+    </ClInclude>
+    <ClInclude Include="mbed\TARGET_LPC1768\mpu_armv7.h">
+      <Filter>Header files\mbed</Filter>
+    </ClInclude>
+    <ClInclude Include="mbed\TARGET_LPC1768\mpu_armv8.h">
+      <Filter>Header files\mbed</Filter>
+    </ClInclude>
+    <ClInclude Include="mbed\TARGET_LPC1768\setup.h">
+      <Filter>Header files\mbed</Filter>
+    </ClInclude>
+    <ClInclude Include="mbed\TARGET_LPC1768\tz_context.h">
+      <Filter>Header files\mbed</Filter>
+    </ClInclude>
+    <ClInclude Include="mbed\TARGET_LPC1768\TARGET_NXP\mbed_rtx.h">
+      <Filter>Header files\mbed</Filter>
+    </ClInclude>
+    <ClInclude Include="mbed\TARGET_LPC1768\TARGET_NXP\TARGET_LPC176X\gpio_object.h">
+      <Filter>Header files\mbed</Filter>
+    </ClInclude>
+    <ClInclude Include="mbed\TARGET_LPC1768\TARGET_NXP\TARGET_LPC176X\objects.h">
+      <Filter>Header files\mbed</Filter>
+    </ClInclude>
+    <ClInclude Include="mbed\TARGET_LPC1768\TARGET_NXP\TARGET_LPC176X\PeripheralNames.h">
+      <Filter>Header files\mbed</Filter>
+    </ClInclude>
+    <ClInclude Include="mbed\TARGET_LPC1768\TARGET_NXP\TARGET_LPC176X\PortNames.h">
+      <Filter>Header files\mbed</Filter>
+    </ClInclude>
+    <ClInclude Include="mbed\TARGET_LPC1768\TARGET_NXP\TARGET_LPC176X\TARGET_MBED_LPC1768\device.h">
+      <Filter>Header files\mbed</Filter>
+    </ClInclude>
+    <ClInclude Include="mbed\TARGET_LPC1768\TARGET_NXP\TARGET_LPC176X\TARGET_MBED_LPC1768\PinNames.h">
+      <Filter>Header files\mbed</Filter>
+    </ClInclude>
+    <ClInclude Include="mbed\TARGET_LPC1768\TARGET_NXP\TARGET_LPC176X\TARGET_MBED_LPC1768\reserved_pins.h">
+      <Filter>Header files\mbed</Filter>
+    </ClInclude>
+    <ClInclude Include="mbed\TARGET_LPC1768\TARGET_NXP\TARGET_LPC176X\device\cmsis.h">
+      <Filter>Header files\mbed</Filter>
+    </ClInclude>
+    <ClInclude Include="mbed\TARGET_LPC1768\TARGET_NXP\TARGET_LPC176X\device\cmsis_nvic.h">
+      <Filter>Header files\mbed</Filter>
+    </ClInclude>
+    <ClInclude Include="mbed\TARGET_LPC1768\TARGET_NXP\TARGET_LPC176X\device\LPC17xx.h">
+      <Filter>Header files\mbed</Filter>
+    </ClInclude>
+    <ClInclude Include="mbed\TARGET_LPC1768\TARGET_NXP\TARGET_LPC176X\device\system_LPC17xx.h">
+      <Filter>Header files\mbed</Filter>
+    </ClInclude>
+    <None Include="CWM_MainController-Debug.vgdbsettings">
+      <Filter>VisualGDB settings</Filter>
+    </None>
+    <None Include="CWM_MainController-Release.vgdbsettings">
+      <Filter>VisualGDB settings</Filter>
+    </None>
+    <None Include="stm32.xml">
+      <Filter>VisualGDB settings</Filter>
+    </None>
+    <ClCompile Include="ErrorHandler.c">
+      <Filter>Source files\CWM18_Controller_001</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ErrorHandler.h">
+      <Filter>Header files\CWM18_Controller_001</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

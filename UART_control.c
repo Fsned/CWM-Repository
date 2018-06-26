@@ -63,78 +63,78 @@ char input_buffer[32];
 
 static uint8_t inputs = 0;
 
-char USER_LIBRARY[USERS][8] 				= {{"guest"} , {"map"} 				, {"ab"} 				, {"frs"} 				 , {"bj"}};				// Brugernavne
-char PASS_LIBRARY[USERS][8] 				= {{"guest"} , {"123"} 				, {"123"} 				, {"123"} 				 , {"246"}};			// Passwords											
-char USERS_NAMES[USERS][30]					= {{"Guest"} , {"Mark Appelgren"} 	, {"Anders B. Hansen"} 	, {"Frederik Snedevind"} , {"Brian Jorgensen"}};// Fulde navne
-char USER_PERMISSIONS[USERS]				= {	'1',		'0',			   		'0',				   '5',						'0'}; 	// Permission level
+char USER_LIBRARY[USERS][8] 				= {{"guest"} , {"map"} 				, {"ab"} 				, {"frs"} 				 , {"bj"}};				// Usernames
+char PASS_LIBRARY[USERS][8] 				= {{"guest"} , {"123"} 				, {"123"} 				, {"123"} 				 , {"246"}};			// Pins											
+char USERS_NAMES[USERS][30]					= {{"Guest"} , {"Mark Appelgren"} 	, {"Anders B. Hansen"} 	, {"Frederik Snedevind"} , {"Brian Jorgensen"}};// Full Name
+char USER_PERMISSIONS[USERS]				= {	'1',		'0',			   		'0',				   '5',						'0'};				// Permission level
 char OffOnStrings[2][4] = {{"Off"} , {"On"}};
 char branch_string[16] = {"Sandbox"};
 
-char keyword_strings[][12] 		 = {{" "},									// F0
-//																	{"Help"},								// F1
-//																	{"HELP"},								// F2
-																	{"LEDOFF"},							// F3
-																	{"LEDALL"},							// F4
-//																	{"status"},							// F5
-																	{"clear"},							// F6
-//																	{"wash2"},							// F7
-//																	{"setuppin1"},					// F8
-//																	{"setuppin2"},					// F9
-//																	{"pf1"},								// F10
-//																	{"pf2"},								// F11
-																	{"ADC"},								// F12
-																	{"uptime"},							// F13
-																	{"logout"},							// F14
-																	{"stop"},								// F15
-																	{"help"},								// F16
-																	{"sensordata"},					// F17
-//																	{"alive stop"},					// F18
-//																	{"alive start"},				// F19
-																	{"flip p20"},						// F20
-																	{"flip p21"},						// F21
-																	{"flip p22"},						// F22
-																	{"flip p23"},						// F23
-																	{"flip p24"},						// F24
-																	{"flip p25"},						// F25
-																	{"flip p26"},						// F26
-																	{"flip p27"},						// F27
-																	{"flip p28"}};					// F28
+char keyword_strings[][12] 		 = {{" "},								// F0
+//									{"Help"},							// F1
+//									{"HELP"},							// F2
+									{"LEDOFF"},							// F3
+									{"LEDALL"},							// F4
+//									{"status"},							// F5
+									{"clear"},							// F6
+//									{"wash2"},							// F7
+//									{"setuppin1"},						// F8
+//									{"setuppin2"},						// F9
+//									{"pf1"},							// F10
+//									{"pf2"},							// F11
+									{"ADC"},							// F12
+									{"uptime"},							// F13
+									{"logout"},							// F14
+									{"stop"},							// F15
+									{"help"},							// F16
+									{"sensordata"},						// F17
+//									{"alive stop"},						// F18
+//									{"alive start"},					// F19
+									{"flip p20"},						// F20
+									{"flip p21"},						// F21
+									{"flip p22"},						// F22
+									{"flip p23"},						// F23
+									{"flip p24"},						// F24
+									{"flip p25"},						// F25
+									{"flip p26"},						// F26
+									{"flip p27"},						// F27
+									{"flip p28"}};						// F28
 
-void (*keyword_functions[])()  = {nTerminalUndefined, 		// F0
-//																	nTerminalHelp  	 	, 		// F1
-//																	nTerminalHelp 		 	, 	// F2
-																	nTerminal_LED_OFF		, 	// F3
-																	nTerminal_LED_ALL_ON, 	// F4
-//																	nTerminalStatus		, 		// F5
-																	nTerminalClear		 	, 	// F6
-//																	nWashProgram_2 	  , 		// F7
-//																	nPinSetup_1 	, 				// F8
-//																	nPinSetup_2	, 					// F9
-//																	nPinFlip_1	, 					// F10
-//																	nPinFlip_2 	, 					// F11
-																	nADC_Status 	, 				// F12
-																	nPrintAlive					, 	// F13
-																	nTerminalLogout	, 			// F14
-																	nGPIO_STOP,							// F15
-																	nTerminalHelp,					// F16
-																	nSensorData,						// F17
-//																	nAliveSuspend,					// F18
-//																	nAliveResume,						// F19
-																	nPinFlip_P20,						// F20
-																	nPinFlip_P21,						// F21
-																	nPinFlip_P22,						// F22
-																	nPinFlip_P23,						// F23
-																	nPinFlip_P24,						// F24
-																	nPinFlip_P25,						// F25
-																	nPinFlip_P26,						// F26
-																	nPinFlip_P27,						// F27
-																	nPinFlip_P28,						// F28
+void (*keyword_functions[])()  = {	nTerminalUndefined, 				// F0
+//									nTerminalHelp,  	 				// F1
+//									nTerminalHelp, 		 	 			// F2
+									nTerminal_LED_OFF,		 			// F3
+									nTerminal_LED_ALL_ON,				// F4
+//									nTerminalStatus,					// F5
+									nTerminalClear,		 	 			// F6
+//									nWashProgram_2, 	  				// F7
+//									nPinSetup_1, 	 					// F8
+//									nPinSetup_2,	 					// F9
+//									nPinFlip_1,	 						// F10
+//									nPinFlip_2, 	 					// F11
+									nADC_Status, 	 					// F12
+									nPrintAlive,				 		// F13
+									nTerminalLogout, 					// F14
+									nGPIO_STOP,							// F15
+									nTerminalHelp,						// F16
+									nSensorData,						// F17
+//									nAliveSuspend,						// F18
+//									nAliveResume,						// F19
+									nPinFlip_P20,						// F20
+									nPinFlip_P21,						// F21
+									nPinFlip_P22,						// F22
+									nPinFlip_P23,						// F23
+									nPinFlip_P24,						// F24
+									nPinFlip_P25,						// F25
+									nPinFlip_P26,						// F26
+									nPinFlip_P27,						// F27
+									nPinFlip_P28,						// F28
 																								
 																								
 																								
 	
 	
-};					// F19
+};					
 
 																							 
 // ****************************************************************************************
@@ -142,7 +142,8 @@ void (*keyword_functions[])()  = {nTerminalUndefined, 		// F0
 //	Example		:	yXxXxX();
 //	Description	:	Returns true (1) or false (0) depending on the success of the function
 // ****************************************************************************************
-uint8_t yKeyHit( uint8_t KEY_CHECK , uint8_t KEY_HIT ) {
+uint8_t yKeyHit( uint8_t KEY_CHECK , uint8_t KEY_HIT ) 
+{
 /* ******************************************************************
 //	Function name : yKeyHit
 //	Functionality :	Compares 2 characters, returns 1 if equal, 0 if not. used by UART to check for certain inputs
@@ -160,9 +161,8 @@ uint8_t yKeyHit( uint8_t KEY_CHECK , uint8_t KEY_HIT ) {
 }
 
 
-/* Function to transmit a char */
-
-uint8_t yUART_TxReady( void ) {
+uint8_t yUART_TxReady( void ) 
+{
 /* ******************************************************************
 //	Function name : yUART_TxReady
 //	Functionality :	Check if bit 0 & bit 5 is set in LSR register, indicating data ready to be read, and transmission complete
@@ -173,7 +173,8 @@ uint8_t yUART_TxReady( void ) {
 	return 1;
 }
 
-uint8_t yUART_RxReady( void ) {
+uint8_t yUART_RxReady( void ) 
+{
 /* ******************************************************************
 //	Function name : yUART_RxReady
 //	Functionality :	Check if bit 1 is set in LSR register, indicating receive data ready flag has been set
@@ -193,14 +194,16 @@ uint8_t yUART_RxReady( void ) {
 //	Description	:	Does not return anything.
 // ****************************************************************************************
 
-void nADC_Status() {
+void nADC_Status() 
+{
 /* ******************************************************************
 //	Function name : nADC_Status
 //	Functionality :	Print the current data from 8 ADC Channels to UART
 // 	Returns		  :	None	
 //  Input range	  : None
 // *****************************************************************/	
-	if (xSemaphoreTake(UART0_TxSemaphore , 5)) {
+	if (xSemaphoreTake(UART0_TxSemaphore , 5)) 
+	{
 		nUART_TxString("Analog Inputs");
 		nNewLine( 1 );
 		for (uint8_t i = 0; i < ANALOG_SENSORS_END; i++) {
@@ -220,7 +223,8 @@ void nADC_Status() {
 	}
 }
 
-void nPinSetup_1() {
+void nPinSetup_1() 
+{
 /* ******************************************************************
 //	Function name : nPinSetup_1
 //	Functionality :	Setup Port 0 Pin 0 (P9) for debugging, can be called from UART
@@ -230,7 +234,8 @@ void nPinSetup_1() {
 		ySetupDigitalIO( PORT_0 , PIN_0 , GPIO_OUTPUT);			// P9   for driving soappump relay		
 }
 
-void nPinSetup_2() {
+void nPinSetup_2() 
+{
 /* ******************************************************************
 //	Function name : nPinSetup_2
 //	Functionality :	Setup Port 0 Pin 1 (P10) for debugging, can be called from UART
@@ -241,7 +246,8 @@ void nPinSetup_2() {
 }
 
 
-void nPinFlip_1() {
+void nPinFlip_1() 
+{
 /* ******************************************************************
 //	Function name : nPinFlip_1
 //	Functionality :	Flip P9 from high/low/high depending on current status.
@@ -250,7 +256,8 @@ void nPinFlip_1() {
 // *****************************************************************/	
 	static int pin_1_status = 0;
 
-	if (xSemaphoreTake(UART0_TxSemaphore , 5)) {
+	if (xSemaphoreTake(UART0_TxSemaphore , 5)) 
+	{
 		nUART_TxString("Pin 1");
 		nNewLine( 1 );
 		xSemaphoreGive(UART0_TxSemaphore);
@@ -262,7 +269,8 @@ void nPinFlip_1() {
 }
 
 
-void nPinFlip_2() {
+void nPinFlip_2() 
+{
 /* ******************************************************************
 //	Function name : nPinFlip_2
 //	Functionality :	Flip P10 from high/low/high depending on current status.
@@ -271,7 +279,8 @@ void nPinFlip_2() {
 // *****************************************************************/
 	static uint8_t pin_2_status = 0;
 
-	if (xSemaphoreTake(UART0_TxSemaphore , 5)) {
+	if (xSemaphoreTake(UART0_TxSemaphore , 5)) 
+	{
 		nUART_TxString("Pin 2");
 		nNewLine( 1 );
 		xSemaphoreGive(UART0_TxSemaphore);
@@ -282,11 +291,12 @@ void nPinFlip_2() {
 }
 
 
-void nPinFlip_P20() {
+void nPinFlip_P20() 
+{
 /* ******************************************************************
-//	Function name : nPinFlip_P20
-//	Functionality :	None. P20 is sacred! NO TOUCHING!
-// 	Returns				:	None	
+//	Function name	: nPinFlip_P20
+//	Functionality	:	None. P20 is sacred! NO TOUCHING!
+// 	Returns			:	None	
 //  Input range		: None
 // *****************************************************************/	
 
@@ -295,7 +305,8 @@ void nPinFlip_P20() {
 	nNewLine( 1 );
 }
 
-void nPinFlip_P21() {
+void nPinFlip_P21() 
+{
 /* ******************************************************************
 //	Function name : nPinFlip_P21
 //	Functionality :	Flip P21
@@ -313,11 +324,12 @@ void nPinFlip_P21() {
 	nNewLine( 1 );
 }
 
-void nPinFlip_P22() {
+void nPinFlip_P22() 
+{
 /* ******************************************************************
-//	Function name : nPinFlip_P22
-//	Functionality :	Flip P22
-// 	Returns				:	None	
+//	Function name	: nPinFlip_P22
+//	Functionality	: Flip P22
+// 	Returns			: None	
 //  Input range		: None
 // *****************************************************************/	
 	static GPIOPIN pin_status = GPIO_HIGH;
@@ -329,11 +341,13 @@ void nPinFlip_P22() {
 	
 	nNewLine( 1 );
 }
-void nPinFlip_P23() {
+
+void nPinFlip_P23() 
+{
 /* ******************************************************************
-//	Function name : nPinFlip_P23
-//	Functionality :	Flip P23
-// 	Returns				:	None	
+//	Function name	: nPinFlip_P23
+//	Functionality	: Flip P23
+// 	Returns			: None	
 //  Input range		: None
 // *****************************************************************/	
 	static GPIOPIN pin_status = GPIO_HIGH;
@@ -345,11 +359,12 @@ void nPinFlip_P23() {
 	
 	nNewLine( 1 );
 }
-void nPinFlip_P24() {
+void nPinFlip_P24() 
+{
 /* ******************************************************************
-//	Function name : nPinFlip_P24
-//	Functionality :	Flip P24
-// 	Returns				:	None	
+//	Function name	: nPinFlip_P24
+//	Functionality	: Flip P24
+// 	Returns			: None	
 //  Input range		: None
 // *****************************************************************/	
 	static GPIOPIN pin_status = GPIO_HIGH;
@@ -361,11 +376,12 @@ void nPinFlip_P24() {
 	
 	nNewLine( 1 );
 }
-void nPinFlip_P25() {
+void nPinFlip_P25() 
+{
 /* ******************************************************************
-//	Function name : nPinFlip_P25
-//	Functionality :	Flip P25
-// 	Returns				:	None	
+//	Function name	: nPinFlip_P25
+//	Functionality	: Flip P25
+// 	Returns			: None	
 //  Input range		: None
 // *****************************************************************/	
 	static GPIOPIN pin_status = GPIO_HIGH;
@@ -378,11 +394,12 @@ void nPinFlip_P25() {
 	nNewLine( 1 );
 }
 
-void nPinFlip_P26() {
+void nPinFlip_P26() 
+{
 /* ******************************************************************
-//	Function name : nPinFlip_P26
-//	Functionality :	Flip P26
-// 	Returns				:	None	
+//	Function name	: nPinFlip_P26
+//	Functionality	: Flip P26
+// 	Returns			: None	
 //  Input range		: None
 // *****************************************************************/	
 	static GPIOPIN pin_status = GPIO_HIGH;
@@ -398,11 +415,12 @@ void nPinFlip_P26() {
 	nNewLine( 1 );
 }
 
-void nPinFlip_P27() {
+void nPinFlip_P27() 
+{
 /* ******************************************************************
-//	Function name : nPinFlip_P27
-//	Functionality :	Flip P27
-// 	Returns				:	None	
+//	Function name	: nPinFlip_P27
+//	Functionality	: Flip P27
+// 	Returns			: None	
 //  Input range		: None
 // *****************************************************************/	
 	static GPIOPIN pin_status = GPIO_HIGH;
@@ -415,11 +433,12 @@ void nPinFlip_P27() {
 	nNewLine( 1 );
 }
 
-void nPinFlip_P28() {
+void nPinFlip_P28() 
+{
 /* ******************************************************************
-//	Function name : nPinFlip_P28
-//	Functionality :	Flip P28
-// 	Returns				:	None	
+//	Function name	: nPinFlip_P28
+//	Functionality	: Flip P28
+// 	Returns			: None	
 //  Input range		: None
 // *****************************************************************/	
 	static GPIOPIN pin_status = GPIO_HIGH;
@@ -433,22 +452,24 @@ void nPinFlip_P28() {
 }
 
 
-void nNewLine( uint8_t NumberOfLineSkips ) {
+void nNewLine( uint8_t NumberOfLineSkips ) 
+{
 /* ******************************************************************
-//	Function name : nNewLine
-//	Functionality :	Go to a new line in UART terminal
-// 	Returns				:	None	
+//	Function name	: nNewLine
+//	Functionality	: Go to a new line in UART terminal
+// 	Returns			: None	
 //  Input range		: 0:? 
 // *****************************************************************/
 	for (uint8_t i = 0; i < NumberOfLineSkips; i++)
 		nUART_TxString("\r\n");
 }
 
-void nTerminalLogout() {
+void nTerminalLogout() 
+{
 /* ******************************************************************
-//	Function name : nTerminalLogout
-//	Functionality :	Logout from the terminal by resetting state and bools for username found & password matched
-// 	Returns				:	None	
+//	Function name	: nTerminalLogout
+//	Functionality	: Logout from the terminal by resetting state and bools for username found & password matched
+// 	Returns			: None	
 //  Input range		: 0:? 
 // *****************************************************************/
 	USERNAME_MATCHED = 0;
@@ -464,11 +485,12 @@ void nTerminalLogout() {
 }
 
 /* Function to initialize UART0 */
-void nUART0_init( unsigned int baudrate) {
+void nUART0_init( unsigned int baudrate) 
+{
 /* ******************************************************************
-//	Function name : nUART0_init
-//	Functionality :	Initialize UART0 on the mbed board
-// 	Returns				:	None	
+//	Function name	: nUART0_init
+//	Functionality	: Initialize UART0 on the mbed board
+// 	Returns			: None	
 //  Input range		: 0:? 
 // *****************************************************************/
 	unsigned int var_UartPclk_u32 , var_Pclk_u32 , var_RegValue_u32;
@@ -529,11 +551,12 @@ void nUART0_init( unsigned int baudrate) {
 }
 
 
-void nUART_TxChar(char ch) {
+void nUART_TxChar(char ch) 
+{
 /* ******************************************************************
-//	Function name : nUART_TxChar
-//	Functionality :	Transmit a char to the UART0 channel
-// 	Returns				:	None	
+//	Function name	: nUART_TxChar
+//	Functionality	: Transmit a char to the UART0 channel
+// 	Returns			: None	
 //  Input range		: 0 - 255, all chars
 // *****************************************************************/
 	xQueueSend(qUART_TxQ , &ch , 10);
@@ -541,29 +564,31 @@ void nUART_TxChar(char ch) {
 
 
 /* Function to Receive a char */
-void nUART_RxChar() {
-	
+void nUART_RxChar() 
+{
 /* ******************************************************************
-//	Function name : nUART_RxChar
-//	Functionality :	Receive a char from UART channel, and send it to the 
-//									UART RxQueue to allow The UART Task to process it
-// 	Returns				:	None	
+//	Function name	: nUART_RxChar
+//	Functionality	: Receive a char from UART channel, and send it to the 
+//					 	UART RxQueue to allow The UART Task to process it
+// 	Returns			: None	
 //  Input range		: None
 // *****************************************************************/
 	char ch;
-	if (yUART_RxReady()) {
+	if (yUART_RxReady()) 
+	{
 		ch = LPC_UART0->RBR;                                // Read received data    
 		xQueueSend(qUART_RxQ , &ch , 2);
 	}
 }
 
 /* Function to transmit a string to UART */
-void nUART_TxString(char ch_s[]) {
+void nUART_TxString(char ch_s[]) 
+{
 /* ******************************************************************
-//	Function name : nUART_TxString
-//	Functionality :	Transmit a string to the UART0 Channel by simply utilizing 
-//										nUART_TxChar function until a string termination char '\0' is met.
-// 	Returns				:	None	
+//	Function name	: nUART_TxString
+//	Functionality	: Transmit a string to the UART0 Channel by simply utilizing 
+//					 	nUART_TxChar function until a string termination char '\0' is met.
+// 	Returns			: None	
 //  Input range		: None
 // *****************************************************************/
 	for (uint8_t i = 0; ch_s[i] != '\0'; i++)
@@ -573,16 +598,18 @@ void nUART_TxString(char ch_s[]) {
 
 void nTerminalHelp() {
 /* ******************************************************************
-//	Function name : nTerminalHelp
-//	Functionality :	Prints all the keywords that UART Checks for when input is given.
-// 	Returns				:	None, but prints stuff to UART
+//	Function name	: nTerminalHelp
+//	Functionality	: Prints all the keywords that UART Checks for when input is given.
+// 	Returns			: None, but prints stuff to UART
 //  Input range		: None
 // *****************************************************************/
-	if (xSemaphoreTake(UART0_TxSemaphore , 5)) {
+	if (xSemaphoreTake(UART0_TxSemaphore , 5)) 
+	{
 		nUART_TxString("The following commands are available");
 		nNewLine( 2 );
 		
-		for (uint8_t i = 0; i < (sizeof(keyword_strings) / sizeof(keyword_strings[0])) ; i++) {
+		for (uint8_t i = 0; i < (sizeof(keyword_strings) / sizeof(keyword_strings[0])) ; i++) 
+		{
 			nUART_TxString("-> ");
 			nUART_TxString(keyword_strings[i]);
 			nNewLine( 1 );
@@ -595,72 +622,79 @@ void nTerminalHelp() {
 }
 
 
-void nTerminal_LED_1_ON() {
+void nTerminal_LED_1_ON() 
+{
 /* ******************************************************************
-//	Function name : nTerminal_LED_1_ON
-//	Functionality :	Turn LED 1 On from the UART terminal
-// 	Returns				:	None	
+//	Function name	: nTerminal_LED_1_ON
+//	Functionality	: Turn LED 1 On from the UART terminal
+// 	Returns			: None	
 //  Input range		: None
 // *****************************************************************/
 	nLED_SET( LED_FLIP , 0 , 0 , 0 );
 	
 }
 
-void nTerminal_LED_2_ON() {
+void nTerminal_LED_2_ON() 
+{
 /* ******************************************************************
-//	Function name : nTerminal_LED_2_ON
-//	Functionality :	Turn LED 2 On from the UART terminal
-// 	Returns				:	None	
+//	Function name	: nTerminal_LED_2_ON
+//	Functionality	: Turn LED 2 On from the UART terminal
+// 	Returns			: None	
 //  Input range		: None
 // *****************************************************************/
 	nLED_SET( 0 , LED_FLIP , 0 , 0 );
 }
 
-void nTerminal_LED_3_ON() {
+void nTerminal_LED_3_ON() 
+{
 /* ******************************************************************
-//	Function name : nTerminal_LED_3_ON
-//	Functionality :	Turn LED 3 On from the UART terminal
-// 	Returns				:	None	
+//	Function name	: nTerminal_LED_3_ON
+//	Functionality	: Turn LED 3 On from the UART terminal
+// 	Returns			: None	
 //  Input range		: None
 // *****************************************************************/
 	nLED_SET( 0 , 0 , LED_FLIP , 0 );
 }
 
-void nTerminal_LED_4_ON() {
+void nTerminal_LED_4_ON() 
+{
 /* ******************************************************************
-//	Function name : nTerminal_LED_4_ON
-//	Functionality :	Turn LED 4 On from the UART terminal
-// 	Returns				:	None	
+//	Function name	: nTerminal_LED_4_ON
+//	Functionality	: Turn LED 4 On from the UART terminal
+// 	Returns			: None	
 //  Input range		: None
 // *****************************************************************/
 	nLED_SET( 0 , 0 , 0 , LED_FLIP );
 }
 
-void nTerminal_LED_OFF() {
+void nTerminal_LED_OFF() 
+{
 /* ******************************************************************
-//	Function name : nTerminal_LED_OFF
-//	Functionality :	Turn all 4 LEDS OFF
-// 	Returns				:	None	
+//	Function name	: nTerminal_LED_OFF
+//	Functionality	: Turn all 4 LEDS OFF
+// 	Returns			: None	
 //  Input range		: None
 // *****************************************************************/
 	nLED_SET(0,0,0,0);
 }
 
-void nTerminal_LED_ALL_ON() {
+void nTerminal_LED_ALL_ON() 
+{
 /* ******************************************************************
-//	Function name : nTerminal_LED_ALL_ON
-//	Functionality :	Turn all 4 LEDS ON
-// 	Returns				:	None	
+//	Function name	: nTerminal_LED_ALL_ON
+//	Functionality	: Turn all 4 LEDS ON
+// 	Returns			: None	
 //  Input range		: None
 // *****************************************************************/
 	nLED_SET(1,1,1,1);
 }
 
-void nTerminalStatus() {
+void nTerminalStatus() 
+{
 /* ******************************************************************
-//	Function name : nTerminalStatus
-//	Functionality :	Print out various status messages
-// 	Returns				:	None	
+//	Function name	: nTerminalStatus
+//	Functionality	: Print out various status messages
+// 	Returns			: None	
 //  Input range		: None
 // *****************************************************************/
 	nUART_TxString("Current state       : snoo\n\r");
@@ -668,22 +702,23 @@ void nTerminalStatus() {
 	nUART_TxString("Current Program     : \n\r");
 }
 
-
-void nTerminalClear() {
+void nTerminalClear() 
+{
 /* ******************************************************************
-//	Function name : nTerminalClear
-//	Functionality :	Prints 25 lineskips to terminal making a new clear screen appear
-// 	Returns				:	None	
+//	Function name	: nTerminalClear
+//	Functionality	: Prints 25 lineskips to terminal making a new clear screen appear
+// 	Returns			: None	
 //  Input range		: None
 // *****************************************************************/
 	nNewLine( 25 );
 }
 
-void nTerminalUndefined() {
+void nTerminalUndefined() 
+{
 /* ******************************************************************
-//	Function name : nTerminalUndefined
-//	Functionality :	Prints "Undefined function to UART. Should be called every time undefined input is given to the terminal, while logged in.
-// 	Returns				:	None	
+//	Function name	: nTerminalUndefined
+//	Functionality	: Prints "Undefined function to UART. Should be called every time undefined input is given to the terminal, while logged in.
+// 	Returns			: None	
 //  Input range		: None
 // *****************************************************************/
 		nNewLine( 1 );
@@ -691,25 +726,25 @@ void nTerminalUndefined() {
 		nNewLine( 1 );
 }
 
-
-void nTerminalNoFunctionFound() {
+void nTerminalNoFunctionFound() 
+{
 /* ******************************************************************
-//	Function name : nTerminalNoFunctionFound
-//	Functionality :	Prints Stuff to terminal. not really used?
-// 	Returns				:	None	
+//	Function name	: nTerminalNoFunctionFound
+//	Functionality	: Prints Stuff to terminal. not really used?
+// 	Returns			: None	
 //  Input range		: None
 // *****************************************************************/
 	nUART_TxString("No matching function found. Try 'help' for more info.");
 	nNewLine( 1 );
 }
 
-
-void nPrintInteger ( int input ) {
+void nPrintInteger ( int input ) 
+{
 /* ******************************************************************
-//	Function name : nPrintInteger
-//	Functionality :	Prints an integer correctly to the UART Terminal.
-// 	Returns				:	None	
-//  Input range		: 0 - 9999
+//	Function name	: nPrintInteger
+//	Functionality	: Prints an integer correctly to the UART Terminal.
+// 	Returns			: None	
+//  Input range		: -9999 - 9999
 // *****************************************************************/
 	uint8_t ones 			= 0;
 	uint8_t tens 			= 0;
@@ -719,7 +754,8 @@ void nPrintInteger ( int input ) {
 	
 	boolean Negated = FALSE;	
 		
-	if (input < 0) {
+	if (input < 0) 
+	{
 		input = -input;
 		Negated = TRUE;
 	}
@@ -729,28 +765,6 @@ void nPrintInteger ( int input ) {
 	for (hundreds = 0	 ; 	input >= 100	; input -= 100		, hundreds++	);
 	for (tens = 0		 ; 	input >= 10	 	; input -= 10		, tens++        );
 	for (ones = 0		 ; 	input >= 1	 	; input -= 1		, ones++        );
-	
-//	while (input >= 10000) {
-//		tenthousands++;
-//		input -= 10000;
-//	}
-//	
-//	while (input >= 1000) {
-//		thousands++;
-//		input -= 1000;
-//	}
-//	while (input >= 100) {
-//		hundreds++;
-//		input -= 100;
-//	}
-//	while (input >= 10) {
-//		tens++;
-//		input -= 10;
-//	}
-//	while (input >= 1) {
-//		ones++;
-//		input -= 1;
-//	}
 	
 	if (Negated)
 		nUART_TxChar('-');
@@ -770,9 +784,6 @@ void nPrintInteger ( int input ) {
 	nUART_TxChar(ones + '0');
 }
 
-
-
-
 // ****************************************************************************************
 //	Type		: 	Task
 //	Example		:	tXx();
@@ -780,11 +791,12 @@ void nPrintInteger ( int input ) {
 // ****************************************************************************************
 
 
-void tUART_RxTask( void *param ) {
+void tUART_RxTask( void *param ) 
+{
 /* ******************************************************************
-//	Function name : tUART_RxTask
-//	Functionality :	FreeRTOS Task for the Receiving Part of the UART communication on channel 0
-// 	Returns				:	None	
+//	Function name	: tUART_RxTask
+//	Functionality	: FreeRTOS Task for the Receiving Part of the UART communication on channel 0
+// 	Returns			: None	
 //  Input range		: None
 // *****************************************************************/
 	
@@ -796,15 +808,19 @@ void tUART_RxTask( void *param ) {
 	xSemaphoreGive( UART0_TxSemaphore );
 	
 	while(1) {	
-		if ( xQueueReceive( qUART_RxQ , &receive , 2 )) {
-			switch ( UART_STATE ) {
+		if ( xQueueReceive( qUART_RxQ , &receive , 2 )) 
+		{
+			switch ( UART_STATE ) 
+			{
 	// ===================================================================
 	//										Check Username State
 	// ===================================================================					
 				case UartState_FindUser :
 				
-					if ( yKeyHit ( CHAR_BACKSPACE , receive )) {
-						if ( inputs ) {
+					if ( yKeyHit ( CHAR_BACKSPACE , receive )) 
+					{
+						if ( inputs ) 
+						{
 							inputs--;
 							nUART_TxChar( CHAR_BACKSPACE );
 							nUART_TxChar(' ');
@@ -812,12 +828,14 @@ void tUART_RxTask( void *param ) {
 						}
 					}
 				
-					else if ( yKeyHit ( CHAR_ENTER , receive ) && inputs == 0) {
+					else if ( yKeyHit ( CHAR_ENTER , receive ) && inputs == 0) 
+					{
 						nNewLine( 1 );
 						OutedStatusMsg = 0;
 					}
 					
-					else if ( yKeyHit ( CHAR_ENTER , receive ) && inputs > 0) {
+					else if ( yKeyHit ( CHAR_ENTER , receive ) && inputs > 0) 
+					{
 						input_buffer[inputs] = '\0';
 						inputs++;
 						
@@ -829,7 +847,8 @@ void tUART_RxTask( void *param ) {
 						inputs = 0;				
 					}
 					
-					else {						
+					else 
+					{						
 						input_buffer[inputs] = receive;
 						xQueueSend( qUART_TxQ , &input_buffer[inputs] , 2 );
 						inputs++;						
@@ -838,13 +857,15 @@ void tUART_RxTask( void *param ) {
 					vTaskDelay(10);
 					break;
 					
-		// ===================================================================
-		//										Check Password State
-		// ===================================================================			
+	// ===================================================================
+	//										Check Password State
+	// ===================================================================			
 				case UartState_FindPass : 
 					
-					if ( yKeyHit ( CHAR_BACKSPACE , receive )) {
-						if (inputs > 0) {
+					if ( yKeyHit ( CHAR_BACKSPACE , receive )) 
+					{
+						if (inputs > 0) 
+						{
 							inputs--;
 							nUART_TxChar( CHAR_BACKSPACE );
 							nUART_TxChar(' ');
@@ -852,7 +873,8 @@ void tUART_RxTask( void *param ) {
 						}
 					}
 				
-					else if ( yKeyHit ( CHAR_ENTER , receive ) && inputs == 0) {
+					else if ( yKeyHit ( CHAR_ENTER , receive ) && inputs == 0) 
+					{
 						nNewLine( 1 );
 						nUART_TxString("Unrecognized user.");
 						nNewLine( 2 );
@@ -860,17 +882,20 @@ void tUART_RxTask( void *param ) {
 						OutedStatusMsg = 0; 
 					}
 					
-					else if ( yKeyHit (CHAR_ENTER , receive ) && inputs > 0) {
+					else if ( yKeyHit (CHAR_ENTER , receive ) && inputs > 0) 
+					{
 						input_buffer[inputs] = '\0';
 						inputs++;
 						
-						if ( vCheckPasscode( input_buffer , inputs ) ) {
+						if ( vCheckPasscode( input_buffer , inputs ) ) 
+						{
 							UART_STATE = UartState_Functioncall;
 							OutedStatusMsg = 0;
 							inputs = 0;
 							nNewLine( 2 );
 							
-							if (xSemaphoreTake(UART0_TxSemaphore, ( TickType_t ) 10 ) == pdTRUE) {
+							if (xSemaphoreTake(UART0_TxSemaphore, ( TickType_t ) 10 ) == pdTRUE) 
+							{
 								nUART_TxString("Logged in.\r\nWelcome " );
 								nUART_TxString(USERS_NAMES[USERNAME_MATCHED]);
 								nNewLine( 1 );
@@ -879,13 +904,16 @@ void tUART_RxTask( void *param ) {
 								xSemaphoreGive( UART0_TxSemaphore );
 							}
 							
-							if (xSemaphoreTake(UART0_TxSemaphore, ( TickType_t ) 10 ) == pdTRUE) {
+							if (xSemaphoreTake(UART0_TxSemaphore, ( TickType_t ) 10 ) == pdTRUE) 
+							{
 								nNewLine( 2 );
 								xSemaphoreGive( UART0_TxSemaphore );
 							}
 						}
-						else {
-							if (xSemaphoreTake(UART0_TxSemaphore, ( TickType_t ) 10 ) == pdTRUE) {
+						else 
+						{
+							if (xSemaphoreTake(UART0_TxSemaphore, ( TickType_t ) 10 ) == pdTRUE) 
+							{
 								nNewLine( 2 );
 								nUART_TxString("Unrecognized user.\r\n");
 								nNewLine( 1 );
@@ -899,7 +927,8 @@ void tUART_RxTask( void *param ) {
 						OutedStatusMsg = 0;
 					}
 					
-					else {
+					else 
+					{
 						input_buffer[inputs] = receive;
 						transmit = blocked_character;
 						xQueueSend(qUART_TxQ , &transmit , 2);
@@ -910,13 +939,15 @@ void tUART_RxTask( void *param ) {
 					
 					break;
 					
-		// ===================================================================
-		//										Check Function State		
-		// ===================================================================			
+	// ===================================================================
+	//										Check Function State		
+	// ===================================================================			
 				case UartState_Functioncall :
 					
-					if ( yKeyHit ( CHAR_BACKSPACE , receive )) {
-						if (inputs > 0) {
+					if ( yKeyHit ( CHAR_BACKSPACE , receive )) 
+					{
+						if (inputs > 0)
+						{
 							inputs--;
 							nUART_TxChar( CHAR_BACKSPACE );
 							nUART_TxChar(' ');
@@ -924,12 +955,14 @@ void tUART_RxTask( void *param ) {
 						}
 					}
 				
-					else if ( yKeyHit ( CHAR_ENTER , receive ) && inputs == 0 ) {
+					else if ( yKeyHit ( CHAR_ENTER , receive ) && inputs == 0 ) 
+					{
 						nNewLine( 1 );
 						OutedStatusMsg = 0;
 					}
 					
-					else if ( yKeyHit ( CHAR_ENTER , receive ) && inputs > 0 ) {
+					else if ( yKeyHit ( CHAR_ENTER , receive ) && inputs > 0 ) 
+					{
 						input_buffer[inputs] = '\0';
 						inputs++;
 						nNewLine( 1 );	
@@ -940,7 +973,8 @@ void tUART_RxTask( void *param ) {
 					else {
 						input_buffer[inputs] = receive;
 						
-						if (xSemaphoreTake(UART0_TxSemaphore, ( TickType_t ) 10 ) == pdTRUE) {
+						if (xSemaphoreTake(UART0_TxSemaphore, ( TickType_t ) 10 ) == pdTRUE) 
+						{
 							nUART_TxChar( input_buffer[inputs] );
 							xSemaphoreGive( UART0_TxSemaphore );
 						}
@@ -951,7 +985,8 @@ void tUART_RxTask( void *param ) {
 				
 				default :
 					nNewLine( 4 );
-					if (xSemaphoreTake( UART0_TxSemaphore, ( TickType_t ) 10 ) == pdTRUE ) {
+					if (xSemaphoreTake( UART0_TxSemaphore, ( TickType_t ) 10 ) == pdTRUE ) 
+					{
 						nUART_TxString( "You're not supposed to be here." );
 						nNewLine( 1 );
 						nUART_TxString( "Returning to start." );
@@ -975,35 +1010,42 @@ void tUART_RxTask( void *param ) {
 //	===================================================================
 //									UART Transmit task
 //	===================================================================
-void tUART_TxTask( void *param ) { 
+void tUART_TxTask( void *param ) 
+{ 
 /* ******************************************************************
-//	Function name : tUART_TxTask
-//	Functionality :	FreeRTOS Task for the Transmitting Part of the UART communication on channel 0
-// 	Returns				:	None	
+//	Function name	: tUART_TxTask
+//	Functionality	: FreeRTOS Task for the Transmitting Part of the UART communication on channel 0
+// 	Returns			: None	
 //  Input range		: None
 // *****************************************************************/
 	uint8_t receive;
 
-	while(1) {
+	while(1) 
+	{
 
-		if (! OutedStatusMsg) {
-			switch(UART_STATE) {
+		if (! OutedStatusMsg) 
+		{
+			switch(UART_STATE) 
+			{
 				case UartState_FindUser :
-					if ( xSemaphoreTake( UART0_TxSemaphore, ( TickType_t ) 10 ) == pdTRUE ) {
+					if ( xSemaphoreTake( UART0_TxSemaphore, ( TickType_t ) 10 ) == pdTRUE ) 
+					{
 						nUART_TxString( "Enter Username: " );
 						xSemaphoreGive( UART0_TxSemaphore );
 					}
 				break;
 				
 				case UartState_FindPass :
-					if (xSemaphoreTake( UART0_TxSemaphore, ( TickType_t ) 10 ) == pdTRUE ) {
+					if (xSemaphoreTake( UART0_TxSemaphore, ( TickType_t ) 10 ) == pdTRUE ) 
+					{
 						nUART_TxString( "Enter Password: " );
 						xSemaphoreGive( UART0_TxSemaphore );
 					}
 				break;
 				
 				case UartState_Functioncall :
-					if (xSemaphoreTake( UART0_TxSemaphore, ( TickType_t ) 10 ) == pdTRUE ) {
+					if (xSemaphoreTake( UART0_TxSemaphore, ( TickType_t ) 10 ) == pdTRUE ) 
+					{
 						nUART_TxString( ">> " );
 						xSemaphoreGive( UART0_TxSemaphore );
 					}
@@ -1013,7 +1055,8 @@ void tUART_TxTask( void *param ) {
 		}
 
 		
-		if (xQueueReceive( qUART_TxQ , &receive , 2 ) ) {
+		if (xQueueReceive( qUART_TxQ , &receive , 2 ) ) 
+		{
 			if ( yUART_TxReady() )
 				LPC_UART0->THR = receive;                                  // Load the data to be transmitted
 		}
@@ -1031,19 +1074,21 @@ void tUART_TxTask( void *param ) {
 //	Description	:	Returns a value, either 1 or 0. no confirmation if successful or not.
 // ****************************************************************************************
 
-uint8_t vFindStringMatch(char InputString[] , uint8_t length) {
+uint8_t vFindStringMatch(char InputString[] , uint8_t length) 
+{
 /* ******************************************************************
-//	Function name : vFindStringMatch
-//	Functionality :	Takes input from UART when ENTER is hit
-// 	Returns				:	None	
+//	Function name	: vFindStringMatch
+//	Functionality	: Takes input from UART when ENTER is hit
+// 	Returns			: None	
 //  Input range		: string & length of string
-//  Fixes					: Check if (MatchFound) and return 0 if not, keep "undefined function" as 0'th function in keyword function register
+//  Fixes			: Check if (MatchFound) and return 0 if not, keep "undefined function" as 0'th function in keyword function register
 // *****************************************************************/	
 	uint8_t MatchFound = 0;
 	uint8_t KeywordMatched = 0;
 	
-	for (uint16_t i = 0; i < NO_OF_KEYWORDS; i++) {															// 16 bits iterator allows for max ~65k keywords.
-		MatchFound = 1;																														// 8 bits iterator allows for only 255 different keywords.
+	for (uint16_t i = 0; i < NO_OF_KEYWORDS; i++)							// 16 bits iterator allows for max ~65k keywords.
+	{																		// 8 bits iterator allows for only 255 different keywords.
+		MatchFound = 1;																	
 		
 		uint8_t Str1Length , Str2Length;
 		
@@ -1053,7 +1098,8 @@ uint8_t vFindStringMatch(char InputString[] , uint8_t length) {
 		if (Str1Length != Str2Length)
 			continue;
 		
-		for (uint8_t n = 0; n < length; n++) {
+		for (uint8_t n = 0; n < length; n++) 
+		{
 			if ( (InputString[n] != keyword_strings[i][n]) )
 				MatchFound = 0;
 		}
@@ -1065,17 +1111,19 @@ uint8_t vFindStringMatch(char InputString[] , uint8_t length) {
 
 
 
-uint8_t vCheckUsernames(char InputString[] , uint8_t length) {
+uint8_t vCheckUsernames(char InputString[] , uint8_t length) 
+{
 /* ******************************************************************
-//	Function name : vCheckUsernames
-//	Functionality :	Takes input from UART when ENTER is hit, while inputting username. scans USER_LIBRARY for matching names
-// 	Returns				:	0 - USER (definition) depending on whether or not user has been matched.
+//	Function name	: vCheckUsernames
+//	Functionality	: Takes input from UART when ENTER is hit, while inputting username. scans USER_LIBRARY for matching names
+// 	Returns			: 0 - USER (definition) depending on whether or not user has been matched.
 //  Input range		: None
 // *****************************************************************/		
 	uint8_t MatchFound = 0;
 	uint8_t UserMatched = 0;
 	
-	for (uint8_t i = 1; i < USERS; i++) {
+	for (uint8_t i = 1; i < USERS; i++) 
+	{
 		MatchFound = 1;
 		
 		uint8_t Str1Length , Str2Length;
@@ -1086,7 +1134,8 @@ uint8_t vCheckUsernames(char InputString[] , uint8_t length) {
 		if (Str1Length != Str2Length)
 			continue;
 		
-		for (uint8_t n = 0; n < length; n++) {
+		for (uint8_t n = 0; n < length; n++) 
+		{
 			if ( (InputString[n] != USER_LIBRARY[i][n]) )
 				MatchFound = 0;
 		}
@@ -1096,11 +1145,12 @@ uint8_t vCheckUsernames(char InputString[] , uint8_t length) {
 	return UserMatched;
 }
 
-uint8_t vCheckPasscode(char InputString[] , uint8_t length) {
+uint8_t vCheckPasscode(char InputString[] , uint8_t length) 
+{
 /* ******************************************************************
-//	Function name : vCheckPasscode
-//	Functionality :	Takes input from UART when ENTER is hit, while inputting passwords. scans PASS_LIBRARY for matching names
-// 	Returns				:	0 - USER (definition) depending on whether or not user has been matched.
+//	Function name	: vCheckPasscode
+//	Functionality	: Takes input from UART when ENTER is hit, while inputting passwords. scans PASS_LIBRARY for matching names
+// 	Returns			: 0 - USER (definition) depending on whether or not user has been matched.
 //  Input range		: None
 // *****************************************************************/	
 	uint8_t MatchFound = 1;
@@ -1112,8 +1162,10 @@ uint8_t vCheckPasscode(char InputString[] , uint8_t length) {
 	if (Str1Length != Str2Length)
 		MatchFound = 0;
 	
-	if (MatchFound) {
-		for (uint8_t n = 0; n < length; n++) {
+	if (MatchFound) 
+	{
+		for (uint8_t n = 0; n < length; n++) 
+		{
 			if ( (InputString[n] != PASS_LIBRARY[USERNAME_MATCHED][n]) )
 				MatchFound = 0;
 		}

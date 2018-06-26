@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|VisualGDB">
+      <Configuration>Debug</Configuration>
+      <Platform>VisualGDB</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|VisualGDB">
+      <Configuration>Release</Configuration>
+      <Platform>VisualGDB</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{AB1C8A16-7D5C-4D53-901E-52E302984E6C}</ProjectGuid>
+    <BSP_ID>com.sysprogs.arm.stm32</BSP_ID>
+    <BSP_VERSION>4.7</BSP_VERSION>
+    <InPlaceBSPSubdir />
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|VisualGDB'">
+    <MCUPropertyListFile>$(ProjectDir)stm32.props</MCUPropertyListFile>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release|VisualGDB'">
+    <MCUPropertyListFile>$(ProjectDir)stm32.props</MCUPropertyListFile>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|VisualGDB'">
+    <GNUConfigurationType>Debug</GNUConfigurationType>
+    <ToolchainID>com.sysprogs.gnuarm.arm-eabi</ToolchainID>
+    <ToolchainVersion>4.9.3/7.8/r1</ToolchainVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|VisualGDB'">
+    <ToolchainID>com.sysprogs.gnuarm.arm-eabi</ToolchainID>
+    <ToolchainVersion>4.9.3/7.8/r1</ToolchainVersion>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|VisualGDB'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>;mbed;mbed\TARGET_LPC1768;mbed\TARGET_LPC1768\TARGET_NXP;mbed\TARGET_LPC1768\TARGET_NXP\TARGET_LPC176X;mbed\TARGET_LPC1768\TARGET_NXP\TARGET_LPC176X\TARGET_MBED_LPC1768;mbed\TARGET_LPC1768\TARGET_NXP\TARGET_LPC176X\device;mbed\TARGET_LPC1768\TOOLCHAIN_ARM_STD;mbed\drivers;mbed\hal;mbed\platform;FreeRTOS;FreeRTOS\include;FreeRTOS\portable;FreeRTOS\portable\MemMang;FreeRTOS\portable\RVDS;freertos\portable\gcc\arm_cm3;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>flash_layout;;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions />
+      <CLanguageStandard />
+      <CPPLanguageStandard />
+    </ClCompile>
+    <Link>
+      <LibrarySearchDirectories>%(Link.LibrarySearchDirectories)</LibrarySearchDirectories>
+      <AdditionalLibraryNames>%(Link.AdditionalLibraryNames)</AdditionalLibraryNames>
+      <AdditionalLinkerInputs>%(Link.AdditionalLinkerInputs)</AdditionalLinkerInputs>
+      <AdditionalOptions />
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|VisualGDB'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>;mbed;mbed\TARGET_LPC1768;mbed\TARGET_LPC1768\TARGET_NXP;mbed\TARGET_LPC1768\TARGET_NXP\TARGET_LPC176X;mbed\TARGET_LPC1768\TARGET_NXP\TARGET_LPC176X\TARGET_MBED_LPC1768;mbed\TARGET_LPC1768\TARGET_NXP\TARGET_LPC176X\device;mbed\TARGET_LPC1768\TOOLCHAIN_ARM_STD;mbed\drivers;mbed\hal;mbed\platform;FreeRTOS;FreeRTOS\include;FreeRTOS\portable;FreeRTOS\portable\MemMang;FreeRTOS\portable\RVDS;freertos\portable\gcc\arm_cm3;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>flash_layout;;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions />
+      <CLanguageStandard />
+      <CPPLanguageStandard />
+    </ClCompile>
+    <Link>
+      <LibrarySearchDirectories>%(Link.LibrarySearchDirectories)</LibrarySearchDirectories>
+      <AdditionalLibraryNames>%(Link.AdditionalLibraryNames)</AdditionalLibraryNames>
+      <AdditionalLinkerInputs>%(Link.AdditionalLinkerInputs)</AdditionalLinkerInputs>
+      <AdditionalOptions />
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ItemGroup>
+    <ClCompile Include="ErrorHandler.c" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="LED_control.c" />
+    <ClCompile Include="utilities.c" />
+    <ClCompile Include="UART_control.c" />
+    <ClCompile Include="GPIO_setup.c" />
+    <ClCompile Include="freertos\portable\gcc\arm_cm3\port.c" />
+    <ClCompile Include="FreeRTOS\croutine.c" />
+    <ClCompile Include="FreeRTOS\event_groups.c" />
+    <ClCompile Include="FreeRTOS\list.c" />
+    <ClCompile Include="FreeRTOS\queue.c" />
+    <ClCompile Include="FreeRTOS\tasks.c" />
+    <ClCompile Include="FreeRTOS\timers.c" />
+    <ClCompile Include="FreeRTOS\portable\MemMang\heap_2.c" />
+    <ClCompile Include="Programs_file.c" />
+    <ClCompile Include="Sensor_file.c" />
+    <None Include="mbed\TARGET_LPC1768\TOOLCHAIN_ARM_STD\analogin_api.o" />
+    <None Include="mbed\TARGET_LPC1768\TOOLCHAIN_ARM_STD\analogout_api.o" />
+    <None Include="mbed\TARGET_LPC1768\TOOLCHAIN_ARM_STD\can_api.o" />
+    <None Include="mbed\TARGET_LPC1768\TOOLCHAIN_ARM_STD\CRP.o" />
+    <None Include="mbed\TARGET_LPC1768\TOOLCHAIN_ARM_STD\ethernet_api.o" />
+    <None Include="mbed\TARGET_LPC1768\TOOLCHAIN_ARM_STD\flash_api.o" />
+    <None Include="mbed\TARGET_LPC1768\TOOLCHAIN_ARM_STD\gpio_api.o" />
+    <None Include="mbed\TARGET_LPC1768\TOOLCHAIN_ARM_STD\gpio_irq_api.o" />
+    <None Include="mbed\TARGET_LPC1768\TOOLCHAIN_ARM_STD\i2c_api.o" />
+    <None Include="mbed\TARGET_LPC1768\TOOLCHAIN_ARM_STD\mbed_board.o" />
+    <None Include="mbed\TARGET_LPC1768\TOOLCHAIN_ARM_STD\mbed_retarget.o" />
+    <None Include="mbed\TARGET_LPC1768\TOOLCHAIN_ARM_STD\mbed_sdk_boot.o" />
+    <None Include="mbed\TARGET_LPC1768\TOOLCHAIN_ARM_STD\pinmap.o" />
+    <None Include="mbed\TARGET_LPC1768\TOOLCHAIN_ARM_STD\port_api.o" />
+    <None Include="mbed\TARGET_LPC1768\TOOLCHAIN_ARM_STD\pwmout_api.o" />
+    <None Include="mbed\TARGET_LPC1768\TOOLCHAIN_ARM_STD\rtc_api.o" />
+    <None Include="mbed\TARGET_LPC1768\TOOLCHAIN_ARM_STD\serial_api.o" />
+    <None Include="mbed\TARGET_LPC1768\TOOLCHAIN_ARM_STD\sleep.o" />
+    <None Include="mbed\TARGET_LPC1768\TOOLCHAIN_ARM_STD\spi_api.o" />
+    <None Include="mbed\TARGET_LPC1768\TOOLCHAIN_ARM_STD\startup_LPC17xx.o" />
+    <None Include="mbed\TARGET_LPC1768\TOOLCHAIN_ARM_STD\system_LPC17xx.o" />
+    <None Include="mbed\TARGET_LPC1768\TOOLCHAIN_ARM_STD\us_ticker.o" />
+    <None Include="mbed\TARGET_LPC1768\TOOLCHAIN_ARM_STD\mbed.ar" />
+    <None Include="stm32.props" />
+    <ClCompile Include="$(BSP_ROOT)\STM32F1xxxx\StartupFiles\startup_stm32f103xb.c" />
+    <ClInclude Include="ErrorHandler.h" />
+    <ClInclude Include="GPIO_setup.h" />
+    <None Include="Templates.txt" />
+    <ClInclude Include="Programs_file.h" />
+    <ClInclude Include="Sensor_file.h" />
+    <ClInclude Include="mbed\mbed.h" />
+    <ClInclude Include="mbed\TARGET_LPC1768\arm_math.h" />
+    <ClInclude Include="mbed\TARGET_LPC1768\cmsis_iccarm.h" />
+    <ClInclude Include="mbed\TARGET_LPC1768\cmsis_version.h" />
+    <ClInclude Include="mbed\TARGET_LPC1768\core_armv8mbl.h" />
+    <ClInclude Include="mbed\TARGET_LPC1768\core_armv8mml.h" />
+    <ClInclude Include="mbed\TARGET_LPC1768\core_cm0.h" />
+    <ClInclude Include="mbed\TARGET_LPC1768\core_cm0plus.h" />
+    <ClInclude Include="mbed\TARGET_LPC1768\core_cm3.h" />
+    <ClInclude Include="mbed\TARGET_LPC1768\core_cm4.h" />
+    <ClInclude Include="mbed\TARGET_LPC1768\core_cm7.h" />
+    <ClInclude Include="mbed\TARGET_LPC1768\core_cm23.h" />
+    <ClInclude Include="mbed\TARGET_LPC1768\core_cm33.h" />
+    <ClInclude Include="mbed\TARGET_LPC1768\core_cmSecureAccess.h" />
+    <ClInclude Include="mbed\TARGET_LPC1768\core_sc000.h" />
+    <ClInclude Include="mbed\TARGET_LPC1768\core_sc300.h" />
+    <ClInclude Include="mbed\TARGET_LPC1768\mpu_armv7.h" />
+    <ClInclude Include="mbed\TARGET_LPC1768\mpu_armv8.h" />
+    <ClInclude Include="mbed\TARGET_LPC1768\setup.h" />
+    <ClInclude Include="mbed\TARGET_LPC1768\tz_context.h" />
+    <ClInclude Include="mbed\TARGET_LPC1768\TARGET_NXP\mbed_rtx.h" />
+    <ClInclude Include="mbed\TARGET_LPC1768\TARGET_NXP\TARGET_LPC176X\gpio_object.h" />
+    <ClInclude Include="mbed\TARGET_LPC1768\TARGET_NXP\TARGET_LPC176X\objects.h" />
+    <ClInclude Include="mbed\TARGET_LPC1768\TARGET_NXP\TARGET_LPC176X\PeripheralNames.h" />
+    <ClInclude Include="mbed\TARGET_LPC1768\TARGET_NXP\TARGET_LPC176X\PortNames.h" />
+    <ClInclude Include="mbed\TARGET_LPC1768\TARGET_NXP\TARGET_LPC176X\TARGET_MBED_LPC1768\device.h" />
+    <ClInclude Include="mbed\TARGET_LPC1768\TARGET_NXP\TARGET_LPC176X\TARGET_MBED_LPC1768\PinNames.h" />
+    <ClInclude Include="mbed\TARGET_LPC1768\TARGET_NXP\TARGET_LPC176X\TARGET_MBED_LPC1768\reserved_pins.h" />
+    <ClInclude Include="mbed\TARGET_LPC1768\TARGET_NXP\TARGET_LPC176X\device\cmsis.h" />
+    <ClInclude Include="mbed\TARGET_LPC1768\TARGET_NXP\TARGET_LPC176X\device\cmsis_nvic.h" />
+    <ClInclude Include="mbed\TARGET_LPC1768\TARGET_NXP\TARGET_LPC176X\device\LPC17xx.h" />
+    <ClInclude Include="mbed\TARGET_LPC1768\TARGET_NXP\TARGET_LPC176X\device\system_LPC17xx.h" />
+    <None Include="CWM_MainController-Debug.vgdbsettings" />
+    <None Include="CWM_MainController-Release.vgdbsettings" />
+    <None Include="stm32.xml" />
+  </ItemGroup>
+</Project>

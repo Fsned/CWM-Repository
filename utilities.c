@@ -63,7 +63,8 @@
 // ****************************************************************************************
 // 																Undocumented functions 
 // ****************************************************************************************
-void delay_ms(unsigned int n) {
+void delay_ms(unsigned int n) 
+{
 /* ******************************************************************
 //	Function name : delay_ms
 //	Functionality :	Used to create a delay, with the amount of milliseconds as only input argument. do note this is done with a while(), preventing any proper scheduling
@@ -74,7 +75,8 @@ void delay_ms(unsigned int n) {
 	while(--o);
 }
 
-void delay_us(unsigned int n) {
+void delay_us(unsigned int n) 
+{
 /* ******************************************************************
 //	Function name : delay_us
 //	Functionality :	Used to create a delay, with the amount of microseconds as only input argument. do note this is done with a while(), preventing any proper scheduling

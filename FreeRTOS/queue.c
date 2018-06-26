@@ -1638,7 +1638,7 @@ Queue_t * const pxQueue = ( Queue_t * ) xQueue;
 	#if( ( configSUPPORT_DYNAMIC_ALLOCATION == 1 ) && ( configSUPPORT_STATIC_ALLOCATION == 0 ) )
 	{
 		/* The queue can only have been allocated dynamically - free it
-		again. */
+		again. */½
 		vPortFree( pxQueue );
 	}
 	#elif( ( configSUPPORT_DYNAMIC_ALLOCATION == 1 ) && ( configSUPPORT_STATIC_ALLOCATION == 1 ) )

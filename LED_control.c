@@ -70,7 +70,8 @@ TaskHandle_t AliveHandle = NULL;
 // ****************************************************************************************
 
 
-void nLED_SET(uint8_t led_0 , uint8_t led_1, uint8_t led_2, uint8_t led_3) {
+void nLED_SET(uint8_t led_0 , uint8_t led_1, uint8_t led_2, uint8_t led_3) 
+{
 /* ******************************************************************
 //	Function name : nLED_SET
 //	Functionality :	Clears all LEDS and sets the given values on the 4 LEDS on the dev. board
@@ -107,7 +108,8 @@ void nLED_SET(uint8_t led_0 , uint8_t led_1, uint8_t led_2, uint8_t led_3) {
 // ***** End of Function ********************************************
 
 
-void nAliveSuspend() {
+void nAliveSuspend() 
+{
 /* ******************************************************************
 //	Function name : nAliveSuspend
 //	Functionality :	Used to suspend the Alive LED Task
@@ -117,7 +119,8 @@ void nAliveSuspend() {
 	vTaskSuspend(AliveHandle);
 }
 
-void nAliveResume() {
+void nAliveResume() 
+{
 /* ******************************************************************
 //	Function name : nAliveResume
 //	Functionality :	Used to resume the Alive LED Task
@@ -128,7 +131,8 @@ void nAliveResume() {
 }
 // ***** End of Function ********************************************
 
-void tLEDAlive( void *param ) {
+void tLEDAlive( void *param ) 
+{
 /* ******************************************************************
 //	Function name : tLEDAlive
 //	Functionality :	Used to blink the rightmost LED on the MBED LPC1768 board
@@ -154,7 +158,8 @@ void tLEDAlive( void *param ) {
 // ***** End of Function ********************************************
 
 
-void nPrintAlive() {
+void nPrintAlive() 
+{
 /* ******************************************************************
 //	Function name : tLEDAlive
 //	Functionality :	Used to blink the rightmost LED on the MBED LPC1768 board
@@ -167,12 +172,14 @@ void nPrintAlive() {
 	
 	seconds = alive_timer;
 
-	while(seconds >= 3600) {
+	while(seconds >= 3600) 
+	{
 		hours++;
 		seconds -= 3600;
 	}
 	
-	while(seconds >= 60) {
+	while(seconds >= 60) 
+	{
 		minutes++;
 		seconds -= 60;
 	}
@@ -194,7 +201,8 @@ void nPrintAlive() {
 //	Description	:	Returns a value, either 1 or 0. no confirmation if successful or not.
 // ****************************************************************************************
 
-void led_delay_ms(unsigned int n) {
+void led_delay_ms(unsigned int n) 
+{
 /* ******************************************************************
 //	Function name : led_delay_ms
 //	Functionality :	static delay used for various LED functions.

@@ -142,17 +142,17 @@ uint8_t HW_Pinmap [15][2] =  {			{0	,	 9},			/* F0		|| P5	|| WASH PUMP 1					*/
 																			
 
 // ========================================================================================
-//	Type				: YES_RETURN Functions
-//	Example			:	yXxXxX();
-//	Description	:	Functions that return TRUE (1) or FALSE (0) based on the success of the function.
+//	Type		: BINARY_RETURN Functions
+//	Example		: bXxXxX();
+//	Description	: Functions that return TRUE (1) or FALSE (0) based on the success of the function.
 // ========================================================================================
 																			
 																			
 																			
-uint8_t ySetHWStatus ( uint8_t HardwareHandle , uint8_t NewStatus) 
+uint8_t bSetHWStatus ( uint8_t HardwareHandle , uint8_t NewStatus) 
 {
 /* ******************************************************************
-//	Function name	: ySetHWStatus
+//	Function name	: bSetHWStatus
 //	Functionality	:	Set Hardware status to a desired value, if it's not in failure or alarm mode.
 // 	Returns			:	true or false. if hw is in failure or alarm mode, returns false, otherwise true	
 //  Input range		: 0 - NUMBER_OF_HW - 1 , 0 - 3
@@ -160,7 +160,7 @@ uint8_t ySetHWStatus ( uint8_t HardwareHandle , uint8_t NewStatus)
 	if (HardwareLibrary[HardwareHandle][0] != HARDWARE_ALARM && HardwareLibrary[HardwareHandle][0] != HARDWARE_FAILURE) 
 	{
 		HardwareLibrary[HardwareHandle][0] = NewStatus;
-		yDigitalWrite(HW_Pinmap[HardwareHandle][0] , HW_Pinmap[HardwareHandle][1] , NewStatus);
+		bDigitalWrite(HW_Pinmap[HardwareHandle][0] , HW_Pinmap[HardwareHandle][1] , NewStatus);
 		return 1;
 	}
 	return 0;
@@ -264,27 +264,31 @@ void nWashProgram_3()
 // 	Returns			: True / False depending on whether or not program has been loaded
 //  Input range		: None
 // *****************************************************************/
-//	uint8_t transmit;
-//	
-//	
-//	uint8_t Program_3_Recipe[10] = {START_PROGRAM,
-//																	PROGRAM_3,
-//																	CHECK_WATER_LEVEL,
-//																	CHECK_WASH_TEMPERATURE,
-//																	CHECK_SOAP,
-//																	RUN_WASH,
-//																	RUN_WAIT,
-//																	CHECK_RINSE_TEMPERATURE,
-//																	RUN_RINSE,
-//																	END_PROGRAM};
-//																	
-//	if (! uxQueueMessagesWaiting(ProgramQ)) {
-//		for (int i = 0; i < (sizeof(Program_3_Recipe) / sizeof(Program_3_Recipe[0])); i++) {
-//			transmit = Program_3_Recipe[i];
-//			xQueueSend(ProgramQ , &transmit , 10);
-//		}
-//	}
-//	vTaskDelay(10);
+		uint8_t transmit;
+	
+		uint8_t Program_3_Recipe[10] = {	START_PROGRAM,
+											PROGRAM_3,
+											CHECK_WATER_LEVEL,
+											CHECK_WASH_TEMPERATURE,
+											CHECK_SOAP,
+											RUN_WASH,
+											RUN_WAIT,
+											CHECK_RINSE_TEMPERATURE,
+											RUN_RINSE,
+											END_PROGRAM
+																		};
+	
+	if (!uxQueueMessagesWaiting(ProgramLibrary)) {
+		for (int i = 0; i < (sizeof(Program_3_Recipe) / sizeof(Program_3_Recipe[0])); i++) {
+			transmit = Program_3_Recipe[i];
+			xQueueSend(ProgramLibrary, &transmit, 10);
+		}
+		
+		transmit = START_PROGRAM;
+		xQueueSend(ProgramHandlerQ, &transmit, 10);
+		
+	}
+	vTaskDelay(10);
 }
 
 
@@ -313,10 +317,10 @@ void nFillTanksOperation()
 		if (vGetSensorData(PRESSOSWITCH_RINSE) == SENSOR_LOW)
 		{
 			if (vGetHWStatus(ELECTROVALVE) == HardwareValveClosed)
-				ySetHWStatus(ELECTROVALVE , HardwareValveOpen);
+				bSetHWStatus(ELECTROVALVE , HardwareValveOpen);
 		}
 		else if (vGetSensorData(PRESSOSWITCH_RINSE) == SENSOR_HIGH) 
-			ySetHWStatus(ELECTROVALVE , HardwareValveOpen);
+			bSetHWStatus(ELECTROVALVE , HardwareValveOpen);
 
 			
 		if (vGetSensorData(PRESSOSWITCH_WASH) == SENSOR_LOW) 
@@ -324,17 +328,18 @@ void nFillTanksOperation()
 			if (vGetSensorData(DOORSWITCH) == HardwareDoorClosed) 
 			{
 				if (vGetHWStatus(ELECTROVALVE) == HardwareValveClosed)
-					ySetHWStatus(ELECTROVALVE , HardwareValveOpen);
+					bSetHWStatus(ELECTROVALVE , HardwareValveOpen);
 			}
 			else 
 			{
-				// display "door not closed" message here
+				/* Wait for door to close. */
+				/* display "door not closed" message here */
 			}
 		}
 
 		if ( vGetSensorData(PRESSOSWITCH_RINSE) == SENSOR_HIGH && vGetSensorData(PRESSOSWITCH_WASH) == SENSOR_HIGH ) 
 		{
-			ySetHWStatus(ELECTROVALVE, HardwareValveClosed);
+			bSetHWStatus(ELECTROVALVE, HardwareValveClosed);
 			transmit = OPERATION_ENDED;
 			xQueueSend(ProgramHandlerQ , &transmit , 10);
 		}
@@ -374,17 +379,17 @@ void nFillSoapOperation()
 // ==========================================================================================================	
 	while (vGetSensorData(SOAP_SENSOR) < 0.95 * SOAP_LEVEL && ! SENSORSKIP) 
 	{
-		ySetHWStatus(SOAP_PUMP , HARDWARE_ACTIVE);
+		bSetHWStatus(SOAP_PUMP , HARDWARE_ACTIVE);
 		
 		if (vGetSensorData(SOAP_SENSOR) >= 0.95*SOAP_LEVEL && vGetHWStatus(SOAP_PUMP) == HARDWARE_ACTIVE) 
 		{
-			ySetHWStatus(SOAP_PUMP , HARDWARE_OFF);
+			bSetHWStatus(SOAP_PUMP , HARDWARE_OFF);
 			vTaskDelay(1000);
 		}
 	
 		if (vGetSensorData(SOAP_SENSOR) < 0.95*SOAP_LEVEL && vGetHWStatus(SOAP_PUMP) == HARDWARE_OFF) 
 		{
-			ySetHWStatus( SOAP_PUMP , HARDWARE_ACTIVE );
+			bSetHWStatus( SOAP_PUMP , HARDWARE_ACTIVE );
 			vTaskDelay(1000);
 		}
 		
@@ -396,7 +401,7 @@ void nFillSoapOperation()
 	
 		else if (vGetSensorData(SOAP_SENSOR) > 0.95*SOAP_LEVEL && vGetHWStatus(SOAP_PUMP) == HARDWARE_ACTIVE) 
 		{
-			ySetHWStatus( SOAP_PUMP , HARDWARE_OFF );
+			bSetHWStatus( SOAP_PUMP , HARDWARE_OFF );
 			transmit = OPERATION_ENDED;
 			xQueueSend(ProgramHandlerQ , &transmit , 10);
 		}
@@ -456,25 +461,25 @@ void nWashOperation()
 	while ( timer && ! TIMERSKIP) {
 		
 		if (vGetHWStatus(WASH_PUMP_1) == HARDWARE_OFF)
-			ySetHWStatus(WASH_PUMP_1 , HARDWARE_ACTIVE);
+			bSetHWStatus(WASH_PUMP_1 , HARDWARE_ACTIVE);
 		
 		if (vGetHWStatus(WASH_PUMP_2) == HARDWARE_OFF)
-			ySetHWStatus(WASH_PUMP_2 , HARDWARE_ACTIVE);
+			bSetHWStatus(WASH_PUMP_2 , HARDWARE_ACTIVE);
 		
 		if (vGetHWStatus(REVERSAL_ENGINE) == HARDWARE_OFF)
-			ySetHWStatus(REVERSAL_ENGINE , HARDWARE_ACTIVE);
+			bSetHWStatus(REVERSAL_ENGINE , HARDWARE_ACTIVE);
 		
 		if (vGetSensorData(TEMPERATURE_SENSOR_WASH) < (1 - (ParameterLibrary[0][WashingTemperatureDeviation]/100)) * ParameterLibrary[0][WashingTemperature] && HeatingStatus == COOLING) 
 		{
-			ySetHWStatus(HEATING_WASH_1 , HARDWARE_ACTIVE);
-			ySetHWStatus(HEATING_WASH_2 , HARDWARE_ACTIVE);
+			bSetHWStatus(HEATING_WASH_1 , HARDWARE_ACTIVE);
+			bSetHWStatus(HEATING_WASH_2 , HARDWARE_ACTIVE);
 			HeatingStatus = HEATING;
 		}
 		
 		if (vGetSensorData(TEMPERATURE_SENSOR_WASH) >= WASHING_TEMPERATURE && HeatingStatus == HEATING) 
 		{
-			ySetHWStatus(HEATING_WASH_1 , HARDWARE_READY);
-			ySetHWStatus(HEATING_WASH_2 , HARDWARE_READY);
+			bSetHWStatus(HEATING_WASH_1 , HARDWARE_READY);
+			bSetHWStatus(HEATING_WASH_2 , HARDWARE_READY);
 			HeatingStatus = COOLING;
 		}
 		
@@ -482,17 +487,17 @@ void nWashOperation()
 		if (vGetSensorData(REVERSAL_CURRENT_SENSOR) > REVERSAL_CURRENT_MAX) 
 		{
 			
-			ySetHWStatus(REVERSAL_ENGINE , HARDWARE_OFF);
+			bSetHWStatus(REVERSAL_ENGINE , HARDWARE_OFF);
 			
 			if (Reversal_Direction) {
 				Reversal_Direction = 0;
-				ySetHWStatus(REVERSAL_ENG_DIRECTION , HARDWARE_OFF);
+				bSetHWStatus(REVERSAL_ENG_DIRECTION , HARDWARE_OFF);
 			}
 			else {
 				Reversal_Direction = 1;
-				ySetHWStatus(REVERSAL_ENG_DIRECTION , HARDWARE_ACTIVE);
+				bSetHWStatus(REVERSAL_ENG_DIRECTION , HARDWARE_ACTIVE);
 			}
-			ySetHWStatus(REVERSAL_ENGINE , HARDWARE_ACTIVE);
+			bSetHWStatus(REVERSAL_ENGINE , HARDWARE_ACTIVE);
 		}
 		
 		timer -= 100;
@@ -502,11 +507,11 @@ void nWashOperation()
 			transmit = OPERATION_ENDED;
 			xQueueSend(ProgramHandlerQ , &transmit , 10);
 			
-			ySetHWStatus(WASH_PUMP_1 		, HARDWARE_READY);
-			ySetHWStatus(WASH_PUMP_2 		, HARDWARE_READY);
-			ySetHWStatus(REVERSAL_ENGINE 	, HARDWARE_READY);
-			ySetHWStatus(HEATING_WASH_1		, HARDWARE_READY);
-			ySetHWStatus(HEATING_WASH_2		, HARDWARE_READY);
+			bSetHWStatus(WASH_PUMP_1 		, HARDWARE_READY);
+			bSetHWStatus(WASH_PUMP_2 		, HARDWARE_READY);
+			bSetHWStatus(REVERSAL_ENGINE 	, HARDWARE_READY);
+			bSetHWStatus(HEATING_WASH_1		, HARDWARE_READY);
+			bSetHWStatus(HEATING_WASH_2		, HARDWARE_READY);
 		}
 	}
 	if (TIMERSKIP) 
@@ -556,43 +561,43 @@ void nRinseOperation()
 	{
 		
 		if (vGetHWStatus(RINSE_PUMP_1) == HARDWARE_OFF)
-			ySetHWStatus(RINSE_PUMP_1 , HARDWARE_ACTIVE);
+			bSetHWStatus(RINSE_PUMP_1 , HARDWARE_ACTIVE);
 		
 		if (vGetHWStatus(RINSE_PUMP_2) == HARDWARE_OFF)
-			ySetHWStatus(RINSE_PUMP_2 , HARDWARE_ACTIVE);
+			bSetHWStatus(RINSE_PUMP_2 , HARDWARE_ACTIVE);
 		
 		if (vGetHWStatus(REVERSAL_ENGINE) == HARDWARE_OFF)
-			ySetHWStatus(REVERSAL_ENGINE , HARDWARE_ACTIVE);
+			bSetHWStatus(REVERSAL_ENGINE , HARDWARE_ACTIVE);
 		
 		if (vGetSensorData(TEMPERATURE_SENSOR_RINSE) < (1 - (TEMPERATURE_DEVIATION/100)) * RINSING_TEMPERATURE && HeatingStatus == COOLING) 
 		{
-			ySetHWStatus(HEATING_RINSE_1 , HARDWARE_ACTIVE);
-			ySetHWStatus(HEATING_RINSE_2 , HARDWARE_ACTIVE);
+			bSetHWStatus(HEATING_RINSE_1 , HARDWARE_ACTIVE);
+			bSetHWStatus(HEATING_RINSE_2 , HARDWARE_ACTIVE);
 			HeatingStatus = HEATING;
 		}
 		
 		if (vGetSensorData(TEMPERATURE_SENSOR_RINSE) >= RINSING_TEMPERATURE && HeatingStatus == HEATING) 
 		{
-			ySetHWStatus(HEATING_RINSE_1 , HARDWARE_READY);
-			ySetHWStatus(HEATING_RINSE_2 , HARDWARE_READY);
+			bSetHWStatus(HEATING_RINSE_1 , HARDWARE_READY);
+			bSetHWStatus(HEATING_RINSE_2 , HARDWARE_READY);
 			HeatingStatus = COOLING;
 		}
 		
 		
 		if (vGetSensorData(REVERSAL_CURRENT_SENSOR) > REVERSAL_CURRENT_MAX) 
 		{
-			ySetHWStatus(REVERSAL_ENGINE , HARDWARE_OFF);
+			bSetHWStatus(REVERSAL_ENGINE , HARDWARE_OFF);
 			if (Reversal_Direction) 
 			{
 				Reversal_Direction = 0;
-				ySetHWStatus(REVERSAL_ENG_DIRECTION , HARDWARE_OFF);
+				bSetHWStatus(REVERSAL_ENG_DIRECTION , HARDWARE_OFF);
 			}
 			else 
 			{
 				Reversal_Direction = 1;
-				ySetHWStatus(REVERSAL_ENG_DIRECTION , HARDWARE_ACTIVE);
+				bSetHWStatus(REVERSAL_ENG_DIRECTION , HARDWARE_ACTIVE);
 			}
-			ySetHWStatus(REVERSAL_ENGINE , HARDWARE_ACTIVE);
+			bSetHWStatus(REVERSAL_ENGINE , HARDWARE_ACTIVE);
 		}
 
 		timer -= 100;
@@ -603,11 +608,11 @@ void nRinseOperation()
 			transmit = OPERATION_ENDED;
 			xQueueSend(ProgramHandlerQ , &transmit , 10);
 			
-			ySetHWStatus(RINSE_PUMP_1 		, HARDWARE_READY);
-			ySetHWStatus(RINSE_PUMP_2 		, HARDWARE_READY);
-			ySetHWStatus(REVERSAL_ENGINE 	, HARDWARE_READY);
-			ySetHWStatus(HEATING_RINSE_1	, HARDWARE_READY);
-			ySetHWStatus(HEATING_RINSE_2	, HARDWARE_READY);
+			bSetHWStatus(RINSE_PUMP_1 		, HARDWARE_READY);
+			bSetHWStatus(RINSE_PUMP_2 		, HARDWARE_READY);
+			bSetHWStatus(REVERSAL_ENGINE 	, HARDWARE_READY);
+			bSetHWStatus(HEATING_RINSE_1	, HARDWARE_READY);
+			bSetHWStatus(HEATING_RINSE_2	, HARDWARE_READY);
 		}
 	}
 	
@@ -696,19 +701,19 @@ void nFillSoftenerOperation()
 	{
 		if ( vGetSensorData(SOFTENER_SENSOR) < (1 - ( SOFTENER_DEVIATION / 100)) * SOFTENER_LEVEL && (SoftenerPumpState == FALLING || SoftenerPumpState == NOT_INIT)) 
 		{
-			ySetHWStatus( SOFTENER_PUMP , HARDWARE_ACTIVE );
+			bSetHWStatus( SOFTENER_PUMP , HARDWARE_ACTIVE );
 			SoftenerPumpState = FILLING;
 		}
 		
 		if (vGetSensorData(SOFTENER_SENSOR) >= SOFTENER_LEVEL && SoftenerPumpState == FILLING) 
 		{
-			ySetHWStatus( SOFTENER_PUMP , HARDWARE_READY );
+			bSetHWStatus( SOFTENER_PUMP , HARDWARE_READY );
 			SoftenerPumpState = FALLING;
 		}
 		
 		if (vGetSensorData(SOFTENER_SENSOR) > SOFTENER_LEVEL) 
 		{
-			ySetHWStatus( SOFTENER_PUMP , HARDWARE_READY );
+			bSetHWStatus( SOFTENER_PUMP , HARDWARE_READY );
 			SoftenerPumpState = FALLING;
 			
 			transmit = OPERATION_ENDED;
@@ -757,15 +762,15 @@ void nCheckWashTemperature()
 		
 		if (vGetSensorData(WASHING_TEMPERATURE) < (1 - (TEMPERATURE_DEVIATION / 100)) * WASHING_TEMPERATURE && (WashHeatingState == COOLING || WashHeatingState == NOT_INIT)) 
 		{
-			ySetHWStatus(HEATING_WASH_1 , HARDWARE_ACTIVE);
-			ySetHWStatus(HEATING_WASH_2 , HARDWARE_ACTIVE);
+			bSetHWStatus(HEATING_WASH_1 , HARDWARE_ACTIVE);
+			bSetHWStatus(HEATING_WASH_2 , HARDWARE_ACTIVE);
 			WashHeatingState = HEATING;
 		}
 		
 		if (vGetSensorData(WASHING_TEMPERATURE) >= WASHING_TEMPERATURE ) 
 		{
-			ySetHWStatus(HEATING_WASH_1 , HARDWARE_OFF);
-			ySetHWStatus(HEATING_WASH_2 , HARDWARE_OFF);
+			bSetHWStatus(HEATING_WASH_1 , HARDWARE_OFF);
+			bSetHWStatus(HEATING_WASH_2 , HARDWARE_OFF);
 			WashHeatingState = COOLING;
 			
 			transmit = OPERATION_ENDED;
@@ -809,15 +814,15 @@ void nCheckRinseTemperature()
 		
 		if (vGetSensorData(RINSING_TEMPERATURE) < (1 - (TEMPERATURE_DEVIATION / 100)) * RINSING_TEMPERATURE && (RinseHeatingState == COOLING || RinseHeatingState == NOT_INIT)) 
 		{
-			ySetHWStatus(HEATING_RINSE_1 , HARDWARE_ACTIVE);
-			ySetHWStatus(HEATING_RINSE_2 , HARDWARE_ACTIVE);
+			bSetHWStatus(HEATING_RINSE_1 , HARDWARE_ACTIVE);
+			bSetHWStatus(HEATING_RINSE_2 , HARDWARE_ACTIVE);
 			RinseHeatingState = HEATING;
 		}
 		
 		if (vGetSensorData(WASHING_TEMPERATURE) >= WASHING_TEMPERATURE ) 
 		{
-			ySetHWStatus(HEATING_RINSE_1 , HARDWARE_OFF);
-			ySetHWStatus(HEATING_RINSE_2 , HARDWARE_OFF);
+			bSetHWStatus(HEATING_RINSE_1 , HARDWARE_OFF);
+			bSetHWStatus(HEATING_RINSE_2 , HARDWARE_OFF);
 			RinseHeatingState = COOLING;
 			
 			transmit = OPERATION_ENDED;
@@ -872,7 +877,7 @@ void nEmptyTanks()
 			}
 			else if (vGetSensorData(DOORSWITCH) == HardwareDoorClosed)
 			{
-				ySetHWStatus(DRAIN_PUMP, HARDWARE_ACTIVE)
+				bSetHWStatus(DRAIN_PUMP, HARDWARE_ACTIVE)
 			}
 		}
 		

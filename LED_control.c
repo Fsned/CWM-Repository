@@ -57,15 +57,15 @@ TaskHandle_t AliveHandle = NULL;
 
 
 // ****************************************************************************************
-//	Type				: 	YES_RETURN Functions
-//	Example			:	yXxXxX();
+//	Type		: 	BINARY_RETURN Functions
+//	Example		:	bXxXxX();
 //	Description	:	Returns true (1) or false (0) depending on the success of the function
 // ****************************************************************************************
 
 
 // ****************************************************************************************
-//	Type				: 	NO_RETURN Functions
-//	Example			:	nXxXxX();
+//	Type		: 	NO_RETURN Functions
+//	Example		:	nXxXxX();
 //	Description	:	Does not return anything.
 // ****************************************************************************************
 
@@ -73,9 +73,9 @@ TaskHandle_t AliveHandle = NULL;
 void nLED_SET(uint8_t led_0 , uint8_t led_1, uint8_t led_2, uint8_t led_3) 
 {
 /* ******************************************************************
-//	Function name : nLED_SET
-//	Functionality :	Clears all LEDS and sets the given values on the 4 LEDS on the dev. board
-// 	Returns				:	None.	
+//	Function name	: nLED_SET
+//	Functionality	: Clears all LEDS and sets the given values on the 4 LEDS on the dev. board
+// 	Returns			: None.	
 //  Input range		: 0:1 , 0:1 , 0:1 , 0:1
 // *****************************************************************/	
 	LPC_GPIO1->FIOCLR = 0x00B40000;
@@ -100,10 +100,10 @@ void nLED_SET(uint8_t led_0 , uint8_t led_1, uint8_t led_2, uint8_t led_3)
 	else if (led_3 != LED_DONT_CARE)
 		LED_status[3] = led_3;
 	
-	yDigitalWrite( PORT_LED , LED_1 , LED_status[0] );
-	yDigitalWrite( PORT_LED , LED_2 , LED_status[1] );
-	yDigitalWrite( PORT_LED , LED_3 , LED_status[2] );
-	yDigitalWrite( PORT_LED , LED_4 , LED_status[3] );
+	bDigitalWrite( PORT_LED , LED_1 , LED_status[0] );
+	bDigitalWrite( PORT_LED , LED_2 , LED_status[1] );
+	bDigitalWrite( PORT_LED , LED_3 , LED_status[2] );
+	bDigitalWrite( PORT_LED , LED_4 , LED_status[3] );
 }
 // ***** End of Function ********************************************
 
@@ -111,9 +111,9 @@ void nLED_SET(uint8_t led_0 , uint8_t led_1, uint8_t led_2, uint8_t led_3)
 void nAliveSuspend() 
 {
 /* ******************************************************************
-//	Function name : nAliveSuspend
-//	Functionality :	Used to suspend the Alive LED Task
-// 	Returns				:	None
+//	Function name	: nAliveSuspend
+//	Functionality	: Used to suspend the Alive LED Task
+// 	Returns			: None
 //  Input range		: None
 // *****************************************************************/
 	vTaskSuspend(AliveHandle);
@@ -122,9 +122,9 @@ void nAliveSuspend()
 void nAliveResume() 
 {
 /* ******************************************************************
-//	Function name : nAliveResume
-//	Functionality :	Used to resume the Alive LED Task
-// 	Returns				:	None
+//	Function name	: nAliveResume
+//	Functionality	: Used to resume the Alive LED Task
+// 	Returns			: None 
 //  Input range		: None
 // *****************************************************************/
 	vTaskResume(AliveHandle);
@@ -134,9 +134,9 @@ void nAliveResume()
 void tLEDAlive( void *param ) 
 {
 /* ******************************************************************
-//	Function name : tLEDAlive
-//	Functionality :	Used to blink the rightmost LED on the MBED LPC1768 board
-// 	Returns				:	None
+//	Function name	: tLEDAlive
+//	Functionality	: Used to blink the rightmost LED on the MBED LPC1768 board
+// 	Returns			: None
 //  Input range		: None
 // *****************************************************************/	
 	uint8_t LED_status = 0;			// Used to keep track of current LED status
@@ -161,9 +161,9 @@ void tLEDAlive( void *param )
 void nPrintAlive() 
 {
 /* ******************************************************************
-//	Function name : tLEDAlive
-//	Functionality :	Used to blink the rightmost LED on the MBED LPC1768 board
-// 	Returns				:	None
+//	Function name	: tLEDAlive
+//	Functionality	: Used to blink the rightmost LED on the MBED LPC1768 board
+// 	Returns			: None
 //  Input range		: None
 // *****************************************************************/	
 	uint32_t 	seconds;
@@ -196,17 +196,17 @@ void nPrintAlive()
 }
 
 // ****************************************************************************************
-//	Type				: 	VALUE_RETURN Functions
-//	Example			:	vXxXxX();
+//	Type		: 	VALUE_RETURN Functions
+//	Example		:	vXxXxX();
 //	Description	:	Returns a value, either 1 or 0. no confirmation if successful or not.
 // ****************************************************************************************
 
 void led_delay_ms(unsigned int n) 
 {
 /* ******************************************************************
-//	Function name : led_delay_ms
-//	Functionality :	static delay used for various LED functions.
-// 	Returns				:	None	
+//	Function name	: led_delay_ms
+//	Functionality	: static delay used for various LED functions.
+// 	Returns			: None	
 //  Input range		: 0 - ?, delay multiplier, probably roughly in milliseconds
 // *****************************************************************/
 	unsigned int o = n*12000*2;

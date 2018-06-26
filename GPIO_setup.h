@@ -103,15 +103,15 @@ typedef enum GPIOBounds {
 
 
 // ****************************************************************************************
-//	Type		: 	YES_RETURN Functions
-//	Example		:	yXxXxX();
+//	Type		: 	BINARY_RETURN Functions
+//	Example		:	bXxXxX();
 //	Description	:	Returns true (1) or false (0) depending on the success of the function
 // ****************************************************************************************
-uint8_t ySetupDigitalIO			( uint8_t Port , int Pin , uint8_t InputOutput );
+uint8_t bSetupDigitalIO			( uint8_t Port , int Pin , uint8_t InputOutput );
 
-uint8_t ySetupAnalogI			(uint8_t ADCNumber);
+uint8_t bSetupAnalogI			(uint8_t ADCNumber);
 
-uint8_t yDigitalWrite			( uint8_t Port , int Pin , uint8_t State );
+uint8_t bDigitalWrite			( uint8_t Port , int Pin , uint8_t State );
 
 // ****************************************************************************************
 //	Type		: 	NO_RETURN Functions

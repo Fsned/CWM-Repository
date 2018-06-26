@@ -84,7 +84,7 @@ void nInitializeAnalogSensors()
 	
 	for(uint8_t i = ANALOG_SENSORS_START ; i < ANALOG_SENSORS_END ; i++)
 	{
-		ySetupAnalogI(i);
+		bSetupAnalogI(i);
 		SensorStatusLibrary[i] = SENSOR_ACTIVE;		
 	}
 		
@@ -111,7 +111,7 @@ void nInitializeDigitalSensors()
 	
 	for (uint8_t i = 0; i < (sizeof(Digital_sensors_pins) / sizeof(Digital_sensors_pins[0])); i++) 
 	{
-		ySetupDigitalIO(Digital_sensors_ports[i] , Digital_sensors_pins[i] , GPIO_INPUT );
+		bSetupDigitalIO(Digital_sensors_ports[i] , Digital_sensors_pins[i] , GPIO_INPUT );
 		SensorStatusLibrary[i + DIGITAL_SENSORS_START] = SENSOR_ACTIVE;
 	}
 }
@@ -302,22 +302,22 @@ uint8_t  vGetSensorStatus	( uint8_t SENSOR_HANDLE )
 	return SensorStatusLibrary[SENSOR_HANDLE];
 }
 
-uint8_t yChangeSensorStatus(uint8_t SENSOR_HANDLE, SENSOR_STATUS NewSensorStatus)
+uint8_t bChangeSensorStatus(uint8_t SENSOR_HANDLE, SENSOR_STATUS NewSensorStatus)
 /* ===================================================================
-	Function name	: yChangeSensorStatus
+	Function name	: bChangeSensorStatus
 	Functionality	: Change the current status of a chosen sensor.
 	Returns			: True, if a change is made.
 	Input range		: [0 : 2], SENSOR_VACANT, SENSOR_ACTIVE & SENSOR_PAUSED
    =================================================================== */
 {
-	uint8_t yChangeSensorStatus_ret = 0;
+	uint8_t bChangeSensorStatus_ret = 0;
 	
 	if (SensorStatusLibrary[SENSOR_HANDLE] != NewSensorStatus)
 	{
 		SensorStatusLibrary[SENSOR_HANDLE] = NewSensorStatus;
-		yChangeSensorStatus_ret = 1;
+		bChangeSensorStatus_ret = 1;
 	}
 	
-	return yChangeSensorStatus_ret;
+	return bChangeSensorStatus_ret;
 	
 }

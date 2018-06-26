@@ -231,7 +231,7 @@ void nPinSetup_1()
 // 	Returns				:	None	
 //  Input range		: None	
 // *****************************************************************/	
-		ySetupDigitalIO( PORT_0 , PIN_0 , GPIO_OUTPUT);			// P9   for driving soappump relay		
+		bSetupDigitalIO( PORT_0 , PIN_0 , GPIO_OUTPUT);			// P9   for driving soappump relay		
 }
 
 void nPinSetup_2() 
@@ -242,7 +242,7 @@ void nPinSetup_2()
 // 	Returns				:	None	
 //  Input range		: None
 // *****************************************************************/	
-	ySetupDigitalIO( PORT_0 , PIN_1 , GPIO_OUTPUT );			// P10	for driving soappump relay
+	bSetupDigitalIO( PORT_0 , PIN_1 , GPIO_OUTPUT );			// P10	for driving soappump relay
 }
 
 
@@ -265,7 +265,7 @@ void nPinFlip_1()
 	
 	pin_1_status ^= pin_1_status;
 	
-	yDigitalWrite(PORT_0 , PIN_0 , pin_1_status);
+	bDigitalWrite(PORT_0 , PIN_0 , pin_1_status);
 }
 
 
@@ -287,7 +287,7 @@ void nPinFlip_2()
 	}
 	pin_2_status ^= pin_2_status;
 	
-	yDigitalWrite(PORT_0 , PIN_1 , pin_2_status);
+	bDigitalWrite(PORT_0 , PIN_1 , pin_2_status);
 }
 
 
@@ -316,7 +316,7 @@ void nPinFlip_P21()
 	static GPIOPIN pin_status = GPIO_HIGH;
 	pin_status ^= pin_status;
 	
-	yDigitalWrite( PORT_2 , PIN_5 , pin_status );	// Write the new status to the pin
+	bDigitalWrite( PORT_2 , PIN_5 , pin_status );	// Write the new status to the pin
 	
 	nUART_TxString("P21 to: ");
 	nUART_TxString(OffOnStrings[pin_status]);
@@ -335,7 +335,7 @@ void nPinFlip_P22()
 	static GPIOPIN pin_status = GPIO_HIGH;
 	pin_status ^= pin_status;
 	
-	yDigitalWrite( PORT_2 , PIN_4 , pin_status );	// Write the new status to the pin
+	bDigitalWrite( PORT_2 , PIN_4 , pin_status );	// Write the new status to the pin
 	nUART_TxString("P22 to: ");
 	nUART_TxString(OffOnStrings[pin_status]);
 	
@@ -353,7 +353,7 @@ void nPinFlip_P23()
 	static GPIOPIN pin_status = GPIO_HIGH;
 	pin_status ^= pin_status;
 	
-	yDigitalWrite( PORT_2 , PIN_3 , pin_status );	// Write the new status to the pin
+	bDigitalWrite( PORT_2 , PIN_3 , pin_status );	// Write the new status to the pin
 	nUART_TxString("P23 to: ");
 	nUART_TxString(OffOnStrings[pin_status]);
 	
@@ -370,7 +370,7 @@ void nPinFlip_P24()
 	static GPIOPIN pin_status = GPIO_HIGH;
 	pin_status ^= pin_status;
 	
-	yDigitalWrite( PORT_2 , PIN_2 , pin_status );	// Write the new status to the pin
+	bDigitalWrite( PORT_2 , PIN_2 , pin_status );	// Write the new status to the pin
 	nUART_TxString("P24 to: ");
 	nUART_TxString(OffOnStrings[pin_status]);
 	
@@ -387,7 +387,7 @@ void nPinFlip_P25()
 	static GPIOPIN pin_status = GPIO_HIGH;
 	pin_status ^= pin_status;
 	
-	yDigitalWrite( PORT_2 , PIN_1 , pin_status );	// Write the new status to the pin
+	bDigitalWrite( PORT_2 , PIN_1 , pin_status );	// Write the new status to the pin
 	nUART_TxString("P25 to: ");
 	nUART_TxString(OffOnStrings[pin_status]);
 	
@@ -405,7 +405,7 @@ void nPinFlip_P26()
 	static GPIOPIN pin_status = GPIO_HIGH;
 	pin_status ^= pin_status;
 	
-	yDigitalWrite( PORT_2 , PIN_0 , pin_status );	// Write the new status to the pin
+	bDigitalWrite( PORT_2 , PIN_0 , pin_status );	// Write the new status to the pin
 	nUART_TxString("P26 to: ");
 	nUART_TxString(OffOnStrings[pin_status]);
 	
@@ -426,7 +426,7 @@ void nPinFlip_P27()
 	static GPIOPIN pin_status = GPIO_HIGH;
 	pin_status ^= pin_status;
 	
-	yDigitalWrite( PORT_0 , PIN_11 , pin_status );	// Write the new status to the pin
+	bDigitalWrite( PORT_0 , PIN_11 , pin_status );	// Write the new status to the pin
 	nUART_TxString("P27 to: ");
 	nUART_TxString(OffOnStrings[pin_status]);
 	
@@ -444,7 +444,7 @@ void nPinFlip_P28()
 	static GPIOPIN pin_status = GPIO_HIGH;
 	pin_status ^= pin_status;
 	
-	yDigitalWrite( PORT_0 , PIN_10 , pin_status );	// Write the new status to the pin
+	bDigitalWrite( PORT_0 , PIN_10 , pin_status );	// Write the new status to the pin
 	nUART_TxString("P28 to: ");
 	nUART_TxString(OffOnStrings[pin_status]);
 	

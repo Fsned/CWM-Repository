@@ -27,7 +27,7 @@
   					Constants
   					
    ====================================================================================== */
-#define NUMBER_OF_SENSORS 16
+//#define NUMBER_OF_SENSORS 16
 
 // Sensor task STATEs
 typedef enum
@@ -53,23 +53,22 @@ typedef enum
 } SENSOR_STATUS;
 
 // Sensor Indexing definitions -----------------
-#define ANALOG_SENSORS_START			0
-#define ANALOG_SENSORS_END				4
+#define ANALOG_SENSORS_START			0			/* Index of first Analog Sensor */
+#define ANALOG_SENSORS_END				4			/* Index of last Analog Sensor */
+		
+#define DIGITAL_SENSORS_START			5			/* Index of first Digital Sensor */
+#define DIGITAL_SENSORS_END				14			/* Index of last Digital Sensor*/
 
-#define DIGITAL_SENSORS_START			5
-#define DIGITAL_SENSORS_END				14
-
-// Analog Sensors			Amount : ~5
 enum SENSORS
 {
-	/* Digital Sensors */
+	/* Analog Sensors */
 	TEMPERATURE_SENSOR_WASH,
 	TEMPERATURE_SENSOR_RINSE,
 	SOAP_SENSOR,
 	REVERSAL_CURRENT_SENSOR,
 	SOFTENER_SENSOR,
 	
-	/* Analog Sensors */
+	/* Digital Sensors */
 	PRESSOSWITCH_WASH,			
 	PRESSOSWITCH_RINSE,
 	BOILERSWITCH_WASH,
@@ -79,16 +78,10 @@ enum SENSORS
 	EMERGENCY_STOP_2,
 	THERMAL_FUSE_1,
 	THERMAL_FUSE_2,
-	THERMAL_FUSE_3
+	THERMAL_FUSE_3,
+		
+	NUMBER_OF_SENSORS
 };
-
-//#define VACANT ANALOG SENSOR    4
-
-// Digital Sensors		Amount : ~10
-//#define VACANT DIGITAL SENSOR   15
-
-// Analog sensors		: #4
-// Digital sensors		: #15
 
 // Sensor Indexing end -------------------------
 
@@ -120,11 +113,11 @@ extern xQueueHandle SensorQ;
 
 
 /* =======================================================================================
-  	Type		: 	YES_RETURN Functions
-  	Example		:	yXxXxX();
+  	Type		: 	BINARY_RETURN Functions
+  	Example		:	bXxXxX();
   	Description	:	Returns true (1) or false (0) depending on the success of the function
    ===================================================================================== */	
-uint8_t yChangeSensorStatus(uint8_t SENSOR_HANDLE, SENSOR_STATUS NewSensorStatus);
+uint8_t bChangeSensorStatus(uint8_t SENSOR_HANDLE, SENSOR_STATUS NewSensorStatus);
 
 /* =======================================================================================
 	Type		: 	NO_RETURN Functions

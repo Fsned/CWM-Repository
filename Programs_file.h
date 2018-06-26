@@ -177,11 +177,11 @@ extern xQueueHandle OperationQ;
 extern xQueueHandle ProgramLibrary; 
 
 // ****************************************************************************************
-//	Type		: 	YES_RETURN Functions
-//	Example		:	yXxXxX();
+//	Type		: 	BINARY_RETURN Functions
+//	Example		:	bXxXxX();
 //	Description	:	Returns true (1) or false (0) depending on the success of the function
 // ***************************************************************************************							
-extern uint8_t 	ySetHWStatus 	( uint8_t HardwareHandle , uint8_t NewStatus );													
+extern uint8_t 	bSetHWStatus 	( uint8_t HardwareHandle , uint8_t NewStatus );													
 
 // ****************************************************************************************
 //	Type		: 	NO_RETURN Functions

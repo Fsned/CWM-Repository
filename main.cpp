@@ -16,11 +16,12 @@
 #include "utilities.h"
 #include "stdio.h"
 
-#include "Programs_file.h"
-#include "LED_control.h"
-#include "GPIO_setup.h"
-#include "Sensor_file.h"
+#include "GPIO_control.h"
 #include "UART_control.h"
+
+#include "ProgramsHandler.h"
+#include "LEDHandler.h"
+#include "SensorHandler.h"
 #include "ErrorHandler.h"
 
 #include "FreeRTOS.h"
@@ -70,18 +71,20 @@ int main()
 //			Queues
 // =============================================================				
 	
-// Queue(s) for UART
+/* Queue(s) for UART			*/
 	qUART_RxQ			= xQueueCreate(24 , sizeof(char));
 	qUART_TxQ			= xQueueCreate(48 , sizeof(char));
 		
-// Queue(s) for Sensor Handler
+/* Queue(s) for Sensor Handler	*/
 	SensorQ				= xQueueCreate(24 , sizeof(uint8_t));
 	
-// Queue(s) for Program Handler
+/* Queue(s) for Program Handler	*/
 	ProgramHandlerQ		= xQueueCreate(12 , sizeof(uint8_t));
 	ProgramLibrary		= xQueueCreate(12 , sizeof(uint8_t));
 	OperationQ 			= xQueueCreate(12 , sizeof(uint8_t));
 	
+/* Queue(s) for Error Handler	*/
+	ErrorHandlerQ		= xQueueCreate(24, sizeof(uint8_t));
 // =============================================================
 //			Start Scheduling
 // =============================================================

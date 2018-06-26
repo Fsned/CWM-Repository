@@ -31,7 +31,7 @@
 //
 // ****************************************************************************************
 #define		LED_DONT_CARE		2 
-#define 	LED_FLIP				3
+#define 	LED_FLIP			3
 
 
 extern int alive_ones;
@@ -41,18 +41,18 @@ extern int alive_thousands;
 
 extern TaskHandle_t AliveHandle;
 
-// ****************************************************************************************
-//	Type		: 	YES_RETURN Functions
-//	Example		:	yXxXxX();
-//	Description	:	Returns true (1) or false (0) depending on the success of the function
-// ****************************************************************************************
+/* ========================================================================================
+  	Type		: 	BINARY_RETURN Functions
+  	Example		:	bXxXxX();
+  	Description	:	Returns true (1) or false (0) depending on the success of the function
+   ========================================================================================*/
 
 
-// ****************************************************************************************
-//	Type		: 	NO_RETURN Functions
-//	Example		:	nXxXxX();
-//	Description	:	Does not return anything.
-// ****************************************************************************************
+/* ========================================================================================
+  	Type		: 	NO_RETURN Functions
+  	Example		:	nXxXxX();
+  	Description	:	Does not return anything.
+   ========================================================================================*/
 extern void nLED_SET	( uint8_t led_0 , uint8_t led_1, uint8_t led_2, uint8_t led_3 );
 
 extern void nPrintAlive( void );
@@ -60,11 +60,12 @@ extern void nPrintAlive( void );
 extern void nAliveSuspend ( void );
 
 extern void nAliveResume  ( void );
-// ****************************************************************************************
-//	Type		: 	VALUE_RETURN Functions
-//	Example		:	vXxXxX();
-//	Description	:	Returns a value, either 1 or 0. no confirmation if successful or not.
-// ****************************************************************************************
+/* ========================================================================================
+	Type		: 	VALUE_RETURN Functions
+	Example		:	vXxXxX();
+	Description	:	Returns a value, either 1 or 0. no confirmation if successful or not.
+   ========================================================================================*/
+
 extern void led_delay_ms(unsigned int n);
 
 extern void tLEDAlive( void* );

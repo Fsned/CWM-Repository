@@ -19,6 +19,12 @@
 #ifndef _ERRORHANDLER_H
 #define _ERRORHANDLER_H
 
+#include "FreeRTOS.h"
+#include "queue.h"
+
+
+extern xQueueHandle ErrorHandlerQ;
+
 enum Alarms
 {
 	TemperatureSensorWashDisconnected,
@@ -44,8 +50,25 @@ enum Errors
 	
 	NumberOfErrors
 };
+/* ========================================================================================
+  	Type		: 	VALUE_RETURN Functions
+  	Example		:	vXxXxX();
+  	Description	:	Returns a value, based on the function type. typically of up to 8 or 16 bits value
+   ========================================================================================*/
+uint16_t vGetErrorCounter( void );
 
+/* ========================================================================================
+  	Type		: 	BINARY_RETURN Functions
+  	Example		:	bXxXxX();
+  	Description	:	Returns true (1) or false (0) depending on the success of the function
+   ========================================================================================*/
+uint8_t bResetErrorCounter( void );
 
+/* ========================================================================================
+	Type		: 	Task Functions
+	Example		:	tXxXxX();
+	Description	:	Task designed to run on the FreeRTOS Kernel
+   ========================================================================================*/
 void tErrorHandler(void *param);
 
 #endif /* _ERRORHANDLER_H */

@@ -29,18 +29,17 @@
 #include "lpc17xx.h"
 #include "stdutils.h"
 
+#include "GPIO_control.h"
+#include "UART_control.h"
+
+#include "LEDHandler.h"
+#include "ProgramsHandler.h"
+#include "SensorHandler.h"
+
 #include "FreeRTOS.h"
 #include "task.h"
 #include "queue.h"
 #include "semphr.h"
-
-#include "UART_control.h"
-#include "LED_control.h"
-#include "GPIO_setup.h"
-#include "Programs_file.h"
-#include "Sensor_file.h"
-
-
 
 // ****************************************************************************************
 //
@@ -142,29 +141,29 @@ void (*keyword_functions[])()  = {	nTerminalUndefined, 				// F0
 //	Example		:	yXxXxX();
 //	Description	:	Returns true (1) or false (0) depending on the success of the function
 // ****************************************************************************************
-uint8_t yKeyHit( uint8_t KEY_CHECK , uint8_t KEY_HIT ) 
+uint8_t bKeyHit( uint8_t KEY_CHECK , uint8_t KEY_HIT ) 
 {
 /* ******************************************************************
-//	Function name : yKeyHit
+//	Function name : bKeyHit
 //	Functionality :	Compares 2 characters, returns 1 if equal, 0 if not. used by UART to check for certain inputs
 // 	Returns				:	None	
 //  Input range		: None
 // *****************************************************************/
-	uint8_t yKeyHit_ret;
+	uint8_t bKeyHit_ret;
 	
 	if (KEY_HIT == KEY_CHECK)
-		yKeyHit_ret = 1;
+		bKeyHit_ret = 1;
 	else
-		yKeyHit_ret = 0;
+		bKeyHit_ret = 0;
 	
-	return yKeyHit_ret;
+	return bKeyHit_ret;
 }
 
 
-uint8_t yUART_TxReady( void ) 
+uint8_t bUART_TxReady( void ) 
 {
 /* ******************************************************************
-//	Function name : yUART_TxReady
+//	Function name : bUART_TxReady
 //	Functionality :	Check if bit 0 & bit 5 is set in LSR register, indicating data ready to be read, and transmission complete
 // 	Returns				:	1 after a while. Should have a timeout timer as well, to avoid infinite loops in failure conditions	
 //  Input range		: None
@@ -173,10 +172,10 @@ uint8_t yUART_TxReady( void )
 	return 1;
 }
 
-uint8_t yUART_RxReady( void ) 
+uint8_t bUART_RxReady( void ) 
 {
 /* ******************************************************************
-//	Function name : yUART_RxReady
+//	Function name : bUART_RxReady
 //	Functionality :	Check if bit 1 is set in LSR register, indicating receive data ready flag has been set
 // 	Returns				:	1 after a while. Should have a timeout timer as well, to avoid infinite loops in failure conditions	
 //  Input range		: None
@@ -574,7 +573,7 @@ void nUART_RxChar()
 //  Input range		: None
 // *****************************************************************/
 	char ch;
-	if (yUART_RxReady()) 
+	if (bUART_RxReady()) 
 	{
 		ch = LPC_UART0->RBR;                                // Read received data    
 		xQueueSend(qUART_RxQ , &ch , 2);
@@ -817,7 +816,7 @@ void tUART_RxTask( void *param )
 	// ===================================================================					
 				case UartState_FindUser :
 				
-					if ( yKeyHit ( CHAR_BACKSPACE , receive )) 
+					if ( bKeyHit ( CHAR_BACKSPACE , receive )) 
 					{
 						if ( inputs ) 
 						{
@@ -828,13 +827,13 @@ void tUART_RxTask( void *param )
 						}
 					}
 				
-					else if ( yKeyHit ( CHAR_ENTER , receive ) && inputs == 0) 
+					else if ( bKeyHit ( CHAR_ENTER , receive ) && inputs == 0) 
 					{
 						nNewLine( 1 );
 						OutedStatusMsg = 0;
 					}
 					
-					else if ( yKeyHit ( CHAR_ENTER , receive ) && inputs > 0) 
+					else if ( bKeyHit ( CHAR_ENTER , receive ) && inputs > 0) 
 					{
 						input_buffer[inputs] = '\0';
 						inputs++;
@@ -862,7 +861,7 @@ void tUART_RxTask( void *param )
 	// ===================================================================			
 				case UartState_FindPass : 
 					
-					if ( yKeyHit ( CHAR_BACKSPACE , receive )) 
+					if ( bKeyHit ( CHAR_BACKSPACE , receive )) 
 					{
 						if (inputs > 0) 
 						{
@@ -873,7 +872,7 @@ void tUART_RxTask( void *param )
 						}
 					}
 				
-					else if ( yKeyHit ( CHAR_ENTER , receive ) && inputs == 0) 
+					else if ( bKeyHit ( CHAR_ENTER , receive ) && inputs == 0) 
 					{
 						nNewLine( 1 );
 						nUART_TxString("Unrecognized user.");
@@ -882,7 +881,7 @@ void tUART_RxTask( void *param )
 						OutedStatusMsg = 0; 
 					}
 					
-					else if ( yKeyHit (CHAR_ENTER , receive ) && inputs > 0) 
+					else if ( bKeyHit (CHAR_ENTER , receive ) && inputs > 0) 
 					{
 						input_buffer[inputs] = '\0';
 						inputs++;
@@ -944,7 +943,7 @@ void tUART_RxTask( void *param )
 	// ===================================================================			
 				case UartState_Functioncall :
 					
-					if ( yKeyHit ( CHAR_BACKSPACE , receive )) 
+					if ( bKeyHit ( CHAR_BACKSPACE , receive )) 
 					{
 						if (inputs > 0)
 						{
@@ -955,13 +954,13 @@ void tUART_RxTask( void *param )
 						}
 					}
 				
-					else if ( yKeyHit ( CHAR_ENTER , receive ) && inputs == 0 ) 
+					else if ( bKeyHit ( CHAR_ENTER , receive ) && inputs == 0 ) 
 					{
 						nNewLine( 1 );
 						OutedStatusMsg = 0;
 					}
 					
-					else if ( yKeyHit ( CHAR_ENTER , receive ) && inputs > 0 ) 
+					else if ( bKeyHit ( CHAR_ENTER , receive ) && inputs > 0 ) 
 					{
 						input_buffer[inputs] = '\0';
 						inputs++;
@@ -1057,7 +1056,7 @@ void tUART_TxTask( void *param )
 		
 		if (xQueueReceive( qUART_TxQ , &receive , 2 ) ) 
 		{
-			if ( yUART_TxReady() )
+			if ( bUART_TxReady() )
 				LPC_UART0->THR = receive;                                  // Load the data to be transmitted
 		}
 		//nUART_TxChar(receive);

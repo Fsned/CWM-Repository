@@ -126,7 +126,7 @@ void nSensorData()
     Input range		: None
    ================================================================ */
 	
-	while(! yUART_RxReady()) 
+	while(! bUART_RxReady()) 
 	{
 		nNewLine( 1 );
 		nUART_TxString("Sensordata");

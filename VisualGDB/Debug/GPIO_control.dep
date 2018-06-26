@@ -1,0 +1,44 @@
+VisualGDB/Debug/GPIO_control.o: GPIO_control.c \
+ mbed/TARGET_LPC1768/TARGET_NXP/TARGET_LPC176X/device/lpc17xx.h \
+ mbed/TARGET_LPC1768/core_cm3.h \
+ c:\sysgcc\arm-eabi\lib\gcc\arm-eabi\7.2.0\include\stdint.h \
+ c:\sysgcc\arm-eabi\arm-eabi\sys-include\stdint.h \
+ c:\sysgcc\arm-eabi\arm-eabi\sys-include\machine\_default_types.h \
+ c:\sysgcc\arm-eabi\arm-eabi\sys-include\sys\features.h \
+ c:\sysgcc\arm-eabi\arm-eabi\sys-include\_newlib_version.h \
+ c:\sysgcc\arm-eabi\arm-eabi\sys-include\sys\_intsup.h \
+ c:\sysgcc\arm-eabi\arm-eabi\sys-include\sys\_stdint.h \
+ mbed/TARGET_LPC1768/cmsis_version.h mbed/TARGET_LPC1768/cmsis_compiler.h \
+ mbed/TARGET_LPC1768/cmsis_gcc.h mbed/TARGET_LPC1768/mpu_armv7.h \
+ mbed/TARGET_LPC1768/TARGET_NXP/TARGET_LPC176X/device/system_LPC17xx.h \
+ GPIO_control.h
+
+mbed/TARGET_LPC1768/TARGET_NXP/TARGET_LPC176X/device/lpc17xx.h:
+
+mbed/TARGET_LPC1768/core_cm3.h:
+
+c:\sysgcc\arm-eabi\lib\gcc\arm-eabi\7.2.0\include\stdint.h:
+
+c:\sysgcc\arm-eabi\arm-eabi\sys-include\stdint.h:
+
+c:\sysgcc\arm-eabi\arm-eabi\sys-include\machine\_default_types.h:
+
+c:\sysgcc\arm-eabi\arm-eabi\sys-include\sys\features.h:
+
+c:\sysgcc\arm-eabi\arm-eabi\sys-include\_newlib_version.h:
+
+c:\sysgcc\arm-eabi\arm-eabi\sys-include\sys\_intsup.h:
+
+c:\sysgcc\arm-eabi\arm-eabi\sys-include\sys\_stdint.h:
+
+mbed/TARGET_LPC1768/cmsis_version.h:
+
+mbed/TARGET_LPC1768/cmsis_compiler.h:
+
+mbed/TARGET_LPC1768/cmsis_gcc.h:
+
+mbed/TARGET_LPC1768/mpu_armv7.h:
+
+mbed/TARGET_LPC1768/TARGET_NXP/TARGET_LPC176X/device/system_LPC17xx.h:
+
+GPIO_control.h:

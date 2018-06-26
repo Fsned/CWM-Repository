@@ -32,17 +32,17 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|VisualGDB'">
     <GNUConfigurationType>Debug</GNUConfigurationType>
-    <ToolchainID>com.sysprogs.gnuarm.arm-eabi</ToolchainID>
-    <ToolchainVersion>4.9.3/7.8/r1</ToolchainVersion>
+    <ToolchainID>com.visualgdb.arm-eabi</ToolchainID>
+    <ToolchainVersion>7.2.0/8.0.1/r3</ToolchainVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|VisualGDB'">
-    <ToolchainID>com.sysprogs.gnuarm.arm-eabi</ToolchainID>
-    <ToolchainVersion>4.9.3/7.8/r1</ToolchainVersion>
+    <ToolchainID>com.visualgdb.arm-eabi</ToolchainID>
+    <ToolchainVersion>7.2.0/8.0.1/r3</ToolchainVersion>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|VisualGDB'">
     <ClCompile>
-      <AdditionalIncludeDirectories>;mbed;mbed\TARGET_LPC1768;mbed\TARGET_LPC1768\TARGET_NXP;mbed\TARGET_LPC1768\TARGET_NXP\TARGET_LPC176X;mbed\TARGET_LPC1768\TARGET_NXP\TARGET_LPC176X\TARGET_MBED_LPC1768;mbed\TARGET_LPC1768\TARGET_NXP\TARGET_LPC176X\device;mbed\TARGET_LPC1768\TOOLCHAIN_ARM_STD;mbed\drivers;mbed\hal;mbed\platform;FreeRTOS;FreeRTOS\include;FreeRTOS\portable;FreeRTOS\portable\MemMang;FreeRTOS\portable\RVDS;freertos\portable\gcc\arm_cm3;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>flash_layout;;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>mbed;mbed\TARGET_LPC1768;mbed\TARGET_LPC1768\TARGET_NXP;mbed\TARGET_LPC1768\TARGET_NXP\TARGET_LPC176X;mbed\TARGET_LPC1768\TARGET_NXP\TARGET_LPC176X\TARGET_MBED_LPC1768;mbed\TARGET_LPC1768\TARGET_NXP\TARGET_LPC176X\device;mbed\TARGET_LPC1768\TOOLCHAIN_ARM_STD;mbed\drivers;mbed\hal;mbed\platform;FreeRTOS;FreeRTOS\include;FreeRTOS\portable;FreeRTOS\portable\MemMang;FreeRTOS\portable\RVDS;freertos\portable\gcc\arm_cm3;.;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>DEBUG=1;flash_layout;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalOptions />
       <CLanguageStandard />
       <CPPLanguageStandard />
@@ -52,12 +52,13 @@
       <AdditionalLibraryNames>%(Link.AdditionalLibraryNames)</AdditionalLibraryNames>
       <AdditionalLinkerInputs>%(Link.AdditionalLinkerInputs)</AdditionalLinkerInputs>
       <AdditionalOptions />
+      <LinkerScript />
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|VisualGDB'">
     <ClCompile>
-      <AdditionalIncludeDirectories>;mbed;mbed\TARGET_LPC1768;mbed\TARGET_LPC1768\TARGET_NXP;mbed\TARGET_LPC1768\TARGET_NXP\TARGET_LPC176X;mbed\TARGET_LPC1768\TARGET_NXP\TARGET_LPC176X\TARGET_MBED_LPC1768;mbed\TARGET_LPC1768\TARGET_NXP\TARGET_LPC176X\device;mbed\TARGET_LPC1768\TOOLCHAIN_ARM_STD;mbed\drivers;mbed\hal;mbed\platform;FreeRTOS;FreeRTOS\include;FreeRTOS\portable;FreeRTOS\portable\MemMang;FreeRTOS\portable\RVDS;freertos\portable\gcc\arm_cm3;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>flash_layout;;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>mbed;mbed\TARGET_LPC1768;mbed\TARGET_LPC1768\TARGET_NXP;mbed\TARGET_LPC1768\TARGET_NXP\TARGET_LPC176X;mbed\TARGET_LPC1768\TARGET_NXP\TARGET_LPC176X\TARGET_MBED_LPC1768;mbed\TARGET_LPC1768\TARGET_NXP\TARGET_LPC176X\device;mbed\TARGET_LPC1768\TOOLCHAIN_ARM_STD;mbed\drivers;mbed\hal;mbed\platform;FreeRTOS;FreeRTOS\include;FreeRTOS\portable;FreeRTOS\portable\MemMang;FreeRTOS\portable\RVDS;freertos\portable\gcc\arm_cm3;;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NDEBUG=1;RELEASE=1;flash_layout;;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalOptions />
       <CLanguageStandard />
       <CPPLanguageStandard />
@@ -77,10 +78,10 @@
   <ItemGroup>
     <ClCompile Include="ErrorHandler.c" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="LED_control.c" />
+    <ClCompile Include="LEDHandler.c" />
     <ClCompile Include="utilities.c" />
     <ClCompile Include="UART_control.c" />
-    <ClCompile Include="GPIO_setup.c" />
+    <ClCompile Include="GPIO_control.c" />
     <ClCompile Include="freertos\portable\gcc\arm_cm3\port.c" />
     <ClCompile Include="FreeRTOS\croutine.c" />
     <ClCompile Include="FreeRTOS\event_groups.c" />
@@ -89,8 +90,10 @@
     <ClCompile Include="FreeRTOS\tasks.c" />
     <ClCompile Include="FreeRTOS\timers.c" />
     <ClCompile Include="FreeRTOS\portable\MemMang\heap_2.c" />
-    <ClCompile Include="Programs_file.c" />
-    <ClCompile Include="Sensor_file.c" />
+    <ClCompile Include="ProgramsHandler.c" />
+    <ClCompile Include="SensorHandler.c" />
+    <ClInclude Include="UART_control.h" />
+    <ClInclude Include="utilities.h" />
     <None Include="mbed\TARGET_LPC1768\TOOLCHAIN_ARM_STD\analogin_api.o" />
     <None Include="mbed\TARGET_LPC1768\TOOLCHAIN_ARM_STD\analogout_api.o" />
     <None Include="mbed\TARGET_LPC1768\TOOLCHAIN_ARM_STD\can_api.o" />
@@ -117,10 +120,11 @@
     <None Include="stm32.props" />
     <ClCompile Include="$(BSP_ROOT)\STM32F1xxxx\StartupFiles\startup_stm32f103xb.c" />
     <ClInclude Include="ErrorHandler.h" />
-    <ClInclude Include="GPIO_setup.h" />
+    <ClInclude Include="GPIO_control.h" />
     <None Include="Templates.txt" />
-    <ClInclude Include="Programs_file.h" />
-    <ClInclude Include="Sensor_file.h" />
+    <ClInclude Include="LEDHandler.h" />
+    <ClInclude Include="ProgramsHandler.h" />
+    <ClInclude Include="SensorHandler.h" />
     <ClInclude Include="mbed\mbed.h" />
     <ClInclude Include="mbed\TARGET_LPC1768\arm_math.h" />
     <ClInclude Include="mbed\TARGET_LPC1768\cmsis_iccarm.h" />

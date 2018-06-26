@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <EmbeddedProfile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <ToolchainID>com.sysprogs.gnuarm.arm-eabi</ToolchainID>
+  <ToolchainID>com.visualgdb.arm-eabi</ToolchainID>
   <ToolchainVersion>
-    <GCC>4.9.3</GCC>
-    <GDB>7.8</GDB>
-    <Revision>1</Revision>
+    <GCC>7.2.0</GCC>
+    <GDB>8.0.1</GDB>
+    <Revision>3</Revision>
   </ToolchainVersion>
   <BspID>com.sysprogs.arm.stm32</BspID>
   <BspVersion>4.7</BspVersion>
@@ -45,7 +45,7 @@
     <AllDependencies>
       <ProjectDependency>
         <RelativePath>mbed_blinky.uvprojx</RelativePath>
-        <Timestamp>131691162283895990</Timestamp>
+        <Timestamp>131702443067450757</Timestamp>
       </ProjectDependency>
     </AllDependencies>
     <RootDirectory>
@@ -292,24 +292,24 @@
       <ImportedConfiguration>
         <Settings>
           <IncludeDirectories>
-            <string>C:\Users\frs\Documents\GitHubR\CWM-Repository</string>
-            <string>C:\Users\frs\Documents\GitHubR\CWM-Repository\mbed</string>
-            <string>C:\Users\frs\Documents\GitHubR\CWM-Repository\mbed\TARGET_LPC1768</string>
-            <string>C:\Users\frs\Documents\GitHubR\CWM-Repository\mbed\TARGET_LPC1768\TARGET_NXP</string>
-            <string>C:\Users\frs\Documents\GitHubR\CWM-Repository\mbed\TARGET_LPC1768\TARGET_NXP\TARGET_LPC176X</string>
-            <string>C:\Users\frs\Documents\GitHubR\CWM-Repository\mbed\TARGET_LPC1768\TARGET_NXP\TARGET_LPC176X\TARGET_MBED_LPC1768</string>
-            <string>C:\Users\frs\Documents\GitHubR\CWM-Repository\mbed\TARGET_LPC1768\TARGET_NXP\TARGET_LPC176X\device</string>
-            <string>C:\Users\frs\Documents\GitHubR\CWM-Repository\mbed\TARGET_LPC1768\TOOLCHAIN_ARM_STD</string>
-            <string>C:\Users\frs\Documents\GitHubR\CWM-Repository\mbed\drivers</string>
-            <string>C:\Users\frs\Documents\GitHubR\CWM-Repository\mbed\hal</string>
-            <string>C:\Users\frs\Documents\GitHubR\CWM-Repository\mbed\platform</string>
-            <string>C:\Users\frs\Documents\GitHubR\CWM-Repository\FreeRTOS</string>
-            <string>C:\Users\frs\Documents\GitHubR\CWM-Repository\FreeRTOS</string>
-            <string>C:\Users\frs\Documents\GitHubR\CWM-Repository\FreeRTOS\include</string>
-            <string>C:\Users\frs\Documents\GitHubR\CWM-Repository\FreeRTOS\portable</string>
-            <string>C:\Users\frs\Documents\GitHubR\CWM-Repository\FreeRTOS\portable\MemMang</string>
-            <string>C:\Users\frs\Documents\GitHubR\CWM-Repository\FreeRTOS\portable\RVDS</string>
-            <string>c:\users\frs\documents\githubr\cwm-repository\freertos\portable\gcc\arm_cm3</string>
+            <string>C:\Users\frs\Documents\GitHub\CWM-Repository</string>
+            <string>C:\Users\frs\Documents\GitHub\CWM-Repository\mbed</string>
+            <string>C:\Users\frs\Documents\GitHub\CWM-Repository\mbed\TARGET_LPC1768</string>
+            <string>C:\Users\frs\Documents\GitHub\CWM-Repository\mbed\TARGET_LPC1768\TARGET_NXP</string>
+            <string>C:\Users\frs\Documents\GitHub\CWM-Repository\mbed\TARGET_LPC1768\TARGET_NXP\TARGET_LPC176X</string>
+            <string>C:\Users\frs\Documents\GitHub\CWM-Repository\mbed\TARGET_LPC1768\TARGET_NXP\TARGET_LPC176X\TARGET_MBED_LPC1768</string>
+            <string>C:\Users\frs\Documents\GitHub\CWM-Repository\mbed\TARGET_LPC1768\TARGET_NXP\TARGET_LPC176X\device</string>
+            <string>C:\Users\frs\Documents\GitHub\CWM-Repository\mbed\TARGET_LPC1768\TOOLCHAIN_ARM_STD</string>
+            <string>C:\Users\frs\Documents\GitHub\CWM-Repository\mbed\drivers</string>
+            <string>C:\Users\frs\Documents\GitHub\CWM-Repository\mbed\hal</string>
+            <string>C:\Users\frs\Documents\GitHub\CWM-Repository\mbed\platform</string>
+            <string>C:\Users\frs\Documents\GitHub\CWM-Repository\FreeRTOS</string>
+            <string>C:\Users\frs\Documents\GitHub\CWM-Repository\FreeRTOS</string>
+            <string>C:\Users\frs\Documents\GitHub\CWM-Repository\FreeRTOS\include</string>
+            <string>C:\Users\frs\Documents\GitHub\CWM-Repository\FreeRTOS\portable</string>
+            <string>C:\Users\frs\Documents\GitHub\CWM-Repository\FreeRTOS\portable\MemMang</string>
+            <string>C:\Users\frs\Documents\GitHub\CWM-Repository\FreeRTOS\portable\RVDS</string>
+            <string>c:\users\frs\documents\github\cwm-repository\freertos\portable\gcc\arm_cm3</string>
           </IncludeDirectories>
           <PreprocessorMacros>
             <string>$$com.sysprogs.bspoptions.primary_memory$$_layout</string>

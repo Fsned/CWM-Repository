@@ -22,19 +22,54 @@
 #include "ErrorHandler.h"
 #include "stdio.h"
 
+#include "FreeRTOS.h"
+#include "task.h"
+#include "queue.h"
+
 /* ==========================================================
    
 						Constants
   
   ========================================================== */
-
+xQueueHandle ErrorHandlerQ			= NULL;
 
 
 /* ==========================================================
    
-						Functions
+						Variables
   
   ========================================================== */
+uint16_t ErrorCounter = 0;
+
+
+
+/* ========================================================================================
+  	Type		: 	VALUE_RETURN Functions
+  	Example		:	vXxXxX();
+  	Description	:	Returns a value, either 1 or 0. no confirmation if successful or not.
+   ========================================================================================*/
+uint16_t vGetErrorCounter()
+{
+	return ErrorCounter;
+}
+
+/* ========================================================================================
+  	Type		: 	BINARY_RETURN Functions
+  	Example		:	bXxXxX();
+  	Description	:	Returns true (1) or false (0) depending on the success of the function
+   ========================================================================================*/
+uint8_t bResetErrorCounter()
+{
+	ErrorCounter = 0;
+	
+	return !ErrorCounter;
+}
+
+/* ========================================================================================
+	Type		: 	Task Functions
+	Example		:	tXxXxX();
+	Description	:	Task designed to run on the FreeRTOS Kernel
+   ========================================================================================*/
 void tErrorHandler(void *param)
 {
 	enum ErrorHandlerTaskStates

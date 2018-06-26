@@ -20,11 +20,13 @@
 //					Libraries
 //
 // ============================================================================================
-#include "Programs_file.h"
-#include "Sensor_file.h"
+#include "GPIO_control.h"
 #include "UART_control.h"
+
+#include "ProgramsHandler.h"
+#include "SensorHandler.h"
+
 #include "utilities.h"
-#include "GPIO_setup.h"
 
 #include "FreeRTOS.h"
 #include "task.h"
@@ -44,7 +46,6 @@ const uint8_t SENSORSKIP = 0;
 const uint8_t TIMERSKIP  = 0;							 
 														 
 uint8_t CurrentProgram = 0;								/* 0 == No Program Selected.															*/
-
 
 
 /* =============================================================================================
@@ -99,21 +100,21 @@ Used to keep track of current Hardware status. to see if a certain pump should b
 depending on current program state. 
    ============================================================================================= */
 /*										{[Current HW Status]	, [Not in Use]} */				
-uint16_t HardwareLibrary[15][2] = 	{	{ HARDWARE_OFF			, 2 },					
-										{ HARDWARE_OFF			, 2 },
-										{ HARDWARE_OFF			, 2 },
-										{ HARDWARE_OFF			, 2 },
-										{ HARDWARE_OFF			, 2 },
-										{ HARDWARE_OFF			, 2 },
-										{ HARDWARE_OFF			, 2 },
-										{ HARDWARE_OFF			, 2 },
-										{ HARDWARE_OFF			, 2 },
-										{ HARDWARE_OFF			, 2 },
-										{ HARDWARE_OFF			, 2 },
-										{ HARDWARE_OFF			, 2 },
-										{ HARDWARE_OFF			, 2 },
-										{ HARDWARE_OFF			, 2 },
-										{ HARDWARE_OFF			, 2 }};
+	uint16_t HardwareLibrary[15][2] = 	{	{ HARDWARE_OFF		, 2 },					
+											{ HARDWARE_OFF		, 2 },
+											{ HARDWARE_OFF		, 2 },
+											{ HARDWARE_OFF		, 2 },
+											{ HARDWARE_OFF		, 2 },
+											{ HARDWARE_OFF		, 2 },
+											{ HARDWARE_OFF		, 2 },
+											{ HARDWARE_OFF		, 2 },
+											{ HARDWARE_OFF		, 2 },
+											{ HARDWARE_OFF		, 2 },
+											{ HARDWARE_OFF		, 2 },
+											{ HARDWARE_OFF		, 2 },
+											{ HARDWARE_OFF		, 2 },
+											{ HARDWARE_OFF		, 2 },
+											{ HARDWARE_OFF		, 2 }};
 				
 /* =============================================================================================
 																				HARDWARE PIN MAP

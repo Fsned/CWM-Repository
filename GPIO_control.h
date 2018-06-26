@@ -122,11 +122,11 @@ void nGPIOSetup					( void );
 
 void nInitializePinLibrary		( void );
 
-extern void nGPIO_STOP			( void );
+void nGPIO_STOP					( void );
 // ****************************************************************************************
 //	Type		: 	VALUE_RETURN Functions
 //	Example		:	vXxXxX();
-//	Description	:	Returns a value, either 1 or 0. no confirmation if successful or not.
+//	Description	:	Returns a value, either 1 or 0.
 // ****************************************************************************************
 extern uint8_t vDigitalRead		( uint8_t Port , int Pin ); 
 

@@ -29,12 +29,12 @@
 //					Libraries
 //
 // ****************************************************************************************
-#include "LED_control.h"
+#include "LEDHandler.h"
 #include "lpc17xx.h"
 #include "stdutils.h"
 #include "UART_control.h"
 #include "utilities.h"
-#include "GPIO_setup.h"
+#include "GPIO_control.h"
 
 #include "FreeRTOS.h"
 #include "task.h"

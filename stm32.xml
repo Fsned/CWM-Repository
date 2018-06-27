@@ -45,7 +45,7 @@
     <AllDependencies>
       <ProjectDependency>
         <RelativePath>mbed_blinky.uvprojx</RelativePath>
-        <Timestamp>131702443067450757</Timestamp>
+        <Timestamp>131691162283895990</Timestamp>
       </ProjectDependency>
     </AllDependencies>
     <RootDirectory>
@@ -292,24 +292,24 @@
       <ImportedConfiguration>
         <Settings>
           <IncludeDirectories>
-            <string>C:\Users\frs\Documents\GitHub\CWM-Repository</string>
-            <string>C:\Users\frs\Documents\GitHub\CWM-Repository\mbed</string>
-            <string>C:\Users\frs\Documents\GitHub\CWM-Repository\mbed\TARGET_LPC1768</string>
-            <string>C:\Users\frs\Documents\GitHub\CWM-Repository\mbed\TARGET_LPC1768\TARGET_NXP</string>
-            <string>C:\Users\frs\Documents\GitHub\CWM-Repository\mbed\TARGET_LPC1768\TARGET_NXP\TARGET_LPC176X</string>
-            <string>C:\Users\frs\Documents\GitHub\CWM-Repository\mbed\TARGET_LPC1768\TARGET_NXP\TARGET_LPC176X\TARGET_MBED_LPC1768</string>
-            <string>C:\Users\frs\Documents\GitHub\CWM-Repository\mbed\TARGET_LPC1768\TARGET_NXP\TARGET_LPC176X\device</string>
-            <string>C:\Users\frs\Documents\GitHub\CWM-Repository\mbed\TARGET_LPC1768\TOOLCHAIN_ARM_STD</string>
-            <string>C:\Users\frs\Documents\GitHub\CWM-Repository\mbed\drivers</string>
-            <string>C:\Users\frs\Documents\GitHub\CWM-Repository\mbed\hal</string>
-            <string>C:\Users\frs\Documents\GitHub\CWM-Repository\mbed\platform</string>
-            <string>C:\Users\frs\Documents\GitHub\CWM-Repository\FreeRTOS</string>
-            <string>C:\Users\frs\Documents\GitHub\CWM-Repository\FreeRTOS</string>
-            <string>C:\Users\frs\Documents\GitHub\CWM-Repository\FreeRTOS\include</string>
-            <string>C:\Users\frs\Documents\GitHub\CWM-Repository\FreeRTOS\portable</string>
-            <string>C:\Users\frs\Documents\GitHub\CWM-Repository\FreeRTOS\portable\MemMang</string>
-            <string>C:\Users\frs\Documents\GitHub\CWM-Repository\FreeRTOS\portable\RVDS</string>
-            <string>c:\users\frs\documents\github\cwm-repository\freertos\portable\gcc\arm_cm3</string>
+            <string>F:\direktiv\Softwareudvikling\4. Github Base\CWM-Repository</string>
+            <string>F:\direktiv\Softwareudvikling\4. Github Base\CWM-Repository\mbed</string>
+            <string>F:\direktiv\Softwareudvikling\4. Github Base\CWM-Repository\mbed\TARGET_LPC1768</string>
+            <string>F:\direktiv\Softwareudvikling\4. Github Base\CWM-Repository\mbed\TARGET_LPC1768\TARGET_NXP</string>
+            <string>F:\direktiv\Softwareudvikling\4. Github Base\CWM-Repository\mbed\TARGET_LPC1768\TARGET_NXP\TARGET_LPC176X</string>
+            <string>F:\direktiv\Softwareudvikling\4. Github Base\CWM-Repository\mbed\TARGET_LPC1768\TARGET_NXP\TARGET_LPC176X\TARGET_MBED_LPC1768</string>
+            <string>F:\direktiv\Softwareudvikling\4. Github Base\CWM-Repository\mbed\TARGET_LPC1768\TARGET_NXP\TARGET_LPC176X\device</string>
+            <string>F:\direktiv\Softwareudvikling\4. Github Base\CWM-Repository\mbed\TARGET_LPC1768\TOOLCHAIN_ARM_STD</string>
+            <string>F:\direktiv\Softwareudvikling\4. Github Base\CWM-Repository\mbed\drivers</string>
+            <string>F:\direktiv\Softwareudvikling\4. Github Base\CWM-Repository\mbed\hal</string>
+            <string>F:\direktiv\Softwareudvikling\4. Github Base\CWM-Repository\mbed\platform</string>
+            <string>F:\direktiv\Softwareudvikling\4. Github Base\CWM-Repository\FreeRTOS</string>
+            <string>F:\direktiv\Softwareudvikling\4. Github Base\CWM-Repository\FreeRTOS</string>
+            <string>F:\direktiv\Softwareudvikling\4. Github Base\CWM-Repository\FreeRTOS\include</string>
+            <string>F:\direktiv\Softwareudvikling\4. Github Base\CWM-Repository\FreeRTOS\portable</string>
+            <string>F:\direktiv\Softwareudvikling\4. Github Base\CWM-Repository\FreeRTOS\portable\MemMang</string>
+            <string>F:\direktiv\Softwareudvikling\4. Github Base\CWM-Repository\FreeRTOS\portable\RVDS</string>
+            <string>f:\direktiv\softwareudvikling\4. github base\cwm-repository\freertos\portable\gcc\arm_cm3</string>
           </IncludeDirectories>
           <PreprocessorMacros>
             <string>$$com.sysprogs.bspoptions.primary_memory$$_layout</string>

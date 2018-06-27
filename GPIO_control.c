@@ -1,35 +1,37 @@
-/**********************************************************************************************
- * Author : Frederik Snedevind
- *		   Frs@Jeros.com
- *
- * Company: Jeros A/S
- *		   HTTP://www.Jeros.com/
- *
- * Date created  : 14/3 - 2018 
- * Version			 : 0.0.1
- * Revised			 : 15/3 - 2018 
+/*=================================================================
+   Author : Frederik Snedevind
+  		   Frs@Jeros.com
+  
+   Company: Jeros A/S
+  		   HTTP://www.Jeros.com/
+  
+   Date created  : 14/3 - 2018 
+   Version			 : 0.0.1
+   Revised			 : 15/3 - 2018 
  ==================================================================
- * Description:
- * GPIO_setup.c is used with NXP LPC1768 Processor, to setup
- *  pins to GPIO function, as well as read/write from/to
- *	them.
- *
+   Description:
+   GPIO_setup.c is used with NXP LPC1768 Processor, to setup
+    pins to GPIO function, as well as read/write from/to
+  	them.
+  
  ==================================================================
- * Dependencies:
- *	This library uses the following files:
- *	"lpc17xx.h"			-		Contains information for Pin manipulation
- *	"GPIO_setup.h"	-		Associated header file
- *	"stdutils.h"		-		Contains typedef for among many, 'uint8_t' to limit memory usage
- * 
+   Dependencies:
+  	This library uses the following files:
+  	"lpc17xx.h"			-		Contains information for Pin manipulation
+  	"GPIO_setup.h"	-		Associated header file
+  	"stdutils.h"		-		Contains typedef for among many, 'uint8_t' to limit memory usage
+   
  ================================================================== */
 
-/* ==================================================================
+/* ================================================================  
   
   					Libraries
   
   ================================================================= */ 
 #include "lpc17xx.h"
 #include "GPIO_control.h"
+#include "stdint.h"
+
 
 
 // ==================================================================
@@ -47,11 +49,11 @@ static uint8_t ADC_SETUP_REGISTER = 0x00;  // Variable to keep track of Which AD
 // 		GPIO_OUTPUT
 uint8_t PinLibrary[5][32];
 
-// ****************************************************************************************
-//	Type		: 	BINARY_RETURN Functions
-//	Example		:	bXxXx();
-//	Description	:	Returns true (1) or false (0) depending on the success of the function
-// ****************************************************************************************
+/* ==================================================================
+  	Type		: 	BINARY_RETURN Functions
+  	Example		:	bXxXx();
+  	Description	:	Returns true (1) or false (0) depending on the success of the function
+   ================================================================== */
 uint8_t bSetupAnalogI(uint8_t ADCNumber)
 {
 /* ==================================================================
@@ -59,7 +61,7 @@ uint8_t bSetupAnalogI(uint8_t ADCNumber)
 	Functionality	: Setup a GPIO pin to Analog input
  	Returns			: True (1) or false (0)
     Input range		: 0 - 7, depending on what ADC is wanted
-  ================================================================== */
+	================================================================== */
 	static uint8_t PeriphClock_Initialized = 0; // Variable to keep track of Peripheral clock for ADC units
 	
 	
@@ -251,12 +253,12 @@ uint8_t bSetupDigitalIO ( uint8_t Port, int Pin, uint8_t InputOutput)
 
 uint8_t bDigitalWrite( uint8_t Port , int Pin , uint8_t State )
 {
-/* ******************************************************************
-//	Function name	: bDigitalWrite
-//	Functionality	: Write a value to a digital output
-// 	Returns			: True (1) or false (0), depending on successful operation or no
-//  Input range		: PORT_0 : PORT_4  ,  PIN_0 : PIN_31  ,  0 : 1
-// *****************************************************************/
+/* ==================================================================
+  	Function name	: bDigitalWrite
+  	Functionality	: Write a value to a digital output
+   	Returns			: True (1) or false (0), depending on successful operation or no
+    Input range		: PORT_0 : PORT_4  ,  PIN_0 : PIN_31  ,  0 : 1
+   ================================================================== */
 	// Make sure PinLibrary is initialized before manipulating any bits
 	nInitializePinLibrary();
 	
@@ -349,20 +351,20 @@ uint8_t bDigitalWrite( uint8_t Port , int Pin , uint8_t State )
 
 
 
-// ****************************************************************************************
-//	Type		: 	NO_RETURN Functions
-//	Example		:	nX();
-//	Description	:	Does not return anything.
-// ****************************************************************************************
+/* ================================================================== 
+  	Type		: 	NO_RETURN Functions
+  	Example		:	nX();
+  	Description	:	Does not return anything.
+   ================================================================== */
 
 void nGPIO_STOP() 
 {
-/* ******************************************************************
-//	Function name	: nGPIO_STOP
-//	Functionality	: Sets all GPIO that has been setup to LOW. note that any functions that does not take use of the GPIO API for setting up pins might be excluded from this feature.
-// 	Returns			: None	
-//  Input range		: None
-// *****************************************************************/
+/* ==================================================================
+  	Function name	: nGPIO_STOP
+  	Functionality	: Sets all GPIO that has been setup to LOW. note that any functions that does not take use of the GPIO API for setting up pins might be excluded from this feature.
+   	Returns			: None	
+    Input range		: None
+   ================================================================== */
 	for (uint8_t i = PORT_0; i <= PORT_4; i++) 
 	{
 		for (uint8_t n = PIN_0; n <= PIN_31; n++) 
@@ -378,12 +380,12 @@ void nGPIO_STOP()
 
 void nGPIOSetup() 
 {
-/* ******************************************************************
-//	Function name	: nGPIOSetup
-//	Functionality	: Used to quickly setup several pins, can be used at startup
-// 	Returns			: Nothing
-//  Input range		: None
-// *****************************************************************/	
+/* ==================================================================
+  	Function name	: nGPIOSetup
+  	Functionality	: Used to quickly setup several pins, can be used at startup
+   	Returns			: Nothing
+    Input range		: None
+   ================================================================== */	
 	nInitializePinLibrary();
 	
 	/* Setup Pins for LEDS 1:4 */
@@ -417,12 +419,12 @@ void nGPIOSetup()
 
 void nInitializePinLibrary() 
 { 
-/* ******************************************************************
-//	Function name	: nInitializePinLibrary
-//	Functionality	: Used to set all pins to GPIO_FREE, to allow setups to reserve pins, and prevent overlapping on pins
-// 	Returns			: None
-//  Input range		: None
-// *****************************************************************/
+/* ==================================================================
+  	Function name	: nInitializePinLibrary
+  	Functionality	: Used to set all pins to GPIO_FREE, to allow setups to reserve pins, and prevent overlapping on pins
+   	Returns			: None
+    Input range		: None
+   ================================================================== */
 	static uint8_t Initialized = 0;
 	
 	if (! Initialized ) 
@@ -441,11 +443,11 @@ void nInitializePinLibrary()
 
 
 
-// ****************************************************************************************
-//	Type		: 	VALUE_RETURN Functions
-//	Example		:	vX();
-//	Description	:	Returns a value, either 1 or 0. no confirmation if successful or not.
-// ****************************************************************************************
+/* ==================================================================
+  	Type		: 	VALUE_RETURN Functions
+  	Example		:	vX();
+  	Description	:	Returns a value, either 1 or 0. no confirmation if successful or not.
+   ================================================================== */
 uint16_t vAnalogRead(uint8_t ADCNumber)
 {
 /* ====================================================================
@@ -471,12 +473,12 @@ uint16_t vAnalogRead(uint8_t ADCNumber)
 
 uint8_t vDigitalRead( uint8_t Port , int Pin ) 
 {
-/* ******************************************************************
-//	Function name	: vReadDigitalInput
-//	Functionality	: Read a digital input from a pin, and return it
-// 	Returns			: A value 0 or 1, depending on status of pin
-//  Input range		: PORT_0 : PORT_4  ,  PIN_0 : PIN_31
-// *****************************************************************/
+/* =================================================================
+  	Function name	: vReadDigitalInput
+  	Functionality	: Read a digital input from a pin, and return it
+   	Returns			: A value 0 or 1, depending on status of pin
+    Input range		: PORT_0 : PORT_4  ,  PIN_0 : PIN_31
+   ================================================================= */
 	nInitializePinLibrary();
 	
 	uint8_t vDigitalRead_ret;
@@ -485,7 +487,6 @@ uint8_t vDigitalRead( uint8_t Port , int Pin )
 	{
 		switch(Port) 
 		{
-			
 			case PORT_0:
 				vDigitalRead_ret = (LPC_GPIO0->FIOPIN>>Pin) & 0x01;
 			break;
@@ -521,12 +522,12 @@ uint8_t vDigitalRead( uint8_t Port , int Pin )
 
 uint8_t vGetPinStatus	( uint8_t Port , int Pin ) 
 {
-/* ******************************************************************
-//	Function name	: vGetPinStatus
-//	Functionality	: Returns the PIN_STATUS of a given pin, from the pin library.
-// 	Returns			: None
-//  Input range		: PORT_0 - PORT_4 , PIN_0 - PIN_31
-// *****************************************************************/		
+/* ==================================================================
+  	Function name	: vGetPinStatus
+  	Functionality	: Returns the PIN_STATUS of a given pin, from the pin library.
+   	Returns			: None
+    Input range		: PORT_0 - PORT_4 , PIN_0 - PIN_31
+   ================================================================== */		
 	nInitializePinLibrary();
 	
 	return PinLibrary[Port][Pin];

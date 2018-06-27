@@ -29,6 +29,7 @@
 //					Libraries
 //
 // ****************************************************************************************
+#include "stdint.h"
 #include "LEDHandler.h"
 #include "lpc17xx.h"
 #include "stdutils.h"

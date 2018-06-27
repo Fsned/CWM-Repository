@@ -25,6 +25,7 @@
 
 #include "ProgramsHandler.h"
 #include "SensorHandler.h"
+#include "ErrorHandler.h"
 
 #include "utilities.h"
 
@@ -47,6 +48,7 @@ const uint8_t TIMERSKIP  = 0;
 														 
 uint8_t CurrentProgram = 0;								/* 0 == No Program Selected.															*/
 
+StateType ProgramHandlerState = IDLE;
 
 /* =============================================================================================
 																				PROGRAM TIMER LIBRARY
@@ -345,6 +347,15 @@ void nFillTanksOperation()
 			xQueueSend(ProgramHandlerQ , &transmit , 10);
 		}
 		
+		/* Check if the program has been paused or stopped, and wait for the change to stop. allow scheduling still, to allow for state change */
+		while (ProgramHandlerState == PAUSED || ProgramHandlerState == STOPPED_FOR_SENSORS)
+		{
+			if (vGetHWStatus(ELECTROVALVE) == HardwareValveOpen)
+				bSetHWStatus(ELECTROVALVE, HardwareValveClosed);
+
+			vTaskDelay(25);			/* Set a delay of ~25 milliseconds. Keep checking the state for updates. if the state changes, resume the program. */
+		}
+
 		vTaskDelay(100);
 	}
 // =============================================================================
@@ -380,33 +391,42 @@ void nFillSoapOperation()
 // ==========================================================================================================	
 	while (vGetSensorData(SOAP_SENSOR) < 0.95 * SOAP_LEVEL && ! SENSORSKIP) 
 	{
-		bSetHWStatus(SOAP_PUMP , HARDWARE_ACTIVE);
+		bSetHWStatus(SOAP_PUMP , HardwareActive);
 		
-		if (vGetSensorData(SOAP_SENSOR) >= 0.95*SOAP_LEVEL && vGetHWStatus(SOAP_PUMP) == HARDWARE_ACTIVE) 
+		if (vGetSensorData(SOAP_SENSOR) >= 0.95*SOAP_LEVEL && vGetHWStatus(SOAP_PUMP) == HardwareActive)
 		{
-			bSetHWStatus(SOAP_PUMP , HARDWARE_OFF);
+			bSetHWStatus(SOAP_PUMP , HardwareOff);
 			vTaskDelay(1000);
 		}
 	
-		if (vGetSensorData(SOAP_SENSOR) < 0.95*SOAP_LEVEL && vGetHWStatus(SOAP_PUMP) == HARDWARE_OFF) 
+		if (vGetSensorData(SOAP_SENSOR) < 0.95*SOAP_LEVEL && vGetHWStatus(SOAP_PUMP) == HardwareOff)
 		{
-			bSetHWStatus( SOAP_PUMP , HARDWARE_ACTIVE );
+			bSetHWStatus( SOAP_PUMP , HardwareActive);
 			vTaskDelay(1000);
 		}
 		
-		if (vGetSensorData(SOAP_SENSOR) > 0.95*SOAP_LEVEL && vGetHWStatus(SOAP_PUMP) == HARDWARE_OFF) 
+		if (vGetSensorData(SOAP_SENSOR) > 0.95*SOAP_LEVEL && vGetHWStatus(SOAP_PUMP) == HardwareOff)
 		{
 			transmit = OPERATION_ENDED;
 			xQueueSend(ProgramHandlerQ , &transmit , 10);
 		}
 	
-		else if (vGetSensorData(SOAP_SENSOR) > 0.95*SOAP_LEVEL && vGetHWStatus(SOAP_PUMP) == HARDWARE_ACTIVE) 
+		else if (vGetSensorData(SOAP_SENSOR) > 0.95*SOAP_LEVEL && vGetHWStatus(SOAP_PUMP) == HardwareActive)
 		{
-			bSetHWStatus( SOAP_PUMP , HARDWARE_OFF );
+			bSetHWStatus( SOAP_PUMP , HardwareOff);
 			transmit = OPERATION_ENDED;
 			xQueueSend(ProgramHandlerQ , &transmit , 10);
 		}
-		
+
+		/* Check if the program has been paused or stopped, and wait for the change to stop. allow scheduling still, to allow for state change */
+		while (ProgramHandlerState == PAUSED || ProgramHandlerState == STOPPED_FOR_SENSORS)
+		{
+			if (vGetHWStatus(SOAP_PUMP) == HardwareActive)
+				bSetHWStatus(SOAP_PUMP, HardwareOff);
+				
+
+			vTaskDelay(25);			/* Set a delay of ~25 milliseconds. Keep checking the state for updates. if the state changes, resume the program. */
+		}
 		vTaskDelay(100);
 	}
 	
@@ -878,7 +898,7 @@ void nEmptyTanks()
 			}
 			else if (vGetSensorData(DOORSWITCH) == HardwareDoorClosed)
 			{
-				bSetHWStatus(DRAIN_PUMP, HARDWARE_ACTIVE)
+				bSetHWStatus(DRAIN_PUMP, HARDWARE_ACTIVE);
 			}
 		}
 		
@@ -933,7 +953,10 @@ void tProgram_Handler		( void *param )
 // ********************************************************************************************************/
 	
 	uint8_t receive;
-	uint8_t	ProgramHandlerState = IDLE;
+
+	
+
+	
 	uint8_t OutedMsg 			= 0;
 //	uint8_t PROGRAM_STARTED 	 	= 0;
 	
@@ -1025,7 +1048,17 @@ void tProgram_Handler		( void *param )
 							ProgramHandlerState = IDLE;
 							CurrentProgram = 0;
 							nNewLine( 1 );
-							nUART_TxString("Ended Program Successfully.");
+							if (!vGetErrorCounter())	/* If Error counter is 0, type out success message to UART */
+							{
+								nUART_TxString("Ended Program Successfully.");
+							}
+							else						/* If errors exist, output error counter value to UART*/
+							{
+								nUART_TxString("Ended Program with ");
+								nPrintInteger(vGetErrorCounter());
+								nUART_TxString(" Error(s).");
+							}
+							
 							nNewLine( 2 );
 						break;
 						
@@ -1045,6 +1078,9 @@ void tProgram_Handler		( void *param )
 						ProgramHandlerState = READY;
 					break;
 					
+					case PAUSE_PROGRAM:
+						ProgramHandlerState = PAUSED;
+					break;
 					default:
 					
 					break;

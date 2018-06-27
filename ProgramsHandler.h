@@ -30,11 +30,13 @@
 // ****************************************************************************************
 
 // Program Handler Task States
-#define IDLE									1
-#define READY									2
-#define BUSY									3
-#define SENSORSTOP								4
-#define PAUSED									5
+typedef enum {
+	IDLE,
+	READY,
+	BUSY,
+	SENSORSTOP,
+	PAUSED
+} StateType;
 
 // Operation Status messages
 #define REQUEST_OPERATION_START					1
@@ -42,11 +44,19 @@
 #define OPERATION_STOPPED						3
 #define ACK_OPERATION_START						4
 #define DENY_OPERATION_START					5
+#define PAUSE_PROGRAM							6
 
 #define READY_FOR_NEW_PROGRAM					1
 #define OCCUPIED_WITH_PROGRAM					2
 #define FINISHING_UP							3
 #define STOPPED_FOR_SENSORS						4
+
+enum HARDWARE_STATES {
+	HardwareOff,
+	HardwareActive,
+	HardwareFailure,
+	HardwareAlarm
+};
 
 #define HARDWARE_OFF							0
 #define HARDWARE_READY							0

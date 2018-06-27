@@ -41,8 +41,8 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|VisualGDB'">
     <ClCompile>
-      <AdditionalIncludeDirectories>mbed;mbed\TARGET_LPC1768;mbed\TARGET_LPC1768\TARGET_NXP;mbed\TARGET_LPC1768\TARGET_NXP\TARGET_LPC176X;mbed\TARGET_LPC1768\TARGET_NXP\TARGET_LPC176X\TARGET_MBED_LPC1768;mbed\TARGET_LPC1768\TARGET_NXP\TARGET_LPC176X\device;mbed\TARGET_LPC1768\TOOLCHAIN_ARM_STD;mbed\drivers;mbed\hal;mbed\platform;FreeRTOS;FreeRTOS\include;FreeRTOS\portable;FreeRTOS\portable\MemMang;FreeRTOS\portable\RVDS;freertos\portable\gcc\arm_cm3;.;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>DEBUG=1;flash_layout;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>mbed;mbed\TARGET_LPC1768;mbed\TARGET_LPC1768\TARGET_NXP;mbed\TARGET_LPC1768\TARGET_NXP\TARGET_LPC176X;mbed\TARGET_LPC1768\TARGET_NXP\TARGET_LPC176X\TARGET_MBED_LPC1768;mbed\TARGET_LPC1768\TARGET_NXP\TARGET_LPC176X\device;mbed\TARGET_LPC1768\TOOLCHAIN_ARM_STD;mbed\drivers;mbed\hal;mbed\platform;FreeRTOS;FreeRTOS\include;FreeRTOS\portable;FreeRTOS\portable\MemMang;FreeRTOS\portable\RVDS;freertos\portable\gcc\arm_cm3;.;;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>DEBUG=1;flash_layout;;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalOptions />
       <CLanguageStandard />
       <CPPLanguageStandard />

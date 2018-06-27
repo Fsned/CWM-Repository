@@ -1,23 +1,67 @@
-﻿  main.cpp
+﻿  ErrorHandler.c
+  main.cpp
   LEDHandler.c
+  utilities.c
   UART_control.c
+  GPIO_control.c
   port.c
-  ProgramsHandler.h(22):
-  main.cpp(19):
+  croutine.c
+  FreeRTOS\include\FreeRTOS.h(104):
+  ErrorHandler.h(22):
+  ErrorHandler.c(22):
+FreeRTOS\include\portable.h(144,2): error :  unknown type name 'StackType_t'
+    StackType_t *pxPortInitialiseStack( StackType_t *pxTopOfStack, TaskFunction_t pxCode, void *pvParameters ) PRIVILEGED_FUNCTION;
+    ^~~~~~~~~~~
+FreeRTOS\include\portable.h(144,38): error :  unknown type name 'StackType_t'
+    StackType_t *pxPortInitialiseStack( StackType_t *pxTopOfStack, TaskFunction_t pxCode, void *pvParameters ) PRIVILEGED_FUNCTION;
+                                        ^~~~~~~~~~~
+FreeRTOS\include\portable.h(181,1): error :  unknown type name 'BaseType_t'
+   BaseType_t xPortStartScheduler( void ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+  ErrorHandler.h(22):
+  ErrorHandler.c(22):
 FreeRTOS\include\FreeRTOS.h(838): warning :  "portTICK_RATE_MS" redefined
     #define portTICK_RATE_MS portTICK_PERIOD_MS
    
   FreeRTOS\include\portable.h(94):
   FreeRTOS\include\FreeRTOS.h(104):
-  ProgramsHandler.h(22):
-  main.cpp(19):
+  ErrorHandler.h(22):
+  ErrorHandler.c(22):
   freertos\portable\gcc\arm_cm3\portmacro.h(92): note :  this is the location of the previous definition
    #define portTICK_RATE_MS   ( ( portTickType ) 1000 / configTICK_RATE_HZ )
    
-main.cpp(20,10): error :  LED_control.h: No such file or directory
-   #include "LED_control.h"
-            ^~~~~~~~~~~~~~~
-  compilation terminated.
+  ErrorHandler.h(22):
+  ErrorHandler.c(22):
+FreeRTOS\include\FreeRTOS.h(876,2): error :  unknown type name 'TickType_t'
+    TickType_t xDummy1;
+    ^~~~~~~~~~
+FreeRTOS\include\FreeRTOS.h(884,2): error :  unknown type name 'TickType_t'
+    TickType_t xDummy1;
+    ^~~~~~~~~~
+FreeRTOS\include\FreeRTOS.h(892,2): error :  unknown type name 'UBaseType_t'
+    UBaseType_t uxDummy1;
+    ^~~~~~~~~~~
+FreeRTOS\include\FreeRTOS.h(917,2): error :  unknown type name 'UBaseType_t'
+    UBaseType_t   uxDummy5;
+    ^~~~~~~~~~~
+FreeRTOS\include\FreeRTOS.h(930,3): error :  unknown type name 'UBaseType_t'
+     UBaseType_t  uxDummy12[ 2 ];
+     ^~~~~~~~~~~
+FreeRTOS\include\FreeRTOS.h(975,3): error :  unknown type name 'UBaseType_t'
+     UBaseType_t uxDummy2;
+     ^~~~~~~~~~~
+FreeRTOS\include\FreeRTOS.h(979,2): error :  unknown type name 'UBaseType_t'
+    UBaseType_t uxDummy4[ 3 ];
+    ^~~~~~~~~~~
+FreeRTOS\include\FreeRTOS.h(1014,2): error :  unknown type name 'TickType_t'
+    TickType_t xDummy1;
+    ^~~~~~~~~~
+FreeRTOS\include\FreeRTOS.h(1045,2): error :  unknown type name 'TickType_t'
+    TickType_t   xDummy3;
+    ^~~~~~~~~~
+FreeRTOS\include\FreeRTOS.h(1046,2): error :  unknown type name 'UBaseType_t'
+    UBaseType_t   uxDummy4;
+    ^~~~~~~~~~~
   FreeRTOS\include\FreeRTOS.h(104):
   LEDHandler.h(24):
   LEDHandler.c(32):
@@ -74,415 +118,15 @@ FreeRTOS\include\FreeRTOS.h(1045,2): error :  unknown type name 'TickType_t'
 FreeRTOS\include\FreeRTOS.h(1046,2): error :  unknown type name 'UBaseType_t'
     UBaseType_t   uxDummy4;
     ^~~~~~~~~~~
-  FreeRTOS\include\task.h(78):
-  LEDHandler.h(25):
-  LEDHandler.c(32):
-FreeRTOS\include\list.h(184,22): error :  unknown type name 'TickType_t'
-    configLIST_VOLATILE TickType_t xItemValue;   /*< The value being listed.  In most cases this is used to sort the list in descending order. */
-                        ^~~~~~~~~~
-FreeRTOS\include\list.h(196,22): error :  unknown type name 'TickType_t'
-    configLIST_VOLATILE TickType_t xItemValue;
-                        ^~~~~~~~~~
-FreeRTOS\include\list.h(208,22): error :  unknown type name 'UBaseType_t'
-    configLIST_VOLATILE UBaseType_t uxNumberOfItems;
-                        ^~~~~~~~~~~
-FreeRTOS\include\list.h(446,1): error :  unknown type name 'UBaseType_t'
-   UBaseType_t uxListRemove( ListItem_t * const pxItemToRemove ) PRIVILEGED_FUNCTION;
-   ^~~~~~~~~~~
-  LEDHandler.h(25):
-  LEDHandler.c(32):
-FreeRTOS\include\task.h(109,21): error :  expected declaration specifiers or '...' before '*' token
-   typedef BaseType_t (*TaskHookFunction_t)( void * );
-                       ^
-  LEDHandler.h(25):
-  LEDHandler.c(32):
-FreeRTOS\include\task.h(137,2): error :  unknown type name 'BaseType_t'
-    BaseType_t xOverflowCount;
-    ^~~~~~~~~~
-FreeRTOS\include\task.h(138,2): error :  unknown type name 'TickType_t'
-    TickType_t xTimeOnEntering;
-    ^~~~~~~~~~
-FreeRTOS\include\task.h(160,2): error :  unknown type name 'UBaseType_t'
-    UBaseType_t uxPriority;
-    ^~~~~~~~~~~
-FreeRTOS\include\task.h(161,2): error :  unknown type name 'StackType_t'
-    StackType_t *puxStackBuffer;
-    ^~~~~~~~~~~
-FreeRTOS\include\task.h(171,2): error :  unknown type name 'UBaseType_t'
-    UBaseType_t xTaskNumber;  /* A number unique to the task. */
-    ^~~~~~~~~~~
-FreeRTOS\include\task.h(173,2): error :  unknown type name 'UBaseType_t'
-    UBaseType_t uxCurrentPriority; /* The priority at which the task was running (may be inherited) when the structure was populated. */
-    ^~~~~~~~~~~
-FreeRTOS\include\task.h(174,2): error :  unknown type name 'UBaseType_t'
-    UBaseType_t uxBasePriority;  /* The priority to which the task will return if the task's current priority has been inherited to avoid unbounded priority inversion when obtaining a mutex.  Only valid if configUSE_MUTEXES is defined as 1 in FreeRTOSConfig.h. */
-    ^~~~~~~~~~~
-  LEDHandler.h(25):
-  LEDHandler.c(32):
-FreeRTOS\include\task.h(176,2): error :  unknown type name 'StackType_t'
-    StackType_t *pxStackBase;  /* Points to the lowest address of the task's stack area. */
-    ^~~~~~~~~~~
-FreeRTOS\include\task.h(360,2): error :  unknown type name 'BaseType_t'
-    BaseType_t xTaskCreate( TaskFunction_t pxTaskCode,
-    ^~~~~~~~~~
-FreeRTOS\include\task.h(364,8): error :  unknown type name 'UBaseType_t'
-          UBaseType_t uxPriority,
-          ^~~~~~~~~~~
-FreeRTOS\include\task.h(695,24): error :  unknown type name 'TickType_t'
-   void vTaskDelay( const TickType_t xTicksToDelay ) PRIVILEGED_FUNCTION;
-                          ^~~~~~~~~~
-FreeRTOS\include\task.h(754,23): error :  unknown type name 'TickType_t'
-   void vTaskDelayUntil( TickType_t * const pxPreviousWakeTime, const TickType_t xTimeIncrement ) PRIVILEGED_FUNCTION;
-                         ^~~~~~~~~~
-FreeRTOS\include\task.h(754,68): error :  unknown type name 'TickType_t'
-   void vTaskDelayUntil( TickType_t * const pxPreviousWakeTime, const TickType_t xTimeIncrement ) PRIVILEGED_FUNCTION;
-                                                                      ^~~~~~~~~~
-FreeRTOS\include\task.h(779,1): error :  unknown type name 'BaseType_t'
-   BaseType_t xTaskAbortDelay( TaskHandle_t xTask ) PRIVILEGED_FUNCTION;
-   ^~~~~~~~~~
-FreeRTOS\include\task.h(826,1): error :  unknown type name 'UBaseType_t'
-   UBaseType_t uxTaskPriorityGet( TaskHandle_t xTask ) PRIVILEGED_FUNCTION;
-   ^~~~~~~~~~~
-FreeRTOS\include\task.h(834,1): error :  unknown type name 'UBaseType_t'
-   UBaseType_t uxTaskPriorityGetFromISR( TaskHandle_t xTask ) PRIVILEGED_FUNCTION;
-   ^~~~~~~~~~~
-FreeRTOS\include\task.h(908,68): error :  unknown type name 'BaseType_t'
-   void vTaskGetInfo( TaskHandle_t xTask, TaskStatus_t *pxTaskStatus, BaseType_t xGetFreeStackSpace, eTaskState eState ) PRIVILEGED_FUNCTION;
-                                                                      ^~~~~~~~~~
-FreeRTOS\include\task.h(950,44): error :  unknown type name 'UBaseType_t'
-   void vTaskPrioritySet( TaskHandle_t xTask, UBaseType_t uxNewPriority ) PRIVILEGED_FUNCTION;
-                                              ^~~~~~~~~~~
-FreeRTOS\include\task.h(1079,1): error :  unknown type name 'BaseType_t'
-   BaseType_t xTaskResumeFromISR( TaskHandle_t xTaskToResume ) PRIVILEGED_FUNCTION;
-   ^~~~~~~~~~
-FreeRTOS\include\task.h(1273,1): error :  unknown type name 'BaseType_t'
-   BaseType_t xTaskResumeAll( void ) PRIVILEGED_FUNCTION;
-   ^~~~~~~~~~
-FreeRTOS\include\task.h(1288,1): error :  unknown type name 'TickType_t'
-   TickType_t xTaskGetTickCount( void ) PRIVILEGED_FUNCTION;
-   ^~~~~~~~~~
-FreeRTOS\include\task.h(1304,1): error :  unknown type name 'TickType_t'
-  FreeRTOS\include\FreeRTOS.h(104):
-   TickType_t xTaskGetTickCountFromISR( void ) PRIVILEGED_FUNCTION;
-  freertos\portable\gcc\arm_cm3\port.c(59):
-   ^~~~~~~~~~
-FreeRTOS\include\portable.h(144,2): error :  unknown type name 'StackType_t'
-    StackType_t *pxPortInitialiseStack( StackType_t *pxTopOfStack, TaskFunction_t pxCode, void *pvParameters ) PRIVILEGED_FUNCTION;
-    ^~~~~~~~~~~
-FreeRTOS\include\portable.h(144,38): error :  unknown type name 'StackType_t'
-    StackType_t *pxPortInitialiseStack( StackType_t *pxTopOfStack, TaskFunction_t pxCode, void *pvParameters ) PRIVILEGED_FUNCTION;
-                                        ^~~~~~~~~~~
-FreeRTOS\include\task.h(1318,1): error :  unknown type name 'UBaseType_t'
-   UBaseType_t uxTaskGetNumberOfTasks( void ) PRIVILEGED_FUNCTION;
-   ^~~~~~~~~~~
-FreeRTOS\include\portable.h(181,1): error :  unknown type name 'BaseType_t'
-   BaseType_t xPortStartScheduler( void ) PRIVILEGED_FUNCTION;
-   ^~~~~~~~~~
-FreeRTOS\include\task.h(1368,1): error :  unknown type name 'UBaseType_t'
-   UBaseType_t uxTaskGetStackHighWaterMark( TaskHandle_t xTask ) PRIVILEGED_FUNCTION;
-   ^~~~~~~~~~~
-FreeRTOS\include\task.h(1421,1): error :  unknown type name 'BaseType_t'
-   BaseType_t xTaskCallApplicationTaskHook( TaskHandle_t xTask, void *pvParameter ) PRIVILEGED_FUNCTION;
-   ^~~~~~~~~~
-  freertos\portable\gcc\arm_cm3\port.c(59):
-FreeRTOS\include\FreeRTOS.h(838): warning :  "portTICK_RATE_MS" redefined
-    #define portTICK_RATE_MS portTICK_PERIOD_MS
-   
-  FreeRTOS\include\portable.h(94):
-  FreeRTOS\include\FreeRTOS.h(104):
-  freertos\portable\gcc\arm_cm3\port.c(59):
-  freertos\portable\gcc\arm_cm3\portmacro.h(92): note :  this is the location of the previous definition
-   #define portTICK_RATE_MS   ( ( portTickType ) 1000 / configTICK_RATE_HZ )
-   
-  freertos\portable\gcc\arm_cm3\port.c(59):
-FreeRTOS\include\FreeRTOS.h(876,2): error :  unknown type name 'TickType_t'
-    TickType_t xDummy1;
-    ^~~~~~~~~~
-FreeRTOS\include\FreeRTOS.h(884,2): error :  unknown type name 'TickType_t'
-    TickType_t xDummy1;
-    ^~~~~~~~~~
-FreeRTOS\include\task.h(1529,1): error :  unknown type name 'UBaseType_t'
-   UBaseType_t uxTaskGetSystemState( TaskStatus_t * const pxTaskStatusArray, const UBaseType_t uxArraySize, uint32_t * const pulTotalRunTime ) PRIVILEGED_FUNCTION;
-   ^~~~~~~~~~~
-FreeRTOS\include\FreeRTOS.h(892,2): error :  unknown type name 'UBaseType_t'
-    UBaseType_t uxDummy1;
-    ^~~~~~~~~~~
-FreeRTOS\include\task.h(1529,81): error :  unknown type name 'UBaseType_t'
-   UBaseType_t uxTaskGetSystemState( TaskStatus_t * const pxTaskStatusArray, const UBaseType_t uxArraySize, uint32_t * const pulTotalRunTime ) PRIVILEGED_FUNCTION;
-                                                                                   ^~~~~~~~~~~
-FreeRTOS\include\FreeRTOS.h(917,2): error :  unknown type name 'UBaseType_t'
-    UBaseType_t   uxDummy5;
-    ^~~~~~~~~~~
-FreeRTOS\include\FreeRTOS.h(930,3): error :  unknown type name 'UBaseType_t'
-     UBaseType_t  uxDummy12[ 2 ];
-     ^~~~~~~~~~~
-FreeRTOS\include\FreeRTOS.h(975,3): error :  unknown type name 'UBaseType_t'
-     UBaseType_t uxDummy2;
-     ^~~~~~~~~~~
-FreeRTOS\include\FreeRTOS.h(979,2): error :  unknown type name 'UBaseType_t'
-    UBaseType_t uxDummy4[ 3 ];
-    ^~~~~~~~~~~
-FreeRTOS\include\FreeRTOS.h(1014,2): error :  unknown type name 'TickType_t'
-    TickType_t xDummy1;
-    ^~~~~~~~~~
-FreeRTOS\include\FreeRTOS.h(1045,2): error :  unknown type name 'TickType_t'
-    TickType_t   xDummy3;
-    ^~~~~~~~~~
-FreeRTOS\include\FreeRTOS.h(1046,2): error :  unknown type name 'UBaseType_t'
-    UBaseType_t   uxDummy4;
-    ^~~~~~~~~~~
-FreeRTOS\include\task.h(1711,1): error :  unknown type name 'BaseType_t'
-   BaseType_t xTaskGenericNotify( TaskHandle_t xTaskToNotify, uint32_t ulValue, eNotifyAction eAction, uint32_t *pulPreviousNotificationValue ) PRIVILEGED_FUNCTION;
-   ^~~~~~~~~~
-FreeRTOS\include\task.h(1802,1): error :  unknown type name 'BaseType_t'
-   BaseType_t xTaskGenericNotifyFromISR( TaskHandle_t xTaskToNotify, uint32_t ulValue, eNotifyAction eAction, uint32_t *pulPreviousNotificationValue, BaseType_t *pxHigherPriorityTaskWoken ) PRIVILEGED_FUNCTION;
-   ^~~~~~~~~~
-FreeRTOS\include\task.h(1802,148): error :  unknown type name 'BaseType_t'
-   BaseType_t xTaskGenericNotifyFromISR( TaskHandle_t xTaskToNotify, uint32_t ulValue, eNotifyAction eAction, uint32_t *pulPreviousNotificationValue, BaseType_t *pxHigherPriorityTaskWoken ) PRIVILEGED_FUNCTION;
-                                                                                                                                                      ^~~~~~~~~~
-FreeRTOS\include\task.h(1879,1): error :  unknown type name 'BaseType_t'
-   BaseType_t xTaskNotifyWait( uint32_t ulBitsToClearOnEntry, uint32_t ulBitsToClearOnExit, uint32_t *pulNotificationValue, TickType_t xTicksToWait ) PRIVILEGED_FUNCTION;
-   ^~~~~~~~~~
-FreeRTOS\include\task.h(1879,122): error :  unknown type name 'TickType_t'
-   BaseType_t xTaskNotifyWait( uint32_t ulBitsToClearOnEntry, uint32_t ulBitsToClearOnExit, uint32_t *pulNotificationValue, TickType_t xTicksToWait ) PRIVILEGED_FUNCTION;
-                                                                                                                            ^~~~~~~~~~
-FreeRTOS\include\task.h(1980,58): error :  unknown type name 'BaseType_t'
-   void vTaskNotifyGiveFromISR( TaskHandle_t xTaskToNotify, BaseType_t *pxHigherPriorityTaskWoken ) PRIVILEGED_FUNCTION;
-                                                            ^~~~~~~~~~
-FreeRTOS\include\task.h(2049,28): error :  unknown type name 'BaseType_t'
-   uint32_t ulTaskNotifyTake( BaseType_t xClearCountOnExit, TickType_t xTicksToWait ) PRIVILEGED_FUNCTION;
-                              ^~~~~~~~~~
-FreeRTOS\include\task.h(2049,58): error :  unknown type name 'TickType_t'
-   uint32_t ulTaskNotifyTake( BaseType_t xClearCountOnExit, TickType_t xTicksToWait ) PRIVILEGED_FUNCTION;
-                                                            ^~~~~~~~~~
-FreeRTOS\include\task.h(2065,1): error :  unknown type name 'BaseType_t'
-   BaseType_t xTaskNotifyStateClear( TaskHandle_t xTask );
-   ^~~~~~~~~~
-FreeRTOS\include\task.h(2086,1): error :  unknown type name 'BaseType_t'
-   BaseType_t xTaskIncrementTick( void ) PRIVILEGED_FUNCTION;
-   ^~~~~~~~~~
-FreeRTOS\include\task.h(2119,63): error :  unknown type name 'TickType_t'
-   void vTaskPlaceOnEventList( List_t * const pxEventList, const TickType_t xTicksToWait ) PRIVILEGED_FUNCTION;
-                                                                 ^~~~~~~~~~
-FreeRTOS\include\task.h(2120,66): error :  unknown type name 'TickType_t'
-   void vTaskPlaceOnUnorderedEventList( List_t * pxEventList, const TickType_t xItemValue, const TickType_t xTicksToWait ) PRIVILEGED_FUNCTION;
-                                                                    ^~~~~~~~~~
-FreeRTOS\include\task.h(2120,95): error :  unknown type name 'TickType_t'
-   void vTaskPlaceOnUnorderedEventList( List_t * pxEventList, const TickType_t xItemValue, const TickType_t xTicksToWait ) PRIVILEGED_FUNCTION;
-                                                                                                 ^~~~~~~~~~
-FreeRTOS\include\task.h(2133,67): error :  unknown type name 'TickType_t'
-   void vTaskPlaceOnEventListRestricted( List_t * const pxEventList, TickType_t xTicksToWait, const BaseType_t xWaitIndefinitely ) PRIVILEGED_FUNCTION;
-                                                                     ^~~~~~~~~~
-FreeRTOS\include\task.h(2133,98): error :  unknown type name 'BaseType_t'
-   void vTaskPlaceOnEventListRestricted( List_t * const pxEventList, TickType_t xTicksToWait, const BaseType_t xWaitIndefinitely ) PRIVILEGED_FUNCTION;
-                                                                                                    ^~~~~~~~~~
-FreeRTOS\include\task.h(2159,1): error :  unknown type name 'BaseType_t'
-   BaseType_t xTaskRemoveFromEventList( const List_t * const pxEventList ) PRIVILEGED_FUNCTION;
-   ^~~~~~~~~~
-FreeRTOS\include\task.h(2160,1): error :  unknown type name 'BaseType_t'
-   BaseType_t xTaskRemoveFromUnorderedEventList( ListItem_t * pxEventListItem, const TickType_t xItemValue ) PRIVILEGED_FUNCTION;
-   ^~~~~~~~~~
-FreeRTOS\include\task.h(2160,83): error :  unknown type name 'TickType_t'
-   BaseType_t xTaskRemoveFromUnorderedEventList( ListItem_t * pxEventListItem, const TickType_t xItemValue ) PRIVILEGED_FUNCTION;
-                                                                                     ^~~~~~~~~~
-FreeRTOS\include\task.h(2176,1): error :  unknown type name 'TickType_t'
-   TickType_t uxTaskResetEventItemValue( void ) PRIVILEGED_FUNCTION;
-   ^~~~~~~~~~
-FreeRTOS\include\task.h(2192,1): error :  unknown type name 'BaseType_t'
-   BaseType_t xTaskCheckForTimeOut( TimeOut_t * const pxTimeOut, TickType_t * const pxTicksToWait ) PRIVILEGED_FUNCTION;
-   ^~~~~~~~~~
-FreeRTOS\include\task.h(2192,63): error :  unknown type name 'TickType_t'
-   BaseType_t xTaskCheckForTimeOut( TimeOut_t * const pxTimeOut, TickType_t * const pxTicksToWait ) PRIVILEGED_FUNCTION;
-                                                                 ^~~~~~~~~~
-FreeRTOS\include\task.h(2204,1): error :  unknown type name 'BaseType_t'
-   BaseType_t xTaskGetSchedulerState( void ) PRIVILEGED_FUNCTION;
-   ^~~~~~~~~~
-FreeRTOS\include\task.h(2216,1): error :  unknown type name 'BaseType_t'
-   BaseType_t xTaskPriorityDisinherit( TaskHandle_t const pxMutexHolder ) PRIVILEGED_FUNCTION;
-   ^~~~~~~~~~
-FreeRTOS\include\task.h(2221,1): error :  unknown type name 'UBaseType_t'
-   UBaseType_t uxTaskGetTaskNumber( TaskHandle_t xTask ) PRIVILEGED_FUNCTION;
-   ^~~~~~~~~~~
-FreeRTOS\include\task.h(2227,52): error :  unknown type name 'UBaseType_t'
-   void vTaskSetTaskNumber( TaskHandle_t xTask, const UBaseType_t uxHandle ) PRIVILEGED_FUNCTION;
-                                                      ^~~~~~~~~~~
-FreeRTOS\include\task.h(2237,27): error :  unknown type name 'TickType_t'
-   void vTaskStepTick( const TickType_t xTicksToJump ) PRIVILEGED_FUNCTION;
-                             ^~~~~~~~~~
-  FreeRTOS\include\FreeRTOS.h(104):
-  UART_control.c(32):
-FreeRTOS\include\portable.h(144,2): error :  unknown type name 'StackType_t'
-    StackType_t *pxPortInitialiseStack( StackType_t *pxTopOfStack, TaskFunction_t pxCode, void *pvParameters ) PRIVILEGED_FUNCTION;
-    ^~~~~~~~~~~
-FreeRTOS\include\portable.h(144,38): error :  unknown type name 'StackType_t'
-    StackType_t *pxPortInitialiseStack( StackType_t *pxTopOfStack, TaskFunction_t pxCode, void *pvParameters ) PRIVILEGED_FUNCTION;
-                                        ^~~~~~~~~~~
-FreeRTOS\include\portable.h(181,1): error :  unknown type name 'BaseType_t'
-   BaseType_t xPortStartScheduler( void ) PRIVILEGED_FUNCTION;
-   ^~~~~~~~~~
-  UART_control.c(32):
-FreeRTOS\include\FreeRTOS.h(838): warning :  "portTICK_RATE_MS" redefined
-    #define portTICK_RATE_MS portTICK_PERIOD_MS
-   
-  FreeRTOS\include\portable.h(94):
-  FreeRTOS\include\FreeRTOS.h(104):
-  UART_control.c(32):
-  freertos\portable\gcc\arm_cm3\portmacro.h(92): note :  this is the location of the previous definition
-   #define portTICK_RATE_MS   ( ( portTickType ) 1000 / configTICK_RATE_HZ )
-   
-  UART_control.c(32):
-FreeRTOS\include\FreeRTOS.h(876,2): error :  unknown type name 'TickType_t'
-    TickType_t xDummy1;
-    ^~~~~~~~~~
-FreeRTOS\include\FreeRTOS.h(884,2): error :  unknown type name 'TickType_t'
-    TickType_t xDummy1;
-    ^~~~~~~~~~
-FreeRTOS\include\FreeRTOS.h(892,2): error :  unknown type name 'UBaseType_t'
-    UBaseType_t uxDummy1;
-    ^~~~~~~~~~~
-FreeRTOS\include\FreeRTOS.h(917,2): error :  unknown type name 'UBaseType_t'
-    UBaseType_t   uxDummy5;
-    ^~~~~~~~~~~
-FreeRTOS\include\FreeRTOS.h(930,3): error :  unknown type name 'UBaseType_t'
-     UBaseType_t  uxDummy12[ 2 ];
-     ^~~~~~~~~~~
-FreeRTOS\include\FreeRTOS.h(975,3): error :  unknown type name 'UBaseType_t'
-     UBaseType_t uxDummy2;
-     ^~~~~~~~~~~
-FreeRTOS\include\FreeRTOS.h(979,2): error :  unknown type name 'UBaseType_t'
-    UBaseType_t uxDummy4[ 3 ];
-    ^~~~~~~~~~~
-FreeRTOS\include\FreeRTOS.h(1014,2): error :  unknown type name 'TickType_t'
-    TickType_t xDummy1;
-    ^~~~~~~~~~
-FreeRTOS\include\FreeRTOS.h(1045,2): error :  unknown type name 'TickType_t'
-    TickType_t   xDummy3;
-    ^~~~~~~~~~
-FreeRTOS\include\FreeRTOS.h(1046,2): error :  unknown type name 'UBaseType_t'
-    UBaseType_t   uxDummy4;
-    ^~~~~~~~~~~
-  FreeRTOS\include\task.h(78):
-  freertos\portable\gcc\arm_cm3\port.c(60):
-FreeRTOS\include\list.h(184,22): error :  unknown type name 'TickType_t'
-    configLIST_VOLATILE TickType_t xItemValue;   /*< The value being listed.  In most cases this is used to sort the list in descending order. */
-                        ^~~~~~~~~~
-FreeRTOS\include\list.h(196,22): error :  unknown type name 'TickType_t'
-    configLIST_VOLATILE TickType_t xItemValue;
-                        ^~~~~~~~~~
-FreeRTOS\include\list.h(208,22): error :  unknown type name 'UBaseType_t'
-    configLIST_VOLATILE UBaseType_t uxNumberOfItems;
-                        ^~~~~~~~~~~
-FreeRTOS\include\list.h(446,1): error :  unknown type name 'UBaseType_t'
-   UBaseType_t uxListRemove( ListItem_t * const pxItemToRemove ) PRIVILEGED_FUNCTION;
-   ^~~~~~~~~~~
-  freertos\portable\gcc\arm_cm3\port.c(60):
-FreeRTOS\include\task.h(109,21): error :  expected declaration specifiers or '...' before '*' token
-   typedef BaseType_t (*TaskHookFunction_t)( void * );
-                       ^
-  freertos\portable\gcc\arm_cm3\port.c(60):
-FreeRTOS\include\task.h(137,2): error :  unknown type name 'BaseType_t'
-    BaseType_t xOverflowCount;
-    ^~~~~~~~~~
-FreeRTOS\include\task.h(138,2): error :  unknown type name 'TickType_t'
-    TickType_t xTimeOnEntering;
-    ^~~~~~~~~~
-FreeRTOS\include\task.h(160,2): error :  unknown type name 'UBaseType_t'
-    UBaseType_t uxPriority;
-    ^~~~~~~~~~~
-FreeRTOS\include\task.h(161,2): error :  unknown type name 'StackType_t'
-    StackType_t *puxStackBuffer;
-    ^~~~~~~~~~~
-FreeRTOS\include\task.h(171,2): error :  unknown type name 'UBaseType_t'
-    UBaseType_t xTaskNumber;  /* A number unique to the task. */
-    ^~~~~~~~~~~
-FreeRTOS\include\task.h(173,2): error :  unknown type name 'UBaseType_t'
-    UBaseType_t uxCurrentPriority; /* The priority at which the task was running (may be inherited) when the structure was populated. */
-    ^~~~~~~~~~~
-FreeRTOS\include\task.h(174,2): error :  unknown type name 'UBaseType_t'
-    UBaseType_t uxBasePriority;  /* The priority to which the task will return if the task's current priority has been inherited to avoid unbounded priority inversion when obtaining a mutex.  Only valid if configUSE_MUTEXES is defined as 1 in FreeRTOSConfig.h. */
-    ^~~~~~~~~~~
-  freertos\portable\gcc\arm_cm3\port.c(60):
-FreeRTOS\include\task.h(176,2): error :  unknown type name 'StackType_t'
-    StackType_t *pxStackBase;  /* Points to the lowest address of the task's stack area. */
-    ^~~~~~~~~~~
-FreeRTOS\include\task.h(360,2): error :  unknown type name 'BaseType_t'
-    BaseType_t xTaskCreate( TaskFunction_t pxTaskCode,
-    ^~~~~~~~~~
-FreeRTOS\include\task.h(364,8): error :  unknown type name 'UBaseType_t'
-          UBaseType_t uxPriority,
-          ^~~~~~~~~~~
-FreeRTOS\include\task.h(695,24): error :  unknown type name 'TickType_t'
-   void vTaskDelay( const TickType_t xTicksToDelay ) PRIVILEGED_FUNCTION;
-                          ^~~~~~~~~~
-FreeRTOS\include\task.h(754,23): error :  unknown type name 'TickType_t'
-   void vTaskDelayUntil( TickType_t * const pxPreviousWakeTime, const TickType_t xTimeIncrement ) PRIVILEGED_FUNCTION;
-                         ^~~~~~~~~~
-FreeRTOS\include\task.h(754,68): error :  unknown type name 'TickType_t'
-   void vTaskDelayUntil( TickType_t * const pxPreviousWakeTime, const TickType_t xTimeIncrement ) PRIVILEGED_FUNCTION;
-                                                                      ^~~~~~~~~~
-FreeRTOS\include\task.h(779,1): error :  unknown type name 'BaseType_t'
-   BaseType_t xTaskAbortDelay( TaskHandle_t xTask ) PRIVILEGED_FUNCTION;
-   ^~~~~~~~~~
-FreeRTOS\include\task.h(826,1): error :  unknown type name 'UBaseType_t'
-   UBaseType_t uxTaskPriorityGet( TaskHandle_t xTask ) PRIVILEGED_FUNCTION;
-   ^~~~~~~~~~~
-FreeRTOS\include\task.h(834,1): error :  unknown type name 'UBaseType_t'
-   UBaseType_t uxTaskPriorityGetFromISR( TaskHandle_t xTask ) PRIVILEGED_FUNCTION;
-   ^~~~~~~~~~~
-FreeRTOS\include\task.h(908,68): error :  unknown type name 'BaseType_t'
-   void vTaskGetInfo( TaskHandle_t xTask, TaskStatus_t *pxTaskStatus, BaseType_t xGetFreeStackSpace, eTaskState eState ) PRIVILEGED_FUNCTION;
-                                                                      ^~~~~~~~~~
-FreeRTOS\include\task.h(950,44): error :  unknown type name 'UBaseType_t'
-   void vTaskPrioritySet( TaskHandle_t xTask, UBaseType_t uxNewPriority ) PRIVILEGED_FUNCTION;
-                                              ^~~~~~~~~~~
-FreeRTOS\include\task.h(1079,1): error :  unknown type name 'BaseType_t'
-   BaseType_t xTaskResumeFromISR( TaskHandle_t xTaskToResume ) PRIVILEGED_FUNCTION;
-   ^~~~~~~~~~
-FreeRTOS\include\task.h(1273,1): error :  unknown type name 'BaseType_t'
-   BaseType_t xTaskResumeAll( void ) PRIVILEGED_FUNCTION;
-   ^~~~~~~~~~
-FreeRTOS\include\task.h(1288,1): error :  unknown type name 'TickType_t'
-   TickType_t xTaskGetTickCount( void ) PRIVILEGED_FUNCTION;
-   ^~~~~~~~~~
-FreeRTOS\include\task.h(1304,1): error :  unknown type name 'TickType_t'
-   TickType_t xTaskGetTickCountFromISR( void ) PRIVILEGED_FUNCTION;
-   ^~~~~~~~~~
-FreeRTOS\include\task.h(1318,1): error :  unknown type name 'UBaseType_t'
-   UBaseType_t uxTaskGetNumberOfTasks( void ) PRIVILEGED_FUNCTION;
-   ^~~~~~~~~~~
-FreeRTOS\include\task.h(1368,1): error :  unknown type name 'UBaseType_t'
-   UBaseType_t uxTaskGetStackHighWaterMark( TaskHandle_t xTask ) PRIVILEGED_FUNCTION;
-   ^~~~~~~~~~~
-FreeRTOS\include\task.h(1421,1): error :  unknown type name 'BaseType_t'
-   BaseType_t xTaskCallApplicationTaskHook( TaskHandle_t xTask, void *pvParameter ) PRIVILEGED_FUNCTION;
-   ^~~~~~~~~~
-FreeRTOS\include\task.h(1529,1): error :  unknown type name 'UBaseType_t'
-   UBaseType_t uxTaskGetSystemState( TaskStatus_t * const pxTaskStatusArray, const UBaseType_t uxArraySize, uint32_t * const pulTotalRunTime ) PRIVILEGED_FUNCTION;
-   ^~~~~~~~~~~
-FreeRTOS\include\task.h(1529,81): error :  unknown type name 'UBaseType_t'
-   UBaseType_t uxTaskGetSystemState( TaskStatus_t * const pxTaskStatusArray, const UBaseType_t uxArraySize, uint32_t * const pulTotalRunTime ) PRIVILEGED_FUNCTION;
-                                                                                   ^~~~~~~~~~~
-FreeRTOS\include\task.h(1711,1): error :  unknown type name 'BaseType_t'
-   BaseType_t xTaskGenericNotify( TaskHandle_t xTaskToNotify, uint32_t ulValue, eNotifyAction eAction, uint32_t *pulPreviousNotificationValue ) PRIVILEGED_FUNCTION;
-   ^~~~~~~~~~
-FreeRTOS\include\task.h(1802,1): error :  unknown type name 'BaseType_t'
-   BaseType_t xTaskGenericNotifyFromISR( TaskHandle_t xTaskToNotify, uint32_t ulValue, eNotifyAction eAction, uint32_t *pulPreviousNotificationValue, BaseType_t *pxHigherPriorityTaskWoken ) PRIVILEGED_FUNCTION;
-   ^~~~~~~~~~
-FreeRTOS\include\task.h(1802,148): error :  unknown type name 'BaseType_t'
-   BaseType_t xTaskGenericNotifyFromISR( TaskHandle_t xTaskToNotify, uint32_t ulValue, eNotifyAction eAction, uint32_t *pulPreviousNotificationValue, BaseType_t *pxHigherPriorityTaskWoken ) PRIVILEGED_FUNCTION;
-                                                                                                                                                      ^~~~~~~~~~
-FreeRTOS\include\task.h(1879,1): error :  unknown type name 'BaseType_t'
-   BaseType_t xTaskNotifyWait( uint32_t ulBitsToClearOnEntry, uint32_t ulBitsToClearOnExit, uint32_t *pulNotificationValue, TickType_t xTicksToWait ) PRIVILEGED_FUNCTION;
-   ^~~~~~~~~~
-  UART_control.h(22):
-  LEDHandler.c(35):
+  ErrorHandler.h(23):
+  ErrorHandler.c(22):
 FreeRTOS\include\queue.h(692,1): error :  unknown type name 'BaseType_t'
    BaseType_t xQueueGenericSend( QueueHandle_t xQueue, const void * const pvItemToQueue, TickType_t xTicksToWait, const BaseType_t xCopyPosition ) PRIVILEGED_FUNCTION;
    ^~~~~~~~~~
-FreeRTOS\include\queue.h(692,87): error :  unknown type name 'TickType_t'; did you mean 'TPI_Type'?
+FreeRTOS\include\queue.h(692,87): error :  unknown type name 'TickType_t'; did you mean 'portTickType'?
    BaseType_t xQueueGenericSend( QueueHandle_t xQueue, const void * const pvItemToQueue, TickType_t xTicksToWait, const BaseType_t xCopyPosition ) PRIVILEGED_FUNCTION;
                                                                                          ^~~~~~~~~~
-                                                                                         TPI_Type
+                                                                                         portTickType
 FreeRTOS\include\queue.h(692,118): error :  unknown type name 'BaseType_t'
    BaseType_t xQueueGenericSend( QueueHandle_t xQueue, const void * const pvItemToQueue, TickType_t xTicksToWait, const BaseType_t xCopyPosition ) PRIVILEGED_FUNCTION;
                                                                                                                         ^~~~~~~~~~
@@ -492,10 +136,10 @@ FreeRTOS\include\queue.h(821,1): error :  unknown type name 'BaseType_t'
 FreeRTOS\include\queue.h(1013,1): error :  unknown type name 'BaseType_t'
    BaseType_t xQueueGenericReceive( QueueHandle_t xQueue, void * const pvBuffer, TickType_t xTicksToWait, const BaseType_t xJustPeek ) PRIVILEGED_FUNCTION;
    ^~~~~~~~~~
-FreeRTOS\include\queue.h(1013,79): error :  unknown type name 'TickType_t'; did you mean 'TPI_Type'?
+FreeRTOS\include\queue.h(1013,79): error :  unknown type name 'TickType_t'; did you mean 'portTickType'?
    BaseType_t xQueueGenericReceive( QueueHandle_t xQueue, void * const pvBuffer, TickType_t xTicksToWait, const BaseType_t xJustPeek ) PRIVILEGED_FUNCTION;
                                                                                  ^~~~~~~~~~
-                                                                                 TPI_Type
+                                                                                 portTickType
 FreeRTOS\include\queue.h(1013,110): error :  unknown type name 'BaseType_t'
    BaseType_t xQueueGenericReceive( QueueHandle_t xQueue, void * const pvBuffer, TickType_t xTicksToWait, const BaseType_t xJustPeek ) PRIVILEGED_FUNCTION;
                                                                                                                 ^~~~~~~~~~
@@ -520,8 +164,84 @@ FreeRTOS\include\queue.h(1441,1): error :  unknown type name 'BaseType_t'
 FreeRTOS\include\queue.h(1441,53): error :  unknown type name 'BaseType_t'
    BaseType_t xQueueGiveFromISR( QueueHandle_t xQueue, BaseType_t * const pxHigherPriorityTaskWoken ) PRIVILEGED_FUNCTION;
                                                        ^~~~~~~~~~
+FreeRTOS\include\queue.h(1530,1): error :  unknown type name 'BaseType_t'
+   BaseType_t xQueueReceiveFromISR( QueueHandle_t xQueue, void * const pvBuffer, BaseType_t * const pxHigherPriorityTaskWoken ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+FreeRTOS\include\queue.h(1530,79): error :  unknown type name 'BaseType_t'
+   BaseType_t xQueueReceiveFromISR( QueueHandle_t xQueue, void * const pvBuffer, BaseType_t * const pxHigherPriorityTaskWoken ) PRIVILEGED_FUNCTION;
+                                                                                 ^~~~~~~~~~
+FreeRTOS\include\queue.h(1536,1): error :  unknown type name 'BaseType_t'
+   BaseType_t xQueueIsQueueEmptyFromISR( const QueueHandle_t xQueue ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+FreeRTOS\include\queue.h(1537,1): error :  unknown type name 'BaseType_t'
+   BaseType_t xQueueIsQueueFullFromISR( const QueueHandle_t xQueue ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+FreeRTOS\include\queue.h(1538,1): error :  unknown type name 'UBaseType_t'
+   UBaseType_t uxQueueMessagesWaitingFromISR( const QueueHandle_t xQueue ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~~
+FreeRTOS\include\queue.h(1549,1): error :  unknown type name 'BaseType_t'
+   BaseType_t xQueueCRSendFromISR( QueueHandle_t xQueue, const void *pvItemToQueue, BaseType_t xCoRoutinePreviouslyWoken );
+   ^~~~~~~~~~
+FreeRTOS\include\queue.h(1549,82): error :  unknown type name 'BaseType_t'
+   BaseType_t xQueueCRSendFromISR( QueueHandle_t xQueue, const void *pvItemToQueue, BaseType_t xCoRoutinePreviouslyWoken );
+                                                                                    ^~~~~~~~~~
+FreeRTOS\include\queue.h(1550,1): error :  unknown type name 'BaseType_t'
+   BaseType_t xQueueCRReceiveFromISR( QueueHandle_t xQueue, void *pvBuffer, BaseType_t *pxTaskWoken );
+   ^~~~~~~~~~
+FreeRTOS\include\queue.h(1550,74): error :  unknown type name 'BaseType_t'
+   BaseType_t xQueueCRReceiveFromISR( QueueHandle_t xQueue, void *pvBuffer, BaseType_t *pxTaskWoken );
+                                                                            ^~~~~~~~~~
+FreeRTOS\include\queue.h(1551,1): error :  unknown type name 'BaseType_t'
+   BaseType_t xQueueCRSend( QueueHandle_t xQueue, const void *pvItemToQueue, TickType_t xTicksToWait );
+   ^~~~~~~~~~
+FreeRTOS\include\queue.h(1551,75): error :  unknown type name 'TickType_t'; did you mean 'portTickType'?
+   BaseType_t xQueueCRSend( QueueHandle_t xQueue, const void *pvItemToQueue, TickType_t xTicksToWait );
+                                                                             ^~~~~~~~~~
+                                                                             portTickType
+FreeRTOS\include\queue.h(1552,1): error :  unknown type name 'BaseType_t'
+   BaseType_t xQueueCRReceive( QueueHandle_t xQueue, void *pvBuffer, TickType_t xTicksToWait );
+   ^~~~~~~~~~
+FreeRTOS\include\queue.h(1552,67): error :  unknown type name 'TickType_t'; did you mean 'portTickType'?
+   BaseType_t xQueueCRReceive( QueueHandle_t xQueue, void *pvBuffer, TickType_t xTicksToWait );
+                                                                     ^~~~~~~~~~
+                                                                     portTickType
+FreeRTOS\include\queue.h(1561,52): error :  unknown type name 'UBaseType_t'
+   QueueHandle_t xQueueCreateCountingSemaphore( const UBaseType_t uxMaxCount, const UBaseType_t uxInitialCount ) PRIVILEGED_FUNCTION;
+                                                      ^~~~~~~~~~~
+FreeRTOS\include\queue.h(1561,82): error :  unknown type name 'UBaseType_t'
+   QueueHandle_t xQueueCreateCountingSemaphore( const UBaseType_t uxMaxCount, const UBaseType_t uxInitialCount ) PRIVILEGED_FUNCTION;
+                                                                                    ^~~~~~~~~~~
+FreeRTOS\include\queue.h(1562,58): error :  unknown type name 'UBaseType_t'
+   QueueHandle_t xQueueCreateCountingSemaphoreStatic( const UBaseType_t uxMaxCount, const UBaseType_t uxInitialCount, StaticQueue_t *pxStaticQueue ) PRIVILEGED_FUNCTION;
+                                                            ^~~~~~~~~~~
+FreeRTOS\include\queue.h(1562,88): error :  unknown type name 'UBaseType_t'
+   QueueHandle_t xQueueCreateCountingSemaphoreStatic( const UBaseType_t uxMaxCount, const UBaseType_t uxInitialCount, StaticQueue_t *pxStaticQueue ) PRIVILEGED_FUNCTION;
+                                                                                          ^~~~~~~~~~~
+FreeRTOS\include\queue.h(1569,1): error :  unknown type name 'BaseType_t'
+   BaseType_t xQueueTakeMutexRecursive( QueueHandle_t xMutex, TickType_t xTicksToWait ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+FreeRTOS\include\queue.h(1569,60): error :  unknown type name 'TickType_t'; did you mean 'portTickType'?
+   BaseType_t xQueueTakeMutexRecursive( QueueHandle_t xMutex, TickType_t xTicksToWait ) PRIVILEGED_FUNCTION;
+                                                              ^~~~~~~~~~
+                                                              portTickType
+FreeRTOS\include\queue.h(1570,1): error :  unknown type name 'BaseType_t'
+   BaseType_t xQueueGiveMutexRecursive( QueueHandle_t pxMutex ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+FreeRTOS\include\queue.h(1639,43): error :  unknown type name 'UBaseType_t'
+    QueueHandle_t xQueueGenericCreate( const UBaseType_t uxQueueLength, const UBaseType_t uxItemSize, const uint8_t ucQueueType ) PRIVILEGED_FUNCTION;
+                                             ^~~~~~~~~~~
+FreeRTOS\include\queue.h(1639,76): error :  unknown type name 'UBaseType_t'
+    QueueHandle_t xQueueGenericCreate( const UBaseType_t uxQueueLength, const UBaseType_t uxItemSize, const uint8_t ucQueueType ) PRIVILEGED_FUNCTION;
+                                                                              ^~~~~~~~~~~
+FreeRTOS\include\queue.h(1699,41): error :  unknown type name 'UBaseType_t'
+   QueueSetHandle_t xQueueCreateSet( const UBaseType_t uxEventQueueLength ) PRIVILEGED_FUNCTION;
+                                           ^~~~~~~~~~~
+FreeRTOS\include\queue.h(1723,1): error :  unknown type name 'BaseType_t'
+   BaseType_t xQueueAddToSet( QueueSetMemberHandle_t xQueueOrSemaphore, QueueSetHandle_t xQueueSet ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
   FreeRTOS\include\task.h(78):
-  UART_control.c(33):
+  LEDHandler.h(25):
+  LEDHandler.c(32):
 FreeRTOS\include\list.h(184,22): error :  unknown type name 'TickType_t'
     configLIST_VOLATILE TickType_t xItemValue;   /*< The value being listed.  In most cases this is used to sort the list in descending order. */
                         ^~~~~~~~~~
@@ -531,26 +251,35 @@ FreeRTOS\include\list.h(196,22): error :  unknown type name 'TickType_t'
 FreeRTOS\include\list.h(208,22): error :  unknown type name 'UBaseType_t'
     configLIST_VOLATILE UBaseType_t uxNumberOfItems;
                         ^~~~~~~~~~~
-FreeRTOS\include\queue.h(1530,1): error :  unknown type name 'BaseType_t'
-   BaseType_t xQueueReceiveFromISR( QueueHandle_t xQueue, void * const pvBuffer, BaseType_t * const pxHigherPriorityTaskWoken ) PRIVILEGED_FUNCTION;
+FreeRTOS\include\queue.h(1742,1): error :  unknown type name 'BaseType_t'
+   BaseType_t xQueueRemoveFromSet( QueueSetMemberHandle_t xQueueOrSemaphore, QueueSetHandle_t xQueueSet ) PRIVILEGED_FUNCTION;
    ^~~~~~~~~~
-FreeRTOS\include\queue.h(1530,79): error :  unknown type name 'BaseType_t'
-   BaseType_t xQueueReceiveFromISR( QueueHandle_t xQueue, void * const pvBuffer, BaseType_t * const pxHigherPriorityTaskWoken ) PRIVILEGED_FUNCTION;
+FreeRTOS\include\queue.h(1778,79): error :  unknown type name 'TickType_t'
+   QueueSetMemberHandle_t xQueueSelectFromSet( QueueSetHandle_t xQueueSet, const TickType_t xTicksToWait ) PRIVILEGED_FUNCTION;
                                                                                  ^~~~~~~~~~
 FreeRTOS\include\list.h(446,1): error :  unknown type name 'UBaseType_t'
    UBaseType_t uxListRemove( ListItem_t * const pxItemToRemove ) PRIVILEGED_FUNCTION;
    ^~~~~~~~~~~
-  UART_control.c(33):
+FreeRTOS\include\queue.h(1786,60): error :  unknown type name 'TickType_t'; did you mean 'portTickType'?
+   void vQueueWaitForMessageRestricted( QueueHandle_t xQueue, TickType_t xTicksToWait, const BaseType_t xWaitIndefinitely ) PRIVILEGED_FUNCTION;
+                                                              ^~~~~~~~~~
+                                                              portTickType
+FreeRTOS\include\queue.h(1786,91): error :  unknown type name 'BaseType_t'
+   void vQueueWaitForMessageRestricted( QueueHandle_t xQueue, TickType_t xTicksToWait, const BaseType_t xWaitIndefinitely ) PRIVILEGED_FUNCTION;
+                                                                                             ^~~~~~~~~~
+FreeRTOS\include\queue.h(1787,1): error :  unknown type name 'BaseType_t'
+   BaseType_t xQueueGenericReset( QueueHandle_t xQueue, BaseType_t xNewQueue ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+  LEDHandler.h(25):
+  LEDHandler.c(32):
 FreeRTOS\include\task.h(109,21): error :  expected declaration specifiers or '...' before '*' token
    typedef BaseType_t (*TaskHookFunction_t)( void * );
                        ^
-  UART_control.c(33):
+  LEDHandler.h(25):
+  LEDHandler.c(32):
 FreeRTOS\include\task.h(137,2): error :  unknown type name 'BaseType_t'
     BaseType_t xOverflowCount;
     ^~~~~~~~~~
-FreeRTOS\include\queue.h(1536,1): error :  unknown type name 'BaseType_t'
-   BaseType_t xQueueIsQueueEmptyFromISR( const QueueHandle_t xQueue ) PRIVILEGED_FUNCTION;
-   ^~~~~~~~~~
 FreeRTOS\include\task.h(138,2): error :  unknown type name 'TickType_t'
     TickType_t xTimeOnEntering;
     ^~~~~~~~~~
@@ -569,59 +298,284 @@ FreeRTOS\include\task.h(173,2): error :  unknown type name 'UBaseType_t'
 FreeRTOS\include\task.h(174,2): error :  unknown type name 'UBaseType_t'
     UBaseType_t uxBasePriority;  /* The priority to which the task will return if the task's current priority has been inherited to avoid unbounded priority inversion when obtaining a mutex.  Only valid if configUSE_MUTEXES is defined as 1 in FreeRTOSConfig.h. */
     ^~~~~~~~~~~
-  UART_control.c(33):
+  LEDHandler.h(25):
+  LEDHandler.c(32):
 FreeRTOS\include\task.h(176,2): error :  unknown type name 'StackType_t'
     StackType_t *pxStackBase;  /* Points to the lowest address of the task's stack area. */
     ^~~~~~~~~~~
-FreeRTOS\include\queue.h(1537,1): error :  unknown type name 'BaseType_t'
-   BaseType_t xQueueIsQueueFullFromISR( const QueueHandle_t xQueue ) PRIVILEGED_FUNCTION;
-   ^~~~~~~~~~
+FreeRTOS\include\queue.h(1787,54): error :  unknown type name 'BaseType_t'
+   BaseType_t xQueueGenericReset( QueueHandle_t xQueue, BaseType_t xNewQueue ) PRIVILEGED_FUNCTION;
+                                                        ^~~~~~~~~~
 FreeRTOS\include\task.h(360,2): error :  unknown type name 'BaseType_t'
     BaseType_t xTaskCreate( TaskFunction_t pxTaskCode,
     ^~~~~~~~~~
+FreeRTOS\include\queue.h(1788,50): error :  unknown type name 'UBaseType_t'
+   void vQueueSetQueueNumber( QueueHandle_t xQueue, UBaseType_t uxQueueNumber ) PRIVILEGED_FUNCTION;
+                                                    ^~~~~~~~~~~
 FreeRTOS\include\task.h(364,8): error :  unknown type name 'UBaseType_t'
           UBaseType_t uxPriority,
           ^~~~~~~~~~~
 FreeRTOS\include\task.h(695,24): error :  unknown type name 'TickType_t'
    void vTaskDelay( const TickType_t xTicksToDelay ) PRIVILEGED_FUNCTION;
                           ^~~~~~~~~~
-FreeRTOS\include\task.h(754,23): error :  unknown type name 'TickType_t'; did you mean 'TPI_Type'?
+FreeRTOS\include\queue.h(1789,1): error :  unknown type name 'UBaseType_t'
+   UBaseType_t uxQueueGetQueueNumber( QueueHandle_t xQueue ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~~
+FreeRTOS\include\task.h(754,23): error :  unknown type name 'TickType_t'
    void vTaskDelayUntil( TickType_t * const pxPreviousWakeTime, const TickType_t xTimeIncrement ) PRIVILEGED_FUNCTION;
                          ^~~~~~~~~~
-                         TPI_Type
 FreeRTOS\include\task.h(754,68): error :  unknown type name 'TickType_t'
    void vTaskDelayUntil( TickType_t * const pxPreviousWakeTime, const TickType_t xTimeIncrement ) PRIVILEGED_FUNCTION;
                                                                       ^~~~~~~~~~
-FreeRTOS\include\queue.h(1538,1): error :  unknown type name 'UBaseType_t'
-   UBaseType_t uxQueueMessagesWaitingFromISR( const QueueHandle_t xQueue ) PRIVILEGED_FUNCTION;
-   ^~~~~~~~~~~
 FreeRTOS\include\task.h(779,1): error :  unknown type name 'BaseType_t'
    BaseType_t xTaskAbortDelay( TaskHandle_t xTask ) PRIVILEGED_FUNCTION;
-   ^~~~~~~~~~
-FreeRTOS\include\queue.h(1549,1): error :  unknown type name 'BaseType_t'
-   BaseType_t xQueueCRSendFromISR( QueueHandle_t xQueue, const void *pvItemToQueue, BaseType_t xCoRoutinePreviouslyWoken );
    ^~~~~~~~~~
 FreeRTOS\include\task.h(826,1): error :  unknown type name 'UBaseType_t'
    UBaseType_t uxTaskPriorityGet( TaskHandle_t xTask ) PRIVILEGED_FUNCTION;
    ^~~~~~~~~~~
-FreeRTOS\include\queue.h(1549,82): error :  unknown type name 'BaseType_t'
-   BaseType_t xQueueCRSendFromISR( QueueHandle_t xQueue, const void *pvItemToQueue, BaseType_t xCoRoutinePreviouslyWoken );
-                                                                                    ^~~~~~~~~~
 FreeRTOS\include\task.h(834,1): error :  unknown type name 'UBaseType_t'
    UBaseType_t uxTaskPriorityGetFromISR( TaskHandle_t xTask ) PRIVILEGED_FUNCTION;
    ^~~~~~~~~~~
-FreeRTOS\include\queue.h(1550,1): error :  unknown type name 'BaseType_t'
-   BaseType_t xQueueCRReceiveFromISR( QueueHandle_t xQueue, void *pvBuffer, BaseType_t *pxTaskWoken );
-   ^~~~~~~~~~
 FreeRTOS\include\task.h(908,68): error :  unknown type name 'BaseType_t'
    void vTaskGetInfo( TaskHandle_t xTask, TaskStatus_t *pxTaskStatus, BaseType_t xGetFreeStackSpace, eTaskState eState ) PRIVILEGED_FUNCTION;
                                                                       ^~~~~~~~~~
-FreeRTOS\include\queue.h(1550,74): error :  unknown type name 'BaseType_t'
-   BaseType_t xQueueCRReceiveFromISR( QueueHandle_t xQueue, void *pvBuffer, BaseType_t *pxTaskWoken );
-                                                                            ^~~~~~~~~~
 FreeRTOS\include\task.h(950,44): error :  unknown type name 'UBaseType_t'
    void vTaskPrioritySet( TaskHandle_t xTask, UBaseType_t uxNewPriority ) PRIVILEGED_FUNCTION;
                                               ^~~~~~~~~~~
+FreeRTOS\include\task.h(1079,1): error :  unknown type name 'BaseType_t'
+   BaseType_t xTaskResumeFromISR( TaskHandle_t xTaskToResume ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+FreeRTOS\include\task.h(1273,1): error :  unknown type name 'BaseType_t'
+   BaseType_t xTaskResumeAll( void ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+FreeRTOS\include\task.h(1288,1): error :  unknown type name 'TickType_t'
+   TickType_t xTaskGetTickCount( void ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+  FreeRTOS\include\FreeRTOS.h(104):
+  UART_control.h(21):
+  UART_control.c(33):
+FreeRTOS\include\portable.h(144,2): error :  unknown type name 'StackType_t'
+    StackType_t *pxPortInitialiseStack( StackType_t *pxTopOfStack, TaskFunction_t pxCode, void *pvParameters ) PRIVILEGED_FUNCTION;
+    ^~~~~~~~~~~
+FreeRTOS\include\portable.h(144,38): error :  unknown type name 'StackType_t'
+    StackType_t *pxPortInitialiseStack( StackType_t *pxTopOfStack, TaskFunction_t pxCode, void *pvParameters ) PRIVILEGED_FUNCTION;
+                                        ^~~~~~~~~~~
+FreeRTOS\include\portable.h(181,1): error :  unknown type name 'BaseType_t'
+   BaseType_t xPortStartScheduler( void ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+  UART_control.h(21):
+  UART_control.c(33):
+FreeRTOS\include\FreeRTOS.h(838): warning :  "portTICK_RATE_MS" redefined
+    #define portTICK_RATE_MS portTICK_PERIOD_MS
+   
+FreeRTOS\include\task.h(1304,1): error :  unknown type name 'TickType_t'
+   TickType_t xTaskGetTickCountFromISR( void ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+  FreeRTOS\include\portable.h(94):
+  FreeRTOS\include\FreeRTOS.h(104):
+  UART_control.h(21):
+  UART_control.c(33):
+  freertos\portable\gcc\arm_cm3\portmacro.h(92): note :  this is the location of the previous definition
+   #define portTICK_RATE_MS   ( ( portTickType ) 1000 / configTICK_RATE_HZ )
+   
+  UART_control.h(21):
+  UART_control.c(33):
+FreeRTOS\include\FreeRTOS.h(876,2): error :  unknown type name 'TickType_t'
+    TickType_t xDummy1;
+    ^~~~~~~~~~
+FreeRTOS\include\FreeRTOS.h(884,2): error :  unknown type name 'TickType_t'
+    TickType_t xDummy1;
+    ^~~~~~~~~~
+FreeRTOS\include\FreeRTOS.h(892,2): error :  unknown type name 'UBaseType_t'
+    UBaseType_t uxDummy1;
+    ^~~~~~~~~~~
+FreeRTOS\include\FreeRTOS.h(917,2): error :  unknown type name 'UBaseType_t'
+    UBaseType_t   uxDummy5;
+    ^~~~~~~~~~~
+FreeRTOS\include\FreeRTOS.h(930,3): error :  unknown type name 'UBaseType_t'
+     UBaseType_t  uxDummy12[ 2 ];
+     ^~~~~~~~~~~
+FreeRTOS\include\FreeRTOS.h(975,3): error :  unknown type name 'UBaseType_t'
+     UBaseType_t uxDummy2;
+     ^~~~~~~~~~~
+FreeRTOS\include\FreeRTOS.h(979,2): error :  unknown type name 'UBaseType_t'
+    UBaseType_t uxDummy4[ 3 ];
+    ^~~~~~~~~~~
+FreeRTOS\include\FreeRTOS.h(1014,2): error :  unknown type name 'TickType_t'
+    TickType_t xDummy1;
+    ^~~~~~~~~~
+FreeRTOS\include\FreeRTOS.h(1045,2): error :  unknown type name 'TickType_t'
+    TickType_t   xDummy3;
+    ^~~~~~~~~~
+FreeRTOS\include\FreeRTOS.h(1046,2): error :  unknown type name 'UBaseType_t'
+    UBaseType_t   uxDummy4;
+    ^~~~~~~~~~~
+FreeRTOS\include\task.h(1318,1): error :  unknown type name 'UBaseType_t'
+   UBaseType_t uxTaskGetNumberOfTasks( void ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~~
+FreeRTOS\include\task.h(1368,1): error :  unknown type name 'UBaseType_t'
+   UBaseType_t uxTaskGetStackHighWaterMark( TaskHandle_t xTask ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~~
+FreeRTOS\include\task.h(1421,1): error :  unknown type name 'BaseType_t'
+   BaseType_t xTaskCallApplicationTaskHook( TaskHandle_t xTask, void *pvParameter ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+FreeRTOS\include\task.h(1529,1): error :  unknown type name 'UBaseType_t'
+   UBaseType_t uxTaskGetSystemState( TaskStatus_t * const pxTaskStatusArray, const UBaseType_t uxArraySize, uint32_t * const pulTotalRunTime ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~~
+FreeRTOS\include\task.h(1529,81): error :  unknown type name 'UBaseType_t'
+   UBaseType_t uxTaskGetSystemState( TaskStatus_t * const pxTaskStatusArray, const UBaseType_t uxArraySize, uint32_t * const pulTotalRunTime ) PRIVILEGED_FUNCTION;
+                                                                                   ^~~~~~~~~~~
+FreeRTOS\include\task.h(1711,1): error :  unknown type name 'BaseType_t'
+   BaseType_t xTaskGenericNotify( TaskHandle_t xTaskToNotify, uint32_t ulValue, eNotifyAction eAction, uint32_t *pulPreviousNotificationValue ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+FreeRTOS\include\task.h(1802,1): error :  unknown type name 'BaseType_t'
+   BaseType_t xTaskGenericNotifyFromISR( TaskHandle_t xTaskToNotify, uint32_t ulValue, eNotifyAction eAction, uint32_t *pulPreviousNotificationValue, BaseType_t *pxHigherPriorityTaskWoken ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+FreeRTOS\include\task.h(1802,148): error :  unknown type name 'BaseType_t'
+   BaseType_t xTaskGenericNotifyFromISR( TaskHandle_t xTaskToNotify, uint32_t ulValue, eNotifyAction eAction, uint32_t *pulPreviousNotificationValue, BaseType_t *pxHigherPriorityTaskWoken ) PRIVILEGED_FUNCTION;
+                                                                                                                                                      ^~~~~~~~~~
+FreeRTOS\include\task.h(1879,1): error :  unknown type name 'BaseType_t'
+   BaseType_t xTaskNotifyWait( uint32_t ulBitsToClearOnEntry, uint32_t ulBitsToClearOnExit, uint32_t *pulNotificationValue, TickType_t xTicksToWait ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+FreeRTOS\include\task.h(1879,122): error :  unknown type name 'TickType_t'
+   BaseType_t xTaskNotifyWait( uint32_t ulBitsToClearOnEntry, uint32_t ulBitsToClearOnExit, uint32_t *pulNotificationValue, TickType_t xTicksToWait ) PRIVILEGED_FUNCTION;
+                                                                                                                            ^~~~~~~~~~
+  UART_control.h(22):
+  UART_control.c(33):
+FreeRTOS\include\queue.h(692,1): error :  unknown type name 'BaseType_t'
+   BaseType_t xQueueGenericSend( QueueHandle_t xQueue, const void * const pvItemToQueue, TickType_t xTicksToWait, const BaseType_t xCopyPosition ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+FreeRTOS\include\task.h(1980,58): error :  unknown type name 'BaseType_t'
+   void vTaskNotifyGiveFromISR( TaskHandle_t xTaskToNotify, BaseType_t *pxHigherPriorityTaskWoken ) PRIVILEGED_FUNCTION;
+                                                            ^~~~~~~~~~
+FreeRTOS\include\queue.h(692,87): error :  unknown type name 'TickType_t'; did you mean 'TPI_Type'?
+   BaseType_t xQueueGenericSend( QueueHandle_t xQueue, const void * const pvItemToQueue, TickType_t xTicksToWait, const BaseType_t xCopyPosition ) PRIVILEGED_FUNCTION;
+                                                                                         ^~~~~~~~~~
+                                                                                         TPI_Type
+FreeRTOS\include\queue.h(692,118): error :  unknown type name 'BaseType_t'
+   BaseType_t xQueueGenericSend( QueueHandle_t xQueue, const void * const pvItemToQueue, TickType_t xTicksToWait, const BaseType_t xCopyPosition ) PRIVILEGED_FUNCTION;
+                                                                                                                        ^~~~~~~~~~
+FreeRTOS\include\task.h(2049,28): error :  unknown type name 'BaseType_t'
+   uint32_t ulTaskNotifyTake( BaseType_t xClearCountOnExit, TickType_t xTicksToWait ) PRIVILEGED_FUNCTION;
+                              ^~~~~~~~~~
+FreeRTOS\include\queue.h(821,1): error :  unknown type name 'BaseType_t'
+   BaseType_t xQueuePeekFromISR( QueueHandle_t xQueue, void * const pvBuffer ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+FreeRTOS\include\task.h(2049,58): error :  unknown type name 'TickType_t'
+   uint32_t ulTaskNotifyTake( BaseType_t xClearCountOnExit, TickType_t xTicksToWait ) PRIVILEGED_FUNCTION;
+                                                            ^~~~~~~~~~
+FreeRTOS\include\queue.h(1013,1): error :  unknown type name 'BaseType_t'
+   BaseType_t xQueueGenericReceive( QueueHandle_t xQueue, void * const pvBuffer, TickType_t xTicksToWait, const BaseType_t xJustPeek ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+FreeRTOS\include\task.h(2065,1): error :  unknown type name 'BaseType_t'
+   BaseType_t xTaskNotifyStateClear( TaskHandle_t xTask );
+   ^~~~~~~~~~
+FreeRTOS\include\queue.h(1013,79): error :  unknown type name 'TickType_t'; did you mean 'TPI_Type'?
+   BaseType_t xQueueGenericReceive( QueueHandle_t xQueue, void * const pvBuffer, TickType_t xTicksToWait, const BaseType_t xJustPeek ) PRIVILEGED_FUNCTION;
+                                                                                 ^~~~~~~~~~
+                                                                                 TPI_Type
+FreeRTOS\include\queue.h(1013,110): error :  unknown type name 'BaseType_t'
+   BaseType_t xQueueGenericReceive( QueueHandle_t xQueue, void * const pvBuffer, TickType_t xTicksToWait, const BaseType_t xJustPeek ) PRIVILEGED_FUNCTION;
+                                                                                                                ^~~~~~~~~~
+FreeRTOS\include\task.h(2086,1): error :  unknown type name 'BaseType_t'
+   BaseType_t xTaskIncrementTick( void ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+FreeRTOS\include\task.h(2119,63): error :  unknown type name 'TickType_t'
+   void vTaskPlaceOnEventList( List_t * const pxEventList, const TickType_t xTicksToWait ) PRIVILEGED_FUNCTION;
+                                                                 ^~~~~~~~~~
+FreeRTOS\include\task.h(2120,66): error :  unknown type name 'TickType_t'
+   void vTaskPlaceOnUnorderedEventList( List_t * pxEventList, const TickType_t xItemValue, const TickType_t xTicksToWait ) PRIVILEGED_FUNCTION;
+                                                                    ^~~~~~~~~~
+FreeRTOS\include\task.h(2120,95): error :  unknown type name 'TickType_t'
+   void vTaskPlaceOnUnorderedEventList( List_t * pxEventList, const TickType_t xItemValue, const TickType_t xTicksToWait ) PRIVILEGED_FUNCTION;
+                                                                                                 ^~~~~~~~~~
+FreeRTOS\include\queue.h(1028,1): error :  unknown type name 'UBaseType_t'
+   UBaseType_t uxQueueMessagesWaiting( const QueueHandle_t xQueue ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~~
+FreeRTOS\include\task.h(2133,67): error :  unknown type name 'TickType_t'
+   void vTaskPlaceOnEventListRestricted( List_t * const pxEventList, TickType_t xTicksToWait, const BaseType_t xWaitIndefinitely ) PRIVILEGED_FUNCTION;
+                                                                     ^~~~~~~~~~
+FreeRTOS\include\task.h(2133,98): error :  unknown type name 'BaseType_t'
+   void vTaskPlaceOnEventListRestricted( List_t * const pxEventList, TickType_t xTicksToWait, const BaseType_t xWaitIndefinitely ) PRIVILEGED_FUNCTION;
+                                                                                                    ^~~~~~~~~~
+FreeRTOS\include\queue.h(1045,1): error :  unknown type name 'UBaseType_t'
+   UBaseType_t uxQueueSpacesAvailable( const QueueHandle_t xQueue ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~~
+FreeRTOS\include\task.h(2159,1): error :  unknown type name 'BaseType_t'
+   BaseType_t xTaskRemoveFromEventList( const List_t * const pxEventList ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+FreeRTOS\include\queue.h(1440,1): error :  unknown type name 'BaseType_t'
+   BaseType_t xQueueGenericSendFromISR( QueueHandle_t xQueue, const void * const pvItemToQueue, BaseType_t * const pxHigherPriorityTaskWoken, const BaseType_t xCopyPosition ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+FreeRTOS\include\task.h(2160,1): error :  unknown type name 'BaseType_t'
+   BaseType_t xTaskRemoveFromUnorderedEventList( ListItem_t * pxEventListItem, const TickType_t xItemValue ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+FreeRTOS\include\task.h(2160,83): error :  unknown type name 'TickType_t'
+   BaseType_t xTaskRemoveFromUnorderedEventList( ListItem_t * pxEventListItem, const TickType_t xItemValue ) PRIVILEGED_FUNCTION;
+                                                                                     ^~~~~~~~~~
+FreeRTOS\include\queue.h(1440,94): error :  unknown type name 'BaseType_t'
+   BaseType_t xQueueGenericSendFromISR( QueueHandle_t xQueue, const void * const pvItemToQueue, BaseType_t * const pxHigherPriorityTaskWoken, const BaseType_t xCopyPosition ) PRIVILEGED_FUNCTION;
+                                                                                                ^~~~~~~~~~
+FreeRTOS\include\queue.h(1440,146): error :  unknown type name 'BaseType_t'
+   BaseType_t xQueueGenericSendFromISR( QueueHandle_t xQueue, const void * const pvItemToQueue, BaseType_t * const pxHigherPriorityTaskWoken, const BaseType_t xCopyPosition ) PRIVILEGED_FUNCTION;
+                                                                                                                                                    ^~~~~~~~~~
+FreeRTOS\include\task.h(2176,1): error :  unknown type name 'TickType_t'
+   TickType_t uxTaskResetEventItemValue( void ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+FreeRTOS\include\task.h(2192,1): error :  unknown type name 'BaseType_t'
+   BaseType_t xTaskCheckForTimeOut( TimeOut_t * const pxTimeOut, TickType_t * const pxTicksToWait ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+FreeRTOS\include\queue.h(1441,1): error :  unknown type name 'BaseType_t'
+   BaseType_t xQueueGiveFromISR( QueueHandle_t xQueue, BaseType_t * const pxHigherPriorityTaskWoken ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+FreeRTOS\include\task.h(2192,63): error :  unknown type name 'TickType_t'
+   BaseType_t xTaskCheckForTimeOut( TimeOut_t * const pxTimeOut, TickType_t * const pxTicksToWait ) PRIVILEGED_FUNCTION;
+                                                                 ^~~~~~~~~~
+FreeRTOS\include\queue.h(1441,53): error :  unknown type name 'BaseType_t'
+   BaseType_t xQueueGiveFromISR( QueueHandle_t xQueue, BaseType_t * const pxHigherPriorityTaskWoken ) PRIVILEGED_FUNCTION;
+                                                       ^~~~~~~~~~
+FreeRTOS\include\task.h(2204,1): error :  unknown type name 'BaseType_t'
+   BaseType_t xTaskGetSchedulerState( void ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+FreeRTOS\include\queue.h(1530,1): error :  unknown type name 'BaseType_t'
+   BaseType_t xQueueReceiveFromISR( QueueHandle_t xQueue, void * const pvBuffer, BaseType_t * const pxHigherPriorityTaskWoken ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+FreeRTOS\include\task.h(2216,1): error :  unknown type name 'BaseType_t'
+   BaseType_t xTaskPriorityDisinherit( TaskHandle_t const pxMutexHolder ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+FreeRTOS\include\queue.h(1530,79): error :  unknown type name 'BaseType_t'
+   BaseType_t xQueueReceiveFromISR( QueueHandle_t xQueue, void * const pvBuffer, BaseType_t * const pxHigherPriorityTaskWoken ) PRIVILEGED_FUNCTION;
+                                                                                 ^~~~~~~~~~
+FreeRTOS\include\task.h(2221,1): error :  unknown type name 'UBaseType_t'
+   UBaseType_t uxTaskGetTaskNumber( TaskHandle_t xTask ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~~
+FreeRTOS\include\task.h(2227,52): error :  unknown type name 'UBaseType_t'
+   void vTaskSetTaskNumber( TaskHandle_t xTask, const UBaseType_t uxHandle ) PRIVILEGED_FUNCTION;
+                                                      ^~~~~~~~~~~
+FreeRTOS\include\task.h(2237,27): error :  unknown type name 'TickType_t'
+   void vTaskStepTick( const TickType_t xTicksToJump ) PRIVILEGED_FUNCTION;
+                             ^~~~~~~~~~
+FreeRTOS\include\queue.h(1536,1): error :  unknown type name 'BaseType_t'
+   BaseType_t xQueueIsQueueEmptyFromISR( const QueueHandle_t xQueue ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+FreeRTOS\include\queue.h(1537,1): error :  unknown type name 'BaseType_t'
+   BaseType_t xQueueIsQueueFullFromISR( const QueueHandle_t xQueue ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+FreeRTOS\include\queue.h(1538,1): error :  unknown type name 'UBaseType_t'
+   UBaseType_t uxQueueMessagesWaitingFromISR( const QueueHandle_t xQueue ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~~
+FreeRTOS\include\queue.h(1549,1): error :  unknown type name 'BaseType_t'
+   BaseType_t xQueueCRSendFromISR( QueueHandle_t xQueue, const void *pvItemToQueue, BaseType_t xCoRoutinePreviouslyWoken );
+   ^~~~~~~~~~
+FreeRTOS\include\queue.h(1549,82): error :  unknown type name 'BaseType_t'
+   BaseType_t xQueueCRSendFromISR( QueueHandle_t xQueue, const void *pvItemToQueue, BaseType_t xCoRoutinePreviouslyWoken );
+                                                                                    ^~~~~~~~~~
+FreeRTOS\include\queue.h(1550,1): error :  unknown type name 'BaseType_t'
+   BaseType_t xQueueCRReceiveFromISR( QueueHandle_t xQueue, void *pvBuffer, BaseType_t *pxTaskWoken );
+   ^~~~~~~~~~
+FreeRTOS\include\queue.h(1550,74): error :  unknown type name 'BaseType_t'
+   BaseType_t xQueueCRReceiveFromISR( QueueHandle_t xQueue, void *pvBuffer, BaseType_t *pxTaskWoken );
+                                                                            ^~~~~~~~~~
 FreeRTOS\include\queue.h(1551,1): error :  unknown type name 'BaseType_t'
    BaseType_t xQueueCRSend( QueueHandle_t xQueue, const void *pvItemToQueue, TickType_t xTicksToWait );
    ^~~~~~~~~~
@@ -629,19 +583,9 @@ FreeRTOS\include\queue.h(1551,75): error :  unknown type name 'TickType_t'; did 
    BaseType_t xQueueCRSend( QueueHandle_t xQueue, const void *pvItemToQueue, TickType_t xTicksToWait );
                                                                              ^~~~~~~~~~
                                                                              TPI_Type
-FreeRTOS\include\task.h(1079,1): error :  unknown type name 'BaseType_t'
-   BaseType_t xTaskResumeFromISR( TaskHandle_t xTaskToResume ) PRIVILEGED_FUNCTION;
-   ^~~~~~~~~~
 FreeRTOS\include\queue.h(1552,1): error :  unknown type name 'BaseType_t'
-FreeRTOS\include\task.h(1273,1): error :  unknown type name 'BaseType_t'
-   BaseType_t xTaskResumeAll( void ) PRIVILEGED_FUNCTION;
    BaseType_t xQueueCRReceive( QueueHandle_t xQueue, void *pvBuffer, TickType_t xTicksToWait );
    ^~~~~~~~~~
-   ^~~~~~~~~~
-FreeRTOS\include\task.h(1288,1): error :  unknown type name 'TickType_t'; did you mean 'TPI_Type'?
-   TickType_t xTaskGetTickCount( void ) PRIVILEGED_FUNCTION;
-   ^~~~~~~~~~
-   TPI_Type
 FreeRTOS\include\queue.h(1552,67): error :  unknown type name 'TickType_t'; did you mean 'TPI_Type'?
    BaseType_t xQueueCRReceive( QueueHandle_t xQueue, void *pvBuffer, TickType_t xTicksToWait );
                                                                      ^~~~~~~~~~
@@ -658,13 +602,6 @@ FreeRTOS\include\queue.h(1562,58): error :  unknown type name 'UBaseType_t'
 FreeRTOS\include\queue.h(1562,88): error :  unknown type name 'UBaseType_t'
    QueueHandle_t xQueueCreateCountingSemaphoreStatic( const UBaseType_t uxMaxCount, const UBaseType_t uxInitialCount, StaticQueue_t *pxStaticQueue ) PRIVILEGED_FUNCTION;
                                                                                           ^~~~~~~~~~~
-FreeRTOS\include\task.h(1304,1): error :  unknown type name 'TickType_t'; did you mean 'TPI_Type'?
-   TickType_t xTaskGetTickCountFromISR( void ) PRIVILEGED_FUNCTION;
-   ^~~~~~~~~~
-   TPI_Type
-FreeRTOS\include\task.h(1318,1): error :  unknown type name 'UBaseType_t'
-   UBaseType_t uxTaskGetNumberOfTasks( void ) PRIVILEGED_FUNCTION;
-   ^~~~~~~~~~~
 FreeRTOS\include\queue.h(1569,1): error :  unknown type name 'BaseType_t'
    BaseType_t xQueueTakeMutexRecursive( QueueHandle_t xMutex, TickType_t xTicksToWait ) PRIVILEGED_FUNCTION;
    ^~~~~~~~~~
@@ -672,9 +609,6 @@ FreeRTOS\include\queue.h(1569,60): error :  unknown type name 'TickType_t'; did 
    BaseType_t xQueueTakeMutexRecursive( QueueHandle_t xMutex, TickType_t xTicksToWait ) PRIVILEGED_FUNCTION;
                                                               ^~~~~~~~~~
                                                               TPI_Type
-FreeRTOS\include\task.h(1368,1): error :  unknown type name 'UBaseType_t'
-   UBaseType_t uxTaskGetStackHighWaterMark( TaskHandle_t xTask ) PRIVILEGED_FUNCTION;
-   ^~~~~~~~~~~
 FreeRTOS\include\queue.h(1570,1): error :  unknown type name 'BaseType_t'
    BaseType_t xQueueGiveMutexRecursive( QueueHandle_t pxMutex ) PRIVILEGED_FUNCTION;
    ^~~~~~~~~~
@@ -687,27 +621,15 @@ FreeRTOS\include\queue.h(1639,76): error :  unknown type name 'UBaseType_t'
 FreeRTOS\include\queue.h(1699,41): error :  unknown type name 'UBaseType_t'
    QueueSetHandle_t xQueueCreateSet( const UBaseType_t uxEventQueueLength ) PRIVILEGED_FUNCTION;
                                            ^~~~~~~~~~~
-FreeRTOS\include\task.h(1421,1): error :  unknown type name 'BaseType_t'
-   BaseType_t xTaskCallApplicationTaskHook( TaskHandle_t xTask, void *pvParameter ) PRIVILEGED_FUNCTION;
-   ^~~~~~~~~~
 FreeRTOS\include\queue.h(1723,1): error :  unknown type name 'BaseType_t'
    BaseType_t xQueueAddToSet( QueueSetMemberHandle_t xQueueOrSemaphore, QueueSetHandle_t xQueueSet ) PRIVILEGED_FUNCTION;
    ^~~~~~~~~~
-FreeRTOS\include\task.h(1529,1): error :  unknown type name 'UBaseType_t'
-   UBaseType_t uxTaskGetSystemState( TaskStatus_t * const pxTaskStatusArray, const UBaseType_t uxArraySize, uint32_t * const pulTotalRunTime ) PRIVILEGED_FUNCTION;
-   ^~~~~~~~~~~
-FreeRTOS\include\task.h(1529,81): error :  unknown type name 'UBaseType_t'
-   UBaseType_t uxTaskGetSystemState( TaskStatus_t * const pxTaskStatusArray, const UBaseType_t uxArraySize, uint32_t * const pulTotalRunTime ) PRIVILEGED_FUNCTION;
-                                                                                   ^~~~~~~~~~~
 FreeRTOS\include\queue.h(1742,1): error :  unknown type name 'BaseType_t'
    BaseType_t xQueueRemoveFromSet( QueueSetMemberHandle_t xQueueOrSemaphore, QueueSetHandle_t xQueueSet ) PRIVILEGED_FUNCTION;
    ^~~~~~~~~~
 FreeRTOS\include\queue.h(1778,79): error :  unknown type name 'TickType_t'
    QueueSetMemberHandle_t xQueueSelectFromSet( QueueSetHandle_t xQueueSet, const TickType_t xTicksToWait ) PRIVILEGED_FUNCTION;
                                                                                  ^~~~~~~~~~
-FreeRTOS\include\task.h(1711,1): error :  unknown type name 'BaseType_t'
-   BaseType_t xTaskGenericNotify( TaskHandle_t xTaskToNotify, uint32_t ulValue, eNotifyAction eAction, uint32_t *pulPreviousNotificationValue ) PRIVILEGED_FUNCTION;
-   ^~~~~~~~~~
 FreeRTOS\include\queue.h(1786,60): error :  unknown type name 'TickType_t'; did you mean 'TPI_Type'?
    void vQueueWaitForMessageRestricted( QueueHandle_t xQueue, TickType_t xTicksToWait, const BaseType_t xWaitIndefinitely ) PRIVILEGED_FUNCTION;
                                                               ^~~~~~~~~~
@@ -715,24 +637,572 @@ FreeRTOS\include\queue.h(1786,60): error :  unknown type name 'TickType_t'; did 
 FreeRTOS\include\queue.h(1786,91): error :  unknown type name 'BaseType_t'
    void vQueueWaitForMessageRestricted( QueueHandle_t xQueue, TickType_t xTicksToWait, const BaseType_t xWaitIndefinitely ) PRIVILEGED_FUNCTION;
                                                                                              ^~~~~~~~~~
-FreeRTOS\include\task.h(1802,1): error :  unknown type name 'BaseType_t'
-   BaseType_t xTaskGenericNotifyFromISR( TaskHandle_t xTaskToNotify, uint32_t ulValue, eNotifyAction eAction, uint32_t *pulPreviousNotificationValue, BaseType_t *pxHigherPriorityTaskWoken ) PRIVILEGED_FUNCTION;
-   ^~~~~~~~~~
 FreeRTOS\include\queue.h(1787,1): error :  unknown type name 'BaseType_t'
    BaseType_t xQueueGenericReset( QueueHandle_t xQueue, BaseType_t xNewQueue ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+FreeRTOS\include\queue.h(1787,54): error :  unknown type name 'BaseType_t'
+   BaseType_t xQueueGenericReset( QueueHandle_t xQueue, BaseType_t xNewQueue ) PRIVILEGED_FUNCTION;
+                                                        ^~~~~~~~~~
+FreeRTOS\include\queue.h(1788,50): error :  unknown type name 'UBaseType_t'
+   void vQueueSetQueueNumber( QueueHandle_t xQueue, UBaseType_t uxQueueNumber ) PRIVILEGED_FUNCTION;
+                                                    ^~~~~~~~~~~
+FreeRTOS\include\queue.h(1789,1): error :  unknown type name 'UBaseType_t'
+   UBaseType_t uxQueueGetQueueNumber( QueueHandle_t xQueue ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~~
+  FreeRTOS\include\task.h(78):
+  LEDHandler.h(25):
+  UART_control.c(35):
+FreeRTOS\include\list.h(184,22): error :  unknown type name 'TickType_t'
+    configLIST_VOLATILE TickType_t xItemValue;   /*< The value being listed.  In most cases this is used to sort the list in descending order. */
+                        ^~~~~~~~~~
+FreeRTOS\include\list.h(196,22): error :  unknown type name 'TickType_t'
+    configLIST_VOLATILE TickType_t xItemValue;
+                        ^~~~~~~~~~
+FreeRTOS\include\list.h(208,22): error :  unknown type name 'UBaseType_t'
+    configLIST_VOLATILE UBaseType_t uxNumberOfItems;
+                        ^~~~~~~~~~~
+FreeRTOS\include\list.h(446,1): error :  unknown type name 'UBaseType_t'
+   UBaseType_t uxListRemove( ListItem_t * const pxItemToRemove ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~~
+  UART_control.h(22):
+  LEDHandler.c(35):
+FreeRTOS\include\queue.h(692,1): error :  unknown type name 'BaseType_t'
+   BaseType_t xQueueGenericSend( QueueHandle_t xQueue, const void * const pvItemToQueue, TickType_t xTicksToWait, const BaseType_t xCopyPosition ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+  LEDHandler.h(25):
+  UART_control.c(35):
+FreeRTOS\include\task.h(109,21): error :  expected declaration specifiers or '...' before '*' token
+   typedef BaseType_t (*TaskHookFunction_t)( void * );
+                       ^
+  LEDHandler.h(25):
+  UART_control.c(35):
+FreeRTOS\include\task.h(137,2): error :  unknown type name 'BaseType_t'
+    BaseType_t xOverflowCount;
+    ^~~~~~~~~~
+FreeRTOS\include\task.h(138,2): error :  unknown type name 'TickType_t'
+    TickType_t xTimeOnEntering;
+    ^~~~~~~~~~
+FreeRTOS\include\task.h(160,2): error :  unknown type name 'UBaseType_t'
+    UBaseType_t uxPriority;
+    ^~~~~~~~~~~
+FreeRTOS\include\task.h(161,2): error :  unknown type name 'StackType_t'
+    StackType_t *puxStackBuffer;
+    ^~~~~~~~~~~
+FreeRTOS\include\task.h(171,2): error :  unknown type name 'UBaseType_t'
+    UBaseType_t xTaskNumber;  /* A number unique to the task. */
+    ^~~~~~~~~~~
+FreeRTOS\include\task.h(173,2): error :  unknown type name 'UBaseType_t'
+    UBaseType_t uxCurrentPriority; /* The priority at which the task was running (may be inherited) when the structure was populated. */
+    ^~~~~~~~~~~
+FreeRTOS\include\task.h(174,2): error :  unknown type name 'UBaseType_t'
+    UBaseType_t uxBasePriority;  /* The priority to which the task will return if the task's current priority has been inherited to avoid unbounded priority inversion when obtaining a mutex.  Only valid if configUSE_MUTEXES is defined as 1 in FreeRTOSConfig.h. */
+    ^~~~~~~~~~~
+  LEDHandler.h(25):
+  UART_control.c(35):
+FreeRTOS\include\task.h(176,2): error :  unknown type name 'StackType_t'
+    StackType_t *pxStackBase;  /* Points to the lowest address of the task's stack area. */
+    ^~~~~~~~~~~
+FreeRTOS\include\queue.h(692,87): error :  unknown type name 'TickType_t'; did you mean 'TPI_Type'?
+   BaseType_t xQueueGenericSend( QueueHandle_t xQueue, const void * const pvItemToQueue, TickType_t xTicksToWait, const BaseType_t xCopyPosition ) PRIVILEGED_FUNCTION;
+                                                                                         ^~~~~~~~~~
+                                                                                         TPI_Type
+FreeRTOS\include\queue.h(692,118): error :  unknown type name 'BaseType_t'
+   BaseType_t xQueueGenericSend( QueueHandle_t xQueue, const void * const pvItemToQueue, TickType_t xTicksToWait, const BaseType_t xCopyPosition ) PRIVILEGED_FUNCTION;
+                                                                                                                        ^~~~~~~~~~
+FreeRTOS\include\task.h(360,2): error :  unknown type name 'BaseType_t'
+    BaseType_t xTaskCreate( TaskFunction_t pxTaskCode,
+    ^~~~~~~~~~
+FreeRTOS\include\queue.h(821,1): error :  unknown type name 'BaseType_t'
+   BaseType_t xQueuePeekFromISR( QueueHandle_t xQueue, void * const pvBuffer ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+FreeRTOS\include\task.h(364,8): error :  unknown type name 'UBaseType_t'
+          UBaseType_t uxPriority,
+          ^~~~~~~~~~~
+FreeRTOS\include\task.h(695,24): error :  unknown type name 'TickType_t'
+   void vTaskDelay( const TickType_t xTicksToDelay ) PRIVILEGED_FUNCTION;
+                          ^~~~~~~~~~
+FreeRTOS\include\queue.h(1013,1): error :  unknown type name 'BaseType_t'
+   BaseType_t xQueueGenericReceive( QueueHandle_t xQueue, void * const pvBuffer, TickType_t xTicksToWait, const BaseType_t xJustPeek ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+FreeRTOS\include\task.h(754,23): error :  unknown type name 'TickType_t'; did you mean 'TPI_Type'?
+   void vTaskDelayUntil( TickType_t * const pxPreviousWakeTime, const TickType_t xTimeIncrement ) PRIVILEGED_FUNCTION;
+                         ^~~~~~~~~~
+                         TPI_Type
+FreeRTOS\include\task.h(754,68): error :  unknown type name 'TickType_t'
+   void vTaskDelayUntil( TickType_t * const pxPreviousWakeTime, const TickType_t xTimeIncrement ) PRIVILEGED_FUNCTION;
+                                                                      ^~~~~~~~~~
+FreeRTOS\include\queue.h(1013,79): error :  unknown type name 'TickType_t'; did you mean 'TPI_Type'?
+   BaseType_t xQueueGenericReceive( QueueHandle_t xQueue, void * const pvBuffer, TickType_t xTicksToWait, const BaseType_t xJustPeek ) PRIVILEGED_FUNCTION;
+                                                                                 ^~~~~~~~~~
+                                                                                 TPI_Type
+FreeRTOS\include\queue.h(1013,110): error :  unknown type name 'BaseType_t'
+   BaseType_t xQueueGenericReceive( QueueHandle_t xQueue, void * const pvBuffer, TickType_t xTicksToWait, const BaseType_t xJustPeek ) PRIVILEGED_FUNCTION;
+                                                                                                                ^~~~~~~~~~
+FreeRTOS\include\task.h(779,1): error :  unknown type name 'BaseType_t'
+   BaseType_t xTaskAbortDelay( TaskHandle_t xTask ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+FreeRTOS\include\queue.h(1028,1): error :  unknown type name 'UBaseType_t'
+   UBaseType_t uxQueueMessagesWaiting( const QueueHandle_t xQueue ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~~
+FreeRTOS\include\task.h(826,1): error :  unknown type name 'UBaseType_t'
+   UBaseType_t uxTaskPriorityGet( TaskHandle_t xTask ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~~
+FreeRTOS\include\task.h(834,1): error :  unknown type name 'UBaseType_t'
+   UBaseType_t uxTaskPriorityGetFromISR( TaskHandle_t xTask ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~~
+FreeRTOS\include\task.h(908,68): error :  unknown type name 'BaseType_t'
+   void vTaskGetInfo( TaskHandle_t xTask, TaskStatus_t *pxTaskStatus, BaseType_t xGetFreeStackSpace, eTaskState eState ) PRIVILEGED_FUNCTION;
+                                                                      ^~~~~~~~~~
+FreeRTOS\include\queue.h(1045,1): error :  unknown type name 'UBaseType_t'
+   UBaseType_t uxQueueSpacesAvailable( const QueueHandle_t xQueue ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~~
+FreeRTOS\include\queue.h(1440,1): error :  unknown type name 'BaseType_t'
+   BaseType_t xQueueGenericSendFromISR( QueueHandle_t xQueue, const void * const pvItemToQueue, BaseType_t * const pxHigherPriorityTaskWoken, const BaseType_t xCopyPosition ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+FreeRTOS\include\queue.h(1440,94): error :  unknown type name 'BaseType_t'
+   BaseType_t xQueueGenericSendFromISR( QueueHandle_t xQueue, const void * const pvItemToQueue, BaseType_t * const pxHigherPriorityTaskWoken, const BaseType_t xCopyPosition ) PRIVILEGED_FUNCTION;
+                                                                                                ^~~~~~~~~~
+FreeRTOS\include\queue.h(1440,146): error :  unknown type name 'BaseType_t'
+   BaseType_t xQueueGenericSendFromISR( QueueHandle_t xQueue, const void * const pvItemToQueue, BaseType_t * const pxHigherPriorityTaskWoken, const BaseType_t xCopyPosition ) PRIVILEGED_FUNCTION;
+                                                                                                                                                    ^~~~~~~~~~
+FreeRTOS\include\task.h(950,44): error :  unknown type name 'UBaseType_t'
+   void vTaskPrioritySet( TaskHandle_t xTask, UBaseType_t uxNewPriority ) PRIVILEGED_FUNCTION;
+                                              ^~~~~~~~~~~
+FreeRTOS\include\queue.h(1441,1): error :  unknown type name 'BaseType_t'
+   BaseType_t xQueueGiveFromISR( QueueHandle_t xQueue, BaseType_t * const pxHigherPriorityTaskWoken ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+FreeRTOS\include\task.h(1079,1): error :  unknown type name 'BaseType_t'
+   BaseType_t xTaskResumeFromISR( TaskHandle_t xTaskToResume ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+FreeRTOS\include\queue.h(1441,53): error :  unknown type name 'BaseType_t'
+   BaseType_t xQueueGiveFromISR( QueueHandle_t xQueue, BaseType_t * const pxHigherPriorityTaskWoken ) PRIVILEGED_FUNCTION;
+                                                       ^~~~~~~~~~
+FreeRTOS\include\task.h(1273,1): error :  unknown type name 'BaseType_t'
+   BaseType_t xTaskResumeAll( void ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+FreeRTOS\include\queue.h(1530,1): error :  unknown type name 'BaseType_t'
+   BaseType_t xQueueReceiveFromISR( QueueHandle_t xQueue, void * const pvBuffer, BaseType_t * const pxHigherPriorityTaskWoken ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+FreeRTOS\include\task.h(1288,1): error :  unknown type name 'TickType_t'; did you mean 'TPI_Type'?
+   TickType_t xTaskGetTickCount( void ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+   TPI_Type
+FreeRTOS\include\queue.h(1530,79): error :  unknown type name 'BaseType_t'
+   BaseType_t xQueueReceiveFromISR( QueueHandle_t xQueue, void * const pvBuffer, BaseType_t * const pxHigherPriorityTaskWoken ) PRIVILEGED_FUNCTION;
+                                                                                 ^~~~~~~~~~
+FreeRTOS\include\task.h(1304,1): error :  unknown type name 'TickType_t'; did you mean 'TPI_Type'?
+   TickType_t xTaskGetTickCountFromISR( void ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+   TPI_Type
+FreeRTOS\include\queue.h(1536,1): error :  unknown type name 'BaseType_t'
+   BaseType_t xQueueIsQueueEmptyFromISR( const QueueHandle_t xQueue ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+FreeRTOS\include\task.h(1318,1): error :  unknown type name 'UBaseType_t'
+   UBaseType_t uxTaskGetNumberOfTasks( void ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~~
+FreeRTOS\include\queue.h(1537,1): error :  unknown type name 'BaseType_t'
+   BaseType_t xQueueIsQueueFullFromISR( const QueueHandle_t xQueue ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+FreeRTOS\include\task.h(1368,1): error :  unknown type name 'UBaseType_t'
+   UBaseType_t uxTaskGetStackHighWaterMark( TaskHandle_t xTask ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~~
+FreeRTOS\include\queue.h(1538,1): error :  unknown type name 'UBaseType_t'
+   UBaseType_t uxQueueMessagesWaitingFromISR( const QueueHandle_t xQueue ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~~
+FreeRTOS\include\queue.h(1549,1): error :  unknown type name 'BaseType_t'
+   BaseType_t xQueueCRSendFromISR( QueueHandle_t xQueue, const void *pvItemToQueue, BaseType_t xCoRoutinePreviouslyWoken );
+   ^~~~~~~~~~
+FreeRTOS\include\task.h(1421,1): error :  unknown type name 'BaseType_t'
+   BaseType_t xTaskCallApplicationTaskHook( TaskHandle_t xTask, void *pvParameter ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+FreeRTOS\include\queue.h(1549,82): error :  unknown type name 'BaseType_t'
+   BaseType_t xQueueCRSendFromISR( QueueHandle_t xQueue, const void *pvItemToQueue, BaseType_t xCoRoutinePreviouslyWoken );
+                                                                                    ^~~~~~~~~~
+FreeRTOS\include\queue.h(1550,1): error :  unknown type name 'BaseType_t'
+   BaseType_t xQueueCRReceiveFromISR( QueueHandle_t xQueue, void *pvBuffer, BaseType_t *pxTaskWoken );
+   ^~~~~~~~~~
+FreeRTOS\include\queue.h(1550,74): error :  unknown type name 'BaseType_t'
+   BaseType_t xQueueCRReceiveFromISR( QueueHandle_t xQueue, void *pvBuffer, BaseType_t *pxTaskWoken );
+                                                                            ^~~~~~~~~~
+FreeRTOS\include\queue.h(1551,1): error :  unknown type name 'BaseType_t'
+   BaseType_t xQueueCRSend( QueueHandle_t xQueue, const void *pvItemToQueue, TickType_t xTicksToWait );
+   ^~~~~~~~~~
+FreeRTOS\include\queue.h(1551,75): error :  unknown type name 'TickType_t'; did you mean 'TPI_Type'?
+   BaseType_t xQueueCRSend( QueueHandle_t xQueue, const void *pvItemToQueue, TickType_t xTicksToWait );
+                                                                             ^~~~~~~~~~
+                                                                             TPI_Type
+FreeRTOS\include\queue.h(1552,1): error :  unknown type name 'BaseType_t'
+   BaseType_t xQueueCRReceive( QueueHandle_t xQueue, void *pvBuffer, TickType_t xTicksToWait );
+   ^~~~~~~~~~
+FreeRTOS\include\queue.h(1552,67): error :  unknown type name 'TickType_t'; did you mean 'TPI_Type'?
+   BaseType_t xQueueCRReceive( QueueHandle_t xQueue, void *pvBuffer, TickType_t xTicksToWait );
+                                                                     ^~~~~~~~~~
+                                                                     TPI_Type
+FreeRTOS\include\queue.h(1561,52): error :  unknown type name 'UBaseType_t'
+   QueueHandle_t xQueueCreateCountingSemaphore( const UBaseType_t uxMaxCount, const UBaseType_t uxInitialCount ) PRIVILEGED_FUNCTION;
+                                                      ^~~~~~~~~~~
+FreeRTOS\include\queue.h(1561,82): error :  unknown type name 'UBaseType_t'
+   QueueHandle_t xQueueCreateCountingSemaphore( const UBaseType_t uxMaxCount, const UBaseType_t uxInitialCount ) PRIVILEGED_FUNCTION;
+                                                                                    ^~~~~~~~~~~
+FreeRTOS\include\queue.h(1562,58): error :  unknown type name 'UBaseType_t'
+   QueueHandle_t xQueueCreateCountingSemaphoreStatic( const UBaseType_t uxMaxCount, const UBaseType_t uxInitialCount, StaticQueue_t *pxStaticQueue ) PRIVILEGED_FUNCTION;
+                                                            ^~~~~~~~~~~
+FreeRTOS\include\queue.h(1562,88): error :  unknown type name 'UBaseType_t'
+   QueueHandle_t xQueueCreateCountingSemaphoreStatic( const UBaseType_t uxMaxCount, const UBaseType_t uxInitialCount, StaticQueue_t *pxStaticQueue ) PRIVILEGED_FUNCTION;
+                                                                                          ^~~~~~~~~~~
+FreeRTOS\include\queue.h(1569,1): error :  unknown type name 'BaseType_t'
+   BaseType_t xQueueTakeMutexRecursive( QueueHandle_t xMutex, TickType_t xTicksToWait ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+FreeRTOS\include\queue.h(1569,60): error :  unknown type name 'TickType_t'; did you mean 'TPI_Type'?
+   BaseType_t xQueueTakeMutexRecursive( QueueHandle_t xMutex, TickType_t xTicksToWait ) PRIVILEGED_FUNCTION;
+                                                              ^~~~~~~~~~
+                                                              TPI_Type
+FreeRTOS\include\queue.h(1570,1): error :  unknown type name 'BaseType_t'
+   BaseType_t xQueueGiveMutexRecursive( QueueHandle_t pxMutex ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+FreeRTOS\include\queue.h(1639,43): error :  unknown type name 'UBaseType_t'
+    QueueHandle_t xQueueGenericCreate( const UBaseType_t uxQueueLength, const UBaseType_t uxItemSize, const uint8_t ucQueueType ) PRIVILEGED_FUNCTION;
+                                             ^~~~~~~~~~~
+FreeRTOS\include\queue.h(1639,76): error :  unknown type name 'UBaseType_t'
+    QueueHandle_t xQueueGenericCreate( const UBaseType_t uxQueueLength, const UBaseType_t uxItemSize, const uint8_t ucQueueType ) PRIVILEGED_FUNCTION;
+                                                                              ^~~~~~~~~~~
+FreeRTOS\include\queue.h(1699,41): error :  unknown type name 'UBaseType_t'
+   QueueSetHandle_t xQueueCreateSet( const UBaseType_t uxEventQueueLength ) PRIVILEGED_FUNCTION;
+                                           ^~~~~~~~~~~
+FreeRTOS\include\queue.h(1723,1): error :  unknown type name 'BaseType_t'
+   BaseType_t xQueueAddToSet( QueueSetMemberHandle_t xQueueOrSemaphore, QueueSetHandle_t xQueueSet ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+FreeRTOS\include\queue.h(1742,1): error :  unknown type name 'BaseType_t'
+   BaseType_t xQueueRemoveFromSet( QueueSetMemberHandle_t xQueueOrSemaphore, QueueSetHandle_t xQueueSet ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+FreeRTOS\include\queue.h(1778,79): error :  unknown type name 'TickType_t'
+   QueueSetMemberHandle_t xQueueSelectFromSet( QueueSetHandle_t xQueueSet, const TickType_t xTicksToWait ) PRIVILEGED_FUNCTION;
+                                                                                 ^~~~~~~~~~
+FreeRTOS\include\queue.h(1786,60): error :  unknown type name 'TickType_t'; did you mean 'TPI_Type'?
+   void vQueueWaitForMessageRestricted( QueueHandle_t xQueue, TickType_t xTicksToWait, const BaseType_t xWaitIndefinitely ) PRIVILEGED_FUNCTION;
+                                                              ^~~~~~~~~~
+                                                              TPI_Type
+FreeRTOS\include\queue.h(1786,91): error :  unknown type name 'BaseType_t'
+   void vQueueWaitForMessageRestricted( QueueHandle_t xQueue, TickType_t xTicksToWait, const BaseType_t xWaitIndefinitely ) PRIVILEGED_FUNCTION;
+                                                                                             ^~~~~~~~~~
+FreeRTOS\include\queue.h(1787,1): error :  unknown type name 'BaseType_t'
+   BaseType_t xQueueGenericReset( QueueHandle_t xQueue, BaseType_t xNewQueue ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+FreeRTOS\include\queue.h(1787,54): error :  unknown type name 'BaseType_t'
+   BaseType_t xQueueGenericReset( QueueHandle_t xQueue, BaseType_t xNewQueue ) PRIVILEGED_FUNCTION;
+                                                        ^~~~~~~~~~
+FreeRTOS\include\queue.h(1788,50): error :  unknown type name 'UBaseType_t'
+   void vQueueSetQueueNumber( QueueHandle_t xQueue, UBaseType_t uxQueueNumber ) PRIVILEGED_FUNCTION;
+                                                    ^~~~~~~~~~~
+FreeRTOS\include\queue.h(1789,1): error :  unknown type name 'UBaseType_t'
+   UBaseType_t uxQueueGetQueueNumber( QueueHandle_t xQueue ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~~
+  FreeRTOS\include\task.h(78):
+  ErrorHandler.c(26):
+FreeRTOS\include\list.h(184,22): error :  unknown type name 'TickType_t'
+    configLIST_VOLATILE TickType_t xItemValue;   /*< The value being listed.  In most cases this is used to sort the list in descending order. */
+                        ^~~~~~~~~~
+FreeRTOS\include\list.h(196,22): error :  unknown type name 'TickType_t'
+    configLIST_VOLATILE TickType_t xItemValue;
+                        ^~~~~~~~~~
+FreeRTOS\include\list.h(208,22): error :  unknown type name 'UBaseType_t'
+    configLIST_VOLATILE UBaseType_t uxNumberOfItems;
+                        ^~~~~~~~~~~
+FreeRTOS\include\list.h(446,1): error :  unknown type name 'UBaseType_t'
+   UBaseType_t uxListRemove( ListItem_t * const pxItemToRemove ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~~
+  ErrorHandler.c(26):
+FreeRTOS\include\task.h(109,21): error :  expected declaration specifiers or '...' before '*' token
+   typedef BaseType_t (*TaskHookFunction_t)( void * );
+                       ^
+  ErrorHandler.c(26):
+FreeRTOS\include\task.h(137,2): error :  unknown type name 'BaseType_t'
+    BaseType_t xOverflowCount;
+    ^~~~~~~~~~
+FreeRTOS\include\task.h(138,2): error :  unknown type name 'TickType_t'
+    TickType_t xTimeOnEntering;
+    ^~~~~~~~~~
+FreeRTOS\include\task.h(160,2): error :  unknown type name 'UBaseType_t'
+    UBaseType_t uxPriority;
+    ^~~~~~~~~~~
+FreeRTOS\include\task.h(161,2): error :  unknown type name 'StackType_t'
+    StackType_t *puxStackBuffer;
+    ^~~~~~~~~~~
+FreeRTOS\include\task.h(171,2): error :  unknown type name 'UBaseType_t'
+    UBaseType_t xTaskNumber;  /* A number unique to the task. */
+    ^~~~~~~~~~~
+FreeRTOS\include\task.h(173,2): error :  unknown type name 'UBaseType_t'
+    UBaseType_t uxCurrentPriority; /* The priority at which the task was running (may be inherited) when the structure was populated. */
+    ^~~~~~~~~~~
+FreeRTOS\include\task.h(174,2): error :  unknown type name 'UBaseType_t'
+    UBaseType_t uxBasePriority;  /* The priority to which the task will return if the task's current priority has been inherited to avoid unbounded priority inversion when obtaining a mutex.  Only valid if configUSE_MUTEXES is defined as 1 in FreeRTOSConfig.h. */
+    ^~~~~~~~~~~
+  ErrorHandler.c(26):
+FreeRTOS\include\task.h(176,2): error :  unknown type name 'StackType_t'
+    StackType_t *pxStackBase;  /* Points to the lowest address of the task's stack area. */
+    ^~~~~~~~~~~
+FreeRTOS\include\task.h(360,2): error :  unknown type name 'BaseType_t'
+    BaseType_t xTaskCreate( TaskFunction_t pxTaskCode,
+    ^~~~~~~~~~
+FreeRTOS\include\task.h(364,8): error :  unknown type name 'UBaseType_t'
+          UBaseType_t uxPriority,
+          ^~~~~~~~~~~
+FreeRTOS\include\task.h(695,24): error :  unknown type name 'TickType_t'
+   void vTaskDelay( const TickType_t xTicksToDelay ) PRIVILEGED_FUNCTION;
+                          ^~~~~~~~~~
+FreeRTOS\include\task.h(754,23): error :  unknown type name 'TickType_t'
+   void vTaskDelayUntil( TickType_t * const pxPreviousWakeTime, const TickType_t xTimeIncrement ) PRIVILEGED_FUNCTION;
+                         ^~~~~~~~~~
+FreeRTOS\include\task.h(754,68): error :  unknown type name 'TickType_t'
+   void vTaskDelayUntil( TickType_t * const pxPreviousWakeTime, const TickType_t xTimeIncrement ) PRIVILEGED_FUNCTION;
+                                                                      ^~~~~~~~~~
+FreeRTOS\include\task.h(779,1): error :  unknown type name 'BaseType_t'
+   BaseType_t xTaskAbortDelay( TaskHandle_t xTask ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+FreeRTOS\include\task.h(826,1): error :  unknown type name 'UBaseType_t'
+   UBaseType_t uxTaskPriorityGet( TaskHandle_t xTask ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~~
+FreeRTOS\include\task.h(834,1): error :  unknown type name 'UBaseType_t'
+   UBaseType_t uxTaskPriorityGetFromISR( TaskHandle_t xTask ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~~
+FreeRTOS\include\task.h(908,68): error :  unknown type name 'BaseType_t'
+   void vTaskGetInfo( TaskHandle_t xTask, TaskStatus_t *pxTaskStatus, BaseType_t xGetFreeStackSpace, eTaskState eState ) PRIVILEGED_FUNCTION;
+                                                                      ^~~~~~~~~~
+FreeRTOS\include\task.h(950,44): error :  unknown type name 'UBaseType_t'
+   void vTaskPrioritySet( TaskHandle_t xTask, UBaseType_t uxNewPriority ) PRIVILEGED_FUNCTION;
+                                              ^~~~~~~~~~~
+FreeRTOS\include\task.h(1079,1): error :  unknown type name 'BaseType_t'
+   BaseType_t xTaskResumeFromISR( TaskHandle_t xTaskToResume ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+FreeRTOS\include\task.h(1273,1): error :  unknown type name 'BaseType_t'
+   BaseType_t xTaskResumeAll( void ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+FreeRTOS\include\task.h(1288,1): error :  unknown type name 'TickType_t'
+   TickType_t xTaskGetTickCount( void ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+FreeRTOS\include\task.h(1304,1): error :  unknown type name 'TickType_t'
+   TickType_t xTaskGetTickCountFromISR( void ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+FreeRTOS\include\task.h(1318,1): error :  unknown type name 'UBaseType_t'
+   UBaseType_t uxTaskGetNumberOfTasks( void ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~~
+FreeRTOS\include\task.h(1368,1): error :  unknown type name 'UBaseType_t'
+   UBaseType_t uxTaskGetStackHighWaterMark( TaskHandle_t xTask ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~~
+FreeRTOS\include\task.h(1421,1): error :  unknown type name 'BaseType_t'
+   BaseType_t xTaskCallApplicationTaskHook( TaskHandle_t xTask, void *pvParameter ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+FreeRTOS\include\task.h(1529,1): error :  unknown type name 'UBaseType_t'
+   UBaseType_t uxTaskGetSystemState( TaskStatus_t * const pxTaskStatusArray, const UBaseType_t uxArraySize, uint32_t * const pulTotalRunTime ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~~
+FreeRTOS\include\task.h(1529,81): error :  unknown type name 'UBaseType_t'
+   UBaseType_t uxTaskGetSystemState( TaskStatus_t * const pxTaskStatusArray, const UBaseType_t uxArraySize, uint32_t * const pulTotalRunTime ) PRIVILEGED_FUNCTION;
+                                                                                   ^~~~~~~~~~~
+FreeRTOS\include\task.h(1711,1): error :  unknown type name 'BaseType_t'
+   BaseType_t xTaskGenericNotify( TaskHandle_t xTaskToNotify, uint32_t ulValue, eNotifyAction eAction, uint32_t *pulPreviousNotificationValue ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+FreeRTOS\include\task.h(1802,1): error :  unknown type name 'BaseType_t'
+   BaseType_t xTaskGenericNotifyFromISR( TaskHandle_t xTaskToNotify, uint32_t ulValue, eNotifyAction eAction, uint32_t *pulPreviousNotificationValue, BaseType_t *pxHigherPriorityTaskWoken ) PRIVILEGED_FUNCTION;
    ^~~~~~~~~~
 FreeRTOS\include\task.h(1802,148): error :  unknown type name 'BaseType_t'
    BaseType_t xTaskGenericNotifyFromISR( TaskHandle_t xTaskToNotify, uint32_t ulValue, eNotifyAction eAction, uint32_t *pulPreviousNotificationValue, BaseType_t *pxHigherPriorityTaskWoken ) PRIVILEGED_FUNCTION;
                                                                                                                                                       ^~~~~~~~~~
-FreeRTOS\include\queue.h(1787,54): error :  unknown type name 'BaseType_t'
-   BaseType_t xQueueGenericReset( QueueHandle_t xQueue, BaseType_t xNewQueue ) PRIVILEGED_FUNCTION;
-                                                        ^~~~~~~~~~
 FreeRTOS\include\task.h(1879,1): error :  unknown type name 'BaseType_t'
    BaseType_t xTaskNotifyWait( uint32_t ulBitsToClearOnEntry, uint32_t ulBitsToClearOnExit, uint32_t *pulNotificationValue, TickType_t xTicksToWait ) PRIVILEGED_FUNCTION;
    ^~~~~~~~~~
-FreeRTOS\include\queue.h(1788,50): error :  unknown type name 'UBaseType_t'
+FreeRTOS\include\task.h(1879,122): error :  unknown type name 'TickType_t'
+   BaseType_t xTaskNotifyWait( uint32_t ulBitsToClearOnEntry, uint32_t ulBitsToClearOnExit, uint32_t *pulNotificationValue, TickType_t xTicksToWait ) PRIVILEGED_FUNCTION;
+                                                                                                                            ^~~~~~~~~~
+FreeRTOS\include\task.h(1980,58): error :  unknown type name 'BaseType_t'
+   void vTaskNotifyGiveFromISR( TaskHandle_t xTaskToNotify, BaseType_t *pxHigherPriorityTaskWoken ) PRIVILEGED_FUNCTION;
+                                                            ^~~~~~~~~~
+FreeRTOS\include\task.h(2049,28): error :  unknown type name 'BaseType_t'
+   uint32_t ulTaskNotifyTake( BaseType_t xClearCountOnExit, TickType_t xTicksToWait ) PRIVILEGED_FUNCTION;
+                              ^~~~~~~~~~
+FreeRTOS\include\task.h(2049,58): error :  unknown type name 'TickType_t'
+   uint32_t ulTaskNotifyTake( BaseType_t xClearCountOnExit, TickType_t xTicksToWait ) PRIVILEGED_FUNCTION;
+                                                            ^~~~~~~~~~
+  UART_control.h(21):
+  main.cpp(20):
+FreeRTOS\include\FreeRTOS.h(838): warning :  "portTICK_RATE_MS" redefined
+    #define portTICK_RATE_MS portTICK_PERIOD_MS
+   
+  FreeRTOS\include\portable.h(94):
+  FreeRTOS\include\FreeRTOS.h(104):
+  UART_control.h(21):
+  main.cpp(20):
+  freertos\portable\gcc\arm_cm3\portmacro.h(92): note :  this is the location of the previous definition
+   #define portTICK_RATE_MS   ( ( portTickType ) 1000 / configTICK_RATE_HZ )
+   
+  FreeRTOS\include\FreeRTOS.h(104):
+  UART_control.h(21):
+  main.cpp(20):
+FreeRTOS\include\portable.h(144,2): error :  'StackType_t' does not name a type
+    StackType_t *pxPortInitialiseStack( StackType_t *pxTopOfStack, TaskFunction_t pxCode, void *pvParameters ) PRIVILEGED_FUNCTION;
+    ^~~~~~~~~~~
+FreeRTOS\include\portable.h(181,1): error :  'BaseType_t' does not name a type
+   BaseType_t xPortStartScheduler( void ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+  UART_control.h(21):
+  main.cpp(20):
+FreeRTOS\include\FreeRTOS.h(876,2): error :  'TickType_t' does not name a type; did you mean 'TPI_Type'?
+    TickType_t xDummy1;
+    ^~~~~~~~~~
+    TPI_Type
+FreeRTOS\include\FreeRTOS.h(884,2): error :  'TickType_t' does not name a type; did you mean 'TPI_Type'?
+    TickType_t xDummy1;
+    ^~~~~~~~~~
+    TPI_Type
+FreeRTOS\include\FreeRTOS.h(892,2): error :  'UBaseType_t' does not name a type
+    UBaseType_t uxDummy1;
+    ^~~~~~~~~~~
+FreeRTOS\include\FreeRTOS.h(917,2): error :  'UBaseType_t' does not name a type
+    UBaseType_t   uxDummy5;
+    ^~~~~~~~~~~
+FreeRTOS\include\FreeRTOS.h(930,3): error :  'UBaseType_t' does not name a type
+     UBaseType_t  uxDummy12[ 2 ];
+     ^~~~~~~~~~~
+FreeRTOS\include\FreeRTOS.h(975,3): error :  'UBaseType_t' does not name a type
+     UBaseType_t uxDummy2;
+     ^~~~~~~~~~~
+FreeRTOS\include\FreeRTOS.h(979,2): error :  'UBaseType_t' does not name a type
+    UBaseType_t uxDummy4[ 3 ];
+    ^~~~~~~~~~~
+FreeRTOS\include\FreeRTOS.h(1014,2): error :  'TickType_t' does not name a type; did you mean 'TPI_Type'?
+    TickType_t xDummy1;
+    ^~~~~~~~~~
+    TPI_Type
+FreeRTOS\include\FreeRTOS.h(1045,2): error :  'TickType_t' does not name a type; did you mean 'TPI_Type'?
+    TickType_t   xDummy3;
+    ^~~~~~~~~~
+    TPI_Type
+FreeRTOS\include\FreeRTOS.h(1046,2): error :  'UBaseType_t' does not name a type
+    UBaseType_t   uxDummy4;
+    ^~~~~~~~~~~
+  UART_control.h(22):
+  main.cpp(20):
+FreeRTOS\include\queue.h(692,1): error :  'BaseType_t' does not name a type
+   BaseType_t xQueueGenericSend( QueueHandle_t xQueue, const void * const pvItemToQueue, TickType_t xTicksToWait, const BaseType_t xCopyPosition ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+FreeRTOS\include\queue.h(821,1): error :  'BaseType_t' does not name a type
+   BaseType_t xQueuePeekFromISR( QueueHandle_t xQueue, void * const pvBuffer ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+FreeRTOS\include\queue.h(1013,1): error :  'BaseType_t' does not name a type
+   BaseType_t xQueueGenericReceive( QueueHandle_t xQueue, void * const pvBuffer, TickType_t xTicksToWait, const BaseType_t xJustPeek ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+FreeRTOS\include\queue.h(1028,1): error :  'UBaseType_t' does not name a type
+   UBaseType_t uxQueueMessagesWaiting( const QueueHandle_t xQueue ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~~
+FreeRTOS\include\queue.h(1045,1): error :  'UBaseType_t' does not name a type
+   UBaseType_t uxQueueSpacesAvailable( const QueueHandle_t xQueue ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~~
+FreeRTOS\include\queue.h(1440,1): error :  'BaseType_t' does not name a type
+   BaseType_t xQueueGenericSendFromISR( QueueHandle_t xQueue, const void * const pvItemToQueue, BaseType_t * const pxHigherPriorityTaskWoken, const BaseType_t xCopyPosition ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+FreeRTOS\include\queue.h(1441,1): error :  'BaseType_t' does not name a type
+   BaseType_t xQueueGiveFromISR( QueueHandle_t xQueue, BaseType_t * const pxHigherPriorityTaskWoken ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+FreeRTOS\include\queue.h(1530,1): error :  'BaseType_t' does not name a type
+   BaseType_t xQueueReceiveFromISR( QueueHandle_t xQueue, void * const pvBuffer, BaseType_t * const pxHigherPriorityTaskWoken ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+FreeRTOS\include\queue.h(1536,1): error :  'BaseType_t' does not name a type
+   BaseType_t xQueueIsQueueEmptyFromISR( const QueueHandle_t xQueue ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+FreeRTOS\include\queue.h(1537,1): error :  'BaseType_t' does not name a type
+   BaseType_t xQueueIsQueueFullFromISR( const QueueHandle_t xQueue ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+FreeRTOS\include\queue.h(1538,1): error :  'UBaseType_t' does not name a type
+   UBaseType_t uxQueueMessagesWaitingFromISR( const QueueHandle_t xQueue ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~~
+FreeRTOS\include\queue.h(1549,1): error :  'BaseType_t' does not name a type
+   BaseType_t xQueueCRSendFromISR( QueueHandle_t xQueue, const void *pvItemToQueue, BaseType_t xCoRoutinePreviouslyWoken );
+   ^~~~~~~~~~
+FreeRTOS\include\queue.h(1550,1): error :  'BaseType_t' does not name a type
+   BaseType_t xQueueCRReceiveFromISR( QueueHandle_t xQueue, void *pvBuffer, BaseType_t *pxTaskWoken );
+   ^~~~~~~~~~
+FreeRTOS\include\queue.h(1551,1): error :  'BaseType_t' does not name a type
+   BaseType_t xQueueCRSend( QueueHandle_t xQueue, const void *pvItemToQueue, TickType_t xTicksToWait );
+   ^~~~~~~~~~
+FreeRTOS\include\queue.h(1552,1): error :  'BaseType_t' does not name a type
+   BaseType_t xQueueCRReceive( QueueHandle_t xQueue, void *pvBuffer, TickType_t xTicksToWait );
+   ^~~~~~~~~~
+FreeRTOS\include\queue.h(1561,52): error :  'UBaseType_t' does not name a type
+   QueueHandle_t xQueueCreateCountingSemaphore( const UBaseType_t uxMaxCount, const UBaseType_t uxInitialCount ) PRIVILEGED_FUNCTION;
+                                                      ^~~~~~~~~~~
+FreeRTOS\include\queue.h(1561,82): error :  'UBaseType_t' does not name a type
+   QueueHandle_t xQueueCreateCountingSemaphore( const UBaseType_t uxMaxCount, const UBaseType_t uxInitialCount ) PRIVILEGED_FUNCTION;
+                                                                                    ^~~~~~~~~~~
+FreeRTOS\include\queue.h(1562,58): error :  'UBaseType_t' does not name a type
+   QueueHandle_t xQueueCreateCountingSemaphoreStatic( const UBaseType_t uxMaxCount, const UBaseType_t uxInitialCount, StaticQueue_t *pxStaticQueue ) PRIVILEGED_FUNCTION;
+                                                            ^~~~~~~~~~~
+FreeRTOS\include\queue.h(1562,88): error :  'UBaseType_t' does not name a type
+   QueueHandle_t xQueueCreateCountingSemaphoreStatic( const UBaseType_t uxMaxCount, const UBaseType_t uxInitialCount, StaticQueue_t *pxStaticQueue ) PRIVILEGED_FUNCTION;
+                                                                                          ^~~~~~~~~~~
+FreeRTOS\include\queue.h(1569,1): error :  'BaseType_t' does not name a type
+   BaseType_t xQueueTakeMutexRecursive( QueueHandle_t xMutex, TickType_t xTicksToWait ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+FreeRTOS\include\queue.h(1570,1): error :  'BaseType_t' does not name a type
+   BaseType_t xQueueGiveMutexRecursive( QueueHandle_t pxMutex ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+FreeRTOS\include\queue.h(1639,43): error :  'UBaseType_t' does not name a type
+    QueueHandle_t xQueueGenericCreate( const UBaseType_t uxQueueLength, const UBaseType_t uxItemSize, const uint8_t ucQueueType ) PRIVILEGED_FUNCTION;
+                                             ^~~~~~~~~~~
+FreeRTOS\include\queue.h(1639,76): error :  'UBaseType_t' does not name a type
+    QueueHandle_t xQueueGenericCreate( const UBaseType_t uxQueueLength, const UBaseType_t uxItemSize, const uint8_t ucQueueType ) PRIVILEGED_FUNCTION;
+                                                                              ^~~~~~~~~~~
+FreeRTOS\include\queue.h(1699,41): error :  'UBaseType_t' does not name a type
+   QueueSetHandle_t xQueueCreateSet( const UBaseType_t uxEventQueueLength ) PRIVILEGED_FUNCTION;
+                                           ^~~~~~~~~~~
+FreeRTOS\include\queue.h(1723,1): error :  'BaseType_t' does not name a type
+   BaseType_t xQueueAddToSet( QueueSetMemberHandle_t xQueueOrSemaphore, QueueSetHandle_t xQueueSet ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+FreeRTOS\include\queue.h(1742,1): error :  'BaseType_t' does not name a type
+   BaseType_t xQueueRemoveFromSet( QueueSetMemberHandle_t xQueueOrSemaphore, QueueSetHandle_t xQueueSet ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+FreeRTOS\include\queue.h(1778,79): error :  'TickType_t' does not name a type; did you mean 'TPI_Type'?
+   QueueSetMemberHandle_t xQueueSelectFromSet( QueueSetHandle_t xQueueSet, const TickType_t xTicksToWait ) PRIVILEGED_FUNCTION;
+                                                                                 ^~~~~~~~~~
+                                                                                 TPI_Type
+FreeRTOS\include\queue.h(1786,60): error :  'TickType_t' has not been declared
+   void vQueueWaitForMessageRestricted( QueueHandle_t xQueue, TickType_t xTicksToWait, const BaseType_t xWaitIndefinitely ) PRIVILEGED_FUNCTION;
+                                                              ^~~~~~~~~~
+FreeRTOS\include\queue.h(1786,91): error :  'BaseType_t' does not name a type
+   void vQueueWaitForMessageRestricted( QueueHandle_t xQueue, TickType_t xTicksToWait, const BaseType_t xWaitIndefinitely ) PRIVILEGED_FUNCTION;
+                                                                                             ^~~~~~~~~~
+FreeRTOS\include\queue.h(1787,1): error :  'BaseType_t' does not name a type
+   BaseType_t xQueueGenericReset( QueueHandle_t xQueue, BaseType_t xNewQueue ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+FreeRTOS\include\queue.h(1788,50): error :  'UBaseType_t' has not been declared
    void vQueueSetQueueNumber( QueueHandle_t xQueue, UBaseType_t uxQueueNumber ) PRIVILEGED_FUNCTION;
                                                     ^~~~~~~~~~~
+FreeRTOS\include\queue.h(1789,1): error :  'UBaseType_t' does not name a type
+   UBaseType_t uxQueueGetQueueNumber( QueueHandle_t xQueue ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~~
+  FreeRTOS\include\task.h(78):
+  LEDHandler.h(25):
+  main.cpp(23):
+FreeRTOS\include\list.h(184,22): error :  'TickType_t' does not name a type; did you mean 'TPI_Type'?
+    configLIST_VOLATILE TickType_t xItemValue;   /*< The value being listed.  In most cases this is used to sort the list in descending order. */
+                        ^~~~~~~~~~
+                        TPI_Type
+FreeRTOS\include\task.h(1529,1): error :  unknown type name 'UBaseType_t'
+   UBaseType_t uxTaskGetSystemState( TaskStatus_t * const pxTaskStatusArray, const UBaseType_t uxArraySize, uint32_t * const pulTotalRunTime ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~~
+FreeRTOS\include\task.h(1529,81): error :  unknown type name 'UBaseType_t'
+   UBaseType_t uxTaskGetSystemState( TaskStatus_t * const pxTaskStatusArray, const UBaseType_t uxArraySize, uint32_t * const pulTotalRunTime ) PRIVILEGED_FUNCTION;
+                                                                                   ^~~~~~~~~~~
+FreeRTOS\include\task.h(1711,1): error :  unknown type name 'BaseType_t'
+   BaseType_t xTaskGenericNotify( TaskHandle_t xTaskToNotify, uint32_t ulValue, eNotifyAction eAction, uint32_t *pulPreviousNotificationValue ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+FreeRTOS\include\task.h(1802,1): error :  unknown type name 'BaseType_t'
+   BaseType_t xTaskGenericNotifyFromISR( TaskHandle_t xTaskToNotify, uint32_t ulValue, eNotifyAction eAction, uint32_t *pulPreviousNotificationValue, BaseType_t *pxHigherPriorityTaskWoken ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+FreeRTOS\include\task.h(1802,148): error :  unknown type name 'BaseType_t'
+   BaseType_t xTaskGenericNotifyFromISR( TaskHandle_t xTaskToNotify, uint32_t ulValue, eNotifyAction eAction, uint32_t *pulPreviousNotificationValue, BaseType_t *pxHigherPriorityTaskWoken ) PRIVILEGED_FUNCTION;
+                                                                                                                                                      ^~~~~~~~~~
+FreeRTOS\include\task.h(1879,1): error :  unknown type name 'BaseType_t'
+   BaseType_t xTaskNotifyWait( uint32_t ulBitsToClearOnEntry, uint32_t ulBitsToClearOnExit, uint32_t *pulNotificationValue, TickType_t xTicksToWait ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
 FreeRTOS\include\task.h(1879,122): error :  unknown type name 'TickType_t'; did you mean 'TPI_Type'?
    BaseType_t xTaskNotifyWait( uint32_t ulBitsToClearOnEntry, uint32_t ulBitsToClearOnExit, uint32_t *pulNotificationValue, TickType_t xTicksToWait ) PRIVILEGED_FUNCTION;
                                                                                                                             ^~~~~~~~~~
@@ -750,9 +1220,6 @@ FreeRTOS\include\task.h(2049,58): error :  unknown type name 'TickType_t'; did y
 FreeRTOS\include\task.h(2065,1): error :  unknown type name 'BaseType_t'
    BaseType_t xTaskNotifyStateClear( TaskHandle_t xTask );
    ^~~~~~~~~~
-FreeRTOS\include\queue.h(1789,1): error :  unknown type name 'UBaseType_t'
-   UBaseType_t uxQueueGetQueueNumber( QueueHandle_t xQueue ) PRIVILEGED_FUNCTION;
-   ^~~~~~~~~~~
 FreeRTOS\include\task.h(2086,1): error :  unknown type name 'BaseType_t'
    BaseType_t xTaskIncrementTick( void ) PRIVILEGED_FUNCTION;
    ^~~~~~~~~~
@@ -765,60 +1232,6 @@ FreeRTOS\include\task.h(2120,66): error :  unknown type name 'TickType_t'
 FreeRTOS\include\task.h(2120,95): error :  unknown type name 'TickType_t'
    void vTaskPlaceOnUnorderedEventList( List_t * pxEventList, const TickType_t xItemValue, const TickType_t xTicksToWait ) PRIVILEGED_FUNCTION;
                                                                                                  ^~~~~~~~~~
-FreeRTOS\include\task.h(2133,67): error :  unknown type name 'TickType_t'; did you mean 'TPI_Type'?
-   void vTaskPlaceOnEventListRestricted( List_t * const pxEventList, TickType_t xTicksToWait, const BaseType_t xWaitIndefinitely ) PRIVILEGED_FUNCTION;
-                                                                     ^~~~~~~~~~
-                                                                     TPI_Type
-FreeRTOS\include\task.h(2133,98): error :  unknown type name 'BaseType_t'
-   void vTaskPlaceOnEventListRestricted( List_t * const pxEventList, TickType_t xTicksToWait, const BaseType_t xWaitIndefinitely ) PRIVILEGED_FUNCTION;
-                                                                                                    ^~~~~~~~~~
-FreeRTOS\include\task.h(2159,1): error :  unknown type name 'BaseType_t'
-   BaseType_t xTaskRemoveFromEventList( const List_t * const pxEventList ) PRIVILEGED_FUNCTION;
-   ^~~~~~~~~~
-FreeRTOS\include\task.h(2160,1): error :  unknown type name 'BaseType_t'
-   BaseType_t xTaskRemoveFromUnorderedEventList( ListItem_t * pxEventListItem, const TickType_t xItemValue ) PRIVILEGED_FUNCTION;
-   ^~~~~~~~~~
-FreeRTOS\include\task.h(2160,83): error :  unknown type name 'TickType_t'
-   BaseType_t xTaskRemoveFromUnorderedEventList( ListItem_t * pxEventListItem, const TickType_t xItemValue ) PRIVILEGED_FUNCTION;
-                                                                                     ^~~~~~~~~~
-FreeRTOS\include\task.h(2176,1): error :  unknown type name 'TickType_t'; did you mean 'TPI_Type'?
-   TickType_t uxTaskResetEventItemValue( void ) PRIVILEGED_FUNCTION;
-   ^~~~~~~~~~
-   TPI_Type
-FreeRTOS\include\task.h(2192,1): error :  unknown type name 'BaseType_t'
-   BaseType_t xTaskCheckForTimeOut( TimeOut_t * const pxTimeOut, TickType_t * const pxTicksToWait ) PRIVILEGED_FUNCTION;
-   ^~~~~~~~~~
-FreeRTOS\include\task.h(2192,63): error :  unknown type name 'TickType_t'; did you mean 'TPI_Type'?
-   BaseType_t xTaskCheckForTimeOut( TimeOut_t * const pxTimeOut, TickType_t * const pxTicksToWait ) PRIVILEGED_FUNCTION;
-                                                                 ^~~~~~~~~~
-                                                                 TPI_Type
-FreeRTOS\include\task.h(2204,1): error :  unknown type name 'BaseType_t'
-   BaseType_t xTaskGetSchedulerState( void ) PRIVILEGED_FUNCTION;
-   ^~~~~~~~~~
-FreeRTOS\include\task.h(2216,1): error :  unknown type name 'BaseType_t'
-   BaseType_t xTaskPriorityDisinherit( TaskHandle_t const pxMutexHolder ) PRIVILEGED_FUNCTION;
-   ^~~~~~~~~~
-FreeRTOS\include\task.h(2221,1): error :  unknown type name 'UBaseType_t'
-   UBaseType_t uxTaskGetTaskNumber( TaskHandle_t xTask ) PRIVILEGED_FUNCTION;
-   ^~~~~~~~~~~
-FreeRTOS\include\task.h(2227,52): error :  unknown type name 'UBaseType_t'
-   void vTaskSetTaskNumber( TaskHandle_t xTask, const UBaseType_t uxHandle ) PRIVILEGED_FUNCTION;
-                                                      ^~~~~~~~~~~
-FreeRTOS\include\task.h(2237,27): error :  unknown type name 'TickType_t'
-   void vTaskStepTick( const TickType_t xTicksToJump ) PRIVILEGED_FUNCTION;
-                             ^~~~~~~~~~
-FreeRTOS\include\task.h(1879,122): error :  unknown type name 'TickType_t'
-   BaseType_t xTaskNotifyWait( uint32_t ulBitsToClearOnEntry, uint32_t ulBitsToClearOnExit, uint32_t *pulNotificationValue, TickType_t xTicksToWait ) PRIVILEGED_FUNCTION;
-                                                                                                                            ^~~~~~~~~~
-FreeRTOS\include\task.h(1980,58): error :  unknown type name 'BaseType_t'
-   void vTaskNotifyGiveFromISR( TaskHandle_t xTaskToNotify, BaseType_t *pxHigherPriorityTaskWoken ) PRIVILEGED_FUNCTION;
-                                                            ^~~~~~~~~~
-FreeRTOS\include\task.h(2049,28): error :  unknown type name 'BaseType_t'
-   uint32_t ulTaskNotifyTake( BaseType_t xClearCountOnExit, TickType_t xTicksToWait ) PRIVILEGED_FUNCTION;
-                              ^~~~~~~~~~
-FreeRTOS\include\task.h(2049,58): error :  unknown type name 'TickType_t'
-   uint32_t ulTaskNotifyTake( BaseType_t xClearCountOnExit, TickType_t xTicksToWait ) PRIVILEGED_FUNCTION;
-                                                            ^~~~~~~~~~
 FreeRTOS\include\task.h(2065,1): error :  unknown type name 'BaseType_t'
    BaseType_t xTaskNotifyStateClear( TaskHandle_t xTask );
    ^~~~~~~~~~
@@ -873,206 +1286,385 @@ FreeRTOS\include\task.h(2227,52): error :  unknown type name 'UBaseType_t'
 FreeRTOS\include\task.h(2237,27): error :  unknown type name 'TickType_t'
    void vTaskStepTick( const TickType_t xTicksToJump ) PRIVILEGED_FUNCTION;
                              ^~~~~~~~~~
-freertos\portable\gcc\arm_cm3\port.c(168,15): error :  conflicting types for 'xPortStartScheduler'
-   portBASE_TYPE xPortStartScheduler( void )
-                 ^~~~~~~~~~~~~~~~~~~
-  FreeRTOS\include\FreeRTOS.h(104):
-  freertos\portable\gcc\arm_cm3\port.c(59):
-  FreeRTOS\include\portable.h(181,12): note :  previous declaration of 'xPortStartScheduler' was here
-   BaseType_t xPortStartScheduler( void ) PRIVILEGED_FUNCTION;
-              ^~~~~~~~~~~~~~~~~~~
-  freertos/portable/gcc/arm_cm3/port.c: In function 'xPortStartScheduler':
-freertos\portable\gcc\arm_cm3\port.c(171,2): error :  invalid type argument of unary '*' (have 'unsigned int')
-    *(portNVIC_SYSPRI2) |= portNVIC_PENDSV_PRI;
-    ^~~~~~~~~~~~~~~~~~~
-freertos\portable\gcc\arm_cm3\port.c(172,2): error :  invalid type argument of unary '*' (have 'unsigned int')
-    *(portNVIC_SYSPRI2) |= portNVIC_SYSTICK_PRI;
-    ^~~~~~~~~~~~~~~~~~~
-  freertos/portable/gcc/arm_cm3/port.c: In function 'vPortYieldFromISR':
-freertos\portable\gcc\arm_cm3\port.c(199,2): error :  invalid type argument of unary '*' (have 'unsigned int')
-    *(portNVIC_INT_CTRL) = portNVIC_PENDSVSET;
-    ^~~~~~~~~~~~~~~~~~~~
-  freertos/portable/gcc/arm_cm3/port.c: In function 'SysTick_Handler':
-freertos\portable\gcc\arm_cm3\port.c(261,3): error :  invalid type argument of unary '*' (have 'unsigned int')
-     *(portNVIC_INT_CTRL) = portNVIC_PENDSVSET;
-     ^~~~~~~~~~~~~~~~~~~~
-freertos\portable\gcc\arm_cm3\port.c(266,3): warning :  implicit declaration of function 'vTaskIncrementTick'; did you mean 'xTaskIncrementTick'? [-Wimplicit-function-declaration]
-     vTaskIncrementTick();
-     ^~~~~~~~~~~~~~~~~~
-     xTaskIncrementTick
-  freertos/portable/gcc/arm_cm3/port.c: In function 'prvSetupTimerInterrupt':
-freertos\portable\gcc\arm_cm3\port.c(279,2): error :  invalid type argument of unary '*' (have 'unsigned int')
-    *(portNVIC_SYSTICK_LOAD) = ( configCPU_CLOCK_HZ / configTICK_RATE_HZ ) - 1UL;
-    ^~~~~~~~~~~~~~~~~~~~~~~~
-  FreeRTOS\include\FreeRTOS.h(98):
-  freertos\portable\gcc\arm_cm3\port.c(59):
-FreeRTOS\FreeRTOSConfig.h(93,35): error :  'TickType_t' undeclared (first use in this function)
-   #define configTICK_RATE_HZ    ( ( TickType_t ) 1000 )
-                                     ^
-  freertos\portable\gcc\arm_cm3\port.c(279,52): note :  in expansion of macro 'configTICK_RATE_HZ'
-    *(portNVIC_SYSTICK_LOAD) = ( configCPU_CLOCK_HZ / configTICK_RATE_HZ ) - 1UL;
-                                                      ^~~~~~~~~~~~~~~~~~
-  FreeRTOS\FreeRTOSConfig.h(93,35): note :  each undeclared identifier is reported only once for each function it appears in
-   #define configTICK_RATE_HZ    ( ( TickType_t ) 1000 )
-                                     ^
-  freertos\portable\gcc\arm_cm3\port.c(279,52): note :  in expansion of macro 'configTICK_RATE_HZ'
-    *(portNVIC_SYSTICK_LOAD) = ( configCPU_CLOCK_HZ / configTICK_RATE_HZ ) - 1UL;
-                                                      ^~~~~~~~~~~~~~~~~~
-FreeRTOS\FreeRTOSConfig.h(93,48): error :  expected ')' before numeric constant
-   #define configTICK_RATE_HZ    ( ( TickType_t ) 1000 )
-                                                  ^
-  freertos\portable\gcc\arm_cm3\port.c(279,52): note :  in expansion of macro 'configTICK_RATE_HZ'
-    *(portNVIC_SYSTICK_LOAD) = ( configCPU_CLOCK_HZ / configTICK_RATE_HZ ) - 1UL;
-                                                      ^~~~~~~~~~~~~~~~~~
-freertos\portable\gcc\arm_cm3\port.c(280,2): error :  invalid type argument of unary '*' (have 'unsigned int')
-    *(portNVIC_SYSTICK_CTRL) = portNVIC_SYSTICK_CLK | portNVIC_SYSTICK_INT | portNVIC_SYSTICK_ENABLE;
-    ^~~~~~~~~~~~~~~~~~~~~~~~
-  UART_control.c(34):
-FreeRTOS\include\queue.h(692,1): error :  unknown type name 'BaseType_t'
-   BaseType_t xQueueGenericSend( QueueHandle_t xQueue, const void * const pvItemToQueue, TickType_t xTicksToWait, const BaseType_t xCopyPosition ) PRIVILEGED_FUNCTION;
-   ^~~~~~~~~~
-FreeRTOS\include\queue.h(692,87): error :  unknown type name 'TickType_t'; did you mean 'TPI_Type'?
-   BaseType_t xQueueGenericSend( QueueHandle_t xQueue, const void * const pvItemToQueue, TickType_t xTicksToWait, const BaseType_t xCopyPosition ) PRIVILEGED_FUNCTION;
-                                                                                         ^~~~~~~~~~
-                                                                                         TPI_Type
-FreeRTOS\include\queue.h(692,118): error :  unknown type name 'BaseType_t'
-   BaseType_t xQueueGenericSend( QueueHandle_t xQueue, const void * const pvItemToQueue, TickType_t xTicksToWait, const BaseType_t xCopyPosition ) PRIVILEGED_FUNCTION;
-                                                                                                                        ^~~~~~~~~~
-FreeRTOS\include\queue.h(821,1): error :  unknown type name 'BaseType_t'
-   BaseType_t xQueuePeekFromISR( QueueHandle_t xQueue, void * const pvBuffer ) PRIVILEGED_FUNCTION;
-   ^~~~~~~~~~
-FreeRTOS\include\queue.h(1013,1): error :  unknown type name 'BaseType_t'
-   BaseType_t xQueueGenericReceive( QueueHandle_t xQueue, void * const pvBuffer, TickType_t xTicksToWait, const BaseType_t xJustPeek ) PRIVILEGED_FUNCTION;
-   ^~~~~~~~~~
-FreeRTOS\include\queue.h(1013,79): error :  unknown type name 'TickType_t'; did you mean 'TPI_Type'?
-   BaseType_t xQueueGenericReceive( QueueHandle_t xQueue, void * const pvBuffer, TickType_t xTicksToWait, const BaseType_t xJustPeek ) PRIVILEGED_FUNCTION;
-                                                                                 ^~~~~~~~~~
-                                                                                 TPI_Type
-FreeRTOS\include\queue.h(1013,110): error :  unknown type name 'BaseType_t'
-   BaseType_t xQueueGenericReceive( QueueHandle_t xQueue, void * const pvBuffer, TickType_t xTicksToWait, const BaseType_t xJustPeek ) PRIVILEGED_FUNCTION;
-                                                                                                                ^~~~~~~~~~
-FreeRTOS\include\queue.h(1028,1): error :  unknown type name 'UBaseType_t'
-   UBaseType_t uxQueueMessagesWaiting( const QueueHandle_t xQueue ) PRIVILEGED_FUNCTION;
-   ^~~~~~~~~~~
-FreeRTOS\include\queue.h(1045,1): error :  unknown type name 'UBaseType_t'
-   UBaseType_t uxQueueSpacesAvailable( const QueueHandle_t xQueue ) PRIVILEGED_FUNCTION;
-   ^~~~~~~~~~~
-FreeRTOS\include\queue.h(1440,1): error :  unknown type name 'BaseType_t'
-   BaseType_t xQueueGenericSendFromISR( QueueHandle_t xQueue, const void * const pvItemToQueue, BaseType_t * const pxHigherPriorityTaskWoken, const BaseType_t xCopyPosition ) PRIVILEGED_FUNCTION;
-   ^~~~~~~~~~
-FreeRTOS\include\queue.h(1440,94): error :  unknown type name 'BaseType_t'
-   BaseType_t xQueueGenericSendFromISR( QueueHandle_t xQueue, const void * const pvItemToQueue, BaseType_t * const pxHigherPriorityTaskWoken, const BaseType_t xCopyPosition ) PRIVILEGED_FUNCTION;
-                                                                                                ^~~~~~~~~~
-FreeRTOS\include\queue.h(1440,146): error :  unknown type name 'BaseType_t'
-   BaseType_t xQueueGenericSendFromISR( QueueHandle_t xQueue, const void * const pvItemToQueue, BaseType_t * const pxHigherPriorityTaskWoken, const BaseType_t xCopyPosition ) PRIVILEGED_FUNCTION;
-                                                                                                                                                    ^~~~~~~~~~
-FreeRTOS\include\queue.h(1441,1): error :  unknown type name 'BaseType_t'
-   BaseType_t xQueueGiveFromISR( QueueHandle_t xQueue, BaseType_t * const pxHigherPriorityTaskWoken ) PRIVILEGED_FUNCTION;
-   ^~~~~~~~~~
-FreeRTOS\include\queue.h(1441,53): error :  unknown type name 'BaseType_t'
-   BaseType_t xQueueGiveFromISR( QueueHandle_t xQueue, BaseType_t * const pxHigherPriorityTaskWoken ) PRIVILEGED_FUNCTION;
-                                                       ^~~~~~~~~~
-FreeRTOS\include\queue.h(1530,1): error :  unknown type name 'BaseType_t'
-   BaseType_t xQueueReceiveFromISR( QueueHandle_t xQueue, void * const pvBuffer, BaseType_t * const pxHigherPriorityTaskWoken ) PRIVILEGED_FUNCTION;
-   ^~~~~~~~~~
-FreeRTOS\include\queue.h(1530,79): error :  unknown type name 'BaseType_t'
-   BaseType_t xQueueReceiveFromISR( QueueHandle_t xQueue, void * const pvBuffer, BaseType_t * const pxHigherPriorityTaskWoken ) PRIVILEGED_FUNCTION;
-                                                                                 ^~~~~~~~~~
-FreeRTOS\include\queue.h(1536,1): error :  unknown type name 'BaseType_t'
-   BaseType_t xQueueIsQueueEmptyFromISR( const QueueHandle_t xQueue ) PRIVILEGED_FUNCTION;
-   ^~~~~~~~~~
-FreeRTOS\include\queue.h(1537,1): error :  unknown type name 'BaseType_t'
-   BaseType_t xQueueIsQueueFullFromISR( const QueueHandle_t xQueue ) PRIVILEGED_FUNCTION;
-   ^~~~~~~~~~
-FreeRTOS\include\queue.h(1538,1): error :  unknown type name 'UBaseType_t'
-   UBaseType_t uxQueueMessagesWaitingFromISR( const QueueHandle_t xQueue ) PRIVILEGED_FUNCTION;
-   ^~~~~~~~~~~
-FreeRTOS\include\queue.h(1549,1): error :  unknown type name 'BaseType_t'
-   BaseType_t xQueueCRSendFromISR( QueueHandle_t xQueue, const void *pvItemToQueue, BaseType_t xCoRoutinePreviouslyWoken );
-   ^~~~~~~~~~
-FreeRTOS\include\queue.h(1549,82): error :  unknown type name 'BaseType_t'
-   BaseType_t xQueueCRSendFromISR( QueueHandle_t xQueue, const void *pvItemToQueue, BaseType_t xCoRoutinePreviouslyWoken );
-                                                                                    ^~~~~~~~~~
-FreeRTOS\include\queue.h(1550,1): error :  unknown type name 'BaseType_t'
-   BaseType_t xQueueCRReceiveFromISR( QueueHandle_t xQueue, void *pvBuffer, BaseType_t *pxTaskWoken );
-   ^~~~~~~~~~
-FreeRTOS\include\queue.h(1550,74): error :  unknown type name 'BaseType_t'
-   BaseType_t xQueueCRReceiveFromISR( QueueHandle_t xQueue, void *pvBuffer, BaseType_t *pxTaskWoken );
-                                                                            ^~~~~~~~~~
-FreeRTOS\include\queue.h(1551,1): error :  unknown type name 'BaseType_t'
-   BaseType_t xQueueCRSend( QueueHandle_t xQueue, const void *pvItemToQueue, TickType_t xTicksToWait );
-   ^~~~~~~~~~
-FreeRTOS\include\queue.h(1551,75): error :  unknown type name 'TickType_t'; did you mean 'TPI_Type'?
-   BaseType_t xQueueCRSend( QueueHandle_t xQueue, const void *pvItemToQueue, TickType_t xTicksToWait );
-                                                                             ^~~~~~~~~~
-                                                                             TPI_Type
-FreeRTOS\include\queue.h(1552,1): error :  unknown type name 'BaseType_t'
-   BaseType_t xQueueCRReceive( QueueHandle_t xQueue, void *pvBuffer, TickType_t xTicksToWait );
-   ^~~~~~~~~~
-FreeRTOS\include\queue.h(1552,67): error :  unknown type name 'TickType_t'; did you mean 'TPI_Type'?
-   BaseType_t xQueueCRReceive( QueueHandle_t xQueue, void *pvBuffer, TickType_t xTicksToWait );
+FreeRTOS\include\task.h(2133,67): error :  unknown type name 'TickType_t'; did you mean 'TPI_Type'?
+   void vTaskPlaceOnEventListRestricted( List_t * const pxEventList, TickType_t xTicksToWait, const BaseType_t xWaitIndefinitely ) PRIVILEGED_FUNCTION;
                                                                      ^~~~~~~~~~
                                                                      TPI_Type
-FreeRTOS\include\queue.h(1561,52): error :  unknown type name 'UBaseType_t'
-   QueueHandle_t xQueueCreateCountingSemaphore( const UBaseType_t uxMaxCount, const UBaseType_t uxInitialCount ) PRIVILEGED_FUNCTION;
-                                                      ^~~~~~~~~~~
-FreeRTOS\include\queue.h(1561,82): error :  unknown type name 'UBaseType_t'
-   QueueHandle_t xQueueCreateCountingSemaphore( const UBaseType_t uxMaxCount, const UBaseType_t uxInitialCount ) PRIVILEGED_FUNCTION;
-                                                                                    ^~~~~~~~~~~
-FreeRTOS\include\queue.h(1562,58): error :  unknown type name 'UBaseType_t'
-   QueueHandle_t xQueueCreateCountingSemaphoreStatic( const UBaseType_t uxMaxCount, const UBaseType_t uxInitialCount, StaticQueue_t *pxStaticQueue ) PRIVILEGED_FUNCTION;
-                                                            ^~~~~~~~~~~
-FreeRTOS\include\queue.h(1562,88): error :  unknown type name 'UBaseType_t'
-   QueueHandle_t xQueueCreateCountingSemaphoreStatic( const UBaseType_t uxMaxCount, const UBaseType_t uxInitialCount, StaticQueue_t *pxStaticQueue ) PRIVILEGED_FUNCTION;
-                                                                                          ^~~~~~~~~~~
-FreeRTOS\include\queue.h(1569,1): error :  unknown type name 'BaseType_t'
-   BaseType_t xQueueTakeMutexRecursive( QueueHandle_t xMutex, TickType_t xTicksToWait ) PRIVILEGED_FUNCTION;
+FreeRTOS\include\task.h(2133,98): error :  unknown type name 'BaseType_t'
+   void vTaskPlaceOnEventListRestricted( List_t * const pxEventList, TickType_t xTicksToWait, const BaseType_t xWaitIndefinitely ) PRIVILEGED_FUNCTION;
+                                                                                                    ^~~~~~~~~~
+FreeRTOS\include\list.h(196,22): error :  'TickType_t' does not name a type; did you mean 'TPI_Type'?
+    configLIST_VOLATILE TickType_t xItemValue;
+                        ^~~~~~~~~~
+                        TPI_Type
+FreeRTOS\include\task.h(2159,1): error :  unknown type name 'BaseType_t'
+   BaseType_t xTaskRemoveFromEventList( const List_t * const pxEventList ) PRIVILEGED_FUNCTION;
    ^~~~~~~~~~
-FreeRTOS\include\queue.h(1569,60): error :  unknown type name 'TickType_t'; did you mean 'TPI_Type'?
-   BaseType_t xQueueTakeMutexRecursive( QueueHandle_t xMutex, TickType_t xTicksToWait ) PRIVILEGED_FUNCTION;
-                                                              ^~~~~~~~~~
-                                                              TPI_Type
-FreeRTOS\include\queue.h(1570,1): error :  unknown type name 'BaseType_t'
-   BaseType_t xQueueGiveMutexRecursive( QueueHandle_t pxMutex ) PRIVILEGED_FUNCTION;
+FreeRTOS\include\task.h(2160,1): error :  unknown type name 'BaseType_t'
+   BaseType_t xTaskRemoveFromUnorderedEventList( ListItem_t * pxEventListItem, const TickType_t xItemValue ) PRIVILEGED_FUNCTION;
    ^~~~~~~~~~
-FreeRTOS\include\queue.h(1639,43): error :  unknown type name 'UBaseType_t'
-    QueueHandle_t xQueueGenericCreate( const UBaseType_t uxQueueLength, const UBaseType_t uxItemSize, const uint8_t ucQueueType ) PRIVILEGED_FUNCTION;
-                                             ^~~~~~~~~~~
-FreeRTOS\include\queue.h(1639,76): error :  unknown type name 'UBaseType_t'
-    QueueHandle_t xQueueGenericCreate( const UBaseType_t uxQueueLength, const UBaseType_t uxItemSize, const uint8_t ucQueueType ) PRIVILEGED_FUNCTION;
-                                                                              ^~~~~~~~~~~
-FreeRTOS\include\queue.h(1699,41): error :  unknown type name 'UBaseType_t'
-   QueueSetHandle_t xQueueCreateSet( const UBaseType_t uxEventQueueLength ) PRIVILEGED_FUNCTION;
-                                           ^~~~~~~~~~~
-FreeRTOS\include\queue.h(1723,1): error :  unknown type name 'BaseType_t'
-   BaseType_t xQueueAddToSet( QueueSetMemberHandle_t xQueueOrSemaphore, QueueSetHandle_t xQueueSet ) PRIVILEGED_FUNCTION;
+FreeRTOS\include\task.h(2160,83): error :  unknown type name 'TickType_t'
+   BaseType_t xTaskRemoveFromUnorderedEventList( ListItem_t * pxEventListItem, const TickType_t xItemValue ) PRIVILEGED_FUNCTION;
+                                                                                     ^~~~~~~~~~
+FreeRTOS\include\task.h(2176,1): error :  unknown type name 'TickType_t'; did you mean 'TPI_Type'?
+   TickType_t uxTaskResetEventItemValue( void ) PRIVILEGED_FUNCTION;
    ^~~~~~~~~~
-FreeRTOS\include\queue.h(1742,1): error :  unknown type name 'BaseType_t'
-   BaseType_t xQueueRemoveFromSet( QueueSetMemberHandle_t xQueueOrSemaphore, QueueSetHandle_t xQueueSet ) PRIVILEGED_FUNCTION;
+   TPI_Type
+FreeRTOS\include\task.h(2192,1): error :  unknown type name 'BaseType_t'
+   BaseType_t xTaskCheckForTimeOut( TimeOut_t * const pxTimeOut, TickType_t * const pxTicksToWait ) PRIVILEGED_FUNCTION;
    ^~~~~~~~~~
-FreeRTOS\include\queue.h(1778,79): error :  unknown type name 'TickType_t'
-   QueueSetMemberHandle_t xQueueSelectFromSet( QueueSetHandle_t xQueueSet, const TickType_t xTicksToWait ) PRIVILEGED_FUNCTION;
-                                                                                 ^~~~~~~~~~
-FreeRTOS\include\queue.h(1786,60): error :  unknown type name 'TickType_t'; did you mean 'TPI_Type'?
-   void vQueueWaitForMessageRestricted( QueueHandle_t xQueue, TickType_t xTicksToWait, const BaseType_t xWaitIndefinitely ) PRIVILEGED_FUNCTION;
-                                                              ^~~~~~~~~~
-                                                              TPI_Type
-FreeRTOS\include\queue.h(1786,91): error :  unknown type name 'BaseType_t'
-   void vQueueWaitForMessageRestricted( QueueHandle_t xQueue, TickType_t xTicksToWait, const BaseType_t xWaitIndefinitely ) PRIVILEGED_FUNCTION;
-                                                                                             ^~~~~~~~~~
-FreeRTOS\include\queue.h(1787,1): error :  unknown type name 'BaseType_t'
-   BaseType_t xQueueGenericReset( QueueHandle_t xQueue, BaseType_t xNewQueue ) PRIVILEGED_FUNCTION;
+FreeRTOS\include\list.h(208,22): error :  'UBaseType_t' does not name a type
+    configLIST_VOLATILE UBaseType_t uxNumberOfItems;
+                        ^~~~~~~~~~~
+FreeRTOS\include\task.h(2192,63): error :  unknown type name 'TickType_t'; did you mean 'TPI_Type'?
+   BaseType_t xTaskCheckForTimeOut( TimeOut_t * const pxTimeOut, TickType_t * const pxTicksToWait ) PRIVILEGED_FUNCTION;
+                                                                 ^~~~~~~~~~
+                                                                 TPI_Type
+FreeRTOS\include\task.h(2204,1): error :  unknown type name 'BaseType_t'
+   BaseType_t xTaskGetSchedulerState( void ) PRIVILEGED_FUNCTION;
    ^~~~~~~~~~
-FreeRTOS\include\queue.h(1787,54): error :  unknown type name 'BaseType_t'
-   BaseType_t xQueueGenericReset( QueueHandle_t xQueue, BaseType_t xNewQueue ) PRIVILEGED_FUNCTION;
-                                                        ^~~~~~~~~~
-FreeRTOS\include\queue.h(1788,50): error :  unknown type name 'UBaseType_t'
-   void vQueueSetQueueNumber( QueueHandle_t xQueue, UBaseType_t uxQueueNumber ) PRIVILEGED_FUNCTION;
-                                                    ^~~~~~~~~~~
-FreeRTOS\include\queue.h(1789,1): error :  unknown type name 'UBaseType_t'
-   UBaseType_t uxQueueGetQueueNumber( QueueHandle_t xQueue ) PRIVILEGED_FUNCTION;
+FreeRTOS\include\list.h(446,1): error :  'UBaseType_t' does not name a type
+   UBaseType_t uxListRemove( ListItem_t * const pxItemToRemove ) PRIVILEGED_FUNCTION;
    ^~~~~~~~~~~
-UART_control.c(38,10): error :  LED_control.h: No such file or directory
-   #include "LED_control.h"
-            ^~~~~~~~~~~~~~~
-  compilation terminated.
+FreeRTOS\include\task.h(2216,1): error :  unknown type name 'BaseType_t'
+   BaseType_t xTaskPriorityDisinherit( TaskHandle_t const pxMutexHolder ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+FreeRTOS\include\task.h(2221,1): error :  unknown type name 'UBaseType_t'
+   UBaseType_t uxTaskGetTaskNumber( TaskHandle_t xTask ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~~
+FreeRTOS\include\task.h(2227,52): error :  unknown type name 'UBaseType_t'
+   void vTaskSetTaskNumber( TaskHandle_t xTask, const UBaseType_t uxHandle ) PRIVILEGED_FUNCTION;
+                                                      ^~~~~~~~~~~
+FreeRTOS\include\task.h(2237,27): error :  unknown type name 'TickType_t'
+   void vTaskStepTick( const TickType_t xTicksToJump ) PRIVILEGED_FUNCTION;
+                             ^~~~~~~~~~
+  LEDHandler.h(25):
+  main.cpp(23):
+FreeRTOS\include\task.h(109,20): error :  ISO C++ forbids declaration of 'BaseType_t' with no type [-fpermissive]
+   typedef BaseType_t (*TaskHookFunction_t)( void * );
+                      ^
+FreeRTOS\include\task.h(109,20): error :  typedef 'BaseType_t' is initialized (use decltype instead)
+FreeRTOS\include\task.h(109,22): error :  'TaskHookFunction_t' was not declared in this scope
+   typedef BaseType_t (*TaskHookFunction_t)( void * );
+                        ^~~~~~~~~~~~~~~~~~
+  FreeRTOS\include\task.h(109,22): note :  suggested alternative: 'TaskFunction_t'
+   typedef BaseType_t (*TaskHookFunction_t)( void * );
+                        ^~~~~~~~~~~~~~~~~~
+                        TaskFunction_t
+  LEDHandler.h(25):
+  main.cpp(23):
+FreeRTOS\include\task.h(137,2): error :  'BaseType_t' does not name a type
+    BaseType_t xOverflowCount;
+    ^~~~~~~~~~
+FreeRTOS\include\task.h(138,2): error :  'TickType_t' does not name a type; did you mean 'TPI_Type'?
+    TickType_t xTimeOnEntering;
+    ^~~~~~~~~~
+    TPI_Type
+FreeRTOS\include\task.h(160,2): error :  'UBaseType_t' does not name a type
+    UBaseType_t uxPriority;
+    ^~~~~~~~~~~
+FreeRTOS\include\task.h(161,2): error :  'StackType_t' does not name a type
+    StackType_t *puxStackBuffer;
+    ^~~~~~~~~~~
+FreeRTOS\include\task.h(171,2): error :  'UBaseType_t' does not name a type
+    UBaseType_t xTaskNumber;  /* A number unique to the task. */
+    ^~~~~~~~~~~
+FreeRTOS\include\task.h(173,2): error :  'UBaseType_t' does not name a type
+    UBaseType_t uxCurrentPriority; /* The priority at which the task was running (may be inherited) when the structure was populated. */
+    ^~~~~~~~~~~
+  UART_control.c(42):
+  UART_control.c: In function 'nADC_Status':
+FreeRTOS\include\task.h(174,2): error :  'UBaseType_t' does not name a type
+    UBaseType_t uxBasePriority;  /* The priority to which the task will return if the task's current priority has been inherited to avoid unbounded priority inversion when obtaining a mutex.  Only valid if configUSE_MUTEXES is defined as 1 in FreeRTOSConfig.h. */
+    ^~~~~~~~~~~
+FreeRTOS\include\semphr.h(331,51): warning :  implicit declaration of function 'xQueueGenericReceive'; did you mean 'xQueueGenericCreate'? [-Wimplicit-function-declaration]
+   #define xSemaphoreTake( xSemaphore, xBlockTime )  xQueueGenericReceive( ( QueueHandle_t ) ( xSemaphore ), NULL, ( xBlockTime ), pdFALSE )
+                                                     ^
+  UART_control.c(204,6): note :  in expansion of macro 'xSemaphoreTake'
+    if (xSemaphoreTake(UART0_TxSemaphore , 5))
+        ^~~~~~~~~~~~~~
+  FreeRTOS\include\FreeRTOS.h(101):
+  UART_control.h(21):
+  UART_control.c(33):
+FreeRTOS\include\projdefs.h(86,23): error :  'BaseType_t' undeclared (first use in this function)
+   #define pdFALSE   ( ( BaseType_t ) 0 )
+                         ^
+  FreeRTOS\include\semphr.h(331,129): note :  in expansion of macro 'pdFALSE'
+   #define xSemaphoreTake( xSemaphore, xBlockTime )  xQueueGenericReceive( ( QueueHandle_t ) ( xSemaphore ), NULL, ( xBlockTime ), pdFALSE )
+                                                                                                                                   ^~~~~~~
+  UART_control.c(204,6): note :  in expansion of macro 'xSemaphoreTake'
+    if (xSemaphoreTake(UART0_TxSemaphore , 5))
+        ^~~~~~~~~~~~~~
+  FreeRTOS\include\projdefs.h(86,23): note :  each undeclared identifier is reported only once for each function it appears in
+   #define pdFALSE   ( ( BaseType_t ) 0 )
+                         ^
+  FreeRTOS\include\semphr.h(331,129): note :  in expansion of macro 'pdFALSE'
+   #define xSemaphoreTake( xSemaphore, xBlockTime )  xQueueGenericReceive( ( QueueHandle_t ) ( xSemaphore ), NULL, ( xBlockTime ), pdFALSE )
+                                                                                                                                   ^~~~~~~
+  UART_control.c(204,6): note :  in expansion of macro 'xSemaphoreTake'
+    if (xSemaphoreTake(UART0_TxSemaphore , 5))
+        ^~~~~~~~~~~~~~
+FreeRTOS\include\projdefs.h(86,36): error :  expected ')' before numeric constant
+   #define pdFALSE   ( ( BaseType_t ) 0 )
+                                      ^
+  FreeRTOS\include\semphr.h(331,129): note :  in expansion of macro 'pdFALSE'
+   #define xSemaphoreTake( xSemaphore, xBlockTime )  xQueueGenericReceive( ( QueueHandle_t ) ( xSemaphore ), NULL, ( xBlockTime ), pdFALSE )
+                                                                                                                                   ^~~~~~~
+  UART_control.c(204,6): note :  in expansion of macro 'xSemaphoreTake'
+    if (xSemaphoreTake(UART0_TxSemaphore , 5))
+        ^~~~~~~~~~~~~~
+  LEDHandler.h(25):
+  main.cpp(23):
+FreeRTOS\include\task.h(176,2): error :  'StackType_t' does not name a type
+    StackType_t *pxStackBase;  /* Points to the lowest address of the task's stack area. */
+    ^~~~~~~~~~~
+  UART_control.c(42):
+FreeRTOS\include\semphr.h(489,39): warning :  implicit declaration of function 'xQueueGenericSend'; did you mean 'xQueueGenericCreate'? [-Wimplicit-function-declaration]
+   #define xSemaphoreGive( xSemaphore )  xQueueGenericSend( ( QueueHandle_t ) ( xSemaphore ), NULL, semGIVE_BLOCK_TIME, queueSEND_TO_BACK )
+                                         ^
+  UART_control.c(221,3): note :  in expansion of macro 'xSemaphoreGive'
+     xSemaphoreGive(UART0_TxSemaphore);
+     ^~~~~~~~~~~~~~
+  UART_control.c(42):
+FreeRTOS\include\semphr.h(83,36): error :  'TickType_t' undeclared (first use in this function); did you mean 'BaseType_t'?
+   #define semGIVE_BLOCK_TIME     ( ( TickType_t ) 0U )
+                                      ^
+  FreeRTOS\include\semphr.h(489,98): note :  in expansion of macro 'semGIVE_BLOCK_TIME'
+   #define xSemaphoreGive( xSemaphore )  xQueueGenericSend( ( QueueHandle_t ) ( xSemaphore ), NULL, semGIVE_BLOCK_TIME, queueSEND_TO_BACK )
+                                                                                                    ^~~~~~~~~~~~~~~~~~
+  UART_control.c(221,3): note :  in expansion of macro 'xSemaphoreGive'
+     xSemaphoreGive(UART0_TxSemaphore);
+     ^~~~~~~~~~~~~~
+FreeRTOS\include\semphr.h(83,49): error :  expected ')' before numeric constant
+   #define semGIVE_BLOCK_TIME     ( ( TickType_t ) 0U )
+                                                   ^
+  FreeRTOS\include\semphr.h(489,98): note :  in expansion of macro 'semGIVE_BLOCK_TIME'
+   #define xSemaphoreGive( xSemaphore )  xQueueGenericSend( ( QueueHandle_t ) ( xSemaphore ), NULL, semGIVE_BLOCK_TIME, queueSEND_TO_BACK )
+                                                                                                    ^~~~~~~~~~~~~~~~~~
+  UART_control.c(221,3): note :  in expansion of macro 'xSemaphoreGive'
+     xSemaphoreGive(UART0_TxSemaphore);
+     ^~~~~~~~~~~~~~
+  UART_control.h(22):
+  UART_control.c(33):
+FreeRTOS\include\queue.h(105,45): error :  expected ')' before numeric constant
+   #define queueSEND_TO_BACK  ( ( BaseType_t ) 0 )
+                                               ^
+  FreeRTOS\include\semphr.h(489,118): note :  in expansion of macro 'queueSEND_TO_BACK'
+   #define xSemaphoreGive( xSemaphore )  xQueueGenericSend( ( QueueHandle_t ) ( xSemaphore ), NULL, semGIVE_BLOCK_TIME, queueSEND_TO_BACK )
+                                                                                                                        ^~~~~~~~~~~~~~~~~
+  UART_control.c(221,3): note :  in expansion of macro 'xSemaphoreGive'
+     xSemaphoreGive(UART0_TxSemaphore);
+     ^~~~~~~~~~~~~~
+FreeRTOS\include\task.h(360,2): error :  'BaseType_t' does not name a type
+    BaseType_t xTaskCreate( TaskFunction_t pxTaskCode,
+    ^~~~~~~~~~
+  FreeRTOS\include\FreeRTOS.h(101):
+  UART_control.h(21):
+  UART_control.c(33):
+  UART_control.c: In function 'nPinFlip_1':
+FreeRTOS\include\projdefs.h(86,23): error :  'BaseType_t' undeclared (first use in this function)
+   #define pdFALSE   ( ( BaseType_t ) 0 )
+                         ^
+  FreeRTOS\include\semphr.h(331,129): note :  in expansion of macro 'pdFALSE'
+   #define xSemaphoreTake( xSemaphore, xBlockTime )  xQueueGenericReceive( ( QueueHandle_t ) ( xSemaphore ), NULL, ( xBlockTime ), pdFALSE )
+                                                                                                                                   ^~~~~~~
+  UART_control.c(258,6): note :  in expansion of macro 'xSemaphoreTake'
+    if (xSemaphoreTake(UART0_TxSemaphore , 5))
+        ^~~~~~~~~~~~~~
+FreeRTOS\include\projdefs.h(86,36): error :  expected ')' before numeric constant
+   #define pdFALSE   ( ( BaseType_t ) 0 )
+                                      ^
+  FreeRTOS\include\semphr.h(331,129): note :  in expansion of macro 'pdFALSE'
+   #define xSemaphoreTake( xSemaphore, xBlockTime )  xQueueGenericReceive( ( QueueHandle_t ) ( xSemaphore ), NULL, ( xBlockTime ), pdFALSE )
+                                                                                                                                   ^~~~~~~
+  UART_control.c(258,6): note :  in expansion of macro 'xSemaphoreTake'
+    if (xSemaphoreTake(UART0_TxSemaphore , 5))
+        ^~~~~~~~~~~~~~
+FreeRTOS\include\task.h(695,24): error :  'TickType_t' does not name a type; did you mean 'TPI_Type'?
+   void vTaskDelay( const TickType_t xTicksToDelay ) PRIVILEGED_FUNCTION;
+                          ^~~~~~~~~~
+                          TPI_Type
+FreeRTOS\include\task.h(754,23): error :  variable or field 'vTaskDelayUntil' declared void
+   void vTaskDelayUntil( TickType_t * const pxPreviousWakeTime, const TickType_t xTimeIncrement ) PRIVILEGED_FUNCTION;
+                         ^~~~~~~~~~
+FreeRTOS\include\task.h(754,23): error :  'TickType_t' was not declared in this scope
+  UART_control.c(42):
+FreeRTOS\include\semphr.h(83,36): error :  'TickType_t' undeclared (first use in this function); did you mean 'BaseType_t'?
+   #define semGIVE_BLOCK_TIME     ( ( TickType_t ) 0U )
+                                      ^
+  FreeRTOS\include\semphr.h(489,98): note :  in expansion of macro 'semGIVE_BLOCK_TIME'
+   #define xSemaphoreGive( xSemaphore )  xQueueGenericSend( ( QueueHandle_t ) ( xSemaphore ), NULL, semGIVE_BLOCK_TIME, queueSEND_TO_BACK )
+                                                                                                    ^~~~~~~~~~~~~~~~~~
+  UART_control.c(262,3): note :  in expansion of macro 'xSemaphoreGive'
+     xSemaphoreGive(UART0_TxSemaphore);
+     ^~~~~~~~~~~~~~
+FreeRTOS\include\semphr.h(83,49): error :  expected ')' before numeric constant
+   #define semGIVE_BLOCK_TIME     ( ( TickType_t ) 0U )
+                                                   ^
+  FreeRTOS\include\semphr.h(489,98): note :  in expansion of macro 'semGIVE_BLOCK_TIME'
+   #define xSemaphoreGive( xSemaphore )  xQueueGenericSend( ( QueueHandle_t ) ( xSemaphore ), NULL, semGIVE_BLOCK_TIME, queueSEND_TO_BACK )
+                                                                                                    ^~~~~~~~~~~~~~~~~~
+  UART_control.c(262,3): note :  in expansion of macro 'xSemaphoreGive'
+     xSemaphoreGive(UART0_TxSemaphore);
+     ^~~~~~~~~~~~~~
+  UART_control.h(22):
+  UART_control.c(33):
+FreeRTOS\include\queue.h(105,45): error :  expected ')' before numeric constant
+   #define queueSEND_TO_BACK  ( ( BaseType_t ) 0 )
+                                               ^
+  FreeRTOS\include\semphr.h(489,118): note :  in expansion of macro 'queueSEND_TO_BACK'
+   #define xSemaphoreGive( xSemaphore )  xQueueGenericSend( ( QueueHandle_t ) ( xSemaphore ), NULL, semGIVE_BLOCK_TIME, queueSEND_TO_BACK )
+                                                                                                                        ^~~~~~~~~~~~~~~~~
+  UART_control.c(262,3): note :  in expansion of macro 'xSemaphoreGive'
+     xSemaphoreGive(UART0_TxSemaphore);
+     ^~~~~~~~~~~~~~
+  FreeRTOS\include\task.h(754,23): note :  suggested alternative: 'TPI_Type'
+   void vTaskDelayUntil( TickType_t * const pxPreviousWakeTime, const TickType_t xTimeIncrement ) PRIVILEGED_FUNCTION;
+                         ^~~~~~~~~~
+                         TPI_Type
+FreeRTOS\include\task.h(754,36): error :  expected primary-expression before 'const'
+   void vTaskDelayUntil( TickType_t * const pxPreviousWakeTime, const TickType_t xTimeIncrement ) PRIVILEGED_FUNCTION;
+                                      ^~~~~
+FreeRTOS\include\task.h(754,62): error :  expected primary-expression before 'const'
+   void vTaskDelayUntil( TickType_t * const pxPreviousWakeTime, const TickType_t xTimeIncrement ) PRIVILEGED_FUNCTION;
+                                                                ^~~~~
+  FreeRTOS\include\FreeRTOS.h(101):
+  UART_control.h(21):
+  UART_control.c(33):
+  UART_control.c: In function 'nPinFlip_2':
+FreeRTOS\include\projdefs.h(86,23): error :  'BaseType_t' undeclared (first use in this function)
+   #define pdFALSE   ( ( BaseType_t ) 0 )
+                         ^
+  FreeRTOS\include\semphr.h(331,129): note :  in expansion of macro 'pdFALSE'
+   #define xSemaphoreTake( xSemaphore, xBlockTime )  xQueueGenericReceive( ( QueueHandle_t ) ( xSemaphore ), NULL, ( xBlockTime ), pdFALSE )
+                                                                                                                                   ^~~~~~~
+  UART_control.c(281,6): note :  in expansion of macro 'xSemaphoreTake'
+    if (xSemaphoreTake(UART0_TxSemaphore , 5))
+        ^~~~~~~~~~~~~~
+FreeRTOS\include\projdefs.h(86,36): error :  expected ')' before numeric constant
+   #define pdFALSE   ( ( BaseType_t ) 0 )
+                                      ^
+  FreeRTOS\include\semphr.h(331,129): note :  in expansion of macro 'pdFALSE'
+   #define xSemaphoreTake( xSemaphore, xBlockTime )  xQueueGenericReceive( ( QueueHandle_t ) ( xSemaphore ), NULL, ( xBlockTime ), pdFALSE )
+                                                                                                                                   ^~~~~~~
+  UART_control.c(281,6): note :  in expansion of macro 'xSemaphoreTake'
+    if (xSemaphoreTake(UART0_TxSemaphore , 5))
+        ^~~~~~~~~~~~~~
+  UART_control.c(42):
+FreeRTOS\include\semphr.h(83,36): error :  'TickType_t' undeclared (first use in this function); did you mean 'BaseType_t'?
+   #define semGIVE_BLOCK_TIME     ( ( TickType_t ) 0U )
+                                      ^
+  FreeRTOS\include\semphr.h(489,98): note :  in expansion of macro 'semGIVE_BLOCK_TIME'
+   #define xSemaphoreGive( xSemaphore )  xQueueGenericSend( ( QueueHandle_t ) ( xSemaphore ), NULL, semGIVE_BLOCK_TIME, queueSEND_TO_BACK )
+                                                                                                    ^~~~~~~~~~~~~~~~~~
+  UART_control.c(285,3): note :  in expansion of macro 'xSemaphoreGive'
+     xSemaphoreGive(UART0_TxSemaphore);
+     ^~~~~~~~~~~~~~
+FreeRTOS\include\semphr.h(83,49): error :  expected ')' before numeric constant
+   #define semGIVE_BLOCK_TIME     ( ( TickType_t ) 0U )
+                                                   ^
+  FreeRTOS\include\semphr.h(489,98): note :  in expansion of macro 'semGIVE_BLOCK_TIME'
+   #define xSemaphoreGive( xSemaphore )  xQueueGenericSend( ( QueueHandle_t ) ( xSemaphore ), NULL, semGIVE_BLOCK_TIME, queueSEND_TO_BACK )
+                                                                                                    ^~~~~~~~~~~~~~~~~~
+  UART_control.c(285,3): note :  in expansion of macro 'xSemaphoreGive'
+     xSemaphoreGive(UART0_TxSemaphore);
+     ^~~~~~~~~~~~~~
+  UART_control.h(22):
+  UART_control.c(33):
+FreeRTOS\include\queue.h(105,45): error :  expected ')' before numeric constant
+   #define queueSEND_TO_BACK  ( ( BaseType_t ) 0 )
+                                               ^
+  FreeRTOS\include\semphr.h(489,118): note :  in expansion of macro 'queueSEND_TO_BACK'
+   #define xSemaphoreGive( xSemaphore )  xQueueGenericSend( ( QueueHandle_t ) ( xSemaphore ), NULL, semGIVE_BLOCK_TIME, queueSEND_TO_BACK )
+                                                                                                                        ^~~~~~~~~~~~~~~~~
+  UART_control.c(285,3): note :  in expansion of macro 'xSemaphoreGive'
+     xSemaphoreGive(UART0_TxSemaphore);
+     ^~~~~~~~~~~~~~
+FreeRTOS\include\task.h(779,1): error :  'BaseType_t' does not name a type
+   BaseType_t xTaskAbortDelay( TaskHandle_t xTask ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~
+  UART_control.c: In function 'nUART_TxChar':
+FreeRTOS\include\queue.h(105,32): error :  'BaseType_t' undeclared (first use in this function)
+   #define queueSEND_TO_BACK  ( ( BaseType_t ) 0 )
+                                  ^
+  FreeRTOS\include\queue.h(521,127): note :  in expansion of macro 'queueSEND_TO_BACK'
+   #define xQueueSend( xQueue, pvItemToQueue, xTicksToWait ) xQueueGenericSend( ( xQueue ), ( pvItemToQueue ), ( xTicksToWait ), queueSEND_TO_BACK )
+                                                                                                                                 ^~~~~~~~~~~~~~~~~
+  UART_control.c(561,2): note :  in expansion of macro 'xQueueSend'
+    xQueueSend(qUART_TxQ , &ch , 10);
+    ^~~~~~~~~~
+FreeRTOS\include\queue.h(105,45): error :  expected ')' before numeric constant
+   #define queueSEND_TO_BACK  ( ( BaseType_t ) 0 )
+                                               ^
+  FreeRTOS\include\queue.h(521,127): note :  in expansion of macro 'queueSEND_TO_BACK'
+   #define xQueueSend( xQueue, pvItemToQueue, xTicksToWait ) xQueueGenericSend( ( xQueue ), ( pvItemToQueue ), ( xTicksToWait ), queueSEND_TO_BACK )
+                                                                                                                                 ^~~~~~~~~~~~~~~~~
+  UART_control.c(561,2): note :  in expansion of macro 'xQueueSend'
+    xQueueSend(qUART_TxQ , &ch , 10);
+    ^~~~~~~~~~
+FreeRTOS\include\task.h(826,1): error :  'UBaseType_t' does not name a type
+   UBaseType_t uxTaskPriorityGet( TaskHandle_t xTask ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~~
+  UART_control.c: In function 'nUART_RxChar':
+FreeRTOS\include\queue.h(105,32): error :  'BaseType_t' undeclared (first use in this function)
+   #define queueSEND_TO_BACK  ( ( BaseType_t ) 0 )
+                                  ^
+  FreeRTOS\include\queue.h(521,127): note :  in expansion of macro 'queueSEND_TO_BACK'
+   #define xQueueSend( xQueue, pvItemToQueue, xTicksToWait ) xQueueGenericSend( ( xQueue ), ( pvItemToQueue ), ( xTicksToWait ), queueSEND_TO_BACK )
+                                                                                                                                 ^~~~~~~~~~~~~~~~~
+  UART_control.c(579,3): note :  in expansion of macro 'xQueueSend'
+     xQueueSend(qUART_RxQ , &ch , 2);
+     ^~~~~~~~~~
+FreeRTOS\include\queue.h(105,45): error :  expected ')' before numeric constant
+   #define queueSEND_TO_BACK  ( ( BaseType_t ) 0 )
+                                               ^
+  FreeRTOS\include\queue.h(521,127): note :  in expansion of macro 'queueSEND_TO_BACK'
+   #define xQueueSend( xQueue, pvItemToQueue, xTicksToWait ) xQueueGenericSend( ( xQueue ), ( pvItemToQueue ), ( xTicksToWait ), queueSEND_TO_BACK )
+                                                                                                                                 ^~~~~~~~~~~~~~~~~
+  UART_control.c(579,3): note :  in expansion of macro 'xQueueSend'
+     xQueueSend(qUART_RxQ , &ch , 2);
+     ^~~~~~~~~~
+  FreeRTOS\include\FreeRTOS.h(101):
+  UART_control.h(21):
+  UART_control.c(33):
+  UART_control.c: In function 'nTerminalHelp':
+FreeRTOS\include\projdefs.h(86,23): error :  'BaseType_t' undeclared (first use in this function)
+   #define pdFALSE   ( ( BaseType_t ) 0 )
+                         ^
+  FreeRTOS\include\semphr.h(331,129): note :  in expansion of macro 'pdFALSE'
+   #define xSemaphoreTake( xSemaphore, xBlockTime )  xQueueGenericReceive( ( QueueHandle_t ) ( xSemaphore ), NULL, ( xBlockTime ), pdFALSE )
+                                                                                                                                   ^~~~~~~
+  UART_control.c(605,6): note :  in expansion of macro 'xSemaphoreTake'
+    if (xSemaphoreTake(UART0_TxSemaphore , 5))
+        ^~~~~~~~~~~~~~
+FreeRTOS\include\projdefs.h(86,36): error :  expected ')' before numeric constant
+   #define pdFALSE   ( ( BaseType_t ) 0 )
+                                      ^
+  FreeRTOS\include\semphr.h(331,129): note :  in expansion of macro 'pdFALSE'
+   #define xSemaphoreTake( xSemaphore, xBlockTime )  xQueueGenericReceive( ( QueueHandle_t ) ( xSemaphore ), NULL, ( xBlockTime ), pdFALSE )
+                                                                                                                                   ^~~~~~~
+  UART_control.c(605,6): note :  in expansion of macro 'xSemaphoreTake'
+    if (xSemaphoreTake(UART0_TxSemaphore , 5))
+        ^~~~~~~~~~~~~~
+FreeRTOS\include\task.h(834,1): error :  'UBaseType_t' does not name a type
+   UBaseType_t uxTaskPriorityGetFromISR( TaskHandle_t xTask ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~~
+FreeRTOS\include\task.h(908,68): error :  'BaseType_t' has not been declared
+   void vTaskGetInfo( TaskHandle_t xTask, TaskStatus_t *pxTaskStatus, BaseType_t xGetFreeStackSpace, eTaskState eState ) PRIVILEGED_FUNCTION;
+                                                                      ^~~~~~~~~~
+FreeRTOS\include\task.h(950,44): error :  'UBaseType_t' has not been declared
+   void vTaskPrioritySet( TaskHandle_t xTask, UBaseType_t uxNewPriority ) PRIVILEGED_FUNCTION;
+                                              ^~~~~~~~~~~
+  UART_control.c(42):
+FreeRTOS\include\semphr.h(83,36): error :  'TickType_t' undeclared (first use in this function); did you mean 'BaseType_t'?
+   #define semGIVE_BLOCK_TIME     ( ( TickType_t ) 0U )
+                                      ^
+  FreeRTOS\include\semphr.h(489,98): note :  in expansion of macro 'semGIVE_BLOCK_TIME'
+   #define xSemaphoreGive( xSemaphore )  xQueueGenericSend( ( QueueHandle_t ) ( xSemaphore ), NULL, semGIVE_BLOCK_TIME, queueSEND_TO_BACK )
+                                                                                                    ^~~~~~~~~~~~~~~~~~
+  UART_control.c(618,3): note :  in expansion of macro 'xSemaphoreGive'
+     xSemaphoreGive(UART0_TxSemaphore);
+     ^~~~~~~~~~~~~~
+FreeRTOS\include\task.h(1079,1): error :  'BaseType_t' does not name a type
+   BaseType_t xTaskResumeFromISR( TaskHandle_t xTaskToResume ) PRIVILEGED_FUNCTION;
+   ^~~~~~~~~~

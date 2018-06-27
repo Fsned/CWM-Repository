@@ -213,12 +213,12 @@ void nWashProgram_1()
 
 void nWashProgram_2() 
 {
-/* ******************************************************************
-//	Function name	: nWashprogram_2
-//	Functionality	: Fills Execution Queue with operations for washing program number 2
-// 	Returns			: True / False depending on whether or not program has been loaded
-//  Input range		: None
-// *****************************************************************/
+/* ==================================================================
+  	Function name	: nWashprogram_2
+  	Functionality	: Fills Execution Queue with operations for washing program number 2
+   	Returns			: True / False depending on whether or not program has been loaded
+    Input range		: None
+   ================================================================== */
 	uint8_t transmit;
 	uint8_t Program_2_Recipe[] = {	PROGRAM_2,
 									CHECK_WATER_LEVEL,
@@ -261,12 +261,12 @@ void nWashProgram_2()
 
 void nWashProgram_3() 
 {
-/* ******************************************************************
-//	Function name	: nWashprogram_3
-//	Functionality	: Fills Execution Queue with operations for washing program number 3
-// 	Returns			: True / False depending on whether or not program has been loaded
-//  Input range		: None
-// *****************************************************************/
+/* ==================================================================
+  	Function name	: nWashprogram_3
+  	Functionality	: Fills Execution Queue with operations for washing program number 3
+   	Returns			: True / False depending on whether or not program has been loaded
+    Input range		: None
+   ================================================================== */
 		uint8_t transmit;
 	
 		uint8_t Program_3_Recipe[10] = {	START_PROGRAM,
@@ -297,12 +297,12 @@ void nWashProgram_3()
 
 void nFillTanksOperation() 
 {
-/* *********************************************************************************************************
-//	Function name	: nFillTanksOperation
-//	Functionality	: Operation that checks the pressoswitches in both tanks and opens the electrovalve. only fills wash tank if door lid is closed
-// 	Returns			: None
-//  Input range		: None
-// ********************************************************************************************************/
+/* =======================================================================================================
+  	Function name	: nFillTanksOperation
+  	Functionality	: Operation that checks the pressoswitches in both tanks and opens the electrovalve. only fills wash tank if door lid is closed
+   	Returns			: None
+    Input range		: None
+   ======================================================================================================= */
 /*	@Description The operation to fill tanks is not limited by a time duration, but by whether or not the tanks are filled.
 		The operation should keep an eye firstly on pressure switches, but also on the current drawn by the inlet pump.
 		If anything mishaps, put down all pumps and return an error code to the error handler
@@ -371,12 +371,12 @@ void nFillTanksOperation()
 
 void nFillSoapOperation()
 {
-/* *********************************************************************************************************
-//	Function name	: nFillSoapOperation
-//	Functionality	: Fills soap in the wash tank, up to the set level
-// 	Returns			: None
-//  Input range		: None
-// ********************************************************************************************************/
+/* ========================================================================================================
+  	Function name	: nFillSoapOperation
+  	Functionality	: Fills soap in the wash tank, up to the set level
+   	Returns			: None
+    Input range		: None
+   ======================================================================================================== */
 	/*	@Description
 				The Soap operation is supposed to fill soap in the washing tank. 
 				if measured soap level reaches 95% of the pre-measured and entered soaplevel, the operation will complete.
@@ -427,6 +427,7 @@ void nFillSoapOperation()
 
 			vTaskDelay(25);			/* Set a delay of ~25 milliseconds. Keep checking the state for updates. if the state changes, resume the program. */
 		}
+		
 		vTaskDelay(100);
 	}
 	
@@ -461,13 +462,18 @@ void nWashOperation()
 			And then keep the water temperature with a 3% degree range. (2.4 deg. C. @ 80 deg. C. Washing temperature)
 	*/
 	int timer = ProgramTimerLibrary[WashingOperation][CurrentProgram] * 1000; 
-
-	const	uint8_t NOT_INIT	= 0;
-	const	uint8_t COOLING	= 1;
-	const	uint8_t HEATING	= 2;
-			uint8_t HeatingStatus	= NOT_INIT;
-			uint8_t Reversal_Direction = 0;			// Either 0 for towards the user (forwards) or 1 for towards the back of the machine (backwards).
-			uint8_t transmit;
+	
+	typedef enum
+	{
+		NOT_INIT,
+		COOLING,
+		HEATING
+	} HEATING_STATE;
+	
+	
+	HEATING_STATE HeatingStatus	= NOT_INIT;
+	uint8_t Reversal_Direction = 0;			// Either 0 for towards the user (forwards) or 1 for towards the back of the machine (backwards).
+	uint8_t transmit;
 	nNewLine( 2 );
 	nUART_TxString("Started RUN_WASH Operation.");
 	
@@ -521,6 +527,29 @@ void nWashOperation()
 			bSetHWStatus(REVERSAL_ENGINE , HARDWARE_ACTIVE);
 		}
 		
+		/* Check if the program has been paused or stopped, and wait for the change to stop. allow scheduling still, to allow for state change */
+		while (ProgramHandlerState == PAUSED || ProgramHandlerState == STOPPED_FOR_SENSORS)
+		{
+			if (vGetHWStatus(WASH_PUMP_1) == HardwareActive)
+				bSetHWStatus(WASH_PUMP_1, HardwareOff);
+			
+			if (vGetHWStatus(WASH_PUMP_2) == HardwareActive)
+				bSetHWStatus(WASH_PUMP_2, HardwareOff);
+			
+			if (vGetHWStatus(HEATING_WASH_1) == HardwareActive)
+				bSetHWStatus(HEATING_WASH_1, HardwareOff);
+			
+			if (vGetHWStatus(HEATING_WASH_2) == HardwareActive)
+				bSetHWStatus(HEATING_WASH_2, HardwareOff);
+			
+			if (vGetHWStatus(REVERSAL_ENGINE) == HardwareActive)
+				bSetHWStatus(REVERSAL_ENGINE, HardwareOff);
+				
+			HeatingStatus = COOLING;
+			
+			vTaskDelay(25); /* Set a delay of ~25 milliseconds. Keep checking the state for updates. if the state changes, resume the program. */
+		}
+		
 		timer -= 100;
 		vTaskDelay(100);
 		
@@ -548,12 +577,12 @@ void nWashOperation()
 
 void nRinseOperation() 
 {
-/* *********************************************************************************************************
-//	Function name	: nRinseOperation
-//	Functionality	: Runs the rinse operation
-// 	Returns			: None
-//  Input range		: None
-// ********************************************************************************************************/
+/* ========================================================================================================
+  	Function name	: nRinseOperation
+  	Functionality	: Runs the rinse operation
+   	Returns			: None
+    Input range		: None
+   ======================================================================================================== */
 	/* @Description
 			The Rinsing operation will run for a fixed amount of time. this time will be grabbed from the operation_times library (or so)
 			and loaded at start, then decremented accordingly. The rinsing temperature has to match the temperature stored in a library somehere,
@@ -562,13 +591,17 @@ void nRinseOperation()
 	*/
 	
 	int timer = ProgramTimerLibrary[RinsingOperation][CurrentProgram] * 1000;
+
+	typedef enum
+	{
+		NOT_INIT,
+		COOLING,
+		HEATING
+	} HEATING_STATE;
 	
-			uint8_t transmit;
-	const	uint8_t NOT_INIT			= 0;
-	const	uint8_t COOLING				= 1;
-	const	uint8_t HEATING				= 2;
-			uint8_t Reversal_Direction 	= 0;
-			uint8_t HeatingStatus 		= NOT_INIT;
+	HEATING_STATE HeatingStatus	= NOT_INIT;
+	uint8_t Reversal_Direction 	= 0;
+	uint8_t transmit;
 	
 	nNewLine( 2 );
 	nUART_TxString("Started RUN_RINSE Operation.");
@@ -620,7 +653,30 @@ void nRinseOperation()
 			}
 			bSetHWStatus(REVERSAL_ENGINE , HARDWARE_ACTIVE);
 		}
-
+		/* Check if the program has been paused or stopped, and wait for the change to stop. allow scheduling still, to allow for state change */
+		while (ProgramHandlerState == PAUSED || ProgramHandlerState == STOPPED_FOR_SENSORS)
+		{
+			if (vGetHWStatus(RINSE_PUMP_1) == HardwareActive)
+				bSetHWStatus(RINSE_PUMP_1, HardwareOff);
+			
+			if (vGetHWStatus(RINSE_PUMP_2) == HardwareActive)
+				bSetHWStatus(RINSE_PUMP_2, HardwareOff);
+			
+			if (vGetHWStatus(HEATING_RINSE_1) == HardwareActive)
+				bSetHWStatus(HEATING_RINSE_1, HardwareOff);
+			
+			if (vGetHWStatus(HEATING_RINSE_2) == HardwareActive)
+				bSetHWStatus(HEATING_RINSE_2, HardwareOff);
+			
+			if (vGetHWStatus(REVERSAL_ENGINE) == HardwareActive)
+				bSetHWStatus(REVERSAL_ENGINE, HardwareOff);
+				
+			HeatingStatus = COOLING;
+			
+			vTaskDelay(25); /* Set a delay of ~25 milliseconds. Keep checking the state for updates. if the state changes, resume the program. */
+		}
+		
+		
 		timer -= 100;
 		vTaskDelay(100);
 		
@@ -649,12 +705,12 @@ void nRinseOperation()
 
 void nWaitOperation() 
 {
-/* *********************************************************************************************************
-//	Function name	: nWaitOperation
-//	Functionality	: Waits for a fixxed amount of time, between wash- and rinse operations to allow soap to fall off subjects etc.
-// 	Returns			: None
-//  Input range		: None
-// ********************************************************************************************************/
+/* =========================================================================================================
+  	Function name	: nWaitOperation
+  	Functionality	: Waits for a fixxed amount of time, between wash- and rinse operations to allow soap to fall off subjects etc.
+   	Returns			: None
+    Input range		: None
+   ========================================================================================================= */
 	/* @Description
 			The wait operation can be called between other operations. this could be after a washing operation
 			and before a rinsing operation, to allow soap to fall off subjects, to provide a better end result.
@@ -672,6 +728,13 @@ void nWaitOperation()
 		
 	while ( timer && ! TIMERSKIP) 
 	{
+		/* Check if the program has been paused or stopped, and wait for the change to stop. allow scheduling still, to allow for state change */
+		while (ProgramHandlerState == PAUSED || ProgramHandlerState == STOPPED_FOR_SENSORS)
+		{
+			/* Do nothing, just pause the waiting operation. */
+			
+			vTaskDelay(25); /* Set a delay of ~25 milliseconds. Keep checking the state for updates. if the state changes, resume the program. */
+		}
 		
 		timer -= 10;
 		vTaskDelay(10);
@@ -695,24 +758,28 @@ void nWaitOperation()
 
 void nFillSoftenerOperation() 
 {
-/* *********************************************************************************************************
-//	Function name	: nFillSoftenerOperation
-//	Functionality	: Fills softener into the rinsing tank. this might not be necessary, 
-						unless a new electrical pump is implemented in the machines.
-// 	Returns			: None
-//  Input range		: None
-// ********************************************************************************************************/
+/* =========================================================================================================
+  	Function name	: nFillSoftenerOperation
+  	Functionality	: Fills softener into the rinsing tank. this might not be necessary, 
+  					  unless a new electrical pump is implemented in the machines.
+   	Returns			: None
+    Input range		: None
+   ========================================================================================================= */
 	/* @Description
 			The fill softener operation is either timed or controlled by a conductivity sensor. at this moment, the operation is timed.
 			Because of this, the task will for the moment also be controlled by a timer. the softener dosage isn't required to be 
 			indisputably precise.
 	*/
 			
-	const	uint8_t NOT_INIT 					= 0;
-	const	uint8_t FILLING 					= 1;
-	const	uint8_t FALLING 					= 2;
-			uint8_t transmit;
-			uint8_t SoftenerPumpState = NOT_INIT;
+	typedef enum
+	{
+		NOT_INIT,
+		FILLING,
+		FALLING
+	} SOFTENER_PUMP_STATES;
+	
+	SOFTENER_PUMP_STATES SoftenerPumpState = NOT_INIT;
+	uint8_t transmit;
 	
 	nNewLine( 2 );
 	nUART_TxString("Started CHECK_SOFTENER Operation.");
@@ -742,6 +809,18 @@ void nFillSoftenerOperation()
 			break;
 		}
 		
+		/* Check if the program has been paused or stopped, and wait for the change to stop. allow scheduling still, to allow for state change */
+		while (ProgramHandlerState == PAUSED || ProgramHandlerState == STOPPED_FOR_SENSORS)
+		{
+			/* Do nothing, just pause the waiting operation. */
+			if (vGetHWStatus(SOFTENER_PUMP) == HardwareActive)
+				bSetHWStatus(SOFTENER_PUMP, HardwareOff);
+			
+			SoftenerPumpState = FALLING;
+			
+			vTaskDelay(25); /* Set a delay of ~25 milliseconds. Keep checking the state for updates. if the state changes, resume the program. */
+		}
+		
 		nUART_TxString("Stopped nFillSoftenerOperation.");
 		nNewLine( 1 );
 		vTaskDelay(100);
@@ -761,18 +840,23 @@ void nFillSoftenerOperation()
 
 void nCheckWashTemperature() 
 {
-/* *********************************************************************************************************
-//	Function name	: nCheckWashTemperature
-//	Functionality	: Checks the washing temperature, before starting a washing program, and warms the water if needed
-// 	Returns			: None
-//  Input range		: None
-// ********************************************************************************************************/
-				
-	const	uint8_t NOT_INIT 			= 0;
-	const	uint8_t HEATING  			= 1;
-	const	uint8_t COOLING				= 2;
-			uint8_t WashHeatingState 	= NOT_INIT;
-			uint8_t transmit;
+/* =========================================================================================================
+  	Function name	: nCheckWashTemperature
+  	Functionality	: Checks the washing temperature, before starting a washing program, and warms the water if needed
+   	Returns			: None
+    Input range		: None
+   ========================================================================================================= */
+	
+	typedef enum
+	{
+		NOT_INIT,
+		HEATING,
+		COOLING
+	} WASH_HEATING_STATES;
+	
+	WASH_HEATING_STATES WashHeatingState = NOT_INIT;
+	
+	uint8_t transmit;
 	
 	nNewLine( 2 );
 	nUART_TxString("Started CHECK WASH TEMPERATURE.");
@@ -797,6 +881,22 @@ void nCheckWashTemperature()
 			transmit = OPERATION_ENDED;
 			xQueueSend(ProgramHandlerQ , &transmit , 10);
 		}
+		
+		/* Check if the program has been paused or stopped, and wait for the change to stop. allow scheduling still, to allow for state change */
+		while (ProgramHandlerState == PAUSED || ProgramHandlerState == STOPPED_FOR_SENSORS)
+		{
+			/* Do nothing, just pause the waiting operation. */
+			if (vGetHWStatus(HEATING_WASH_1) == HardwareActive)
+				bSetHWStatus(HEATING_WASH_1, HardwareOff);
+			
+			if (vGetHWStatus(HEATING_WASH_2) == HardwareActive)
+				bSetHWStatus(HEATING_WASH_2, HardwareOff);
+			
+			WashHeatingState = COOLING;
+			
+			vTaskDelay(25); /* Set a delay of ~25 milliseconds. Keep checking the state for updates. if the state changes, resume the program. */
+		}
+		
 		vTaskDelay(100);
 	}
 	
@@ -813,18 +913,22 @@ void nCheckWashTemperature()
 
 void nCheckRinseTemperature() 
 {
-/* *********************************************************************************************************
-//	Function name	: nCheckRinseTemperature
-//	Functionality	: Checks the rinsing temperature, before starting a rinsing program, and warms the water if needed
-// 	Returns			: None
-//  Input range		: None
-// ********************************************************************************************************/
+/* ========================================================================================================
+  	Function name	: nCheckRinseTemperature
+  	Functionality	: Checks the rinsing temperature, before starting a rinsing program, and warms the water if needed
+   	Returns			: None
+    Input range		: None
+   ======================================================================================================== */
 				
-	const	uint8_t NOT_INIT 			= 0;
-	const	uint8_t HEATING  			= 1;
-	const	uint8_t COOLING				= 2;
-			uint8_t RinseHeatingState	= NOT_INIT;
-			uint8_t transmit;
+	typedef enum
+	{
+		NOT_INIT,
+		HEATING,
+		COOLING
+	} RINSE_HEATING_STATES;
+	
+	RINSE_HEATING_STATES RinseHeatingState = NOT_INIT;
+	uint8_t transmit;
 	
 	nNewLine( 2 );
 	nUART_TxString("Started CHECK RINSE TEMPERATURE.");
@@ -850,6 +954,22 @@ void nCheckRinseTemperature()
 			xQueueSend(ProgramHandlerQ , &transmit , 10);
 			break;
 		}	
+		
+		/* Check if the program has been paused or stopped, and wait for the change to stop. allow scheduling still, to allow for state change */
+		while (ProgramHandlerState == PAUSED || ProgramHandlerState == STOPPED_FOR_SENSORS)
+		{
+			/* Do nothing, just pause the waiting operation. */
+			if (vGetHWStatus(HEATING_RINSE_1) == HardwareActive)
+				bSetHWStatus(HEATING_RINSE_1, HardwareOff);
+			
+			if (vGetHWStatus(HEATING_RINSE_2) == HardwareActive)
+				bSetHWStatus(HEATING_RINSE_2, HardwareOff);
+			
+			RinseHeatingState = COOLING;
+			
+			vTaskDelay(25); /* Set a delay of ~25 milliseconds. Keep checking the state for updates. if the state changes, resume the program. */
+		}
+		
 		vTaskDelay(100);
 	}
 	
@@ -862,7 +982,12 @@ void nCheckRinseTemperature()
 	nUART_TxString("Ended CHECK RINSE TEMPERATURE.");	
 	nNewLine( 1 );
 }
-
+/* ========================================================================================================
+  	Function name	: nEmptyTanks
+  	Functionality	: Empty both Wash and Rinse tanks
+   	Returns			: None
+    Input range		: None
+   ======================================================================================================== */
 void nEmptyTanks()
 {
 	// Get timer from TimerLibrary, and convert from seconds to milleseconds, (Base time unit of FreeRTOS)
@@ -877,8 +1002,7 @@ void nEmptyTanks()
 	nPrintInteger(ProgramTimerLibrary[DrainingOperation][CurrentProgram]);
 	nUART_TxString(" Seconds.");
 	nNewLine(1);
-	
-	// Run operation based off of the timer, skip if TIMERSKIP is set
+	// Run operation based on the timer, skip if TIMERSKIP is set
 	while(timer && !TIMERSKIP)
 	{
 		// Check if timer has run out
@@ -902,6 +1026,17 @@ void nEmptyTanks()
 			}
 		}
 		
+		/* Check if the program has been paused or stopped, and wait for the change to stop. allow scheduling still, to allow for state change */
+		while (ProgramHandlerState == PAUSED || ProgramHandlerState == STOPPED_FOR_SENSORS)
+		{
+			/* Do nothing, just pause the waiting operation. */
+			if (vGetHWStatus(DRAIN_PUMP) == HardwareActive)
+				bSetHWStatus(DRAIN_PUMP, HardwareOff);
+			
+			
+			vTaskDelay(25); /* Set a delay of ~25 milliseconds. Keep checking the state for updates. if the state changes, resume the program. */
+		}
+		
 		// Decrement timer, schedule to other task
 		timer -= 10;
 		vTaskDelay(10);
@@ -919,44 +1054,41 @@ void nEmptyTanks()
 
 
 
-// ****************************************************************************************
-//	Type		: 	VALUE_RETURN Functions
-//	Example		:	vXxXxX();
-//	Description	:	Returns a value, no confirmation if successful or not. can be a handle for e.g. ADC pin
-// ****************************************************************************************
+/* ========================================================================================
+  	Type		: 	VALUE_RETURN Functions
+  	Example		:	vXxXxX();
+  	Description	:	Returns a value, no confirmation if successful or not. can be a handle for e.g. ADC pin
+   ======================================================================================== */
 
 
 uint8_t vGetHWStatus	( uint8_t HardwareHandle ) 
 {
-/* ******************************************************************
-//	Function name	: vGetHWStatus
-//	Functionality	: Check if bit 1 is set in LSR register, indicating receive data ready flag has been set
-// 	Returns			: 1 after a while. Should have a timeout timer as well, to avoid infinite loops in failure conditions	 
-//  Input range		: None
-// *****************************************************************/
+/* ========================================================================================
+  	Function name	: vGetHWStatus
+  	Functionality	: Check if bit 1 is set in LSR register, indicating receive data ready flag has been set
+   	Returns			: 1 after a while. Should have a timeout timer as well, to avoid infinite loops in failure conditions	 
+    Input range		: None
+   ======================================================================================== */
 	return HardwareLibrary[HardwareHandle][0];
 }
 
-// ****************************************************************************************
-//	Type		: 	Tasks
-//	Example		:	tXx();
-//	Description	:	FreeRTOS Task Structure
-// ****************************************************************************************
+/* ========================================================================================
+  	Type		: 	Tasks
+  	Example		:	tXx();
+  	Description	:	FreeRTOS Task Structure
+   ======================================================================================== */
 void tProgram_Handler		( void *param ) 
 {
-/* *********************************************************************************************************
-//	Function name	: tProgram_Handler
-//	Functionality	: Task to read the Queues "ProgramHandlerQ" and "ProgramQ" to call corresponding functions 
-						accordingly, to handle the selected machine program.
-// 	Returns			: None
-//  Input range		: None
-// ********************************************************************************************************/
+/* ========================================================================================
+  	Function name	: tProgram_Handler
+  	Functionality	: Task to read the Queues "ProgramHandlerQ" and "ProgramQ" to call corresponding functions 
+  						accordingly, to handle the selected machine program.
+   	Returns			: None
+    Input range		: None
+   ======================================================================================== */
 	
 	uint8_t receive;
 
-	
-
-	
 	uint8_t OutedMsg 			= 0;
 //	uint8_t PROGRAM_STARTED 	 	= 0;
 	

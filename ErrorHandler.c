@@ -80,14 +80,28 @@ void tErrorHandler(void *param)
 	};
 	
 	uint8_t ErrorHandlerState = IDLE_STATE;
-	
+	uint8_t receive;
 	
 	switch (ErrorHandlerState)
 	{
 	case IDLE_STATE:
+		
 		break;
 	
 	case ACTIVE_STATE:
+		if (xQueueReceive(ErrorHandlerQ, &receive, 10))
+		{
+			switch (receive)
+			{
+			case 0:
+			break;
+				
+			default:
+			break;
+				
+			}
+			
+		}
 		break;
 		
 	case STOP_ALL_STATE:

@@ -10,8 +10,8 @@
  =============================================================================================
  * Description:
  * 	File containing various programs orders of operations, time constraints, included sensors
- *  	and more. use these tasks to load a program into the program buffer. then start 
- *		executing them by running execute_programs();
+ *  and more. use these tasks to load a program into the program buffer. then start 
+ *	executing them by running execute_programs();
  *	Should 
  =============================================================================================*/
 
@@ -22,6 +22,7 @@
 // ============================================================================================
 #include "GPIO_control.h"
 #include "UART_control.h"
+#include "stdint.h"
 
 #include "ProgramsHandler.h"
 #include "SensorHandler.h"
@@ -154,12 +155,12 @@ uint8_t HW_Pinmap [15][2] =  {			{0	,	 9},			/* F0		|| P5	|| WASH PUMP 1					*/
 																			
 uint8_t bSetHWStatus ( uint8_t HardwareHandle , uint8_t NewStatus) 
 {
-/* ******************************************************************
+/* ==================================================================
 //	Function name	: bSetHWStatus
 //	Functionality	:	Set Hardware status to a desired value, if it's not in failure or alarm mode.
 // 	Returns			:	true or false. if hw is in failure or alarm mode, returns false, otherwise true	
 //  Input range		: 0 - NUMBER_OF_HW - 1 , 0 - 3
-// *****************************************************************/
+// ================================================================== */
 	if (HardwareLibrary[HardwareHandle][0] != HARDWARE_ALARM && HardwareLibrary[HardwareHandle][0] != HARDWARE_FAILURE) 
 	{
 		HardwareLibrary[HardwareHandle][0] = NewStatus;
@@ -177,12 +178,12 @@ uint8_t bSetHWStatus ( uint8_t HardwareHandle , uint8_t NewStatus)
 																				
 void nWashProgram_1() 
 {
-/* ******************************************************************
+/* ==================================================================
 //	Function name	: nWashprogram_1
 //	Functionality	: Fills Execution Queue with operations for washing program number 1
 // 	Returns			: True / False depending on whether or not program has been loaded
 //  Input range		: None
-// *****************************************************************/
+// ================================================================== */
 	uint8_t transmit;
 	
 	uint8_t Program_1_Recipe[10] =  {	START_PROGRAM,
@@ -336,7 +337,7 @@ void nFillTanksOperation()
 			else 
 			{
 				/* Wait for door to close. */
-				/* display "door not closed" message here */
+				/* Display "door not closed" message here */
 			}
 		}
 
@@ -358,7 +359,7 @@ void nFillTanksOperation()
 
 		vTaskDelay(100);
 	}
-// =============================================================================
+/* ======================================================================================================== */
 	if (SENSORSKIP) 
 	{
 		transmit = OPERATION_ENDED;
@@ -388,7 +389,7 @@ void nFillSoapOperation()
 	nNewLine( 2 );
 	nUART_TxString("Started CHECK_SOAP Operation.");
 	nNewLine( 1 );
-// ==========================================================================================================	
+/* ======================================================================================================== */	
 	while (vGetSensorData(SOAP_SENSOR) < 0.95 * SOAP_LEVEL && ! SENSORSKIP) 
 	{
 		bSetHWStatus(SOAP_PUMP , HardwareActive);
@@ -432,7 +433,7 @@ void nFillSoapOperation()
 	}
 	
 	
-// ==========================================================================================================
+/* ======================================================================================================== */
 	
 	nUART_TxString("Ended CHECK_SOAP.");
 	nNewLine( 1 );
@@ -448,13 +449,13 @@ void nFillSoapOperation()
 
 void nWashOperation() 
 {
-/* *********************************************************************************************************
-//	Function name	: nWashOperation
-//	Functionality	: Runs the wash operation, turns on wash pumps, decrements timer, keeps track of the 
-						temperature and keeps it up if it falls below washing (temperature - a set percentage)
-// 	Returns			:	None
-//  Input range		: None
-// ********************************************************************************************************/
+/* ========================================================================================================
+  	Function name	: nWashOperation
+  	Functionality	: Runs the wash operation, turns on wash pumps, decrements timer, keeps track of the 
+  					  temperature and keeps it up if it falls below washing (temperature - a set percentage)
+   	Returns			: None
+    Input range		: None
+   ======================================================================================================== */
 	
 	/* @Description
 			The washing operation should run for a fixed amount of time. this time will be grabbed from the operation_times library (or so) and loaded at start, then decremented accordingly.
@@ -1119,6 +1120,10 @@ void tProgram_Handler		( void *param )
 							ProgramHandlerState = READY;
 							OutedMsg = 0;
 						break;
+
+						case PAUSE_PROGRAM:
+							ProgramHandlerState = PAUSED;
+							break;
 					}
 				}
 			break;

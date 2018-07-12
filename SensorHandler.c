@@ -1,4 +1,4 @@
-/**********************************************************************************************
+´/* ============================================================================================
  * Source file : 
  * Author : Frederik Snedevind
  *		    Frs@Jeros.com
@@ -7,19 +7,19 @@
  *		   HTTP://www.Jeros.com/
  *
  * Date created : 9/4 - 2018
- **********************************************************************************************
+ ===============================================================================================
  * Description: Within the Sensor_file, the sensor task is contained.
  * 	this task is responsible for collecting data from every single sensor located in and
  *	around the machine. This also 
  *  
  *	
- ***********************************************************************************************/
+ =============================================================================================== */
 
-// ****************************************************************************************
-//
-//					Libraries
-//
-// ****************************************************************************************
+/* ========================================================================================
+   
+   				Libraries
+   
+   ======================================================================================== */
 #include "Sensor_file.h"
 #include "GPIO_setup.h"
 #include "UART_control.h"
@@ -60,18 +60,18 @@ uint16_t SensorDataLibrary[NUMBER_OF_SENSORS][3] = {{1,1,1},
 
 
 
-// ****************************************************************************************
-//	Type		: 	YES_RETURN Functions
-//	Example		:	yXxXxX();
-//	Description	:	Returns true (1) or false (0) depending on the success of the function
-// ****************************************************************************************
+/* ========================================================================================
+	Type		: 	BINARY_RETURN Functions
+	Example		:	bXxXxX();
+	Description	:	Returns true (1) or false (0) depending on the success of the function
+   ======================================================================================== */
 
 
-// ****************************************************************************************
-//	Type		: 	NO_RETURN Functions
-//	Example		:	nXxXxX();
-//	Description	:	Does not return anything.
-// ****************************************************************************************
+/* ========================================================================================
+  	Type		: 	NO_RETURN Functions
+  	Example		:	nXxXxX();
+  	Description	:	Does not return anything.
+   ======================================================================================== */
 void nInitializeAnalogSensors() 
 {
 /* ==================================================================
@@ -190,12 +190,12 @@ void nSensorData()
 
 void nSensorLibrary_Init() 
 {
-/* ******************************************************************
-//	Function name	: nSensorLibrary_Init
-//	Functionality	: Initializes the data in the SensorDataLibrary to 0, along with setting all sensors' status to VACANT (0).
-// 	Returns			: None
-//  Input range		: None
-// *****************************************************************/
+/* ========================================================================================
+  	Function name	: nSensorLibrary_Init
+  	Functionality	: Initializes the data in the SensorDataLibrary to 0, along with setting all sensors' status to VACANT (0).
+   	Returns			: None
+    Input range		: None
+   ======================================================================================== */
 	static uint8_t INITIALIZED = 0;
 	if (! INITIALIZED) {
 		for (uint8_t i = 0; i < NUMBER_OF_SENSORS; i++) 
@@ -206,19 +206,19 @@ void nSensorLibrary_Init()
 		INITIALIZED = 1;
 	}
 }
-// ****************************************************************************************
-//	Type		: 	VALUE_RETURN Functions
-//	Example		:	vXxXxX();
-//	Description	:	Returns a value, no confirmation if successful or not. can be a handle for e.g. ADC pin
-// ****************************************************************************************
+/* ========================================================================================
+  	Type		: 	VALUE_RETURN Functions
+  	Example		:	vXxXxX();
+  	Description	:	Returns a value, no confirmation if successful or not. can be a handle for e.g. ADC pin
+   ======================================================================================== */
 uint16_t vGetSensorData( uint8_t SENSOR ) 
 {
-/* ******************************************************************
-//	Function name	: vGetSensorData
-//	Functionality	: Returns the newest data from a given sensor, from the SensorDataLibrary
-// 	Returns			: Value, either 12-bit from ADC's, or 1-bit from digital inputs
-//  Input range		: 0 to NUMBER_OF_SENSORS - 1
-// *****************************************************************/
+/* ========================================================================================
+  	Function name	: vGetSensorData
+  	Functionality	: Returns the newest data from a given sensor, from the SensorDataLibrary
+   	Returns			: Value, either 12-bit from ADC's, or 1-bit from digital inputs
+    Input range		: 0 to NUMBER_OF_SENSORS - 1
+   ======================================================================================== */
 	if (SensorStatusLibrary[SENSOR] == SENSOR_ACTIVE || SensorStatusLibrary[SENSOR] == SENSOR_PAUSED)
 		return SensorDataLibrary[SENSOR][0];
 	else
@@ -227,11 +227,11 @@ uint16_t vGetSensorData( uint8_t SENSOR )
 
 
 
-// ****************************************************************************************
-//	Type		: 	Tasks
-//	Example		:	tXx();
-//	Description	:	FreeRTOS Task Structure
-// ****************************************************************************************
+/* ========================================================================================
+  	Type		: 	Tasks
+  	Example		:	tXx();
+  	Description	:	FreeRTOS Task Structure
+   ======================================================================================== */
 
 void tSensor_Task( void *param) 
 {
@@ -289,26 +289,26 @@ void tSensor_Task( void *param)
 
 uint8_t  vGetSensorStatus	( uint8_t SENSOR_HANDLE ) 
 {
-/* ******************************************************************
-//	Function name		: vGetSensorStatus
-	//	Functionality	: Returns the current status on the argumented sensor. This can either be:
-		SENSOR_VACANT (0)
-		SENSOR_ACTIVE (1)
-		SENSOR_PAUSED (2)
-	
-// 	Returns				: SENSOR_VACANT = 0		,		SENSOR_ACTIVE = 1		,		SENSOR_PAUSED = 2
-//  Input range			: 0 to NUMBER_OF_SENSORS - 1
-// *****************************************************************/
+/* ========================================================================================
+  	Function name		: vGetSensorStatus
+  	Functionality	: Returns the current status on the argumented sensor. This can either be:
+  						SENSOR_VACANT (0)
+  						SENSOR_ACTIVE (1)
+  						SENSOR_PAUSED (2)
+  
+   	Returns				: SENSOR_VACANT = 0		,		SENSOR_ACTIVE = 1		,		SENSOR_PAUSED = 2
+    Input range			: 0 to NUMBER_OF_SENSORS - 1
+   ======================================================================================== */
 	return SensorStatusLibrary[SENSOR_HANDLE];
 }
 
 uint8_t bChangeSensorStatus(uint8_t SENSOR_HANDLE, SENSOR_STATUS NewSensorStatus)
-/* ===================================================================
+/* ========================================================================================
 	Function name	: bChangeSensorStatus
 	Functionality	: Change the current status of a chosen sensor.
 	Returns			: True, if a change is made.
 	Input range		: [0 : 2], SENSOR_VACANT, SENSOR_ACTIVE & SENSOR_PAUSED
-   =================================================================== */
+   ======================================================================================== */
 {
 	uint8_t bChangeSensorStatus_ret = 0;
 	

@@ -102,6 +102,18 @@ void tErrorHandler(void *param)
 			}
 			
 		}
+
+
+		if (SensorStatus[i] == ACTIVE)
+		{
+			if (SensorValue[i] > SensorMaxValues[i])
+				SensorMaxBroken[i] = 1;
+			else if (SensorValue[i] < SensorMinValues[i])
+				SensorMinBroken[i] = 1;
+		}
+
+
+
 		break;
 		
 	case STOP_ALL_STATE:

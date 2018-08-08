@@ -1,17 +1,17 @@
 /*============================================================================================
- * Source file : ErrorHandler.c
- * Author : Frederik Snedevind
- *		    Frs@Jeros.com
- *
- * Company: Jeros A/S
- *		   HTTP://www.Jeros.com/
- *
- * Date created : 20/6 - 2018
+   Source file : ErrorHandler.c
+   Author : Frederik Snedevind
+  		    Frs@Jeros.com
+  
+   Company: Jeros A/S
+  		   HTTP://www.Jeros.com/
+  
+   Date created : 20/6 - 2018
  =============================================================================================
- * Description:
- * 	File containing various alarms for the Jeros Utensil Washer MK5
- * 	
- =============================================================================================*/
+   Description:
+   	File containing various alarms for the Jeros Utensil Washer MK5
+   	
+ ============================================================================================= */
 
 
 /* ==========================================================
@@ -40,7 +40,6 @@ xQueueHandle ErrorHandlerQ			= NULL;
   
   ========================================================== */
 uint16_t ErrorCounter = 0;
-
 
 
 /* ========================================================================================

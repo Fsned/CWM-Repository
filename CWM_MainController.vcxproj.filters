@@ -36,9 +36,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Source files\CWM18_Controller_001</Filter>
-    </ClCompile>
     <ClCompile Include="utilities.c">
       <Filter>Source files\CWM18_Controller_001</Filter>
     </ClCompile>
@@ -265,6 +262,9 @@
       <Filter>Source files\CWM18_Controller_001</Filter>
     </ClCompile>
     <ClCompile Include="LEDHandler.c">
+      <Filter>Source files\CWM18_Controller_001</Filter>
+    </ClCompile>
+    <ClCompile Include="main.c">
       <Filter>Source files\CWM18_Controller_001</Filter>
     </ClCompile>
   </ItemGroup>

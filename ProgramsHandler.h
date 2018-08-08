@@ -1,19 +1,19 @@
-/**********************************************************************************************
- * Header file : Programs_file.h
- * Author : Frederik Snedevind
- *		    Frs@Jeros.com
- *
- * Company: Jeros A/S
- *		   HTTP://www.Jeros.com/
- *
- * Date created : 9/4 - 2018
- **********************************************************************************************
- * Description:
- * 
- *  
- *	
- *
- *********************************************************************************************/
+/* ============================================================================================
+   Header file : Programs_file.h
+   Author : Frederik Snedevind
+  		    Frs@Jeros.com
+  
+   Company: Jeros A/S
+  		   HTTP://www.Jeros.com/
+  
+   Date created : 9/4 - 2018
+ ==============================================================================================
+   Description:
+	Header file belonging to the ProgramsHandler module
+    Provides API, constants, states etc. to the ProgramHandler task
+  	Helps keep track of hardware status in libraries
+	Helps keep track of various timers and parameters, in libraries.
+ ============================================================================================== */
  #ifndef PROGRAMS_FILE_H
  #define PROGRAMS_FILE_H
  
@@ -23,11 +23,9 @@
  #include "queue.h"
  
  
-// ****************************************************************************************
-//
-//					Constants
-//
-// ****************************************************************************************
+/* ========================================================================================
+  					Constants
+   ======================================================================================== */
 
 // Program Handler Task States
 typedef enum {
@@ -39,49 +37,51 @@ typedef enum {
 } StateType;
 
 // Operation Status messages
-#define REQUEST_OPERATION_START					1
-#define OPERATION_ENDED							2
-#define OPERATION_STOPPED						3
-#define ACK_OPERATION_START						4
-#define DENY_OPERATION_START					5
-#define PAUSE_PROGRAM							6
+enum OperationQueue Messages
+{
+	NoDefinition,
+	RequestOperationStart,
+	OperationEnded,
+	OperationStopped,
+	AckOperationStart,
+	DenyOperationStart,
+	PauseProgram,
+	ResumeProgram
+};
 
-#define READY_FOR_NEW_PROGRAM					1
-#define OCCUPIED_WITH_PROGRAM					2
-#define FINISHING_UP							3
-#define STOPPED_FOR_SENSORS						4
+#define REQUEST_OPERATION_START			1
+#define OPERATION_ENDED					2
+#define OPERATION_STOPPED				3
+#define ACK_OPERATION_START				4
+#define DENY_OPERATION_START			5
+#define PAUSE_PROGRAM					6
 
-enum HARDWARE_STATES {
+#define READY_FOR_NEW_PROGRAM			1
+#define OCCUPIED_WITH_PROGRAM			2
+#define FINISHING_UP					3
+#define STOPPED_FOR_SENSORS				4
+
+enum HARDWARE_STATES 
+{
 	HardwareOff,
 	HardwareActive,
 	HardwareFailure,
 	HardwareAlarm
 };
 
-#define HARDWARE_OFF							0
-#define HARDWARE_READY							0
-#define HARDWARE_ACTIVE							1
-#define HARDWARE_FAILURE						2
-#define HARDWARE_ALARM							3
+#define HARDWARE_OFF					0
+#define HARDWARE_READY					0
+#define HARDWARE_ACTIVE					1
+#define HARDWARE_FAILURE				2
+#define HARDWARE_ALARM					3
 
 
-
-// Hardware Status Modes
-
-enum DoorStatus
+enum ParameterLibraryIndeces
 {
-	HardwareDoorOpen,
-	HardwareDoorClosed,
-	
-	NumberOfDoorStates
-};
-
-enum ValveStatus
-{
-	HardwareValveClosed,
-	HardwareValveOpen,
-	
-	NumberOfValveStates
+	Value,
+	Minimum,
+	Maximum,
+	Std
 };
 
 
@@ -89,54 +89,52 @@ enum ValveStatus
 // Hardware Handles
 
 
-
-
 // Percentage that temperature can deviate from nominal washing / rinsing temperature
-#define TEMPERATURE_DEVIATION					3
-#define SOFTENER_DEVIATION						3
+#define TEMPERATURE_DEVIATION			3
+#define SOFTENER_DEVIATION				3
 
 // Washing / Rinsing water temperature. Never gets higher, but falls below by 3% before reheating to set temperature
-#define WASHING_TEMPERATURE						60
-#define RINSING_TEMPERATURE						85
+#define WASHING_TEMPERATURE				60
+#define RINSING_TEMPERATURE				85
 
 // Current Constants
-#define REVERSAL_CURRENT_MAX					3
+#define REVERSAL_CURRENT_MIN			0.3				/* Minimum current drawn by reversal is 0.3 Amps	*/
+#define REVERSAL_CURRENT_MAX			3				/* Max current drawn by reversal is 3 Amperes.		*/
 
 // SOAP and SOFTENER levels
-#define SOAP_LEVEL								10
-#define SOFTENER_LEVEL							11
+#define SOAP_LEVEL						10
+#define SOFTENER_LEVEL					11
 
 // Program Operation Indexes
 
-#define START_PROGRAM							5
-#define	END_PROGRAM								6
 
-#define CHECK_WATER_LEVEL						7 
-#define CHECK_WASH_TEMPERATURE					8 
-#define	CHECK_RINSE_TEMPERATURE					9 
-#define CHECK_SOAP								10
-#define CHECK_SOFTENER							11
-#define RUN_WASH								12
-#define RUN_WAIT								13
-#define RUN_RINSE								14
+#define START_PROGRAM					5
+#define	END_PROGRAM						6
+#define CHECK_WATER_LEVEL				7 
+#define CHECK_WASH_TEMPERATURE			8 
+#define	CHECK_RINSE_TEMPERATURE			9 
+#define CHECK_SOAP						10
+#define CHECK_SOFTENER					11
+#define RUN_WASH						12
+#define RUN_WAIT						13
+#define RUN_RINSE						14
 
 enum HardwareIndeces {
-	WASH_PUMP_1					= 0,
-	WASH_PUMP_2 				= 1,
-	RINSE_PUMP_1 				= 2,
-	RINSE_PUMP_2 				= 3,
-	REVERSAL_ENGINE 			= 4,
-	SOAP_PUMP 					= 5,
-	SOFTENER_PUMP 				= 6,
-	HEATING_RINSE_1 			= 7,
-	HEATING_RINSE_2 			= 8,
-	HEATING_WASH_1 				= 9,
-	HEATING_WASH_2 				= 10,
-	CURTAIN_ENGINE 				= 11,
-	DRAIN_PUMP 					= 12,
-	ELECTROVALVE 				= 13,
-	REVERSAL_ENG_DIRECTION		= 14,
-	
+	WASH_PUMP_1				,	
+	WASH_PUMP_2 			,	
+	RINSE_PUMP_1 			,	
+	RINSE_PUMP_2 			,	
+	REVERSAL_ENGINE			,	
+	SOAP_PUMP 				,	
+	SOFTENER_PUMP 			,	
+	HEATING_RINSE_1			,	
+	HEATING_RINSE_2			,	
+	HEATING_WASH_1 			,	
+	HEATING_WASH_2 			,	
+	CURTAIN_ENGINE 			,	
+	DRAIN_PUMP 				,	
+	ELECTROVALVE 			,	
+	REVERSAL_ENG_DIRECTION	,
 	
 	NumberOfHardware
 };
@@ -145,8 +143,7 @@ enum ProgramIndeces {
 	PROGRAM_1 = 1,
 	PROGRAM_2 = 2,
 	PROGRAM_3 = 3,
-	PROGRAM_4 = 4,
-	PROGRAM_5 = 5,
+	PROGRAM_MODIFIED = 4,
 	
 	NumberOfPrograms
 };
@@ -162,6 +159,8 @@ enum OperationTimers
 	NumberofOperationTimers
 };
 
+
+/* Indexing to access the parameters in ParameterLibrary	*/
 enum Parameters
 {
 	WashingTemperature,
@@ -172,6 +171,8 @@ enum Parameters
 	SoapConductivityDeviation,
 	StandbyTemperatureRinse,
 	StandbyTemperatureRinseDeviation,
+	StandbyTemperatureWash,
+	StandbyTemperatureWashDeviation,
 	AutomaticLidOpening,
 	TemperatureShownInFahrenheit,
 	ActivateSteamCondenser,

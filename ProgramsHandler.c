@@ -1,28 +1,28 @@
-/*============================================================================================
- * Source file : Programs_file
- * Author : Frederik Snedevind
- *		    Frs@Jeros.com
- *
- * Company: Jeros A/S
- *		   HTTP://www.Jeros.com/
- *
- * Date created : 9/4 - 2018
- =============================================================================================
- * Description:
- * 	File containing various programs orders of operations, time constraints, included sensors
- *  and more. use these tasks to load a program into the program buffer. then start 
- *	executing them by running execute_programs();
- *	Should 
- =============================================================================================*/
-
-// ============================================================================================
-//
-//					Libraries
-//
-// ============================================================================================
+/* ============================================================================================
+   Source file : Programs_file
+   Author : Frederik Snedevind
+   		    Frs@Jeros.com
+   
+   Company: Jeros A/S
+   		   HTTP://www.Jeros.com/
+   
+   Date created : 9/4 - 2018
+   ============================================================================================
+   Description:
+   	File containing various programs orders of operations, time constraints, included sensors
+    and more. use these tasks to load a program into the program buffer. then start 
+   	executing them by running execute_programs();
+   
+   ============================================================================================ */
+   
+/* ============================================================================================
+   
+   					Libraries
+   
+   ============================================================================================ */
+#include "stdint.h"
 #include "GPIO_control.h"
 #include "UART_control.h"
-#include "stdint.h"
 
 #include "ProgramsHandler.h"
 #include "SensorHandler.h"
@@ -34,32 +34,32 @@
 #include "task.h"
 #include "queue.h"
 
-// ============================================================================================
-//
-//					Variables
-//
-// ============================================================================================
+/* ============================================================================================
+   
+   					Variables
+   
+   ============================================================================================ */
 
 xQueueHandle OperationQ			= NULL;					/* Queue to talk to execution task, signalling e.g. program start, program stop, etc.	*/
 xQueueHandle ProgramLibrary		= NULL;					/* Queue to store Handles for various Operations										*/
 xQueueHandle ProgramHandlerQ	= NULL;					/* Queue to signal Operation Start, Operation End, etc.									*/
 														 
-const uint8_t SENSORSKIP = 0;							 
-const uint8_t TIMERSKIP  = 0;							 
-														 
-uint8_t CurrentProgram = 0;								/* 0 == No Program Selected.															*/
+const uint8_t SENSORSKIP		= 0;					/*																						*/
+const uint8_t TIMERSKIP			= 0;					/*																						*/		
+															 
+uint8_t CurrentProgram			= 0;					/* 0 == No Program Selected.															*/
 
-StateType ProgramHandlerState = IDLE;
+StateType ProgramHandlerState = IDLE;					/*																						*/
 
 /* =============================================================================================
-																				PROGRAM TIMER LIBRARY
-		Used to modify timers for various operations in washing programs. also contains 
-		Standard values for all operations, to allow to return settings to default values
-		Values are in seconds.
-		
-		Columns [0][2][4] are STD Values, and should not be changed.
-		Columns [1][3][5] are Values that the program operations retrieve, and can be edited.
-		Boundaries should be implemented, either here or in the HMI section
+	  																			PROGRAM TIMER LIBRARY
+	  	Used to modify timers for various operations in washing programs. also contains 
+	  	Standard values for all operations, to allow to return settings to default values
+	  	Values are in seconds.
+	  	
+	  	Columns [0][2][4] are STD Values, and should not be changed.
+	  	Columns [1][3][5] are Values that the program operations retrieve, and can be edited.
+	  	Boundaries should be implemented, either here or in the HMI section
    ============================================================================================= */
 /* 																				Operation Timer Library									*/
 /*							         	   					  P1	P1		P2		P2		P3		P3									*/
@@ -80,22 +80,24 @@ washing temperature, etc.
 																				
 //								{ [0] Value , [1] Minimum , [2] Maximum , [3] Std };
 																				
-uint16_t ParameterLibrary[NumberOfParameters][4] = {	{	56	,	20	,	70	,	56	}, 					/* WashingTemperature in *C					*/
-														{	3	,	1	,	10	,	3	},					/* WashingTemperatureDeviation in %			*/												
-														{	84	,	20	,	90	,	84	},					/* RinsingTemperature in *C					*/
-														{	3	,	1	,	10	,	3	},					/* RinsingTemperatureDeviation in %			*/
-														{	30	,	0	,	99	,	30	},					/* SoapConductivity							*/
-														{	3	,	1	,	10	,	3	},					/* SoapConductivityDeviation in %			*/
-														{	62	,	0	,	90	,	62	},					/* StandbyTemperatureRinse in *C			*/
-														{	3	,	1	,	10	,	3	},					/* StandbyTemperatureRinseDeviation in %	*/
-														{	1	,	0	,	1	,	1	},					/* AutomaticLidOpening						*/
-														{	0	,	0	,	1	,	0	},					/* TemperatureShownInFahrenheit				*/
-														{	0	,	0	,	1	,	0	},					/* ActivateSteamCondenser					*/
-														{	1	,	2	,	3	,	4	},
-														{	1	,	2	,	3	,	4	}, 
-														{	1	,	2	,	3	,	4	},
-														{	1	,	2	,	3	,	4	}, 
-														{	1	,	2	,	3	,	4	}};
+uint16_t ParameterLibrary[NumberOfParameters][4] = {{	56	,	20	,	70	,	56	}, 									/* WashingTemperature in *C					*/
+													{	3	,	1	,	10	,	3	},									/* WashingTemperatureDeviation in %			*/												
+													{	84	,	20	,	90	,	84	},									/* RinsingTemperature in *C					*/
+													{	3	,	1	,	10	,	3	},									/* RinsingTemperatureDeviation in %			*/
+													{	30	,	0	,	99	,	30	},									/* SoapConductivity							*/
+													{	3	,	1	,	10	,	3	},									/* SoapConductivityDeviation in %			*/
+													{	62	,	0	,	90	,	62	},									/* StandbyTemperatureRinse in *C			*/
+													{	3	,	1	,	10	,	3	},									/* StandbyTemperatureRinseDeviation in %	*/
+													{   42	,	0	,	90	,	42	},									/* StandbyTemperatureWash in *C				*/		
+													{	3	,	1	,	10	,	3	},									/* StandbyTemperatureWashDeviation in %		*/
+													{	1	,	0	,	1	,	1	},									/* AutomaticLidOpening						*/
+													{	0	,	0	,	1	,	0	},									/* TemperatureShownInFahrenheit				*/
+													{	0	,	0	,	1	,	0	},									/* ActivateSteamCondenser					*/
+													{	1	,	2	,	3	,	4	},			/* Not in Use Yet */
+													{	1	,	2	,	3	,	4	}, 			/* Not in Use Yet */
+													{	1	,	2	,	3	,	4	},			/* Not in Use Yet */
+													{	1	,	2	,	3	,	4	}, 			/* Not in Use Yet */
+													{	1	,	2	,	3	,	4	}};			/* Not in Use Yet */
 
 /* =============================================================================================
 																				HARDWARE STATUS LIBRARY
@@ -103,22 +105,22 @@ Used to keep track of current Hardware status. to see if a certain pump should b
 depending on current program state. 
    ============================================================================================= */
 /*										{[Current HW Status]	, [Not in Use]} */				
-	uint16_t HardwareLibrary[15][2] = 	{	{ HardwareOff		, 2 },					
-											{ HardwareOff		, 2 },
-											{ HardwareOff		, 2 },
-											{ HardwareOff		, 2 },
-											{ HardwareOff		, 2 },
-											{ HardwareOff		, 2 },
-											{ HardwareOff		, 2 },
-											{ HardwareOff		, 2 },
-											{ HardwareOff		, 2 },
-											{ HardwareOff		, 2 },
-											{ HardwareOff		, 2 },
-											{ HardwareOff		, 2 },
-											{ HardwareOff		, 2 },
-											{ HardwareOff		, 2 },
-											{ HardwareOff		, 2 }};
-				
+	uint16_t HardwareLibrary[NumberOfHardware][2] = {	{ HardwareOff	, 2 },
+														{ HardwareOff	, 2 },
+														{ HardwareOff	, 2 },
+														{ HardwareOff	, 2 },
+														{ HardwareOff	, 2 },
+														{ HardwareOff	, 2 },
+														{ HardwareOff	, 2 },
+														{ HardwareOff	, 2 },
+														{ HardwareOff	, 2 },
+														{ HardwareOff	, 2 },
+														{ HardwareOff	, 2 },
+														{ HardwareOff	, 2 },
+														{ HardwareOff	, 2 },
+														{ HardwareOff	, 2 },
+														{ HardwareOff	, 2 }};
+			
 /* =============================================================================================
 																				HARDWARE PIN MAP
 Mapping of all controllable hardware in the machines, to their corresponding PORTS and PINS
@@ -127,40 +129,40 @@ Should be remade once new processor hits the table
 Currently PinMapped for: LPC1768
 Should be remapped to: i.MX RT1020
    ============================================================================================= */
-/*										PORT,	PIN																	*/
-uint8_t HW_Pinmap [15][2] =  {			{0	,	 9},			/* F0		|| P5	|| WASH PUMP 1					*/
-										{0 	,	 8},			/* F1		|| P6	|| WASH PUMP 2					*/
-										{0 	,	 7},			/* F2		|| P7	|| RINSE PUMP 1					*/
-										{0 	,	 6},			/* F3		|| P8	|| RINSE PUMP 2					*/
-										{0 	,	 0},			/* F4		|| P9	|| REVERSAL ENGINE				*/
-										{0 	,	 1},			/* F5		|| P10	|| SOAP PUMP					*/
-										{0 	,	 18},			/* F6		|| P11	|| SOFTENER PUMP				*/
-										{0 	,	 17},			/* F7		|| P12	|| HEATER RINSE 1				*/
-										{0 	,	 15},			/* F8		|| P13	|| HEATER RINSE 2				*/
-										{0 	,	 16},			/* F9		|| P14	|| HEATER WASH 1				*/
-										{1 	,	 30},			/* F10		|| P19	|| HEATER WASH 2				*/
-										{1 	,	 31},			/* F11		|| P20	|| CURTAIN ENGINE				*/
-										{2 	,	 5},			/* F12		|| P21	|| DRAIN PUMP					*/
-										{2 	,	 4},			/* F13		|| P22	|| ELECTROVALVE					*/
-										{2 	,	 3}};			/* F14		|| P23	|| REVERSAL ENGINE DIRECTION	*/
+/*								PORT,	PIN																	*/
+uint8_t HW_Pinmap [15][2] =  {	{0	,	 9},			/* F0		|| P5	|| WASH PUMP 1					*/
+								{0 	,	 8},			/* F1		|| P6	|| WASH PUMP 2					*/
+								{0 	,	 7},			/* F2		|| P7	|| RINSE PUMP 1					*/
+								{0 	,	 6},			/* F3		|| P8	|| RINSE PUMP 2					*/
+								{0 	,	 0},			/* F4		|| P9	|| REVERSAL ENGINE				*/
+								{0 	,	 1},			/* F5		|| P10	|| SOAP PUMP					*/
+								{0 	,	 18},			/* F6		|| P11	|| SOFTENER PUMP				*/
+								{0 	,	 17},			/* F7		|| P12	|| HEATER RINSE 1				*/
+								{0 	,	 15},			/* F8		|| P13	|| HEATER RINSE 2				*/
+								{0 	,	 16},			/* F9		|| P14	|| HEATER WASH 1				*/
+								{1 	,	 30},			/* F10		|| P19	|| HEATER WASH 2				*/
+								{1 	,	 31},			/* F11		|| P20	|| CURTAIN ENGINE				*/
+								{2 	,	 5},			/* F12		|| P21	|| DRAIN PUMP					*/
+								{2 	,	 4},			/* F13		|| P22	|| ELECTROVALVE					*/
+								{2 	,	 3}};			/* F14		|| P23	|| REVERSAL ENGINE DIRECTION	*/
 																			
 
-// ========================================================================================
-//	Type		: BINARY_RETURN Functions
-//	Example		: bXxXxX();
-//	Description	: Functions that return TRUE (1) or FALSE (0) based on the success of the function.
-// ========================================================================================
+/* ========================================================================================
+  	Type		: BINARY_RETURN Functions
+  	Example		: bXxXxX();
+  	Description	: Functions that return TRUE (1) or FALSE (0) based on the success of the function.
+   ======================================================================================== */
 																			
 																			
 																			
 uint8_t bSetHWStatus ( uint8_t HardwareHandle , uint8_t NewStatus) 
 {
 /* ==================================================================
-//	Function name	: bSetHWStatus
-//	Functionality	:	Set Hardware status to a desired value, if it's not in failure or alarm mode.
-// 	Returns			:	true or false. if hw is in failure or alarm mode, returns false, otherwise true	
-//  Input range		: 0 - NUMBER_OF_HW - 1 , 0 - 3
-// ================================================================== */
+  	Function name	: bSetHWStatus
+  	Functionality	:	Set Hardware status to a desired value, if it's not in failure or alarm mode.
+   	Returns			:	true or false. if hw is in failure or alarm mode, returns false, otherwise true	
+    Input range		: 0 - NUMBER_OF_HW - 1 , 0 - 3
+   ================================================================== */
 	if (HardwareLibrary[HardwareHandle][0] != HARDWARE_ALARM && HardwareLibrary[HardwareHandle][0] != HARDWARE_FAILURE) 
 	{
 		HardwareLibrary[HardwareHandle][0] = NewStatus;
@@ -170,32 +172,32 @@ uint8_t bSetHWStatus ( uint8_t HardwareHandle , uint8_t NewStatus)
 	return 0;
 }	
 																				
-// ========================================================================================
-//	Type		: 	NO_RETURN Functions
-//	Example		:	nXxXxX();
-//	Description	:	Does not return anything.
-// ========================================================================================																			
+/* ========================================================================================
+  	Type		: 	NO_RETURN Functions
+  	Example		:	nXxXxX();
+  	Description	:	Does not return anything.
+   ========================================================================================	*/
 																				
 void nWashProgram_1() 
 {
 /* ==================================================================
-//	Function name	: nWashprogram_1
-//	Functionality	: Fills Execution Queue with operations for washing program number 1
-// 	Returns			: True / False depending on whether or not program has been loaded
-//  Input range		: None
-// ================================================================== */
+  	Function name	: nWashprogram_1
+  	Functionality	: Fills Execution Queue with operations for washing program number 1
+   	Returns			: None
+    Input range		: None
+   ================================================================== */
 	uint8_t transmit;
 	
 	uint8_t Program_1_Recipe[10] =  {	START_PROGRAM,
-																		PROGRAM_1,
-																		CHECK_WATER_LEVEL,
-																		CHECK_WASH_TEMPERATURE,
-																		CHECK_SOAP,
-																		RUN_WASH,
-																		RUN_WAIT,
-																		CHECK_RINSE_TEMPERATURE,
-																		RUN_RINSE,
-																		END_PROGRAM};
+										PROGRAM_1,
+										CHECK_WATER_LEVEL,
+										CHECK_WASH_TEMPERATURE,
+										CHECK_SOAP,
+										RUN_WASH,
+										RUN_WAIT,
+										CHECK_RINSE_TEMPERATURE,
+										RUN_RINSE,
+										END_PROGRAM};
 	
 	if (!uxQueueMessagesWaiting(ProgramLibrary)) {
 		for (int i = 0; i < (sizeof(Program_1_Recipe) / sizeof(Program_1_Recipe[0])); i++) {
@@ -217,7 +219,7 @@ void nWashProgram_2()
 /* ==================================================================
   	Function name	: nWashprogram_2
   	Functionality	: Fills Execution Queue with operations for washing program number 2
-   	Returns			: True / False depending on whether or not program has been loaded
+   	Returns			: None
     Input range		: None
    ================================================================== */
 	uint8_t transmit;
@@ -256,7 +258,7 @@ void nWashProgram_2()
 		nUART_TxString("WASH PROGRAM 2: Completed Initialization.");
 		nNewLine( 1 );
 	}
-//	vTaskDelay(10);
+	vTaskDelay(10);
 }
 
 
@@ -265,22 +267,21 @@ void nWashProgram_3()
 /* ==================================================================
   	Function name	: nWashprogram_3
   	Functionality	: Fills Execution Queue with operations for washing program number 3
-   	Returns			: True / False depending on whether or not program has been loaded
+   	Returns			: None
     Input range		: None
    ================================================================== */
 		uint8_t transmit;
 	
-		uint8_t Program_3_Recipe[10] = {	START_PROGRAM,
-											PROGRAM_3,
-											CHECK_WATER_LEVEL,
-											CHECK_WASH_TEMPERATURE,
-											CHECK_SOAP,
-											RUN_WASH,
-											RUN_WAIT,
-											CHECK_RINSE_TEMPERATURE,
-											RUN_RINSE,
-											END_PROGRAM
-																		};
+		uint8_t Program_3_Recipe[10] = {START_PROGRAM		,
+										PROGRAM_3			,
+										CHECK_WATER_LEVEL	,
+										CHECK_WASH_TEMPERATURE,
+										CHECK_SOAP			,
+										RUN_WASH			,
+										RUN_WAIT			,
+										CHECK_RINSE_TEMPERATURE,
+										RUN_RINSE			,
+										END_PROGRAM					};
 	
 	if (!uxQueueMessagesWaiting(ProgramLibrary)) {
 		for (int i = 0; i < (sizeof(Program_3_Recipe) / sizeof(Program_3_Recipe[0])); i++) {
@@ -289,8 +290,44 @@ void nWashProgram_3()
 		}
 		
 		transmit = START_PROGRAM;
-		xQueueSend(ProgramHandlerQ, &transmit, 10);
 		
+	}
+	vTaskDelay(10);
+}
+
+
+void nWashProgram_Modified()
+{
+/* ==================================================================
+Function name	: nWashProgram_Modified
+Functionality	: Fills Execution Queue with operations for a modified washing program
+Returns			: None
+Input range		: None
+================================================================== */
+	uint8_t transmit;
+
+
+	/* This program should only be run, if the user chooses another program, and modifies it before start.		*/
+	uint8_t Program_Mod_Recipe[10] = {	START_PROGRAM,						/* Command to the ProgramHandler, to initiate a Program Sequence	*/
+										PROGRAM_MODIFIED,					/* Value to the ProgramHandler, to see what # Program is running	*/
+										CHECK_WATER_LEVEL,					/* Command to Check the water level in both tanks					*/		
+										CHECK_WASH_TEMPERATURE,				/* Command to Check the temperature in wash tank					*/	
+										CHECK_SOAP,							/* Command to Check the soap level in the wash tank					*/	
+										RUN_WASH,							/* Command to run a wash operation									*/	
+										RUN_WAIT,							/* Command to run a wait-operaiton, post wash operation purpose is to let soap water drip off washed subjects, to prevent stains */
+										CHECK_RINSE_TEMPERATURE,			/* Command to Check the temperature in Rinse tank					*/		
+										RUN_RINSE,							/* Command to run a Rinse operation									*/		
+										END_PROGRAM };						/* Command to the ProgramHandler, to terminate a program Sequence*/
+
+	if (!uxQueueMessagesWaiting(ProgramLibrary))							/* Check if queue is empty, to prevent starting a program, while another one is running */
+	{
+		for (int i = 0; i < (sizeof(Program_Mod_Recipe) / sizeof(Program_Mod_Recipe[0])); i++)	/* Loop through the entire recipe array, no matter length				*/
+		{
+			transmit = Program_Mod_Recipe[i];
+			xQueueSend(ProgramLibrary, &transmit, 10);
+		}
+
+		transmit = START_PROGRAM;
 	}
 	vTaskDelay(10);
 }
@@ -303,120 +340,168 @@ void nFillTanksOperation()
   	Functionality	: Operation that checks the pressoswitches in both tanks and opens the electrovalve. only fills wash tank if door lid is closed
    	Returns			: None
     Input range		: None
-   ======================================================================================================= */
+   =======================================================================================================	*/
 /*	@Description The operation to fill tanks is not limited by a time duration, but by whether or not the tanks are filled.
 		The operation should keep an eye firstly on pressure switches, but also on the current drawn by the inlet pump.
-		If anything mishaps, put down all pumps and return an error code to the error handler
-*/	
+		If anything mishaps, put down all pumps and return an error code to the error handler				*/
+
+/* This function has been updated to also check the doorswitch, and react accordingly.						*/
+
 	uint8_t transmit;
 	nNewLine( 2 );
 	nUART_TxString("Started CHECK_WATER_LEVEL.");
 	nNewLine( 1 );
 	
-// =============================================================================
-		
-	while ( ( vGetSensorData(PRESSOSWITCH_RINSE) == SENSOR_LOW || vGetSensorData(PRESSOSWITCH_WASH) == SENSOR_LOW ) && ! SENSORSKIP) 
+/* ======================================================================================================= 	*/
+/* Keep Checking for door status. If door opens, shut off pumps.											*/
+/* Close electrovalve to prevent water inflow while door is open											*/
+	while ((vGetSensorData(PRESSOSWITCH_RINSE) == SENSOR_LOW || vGetSensorData(PRESSOSWITCH_WASH) == SENSOR_LOW) && !SENSORSKIP)
 	{
 		
-		if (vGetSensorData(PRESSOSWITCH_RINSE) == SENSOR_LOW)
+		if (vGetSensorStatus(DOORSWITCH) == HardwareDoorClosed)
 		{
-			if (vGetHWStatus(ELECTROVALVE) == HardwareValveClosed)
-				bSetHWStatus(ELECTROVALVE , HardwareValveOpen);
-		}
-		else if (vGetSensorData(PRESSOSWITCH_RINSE) == SENSOR_HIGH) 
-			bSetHWStatus(ELECTROVALVE , HardwareValveOpen);
 
-			
-		if (vGetSensorData(PRESSOSWITCH_WASH) == SENSOR_LOW) 
-		{
-			if (vGetSensorData(DOORSWITCH) == HardwareDoorClosed) 
+			if (vGetSensorData(PRESSOSWITCH_RINSE) == SENSOR_LOW)
 			{
 				if (vGetHWStatus(ELECTROVALVE) == HardwareValveClosed)
-					bSetHWStatus(ELECTROVALVE , HardwareValveOpen);
+					bSetHWStatus(ELECTROVALVE, HardwareValveOpen)
 			}
-			else 
-			{
-				/* Wait for door to close. */
-				/* Display "door not closed" message here */
-			}
-		}
 
-		if ( vGetSensorData(PRESSOSWITCH_RINSE) == SENSOR_HIGH && vGetSensorData(PRESSOSWITCH_WASH) == SENSOR_HIGH ) 
-		{
-			bSetHWStatus(ELECTROVALVE, HardwareValveClosed);
-			transmit = OPERATION_ENDED;
-			xQueueSend(ProgramHandlerQ , &transmit , 10);
+			if (vGetSensorData(PRESSOSWITCH_RINSE) == SENSOR_HIGH && vGetSensorData(PRESSOSWITCH_WASH) == SENSOR_LOW && vGetSensorData(TEMPERATURE_SENSOR_RINSE) < ParameterLibrary[StandbyTemperatureWash][Value])
+			{
+				if (vGetHWStatus(ELECTROVALVE) == HardwareValveOpen)
+					bSetHWStatus(ELECTROVALVE, HardwareValveClosed);
+
+				if (vGetHWStatus(HEATING_RINSE_1) == HardwareOff)
+					bSetHWStatus(HEATING_RINSE_1, HardwareActive);
+
+				if (vGetHWStatus(HEATING_RINSE_2) == HardwareOff)
+					bSetHWStatus(HEATING_RINSE_2, HardwareActive)
+			}
+
+			if (vGetSensorData(PRESSOSWITCH_RINSE) == SENSOR_HIGH && vGetSensorData(PRESSOSWITCH_WASH) == SENSOR_LOW && vGetSensorData(TEMPERATURE_SENSOR_RINSE) >= ParameterLibrary[StandbyTemperatureWash][Value]*(1+((1/100)*ParameterLibrary[StandbyTemperatureWashDeviation][Value])))
+			{
+				if (vGetHWStatus(HEATING_RINSE_1) == HardwareActive)
+					bSetHWStatus(HEATING_RINSE_1, HardwareOff);
+
+				if (vGetHWStatus(HEATING_RINSE_2) == HardwareActive)
+					bSetHWStatus(HEATING_RINSE_2, HardwareOff);
+
+				if (vGetHWStatus(ELECTROVALVE) == HardwareValveClosed)
+					bSetHWStatus(ELECTROVALVE, HardwareValveOpen);
+			}
+				
+			/* Check if both tanks have been filled */
+			if (vGetSensorData(PRESSOSWITCH_RINSE) == SENSOR_HIGH && vGetSensorData(PRESSOSWITCH_WASH) == SENSOR_HIGH)
+			{
+				bSetHWStatus(HEATING_RINSE_1, HardwareOff);
+				bSetHWStatus(HEATING_RINSE_2, HardwareOff);
+				bSetHWStatus(HEATING_WASH_1	, HardwareOff);
+				bSetHWStatus(HEATING_WASH_2	, HardwareOff);
+
+				bSetHWStatus(ELECTROVALVE, HardwareValveClosed);
+				transmit = OPERATION_ENDED;
+				xQueueSend(ProgramHandlerQ, &transmit, 10);
+			}
+
+			/* Check if the program has been paused or stopped, and wait for the change to stop. allow scheduling still, to allow for state change */
+			while (ProgramHandlerState == PAUSED || ProgramHandlerState == STOPPED_FOR_SENSORS)
+			{
+				if (vGetHWStatus(ELECTROVALVE) == HardwareValveOpen)
+					bSetHWStatus(ELECTROVALVE, HardwareValveClosed);
+
+				vTaskDelay(25);			/* Set a delay of ~25 milliseconds. Keep checking the state for updates. if the state changes, resume the program. */
+			}
+
+			vTaskDelay(100);
 		}
-		
-		/* Check if the program has been paused or stopped, and wait for the change to stop. allow scheduling still, to allow for state change */
-		while (ProgramHandlerState == PAUSED || ProgramHandlerState == STOPPED_FOR_SENSORS)
+		else /* If door opens */
 		{
 			if (vGetHWStatus(ELECTROVALVE) == HardwareValveOpen)
 				bSetHWStatus(ELECTROVALVE, HardwareValveClosed);
 
-			vTaskDelay(25);			/* Set a delay of ~25 milliseconds. Keep checking the state for updates. if the state changes, resume the program. */
-		}
+			if (vGetHWStatus(HEATING_RINSE_1) == HardwareActive)
+				bSetHWStatus(HEATING_RINSE_1, HardwareOff);
 
-		vTaskDelay(100);
+			if (vGetHWStatus(HEATING_RINSE_2) == HardwareActive)
+				bSetHWStatus(HEATING_RINSE_2, HardwareOff);
+
+			if (vGetHWStatus(HEATING_WASH_1) == HardwareActive)
+				bSetHWStatus(HEATING_WASH_1, HardwareOff);
+
+			if (vGetHWStatus(HEATING_WASH_2) == HardwareActive)
+				bSetHWStatus(HEATING_WASH_2, HardwareOff);
+
+		}
 	}
-/* ======================================================================================================== */
-	if (SENSORSKIP) 
+	/* ======================================================================================================== */
+	if (SENSORSKIP)
 	{
 		transmit = OPERATION_ENDED;
-		xQueueSend(ProgramHandlerQ , &transmit , 10);
+		xQueueSend(ProgramHandlerQ, &transmit, 10);
 	}
-	
+
 	nUART_TxString("Ended CHECK_WATER_LEVEL.");
-	nNewLine( 1 );
+	nNewLine(1);
 }
 
 void nFillSoapOperation()
 {
-/* ========================================================================================================
+/* ============================================================================================================
   	Function name	: nFillSoapOperation
   	Functionality	: Fills soap in the wash tank, up to the set level
    	Returns			: None
     Input range		: None
-   ======================================================================================================== */
+   ============================================================================================================ */
 	/*	@Description
-				The Soap operation is supposed to fill soap in the washing tank. 
-				if measured soap level reaches 95% of the pre-measured and entered soaplevel, the operation will complete.
-				the operation cuts the pump at 90% to allow the soap to settle in the mixture, and then remeasures to see
-				if more has to be added.
+			The Soap operation is supposed to fill soap in the washing tank. 
+			if measured soap level reaches 95% of the pre-determined and / or entered soaplevel, the operation will complete.
+			the operation cuts the pump at 95% to allow the soap to settle in the mixture, and then remeasures to see
+			if more has to be added.
 	*/
 	uint8_t transmit;
  
 	nNewLine( 2 );
 	nUART_TxString("Started CHECK_SOAP Operation.");
 	nNewLine( 1 );
-/* ======================================================================================================== */	
+/* ============================================================================================================ */	
 	while (vGetSensorData(SOAP_SENSOR) < 0.95 * SOAP_LEVEL && ! SENSORSKIP) 
 	{
-		bSetHWStatus(SOAP_PUMP , HardwareActive);
-		
-		if (vGetSensorData(SOAP_SENSOR) >= 0.95*SOAP_LEVEL && vGetHWStatus(SOAP_PUMP) == HardwareActive)
+		if (vGetSensorData(DOORSWITCH) == HardwareDoorClosed)
 		{
-			bSetHWStatus(SOAP_PUMP , HardwareOff);
-			vTaskDelay(1000);
+			bSetHWStatus(SOAP_PUMP, HardwareActive);
+
+			if (vGetSensorData(SOAP_SENSOR) >= 0.95*SOAP_LEVEL && vGetHWStatus(SOAP_PUMP) == HardwareActive)
+			{
+				bSetHWStatus(SOAP_PUMP, HardwareOff);
+				vTaskDelay(1000);
+			}
+
+			if (vGetSensorData(SOAP_SENSOR) < 0.95*SOAP_LEVEL && vGetHWStatus(SOAP_PUMP) == HardwareOff)
+			{
+				bSetHWStatus(SOAP_PUMP, HardwareActive);
+				vTaskDelay(1000);
+			}
+
+			if (vGetSensorData(SOAP_SENSOR) > 0.95*SOAP_LEVEL && vGetHWStatus(SOAP_PUMP) == HardwareOff)
+			{
+				transmit = OPERATION_ENDED;
+				xQueueSend(ProgramHandlerQ, &transmit, 10);
+			}
+
+			else if (vGetSensorData(SOAP_SENSOR) > 0.95*SOAP_LEVEL && vGetHWStatus(SOAP_PUMP) == HardwareActive)
+			{
+				bSetHWStatus(SOAP_PUMP, HardwareOff);
+				transmit = OPERATION_ENDED;
+				xQueueSend(ProgramHandlerQ, &transmit, 10);
+			}
 		}
-	
-		if (vGetSensorData(SOAP_SENSOR) < 0.95*SOAP_LEVEL && vGetHWStatus(SOAP_PUMP) == HardwareOff)
+		else /* If Door opens */
 		{
-			bSetHWStatus( SOAP_PUMP , HardwareActive);
-			vTaskDelay(1000);
-		}
-		
-		if (vGetSensorData(SOAP_SENSOR) > 0.95*SOAP_LEVEL && vGetHWStatus(SOAP_PUMP) == HardwareOff)
-		{
-			transmit = OPERATION_ENDED;
-			xQueueSend(ProgramHandlerQ , &transmit , 10);
-		}
-	
-		else if (vGetSensorData(SOAP_SENSOR) > 0.95*SOAP_LEVEL && vGetHWStatus(SOAP_PUMP) == HardwareActive)
-		{
-			bSetHWStatus( SOAP_PUMP , HardwareOff);
-			transmit = OPERATION_ENDED;
-			xQueueSend(ProgramHandlerQ , &transmit , 10);
+			if (vGetHWStatus(SOAP_PUMP) == HardwareActive)
+			{
+				bSetHWStatus(SOAP_PUMP, HardwareOff)
+			}
 		}
 
 		/* Check if the program has been paused or stopped, and wait for the change to stop. allow scheduling still, to allow for state change */
@@ -438,7 +523,7 @@ void nFillSoapOperation()
 	nUART_TxString("Ended CHECK_SOAP.");
 	nNewLine( 1 );
 	
-	if (SENSORSKIP) 
+	if (SENSORSKIP)
 	{
 		transmit = OPERATION_ENDED;
 		xQueueSend(ProgramHandlerQ , &transmit , 10);
@@ -469,11 +554,11 @@ void nWashOperation()
 		NOT_INIT,
 		COOLING,
 		HEATING
-	} HEATING_STATE;			
+	}	HEATING_STATE;			
 	
 	
-	HEATING_STATE HeatingStatus	= NOT_INIT;												/* Start the */
-	uint8_t Reversal_Direction = 0;			// Either 0 for towards the user (forwards) or 1 for towards the back of the machine (backwards).
+	HEATING_STATE HeatingStatus	= NOT_INIT;	/* Initiate State variable for wash-heating operation												*/
+	uint8_t Reversal_Direction = 0;			/* Either 0 for towards the user (forwards) or 1 for towards the back of the machine (backwards).	*/
 	uint8_t transmit;
 	nNewLine( 2 );
 	nUART_TxString("Started RUN_WASH Operation.");
@@ -486,85 +571,104 @@ void nWashOperation()
 	nUART_TxString(" Seconds.");
 	nNewLine( 1 );
 	
-	while ( timer && ! TIMERSKIP) {
+	while ( timer && ! TIMERSKIP)
+	{
 		
-		if (vGetHWStatus(WASH_PUMP_1) == HardwareOff)
-			bSetHWStatus(WASH_PUMP_1 , HardwareActive);
-		
-		if (vGetHWStatus(WASH_PUMP_2) == HardwareOff)
-			bSetHWStatus(WASH_PUMP_2 , HardwareActive);
-		
-		if (vGetHWStatus(REVERSAL_ENGINE) == HardwareOff)
-			bSetHWStatus(REVERSAL_ENGINE , HardwareActive);
-		
-		if (vGetSensorData(TEMPERATURE_SENSOR_WASH) < (1 - (ParameterLibrary[0][WashingTemperatureDeviation]/100)) * ParameterLibrary[0][WashingTemperature] && HeatingStatus == COOLING) /* Turn ON the heaters if temperature is below the set temperature, minus a deviation found in the parameter library*/
+		if (vGetSensorData(DOORSWITCH) == HardwareDoorClosed)
 		{
-			bSetHWStatus(HEATING_WASH_1, HardwareActive);
-			bSetHWStatus(HEATING_WASH_2, HardwareActive);
-			HeatingStatus = HEATING;
+
+			if (vGetHWStatus(WASH_PUMP_1) == HardwareOff)
+				bSetHWStatus(WASH_PUMP_1, HardwareActive);
+
+			if (vGetHWStatus(WASH_PUMP_2) == HardwareOff)
+				bSetHWStatus(WASH_PUMP_2, HardwareActive);
+
+			if (vGetHWStatus(REVERSAL_ENGINE) == HardwareOff)
+				bSetHWStatus(REVERSAL_ENGINE, HardwareActive);
+
+			if (vGetSensorData(TEMPERATURE_SENSOR_WASH) < (1 - (ParameterLibrary[0][WashingTemperatureDeviation] / 100)) * ParameterLibrary[0][WashingTemperature] && HeatingStatus == COOLING) /* Turn ON the heaters if temperature is below the set temperature, minus a deviation found in the parameter library*/
+			{
+				bSetHWStatus(HEATING_WASH_1, HardwareActive);
+				bSetHWStatus(HEATING_WASH_2, HardwareActive);
+				HeatingStatus = HEATING;
+			}
+
+			if (vGetSensorData(TEMPERATURE_SENSOR_WASH) >= WASHING_TEMPERATURE && HeatingStatus == HEATING)
+			{
+				bSetHWStatus(HEATING_WASH_1, HardwareOff);
+				bSetHWStatus(HEATING_WASH_2, HardwareOff);
+				HeatingStatus = COOLING;
+			}
+
+			/* If the current drawn by the reversal engine exceeds a limit, it indicates that the wash frame has reached a front. H-bridge relay is then flipped to change travel-direction */
+			if (vGetSensorData(REVERSAL_CURRENT_SENSOR) > REVERSAL_CURRENT_MAX)
+			{
+				bSetHWStatus(REVERSAL_ENGINE, HardwareOff);							/* Turn of Reversal engine, to prevent frame from travelling		*/
+
+				if (Reversal_Direction)												/* If frame goes forwards, set direction to backwards				*/
+				{
+					Reversal_Direction = 0;
+					bSetHWStatus(REVERSAL_ENG_DIRECTION, HardwareOff);
+				}
+				else																/* Else set direction to forwards									*/
+				{
+					Reversal_Direction = 1;
+					bSetHWStatus(REVERSAL_ENG_DIRECTION, HardwareActive);
+				}
+				bSetHWStatus(REVERSAL_ENGINE, HardwareActive);						/* Enable the Reversal engine again, when direction is flipped		*/
+			}
+
+			if (!timer)
+			{
+				transmit = OPERATION_ENDED;
+				xQueueSend(ProgramHandlerQ, &transmit, 10);
+
+				bSetHWStatus(WASH_PUMP_1, HardwareOff);
+				bSetHWStatus(WASH_PUMP_2, HardwareOff);
+				bSetHWStatus(REVERSAL_ENGINE, HardwareOff);
+				bSetHWStatus(HEATING_WASH_1, HardwareOff);
+				bSetHWStatus(HEATING_WASH_2, HardwareOff);
+			}
+
+
+			timer -= 100;
+			vTaskDelay(100);
+
+
+			/* Check if the program has been paused or stopped, and wait for the change to stop. allow scheduling, to allow for state change */
+			while (ProgramHandlerState == PAUSED || ProgramHandlerState == STOPPED_FOR_SENSORS)
+			{
+				if (vGetHWStatus(WASH_PUMP_1) == HardwareActive)
+					bSetHWStatus(WASH_PUMP_1, HardwareOff);
+
+				if (vGetHWStatus(WASH_PUMP_2) == HardwareActive)
+					bSetHWStatus(WASH_PUMP_2, HardwareOff);
+
+				if (vGetHWStatus(HEATING_WASH_1) == HardwareActive)
+					bSetHWStatus(HEATING_WASH_1, HardwareOff);
+
+				if (vGetHWStatus(HEATING_WASH_2) == HardwareActive)
+					bSetHWStatus(HEATING_WASH_2, HardwareOff);
+
+				if (vGetHWStatus(REVERSAL_ENGINE) == HardwareActive)
+					bSetHWStatus(REVERSAL_ENGINE, HardwareOff);
+
+				HeatingStatus = COOLING;
+
+				vTaskDelay(25); /* Set a delay of ~25 milliseconds. Keep checking the state for updates. if the state changes, resume the program. */
+			}
 		}
-		
-		if (vGetSensorData(TEMPERATURE_SENSOR_WASH) >= WASHING_TEMPERATURE && HeatingStatus == HEATING) 
+
+		else /* If door opens */
 		{
+			bSetHWStatus(WASH_PUMP_1, HardwareOff);
+			bSetHWStatus(WASH_PUMP_2, HardwareOff);
+			bSetHWStatus(REVERSAL_ENGINE, HardwareOff);
 			bSetHWStatus(HEATING_WASH_1, HardwareOff);
 			bSetHWStatus(HEATING_WASH_2, HardwareOff);
-			HeatingStatus = COOLING;
-		}
-		
-		
-		if (vGetSensorData(REVERSAL_CURRENT_SENSOR) > REVERSAL_CURRENT_MAX) 
-		{
-			
-			bSetHWStatus(REVERSAL_ENGINE, HardwareOff);
-			
-			if (Reversal_Direction) {
-				Reversal_Direction = 0;
-				bSetHWStatus(REVERSAL_ENG_DIRECTION, HardwareOff);
-			}
-			else {
-				Reversal_Direction = 1;
-				bSetHWStatus(REVERSAL_ENG_DIRECTION, HardwareActive);
-			}
-			bSetHWStatus(REVERSAL_ENGINE, HardwareActive);
-		}
-		
-		/* Check if the program has been paused or stopped, and wait for the change to stop. allow scheduling, to allow for state change */
-		while (ProgramHandlerState == PAUSED || ProgramHandlerState == STOPPED_FOR_SENSORS)
-		{
-			if (vGetHWStatus(WASH_PUMP_1) == HardwareActive)
-				bSetHWStatus(WASH_PUMP_1, HardwareOff);
-			
-			if (vGetHWStatus(WASH_PUMP_2) == HardwareActive)
-				bSetHWStatus(WASH_PUMP_2, HardwareOff);
-			
-			if (vGetHWStatus(HEATING_WASH_1) == HardwareActive)
-				bSetHWStatus(HEATING_WASH_1, HardwareOff);
-			
-			if (vGetHWStatus(HEATING_WASH_2) == HardwareActive)
-				bSetHWStatus(HEATING_WASH_2, HardwareOff);
-			
-			if (vGetHWStatus(REVERSAL_ENGINE) == HardwareActive)
-				bSetHWStatus(REVERSAL_ENGINE, HardwareOff);
-				
-			HeatingStatus = COOLING;
-			
-			vTaskDelay(25); /* Set a delay of ~25 milliseconds. Keep checking the state for updates. if the state changes, resume the program. */
-		}
-		
-		timer -= 100;
-		vTaskDelay(100);
-		
-		if (! timer ) {
-			transmit = OPERATION_ENDED;
-			xQueueSend(ProgramHandlerQ , &transmit , 10);
-			
-			bSetHWStatus(WASH_PUMP_1 		, HardwareOff);
-			bSetHWStatus(WASH_PUMP_2		, HardwareOff);
-			bSetHWStatus(REVERSAL_ENGINE	, HardwareOff);
-			bSetHWStatus(HEATING_WASH_1		, HardwareOff);
-			bSetHWStatus(HEATING_WASH_2		, HardwareOff);
 		}
 	}
+
 	if (TIMERSKIP) 
 	{
 		transmit = OPERATION_ENDED;
@@ -591,7 +695,7 @@ void nRinseOperation()
 			and then keep the water temperature with a 3% degree range. (2.4 deg. C. @ 80 deg. C. Rinsing temperature)
 	*/
 	
-	int timer = ProgramTimerLibrary[RinsingOperation][CurrentProgram] * 1000;
+	int timer = ProgramTimerLibrary[RinsingOperation][CurrentProgram] * 1000;	/* Conversion from seconds to milliseconds by multiplying by 1000 */
 
 	typedef enum
 	{
@@ -612,85 +716,97 @@ void nRinseOperation()
 	nUART_TxString(" Seconds.");
 	nNewLine( 1 );
 
-	while ( timer && ! TIMERSKIP) 
+	while (timer && !TIMERSKIP)
 	{
-		
-		if (vGetHWStatus(RINSE_PUMP_1) == HardwareOff)
-			bSetHWStatus(RINSE_PUMP_1 , HardwareActive);
-		
-		if (vGetHWStatus(RINSE_PUMP_2) == HardwareOff)
-			bSetHWStatus(RINSE_PUMP_2 , HardwareActive);
-		
-		if (vGetHWStatus(REVERSAL_ENGINE) == HardwareOff)
-			bSetHWStatus(REVERSAL_ENGINE , HardwareActive);
-		
-		if (vGetSensorData(TEMPERATURE_SENSOR_RINSE) < (1 - (TEMPERATURE_DEVIATION/100)) * RINSING_TEMPERATURE && HeatingStatus == COOLING) 
+		if (vGetSensorData(DOORSWITCH) == HardwareDoorClosed)
 		{
-			bSetHWStatus(HEATING_RINSE_1, HardwareActive);
-			bSetHWStatus(HEATING_RINSE_2, HardwareActive);
-			HeatingStatus = HEATING;
-		}
-		
-		if (vGetSensorData(TEMPERATURE_SENSOR_RINSE) >= RINSING_TEMPERATURE && HeatingStatus == HEATING) 
-		{
-			bSetHWStatus(HEATING_RINSE_1 , HardwareOff);
-			bSetHWStatus(HEATING_RINSE_2 , HardwareOff);
-			HeatingStatus = COOLING;
-		}
-		
-		
-		if (vGetSensorData(REVERSAL_CURRENT_SENSOR) > REVERSAL_CURRENT_MAX) 
-		{
-			bSetHWStatus(REVERSAL_ENGINE , HardwareOff);
-			if (Reversal_Direction) 
+
+
+			if (vGetHWStatus(RINSE_PUMP_1) == HardwareOff)
+				bSetHWStatus(RINSE_PUMP_1, HardwareActive);
+
+			if (vGetHWStatus(RINSE_PUMP_2) == HardwareOff)
+				bSetHWStatus(RINSE_PUMP_2, HardwareActive);
+
+			if (vGetHWStatus(REVERSAL_ENGINE) == HardwareOff)
+				bSetHWStatus(REVERSAL_ENGINE, HardwareActive);
+
+			if (vGetSensorData(TEMPERATURE_SENSOR_RINSE) < (1 - (TEMPERATURE_DEVIATION / 100)) * RINSING_TEMPERATURE && HeatingStatus == COOLING)
 			{
-				Reversal_Direction = 0;
-				bSetHWStatus(REVERSAL_ENG_DIRECTION , HardwareOff);
+				bSetHWStatus(HEATING_RINSE_1, HardwareActive);
+				bSetHWStatus(HEATING_RINSE_2, HardwareActive);
+				HeatingStatus = HEATING;
 			}
-			else 
+
+			if (vGetSensorData(TEMPERATURE_SENSOR_RINSE) >= RINSING_TEMPERATURE && HeatingStatus == HEATING)
 			{
-				Reversal_Direction = 1;
-				bSetHWStatus(REVERSAL_ENG_DIRECTION, HardwareActive);
-			}
-			bSetHWStatus(REVERSAL_ENGINE, HardwareActive);
-		}
-		/* Check if the program has been paused or stopped, and wait for the change to stop. allow scheduling still, to allow for state change */
-		while (ProgramHandlerState == PAUSED || ProgramHandlerState == STOPPED_FOR_SENSORS)
-		{
-			if (vGetHWStatus(RINSE_PUMP_1) == HardwareActive)
-				bSetHWStatus(RINSE_PUMP_1, HardwareOff);
-			
-			if (vGetHWStatus(RINSE_PUMP_2) == HardwareActive)
-				bSetHWStatus(RINSE_PUMP_2, HardwareOff);
-			
-			if (vGetHWStatus(HEATING_RINSE_1) == HardwareActive)
 				bSetHWStatus(HEATING_RINSE_1, HardwareOff);
-			
-			if (vGetHWStatus(HEATING_RINSE_2) == HardwareActive)
 				bSetHWStatus(HEATING_RINSE_2, HardwareOff);
-			
-			if (vGetHWStatus(REVERSAL_ENGINE) == HardwareActive)
+				HeatingStatus = COOLING;
+			}
+
+			if (vGetSensorData(REVERSAL_CURRENT_SENSOR) > REVERSAL_CURRENT_MAX)
+			{
 				bSetHWStatus(REVERSAL_ENGINE, HardwareOff);
-				
-			HeatingStatus = COOLING;
-			
-			vTaskDelay(25); /* Set a delay of ~25 milliseconds. Keep checking the state for updates. if the state changes, resume the program. */
+				if (Reversal_Direction)
+				{
+					Reversal_Direction = 0;
+					bSetHWStatus(REVERSAL_ENG_DIRECTION, HardwareOff);
+				}
+				else
+				{
+					Reversal_Direction = 1;
+					bSetHWStatus(REVERSAL_ENG_DIRECTION, HardwareActive);
+				}
+				bSetHWStatus(REVERSAL_ENGINE, HardwareActive);
+			}
+			/* Check if the program has been paused or stopped, and wait for the change to stop. allow scheduling still, to allow for state change */
+			while (ProgramHandlerState == PAUSED || ProgramHandlerState == STOPPED_FOR_SENSORS)
+			{
+				if (vGetHWStatus(RINSE_PUMP_1) == HardwareActive)
+					bSetHWStatus(RINSE_PUMP_1, HardwareOff);
+
+				if (vGetHWStatus(RINSE_PUMP_2) == HardwareActive)
+					bSetHWStatus(RINSE_PUMP_2, HardwareOff);
+
+				if (vGetHWStatus(HEATING_RINSE_1) == HardwareActive)
+					bSetHWStatus(HEATING_RINSE_1, HardwareOff);
+
+				if (vGetHWStatus(HEATING_RINSE_2) == HardwareActive)
+					bSetHWStatus(HEATING_RINSE_2, HardwareOff);
+
+				if (vGetHWStatus(REVERSAL_ENGINE) == HardwareActive)
+					bSetHWStatus(REVERSAL_ENGINE, HardwareOff);
+
+				HeatingStatus = COOLING;
+
+				vTaskDelay(25); /* Set a delay of ~25 milliseconds. Keep checking the state for updates. if the state changes, resume the program. */
+			}
+
+
+			timer -= 100;
+			vTaskDelay(100);
+
+			if (!timer)
+			{
+				transmit = OPERATION_ENDED;
+				xQueueSend(ProgramHandlerQ, &transmit, 10);
+
+				bSetHWStatus(RINSE_PUMP_1, HardwareOff);
+				bSetHWStatus(RINSE_PUMP_2, HardwareOff);
+				bSetHWStatus(REVERSAL_ENGINE, HardwareOff);
+				bSetHWStatus(HEATING_RINSE_1, HardwareOff);
+				bSetHWStatus(HEATING_RINSE_2, HardwareOff);
+			}
 		}
-		
-		
-		timer -= 100;
-		vTaskDelay(100);
-		
-		if (! timer ) 
+
+		else /* If door opens*/
 		{
-			transmit = OPERATION_ENDED;
-			xQueueSend(ProgramHandlerQ , &transmit , 10);
-			
-			bSetHWStatus(RINSE_PUMP_1 		, HardwareOff);
-			bSetHWStatus(RINSE_PUMP_2 		, HardwareOff);
-			bSetHWStatus(REVERSAL_ENGINE 	, HardwareOff);
-			bSetHWStatus(HEATING_RINSE_1	, HardwareOff);
-			bSetHWStatus(HEATING_RINSE_2	, HardwareOff);
+			bSetHWStatus(RINSE_PUMP_1, HardwareOff);
+			bSetHWStatus(RINSE_PUMP_2, HardwareOff);
+			bSetHWStatus(REVERSAL_ENGINE, HardwareOff);
+			bSetHWStatus(HEATING_RINSE_1, HardwareOff);
+			bSetHWStatus(HEATING_RINSE_2, HardwareOff);
 		}
 	}
 	
@@ -726,9 +842,10 @@ void nWaitOperation()
 	nPrintInteger(ProgramTimerLibrary[WaitingOperation][CurrentProgram]);
 	nUART_TxString(" Seconds.");
 	nNewLine( 1 );
-		
+	
 	while ( timer && ! TIMERSKIP) 
 	{
+
 		/* Check if the program has been paused or stopped, and wait for the change to stop. allow scheduling still, to allow for state change */
 		while (ProgramHandlerState == PAUSED || ProgramHandlerState == STOPPED_FOR_SENSORS)
 		{
@@ -737,10 +854,10 @@ void nWaitOperation()
 			vTaskDelay(25); /* Set a delay of ~25 milliseconds. Keep checking the state for updates. if the state changes, resume the program. */
 		}
 		
-		timer -= 10;
-		vTaskDelay(10);
+		timer -= 25;
+		vTaskDelay(25);
 		
-		if (! timer ) 
+		if (! timer && vGetSensorData(DOORSWITCH) == HardwareDoorClosed) 
 		{
 			transmit = OPERATION_ENDED;
 			xQueueSend(ProgramHandlerQ , &transmit , 10);
@@ -788,43 +905,52 @@ void nFillSoftenerOperation()
 	
 	while (vGetSensorData(SOFTENER_SENSOR) < SOFTENER_LEVEL && ! SENSORSKIP) 
 	{
-		if ( vGetSensorData(SOFTENER_SENSOR) < (1 - ( SOFTENER_DEVIATION / 100)) * SOFTENER_LEVEL && (SoftenerPumpState == FALLING || SoftenerPumpState == NOT_INIT)) 
+		if (vGetSensorData(DOORSWITCH) == HardwareDoorClosed)
 		{
-			bSetHWStatus( SOFTENER_PUMP , HardwareActive );
-			SoftenerPumpState = FILLING;
-		}
-		
-		if (vGetSensorData(SOFTENER_SENSOR) >= SOFTENER_LEVEL && SoftenerPumpState == FILLING) 
-		{
-			bSetHWStatus( SOFTENER_PUMP , HardwareOff );
-			SoftenerPumpState = FALLING;
-		}
-		
-		if (vGetSensorData(SOFTENER_SENSOR) > SOFTENER_LEVEL) 
-		{
-			bSetHWStatus( SOFTENER_PUMP , HardwareOff );
-			SoftenerPumpState = FALLING;
-			
-			transmit = OPERATION_ENDED;
-			xQueueSend(ProgramHandlerQ , &transmit , 10);
-			break;
-		}
-		
-		/* Check if the program has been paused or stopped, and wait for the change to stop. allow scheduling still, to allow for state change */
-		while (ProgramHandlerState == PAUSED || ProgramHandlerState == STOPPED_FOR_SENSORS)
-		{
-			/* Do nothing, just pause the waiting operation. */
-			if (vGetHWStatus(SOFTENER_PUMP) == HardwareActive)
+			if (vGetSensorData(SOFTENER_SENSOR) < (1 - (SOFTENER_DEVIATION / 100)) * SOFTENER_LEVEL && (SoftenerPumpState == FALLING || SoftenerPumpState == NOT_INIT))
+			{
+				bSetHWStatus(SOFTENER_PUMP, HardwareActive);
+				SoftenerPumpState = FILLING;
+			}
+
+			if (vGetSensorData(SOFTENER_SENSOR) >= SOFTENER_LEVEL && SoftenerPumpState == FILLING)
+			{
 				bSetHWStatus(SOFTENER_PUMP, HardwareOff);
-			
-			SoftenerPumpState = FALLING;
-			
-			vTaskDelay(25); /* Set a delay of ~25 milliseconds. Keep checking the state for updates. if the state changes, resume the program. */
+				SoftenerPumpState = FALLING;
+			}
+
+			if (vGetSensorData(SOFTENER_SENSOR) > SOFTENER_LEVEL)
+			{
+				bSetHWStatus(SOFTENER_PUMP, HardwareOff);
+				SoftenerPumpState = FALLING;
+
+				transmit = OPERATION_ENDED;
+				xQueueSend(ProgramHandlerQ, &transmit, 10);
+				break;
+			}
+
+			/* Check if the program has been paused or stopped, and wait for the change to stop. allow scheduling still, to allow for state change */
+			while (ProgramHandlerState == PAUSED || ProgramHandlerState == STOPPED_FOR_SENSORS)
+			{
+				/* Do nothing, just pause the waiting operation. */
+				if (vGetHWStatus(SOFTENER_PUMP) == HardwareActive)
+					bSetHWStatus(SOFTENER_PUMP, HardwareOff);
+
+				SoftenerPumpState = FALLING;
+
+				vTaskDelay(25); /* Set a delay of ~25 milliseconds. Keep checking the state for updates. if the state changes, resume the program. */
+			}
+
+			nUART_TxString("Stopped nFillSoftenerOperation.");
+			nNewLine(1);
+			vTaskDelay(100);
 		}
-		
-		nUART_TxString("Stopped nFillSoftenerOperation.");
-		nNewLine( 1 );
-		vTaskDelay(100);
+		else /* If door opens */
+		{
+			bSetHWStatus(SOFTENER_PUMP, HardwareOff);
+			SoftenerPumpState = FALLING;
+
+		}
 	}
 	
 	if (SENSORSKIP) 
@@ -865,40 +991,51 @@ void nCheckWashTemperature()
 	
 	while ( vGetSensorData(WASHING_TEMPERATURE) < WASHING_TEMPERATURE && ! SENSORSKIP) 
 	{
-		
-		if (vGetSensorData(WASHING_TEMPERATURE) < (1 - (TEMPERATURE_DEVIATION / 100)) * WASHING_TEMPERATURE && (WashHeatingState == COOLING || WashHeatingState == NOT_INIT)) 
+		if (vGetSensorData(DOORSWITCH) == HardwareDoorClosed)
 		{
-			bSetHWStatus(HEATING_WASH_1 , HardwareActive);
-			bSetHWStatus(HEATING_WASH_2 , HardwareActive);
-			WashHeatingState = HEATING;
-		}
-		
-		if (vGetSensorData(WASHING_TEMPERATURE) >= WASHING_TEMPERATURE ) 
-		{
-			bSetHWStatus(HEATING_WASH_1 , HardwareOff);
-			bSetHWStatus(HEATING_WASH_2 , HardwareOff);
-			WashHeatingState = COOLING;
-			
-			transmit = OPERATION_ENDED;
-			xQueueSend(ProgramHandlerQ , &transmit , 10);
-		}
-		
-		/* Check if the program has been paused or stopped, and wait for the change to stop. allow scheduling still, to allow for state change */
-		while (ProgramHandlerState == PAUSED || ProgramHandlerState == STOPPED_FOR_SENSORS)
-		{
-			/* Do nothing, just pause the waiting operation. */
-			if (vGetHWStatus(HEATING_WASH_1) == HardwareActive)
+
+			if (vGetSensorData(WASHING_TEMPERATURE) < (1 - (TEMPERATURE_DEVIATION / 100)) * WASHING_TEMPERATURE && (WashHeatingState == COOLING || WashHeatingState == NOT_INIT))
+			{
+				bSetHWStatus(HEATING_WASH_1, HardwareActive);
+				bSetHWStatus(HEATING_WASH_2, HardwareActive);
+				WashHeatingState = HEATING;
+			}
+
+			if (vGetSensorData(WASHING_TEMPERATURE) >= WASHING_TEMPERATURE)
+			{
 				bSetHWStatus(HEATING_WASH_1, HardwareOff);
-			
-			if (vGetHWStatus(HEATING_WASH_2) == HardwareActive)
 				bSetHWStatus(HEATING_WASH_2, HardwareOff);
-			
-			WashHeatingState = COOLING;
-			
-			vTaskDelay(25); /* Set a delay of ~25 milliseconds. Keep checking the state for updates. if the state changes, resume the program. */
+				WashHeatingState = COOLING;
+
+				transmit = OPERATION_ENDED;
+				xQueueSend(ProgramHandlerQ, &transmit, 10);
+			}
+
+			/* Check if the program has been paused or stopped, and wait for the change to stop. allow scheduling still, to allow for state change */
+			while (ProgramHandlerState == PAUSED || ProgramHandlerState == STOPPED_FOR_SENSORS)
+			{
+				/* Do nothing, just pause the waiting operation. */
+				if (vGetHWStatus(HEATING_WASH_1) == HardwareActive)
+					bSetHWStatus(HEATING_WASH_1, HardwareOff);
+
+				if (vGetHWStatus(HEATING_WASH_2) == HardwareActive)
+					bSetHWStatus(HEATING_WASH_2, HardwareOff);
+
+				WashHeatingState = COOLING;
+
+				vTaskDelay(25); /* Set a delay of ~25 milliseconds. Keep checking the state for updates. if the state changes, resume the program. */
+			}
+
+			vTaskDelay(100);
 		}
-		
-		vTaskDelay(100);
+		else /* If door opens */
+		{
+			bSetHWStatus(HEATING_RINSE_1, HardwareOff);
+			bSetHWStatus(HEATING_RINSE_2, HardwareOff);
+			bSetHWStatus(HEATING_WASH_1, HardwareOff);
+			bSetHWStatus(HEATING_WASH_2, HardwareOff);
+			WashHeatingState = COOLING;
+		}
 	}
 	
 	if (SENSORSKIP) 
@@ -937,41 +1074,52 @@ void nCheckRinseTemperature()
 	
 	while ( vGetSensorData(RINSING_TEMPERATURE) < RINSING_TEMPERATURE) 
 	{
-		
-		if (vGetSensorData(RINSING_TEMPERATURE) < (1 - (TEMPERATURE_DEVIATION / 100)) * RINSING_TEMPERATURE && (RinseHeatingState == COOLING || RinseHeatingState == NOT_INIT)) 
+		if (vGetSensorData(DOORSWITCH) == HardwareDoorClosed)
 		{
-			bSetHWStatus(HEATING_RINSE_1 , HardwareActive);
-			bSetHWStatus(HEATING_RINSE_2 , HardwareActive);
-			RinseHeatingState = HEATING;
-		}
-		
-		if (vGetSensorData(WASHING_TEMPERATURE) >= WASHING_TEMPERATURE ) 
-		{
-			bSetHWStatus(HEATING_RINSE_1 , HardwareOff);
-			bSetHWStatus(HEATING_RINSE_2 , HardwareOff);
-			RinseHeatingState = COOLING;
-			
-			transmit = OPERATION_ENDED;
-			xQueueSend(ProgramHandlerQ , &transmit , 10);
-			break;
-		}	
-		
-		/* Check if the program has been paused or stopped, and wait for the change to stop. allow scheduling still, to allow for state change */
-		while (ProgramHandlerState == PAUSED || ProgramHandlerState == STOPPED_FOR_SENSORS)
-		{
-			/* Do nothing, just pause the waiting operation. */
-			if (vGetHWStatus(HEATING_RINSE_1) == HardwareActive)
+
+			if (vGetSensorData(RINSING_TEMPERATURE) < (1 - (TEMPERATURE_DEVIATION / 100)) * RINSING_TEMPERATURE && (RinseHeatingState == COOLING || RinseHeatingState == NOT_INIT))
+			{
+				bSetHWStatus(HEATING_RINSE_1, HardwareActive);
+				bSetHWStatus(HEATING_RINSE_2, HardwareActive);
+				RinseHeatingState = HEATING;
+			}
+
+			if (vGetSensorData(WASHING_TEMPERATURE) >= WASHING_TEMPERATURE)
+			{
 				bSetHWStatus(HEATING_RINSE_1, HardwareOff);
-			
-			if (vGetHWStatus(HEATING_RINSE_2) == HardwareActive)
 				bSetHWStatus(HEATING_RINSE_2, HardwareOff);
-			
-			RinseHeatingState = COOLING;
-			
-			vTaskDelay(25); /* Set a delay of ~25 milliseconds. Keep checking the state for updates. if the state changes, resume the program. */
+				RinseHeatingState = COOLING;
+
+				transmit = OPERATION_ENDED;
+				xQueueSend(ProgramHandlerQ, &transmit, 10);
+				break;
+			}
+
+			/* Check if the program has been paused or stopped, and wait for the change to stop. allow scheduling still, to allow for state change */
+			while (ProgramHandlerState == PAUSED || ProgramHandlerState == STOPPED_FOR_SENSORS)
+			{
+				/* Do nothing, just pause the waiting operation. */
+				if (vGetHWStatus(HEATING_RINSE_1) == HardwareActive)
+					bSetHWStatus(HEATING_RINSE_1, HardwareOff);
+
+				if (vGetHWStatus(HEATING_RINSE_2) == HardwareActive)
+					bSetHWStatus(HEATING_RINSE_2, HardwareOff);
+
+				RinseHeatingState = COOLING;
+
+				vTaskDelay(25); /* Set a delay of ~25 milliseconds. Keep checking the state for updates. if the state changes, resume the program. */
+			}
+
+			vTaskDelay(100);
 		}
-		
-		vTaskDelay(100);
+		else /* If door opens */
+		{
+			bSetHWStatus(HEATING_RINSE_1, HardwareOff);
+			bSetHWStatus(HEATING_RINSE_2, HardwareOff);
+			bSetHWStatus(HEATING_WASH_1, HardwareOff);
+			bSetHWStatus(HEATING_WASH_2, HardwareOff);
+			RinseHeatingState = COOLING;
+		}
 	}
 	
 	if (SENSORSKIP) 
@@ -1003,44 +1151,51 @@ void nEmptyTanks()
 	nPrintInteger(ProgramTimerLibrary[DrainingOperation][CurrentProgram]);
 	nUART_TxString(" Seconds.");
 	nNewLine(1);
+
 	// Run operation based on the timer, skip if TIMERSKIP is set
 	while(timer && !TIMERSKIP)
 	{
-		// Check if timer has run out
-		if (!timer) 
+		if (vGetSensorData(DOORSWITCH) == HardwareDoorClosed)
 		{
-			transmit = OPERATION_ENDED;
-			xQueueSend(ProgramHandlerQ, &transmit, 10);
-		}
-		
-		if (vGetHWStatus(DRAIN_PUMP) == HardwareOff)
-		{
-			if (vGetSensorData(DOORSWITCH) == HardwareDoorOpen)
+			// Check if timer has run out
+			if (!timer)
 			{
-				/*
-				 * Display Door Open Message
-				 **/
+				transmit = OPERATION_ENDED;
+				xQueueSend(ProgramHandlerQ, &transmit, 10);
 			}
-			else if (vGetSensorData(DOORSWITCH) == HardwareDoorClosed)
+
+			if (vGetHWStatus(DRAIN_PUMP) == HardwareOff)
 			{
-				bSetHWStatus(DRAIN_PUMP, HardwareActive);
+				if (vGetSensorData(DOORSWITCH) == HardwareDoorOpen)
+				{
+					/*
+					 * Display Door Open Message
+					  */
+				}
+				else if (vGetSensorData(DOORSWITCH) == HardwareDoorClosed)
+				{
+					bSetHWStatus(DRAIN_PUMP, HardwareActive);
+				}
 			}
+
+			/* Check if the program has been paused or stopped, and wait for the change to stop. allow scheduling still, to allow for state change */
+			while (ProgramHandlerState == PAUSED || ProgramHandlerState == STOPPED_FOR_SENSORS)
+			{
+				/* Do nothing, just pause the waiting operation. */
+				if (vGetHWStatus(DRAIN_PUMP) == HardwareActive)
+					bSetHWStatus(DRAIN_PUMP, HardwareOff);
+
+				vTaskDelay(25); /* Set a delay of ~25 milliseconds. Keep checking the state for updates. if the state changes, resume the program. */
+			}
+
+			// Decrement timer, schedule to other task
+			timer -= 10;
+			vTaskDelay(10);
 		}
-		
-		/* Check if the program has been paused or stopped, and wait for the change to stop. allow scheduling still, to allow for state change */
-		while (ProgramHandlerState == PAUSED || ProgramHandlerState == STOPPED_FOR_SENSORS)
+		else /* If door opens */
 		{
-			/* Do nothing, just pause the waiting operation. */
-			if (vGetHWStatus(DRAIN_PUMP) == HardwareActive)
-				bSetHWStatus(DRAIN_PUMP, HardwareOff);
-			
-			
-			vTaskDelay(25); /* Set a delay of ~25 milliseconds. Keep checking the state for updates. if the state changes, resume the program. */
+			bSetHWStatus(DRAIN_PUMP, HardwareOff)
 		}
-		
-		// Decrement timer, schedule to other task
-		timer -= 10;
-		vTaskDelay(10);
 	}
 	
 	nUART_TxString("Ended Draining Operation.");
@@ -1087,135 +1242,145 @@ void tProgram_Handler		( void *param )
    	Returns			: None
     Input range		: None
    ======================================================================================== */
-	
-	uint8_t receive;
 
-	uint8_t OutedMsg 			= 0;
-//	uint8_t PROGRAM_STARTED 	 	= 0;
+	uint8_t receive;
+	uint8_t OutedMsg = 0;
 	
 	/* This Functioncall should be removed once debugging / dev. stage is finished */
 	/* DEBUGGING - Should be removed before V1.0 */	nWashProgram_2();
 	
 	while(1) 
 	{
-		// The program Handler makes sure each operation for every wash program is executed.
-		// The Program Handler can be in 3 states:
-		//		IDLE : Waiting for a Washing Program to start.
-		//		READY: Inbetween Operations in a washing Program (e.g. After CHECK_WASH_TEMPERATURE Operation, before WASH Operation).
-		//		BUSY : While an operation is being executed. e.g. While a WASH is running, or HEATING etc.
+		/* The program Handler makes sure each operation for every wash program is executed.												*/
+		/* The Program Handler can be in 3 states:																							*/
+		/*		IDLE : Waiting for a Washing Program to start.																				*/
+		/*		READY: Inbetween Operations in a washing Program (e.g. After CHECK_WASH_TEMPERATURE Operation, before WASH Operation).		*/
+		/*		BUSY : While an operation is being executed. e.g. While a WASH is running, or HEATING etc.									*/
 		switch(ProgramHandlerState) 
 		{
-			
-			case IDLE :
-				if (! OutedMsg) 
-				{
-					OutedMsg = 1;
-				}
+		case IDLE :
+			if (! OutedMsg) 
+			{
+				OutedMsg = 1;
+			}
 				
-				if (xQueueReceive(ProgramHandlerQ , &receive , 10)) 
-				{
-					switch(receive) 
-					{
-						case START_PROGRAM:
-							ProgramHandlerState = READY;
-							OutedMsg = 0;
-						break;
-
-						case PAUSE_PROGRAM:
-							ProgramHandlerState = PAUSED;
-							break;
-					}
-				}
-			break;
-				
-			case READY :
-				if (xQueueReceive(ProgramLibrary , &receive, 10)) 
-				{
-					switch(receive) 
-					{
-						
-						// Define Program Number
-						case PROGRAM_1:
-							CurrentProgram = PROGRAM_1 * 2 - 1;
-						break;
-						case PROGRAM_2:
-							CurrentProgram = PROGRAM_2 * 2 - 1;
-						break;
-						case PROGRAM_3:
-							CurrentProgram = PROGRAM_3 * 2 - 1;
-						break;
-						
-						// Operation cases
-						case CHECK_WATER_LEVEL:
-							ProgramHandlerState = BUSY;
-							nFillTanksOperation();
-						break;
-						
-						case CHECK_WASH_TEMPERATURE:
-							ProgramHandlerState = BUSY;
-							nCheckWashTemperature();
-						break;
-						
-						case CHECK_RINSE_TEMPERATURE:
-							ProgramHandlerState = BUSY;
-							nCheckRinseTemperature();
-						break;
-						
-						case CHECK_SOAP:
-							ProgramHandlerState = BUSY;
-							nFillSoapOperation();
-						break;
-						
-						case RUN_WASH:
-							ProgramHandlerState = BUSY;
-							nWashOperation();
-						break;
-						
-						case RUN_RINSE:
-							ProgramHandlerState = BUSY;
-							nRinseOperation();
-						break;
-						
-						case RUN_WAIT:
-							ProgramHandlerState = BUSY;
-							nWaitOperation();
-						break;
-						
-						case END_PROGRAM:
-							ProgramHandlerState = IDLE;
-							CurrentProgram = 0;
-							nNewLine( 1 );
-							if (!vGetErrorCounter())	/* If Error counter is 0, type out success message to UART */
-							{
-								nUART_TxString("Ended Program Successfully.");
-							}
-							else						/* If errors exist, output error counter value to UART*/
-							{
-								nUART_TxString("Ended Program with ");
-								nPrintInteger(vGetErrorCounter());
-								nUART_TxString(" Error(s).");
-							}
-							
-							nNewLine( 2 );
-						break;
-						
-						default:
-							nUART_TxString("Didn't Understand Input to ProgramLibrary. \r\n");
-						break;
-					}
-				}
-			break;
-				
-			case BUSY :
 			if (xQueueReceive(ProgramHandlerQ , &receive , 10)) 
 			{
 				switch(receive) 
 				{
-					case OPERATION_ENDED:
+				case START_PROGRAM:
+					ProgramHandlerState = READY;
+					OutedMsg = 0;
+					break;
+
+				case PAUSE_PROGRAM:
+					ProgramHandlerState = PAUSED;
+					break;
+				}
+			}
+			break;
+				
+		case READY :
+			if (xQueueReceive(ProgramLibrary , &receive, 10)) 
+			{
+				switch(receive) 
+				{
+						
+				// Define Program Number
+				case PROGRAM_1:
+					CurrentProgram = PROGRAM_1 * 2 - 1;
+					break;
+					
+				case PROGRAM_2:
+					CurrentProgram = PROGRAM_2 * 2 - 1;
+					break;
+					
+				case PROGRAM_3:
+					CurrentProgram = PROGRAM_3 * 2 - 1;
+					break;
+						
+				// Operation cases
+				case CHECK_WATER_LEVEL:
+					ProgramHandlerState = BUSY;
+					nFillTanksOperation();
+					break;
+						
+				case CHECK_WASH_TEMPERATURE:
+					ProgramHandlerState = BUSY;
+					nCheckWashTemperature();
+					break;
+						
+				case CHECK_RINSE_TEMPERATURE:
+					ProgramHandlerState = BUSY;
+					nCheckRinseTemperature();
+					break;
+						
+				case CHECK_SOAP:
+					ProgramHandlerState = BUSY;
+					nFillSoapOperation();
+					break;
+						
+				case RUN_WASH:
+					ProgramHandlerState = BUSY;
+					nWashOperation();
+					break;
+						
+				case RUN_RINSE:
+					ProgramHandlerState = BUSY;
+					nRinseOperation();
+					break;
+						
+				case RUN_WAIT:
+					ProgramHandlerState = BUSY;
+					nWaitOperation();
+					break;
+						
+				case END_PROGRAM:
+					ProgramHandlerState = IDLE;
+					CurrentProgram = 0;
+					nNewLine( 1 );
+					if (!vGetErrorCounter())	/* If Error counter is 0, type out success message to UART */
+					{
+						nUART_TxString("Ended Program Successfully.");
+					}
+					else						/* If errors exist, output error counter value to UART*/
+					{
+						nUART_TxString("Ended Program with ");
+						nPrintInteger(vGetErrorCounter());
+						nUART_TxString(" Error(s).");
+					}
+							
+					nNewLine( 2 );
+					break;
+						
+				default:
+					nUART_TxString("Didn't understand input to ProgramLibrary. \r\n");
+					break;
+				}
+			}
+
+			if (xQueueReceive(ProgramHandlerQ, &receive, 10))
+			{
+				switch (receive)
+				{
+				case PauseProgram:
+					ProgramHandlerState = PAUSED;
+					break;
+
+				}
+			}
+			break;
+				
+		case BUSY :
+			if (xQueueReceive(ProgramHandlerQ , &receive , 10)) 
+			{
+				switch(receive) 
+				{
+					case OperationEnded:
 						ProgramHandlerState = READY;
 					break;
 					
-					case PAUSE_PROGRAM:
+					case PauseProgram:
 						ProgramHandlerState = PAUSED;
 					break;
 					default:
@@ -1224,11 +1389,22 @@ void tProgram_Handler		( void *param )
 				}
 			}
 			break;
-			
-			
+
+		case PAUSED:
+			if (xQueueReceive(ProgramHandlerQ, &receive, 10))
+			{
+				switch (receive)
+				{
+				case ResumeProgram:
+					ProgramHandlerState = Busy;
+					break;
+				}
+			}
+			break;
+
 			default :
 				
-			break;
+				break;
 		}
 		vTaskDelay(10);
 	}

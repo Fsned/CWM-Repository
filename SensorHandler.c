@@ -15,11 +15,11 @@
  *	
  =============================================================================================== */
 
-/* ========================================================================================
+/* =============================================================================================
    
    				Libraries
    
-   ======================================================================================== */
+   ============================================================================================= */
 #include "Sensor_file.h"
 #include "GPIO_setup.h"
 #include "UART_control.h"
@@ -32,11 +32,11 @@
 #include "stdutils.h"
 #include "lpc17xx.h"
 
-/* ========================================================================================
+/* =============================================================================================
   
   					Variables
   
-   ======================================================================================= */
+   ============================================================================================= */
 xQueueHandle SensorQ = NULL;
 uint8_t	ACTIVE_SENSORS = 0;
 uint8_t SensorStatusLibrary[NUMBER_OF_SENSORS];
@@ -60,25 +60,25 @@ uint16_t SensorDataLibrary[NUMBER_OF_SENSORS][3] = {{1,1,1},
 
 
 
-/* ========================================================================================
-	Type		: 	BINARY_RETURN Functions
-	Example		:	bXxXxX();
-	Description	:	Returns true (1) or false (0) depending on the success of the function
-   ======================================================================================== */
+/* ==============================================================================================
+	Type			: 	BINARY_RETURN Functions
+	Example			:	bXxXxX();
+	Description		:	Returns true (1) or false (0) depending on the success of the function
+   ============================================================================================== */
 
 
-/* ========================================================================================
-  	Type		: 	NO_RETURN Functions
-  	Example		:	nXxXxX();
-  	Description	:	Does not return anything.
-   ======================================================================================== */
+/* ==============================================================================================
+  	Type			: 	NO_RETURN Functions
+  	Example			:	nXxXxX();
+  	Description		:	Does not return anything.
+   ============================================================================================== */
 void nInitializeAnalogSensors() 
 {
 /* ==================================================================
-  	Function name : nInitializeAnalogSensors
-  	Functionality :	Initializes 
-   	Returns		  :	None
-    Input range	  : None
+  	Function name	: nInitializeAnalogSensors
+  	Functionality	:	Initializes 
+   	Returns			:	None
+    Input range		: None
    ================================================================ */
 	nSensorLibrary_Init(); 
 	
@@ -87,7 +87,6 @@ void nInitializeAnalogSensors()
 		bSetupAnalogI(i);
 		SensorStatusLibrary[i] = SENSOR_ACTIVE;		
 	}
-		
 }
 
 void nInitializeDigitalSensors() 
@@ -97,7 +96,7 @@ void nInitializeDigitalSensors()
   	Functionality	: 
    	Returns			: None
     Input range		: None
-   ================================================================ */
+   ================================================================== */
 	nSensorLibrary_Init(); 
 
 	// Digital Inputs:
@@ -207,9 +206,9 @@ void nSensorLibrary_Init()
 	}
 }
 /* ========================================================================================
-  	Type		: 	VALUE_RETURN Functions
-  	Example		:	vXxXxX();
-  	Description	:	Returns a value, no confirmation if successful or not. can be a handle for e.g. ADC pin
+  	Type			: 	VALUE_RETURN Functions
+  	Example			:	vXxXxX();
+  	Description		:	Returns a value, no confirmation if successful or not. can be a handle for e.g. ADC pin
    ======================================================================================== */
 uint16_t vGetSensorData( uint8_t SENSOR ) 
 {
@@ -236,6 +235,9 @@ uint16_t vGetSensorData( uint8_t SENSOR )
 void tSensor_Task( void *param) 
 {
 	
+	nInitializeDigitalSensors();								/* Initialize all Digital Sensors							*/
+	nInitializeAnalogSensors();									/* Initialize all Analog Sensors							*/
+
 	uint8_t	Digital_sensors_ports[] = {2,2,2,0 ,0 ,0,0};		/* PORTS for the 7 digital inputs		*/
 	uint8_t Digital_sensors_pins [] = {2,1,0,11,10,5,4};		/* PINS for the 7 digital inputs		*/
 
@@ -243,30 +245,23 @@ void tSensor_Task( void *param)
 	
 	while( 1 ) 
 	{
-		
 		switch ( SENSOR_TASK_STATE ) 
 		{
-			
 			case SENSOR_STATE_IDLE :
-				
 				ACTIVE_SENSORS = 0;
 				for (uint8_t i = 0; i < NUMBER_OF_SENSORS; i++) 
 				{
 					if ( SensorStatusLibrary[i] == SENSOR_ACTIVE )
 						ACTIVE_SENSORS++;
 				}
-			
 				vTaskDelay(10);
 				SENSOR_TASK_STATE = SENSOR_STATE_DATA_COLLECTION;
-			break;
-			
-				
-				
+				break;
+
 			case SENSOR_STATE_DATA_COLLECTION :
 				for (uint8_t i = ANALOG_SENSORS_START; i < 16; i++) 
 				{
-					
-					if ( SensorStatusLibrary[i] != SENSOR_ACTIVE )
+					if ( SensorStatusLibrary[i] != SENSOR_ACTIVE )		/* If sensor isn't active, skip to next sensor. */
 						continue;
 					
 					if ( i < ANALOG_SENSORS_END) 
@@ -275,13 +270,13 @@ void tSensor_Task( void *param)
 					else
 						SensorDataLibrary[i][0] = vDigitalRead( Digital_sensors_ports[i - DIGITAL_SENSORS_START] , Digital_sensors_pins[i - DIGITAL_SENSORS_START] );
 				}
-				SENSOR_TASK_STATE = SENSOR_STATE_IDLE;
-				vTaskDelay(10);
-			break;
+				SENSOR_TASK_STATE = SENSOR_STATE_IDLE;					/* Set the sensor state to idle, to wait a period and then check sensor status' */
+				vTaskDelay(50);
+				break;
 			
 			default :
 				SENSOR_TASK_STATE = SENSOR_STATE_IDLE;
-			break;
+				break;
 		}
 		vTaskDelay(10);
 	}
@@ -291,11 +286,7 @@ uint8_t  vGetSensorStatus	( uint8_t SENSOR_HANDLE )
 {
 /* ========================================================================================
   	Function name		: vGetSensorStatus
-  	Functionality	: Returns the current status on the argumented sensor. This can either be:
-  						SENSOR_VACANT (0)
-  						SENSOR_ACTIVE (1)
-  						SENSOR_PAUSED (2)
-  
+  	Functionality		: Returns the current status on the argumented sensor.
    	Returns				: SENSOR_VACANT = 0		,		SENSOR_ACTIVE = 1		,		SENSOR_PAUSED = 2
     Input range			: 0 to NUMBER_OF_SENSORS - 1
    ======================================================================================== */

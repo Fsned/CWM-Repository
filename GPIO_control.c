@@ -28,9 +28,10 @@
   					Libraries
   
   ================================================================= */ 
+#include "stdint.h"
 #include "lpc17xx.h"
 #include "GPIO_control.h"
-#include "stdint.h"
+
 
 
 
@@ -347,7 +348,6 @@ uint8_t bDigitalWrite( uint8_t Port , int Pin , uint8_t State )
 	
 	return bDigitalWrite_ret;
 }
-// ***** End of Function ********************************************
 
 
 
@@ -395,51 +395,46 @@ void nGPIOSetup()
 	bSetupDigitalIO( PORT_1 , LED_4 , GPIO_OUTPUT );
 	
 	/* Digital Outputs for hardware (see HW_Pinmap in Programs_file.c */
-	bSetupDigitalIO( PORT_0 , PIN_9  , GPIO_OUTPUT );				// P5
-	bSetupDigitalIO( PORT_0 , PIN_8  , GPIO_OUTPUT );				// P6
-	bSetupDigitalIO( PORT_0 , PIN_7  , GPIO_OUTPUT );				// P7
-	bSetupDigitalIO( PORT_0 , PIN_6  , GPIO_OUTPUT );				// P8
-	bSetupDigitalIO( PORT_0 , PIN_0  , GPIO_OUTPUT );				// P9
-	bSetupDigitalIO( PORT_0 , PIN_1  , GPIO_OUTPUT );				// P10
-	bSetupDigitalIO( PORT_0 , PIN_18 , GPIO_OUTPUT );				// P11
-	bSetupDigitalIO( PORT_0 , PIN_17 , GPIO_OUTPUT );				// P12
-	bSetupDigitalIO( PORT_0 , PIN_15 , GPIO_OUTPUT );				// P13
-	bSetupDigitalIO( PORT_0 , PIN_16 , GPIO_OUTPUT );				// P14
-	bSetupDigitalIO( PORT_1 , PIN_30 , GPIO_OUTPUT );				// P19
-	bSetupDigitalIO( PORT_1 , PIN_31 , GPIO_OUTPUT );				// P20
-	bSetupDigitalIO( PORT_2 , PIN_5  , GPIO_OUTPUT );				// P21
-	bSetupDigitalIO( PORT_2 , PIN_4  , GPIO_OUTPUT );				// P22
-	bSetupDigitalIO( PORT_2 , PIN_3  , GPIO_OUTPUT );				// P23
+	bSetupDigitalIO( PORT_0 , PIN_9  , GPIO_OUTPUT );				/* P5	*/
+	bSetupDigitalIO( PORT_0 , PIN_8  , GPIO_OUTPUT );				/* P6	*/
+	bSetupDigitalIO( PORT_0 , PIN_7  , GPIO_OUTPUT );				/* P7	*/
+	bSetupDigitalIO( PORT_0 , PIN_6  , GPIO_OUTPUT );				/* P8	*/
+	bSetupDigitalIO( PORT_0 , PIN_0  , GPIO_OUTPUT );				/* P9	*/
+	bSetupDigitalIO( PORT_0 , PIN_1  , GPIO_OUTPUT );				/* P10	*/
+	bSetupDigitalIO( PORT_0 , PIN_18 , GPIO_OUTPUT );				/* P11	*/
+	bSetupDigitalIO( PORT_0 , PIN_17 , GPIO_OUTPUT );				/* P12	*/
+	bSetupDigitalIO( PORT_0 , PIN_15 , GPIO_OUTPUT );				/* P13	*/
+	bSetupDigitalIO( PORT_0 , PIN_16 , GPIO_OUTPUT );				/* P14	*/
+	bSetupDigitalIO( PORT_1 , PIN_30 , GPIO_OUTPUT );				/* P19	*/
+	bSetupDigitalIO( PORT_1 , PIN_31 , GPIO_OUTPUT );				/* P20	*/
+	bSetupDigitalIO( PORT_2 , PIN_5  , GPIO_OUTPUT );				/* P21	*/
+	bSetupDigitalIO( PORT_2 , PIN_4  , GPIO_OUTPUT );				/* P22	*/
+	bSetupDigitalIO( PORT_2 , PIN_3  , GPIO_OUTPUT );				/* P23	*/
 	
 }
 
-
-
-// ***** End of Function ********************************************
-
-void nInitializePinLibrary() 
-{ 
-/* ==================================================================
-  	Function name	: nInitializePinLibrary
-  	Functionality	: Used to set all pins to GPIO_FREE, to allow setups to reserve pins, and prevent overlapping on pins
-   	Returns			: None
-    Input range		: None
-   ================================================================== */
+void nInitializePinLibrary()
+{
+	/* ==================================================================
+		Function name	: nInitializePinLibrary
+		Functionality	: Used to set all pins to GPIO_FREE, to allow setups to reserve pins, and prevent overlapping on pins
+		Returns			: None
+		Input range		: None
+	   ================================================================== */
 	static uint8_t Initialized = 0;
-	
-	if (! Initialized ) 
+
+	if (!Initialized)
 	{
-		
-		for ( uint8_t column = 0; column < 5; column++ ) 
+
+		for (uint8_t column = 0; column < 5; column++)
 		{
-			for ( uint8_t row = 0; row < 32; row++ )
+			for (uint8_t row = 0; row < 32; row++)
 				PinLibrary[column][row] = GPIO_FREE;
 		}
-		
+
 		Initialized = 1;
 	}
 }
-// ***** End of Function ********************************************
 
 
 
@@ -517,7 +512,6 @@ uint8_t vDigitalRead( uint8_t Port , int Pin )
 	
 	return vDigitalRead_ret;
 }
-// ***** End of Function ********************************************
 
 
 uint8_t vGetPinStatus	( uint8_t Port , int Pin ) 
@@ -532,5 +526,4 @@ uint8_t vGetPinStatus	( uint8_t Port , int Pin )
 	
 	return PinLibrary[Port][Pin];
 }
-// ***** End of Function ********************************************
 

@@ -83,10 +83,31 @@ enum SENSORS
 	NUMBER_OF_SENSORS
 };
 
+
+
+// Hardware Status Modes
+
+enum DoorStatus
+{
+	HardwareDoorOpen,
+	HardwareDoorClosed,
+
+	NumberOfDoorStates
+};
+
+enum ValveStatus
+{
+	HardwareValveClosed,
+	HardwareValveOpen,
+
+	NumberOfValveStates
+};
+
+
 // Sensor Indexing end -------------------------
 
 // ADC Relevant Constants
-#define ADC_UNITS				1
+#define ADC_UNITS			1
 #define ADC_CHANNELS		8
 #define ADC_CAPACITY	ADC_UNITS * ADC_CHANNELS
 

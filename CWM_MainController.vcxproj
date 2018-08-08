@@ -77,7 +77,7 @@
   </ImportGroup>
   <ItemGroup>
     <ClCompile Include="ErrorHandler.c" />
-    <ClCompile Include="main.cpp" />
+    <ClCompile Include="main.c" />
     <ClCompile Include="LEDHandler.c" />
     <ClCompile Include="utilities.c" />
     <ClCompile Include="UART_control.c" />

@@ -29,80 +29,78 @@
 // ****************************************************************************************
 
 enum UART_Chars {
-CHAR_a = 'a',			
-CHAR_A = 'A',
-CHAR_b = 'b',		
-CHAR_B = 'B',
-CHAR_c = 'c',		
-CHAR_C = 'C',
-CHAR_d = 'd',		
-CHAR_D = 'D',
-CHAR_e = 'e',		
-CHAR_E = 'E',
-CHAR_f = 'f',		
-CHAR_F = 'F',
-CHAR_g = 'g',		
-CHAR_G = 'G',
-CHAR_h = 'h',		
-CHAR_H = 'H',
-CHAR_i = 'i',		
-CHAR_I = 'I',
-CHAR_j = 'j',		
-CHAR_J = 'J',
-CHAR_k = 'k',		
-CHAR_K = 'K',
-CHAR_l = 'l',		
-CHAR_L = 'L',
-CHAR_m = 'm',		
-CHAR_M = 'M',
-CHAR_n = 'n',		
-CHAR_N = 'N',
-CHAR_o = 'o',		
-CHAR_O = 'O',
-CHAR_p = 'p',		
-CHAR_P = 'P',
-CHAR_q = 'q',		
-CHAR_Q = 'Q',
-CHAR_r = 'r',		
-CHAR_R = 'R',
-CHAR_s = 's',		
-CHAR_S = 'S',
-CHAR_t = 't',			
-CHAR_T = 'T',
-CHAR_u = 'u',		
-CHAR_U = 'U',
-CHAR_v = 'v',		
-CHAR_V = 'V',
-CHAR_w = 'w',		
-CHAR_W = 'W',
-CHAR_x = 'x',		
-CHAR_X = 'X',
-CHAR_y = 'y',		
-CHAR_Y = 'Y',
-CHAR_z = 'z',		
-CHAR_Z = 'Z',
-
-CHAR_ENTER = '\r',
-CHAR_BACKSPACE = 0x7F
+	CHAR_a = 'a',			
+	CHAR_A = 'A',
+	CHAR_b = 'b',		
+	CHAR_B = 'B',
+	CHAR_c = 'c',		
+	CHAR_C = 'C',
+	CHAR_d = 'd',		
+	CHAR_D = 'D',
+	CHAR_e = 'e',		
+	CHAR_E = 'E',
+	CHAR_f = 'f',		
+	CHAR_F = 'F',
+	CHAR_g = 'g',		
+	CHAR_G = 'G',
+	CHAR_h = 'h',		
+	CHAR_H = 'H',
+	CHAR_i = 'i',		
+	CHAR_I = 'I',
+	CHAR_j = 'j',		
+	CHAR_J = 'J',
+	CHAR_k = 'k',		
+	CHAR_K = 'K',
+	CHAR_l = 'l',		
+	CHAR_L = 'L',
+	CHAR_m = 'm',		
+	CHAR_M = 'M',
+	CHAR_n = 'n',		
+	CHAR_N = 'N',
+	CHAR_o = 'o',		
+	CHAR_O = 'O',
+	CHAR_p = 'p',		
+	CHAR_P = 'P',
+	CHAR_q = 'q',		
+	CHAR_Q = 'Q',
+	CHAR_r = 'r',		
+	CHAR_R = 'R',
+	CHAR_s = 's',		
+	CHAR_S = 'S',
+	CHAR_t = 't',			
+	CHAR_T = 'T',
+	CHAR_u = 'u',		
+	CHAR_U = 'U',
+	CHAR_v = 'v',		
+	CHAR_V = 'V',
+	CHAR_w = 'w',		
+	CHAR_W = 'W',
+	CHAR_x = 'x',		
+	CHAR_X = 'X',
+	CHAR_y = 'y',		
+	CHAR_Y = 'Y',
+	CHAR_z = 'z',		
+	CHAR_Z = 'Z',
+	
+	CHAR_ENTER = '\r',
+	CHAR_BACKSPACE = 0x7F
 };
 
 
-#define SBIT_WordLenght    	0x00u
-#define SBIT_DLAB          	0x07u
-#define SBIT_FIFO          	0x00u
-#define SBIT_RxFIFO        	0x01u
-#define SBIT_TxFIFO        	0x02u
-#define SBIT_RDR           	0x00u
-#define SBIT_THRE          	0x05u
+#define SBIT_WordLenght    			0x00u
+#define SBIT_DLAB          			0x07u
+#define SBIT_FIFO          			0x00u
+#define SBIT_RxFIFO        			0x01u
+#define SBIT_TxFIFO        			0x02u
+#define SBIT_RDR           			0x00u
+#define SBIT_THRE          			0x05u
 #define NO_OF_KEYWORDS 				25
 
 #define USERS						5
 
-
 #define UartState_FindUser			1
 #define UartState_FindPass			2
 #define	UartState_Functioncall		3
-
 
 #define ENTER_USERNAME				255
 #define ENTER_PASSWORD				254
@@ -121,11 +119,11 @@ extern xQueueHandle qUART_TxQ;
 //	Example		:	bXxXxX();
 //	Description	:	Returns true (1) or false (0) depending on the success of the function
 // ****************************************************************************************
-extern uint8_t bKeyHit( uint8_t KEY_CHECK , uint8_t KEY_HIT );
+extern uint8_t bKeyHit					( uint8_t KEY_CHECK , uint8_t KEY_HIT );
 
-extern uint8_t bUART_TxReady( void );
+extern uint8_t bUART_TxReady			( void );
 
-extern uint8_t bUART_RxReady( void );
+extern uint8_t bUART_RxReady			( void );
 
 // ****************************************************************************************
 //	Type		: 	NO_RETURN Functions
@@ -199,11 +197,11 @@ extern void nPrintInteger				( int input );
 //	Example		:	vXxXxX();
 //	Description	:	Returns a value, either 1 or 0. no confirmation if successful or not.
 // ****************************************************************************************
-extern uint8_t vFindStringMatch	( char InputString[] , uint8_t length );
+extern uint8_t vFindStringMatch			( char InputString[] , uint8_t length );
 
-extern uint8_t vCheckUsernames	( char InputString[] , uint8_t length );
+extern uint8_t vCheckUsernames			( char InputString[] , uint8_t length );
 
-extern uint8_t vCheckPasscode	( char InputString[] , uint8_t length );
+extern uint8_t vCheckPasscode			( char InputString[] , uint8_t length );
 
 #endif /* UART_CONTROL_H */
 

@@ -18,17 +18,17 @@
  ==========================================================================================
  * Dependencies:
  *	This library uses the following files:
- *	"LED_control.h"			-			Own header file, to publish API to secondary files
+ *	"LED_control.h"				-			Own header file, to publish API to secondary files
  *	"lpc17xx.h"					-			Processor header file, used to access various registers
  *	"stdutils.h"				-			Defines the various datatypes e.g. 8-bits integer, 16-bits integer
- * 
  ========================================================================================== */
 
-// ========================================================================================
-//
-//					Libraries
-//
-// ========================================================================================
+/* ========================================================================================
+  
+  					Libraries
+  
+   ======================================================================================== */
+#include "stdint.h"
 #include "lpc17xx.h"
 #include "stdutils.h"
 
@@ -36,7 +36,6 @@
 #include "GPIO_control.h"
 
 #include "LEDHandler.h"
-#include "stdint.h"
 
 #include "utilities.h"
 
@@ -109,7 +108,6 @@ void nLED_SET(uint8_t led_0 , uint8_t led_1, uint8_t led_2, uint8_t led_3)
 	bDigitalWrite( PORT_LED , LED_3 , LED_status[2] );
 	bDigitalWrite( PORT_LED , LED_4 , LED_status[3] );
 }
-// ***** End of Function ********************************************
 
 
 void nAliveSuspend() 
@@ -133,7 +131,6 @@ void nAliveResume()
    ======================================================================================== */
 	vTaskResume(AliveHandle);
 }
-// ***** End of Function ********************************************
 
 void tLEDAlive( void *param ) 
 {
@@ -159,8 +156,6 @@ void tLEDAlive( void *param )
 		vTaskDelay(1000);
 	}
 }
-// ***** End of Function ********************************************
-
 
 void nPrintAlive() 
 {

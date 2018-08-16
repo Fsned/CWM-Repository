@@ -1027,7 +1027,7 @@ void nCheckWashTemperature()
 			}
 
 			vTaskDelay(100);
-		}
+		} 
 		else /* If door opens */
 		{
 			bSetHWStatus(HEATING_RINSE_1, HardwareOff);
